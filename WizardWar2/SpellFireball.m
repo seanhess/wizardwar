@@ -7,6 +7,7 @@
 //
 
 #import "SpellFireball.h"
+#import "SpellEarthwall.h"
 
 @implementation SpellFireball
 
@@ -18,6 +19,13 @@
 }
 
 -(SpellInteraction*)interactSpell:(Spell*)spell {
+    
+    if ([spell isType:[SpellEarthwall class]]) {
+        return [SpellInteraction cancel];
+    }
+    
+    // fire + fire is ignored
+    
     return [SpellInteraction nothing];
 }
 
