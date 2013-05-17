@@ -166,8 +166,8 @@
 		6F6ABA911746B7B500A2A9CE /* MatchmakingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchmakingTableViewController.m; sourceTree = "<group>"; };
 		6F6ABA931746B7D100A2A9CE /* UserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCell.h; sourceTree = "<group>"; };
 		6F6ABA941746B7D100A2A9CE /* UserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCell.m; sourceTree = "<group>"; };
-		6FD1C7961746D90300E944F4 /* InviteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InviteCell.h; path = WizardWar2/InviteCell.h; sourceTree = "<group>"; };
-		6FD1C7971746D90300E944F4 /* InviteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InviteCell.m; path = WizardWar2/InviteCell.m; sourceTree = "<group>"; };
+		6FD1C7961746D90300E944F4 /* InviteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteCell.h; sourceTree = "<group>"; };
+		6FD1C7971746D90300E944F4 /* InviteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteCell.m; sourceTree = "<group>"; };
 		78F6B1E31746AD8900AA070D /* WizardWar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WizardWar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78F6B1E61746AD8900AA070D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		78F6B1E81746AD8900AA070D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -504,8 +504,6 @@
 		78F6B1DA1746AD8900AA070D = {
 			isa = PBXGroup;
 			children = (
-				6FD1C7961746D90300E944F4 /* InviteCell.h */,
-				6FD1C7971746D90300E944F4 /* InviteCell.m */,
 				78F6B1EC1746AD8900AA070D /* WizardWar2 */,
 				78F6B1E51746AD8900AA070D /* Frameworks */,
 				78F6B1E41746AD8900AA070D /* Products */,
@@ -555,6 +553,8 @@
 				6F6ABA911746B7B500A2A9CE /* MatchmakingTableViewController.m */,
 				6F6ABA931746B7D100A2A9CE /* UserCell.h */,
 				6F6ABA941746B7D100A2A9CE /* UserCell.m */,
+				6FD1C7961746D90300E944F4 /* InviteCell.h */,
+				6FD1C7971746D90300E944F4 /* InviteCell.m */,
 				78F6B3C21746B29C00AA070D /* WWDirector.h */,
 				78F6B3C31746B29C00AA070D /* WWDirector.m */,
 				78F6B3C11746B28B00AA070D /* Helpers */,
