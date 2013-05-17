@@ -23,7 +23,7 @@
 {
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super's" return value
-	if( (self=[super initWithColor:ccc4(0.5, 0.5, 0.5, 1.0)]) ) {
+	if( (self=[super init])) {
 		
 		// create and initialize a Label
 		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Hello World" fontName:@"Marker Felt" fontSize:64];

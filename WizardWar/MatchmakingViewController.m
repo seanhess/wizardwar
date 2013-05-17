@@ -10,6 +10,7 @@
 #import "IntroLayer.h"
 #import "WWDirector.h"
 #import "CCScene+Layers.h"
+#import "MatchLayer.h"
 
 @interface MatchmakingViewController ()
 
@@ -45,7 +46,7 @@
     // hide the navigation bar first, so the size of this view is correct!
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     CCDirectorIOS * director = [WWDirector directorWithBounds:self.view.bounds];
-    [director runWithScene:[CCScene sceneWithLayer:[IntroLayer node]]];
+    [director runWithScene:[CCScene sceneWithLayer:[MatchLayer node]]];
     [self.navigationController pushViewController:director animated:YES];
 }
 

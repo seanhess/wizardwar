@@ -13,8 +13,6 @@
 #import "cocos2d.h"
 
 // HelloWorldLayer
-@interface HelloWorldLayer : CCLayerColor
-{
-}
+@interface HelloWorldLayer : CCLayer
 
 @end

@@ -145,6 +145,13 @@
 		78F6AA6F1746895F00AA070D /* MainNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6AA6E1746895F00AA070D /* MainNavViewController.m */; };
 		78F6AA7317468A9100AA070D /* CCScene+Layers.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6AA7217468A9100AA070D /* CCScene+Layers.m */; };
 		78F6AA7617468BB700AA070D /* WWDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6AA7517468BB700AA070D /* WWDirector.m */; };
+		78F6AA7A1746908A00AA070D /* MatchLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6AA791746908A00AA070D /* MatchLayer.m */; };
+		78F6AA7D174691A400AA070D /* MatchGroundSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6AA7C174691A400AA070D /* MatchGroundSprite.m */; };
+		78F6AA801746939F00AA070D /* WizardSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6AA7F1746939F00AA070D /* WizardSprite.m */; };
+		78F6AA831746960900AA070D /* Spell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6AA821746960900AA070D /* Spell.m */; };
+		78F6AA871746961600AA070D /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6AA861746961600AA070D /* Match.m */; };
+		78F6AA8A1746962000AA070D /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6AA891746962000AA070D /* Player.m */; };
+		78F6AA8D1746986900AA070D /* SpellSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6AA8C1746986900AA070D /* SpellSprite.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -437,6 +444,20 @@
 		78F6AA7217468A9100AA070D /* CCScene+Layers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCScene+Layers.m"; sourceTree = "<group>"; };
 		78F6AA7417468BB700AA070D /* WWDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWDirector.h; sourceTree = "<group>"; };
 		78F6AA7517468BB700AA070D /* WWDirector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWDirector.m; sourceTree = "<group>"; };
+		78F6AA781746908A00AA070D /* MatchLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchLayer.h; sourceTree = "<group>"; };
+		78F6AA791746908A00AA070D /* MatchLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchLayer.m; sourceTree = "<group>"; };
+		78F6AA7B174691A400AA070D /* MatchGroundSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchGroundSprite.h; sourceTree = "<group>"; };
+		78F6AA7C174691A400AA070D /* MatchGroundSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchGroundSprite.m; sourceTree = "<group>"; };
+		78F6AA7E1746939F00AA070D /* WizardSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardSprite.h; sourceTree = "<group>"; };
+		78F6AA7F1746939F00AA070D /* WizardSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizardSprite.m; sourceTree = "<group>"; };
+		78F6AA811746960900AA070D /* Spell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spell.h; sourceTree = "<group>"; };
+		78F6AA821746960900AA070D /* Spell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spell.m; sourceTree = "<group>"; };
+		78F6AA851746961600AA070D /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Match.h; sourceTree = "<group>"; };
+		78F6AA861746961600AA070D /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Match.m; sourceTree = "<group>"; };
+		78F6AA881746962000AA070D /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		78F6AA891746962000AA070D /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		78F6AA8B1746986900AA070D /* SpellSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellSprite.h; sourceTree = "<group>"; };
+		78F6AA8C1746986900AA070D /* SpellSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellSprite.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -508,6 +529,7 @@
 				78F6AA6717467CA100AA070D /* MatchmakingViewController.m */,
 				78F6AA7417468BB700AA070D /* WWDirector.h */,
 				78F6AA7517468BB700AA070D /* WWDirector.m */,
+				78F6AA841746960D00AA070D /* Data */,
 				78F6AA7717468CDE00AA070D /* Match */,
 				78F6AA7017468A8300AA070D /* Helpers */,
 				78F6A8C6174670B000AA070D /* Resources */,
@@ -908,12 +930,33 @@
 		78F6AA7717468CDE00AA070D /* Match */ = {
 			isa = PBXGroup;
 			children = (
+				78F6AA781746908A00AA070D /* MatchLayer.h */,
+				78F6AA791746908A00AA070D /* MatchLayer.m */,
+				78F6AA7B174691A400AA070D /* MatchGroundSprite.h */,
+				78F6AA7C174691A400AA070D /* MatchGroundSprite.m */,
+				78F6AA7E1746939F00AA070D /* WizardSprite.h */,
+				78F6AA7F1746939F00AA070D /* WizardSprite.m */,
+				78F6AA8B1746986900AA070D /* SpellSprite.h */,
+				78F6AA8C1746986900AA070D /* SpellSprite.m */,
 				78F6AA56174670B200AA070D /* HelloWorldLayer.h */,
 				78F6AA57174670B200AA070D /* HelloWorldLayer.m */,
 				78F6AA59174670B200AA070D /* IntroLayer.h */,
 				78F6AA5A174670B200AA070D /* IntroLayer.m */,
 			);
 			name = Match;
+			sourceTree = "<group>";
+		};
+		78F6AA841746960D00AA070D /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				78F6AA811746960900AA070D /* Spell.h */,
+				78F6AA821746960900AA070D /* Spell.m */,
+				78F6AA851746961600AA070D /* Match.h */,
+				78F6AA861746961600AA070D /* Match.m */,
+				78F6AA881746962000AA070D /* Player.h */,
+				78F6AA891746962000AA070D /* Player.m */,
+			);
+			name = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1137,6 +1180,13 @@
 				78F6AA6F1746895F00AA070D /* MainNavViewController.m in Sources */,
 				78F6AA7317468A9100AA070D /* CCScene+Layers.m in Sources */,
 				78F6AA7617468BB700AA070D /* WWDirector.m in Sources */,
+				78F6AA7A1746908A00AA070D /* MatchLayer.m in Sources */,
+				78F6AA7D174691A400AA070D /* MatchGroundSprite.m in Sources */,
+				78F6AA801746939F00AA070D /* WizardSprite.m in Sources */,
+				78F6AA831746960900AA070D /* Spell.m in Sources */,
+				78F6AA871746961600AA070D /* Match.m in Sources */,
+				78F6AA8A1746962000AA070D /* Player.m in Sources */,
+				78F6AA8D1746986900AA070D /* SpellSprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
