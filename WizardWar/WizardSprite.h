@@ -7,7 +7,8 @@
 //
 
 #import "CCSprite.h"
+#import "Player.h"
 
 @interface WizardSprite : CCSprite
-
+-(id)initWithPlayer:(Player*)player units:(Units*)units;
 @end

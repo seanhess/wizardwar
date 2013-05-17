@@ -157,6 +157,8 @@
 		78F6B3BC1746B27800AA070D /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3B61746B27700AA070D /* IntroLayer.m */; };
 		78F6B3C01746B28800AA070D /* CCScene+Layers.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3BF1746B28800AA070D /* CCScene+Layers.m */; };
 		78F6B3C41746B29C00AA070D /* WWDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3C31746B29C00AA070D /* WWDirector.m */; };
+		78F6B3C71746C4D300AA070D /* NSArray+Functional.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3C61746C4D300AA070D /* NSArray+Functional.m */; };
+		78F6B3CB1746D77B00AA070D /* Units.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3CA1746D77B00AA070D /* Units.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -467,6 +469,10 @@
 		78F6B3BF1746B28800AA070D /* CCScene+Layers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CCScene+Layers.m"; path = "WizardWar/CCScene+Layers.m"; sourceTree = SOURCE_ROOT; };
 		78F6B3C21746B29C00AA070D /* WWDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WWDirector.h; path = WizardWar/WWDirector.h; sourceTree = SOURCE_ROOT; };
 		78F6B3C31746B29C00AA070D /* WWDirector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WWDirector.m; path = WizardWar/WWDirector.m; sourceTree = SOURCE_ROOT; };
+		78F6B3C51746C4D300AA070D /* NSArray+Functional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Functional.h"; sourceTree = "<group>"; };
+		78F6B3C61746C4D300AA070D /* NSArray+Functional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Functional.m"; sourceTree = "<group>"; };
+		78F6B3C91746D77B00AA070D /* Units.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Units.h; sourceTree = "<group>"; };
+		78F6B3CA1746D77B00AA070D /* Units.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Units.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -939,6 +945,8 @@
 				78F6B3A41746B26000AA070D /* Player.h */,
 				78F6B3A51746B26000AA070D /* Player.m */,
 				78F6B3A61746B26000AA070D /* RenderDelegate.h */,
+				78F6B3C91746D77B00AA070D /* Units.h */,
+				78F6B3CA1746D77B00AA070D /* Units.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -967,6 +975,8 @@
 			children = (
 				78F6B3BE1746B28800AA070D /* CCScene+Layers.h */,
 				78F6B3BF1746B28800AA070D /* CCScene+Layers.m */,
+				78F6B3C51746C4D300AA070D /* NSArray+Functional.h */,
+				78F6B3C61746C4D300AA070D /* NSArray+Functional.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -1167,6 +1177,8 @@
 				6F6ABA921746B7B500A2A9CE /* MatchmakingTableViewController.m in Sources */,
 				6F6ABA951746B7D100A2A9CE /* UserCell.m in Sources */,
 				6FD1C7981746D90300E944F4 /* InviteCell.m in Sources */,
+				78F6B3C71746C4D300AA070D /* NSArray+Functional.m in Sources */,
+				78F6B3CB1746D77B00AA070D /* Units.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

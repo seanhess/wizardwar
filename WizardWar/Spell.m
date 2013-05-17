@@ -17,4 +17,8 @@
     [self.delegate didUpdateForRender];
 }
 
+-(NSDictionary*)toObject {
+    return [self dictionaryWithValuesForKeys:@[@"speed", @"size", @"position", @"created", @"type"]];
+}
+
 @end

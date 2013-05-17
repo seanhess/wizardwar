@@ -7,10 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Spell.h"
+#import "Player.h"
+
+@protocol MatchDelegate
+-(void)didRemoveSpell:(Spell*)spell;
+-(void)didAddSpell:(Spell*)spell;
+-(void)matchStarted;
+@end
 
 @interface Match : NSObject
 @property (nonatomic, strong) NSMutableArray * players;
 @property (nonatomic, strong) NSMutableArray * spells;
-
+@property (nonatomic, weak) id<MatchDelegate> delegate;
+@property (nonatomic, strong) Player * currentPlayer;
+@property (nonatomic) BOOL started;
 -(void)update:(NSTimeInterval)dt;
+-(void)addSpell:(Spell*)spell;
+-(id)initWithId:(NSString*)id currentPlayer:(Player*)player;
 @end

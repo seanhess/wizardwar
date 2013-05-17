@@ -9,14 +9,17 @@
 #import "SpellSprite.h"
 #import "cocos2d.h"
 
-#define PIXELS_PER_UNIT 10
-#define GROUND_LEVEL 100
+@interface SpellSprite ()
+@property (nonatomic, strong) Units * units;
+@end
 
 @implementation SpellSprite
 
--(id)initWithSpell:(Spell*)spell {
+
+-(id)initWithSpell:(Spell*)spell units:(Units *)units {
     if ((self=[super init])) {
         self.spell = spell;
+        self.units = units;
         spell.delegate = self;
     }
     return self;
@@ -27,7 +30,7 @@
 }
 
 -(void)didUpdateForRender {
-    self.position = ccp(self.spell.position * PIXELS_PER_UNIT, GROUND_LEVEL);
+    self.position = ccp([self.units pixelsXForUnitPosition:self.spell.position], self.units.groundY);
 }
 
 @end
