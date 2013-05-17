@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "MatchmakingViewController.h"
 #import "MainNavViewController.h"
+#import <Firebase/Firebase.h>
 
 @implementation AppController
 
@@ -23,6 +24,18 @@
     
     [window setRootViewController:navigationController];
     [window makeKeyAndVisible];
+    
+    
+    // Create a reference to a Firebase location
+    Firebase* f = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/"];
+
+    // Write data to Firebase
+    [f setValue:@"Do you have data? You'll love Firebase."];
+
+    // Read data and react to changes
+    [f observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+          NSLog(@"%@ -> %@", snapshot.name, snapshot.value);
+    }];
     
     return YES;
 }

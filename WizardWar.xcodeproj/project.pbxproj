@@ -152,6 +152,10 @@
 		78F6AA871746961600AA070D /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6AA861746961600AA070D /* Match.m */; };
 		78F6AA8A1746962000AA070D /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6AA891746962000AA070D /* Player.m */; };
 		78F6AA8D1746986900AA070D /* SpellSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6AA8C1746986900AA070D /* SpellSprite.m */; };
+		78F6AA8F17469CFE00AA070D /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F6AA8E17469CFE00AA070D /* Firebase.framework */; };
+		78F6AA9117469D1A00AA070D /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F6AA9017469D1A00AA070D /* libicucore.dylib */; };
+		78F6AA9317469D2600AA070D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F6AA9217469D2600AA070D /* CFNetwork.framework */; };
+		78F6AA9517469D2E00AA070D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F6AA9417469D2D00AA070D /* Security.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -458,6 +462,10 @@
 		78F6AA891746962000AA070D /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		78F6AA8B1746986900AA070D /* SpellSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellSprite.h; sourceTree = "<group>"; };
 		78F6AA8C1746986900AA070D /* SpellSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellSprite.m; sourceTree = "<group>"; };
+		78F6AA8E17469CFE00AA070D /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
+		78F6AA9017469D1A00AA070D /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		78F6AA9217469D2600AA070D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		78F6AA9417469D2D00AA070D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -465,6 +473,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78F6AA9517469D2E00AA070D /* Security.framework in Frameworks */,
+				78F6AA9317469D2600AA070D /* CFNetwork.framework in Frameworks */,
+				78F6AA9117469D1A00AA070D /* libicucore.dylib in Frameworks */,
 				78F6A8B2174670B000AA070D /* QuartzCore.framework in Frameworks */,
 				78F6A8B4174670B000AA070D /* OpenGLES.framework in Frameworks */,
 				78F6A8B6174670B000AA070D /* OpenAL.framework in Frameworks */,
@@ -476,6 +487,7 @@
 				78F6A8C2174670B000AA070D /* CoreText.framework in Frameworks */,
 				78F6A8C4174670B000AA070D /* GameKit.framework in Frameworks */,
 				476608F8BE054B2B9EC979BE /* libPods.a in Frameworks */,
+				78F6AA8F17469CFE00AA070D /* Firebase.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +497,9 @@
 		78F6A8A5174670B000AA070D = {
 			isa = PBXGroup;
 			children = (
+				78F6AA9417469D2D00AA070D /* Security.framework */,
+				78F6AA9217469D2600AA070D /* CFNetwork.framework */,
+				78F6AA9017469D1A00AA070D /* libicucore.dylib */,
 				78F6A8C5174670B000AA070D /* WizardWar */,
 				78F6A8B0174670B000AA070D /* Frameworks */,
 				78F6A8AF174670B000AA070D /* Products */,
@@ -503,6 +518,7 @@
 		78F6A8B0174670B000AA070D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				78F6AA8E17469CFE00AA070D /* Firebase.framework */,
 				78F6A8B1174670B000AA070D /* QuartzCore.framework */,
 				78F6A8B3174670B000AA070D /* OpenGLES.framework */,
 				78F6A8B5174670B000AA070D /* OpenAL.framework */,
@@ -1239,6 +1255,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = WizardWar/Prefix.pch;
@@ -1261,6 +1281,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = WizardWar/Prefix.pch;
 				HEADER_SEARCH_PATHS = "\"WizardWar/libs/kazmath/include\"";
