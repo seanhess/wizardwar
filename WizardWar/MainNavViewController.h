@@ -1,5 +1,5 @@
 //
-//  MatchViewController.h
+//  MainNavViewController.h
 //  WizardWar
 //
 //  Created by Sean Hess on 5/17/13.
@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "cocos2d.h"
 
-@interface MatchViewController : CCDirectorIOS
+@interface MainNavViewController : UINavigationController
 
 @end

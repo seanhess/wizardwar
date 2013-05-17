@@ -7,6 +7,9 @@
 //
 
 #import "MatchmakingViewController.h"
+#import "IntroLayer.h"
+#import "WWDirector.h"
+#import "CCScene+Layers.h"
 
 @interface MatchmakingViewController ()
 
@@ -36,6 +39,14 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    // hide the navigation bar first, so the size of this view is correct!
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    CCDirectorIOS * director = [WWDirector directorWithBounds:self.view.bounds];
+    [director runWithScene:[CCScene sceneWithLayer:[IntroLayer node]]];
+    [self.navigationController pushViewController:director animated:YES];
 }
 
 @end

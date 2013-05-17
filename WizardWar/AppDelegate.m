@@ -9,6 +9,7 @@
 
 #import "AppDelegate.h"
 #import "MatchmakingViewController.h"
+#import "MainNavViewController.h"
 
 @implementation AppController
 
@@ -18,8 +19,7 @@
     UIWindow * window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     MatchmakingViewController * matches = [MatchmakingViewController new];
-    
-    UINavigationController * navigationController = [[UINavigationController alloc] initWithRootViewController:matches];
+    MainNavViewController * navigationController = [[MainNavViewController alloc] initWithRootViewController:matches];
     
     [window setRootViewController:navigationController];
     [window makeKeyAndVisible];
