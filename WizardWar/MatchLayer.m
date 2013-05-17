@@ -87,6 +87,12 @@
     [self removeChild:sprite];
 }
 
+-(void)didAddSpell:(Spell *)spell {
+    SpellSprite * sprite = [[SpellSprite alloc] initWithSpell:spell units:self.units];
+    [self addChild:sprite];
+    [self.spellSprites addObject:sprite];
+}
+
 -(void)matchStarted {
     [self.match.players forEach:^(Player*player) {
         CCSprite * wizard = [[WizardSprite alloc] initWithPlayer:player units:self.units];
@@ -118,9 +124,6 @@
     // add the spell here
     Spell * spell = [self fakeSpell];
     [self.match addSpell:spell]; // add spell
-    SpellSprite * sprite = [[SpellSprite alloc] initWithSpell:spell units:self.units];
-    [self addChild:sprite];
-    [self.spellSprites addObject:sprite];
 }
 
 // starts at MY PLAYER

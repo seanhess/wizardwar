@@ -12,6 +12,7 @@
 
 @protocol MatchDelegate
 -(void)didRemoveSpell:(Spell*)spell;
+-(void)didAddSpell:(Spell*)spell;
 -(void)matchStarted;
 @end
 

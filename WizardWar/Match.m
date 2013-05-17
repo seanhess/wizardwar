@@ -34,6 +34,8 @@
         self.spellsNode = [self.matchNode childByAppendingPath:@"spells"];
         self.playersNode = [self.matchNode childByAppendingPath:@"players"];
         
+        
+        // PLAYERS
         [self.playersNode observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
             Player * player = [Player new];
             [player setValuesForKeysWithDictionary:snapshot.value];
@@ -49,11 +51,21 @@
         self.currentPlayer = player;
         
         // FAKE SECOND PLAYER
-        Player * fakeSecondPlayer = [Player new];
-        fakeSecondPlayer.name = @"FakeSecondPlayer";
+//        Player * fakeSecondPlayer = [Player new];
+//        fakeSecondPlayer.name = @"FakeSecondPlayer";
+//        [self joinPlayer:fakeSecondPlayer];
         
-        [self joinPlayer:fakeSecondPlayer];
         [self joinPlayer:self.currentPlayer];
+        
+        
+        
+        // SPELLS
+        [self.spellsNode observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
+            Spell * spell = [Spell new];
+            [spell setValuesForKeysWithDictionary:snapshot.value];
+            [self.spells addObject:spell];
+            [self.delegate didAddSpell:spell];
+        }];
     }
     return self;
 }
@@ -93,6 +105,12 @@
 
 -(void)start {
     self.started = YES;
+    
+    // sort alphabetically
+    [self.players sortUsingComparator:^NSComparisonResult(Player * p1, Player *p2) {
+        return [p1.name compare:p2.name];
+    }];
+    
     [self.players[0] setPosition:UNITS_MIN];
     [self.players[1] setPosition:UNITS_MAX];
     NSLog(@"START %@", self.players);
@@ -110,7 +128,7 @@
 }
 
 -(void)addSpell:(Spell*)spell {
-    [self.spells addObject:spell];
+//    [self.spells addObject:spell];
     Firebase * spellNode = [self.spellsNode childByAutoId];
 //    [spellNode onDisconnectRemoveValue];
     [spellNode setValue:[spell toObject]];

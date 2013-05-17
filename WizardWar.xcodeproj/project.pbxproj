@@ -159,7 +159,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		78F6B1E31746AD8900AA070D /* WizardWar2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = WizardWar2.app; path = WizardWar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		78F6B1E31746AD8900AA070D /* WizardWar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WizardWar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78F6B1E61746AD8900AA070D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		78F6B1E81746AD8900AA070D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		78F6B1EA1746AD8900AA070D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -504,7 +504,7 @@
 		78F6B1E41746AD8900AA070D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				78F6B1E31746AD8900AA070D /* WizardWar2.app */,
+				78F6B1E31746AD8900AA070D /* WizardWar.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -983,7 +983,7 @@
 			);
 			name = WizardWar;
 			productName = WizardWar2;
-			productReference = 78F6B1E31746AD8900AA070D /* WizardWar2.app */;
+			productReference = 78F6B1E31746AD8900AA070D /* WizardWar.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
