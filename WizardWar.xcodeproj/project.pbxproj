@@ -141,6 +141,7 @@
 		78F6AA58174670B200AA070D /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6AA57174670B200AA070D /* HelloWorldLayer.m */; };
 		78F6AA5B174670B200AA070D /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6AA5A174670B200AA070D /* IntroLayer.m */; };
 		78F6AA631746717400AA070D /* MatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6AA621746717400AA070D /* MatchViewController.m */; };
+		78F6AA6817467CA200AA070D /* MatchmakingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6AA6717467CA100AA070D /* MatchmakingViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -425,6 +426,8 @@
 		78F6AA5A174670B200AA070D /* IntroLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
 		78F6AA611746717400AA070D /* MatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchViewController.h; sourceTree = "<group>"; };
 		78F6AA621746717400AA070D /* MatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchViewController.m; sourceTree = "<group>"; };
+		78F6AA6617467CA100AA070D /* MatchmakingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchmakingViewController.h; sourceTree = "<group>"; };
+		78F6AA6717467CA100AA070D /* MatchmakingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchmakingViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -491,6 +494,8 @@
 				78F6AA57174670B200AA070D /* HelloWorldLayer.m */,
 				78F6AA59174670B200AA070D /* IntroLayer.h */,
 				78F6AA5A174670B200AA070D /* IntroLayer.m */,
+				78F6AA6617467CA100AA070D /* MatchmakingViewController.h */,
+				78F6AA6717467CA100AA070D /* MatchmakingViewController.m */,
 				78F6AA611746717400AA070D /* MatchViewController.h */,
 				78F6AA621746717400AA070D /* MatchViewController.m */,
 				78F6A8C6174670B000AA070D /* Resources */,
@@ -1064,6 +1069,7 @@
 				78F6AA58174670B200AA070D /* HelloWorldLayer.m in Sources */,
 				78F6AA5B174670B200AA070D /* IntroLayer.m in Sources */,
 				78F6AA631746717400AA070D /* MatchViewController.m in Sources */,
+				78F6AA6817467CA200AA070D /* MatchmakingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

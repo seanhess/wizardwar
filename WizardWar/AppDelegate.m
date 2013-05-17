@@ -8,11 +8,22 @@
 
 
 #import "AppDelegate.h"
+#import "MatchmakingViewController.h"
 
 @implementation AppController
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    UIWindow * window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    MatchmakingViewController * matches = [MatchmakingViewController new];
+    
+    UINavigationController * navigationController = [[UINavigationController alloc] initWithRootViewController:matches];
+    
+    [window setRootViewController:navigationController];
+    [window makeKeyAndVisible];
+    
     return YES;
 }
 
