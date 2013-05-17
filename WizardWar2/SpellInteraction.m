@@ -23,15 +23,15 @@
 }
 
 +(SpellInteraction*)cancel {
-    return [[SpellInteraction alloc] initWithType:SpellInteractionTypeNothing];
+    return [[SpellInteraction alloc] initWithType:SpellInteractionTypeCancel];
 }
 
 +(SpellInteraction*)modify {
-    return [[SpellInteraction alloc] initWithType:SpellInteractionTypeNothing];
+    return [[SpellInteraction alloc] initWithType:SpellInteractionTypeModify];
 }
 
 +(SpellInteraction*)create:(Spell*)spell {
-    SpellInteraction * interaction = [[SpellInteraction alloc] initWithType:SpellInteractionTypeNothing];
+    SpellInteraction * interaction = [[SpellInteraction alloc] initWithType:SpellInteractionTypeCreate];
     interaction.createdSpell = spell;
     return interaction;
 }

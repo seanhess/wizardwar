@@ -14,6 +14,8 @@
     if ((self = [super init])) {
         self.type = NSStringFromClass([self class]);
         self.created = CACurrentMediaTime();
+        self.size = 10; // don't make this too small or they could miss between frames!
+        self.damage = 1; // default value
     }
     return self;
 }
@@ -21,19 +23,24 @@
 // then you also have to update the sprites BASED on this.
 // maybe update should be called on the sprites?
 -(void)update:(NSTimeInterval)dt {
-    self.position += self.speed * dt;
+    self.position += self.direction * self.speed * dt;
     [self.delegate didUpdateForRender];
 }
 
 -(NSDictionary*)toObject {
-    return [self dictionaryWithValuesForKeys:@[@"speed", @"size", @"position", @"created", @"type"]];
+    return [self dictionaryWithValuesForKeys:@[@"speed", @"size", @"position", @"created", @"type", @"direction"]];
 }
 
 -(void)setPositionFromPlayer:(Player*)player {
-    self.position = player.position;
-    if (!player.isFirstPlayer) {
-        self.speed *= -1;
-    }
+    self.direction = 1;
+    
+    if (!player.isFirstPlayer)
+        self.direction = -1;
+    
+    // makes it so it isn't RIGHT ON the player
+    self.position = player.position + self.size*self.direction;
+    
+    NSLog(@"CHECK %@", self);
 }
 
 -(NSString*)description {
@@ -41,7 +48,8 @@
 }
 
 -(BOOL)isType:(Class)class {
-    return [self.type isEqualToString:NSStringFromClass(class)];
+    NSString * className = NSStringFromClass(class);
+    return [self.type isEqualToString:className];
 }
 
 -(SpellInteraction*)interactSpell:(Spell*)spell {
@@ -53,7 +61,7 @@
     return [SpellInteraction nothing];
 }
 
--(SpellInteraction*)interactPlayer:(Spell*)spell {
+-(SpellInteraction*)interactPlayer:(Player*)player {
     // TODO figure this out / model it
     return nil;
 }
@@ -65,6 +73,23 @@
     else {
         return self.position >= player.position;
     }
+}
+
+// in units
+-(CGFloat)rightEdge {
+    return self.position+self.size/2;
+}
+
+-(CGFloat)leftEdge {
+    return self.position-self.size/2;
+}
+
+-(BOOL)hitsSpell:(Spell *)spell {
+    return ((spell.rightEdge >= self.leftEdge) || (spell.leftEdge <= self.rightEdge));
+}
+
++(Spell*)fromType:(NSString*)type {
+    return [NSClassFromString(type) new];
 }
 
 @end

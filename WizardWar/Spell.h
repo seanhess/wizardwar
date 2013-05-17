@@ -21,6 +21,8 @@
 @property (nonatomic) float speed; // units per second
 @property (nonatomic) float size;  // in units
 @property (nonatomic) float position;  // in units
+@property (nonatomic) NSInteger direction;  // 1, or -1
+@property (nonatomic) NSInteger damage;
 @property (nonatomic) NSTimeInterval created;
 @property (nonatomic) NSString * type; // tells me which class to instantiate. Use the string representation
 @property (nonatomic, weak) id<RenderDelegate>delegate;
@@ -29,6 +31,8 @@
 -(void)setPositionFromPlayer:(Player*)player;
 -(BOOL)isType:(Class)class;
 -(SpellInteraction*)interactSpell:(Spell*)spell;
--(SpellInteraction*)interactPlayer:(Spell*)spell; // ???
+-(SpellInteraction*)interactPlayer:(Player*)spell; // ???
 -(BOOL)hitsPlayer:(Player*)player;
+-(BOOL)hitsSpell:(Spell*)spell;
++(Spell*)fromType:(NSString*)type;
 @end

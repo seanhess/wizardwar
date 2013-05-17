@@ -61,7 +61,7 @@
         
         // SPELLS
         [self.spellsNode observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
-            Spell * spell = [Spell new];
+            Spell * spell = [Spell fromType:snapshot.value[@"type"]];
             spell.firebaseName = snapshot.name;
             [spell setValuesForKeysWithDictionary:snapshot.value];
             [self.spells addObject:spell];
@@ -79,10 +79,10 @@
         [spell update:dt];
     }];
     
-    [self checkHitPlayers];
+    [self checkHits];
 }
 
--(void)checkHitPlayers {
+-(void)checkHits {
     [self.spells forEach:^(Spell* spell) {
         // spells are center anchored, so just check the position, not the width?
         // TODO add spell size to the equation
@@ -92,15 +92,49 @@
             if ([spell hitsPlayer:player])
                 [self hitPlayer:player withSpell:spell];
         }];
+        
+        [self.spells forEach:^(Spell* spell2) {
+            if (spell != spell2 && [spell hitsSpell:spell2])
+                [self hitSpell:spell withSpell:spell2];
+        }];
     }];
 }
 
 -(void)hitPlayer:(Player*)player withSpell:(Spell*)spell {
     NSLog(@"HIT PLAYER %@ with %@", player, spell);
     [self removeSpell:spell];
+    [spell interactPlayer:player];
 }
 
+-(void)hitSpell:(Spell*)spell withSpell:(Spell*)spell2 {
+    NSLog(@"HIT SPELL %@ with %@", spell, spell2);
+    [self handleInteraction:[spell interactSpell:spell2] forSpell:spell];
+    [self handleInteraction:[spell2 interactSpell:spell] forSpell:spell2];
+}
 
+-(void)handleInteraction:(SpellInteraction*)interaction forSpell:(Spell*)spell {
+    if (interaction.type == SpellInteractionTypeCancel) {
+        [self removeSpell:spell];
+    }
+    
+    else if (interaction.type == SpellInteractionTypeCreate) {
+        [self addSpell:interaction.createdSpell];
+    }
+    
+    else if (interaction.type == SpellInteractionTypeModify) {
+        Firebase * node = [self.spellsNode childByAppendingPath:spell.firebaseName];
+        [node setValue:spell.toObject];
+    }
+    
+    else if (interaction.type == SpellInteractionTypeNothing) {
+        // do nothing
+    }
+    
+    else {
+        NSAssert(false, @"Did not understand spell interaction type");
+    }
+    
+}
 
 // STARTING
 

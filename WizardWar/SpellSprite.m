@@ -26,7 +26,7 @@
 }
 
 -(void)draw {
-    ccDrawSolidRect(ccp(0, 0), ccp(self.spell.size, 40), ccc4f(0, 1, 0, 1));
+    ccDrawSolidRect(ccp(0, 0), ccp(50, 50), ccc4f(0, 1, 0, 1));
 }
 
 -(void)didUpdateForRender {

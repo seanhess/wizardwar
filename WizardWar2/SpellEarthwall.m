@@ -13,12 +13,16 @@
 -(id)init {
     if ((self=[super init])) {
         self.speed = 0;
-        self.size = 40;
     }
     return self;
 }
 
--(SpellInteraction*)interactSpell:(Spell*)spell {
+-(SpellInteraction *)interactSpell:(Spell *)spell {
+    
+    if ([spell isType:[SpellEarthwall class]]) {
+        return [SpellInteraction cancel];
+    }
+    
     return [SpellInteraction nothing];
 }
 

@@ -123,18 +123,21 @@
         return;
     }
     
+    CGPoint touchPoint = [touch locationInView:touch.view];
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    
     // add the spell here
-    Spell * spell = [self fakeSpell];
+    Spell * spell = nil;
+    
+    if (touchPoint.x < winSize.width/2)
+        spell = [SpellEarthwall new];
+    else
+        spell = [SpellFireball new];
+    
+    [spell setPositionFromPlayer:self.match.currentPlayer];
+    
     [self.match addSpell:spell]; // add spell
     NSLog(@"NEW SPELL! %@", spell);
-}
-
-// starts at MY PLAYER
--(Spell*)fakeSpell {
-    Spell * spell = [SpellFireball new];
-//    Spell * spell = [SpellEarthwall new];
-    [spell setPositionFromPlayer:self.match.currentPlayer];
-    return spell;
 }
 
 @end
