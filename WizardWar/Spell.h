@@ -13,16 +13,8 @@
 
 #import <Foundation/Foundation.h>
 #import "RenderDelegate.h"
-
-#define NUM_SPELL_TYPES 3
-#define MAX_UNITS 100
-#define MIN_UNITS 0
-
-typedef enum ShapeType {
-    SpellTypeFireball,
-    SpellTypeIcewall,
-    SpellTypeEarthwall,
-} SpellType;
+#import "Player.h"
+#import "SpellInteraction.h"
 
 @interface Spell : NSObject
 @property (nonatomic) NSString* firebaseName;
@@ -30,8 +22,11 @@ typedef enum ShapeType {
 @property (nonatomic) float size;  // in units
 @property (nonatomic) float position;  // in units
 @property (nonatomic) NSTimeInterval created;
-@property (nonatomic) SpellType type;
+@property (nonatomic) NSString * type; // tells me which class to instantiate. Use the string representation
 @property (nonatomic, weak) id<RenderDelegate>delegate;
 -(void)update:(NSTimeInterval)dt;
 -(NSDictionary*)toObject;
+-(void)setPositionFromPlayer:(Player*)player;
+-(BOOL)isType:(Class)class;
+-(SpellInteraction*)interactSpell:(Spell*)spell;
 @end

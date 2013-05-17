@@ -7,6 +7,8 @@
 //
 
 #import "Player.h"
+#import "Spell.h"
+#import "SpellFireball.h"
 
 @implementation Player
 
@@ -20,6 +22,18 @@
 
 -(BOOL)isFirstPlayer {
     return self.position == UNITS_MIN;
+}
+
+-(void)interactSpell:(Spell*)spell {
+    
+    // switch based on spell type
+    if ([spell isType:[SpellFireball class]]) {
+        NSLog(@"FIREBALL HIT");
+    }
+    
+    else {
+        NSLog(@"NO COMPRENDO");
+    }
 }
 
 @end

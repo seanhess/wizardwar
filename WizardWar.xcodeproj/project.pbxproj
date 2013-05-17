@@ -150,12 +150,13 @@
 		78F6B3B81746B27800AA070D /* MatchGroundSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3AE1746B27600AA070D /* MatchGroundSprite.m */; };
 		78F6B3B91746B27800AA070D /* WizardSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3B01746B27600AA070D /* WizardSprite.m */; };
 		78F6B3BA1746B27800AA070D /* SpellSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3B21746B27700AA070D /* SpellSprite.m */; };
-		78F6B3BB1746B27800AA070D /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3B41746B27700AA070D /* HelloWorldLayer.m */; };
-		78F6B3BC1746B27800AA070D /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3B61746B27700AA070D /* IntroLayer.m */; };
 		78F6B3C01746B28800AA070D /* CCScene+Layers.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3BF1746B28800AA070D /* CCScene+Layers.m */; };
 		78F6B3C41746B29C00AA070D /* WWDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3C31746B29C00AA070D /* WWDirector.m */; };
 		78F6B3C71746C4D300AA070D /* NSArray+Functional.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3C61746C4D300AA070D /* NSArray+Functional.m */; };
 		78F6B3CB1746D77B00AA070D /* Units.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3CA1746D77B00AA070D /* Units.m */; };
+		78F6B3CF1746E05E00AA070D /* SpellFireball.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3CE1746E05E00AA070D /* SpellFireball.m */; };
+		78F6B3D21746E2E000AA070D /* SpellInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3D11746E2E000AA070D /* SpellInteraction.m */; };
+		78F6B3D81746E6D300AA070D /* SpellEarthwall.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3D71746E6D100AA070D /* SpellEarthwall.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -452,10 +453,6 @@
 		78F6B3B01746B27600AA070D /* WizardSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WizardSprite.m; path = WizardWar/WizardSprite.m; sourceTree = SOURCE_ROOT; };
 		78F6B3B11746B27700AA070D /* SpellSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpellSprite.h; path = WizardWar/SpellSprite.h; sourceTree = SOURCE_ROOT; };
 		78F6B3B21746B27700AA070D /* SpellSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpellSprite.m; path = WizardWar/SpellSprite.m; sourceTree = SOURCE_ROOT; };
-		78F6B3B31746B27700AA070D /* HelloWorldLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelloWorldLayer.h; path = WizardWar/HelloWorldLayer.h; sourceTree = SOURCE_ROOT; };
-		78F6B3B41746B27700AA070D /* HelloWorldLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelloWorldLayer.m; path = WizardWar/HelloWorldLayer.m; sourceTree = SOURCE_ROOT; };
-		78F6B3B51746B27700AA070D /* IntroLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IntroLayer.h; path = WizardWar/IntroLayer.h; sourceTree = SOURCE_ROOT; };
-		78F6B3B61746B27700AA070D /* IntroLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IntroLayer.m; path = WizardWar/IntroLayer.m; sourceTree = SOURCE_ROOT; };
 		78F6B3BE1746B28800AA070D /* CCScene+Layers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CCScene+Layers.h"; path = "WizardWar/CCScene+Layers.h"; sourceTree = SOURCE_ROOT; };
 		78F6B3BF1746B28800AA070D /* CCScene+Layers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CCScene+Layers.m"; path = "WizardWar/CCScene+Layers.m"; sourceTree = SOURCE_ROOT; };
 		78F6B3C21746B29C00AA070D /* WWDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WWDirector.h; path = WizardWar/WWDirector.h; sourceTree = SOURCE_ROOT; };
@@ -464,6 +461,12 @@
 		78F6B3C61746C4D300AA070D /* NSArray+Functional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Functional.m"; sourceTree = "<group>"; };
 		78F6B3C91746D77B00AA070D /* Units.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Units.h; sourceTree = "<group>"; };
 		78F6B3CA1746D77B00AA070D /* Units.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Units.m; sourceTree = "<group>"; };
+		78F6B3CD1746E05E00AA070D /* SpellFireball.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellFireball.h; sourceTree = "<group>"; };
+		78F6B3CE1746E05E00AA070D /* SpellFireball.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellFireball.m; sourceTree = "<group>"; };
+		78F6B3D01746E2E000AA070D /* SpellInteraction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellInteraction.h; sourceTree = "<group>"; };
+		78F6B3D11746E2E000AA070D /* SpellInteraction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellInteraction.m; sourceTree = "<group>"; };
+		78F6B3D61746E6D000AA070D /* SpellEarthwall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellEarthwall.h; sourceTree = "<group>"; };
+		78F6B3D71746E6D100AA070D /* SpellEarthwall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellEarthwall.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -923,8 +926,7 @@
 		78F6B3AA1746B26400AA070D /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				78F6B3A01746B25F00AA070D /* Spell.h */,
-				78F6B3A11746B25F00AA070D /* Spell.m */,
+				78F6B3CC1746E01200AA070D /* Spells */,
 				78F6B3A21746B25F00AA070D /* Match.h */,
 				78F6B3A31746B25F00AA070D /* Match.m */,
 				78F6B3A41746B26000AA070D /* Player.h */,
@@ -947,10 +949,6 @@
 				78F6B3B01746B27600AA070D /* WizardSprite.m */,
 				78F6B3B11746B27700AA070D /* SpellSprite.h */,
 				78F6B3B21746B27700AA070D /* SpellSprite.m */,
-				78F6B3B31746B27700AA070D /* HelloWorldLayer.h */,
-				78F6B3B41746B27700AA070D /* HelloWorldLayer.m */,
-				78F6B3B51746B27700AA070D /* IntroLayer.h */,
-				78F6B3B61746B27700AA070D /* IntroLayer.m */,
 			);
 			name = Match;
 			sourceTree = "<group>";
@@ -964,6 +962,21 @@
 				78F6B3C61746C4D300AA070D /* NSArray+Functional.m */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		78F6B3CC1746E01200AA070D /* Spells */ = {
+			isa = PBXGroup;
+			children = (
+				78F6B3A01746B25F00AA070D /* Spell.h */,
+				78F6B3A11746B25F00AA070D /* Spell.m */,
+				78F6B3D01746E2E000AA070D /* SpellInteraction.h */,
+				78F6B3D11746E2E000AA070D /* SpellInteraction.m */,
+				78F6B3CD1746E05E00AA070D /* SpellFireball.h */,
+				78F6B3CE1746E05E00AA070D /* SpellFireball.m */,
+				78F6B3D61746E6D000AA070D /* SpellEarthwall.h */,
+				78F6B3D71746E6D100AA070D /* SpellEarthwall.m */,
+			);
+			name = Spells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1155,12 +1168,13 @@
 				78F6B3B81746B27800AA070D /* MatchGroundSprite.m in Sources */,
 				78F6B3B91746B27800AA070D /* WizardSprite.m in Sources */,
 				78F6B3BA1746B27800AA070D /* SpellSprite.m in Sources */,
-				78F6B3BB1746B27800AA070D /* HelloWorldLayer.m in Sources */,
-				78F6B3BC1746B27800AA070D /* IntroLayer.m in Sources */,
 				78F6B3C01746B28800AA070D /* CCScene+Layers.m in Sources */,
 				78F6B3C41746B29C00AA070D /* WWDirector.m in Sources */,
 				78F6B3C71746C4D300AA070D /* NSArray+Functional.m in Sources */,
 				78F6B3CB1746D77B00AA070D /* Units.m in Sources */,
+				78F6B3CF1746E05E00AA070D /* SpellFireball.m in Sources */,
+				78F6B3D21746E2E000AA070D /* SpellInteraction.m in Sources */,
+				78F6B3D81746E6D300AA070D /* SpellEarthwall.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

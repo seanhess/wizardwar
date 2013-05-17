@@ -7,7 +7,6 @@
 //
 
 #import "MatchmakingViewController.h"
-#import "IntroLayer.h"
 #import "WWDirector.h"
 #import "CCScene+Layers.h"
 #import "MatchLayer.h"

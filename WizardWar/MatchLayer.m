@@ -14,6 +14,8 @@
 #import "Spell.h"
 #import "SpellSprite.h"
 #import "NSArray+Functional.h"
+#import "SpellFireball.h"
+#import "SpellEarthwall.h"
 
 @interface MatchLayer () <CCTouchOneByOneDelegate, MatchDelegate>
 @property (nonatomic, strong) Match * match;
@@ -124,22 +126,14 @@
     // add the spell here
     Spell * spell = [self fakeSpell];
     [self.match addSpell:spell]; // add spell
+    NSLog(@"NEW SPELL! %@", spell);
 }
 
 // starts at MY PLAYER
 -(Spell*)fakeSpell {
-    Spell * spell = [Spell new];
-    spell.position = self.match.currentPlayer.position;
-    spell.speed = 20;
-    spell.size = 40;
-    spell.created = CACurrentMediaTime();
-    spell.type = SpellTypeFireball;
-    
-    NSLog(@"FAKE SPELL %@", self.match.currentPlayer);
-    if (!self.match.currentPlayer.isFirstPlayer) {
-        spell.speed *= -1;
-    }
-    
+//    Spell * spell = [SpellFireball new];
+    Spell * spell = [SpellEarthwall new];
+    [spell setPositionFromPlayer:self.match.currentPlayer];
     return spell;
 }
 
