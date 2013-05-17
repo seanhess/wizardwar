@@ -11,6 +11,7 @@
 #import "WWDirector.h"
 #import "CCScene+Layers.h"
 #import "MatchLayer.h"
+#import "MatchmakingTableViewController.h"
 
 @interface MatchmakingViewController ()
 
@@ -39,7 +40,8 @@
     
     self.title = @"Matchmaking";
     self.view.backgroundColor = [UIColor redColor];
-    
+    MatchmakingTableViewController *matchesTableViewController = [[MatchmakingTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    [self.view addSubview:matchesTableViewController.view];
     [self.view layoutIfNeeded];
 }
 

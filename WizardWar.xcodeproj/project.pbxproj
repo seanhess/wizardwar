@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F6ABA921746B7B500A2A9CE /* MatchmakingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6ABA911746B7B500A2A9CE /* MatchmakingTableViewController.m */; };
+		6F6ABA951746B7D100A2A9CE /* MatchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6ABA941746B7D100A2A9CE /* MatchCell.m */; };
 		78F6B1E71746AD8900AA070D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F6B1E61746AD8900AA070D /* UIKit.framework */; };
 		78F6B1E91746AD8900AA070D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F6B1E81746AD8900AA070D /* Foundation.framework */; };
 		78F6B1EB1746AD8900AA070D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F6B1EA1746AD8900AA070D /* CoreGraphics.framework */; };
@@ -157,7 +159,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		78F6B1E31746AD8900AA070D /* WizardWar2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WizardWar2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F6ABA901746B7B500A2A9CE /* MatchmakingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchmakingTableViewController.h; sourceTree = "<group>"; };
+		6F6ABA911746B7B500A2A9CE /* MatchmakingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchmakingTableViewController.m; sourceTree = "<group>"; };
+		6F6ABA931746B7D100A2A9CE /* MatchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchCell.h; sourceTree = "<group>"; };
+		6F6ABA941746B7D100A2A9CE /* MatchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchCell.m; sourceTree = "<group>"; };
+		78F6B1E31746AD8900AA070D /* WizardWar2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = WizardWar2.app; path = WizardWar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78F6B1E61746AD8900AA070D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		78F6B1E81746AD8900AA070D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		78F6B1EA1746AD8900AA070D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -534,6 +540,10 @@
 				78F6B3991746B02100AA070D /* MainNavViewController.m */,
 				78F6B39A1746B02100AA070D /* MatchmakingViewController.h */,
 				78F6B39B1746B02100AA070D /* MatchmakingViewController.m */,
+				6F6ABA901746B7B500A2A9CE /* MatchmakingTableViewController.h */,
+				6F6ABA911746B7B500A2A9CE /* MatchmakingTableViewController.m */,
+				6F6ABA931746B7D100A2A9CE /* MatchCell.h */,
+				6F6ABA941746B7D100A2A9CE /* MatchCell.m */,
 				78F6B3C21746B29C00AA070D /* WWDirector.h */,
 				78F6B3C31746B29C00AA070D /* WWDirector.m */,
 				78F6B3C11746B28B00AA070D /* Helpers */,
@@ -1149,6 +1159,8 @@
 				78F6B3BC1746B27800AA070D /* IntroLayer.m in Sources */,
 				78F6B3C01746B28800AA070D /* CCScene+Layers.m in Sources */,
 				78F6B3C41746B29C00AA070D /* WWDirector.m in Sources */,
+				6F6ABA921746B7B500A2A9CE /* MatchmakingTableViewController.m in Sources */,
+				6F6ABA951746B7D100A2A9CE /* MatchCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
