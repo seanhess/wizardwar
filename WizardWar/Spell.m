@@ -85,7 +85,12 @@
 }
 
 -(BOOL)hitsSpell:(Spell *)spell {
-    return ((spell.rightEdge >= self.leftEdge) || (spell.leftEdge <= self.rightEdge));
+//    NSLog(@"SPELL %f %f", spell.leftEdge, spell.rightEdge);
+//    NSLog(@"SELF %f %f", self.leftEdge, self.rightEdge);
+    if( spell.position < self.position)
+        return (spell.rightEdge >= self.leftEdge);
+    else
+        return (spell.leftEdge <= self.rightEdge);
 }
 
 +(Spell*)fromType:(NSString*)type {
