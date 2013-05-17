@@ -29,14 +29,21 @@
     
     [super viewDidLoad];
     self.matches = [[NSMutableArray alloc] init];
+    [self loadDataFromFirebase];
+    
     // check for set nickname
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     self.nickname = [defaults stringForKey:@"nickname"];
     if (self.nickname == nil) {
         // nickname not set yet so prompt for it
-        
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Nickname" message:@"" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [av setAlertViewStyle:UIAlertViewStylePlainTextInput];
+        [av show];
+        av.delegate = self;
+    } else {
+        [self addToMatchList];
     }
-    [self loadDataFromFirebase];
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 }
@@ -47,6 +54,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Alert view delegate
+
+- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    self.nickname = [alertView textFieldAtIndex:0].text;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:self.nickname forKey:@"nickname"];
+    [self addToMatchList];
+}
+
 #pragma mark - Firebase stuff
 
 - (void)loadDataFromFirebase
@@ -54,13 +71,13 @@
     self.firebase = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/matchmaking"];
     
     [self.firebase observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
-        NSLog(@"%@", snapshot.value);
-        [self.matches addObject:snapshot.value];
-        [self.tableView reloadData];
+        if (snapshot.value[@"name"] != self.nickname) {
+            [self.matches addObject:snapshot.value];
+            [self.tableView reloadData];
+        }
     }];
     
     [self.firebase observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
-        NSLog(@"snapshot: %@, matches: %@", snapshot, self.matches);
         for (id match in self.matches) {
             if (match[@"name"] == snapshot.value[@"name"]) {
                 [self.matches removeObjectIdenticalTo:match];
@@ -68,6 +85,13 @@
         }
         [self.tableView reloadData];
     }];
+}
+
+- (void)addToMatchList
+{
+    Firebase * userNode = [self.firebase childByAppendingPath:self.nickname];
+    [userNode setValue:@{@"name": self.nickname}];
+    [userNode onDisconnectRemoveValue];
 }
 
 #pragma mark - Table view data source
@@ -144,14 +168,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+    NSDictionary* match = [self.matches objectAtIndex:indexPath.row];
+    NSLog(@"Invite %@", match);
+
 }
 
 @end

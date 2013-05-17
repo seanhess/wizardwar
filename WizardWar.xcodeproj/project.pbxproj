@@ -163,7 +163,7 @@
 		6F6ABA911746B7B500A2A9CE /* MatchmakingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchmakingTableViewController.m; sourceTree = "<group>"; };
 		6F6ABA931746B7D100A2A9CE /* MatchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchCell.h; sourceTree = "<group>"; };
 		6F6ABA941746B7D100A2A9CE /* MatchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchCell.m; sourceTree = "<group>"; };
-		78F6B1E31746AD8900AA070D /* WizardWar2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = WizardWar2.app; path = WizardWar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		78F6B1E31746AD8900AA070D /* WizardWar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WizardWar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78F6B1E61746AD8900AA070D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		78F6B1E81746AD8900AA070D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		78F6B1EA1746AD8900AA070D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -504,7 +504,7 @@
 		78F6B1E41746AD8900AA070D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				78F6B1E31746AD8900AA070D /* WizardWar2.app */,
+				78F6B1E31746AD8900AA070D /* WizardWar.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -983,7 +983,7 @@
 			);
 			name = WizardWar;
 			productName = WizardWar2;
-			productReference = 78F6B1E31746AD8900AA070D /* WizardWar2.app */;
+			productReference = 78F6B1E31746AD8900AA070D /* WizardWar.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
