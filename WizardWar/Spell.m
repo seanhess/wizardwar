@@ -13,7 +13,8 @@
 // then you also have to update the sprites BASED on this.
 // maybe update should be called on the sprites?
 -(void)update:(NSTimeInterval)dt {
-    
+    self.position += self.speed * dt;
+    [self.delegate didUpdateForRender];
 }
 
 @end

@@ -6,9 +6,17 @@
 //  Copyright (c) 2013 The LAB. All rights reserved.
 //
 
+// COORDINATE SYSTEM
+// goes from 0-100 in "units"
+// speed is in units per second
+// position 0 is the location of the left player
+
 #import <Foundation/Foundation.h>
+#import "RenderDelegate.h"
 
 #define NUM_SPELL_TYPES 3
+#define MAX_UNITS 100
+#define MIN_UNITS 0
 
 typedef enum ShapeType {
     SpellTypeFireball,
@@ -17,10 +25,11 @@ typedef enum ShapeType {
 } SpellType;
 
 @interface Spell : NSObject
-@property (nonatomic) NSInteger speed;
-@property (nonatomic) NSInteger size;
-@property (nonatomic) NSInteger position;
+@property (nonatomic) NSInteger speed; // units per second
+@property (nonatomic) NSInteger size;  // in units
+@property (nonatomic) NSInteger position;  // in units
 @property (nonatomic) NSTimeInterval created;
 @property (nonatomic) SpellType type;
+@property (nonatomic, weak) id<RenderDelegate>delegate;
 -(void)update:(NSTimeInterval)dt;
 @end

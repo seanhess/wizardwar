@@ -9,6 +9,7 @@
 #import "CCSprite.h"
 #import "Spell.h"
 
-@interface SpellSprite : CCSprite
+@interface SpellSprite : CCSprite <RenderDelegate>
+-(id)initWithSpell:(Spell*)spell;
 @property (nonatomic, strong) Spell * spell;
 @end

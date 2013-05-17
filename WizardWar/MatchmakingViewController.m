@@ -27,6 +27,11 @@
     return self;
 }
 
+-(void)loadView {
+    [super loadView];
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -34,6 +39,8 @@
     
     self.title = @"Matchmaking";
     self.view.backgroundColor = [UIColor redColor];
+    
+    [self.view layoutIfNeeded];
 }
 
 - (void)didReceiveMemoryWarning
