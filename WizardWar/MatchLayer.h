@@ -9,5 +9,5 @@
 #import "CCLayer.h"
 
 @interface MatchLayer : CCLayer
-
+-(id)initWithMatchId:(NSString*)matchId playerName:(NSString*)playerName;
 @end

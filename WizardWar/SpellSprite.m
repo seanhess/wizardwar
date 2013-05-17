@@ -10,20 +10,16 @@
 #import "cocos2d.h"
 
 @interface SpellSprite ()
-@property (nonatomic) CGFloat y;
-@property (nonatomic) CGFloat pixelsPerUnit;
-@property (nonatomic) CGFloat wizardOffset;
+@property (nonatomic, strong) Units * units;
 @end
 
 @implementation SpellSprite
 
 
--(id)initWithSpell:(Spell*)spell y:(CGFloat)y pixelsPerUnit:(CGFloat)pixelsPerUnit wizardOffset:(CGFloat)wizardOffset {
+-(id)initWithSpell:(Spell*)spell units:(Units *)units {
     if ((self=[super init])) {
         self.spell = spell;
-        self.y = y;
-        self.pixelsPerUnit = pixelsPerUnit;
-        self.wizardOffset = wizardOffset;
+        self.units = units;
         spell.delegate = self;
     }
     return self;
@@ -34,8 +30,7 @@
 }
 
 -(void)didUpdateForRender {
-    self.position = ccp(self.wizardOffset + self.spell.position * self.pixelsPerUnit, self.y);
-    NSLog(@"WAHOOO %f %f", self.spell.position, self.position.x);
+    self.position = ccp([self.units pixelsXForUnitPosition:self.spell.position], self.units.groundY);
 }
 
 @end

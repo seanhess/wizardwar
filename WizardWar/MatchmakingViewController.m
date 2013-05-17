@@ -51,9 +51,12 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     // hide the navigation bar first, so the size of this view is correct!
+    
+    NSString * playerName = [NSString stringWithFormat:@"Player%i", arc4random()];
+    NSLog(@"PLAYER NAME %@", playerName);
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     CCDirectorIOS * director = [WWDirector directorWithBounds:self.view.bounds];
-    [director runWithScene:[CCScene sceneWithLayer:[MatchLayer node]]];
+    [director runWithScene:[CCScene sceneWithLayer:[[MatchLayer alloc] initWithMatchId:@"Fake" playerName:playerName]]];
     [self.navigationController pushViewController:director animated:YES];
 }
 

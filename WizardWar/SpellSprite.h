@@ -8,8 +8,9 @@
 
 #import "CCSprite.h"
 #import "Spell.h"
+#import "Units.h"
 
 @interface SpellSprite : CCSprite <RenderDelegate>
--(id)initWithSpell:(Spell*)spell y:(CGFloat)y pixelsPerUnit:(CGFloat)pixelsPerUnit wizardOffset:(CGFloat)wizardOffset;
+-(id)initWithSpell:(Spell*)spell units:(Units*)units;
 @property (nonatomic, strong) Spell * spell;
 @end

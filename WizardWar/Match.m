@@ -8,6 +8,7 @@
 
 #import "Match.h"
 #import "Spell.h"
+#import "Player.h"
 #import <Firebase/Firebase.h>
 
 @interface Match ()
@@ -16,18 +17,49 @@
 @property (nonatomic, strong) Firebase * playersNode;
 @end
 
+// don't really know which player you are until there are 2 players
+// then you can go off their name.
+// Alphabetical order baby :)
+
 @implementation Match
--(id)initWithId:(NSString *)id {
+-(id)initWithId:(NSString *)id currentPlayer:(Player *)player {
     if ((self = [super init])) {
         self.players = [NSMutableArray array];
         self.spells = [NSMutableArray array];
         
+        self.started = NO;
+        
         // Firebase
         self.matchNode = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"https://wizardwar.firebaseio.com/match/%@", id]];
         self.spellsNode = [self.matchNode childByAppendingPath:@"spells"];
+        self.playersNode = [self.matchNode childByAppendingPath:@"players"];
+        
+        [self.playersNode observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
+            Player * player = [Player new];
+            [player setValuesForKeysWithDictionary:snapshot.value];
+            [self.players addObject:player];
+            
+            if ([player.name isEqualToString:self.currentPlayer.name]) {
+                self.currentPlayer = player;
+            }
+            
+            [self checkStart];
+        }];
+        
+        self.currentPlayer = player;
+        
+        // FAKE SECOND PLAYER
+        Player * fakeSecondPlayer = [Player new];
+        fakeSecondPlayer.name = @"FakeSecondPlayer";
+        
+        [self joinPlayer:fakeSecondPlayer];
+        [self joinPlayer:self.currentPlayer];
     }
     return self;
 }
+
+
+/// UPDATES
 
 -(void)update:(NSTimeInterval)dt {
     [self.spells enumerateObjectsUsingBlock:^(Spell* spell, NSUInteger idx, BOOL *stop) {
@@ -48,20 +80,50 @@
     }];
 }
 
+
+
+// STARTING
+
+-(void)checkStart {
+    NSLog(@"check Start %@", self.players);
+    if (self.players.count >= 2) {
+        [self start];
+    }
+}
+
+-(void)start {
+    self.started = YES;
+    [self.players[0] setPosition:UNITS_MIN];
+    [self.players[1] setPosition:UNITS_MAX];
+    NSLog(@"START %@", self.players);
+    [self.delegate matchStarted];
+}
+
+
+/// ADDING STUFF
+
+-(void)joinPlayer:(Player*)player {
+    // [self.players addObject:player];
+    Firebase * node = [self.playersNode childByAppendingPath:player.name];
+    [node onDisconnectRemoveValue];
+    [node setValue:[player toObject]];
+}
+
 -(void)addSpell:(Spell*)spell {
     [self.spells addObject:spell];
     Firebase * spellNode = [self.spellsNode childByAutoId];
 //    [spellNode onDisconnectRemoveValue];
     [spellNode setValue:[spell toObject]];
+    [spellNode onDisconnectRemoveValue];
     spell.firebaseName = spellNode.name;
 }
 
 -(void)removeSpell:(Spell*)spell {
     NSLog(@"REMOVE SPELL %@", spell.firebaseName);
     Firebase * spellNode = [self.spellsNode childByAppendingPath:spell.firebaseName];
-    [spellNode removeValue];
     [self.spells removeObject:spell];
     [self.delegate didRemoveSpell:spell];
+    [spellNode removeValue];
 }
 
 @end

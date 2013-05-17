@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Units.h"
 
 @interface Player : NSObject
 @property (nonatomic, strong) NSString * name;
 @property (nonatomic) float position; // in units (not pixels)
 @property (nonatomic) NSInteger mana;
 @property (nonatomic) NSInteger maxMana;
+-(NSDictionary*)toObject;
+-(BOOL)isFirstPlayer;
 @end
