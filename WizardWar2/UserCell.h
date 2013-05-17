@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MatchCell : UITableViewCell
+@interface UserCell : UITableViewCell
 
 @end

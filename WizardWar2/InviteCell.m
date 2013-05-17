@@ -1,14 +1,14 @@
 //
-//  MatchCell.m
+//  InviteCell.m
 //  WizardWar
 //
 //  Created by Clay Ferris on 5/17/13.
 //  Copyright (c) 2013 The LAB. All rights reserved.
 //
 
-#import "MatchCell.h"
+#import "InviteCell.h"
 
-@implementation MatchCell
+@implementation InviteCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

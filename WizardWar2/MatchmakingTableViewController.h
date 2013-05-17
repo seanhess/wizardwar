@@ -11,8 +11,10 @@
 
 @interface MatchmakingTableViewController : UITableViewController
 
-@property (nonatomic, strong) Firebase* firebase;
-@property (nonatomic, strong) NSMutableArray* matches;
+@property (nonatomic, strong) Firebase* firebaseLobby;
+@property (nonatomic, strong) Firebase* firebaseInvites;
+@property (nonatomic, strong) NSMutableArray* users;
+@property (nonatomic, strong) NSMutableArray* invites;
 @property (nonatomic, strong) NSString* nickname;
 
 @end

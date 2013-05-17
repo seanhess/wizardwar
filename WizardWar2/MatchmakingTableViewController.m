@@ -7,7 +7,9 @@
 //
 
 #import "MatchmakingTableViewController.h"
-#import "MatchCell.h"
+#import "MatchLayer.h"
+#import "UserCell.h"
+#import "InviteCell.h"
 
 @interface MatchmakingTableViewController ()
 
@@ -28,7 +30,8 @@
 {
     
     [super viewDidLoad];
-    self.matches = [[NSMutableArray alloc] init];
+    self.users = [[NSMutableArray alloc] init];
+    self.invites = [[NSMutableArray alloc] init];
     [self loadDataFromFirebase];
     
     // check for set nickname
@@ -41,7 +44,7 @@
         [av show];
         av.delegate = self;
     } else {
-        [self addToMatchList];
+        [self addToLobbyList];
     }
     
     self.tableView.delegate = self;
@@ -61,35 +64,53 @@
     self.nickname = [alertView textFieldAtIndex:0].text;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:self.nickname forKey:@"nickname"];
-    [self addToMatchList];
+    [self addToLobbyList];
 }
 
 #pragma mark - Firebase stuff
 
 - (void)loadDataFromFirebase
 {
-    self.firebase = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/matchmaking"];
+    self.firebaseLobby = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/lobby"];
     
-    [self.firebase observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
+    self.firebaseInvites = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/invites"];
+    
+    [self.firebaseLobby observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
         if (snapshot.value[@"name"] != self.nickname) {
-            [self.matches addObject:snapshot.value];
+            [self.users addObject:snapshot.value];
             [self.tableView reloadData];
         }
     }];
     
-    [self.firebase observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
-        for (id match in self.matches) {
-            if (match[@"name"] == snapshot.value[@"name"]) {
-                [self.matches removeObjectIdenticalTo:match];
+    [self.firebaseInvites observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
+        if ([snapshot.value[@"invitee"] isEqualToString:self.nickname]) {
+            [self.invites addObject:snapshot.value];
+            [self.tableView reloadData];
+        }
+    }];
+    
+    [self.firebaseLobby observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
+        for (id user in self.users) {
+            if ([user[@"name"] isEqualToString:snapshot.value[@"name"]]) {
+                [self.users removeObjectIdenticalTo:user];
+            }
+        }
+        [self.tableView reloadData];
+    }];
+    
+    [self.firebaseInvites observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
+        for (id invite in self.invites) {
+            if ([invite[@"inviter"] isEqualToString:snapshot.value[@"inviter"]] && [invite[@"initee"] isEqualToString:snapshot.value[@"invitee"]]) {
+                [self.invites removeObjectIdenticalTo:invite];
             }
         }
         [self.tableView reloadData];
     }];
 }
 
-- (void)addToMatchList
+- (void)addToLobbyList
 {
-    Firebase * userNode = [self.firebase childByAppendingPath:self.nickname];
+    Firebase * userNode = [self.firebaseLobby childByAppendingPath:self.nickname];
     [userNode setValue:@{@"name": self.nickname}];
     [userNode onDisconnectRemoveValue];
 }
@@ -99,30 +120,51 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return [self.matches count];
+    if (section == 0) {
+        return [self.invites count];
+    } else {
+        return [self.users count];
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return @"Invites";
+    } else {
+        return @"Lobby";
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     
-    MatchCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell) {
-        cell = [[MatchCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    if (indexPath.section == 0) {
+        InviteCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[InviteCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        }
+        
+        NSDictionary* invite = [self.invites objectAtIndex:indexPath.row];
+        
+        cell.textLabel.text = invite[@"inviter"];
+        return cell;
+    } else {
+        UserCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[UserCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        }
+        
+        NSDictionary* user = [self.users objectAtIndex:indexPath.row];
+        
+        cell.textLabel.text = user[@"name"];
+        return cell;
     }
-    
-    NSDictionary* match = [self.matches objectAtIndex:indexPath.row];
-    NSLog(@"adding match: %@", match);
-    
-    cell.textLabel.text = match[@"name"];
-    
-    return cell;
 }
 
 /*
@@ -168,9 +210,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary* match = [self.matches objectAtIndex:indexPath.row];
-    NSLog(@"Invite %@", match);
-
+    if (indexPath.section == 0) {
+        // start the match!        
+    } else {
+        // create an invite
+        NSDictionary* user = [self.users objectAtIndex:indexPath.row];
+        Firebase * inviteNode = [self.firebaseInvites childByAppendingPath:[[NSString alloc] initWithFormat:@"%@-%@", self.nickname, user[@"name"]]];
+        [inviteNode setValue:@{@"inviter": self.nickname, @"invitee": user[@"name"]}];
+        [inviteNode onDisconnectRemoveValue];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
 }
 
 @end
