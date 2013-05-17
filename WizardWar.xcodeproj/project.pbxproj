@@ -140,6 +140,7 @@
 		78F6AA55174670B200AA070D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6AA54174670B200AA070D /* AppDelegate.m */; };
 		78F6AA58174670B200AA070D /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6AA57174670B200AA070D /* HelloWorldLayer.m */; };
 		78F6AA5B174670B200AA070D /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6AA5A174670B200AA070D /* IntroLayer.m */; };
+		78F6AA631746717400AA070D /* MatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6AA621746717400AA070D /* MatchViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -422,6 +423,8 @@
 		78F6AA57174670B200AA070D /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		78F6AA59174670B200AA070D /* IntroLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
 		78F6AA5A174670B200AA070D /* IntroLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
+		78F6AA611746717400AA070D /* MatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchViewController.h; sourceTree = "<group>"; };
+		78F6AA621746717400AA070D /* MatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -488,6 +491,8 @@
 				78F6AA57174670B200AA070D /* HelloWorldLayer.m */,
 				78F6AA59174670B200AA070D /* IntroLayer.h */,
 				78F6AA5A174670B200AA070D /* IntroLayer.m */,
+				78F6AA611746717400AA070D /* MatchViewController.h */,
+				78F6AA621746717400AA070D /* MatchViewController.m */,
 				78F6A8C6174670B000AA070D /* Resources */,
 				78F6A8DE174670B000AA070D /* libs */,
 				78F6AA4F174670B200AA070D /* Supporting Files */,
@@ -1058,6 +1063,7 @@
 				78F6AA55174670B200AA070D /* AppDelegate.m in Sources */,
 				78F6AA58174670B200AA070D /* HelloWorldLayer.m in Sources */,
 				78F6AA5B174670B200AA070D /* IntroLayer.m in Sources */,
+				78F6AA631746717400AA070D /* MatchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1079,7 +1085,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1098,7 +1104,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1114,6 +1120,7 @@
 				GCC_PREFIX_HEADER = WizardWar/Prefix.pch;
 				HEADER_SEARCH_PATHS = "\"WizardWar/libs/kazmath/include\"";
 				INFOPLIST_FILE = WizardWar/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lsqlite3",
@@ -1133,6 +1140,7 @@
 				GCC_PREFIX_HEADER = WizardWar/Prefix.pch;
 				HEADER_SEARCH_PATHS = "\"WizardWar/libs/kazmath/include\"";
 				INFOPLIST_FILE = WizardWar/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lsqlite3",
