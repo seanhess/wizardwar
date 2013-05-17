@@ -9,17 +9,21 @@
 #import "SpellSprite.h"
 #import "cocos2d.h"
 
-// these need to be calculated based on the parent's info
-// ground level is determined by the level of the ground. The match should decide
-
-#define PIXELS_PER_UNIT 10
-#define GROUND_LEVEL 100
+@interface SpellSprite ()
+@property (nonatomic) CGFloat y;
+@property (nonatomic) CGFloat pixelsPerUnit;
+@property (nonatomic) CGFloat wizardOffset;
+@end
 
 @implementation SpellSprite
 
--(id)initWithSpell:(Spell*)spell {
+
+-(id)initWithSpell:(Spell*)spell y:(CGFloat)y pixelsPerUnit:(CGFloat)pixelsPerUnit wizardOffset:(CGFloat)wizardOffset {
     if ((self=[super init])) {
         self.spell = spell;
+        self.y = y;
+        self.pixelsPerUnit = pixelsPerUnit;
+        self.wizardOffset = wizardOffset;
         spell.delegate = self;
     }
     return self;
@@ -30,7 +34,8 @@
 }
 
 -(void)didUpdateForRender {
-    self.position = ccp(self.spell.position * PIXELS_PER_UNIT, GROUND_LEVEL);
+    self.position = ccp(self.wizardOffset + self.spell.position * self.pixelsPerUnit, self.y);
+    NSLog(@"WAHOOO %f %f", self.spell.position, self.position.x);
 }
 
 @end

@@ -10,6 +10,6 @@
 #import "Spell.h"
 
 @interface SpellSprite : CCSprite <RenderDelegate>
--(id)initWithSpell:(Spell*)spell;
+-(id)initWithSpell:(Spell*)spell y:(CGFloat)y pixelsPerUnit:(CGFloat)pixelsPerUnit wizardOffset:(CGFloat)wizardOffset;
 @property (nonatomic, strong) Spell * spell;
 @end

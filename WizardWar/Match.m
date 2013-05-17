@@ -57,9 +57,11 @@
 }
 
 -(void)removeSpell:(Spell*)spell {
+    NSLog(@"REMOVE SPELL %@", spell.firebaseName);
     Firebase * spellNode = [self.spellsNode childByAppendingPath:spell.firebaseName];
     [spellNode removeValue];
     [self.spells removeObject:spell];
+    [self.delegate didRemoveSpell:spell];
 }
 
 @end

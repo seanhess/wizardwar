@@ -154,10 +154,11 @@
 		78F6B3BC1746B27800AA070D /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3B61746B27700AA070D /* IntroLayer.m */; };
 		78F6B3C01746B28800AA070D /* CCScene+Layers.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3BF1746B28800AA070D /* CCScene+Layers.m */; };
 		78F6B3C41746B29C00AA070D /* WWDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3C31746B29C00AA070D /* WWDirector.m */; };
+		78F6B3C71746C4D300AA070D /* NSArray+Functional.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3C61746C4D300AA070D /* NSArray+Functional.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		78F6B1E31746AD8900AA070D /* WizardWar2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WizardWar2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		78F6B1E31746AD8900AA070D /* WizardWar2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = WizardWar2.app; path = WizardWar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78F6B1E61746AD8900AA070D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		78F6B1E81746AD8900AA070D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		78F6B1EA1746AD8900AA070D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -458,6 +459,8 @@
 		78F6B3BF1746B28800AA070D /* CCScene+Layers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CCScene+Layers.m"; path = "WizardWar/CCScene+Layers.m"; sourceTree = SOURCE_ROOT; };
 		78F6B3C21746B29C00AA070D /* WWDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WWDirector.h; path = WizardWar/WWDirector.h; sourceTree = SOURCE_ROOT; };
 		78F6B3C31746B29C00AA070D /* WWDirector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WWDirector.m; path = WizardWar/WWDirector.m; sourceTree = SOURCE_ROOT; };
+		78F6B3C51746C4D300AA070D /* NSArray+Functional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Functional.h"; sourceTree = "<group>"; };
+		78F6B3C61746C4D300AA070D /* NSArray+Functional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Functional.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -952,6 +955,8 @@
 			children = (
 				78F6B3BE1746B28800AA070D /* CCScene+Layers.h */,
 				78F6B3BF1746B28800AA070D /* CCScene+Layers.m */,
+				78F6B3C51746C4D300AA070D /* NSArray+Functional.h */,
+				78F6B3C61746C4D300AA070D /* NSArray+Functional.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -1149,6 +1154,7 @@
 				78F6B3BC1746B27800AA070D /* IntroLayer.m in Sources */,
 				78F6B3C01746B28800AA070D /* CCScene+Layers.m in Sources */,
 				78F6B3C41746B29C00AA070D /* WWDirector.m in Sources */,
+				78F6B3C71746C4D300AA070D /* NSArray+Functional.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

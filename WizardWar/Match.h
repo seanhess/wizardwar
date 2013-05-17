@@ -9,9 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "Spell.h"
 
+@protocol MatchDelegate
+-(void)didRemoveSpell:(Spell*)spell;
+@end
+
 @interface Match : NSObject
 @property (nonatomic, strong) NSMutableArray * players;
 @property (nonatomic, strong) NSMutableArray * spells;
+@property (nonatomic, weak) id<MatchDelegate> delegate;
 -(void)update:(NSTimeInterval)dt;
 -(void)addSpell:(Spell*)spell;
 -(id)initWithId:(NSString*)id;
