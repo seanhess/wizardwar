@@ -25,11 +25,12 @@ typedef enum ShapeType {
 } SpellType;
 
 @interface Spell : NSObject
-@property (nonatomic) NSInteger speed; // units per second
-@property (nonatomic) NSInteger size;  // in units
-@property (nonatomic) NSInteger position;  // in units
+@property (nonatomic) float speed; // units per second
+@property (nonatomic) float size;  // in units
+@property (nonatomic) float position;  // in units
 @property (nonatomic) NSTimeInterval created;
 @property (nonatomic) SpellType type;
 @property (nonatomic, weak) id<RenderDelegate>delegate;
 -(void)update:(NSTimeInterval)dt;
+-(NSDictionary*)toObject;
 @end

@@ -9,6 +9,9 @@
 #import "SpellSprite.h"
 #import "cocos2d.h"
 
+// these need to be calculated based on the parent's info
+// ground level is determined by the level of the ground. The match should decide
+
 #define PIXELS_PER_UNIT 10
 #define GROUND_LEVEL 100
 

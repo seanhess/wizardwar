@@ -24,7 +24,7 @@
     if ((self = [super init])) {
         [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
         
-        self.match = [Match new];
+        self.match = [[Match alloc] initWithId:@"fake"];
         
         CCSprite * ground = [MatchGroundSprite new];
         ground.position = ccp(self.contentSize.width/2, 25);
@@ -68,10 +68,8 @@
 -(void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
     // add the spell here
     Spell * spell = [self fakeSpell];
-    [self.match.spells addObject:spell];
-    SpellSprite * spellSprite = [SpellSprite new];
-    spellSprite.spell = spell;
-    [self addChild:spellSprite];
+    [self.match addSpell:spell]; // add spell
+    [self addChild:[[SpellSprite alloc] initWithSpell:spell]]; // add visually
 }
 
 -(Spell*)fakeSpell {

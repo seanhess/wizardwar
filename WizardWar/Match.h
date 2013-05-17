@@ -7,10 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Spell.h"
 
 @interface Match : NSObject
 @property (nonatomic, strong) NSMutableArray * players;
 @property (nonatomic, strong) NSMutableArray * spells;
-
 -(void)update:(NSTimeInterval)dt;
+-(void)addSpell:(Spell*)spell;
+-(id)initWithId:(NSString*)id;
 @end
