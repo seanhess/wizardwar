@@ -10,6 +10,7 @@
 #import "Spell.h"
 #import "Player.h"
 #import <Firebase/Firebase.h>
+#import "NSArray+Functional.h"
 
 @interface Match ()
 @property (nonatomic, strong) Firebase * matchNode;
@@ -58,10 +59,10 @@
         [self joinPlayer:self.currentPlayer];
         
         
-        
         // SPELLS
         [self.spellsNode observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
             Spell * spell = [Spell new];
+            spell.firebaseName = snapshot.name;
             [spell setValuesForKeysWithDictionary:snapshot.value];
             [self.spells addObject:spell];
             [self.delegate didAddSpell:spell];
@@ -82,14 +83,21 @@
 }
 
 -(void)checkHitPlayers {
-    [self.spells enumerateObjectsUsingBlock:^(Spell* spell, NSUInteger idx, BOOL *stop) {
+    [self.spells forEach:^(Spell* spell) {
         // spells are center anchored, so just check the position, not the width?
         // TODO add spell size to the equation
         // check to see if the spell hits ME, not all players
         // or check to see how my spells hit?
-        if (spell.position >= 100 || spell.position < 0)
-            [self removeSpell:spell];
+        [self.players forEach:^(Player* player) {
+            if ([spell hitsPlayer:player])
+                [self hitPlayer:player withSpell:spell];
+        }];
     }];
+}
+
+-(void)hitPlayer:(Player*)player withSpell:(Spell*)spell {
+    NSLog(@"HIT PLAYER %@ with %@", player, spell);
+    [self removeSpell:spell];
 }
 
 
@@ -138,10 +146,15 @@
 
 -(void)removeSpell:(Spell*)spell {
     NSLog(@"REMOVE SPELL %@", spell.firebaseName);
+    NSAssert(spell.firebaseName, @"No firebase name on spell! %@", spell);
     Firebase * spellNode = [self.spellsNode childByAppendingPath:spell.firebaseName];
-    [self.spells removeObject:spell];
     [self.delegate didRemoveSpell:spell];
     [spellNode removeValue];
+    
+    // we need to remove this later, since we are enumerating it
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.spells removeObject:spell];
+    });
 }
 
 @end

@@ -25,7 +25,6 @@
 }
 
 -(void)interactSpell:(Spell*)spell {
-    
     // switch based on spell type
     if ([spell isType:[SpellFireball class]]) {
         NSLog(@"FIREBALL HIT");

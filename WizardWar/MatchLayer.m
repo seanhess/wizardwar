@@ -131,8 +131,8 @@
 
 // starts at MY PLAYER
 -(Spell*)fakeSpell {
-//    Spell * spell = [SpellFireball new];
-    Spell * spell = [SpellEarthwall new];
+    Spell * spell = [SpellFireball new];
+//    Spell * spell = [SpellEarthwall new];
     [spell setPositionFromPlayer:self.match.currentPlayer];
     return spell;
 }

@@ -53,4 +53,18 @@
     return [SpellInteraction nothing];
 }
 
+-(SpellInteraction*)interactPlayer:(Spell*)spell {
+    // TODO figure this out / model it
+    return nil;
+}
+
+-(BOOL)hitsPlayer:(Player*)player {
+    if (player.isFirstPlayer) {
+        return self.position <= player.position;
+    }
+    else {
+        return self.position >= player.position;
+    }
+}
+
 @end

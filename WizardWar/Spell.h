@@ -29,4 +29,6 @@
 -(void)setPositionFromPlayer:(Player*)player;
 -(BOOL)isType:(Class)class;
 -(SpellInteraction*)interactSpell:(Spell*)spell;
+-(SpellInteraction*)interactPlayer:(Spell*)spell; // ???
+-(BOOL)hitsPlayer:(Player*)player;
 @end
