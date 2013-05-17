@@ -33,6 +33,19 @@
     [self.spells enumerateObjectsUsingBlock:^(Spell* spell, NSUInteger idx, BOOL *stop) {
         [spell update:dt];
     }];
+    
+    [self checkHitPlayers];
+}
+
+-(void)checkHitPlayers {
+    [self.spells enumerateObjectsUsingBlock:^(Spell* spell, NSUInteger idx, BOOL *stop) {
+        // spells are center anchored, so just check the position, not the width?
+        // TODO add spell size to the equation
+        // check to see if the spell hits ME, not all players
+        // or check to see how my spells hit?
+        if (spell.position >= 100 || spell.position < 0)
+            [self removeSpell:spell];
+    }];
 }
 
 -(void)addSpell:(Spell*)spell {
@@ -40,6 +53,13 @@
     Firebase * spellNode = [self.spellsNode childByAutoId];
 //    [spellNode onDisconnectRemoveValue];
     [spellNode setValue:[spell toObject]];
+    spell.firebaseName = spellNode.name;
+}
+
+-(void)removeSpell:(Spell*)spell {
+    Firebase * spellNode = [self.spellsNode childByAppendingPath:spell.firebaseName];
+    [spellNode removeValue];
+    [self.spells removeObject:spell];
 }
 
 @end

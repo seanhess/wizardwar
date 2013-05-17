@@ -25,6 +25,7 @@ typedef enum ShapeType {
 } SpellType;
 
 @interface Spell : NSObject
+@property (nonatomic) NSString* firebaseName;
 @property (nonatomic) float speed; // units per second
 @property (nonatomic) float size;  // in units
 @property (nonatomic) float position;  // in units
