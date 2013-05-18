@@ -37,9 +37,6 @@
     {
         CGPoint point = [[self.points objectAtIndex:0] CGPointValue];
         CGContextMoveToPoint(context, point.x, point.y);
-    } else {
-        NSLog(@"blah");
-        CGContextClearRect(context, self.bounds);
     }
     
     
