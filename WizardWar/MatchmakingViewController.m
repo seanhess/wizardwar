@@ -68,13 +68,13 @@
     }
     
     // HACK CODE
-    dispatch_async(dispatch_get_main_queue(), ^{
-        Invite * invite = [Invite new];
-        invite.invitee = @"Charlie";
-        invite.inviter = @"Bad guy";
-        invite.matchID = [NSString stringWithFormat:@"%i", arc4random()];
-        [self joinMatch:invite playerName:@"Charlie"];
-    });
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        Invite * invite = [Invite new];
+//        invite.invitee = @"Charlie";
+//        invite.inviter = @"Bad guy";
+//        invite.matchID = [NSString stringWithFormat:@"%i", arc4random()];
+//        [self joinMatch:invite playerName:@"Charlie"];
+//    });
 }
 
 - (void)didReceiveMemoryWarning
@@ -161,10 +161,8 @@
     [self.firebaseInvites observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
         Invite * invite = [Invite new];
         [invite setValuesForKeysWithDictionary:snapshot.value];
-        if ([invite.invitee isEqualToString:self.nickname]) {
-            [self.invites addObject:invite];
-            [self.matchesTableViewController.tableView reloadData];
-        }
+        [self.invites addObject:invite];
+        [self.matchesTableViewController.tableView reloadData];
     }];
     
     [self.firebaseInvites observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
@@ -176,7 +174,7 @@
 
 -(void)removeInvite:(Invite*)removedInvite {
     for (Invite * invite in self.invites) {
-        if ([invite.inviter isEqualToString:removedInvite.inviter]) {
+        if ([invite.inviteId isEqualToString:removedInvite.inviteId]) {
             [self.invites removeObjectIdenticalTo:invite];
         }
     }
@@ -229,7 +227,19 @@
         
         Invite * invite = [self.invites objectAtIndex:indexPath.row];
         
-        cell.textLabel.text = invite.inviter;
+        if (invite.inviter == self.nickname) {
+            cell.textLabel.text = [NSString stringWithFormat:@"%@ (waiting...)", invite.invitee];
+            cell.userInteractionEnabled = NO;
+            cell.textLabel.enabled = NO;
+            cell.detailTextLabel.enabled = NO;
+        }
+        else {
+            cell.textLabel.text = invite.inviter;
+            cell.userInteractionEnabled = YES;
+            cell.textLabel.enabled = YES;
+            cell.detailTextLabel.enabled = YES;
+        }
+        
         return cell;
     } else {
         UserCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -263,6 +273,7 @@
             NSLog(@"Inivite Changed %@", snapshot.value);
             // match has begun! join up
             self.matchID = snapshot.value;
+            invite.matchID = self.matchID;
             [self joinMatch:invite playerName:self.nickname];
         }
     }];
