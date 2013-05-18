@@ -8,6 +8,8 @@
 
 #import "SpellSprite.h"
 #import "cocos2d.h"
+#import "SpellFireball.h"
+#import "SpellEarthwall.h"
 
 @interface SpellSprite ()
 @property (nonatomic, strong) Units * units;
@@ -27,13 +29,16 @@
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"fireball.plist"];
         [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"fireball-animation.plist"];
         
-        self.sheet = [CCSpriteBatchNode batchNodeWithFile:@"fireball.png"];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"earthwall.plist"];
+        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"earthwall-animation.plist"];
+        
+        self.sheet = [CCSpriteBatchNode batchNodeWithFile:[NSString stringWithFormat:@"%@.png", self.sheetName]];
         [self addChild:self.sheet];
         
-        CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:@"fireball"];
+        CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:@"spell"];
         CCAction * action = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:animation]];
         
-        self.skin = [CCSprite spriteWithSpriteFrameName:@"fireball-1"];
+        self.skin = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"%@-1", self.sheetName]];
         [self.skin runAction:action];
         [self addChild:self.skin];
         
@@ -49,6 +54,26 @@
 
 -(void)render {
     self.position = ccp([self.units toX:self.spell.position], self.units.zeroY);
+}
+
+-(NSString*)sheetName {
+    if ([self.spell isType:[SpellEarthwall class]]) {
+        return @"earthwall";
+    }
+    
+    return @"fireball";
+}
+
+-(CCAction*)spellAction {
+    CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:@"spell"];
+    CCActionInterval * actionInterval = [CCAnimate actionWithAnimation:animation];
+    CCAction * action = actionInterval;
+    
+    if ([self.spell isType:[SpellFireball class]]) {
+        action = [CCRepeatForever actionWithAction:actionInterval];
+    }
+    
+    return action;
 }
 
 @end

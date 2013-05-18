@@ -4,17 +4,16 @@
 <dict>
 	<key>animations</key>
 	<dict>
-		<key>fireball</key>
+		<key>earthwall</key>
 		<dict>
 			<key>delay</key>
-			<real>0.125</real>
+			<real>0.166</real>
 			<key>frames</key>
 			<array>
-				<string>fireball-1</string>
-				<string>fireball-2</string>
-				<string>fireball-3</string>
-				<string>fireball-4</string>
-				<string>fireball-5</string>
+				<string>earthwall-1</string>
+				<string>earthwall-2</string>
+				<string>earthwall-4</string>
+				<string>earthwall-3</string>
 			</array>
 		</dict>
 	</dict>

@@ -136,6 +136,11 @@
 		78F194F217474F4B00BB8587 /* fireball.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78F194EE17474F4B00BB8587 /* fireball.plist */; };
 		78F194F317474F4B00BB8587 /* fireball.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F194EF17474F4B00BB8587 /* fireball.png */; };
 		78F194F517474F5D00BB8587 /* fireball-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78F194F417474F5D00BB8587 /* fireball-animation.plist */; };
+		78F194FE174758B900BB8587 /* earthwall-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78F194F9174758B900BB8587 /* earthwall-animation.plist */; };
+		78F194FF174758B900BB8587 /* earthwall-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78F194FA174758B900BB8587 /* earthwall-hd.plist */; };
+		78F19500174758B900BB8587 /* earthwall-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F194FB174758B900BB8587 /* earthwall-hd.png */; };
+		78F19501174758B900BB8587 /* earthwall.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78F194FC174758B900BB8587 /* earthwall.plist */; };
+		78F19502174758B900BB8587 /* earthwall.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F194FD174758B900BB8587 /* earthwall.png */; };
 		78F6B1E71746AD8900AA070D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F6B1E61746AD8900AA070D /* UIKit.framework */; };
 		78F6B1E91746AD8900AA070D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F6B1E81746AD8900AA070D /* Foundation.framework */; };
 		78F6B1EB1746AD8900AA070D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F6B1EA1746AD8900AA070D /* CoreGraphics.framework */; };
@@ -424,6 +429,11 @@
 		78F194EE17474F4B00BB8587 /* fireball.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = fireball.plist; sourceTree = "<group>"; };
 		78F194EF17474F4B00BB8587 /* fireball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fireball.png; sourceTree = "<group>"; };
 		78F194F417474F5D00BB8587 /* fireball-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "fireball-animation.plist"; sourceTree = "<group>"; };
+		78F194F9174758B900BB8587 /* earthwall-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "earthwall-animation.plist"; sourceTree = "<group>"; };
+		78F194FA174758B900BB8587 /* earthwall-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "earthwall-hd.plist"; sourceTree = "<group>"; };
+		78F194FB174758B900BB8587 /* earthwall-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "earthwall-hd.png"; sourceTree = "<group>"; };
+		78F194FC174758B900BB8587 /* earthwall.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = earthwall.plist; sourceTree = "<group>"; };
+		78F194FD174758B900BB8587 /* earthwall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = earthwall.png; sourceTree = "<group>"; };
 		78F6B1E31746AD8900AA070D /* WizardWar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WizardWar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78F6B1E61746AD8900AA070D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		78F6B1E81746AD8900AA070D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -763,6 +773,11 @@
 		78F193E717471A0E00BB8587 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				78F194F9174758B900BB8587 /* earthwall-animation.plist */,
+				78F194FA174758B900BB8587 /* earthwall-hd.plist */,
+				78F194FB174758B900BB8587 /* earthwall-hd.png */,
+				78F194FC174758B900BB8587 /* earthwall.plist */,
+				78F194FD174758B900BB8587 /* earthwall.png */,
 				78F194DC1747386300BB8587 /* wizard1-hd.plist */,
 				78F194DD1747386300BB8587 /* wizard1-hd.png */,
 				78F194E017473AFD00BB8587 /* wizard1.plist */,
@@ -1569,6 +1584,11 @@
 				78F194F217474F4B00BB8587 /* fireball.plist in Resources */,
 				78F194F317474F4B00BB8587 /* fireball.png in Resources */,
 				78F194F517474F5D00BB8587 /* fireball-animation.plist in Resources */,
+				78F194FE174758B900BB8587 /* earthwall-animation.plist in Resources */,
+				78F194FF174758B900BB8587 /* earthwall-hd.plist in Resources */,
+				78F19500174758B900BB8587 /* earthwall-hd.png in Resources */,
+				78F19501174758B900BB8587 /* earthwall.plist in Resources */,
+				78F19502174758B900BB8587 /* earthwall.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
