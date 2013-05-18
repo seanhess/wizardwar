@@ -16,8 +16,9 @@
 #import "NSArray+Functional.h"
 #import "SpellFireball.h"
 #import "SpellEarthwall.h"
+#import "NSArray+Functional.h"
 
-@interface MatchLayer () <CCTouchOneByOneDelegate, MatchDelegate>
+@interface MatchLayer () <CCTouchOneByOneDelegate, MatchDelegate, PentagramDelegate>
 @property (nonatomic, strong) Match * match;
 @property (nonatomic, strong) Units * units;
 @property (nonatomic, strong) NSMutableArray * spellSprites;
@@ -43,11 +44,21 @@
         self.background = [CCSprite spriteWithFile:@"background-cave.png"];
         self.background.anchorPoint = ccp(0,0);
         [self addChild:self.background];
+
+        // Lets try and overlay some UIKit stuff for the pentagram!
+        UIView *openGlView = [[CCDirector sharedDirector] view];
+        self.pentagramViewController = [[PentagramViewController alloc] init];
+        self.pentagramViewController.view.backgroundColor = [UIColor clearColor];
+        self.pentagramViewController.view.frame = openGlView.frame;
+        self.pentagramViewController.view.opaque = NO;
+        self.pentagramViewController.delegate = self;
+        [openGlView addSubview:self.pentagramViewController.view];
+        [openGlView bringSubviewToFront:self.pentagramViewController.view];
         
         // I need to join. Am I 1st player or 2nd player?
         // Hmm... I need to know
         
-        [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
+        [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:NO];
         
         Player * currentPlayer = [Player new];
         currentPlayer.name = playerName;
@@ -129,7 +140,7 @@
 }
 
 -(void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
-    if (!self.match.started) {
+    /*if (!self.match.started) {
         
         if (self.match.loser) {
             NSLog(@"OVER");
@@ -152,6 +163,82 @@
         spell = [SpellFireball new];
     
     [self.match castSpell:spell];
+    [spell setPositionFromPlayer:self.match.currentPlayer];
+    
+    [self.match addSpell:spell]; // add spell
+    NSLog(@"NEW SPELL! %@", spell);*/
+}
+
+# pragma mark Pentagram Delegate
+
+-(void)didSelectElement:(NSArray *)elements
+{
+    NSLog(@"selected element %@", elements);
+}
+
+-(void)didCastSpell:(NSArray *)elements
+{
+    NSLog(@"cast spell %@", elements);
+    BOOL hasHeart = NO;
+    BOOL hasEarth = NO;
+    BOOL hasWind = NO;
+    BOOL hasFire = NO;
+    BOOL hasWater = NO;
+    for (NSString *element in elements) {
+        if ([element isEqualToString:@"heart"]) {
+            hasHeart = YES;
+        }
+        if ([element isEqualToString:@"earth"]) {
+            hasEarth = YES;
+        }
+        if ([element isEqualToString:@"wind"]) {
+            hasWind = YES;
+        }
+        if ([element isEqualToString:@"fire"]) {
+            hasFire = YES;
+        }
+        if ([element isEqualToString:@"water"]) {
+            hasWater = YES;
+        }
+    }
+    
+    Spell * spell = nil;
+    
+    if (hasFire && hasHeart && !hasWater && !hasWind && !hasEarth) {
+        spell = [SpellFireball new];
+    }
+    if (hasEarth && hasWater && !hasWind && !hasFire && !hasHeart) {
+        spell = [SpellEarthwall new];
+    }
+    
+    if (hasWind && hasHeart && !hasFire && !hasEarth && !hasWater) {
+        NSLog(@"WINDBLAST!");
+    }
+    
+    if (hasEarth && hasFire && !hasHeart && !hasWind && !hasWater) {
+        NSLog(@"SUMMON!");
+    }
+    
+    if (hasWater && hasWind && !hasHeart && !hasFire && !hasEarth) {
+        NSLog(@"ICE WALL!");
+    }
+    
+    if (hasWater && hasWind && !hasHeart && !hasFire && !hasEarth) {
+        NSLog(@"BUBBLE!");
+    }
+    
+    if (hasEarth && hasWater && hasHeart && !hasFire && !hasWind) {
+        NSLog(@"VINE!");
+    }
+    
+    if (hasHeart && hasEarth && hasWind && hasFire && hasWater) {
+        NSLog(@"CAPTIAN PLANET");
+    }
+    
+    if (spell != nil) {
+        [spell setPositionFromPlayer:self.match.currentPlayer];
+        [self.match addSpell:spell];
+    }
 }
 
 

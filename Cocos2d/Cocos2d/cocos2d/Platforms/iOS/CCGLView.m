@@ -332,6 +332,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 	{
 		[_touchDelegate touchesBegan:touches withEvent:event];
 	}
+    [super touchesBegan:touches withEvent:event];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
@@ -340,6 +341,8 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 	{
 		[_touchDelegate touchesMoved:touches withEvent:event];
 	}
+    [super touchesMoved:touches withEvent:event];
+
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
@@ -348,6 +351,8 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 	{
 		[_touchDelegate touchesEnded:touches withEvent:event];
 	}
+    [super touchesEnded:touches withEvent:event];
+
 }
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -355,6 +360,8 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 	{
 		[_touchDelegate touchesCancelled:touches withEvent:event];
 	}
+    [super touchesCancelled:touches withEvent:event];
+
 }
 
 @end

@@ -170,6 +170,7 @@
         [removedInvite setValuesForKeysWithDictionary:snapshot.value];
         [self removeInvite:removedInvite];
     }];
+    
 }
 
 -(void)removeInvite:(Invite*)removedInvite {
@@ -273,7 +274,7 @@
     [inviteNode setValue:invite.toObject];
     [inviteNode onDisconnectRemoveValue];
         
-        // listen to the created invite for acceptance
+    // listen to the created invite for acceptance
     Firebase * matchIDNode = [inviteNode childByAppendingPath:@"matchID"];
     NSLog(@"MATCH ID NODE %@", matchIDNode);
     [matchIDNode observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
