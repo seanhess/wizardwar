@@ -60,7 +60,7 @@
         }
     }
     
-    float newMana = self.mana + dt;
+    float newMana = self.mana + dt / 2.0;
     
     if (floor(self.mana - .05) != floor(newMana)) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"HealthManaUpdate" object:nil];
