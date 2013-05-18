@@ -40,7 +40,7 @@
     // makes it so it isn't RIGHT ON the player
     self.position = player.position + self.size*self.direction;
     
-    NSLog(@"CHECK %@", self);
+//    NSLog(@"CHECK %@", self);
 }
 
 -(NSString*)description {

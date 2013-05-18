@@ -75,9 +75,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)joinMatch:(NSString *)matchID playerName:(NSString *)playerName {
-    NSAssert(matchID, @"No match id!");
-    NSLog(@"joining match %@ with %@", matchID, playerName);
+- (void)joinMatch:(Invite*)invite playerName:(NSString *)playerName {
+    NSAssert(invite.matchID, @"No match id!");
+    NSLog(@"joining match %@ with %@", invite.matchID, playerName);
     // hide the navigation bar first, so the size of this view is correct!
     
     if (!self.director) {
@@ -85,7 +85,7 @@
     }
     
     [self.navigationController setNavigationBarHidden:YES animated:YES];
-    MatchLayer * match = [[MatchLayer alloc] initWithMatchId:matchID playerName:playerName];
+    MatchLayer * match = [[MatchLayer alloc] initWithMatchId:invite.matchID playerName:playerName];
     match.delegate = self;
     
     if (self.director.runningScene) {
@@ -96,6 +96,7 @@
     }
     
     [self.navigationController pushViewController:self.director animated:YES];
+    [self removeInvite:invite];
 }
 
 - (void)doneWithMatch {
@@ -161,13 +162,17 @@
     [self.firebaseInvites observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
         Invite * removedInvite = [Invite new];
         [removedInvite setValuesForKeysWithDictionary:snapshot.value];
-        for (Invite * invite in self.invites) {
-            if ([invite.inviter isEqualToString:removedInvite.inviter]) {
-                [self.invites removeObjectIdenticalTo:invite];
-            }
-        }
-        [self.matchesTableViewController.tableView reloadData];
+        [self removeInvite:removedInvite];
     }];
+}
+
+-(void)removeInvite:(Invite*)removedInvite {
+    for (Invite * invite in self.invites) {
+        if ([invite.inviter isEqualToString:removedInvite.inviter]) {
+            [self.invites removeObjectIdenticalTo:invite];
+        }
+    }
+    [self.matchesTableViewController.tableView reloadData];
 }
 
 - (void)addToLobbyList
@@ -250,7 +255,7 @@
             NSLog(@"Inivite Changed %@", snapshot.value);
             // match has begun! join up
             self.matchID = snapshot.value;
-            [self joinMatch:self.matchID playerName:self.nickname];
+            [self joinMatch:invite playerName:self.nickname];
         }
     }];
 }
@@ -263,7 +268,7 @@
     Firebase* inviteNode = [self.firebaseInvites childByAppendingPath:invite.inviteId];
     [inviteNode setValue:invite.toObject];
     [inviteNode onDisconnectRemoveValue];
-    [self joinMatch:matchID playerName:self.nickname];
+    [self joinMatch:invite playerName:self.nickname];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
