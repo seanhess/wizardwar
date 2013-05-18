@@ -16,6 +16,7 @@
 #import "NSArray+Functional.h"
 #import "SpellFireball.h"
 #import "SpellEarthwall.h"
+#import "NSArray+Functional.h"
 
 @interface MatchLayer () <CCTouchOneByOneDelegate, MatchDelegate, PentagramDelegate>
 @property (nonatomic, strong) Match * match;
@@ -41,6 +42,7 @@
         UIView *openGlView = [[CCDirector sharedDirector] view];
         self.pentagramViewController = [[PentagramViewController alloc] init];
         self.pentagramViewController.view.backgroundColor = [UIColor clearColor];
+        self.pentagramViewController.view.frame = openGlView.frame;
         self.pentagramViewController.view.opaque = NO;
         self.pentagramViewController.delegate = self;
         [openGlView addSubview:self.pentagramViewController.view];
@@ -176,6 +178,45 @@
 -(void)didCastSpell:(NSArray *)elements
 {
     NSLog(@"cast spell %@", elements);
+    BOOL hasHeart = NO;
+    BOOL hasEarth = NO;
+    BOOL hasWind = NO;
+    BOOL hasFire = NO;
+    BOOL hasWater = NO;
+    for (NSString *element in elements) {
+        if ([element isEqualToString:@"heart"]) {
+            hasHeart = YES;
+        }
+        if ([element isEqualToString:@"earth"]) {
+            hasEarth = YES;
+        }
+        if ([element isEqualToString:@"wind"]) {
+            hasWind = YES;
+        }
+        if ([element isEqualToString:@"fire"]) {
+            hasFire = YES;
+        }
+        if ([element isEqualToString:@"water"]) {
+            hasWater = YES;
+        }
+    }
+    
+    Spell * spell = nil;
+    
+    if (hasFire && hasHeart) {
+        spell = [SpellFireball new];
+    }
+    if (hasEarth && hasWater) {
+        spell = [SpellEarthwall new];
+    }
+    if (hasHeart && hasEarth && hasWind && hasFire && hasWater) {
+        NSLog(@"CAPTIAN PLANET");
+    }
+    
+    if (spell != nil) {
+        [spell setPositionFromPlayer:self.match.currentPlayer];
+        [self.match addSpell:spell];
+    }
 }
 
 @end
