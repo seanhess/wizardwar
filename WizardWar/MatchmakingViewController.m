@@ -179,8 +179,11 @@
     [self.firebaseInvites observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
         Invite * invite = [Invite new];
         [invite setValuesForKeysWithDictionary:snapshot.value];
-        [self.invites addObject:invite];
-        [self.matchesTableViewController.tableView reloadData];
+        // only show invites that apply to you
+        if (invite.invitee == self.nickname || invite.inviter == self.nickname) {
+            [self.invites addObject:invite];
+            [self.matchesTableViewController.tableView reloadData];
+        }
     }];
     
     [self.firebaseInvites observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
