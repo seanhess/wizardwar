@@ -18,7 +18,7 @@
         self.damage = 1; // default value
         self.speed = 30;
         self.strength = 1;
-        self.mana = 1;
+        self.mana = 2;
     }
     return self;
 }

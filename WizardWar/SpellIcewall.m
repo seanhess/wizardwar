@@ -20,6 +20,7 @@
     if ((self=[super init])) {
         self.speed = 0;
         self.size = 20;
+        self.mana = 1;
     }
     return self;
 }

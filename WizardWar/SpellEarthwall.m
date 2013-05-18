@@ -17,6 +17,7 @@
         self.speed = 0;
         self.size = 20;
         self.strength = 3;
+        self.mana = 1;
     }
     return self;
 }

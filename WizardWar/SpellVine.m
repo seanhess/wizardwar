@@ -20,6 +20,7 @@
     if ((self=[super init])) {
         // TODO mana cost higher!
         // TODO harder to cast!
+        self.mana = 5;
     }
     return self;
 }
