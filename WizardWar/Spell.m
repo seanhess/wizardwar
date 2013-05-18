@@ -62,7 +62,7 @@
 }
 
 -(SpellInteraction*)interactPlayer:(Player*)player {
-    // TODO figure this out / model it
+    player.health -= self.damage;
     return nil;
 }
 

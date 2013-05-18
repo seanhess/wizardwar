@@ -8,6 +8,11 @@
 
 #import "CCLayer.h"
 
+@protocol MatchLayerDelegate
+-(void)doneWithMatch;
+@end
+
 @interface MatchLayer : CCLayer
+@property (nonatomic, weak) id<MatchLayerDelegate>delegate;
 -(id)initWithMatchId:(NSString*)matchId playerName:(NSString*)playerName;
 @end

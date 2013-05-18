@@ -103,13 +103,28 @@
 -(void)hitPlayer:(Player*)player withSpell:(Spell*)spell {
     NSLog(@"HIT PLAYER %@ with %@", player, spell);
     [self removeSpell:spell];
+    
+    // this allows it to subtract health
     [spell interactPlayer:player];
+    [player.delegate didUpdateForRender];
+    [self checkWin];
 }
 
 -(void)hitSpell:(Spell*)spell withSpell:(Spell*)spell2 {
     NSLog(@"HIT SPELL %@ with %@", spell, spell2);
     [self handleInteraction:[spell interactSpell:spell2] forSpell:spell];
     [self handleInteraction:[spell2 interactSpell:spell] forSpell:spell2];
+}
+
+-(void)checkWin {
+    [self.players forEach:^(Player* player) {
+        if (player.health == 0) {
+            self.started = NO;
+            self.loser = player;
+            NSLog(@"GAME OVER!");
+            [self.delegate matchEnded];
+        }
+    }];
 }
 
 -(void)handleInteraction:(SpellInteraction*)interaction forSpell:(Spell*)spell {

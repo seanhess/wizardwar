@@ -25,6 +25,8 @@
 @property (nonatomic, strong) NSString * matchId;
 @property (nonatomic, strong) NSString * playerName;
 
+@property (nonatomic, strong) CCLabelTTF * label;
+
 @end
 
 @implementation MatchLayer
@@ -58,7 +60,9 @@
         ground.contentSize = CGSizeMake(self.contentSize.width, 50);
         [self addChild:ground];
         
-
+        self.label = [CCLabelTTF labelWithString:@"Ready" fontName:@"Marker Felt" fontSize:36];
+        self.label.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
+        [self addChild:self.label];
             
         [self scheduleUpdate];
     }
@@ -96,10 +100,16 @@
 }
 
 -(void)matchStarted {
+    self.label.visible = NO;
     [self.match.players forEach:^(Player*player) {
         CCSprite * wizard = [[WizardSprite alloc] initWithPlayer:player units:self.units];
         [self addChild:wizard];
     }];
+}
+
+-(void)matchEnded {
+    self.label.visible = YES;
+    self.label.string = @"Game Over";
 }
 
 -(void)drawWizard:(Player*)player {
@@ -119,7 +129,14 @@
 
 -(void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
     if (!self.match.started) {
-        NSLog(@"NOT STARTED");
+        
+        if (self.match.loser) {
+            NSLog(@"OVER");
+            [self.delegate doneWithMatch];
+        }
+        else {
+            NSLog(@"NOT STARTED");
+        }
         return;
     }
     

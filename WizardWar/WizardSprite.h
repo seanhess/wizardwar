@@ -8,7 +8,8 @@
 
 #import "CCSprite.h"
 #import "Player.h"
+#import "RenderDelegate.h"
 
-@interface WizardSprite : CCSprite
+@interface WizardSprite : CCSprite <RenderDelegate>
 -(id)initWithPlayer:(Player*)player units:(Units*)units;
 @end

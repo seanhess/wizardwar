@@ -12,8 +12,16 @@
 
 @implementation Player
 
+-(id)init {
+    if ((self=[super init])) {
+        self.mana = 0;
+        self.health = 5;
+    }
+    return self;
+}
+
 -(NSDictionary*)toObject {
-    return [self dictionaryWithValuesForKeys:@[@"name", @"position", @"mana", @"maxMana"]];
+    return [self dictionaryWithValuesForKeys:@[@"name", @"position", @"mana", @"health"]];
 }
 
 -(NSString*)description {
@@ -22,17 +30,6 @@
 
 -(BOOL)isFirstPlayer {
     return self.position == UNITS_MIN;
-}
-
--(void)interactSpell:(Spell*)spell {
-    // switch based on spell type
-    if ([spell isType:[SpellFireball class]]) {
-        NSLog(@"FIREBALL HIT");
-    }
-    
-    else {
-        NSLog(@"NO COMPRENDO");
-    }
 }
 
 @end

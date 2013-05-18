@@ -14,6 +14,7 @@
 -(void)didRemoveSpell:(Spell*)spell;
 -(void)didAddSpell:(Spell*)spell;
 -(void)matchStarted;
+-(void)matchEnded;
 @end
 
 @interface Match : NSObject
@@ -22,6 +23,7 @@
 @property (nonatomic, weak) id<MatchDelegate> delegate;
 @property (nonatomic, strong) Player * currentPlayer;
 @property (nonatomic) BOOL started;
+@property (nonatomic, strong) Player * loser;
 -(void)update:(NSTimeInterval)dt;
 -(void)addSpell:(Spell*)spell;
 -(id)initWithId:(NSString*)id currentPlayer:(Player*)player;
