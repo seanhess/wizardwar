@@ -11,7 +11,9 @@
 @implementation Units
 
 -(CGFloat)pixelsXForUnitPosition:(CGFloat)units {
+    NSLog(@"CHECK %f %f", units, self.wizardOffset+units*self.pixelsPerUnit);
     return self.wizardOffset + units*self.pixelsPerUnit;
+//    return units*self.pixelsPerUnit;
 }
 
 @end
