@@ -85,8 +85,8 @@
         
         // BACK BUTTON
         self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [self.backButton setImage:[UIImage imageNamed:@"bubble-1.png"] forState:UIControlStateNormal];
-        self.backButton.frame = CGRectMake(0, 0, 100, 100);
+        [self.backButton setImage:[UIImage imageNamed:@"exit.png"] forState:UIControlStateNormal];
+        self.backButton.frame = CGRectMake(8, 8, 28, 22);
         [self.backButton addTarget:self action:@selector(didTapBack:) forControlEvents:UIControlEventTouchUpInside];
         [openGlView addSubview:self.backButton];
     }
