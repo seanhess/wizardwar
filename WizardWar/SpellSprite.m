@@ -72,7 +72,12 @@
 }
 
 -(void)render {
-    self.position = ccp([self.units toX:self.spell.position], self.units.zeroY);
+    if ([self.spell isType:[SpellEarthwall class]] || [self.spell isType:[SpellIcewall class]]) {
+        // bump walls down
+self.position = ccp([self.units toX:self.spell.position], self.units.zeroY-25);
+    } else {
+        self.position = ccp([self.units toX:self.spell.position], self.units.zeroY);
+    }
 }
 
 -(NSString*)sheetName {

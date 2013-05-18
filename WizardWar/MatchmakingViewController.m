@@ -92,6 +92,8 @@
 }
 
 - (void)joinMatch:(Invite*)invite playerName:(NSString *)playerName {
+    if (self.isInMatch) return;
+    self.isInMatch = YES;
     NSAssert(invite.matchID, @"No match id!");
     NSLog(@"joining match %@ with %@", invite.matchID, playerName);
     // hide the navigation bar first, so the size of this view is correct!
@@ -117,6 +119,7 @@
 
 - (void)doneWithMatch {
 //    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.isInMatch = NO;
     [self.navigationController popViewControllerAnimated:YES];
 //    [self.navigationController setNavigationBarHidden:YES animated:YES];
     // [self.navigationController pushViewController:director animated:YES];
