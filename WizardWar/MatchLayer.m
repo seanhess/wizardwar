@@ -29,6 +29,8 @@
 @property (nonatomic, strong) CCLabelTTF * label;
 @property (nonatomic, strong) CCSprite * background;
 
+@property (nonatomic, strong) UIButton * backButton;
+
 @end
 
 @implementation MatchLayer
@@ -49,7 +51,10 @@
         UIView *openGlView = [[CCDirector sharedDirector] view];
         self.pentagramViewController = [[PentagramViewController alloc] init];
         self.pentagramViewController.view.backgroundColor = [UIColor clearColor];
-        self.pentagramViewController.view.frame = openGlView.frame;
+        CGRect frame = openGlView.frame;
+        frame.size.width = 246;
+        frame.origin.x = (openGlView.frame.size.width - frame.size.width)/2;
+        self.pentagramViewController.view.frame = frame;
         self.pentagramViewController.view.opaque = NO;
         self.pentagramViewController.delegate = self;
         [openGlView addSubview:self.pentagramViewController.view];
@@ -75,8 +80,15 @@
         self.label = [CCLabelTTF labelWithString:@"Ready" fontName:@"Marker Felt" fontSize:36];
         self.label.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
         [self addChild:self.label];
-            
+        
         [self scheduleUpdate];
+        
+        // BACK BUTTON
+        self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [self.backButton setImage:[UIImage imageNamed:@"bubble-1.png"] forState:UIControlStateNormal];
+        self.backButton.frame = CGRectMake(0, 0, 100, 100);
+        [self.backButton addTarget:self action:@selector(didTapBack:) forControlEvents:UIControlEventTouchUpInside];
+        [openGlView addSubview:self.backButton];
     }
     return self;
 }
@@ -128,6 +140,10 @@
     
 }
 
+-(void)didTapBack:(id)sender {
+    [self.delegate doneWithMatch];
+}
+
 
 // TOUCHES
 
@@ -140,7 +156,9 @@
 }
 
 -(void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
-    NSLog(@"TOUCH");
+    
+//    CGPoint touchPoint = [touch locationInView:touch.view];
+    
     /*if (!self.match.started) {
         
         if (self.match.loser) {

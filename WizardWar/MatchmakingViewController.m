@@ -69,13 +69,13 @@
     }
     
     // HACK CODE
-    // dispatch_async(dispatch_get_main_queue(), ^{
-    //     Invite * invite = [Invite new];
-    //     invite.invitee = @"Charlie";
-    //     invite.inviter = @"Bad guy";
-    //     invite.matchID = [NSString stringWithFormat:@"%i", arc4random()];
-    //     [self joinMatch:invite playerName:@"Charlie"];
-    // });
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        Invite * invite = [Invite new];
+//        invite.invitee = @"Charlie";
+//        invite.inviter = @"Bad guy";
+//        invite.matchID = [NSString stringWithFormat:@"%i", arc4random()];
+//        [self joinMatch:invite playerName:@"Charlie"];
+//    });
 }
 
 - (void)didReceiveMemoryWarning
@@ -93,7 +93,7 @@
         self.director = [WWDirector directorWithBounds:self.view.bounds];
     }
     
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+//    [self.navigationController setNavigationBarHidden:YES animated:YES];
     MatchLayer * match = [[MatchLayer alloc] initWithMatchId:invite.matchID playerName:playerName];
     match.delegate = self;
     
@@ -109,9 +109,9 @@
 }
 
 - (void)doneWithMatch {
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+//    [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationController popViewControllerAnimated:YES];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+//    [self.navigationController setNavigationBarHidden:YES animated:YES];
     // [self.navigationController pushViewController:director animated:YES];
 }
 
