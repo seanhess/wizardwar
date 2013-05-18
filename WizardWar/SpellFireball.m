@@ -8,6 +8,10 @@
 
 #import "SpellFireball.h"
 #import "SpellEarthwall.h"
+#import "SpellWindblast.h"
+#import "SpellIcewall.h"
+#import "SpellBubble.h"
+#import "SpellMonster.h"
 
 @implementation SpellFireball
 
@@ -21,11 +25,33 @@
 -(SpellInteraction*)interactSpell:(Spell*)spell {
     
     if ([spell isType:[SpellEarthwall class]]) {
+        // TODO wear down!
         return [SpellInteraction cancel];
     }
     
-    // fire + fire is ignored
+    else if ([spell isType:[SpellWindblast class]]) {
+        // TODO make it bigger
+        self.damage += 1;
+        return [SpellInteraction modify];
+    }
     
+    else if ([spell isType:[SpellIcewall class]]) {
+        return [SpellInteraction cancel];
+    }
+    
+    else if ([spell isType:[SpellBubble class]]) {
+        self.position = spell.position;
+        self.speed = spell.speed;
+        self.direction = spell.direction;
+        return [SpellInteraction modify];
+    }
+    
+    else if ([spell isType:[SpellMonster class]]) {
+        return [SpellInteraction cancel];
+    }
+    
+    
+    // fire + fire is ignored
     return [SpellInteraction nothing];
 }
 
