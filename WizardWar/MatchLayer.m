@@ -7,7 +7,6 @@
 //
 
 #import "MatchLayer.h"
-#import "PentagramViewController.h"
 #import "cocos2d.h"
 #import "MatchGroundSprite.h"
 #import "WizardSprite.h"
@@ -40,13 +39,16 @@
         
         // Lets try and overlay some UIKit stuff for the pentagram!
         UIView *openGlView = [[CCDirector sharedDirector] view];
-        PentagramViewController *pentagramViewController = [[PentagramViewController alloc] init];
-        [openGlView addSubview:pentagramViewController.view];
+        self.pentagramViewController = [[PentagramViewController alloc] init];
+        self.pentagramViewController.view.backgroundColor = [UIColor clearColor];
+        self.pentagramViewController.view.opaque = NO;
+        [openGlView addSubview:self.pentagramViewController.view];
+        [openGlView bringSubviewToFront:self.pentagramViewController.view];
         
         // I need to join. Am I 1st player or 2nd player?
         // Hmm... I need to know
         
-        [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
+        [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:NO];
         
         Player * currentPlayer = [Player new];
         currentPlayer.name = playerName;

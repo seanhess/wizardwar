@@ -22,6 +22,8 @@
     self.moves = [[NSMutableArray alloc] init];
     DrawingLayer *drawLayer = [[DrawingLayer alloc] initWithFrame:CGRectMake(0, 0, 600, 600)];
     self.drawingLayer = drawLayer;
+    drawLayer.opaque = NO;
+    drawLayer.backgroundColor = [UIColor clearColor];
     self.drawingLayer.points = [[NSMutableArray alloc] init];
     [self.view addSubview:drawLayer];
     
