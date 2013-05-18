@@ -173,11 +173,9 @@
 }
 
 -(void)removeInvite:(Invite*)removedInvite {
-    for (Invite * invite in self.invites) {
-        if ([invite.inviteId isEqualToString:removedInvite.inviteId]) {
-            [self.invites removeObjectIdenticalTo:invite];
-        }
-    }
+    self.invites = [[self.invites filter:^BOOL(Invite * invite) {
+        return ![invite.inviteId isEqualToString:removedInvite.inviteId];
+    }] mutableCopy];
     [self.matchesTableViewController.tableView reloadData];
 }
 
