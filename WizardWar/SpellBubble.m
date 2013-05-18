@@ -24,18 +24,14 @@
 
 -(SpellInteraction *)interactSpell:(Spell *)spell {
     
-    if ([spell isType:[SpellEarthwall class]]) {
-        if (self.created < spell.created) // if older
-            return [SpellInteraction cancel];
+    if ([spell isType:[SpellIcewall class]]) {
+        self.direction *= -1;
+        return [SpellInteraction modify];
     }
     
-    else if ([spell isType:[SpellFireball class]]) {
-        // TODO wear down!
-        return [SpellInteraction cancel];
-    }
-    
-    else if ([spell isType:[SpellMonster class]]) {
-        return [SpellInteraction cancel];
+    else if ([spell isType:[SpellIcewall class]]) {
+        self.direction *= -1;
+        return [SpellInteraction modify];
     }
     
     return [SpellInteraction nothing];
