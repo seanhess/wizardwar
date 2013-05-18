@@ -45,10 +45,15 @@
     
     self.title = @"Matchmaking";
     self.view.backgroundColor = [UIColor redColor];
+    
+    // init and style the lobby/invites table view
     self.matchesTableViewController = [[MatchmakingTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    self.matchesTableViewController.tableView.backgroundView = [[UIView alloc] init];
+    self.matchesTableViewController.tableView.backgroundView.backgroundColor = [UIColor colorWithWhite:0.149 alpha:1.000];
     self.matchesTableViewController.tableView.delegate = self;
     self.matchesTableViewController.tableView.dataSource = self;
     [self.view addSubview:self.matchesTableViewController.view];
+    
     [self.view layoutIfNeeded];
     
     self.users = [[NSMutableArray alloc] init];
@@ -209,12 +214,20 @@
     }
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] init];
     if ([self.invites count] > 0 && section == 0) {
-        return @"Invites";
+        
     } else {
-        return @"Lobby";
+        UIImage *image = [UIImage imageNamed:@"wizard-lobby.png"];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        CGRect size = self.view.bounds;
+        NSLog(@"width %f", size.size.width);
+        imageView.frame = CGRectMake(((size.size.width - 159)/ 2),20,159,20);
+        [view addSubview:imageView];
     }
+    return view;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -223,6 +236,15 @@
         return [self tableView:tableView inviteCellForRowAtIndexPath:indexPath];
     } else {
         return [self tableView:tableView userCellForRowAtIndexPath:indexPath];
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if ([self.invites count] > 0 && section == 0) {
+        return 0;
+    } else {
+        return 60;
     }
 }
 
