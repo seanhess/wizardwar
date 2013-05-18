@@ -217,41 +217,49 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    
     if (indexPath.section == 0) {
-        InviteCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (!cell) {
-            cell = [[InviteCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-        }
-        
-        Invite * invite = [self.invites objectAtIndex:indexPath.row];
-        
-        if (invite.inviter == self.nickname) {
-            cell.textLabel.text = [NSString stringWithFormat:@"%@ (waiting...)", invite.invitee];
-            cell.userInteractionEnabled = NO;
-            cell.textLabel.enabled = NO;
-            cell.detailTextLabel.enabled = NO;
-        }
-        else {
-            cell.textLabel.text = invite.inviter;
-            cell.userInteractionEnabled = YES;
-            cell.textLabel.enabled = YES;
-            cell.detailTextLabel.enabled = YES;
-        }
-        
-        return cell;
+        return [self tableView:tableView inviteCellForRowAtIndexPath:indexPath];
     } else {
-        UserCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (!cell) {
-            cell = [[UserCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-        }
-        
-        User* user = [self.users objectAtIndex:indexPath.row];
-        
-        cell.textLabel.text = user.name;
-        return cell;
+        return [self tableView:tableView userCellForRowAtIndexPath:indexPath];
     }
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView userCellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"UserCell";
+    UserCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[UserCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    
+    User* user = [self.users objectAtIndex:indexPath.row];
+    
+    cell.textLabel.text = user.name;
+    return cell;
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView inviteCellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"InviteCell";
+    InviteCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[InviteCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    
+    Invite * invite = [self.invites objectAtIndex:indexPath.row];
+    
+    if (invite.inviter == self.nickname) {
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ (waiting...)", invite.invitee];
+        cell.userInteractionEnabled = NO;
+        cell.textLabel.enabled = NO;
+        cell.detailTextLabel.enabled = NO;
+    }
+    else {
+        cell.textLabel.text = invite.inviter;
+        cell.userInteractionEnabled = YES;
+        cell.textLabel.enabled = YES;
+        cell.detailTextLabel.enabled = YES;
+    }
+    
+    return cell;
 }
 
 #pragma mark - Table view delegate
