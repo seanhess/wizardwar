@@ -37,6 +37,12 @@
     [self setUpPentagram];
 }
 
+- (void)viewDidLayoutSubviews
+{
+    NSLog(@"pentagram layed out subviews");
+    NSLog(@"width: %f", self.view.bounds.size.width);
+}
+
 - (void)setUpPentagram
 {
     PentEmblem *fireEmblem = [[PentEmblem alloc]initWithFrame:CGRectMake(99, 37, 46, 47)];
@@ -77,6 +83,13 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    NSLog(@"orientation changed %d", fromInterfaceOrientation);
+    if (UIInterfaceOrientationIsPortrait(fromInterfaceOrientation)) {
+        NSLog(@"layout here!");
+    }
 }
 
 - (void)checkSelectedEmblems:(CGPoint)point {
