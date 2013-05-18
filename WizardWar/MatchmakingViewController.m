@@ -223,7 +223,6 @@
         UIImage *image = [UIImage imageNamed:@"wizard-lobby.png"];
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
         CGRect size = self.view.bounds;
-        NSLog(@"width %f", size.size.width);
         imageView.frame = CGRectMake(((size.size.width - 159)/ 2),20,159,20);
         [view addSubview:imageView];
     }
