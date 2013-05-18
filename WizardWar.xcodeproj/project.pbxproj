@@ -155,6 +155,7 @@
 		78F1950F1747FE9700BB8587 /* SpellMonster.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F1950E1747FE9700BB8587 /* SpellMonster.m */; };
 		78F195121747FEA800BB8587 /* SpellVine.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F195111747FEA800BB8587 /* SpellVine.m */; };
 		78F195151747FEB500BB8587 /* SpellWindblast.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F195141747FEB500BB8587 /* SpellWindblast.m */; };
+		78F195181748024D00BB8587 /* Elements.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F195171748024D00BB8587 /* Elements.m */; };
 		78F6B1E71746AD8900AA070D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F6B1E61746AD8900AA070D /* UIKit.framework */; };
 		78F6B1E91746AD8900AA070D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F6B1E81746AD8900AA070D /* Foundation.framework */; };
 		78F6B1EB1746AD8900AA070D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F6B1EA1746AD8900AA070D /* CoreGraphics.framework */; };
@@ -467,6 +468,8 @@
 		78F195111747FEA800BB8587 /* SpellVine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellVine.m; sourceTree = "<group>"; };
 		78F195131747FEB500BB8587 /* SpellWindblast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellWindblast.h; sourceTree = "<group>"; };
 		78F195141747FEB500BB8587 /* SpellWindblast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellWindblast.m; sourceTree = "<group>"; };
+		78F195161748024C00BB8587 /* Elements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Elements.h; sourceTree = "<group>"; };
+		78F195171748024D00BB8587 /* Elements.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Elements.m; sourceTree = "<group>"; };
 		78F6B1E31746AD8900AA070D /* WizardWar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WizardWar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78F6B1E61746AD8900AA070D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		78F6B1E81746AD8900AA070D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1409,6 +1412,8 @@
 				78F6B3DA174705D000AA070D /* User.m */,
 				78F6B3DC174705EA00AA070D /* Invite.h */,
 				78F6B3DD174705EA00AA070D /* Invite.m */,
+				78F195161748024C00BB8587 /* Elements.h */,
+				78F195171748024D00BB8587 /* Elements.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -1807,6 +1812,7 @@
 				78F1950F1747FE9700BB8587 /* SpellMonster.m in Sources */,
 				78F195121747FEA800BB8587 /* SpellVine.m in Sources */,
 				78F195151747FEB500BB8587 /* SpellWindblast.m in Sources */,
+				78F195181748024D00BB8587 /* Elements.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
