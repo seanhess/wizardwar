@@ -180,7 +180,7 @@
         Invite * invite = [Invite new];
         [invite setValuesForKeysWithDictionary:snapshot.value];
         // only show invites that apply to you
-        if (invite.invitee == self.nickname || invite.inviter == self.nickname) {
+        if ([invite.invitee isEqualToString:self.nickname] || [invite.inviter isEqualToString:self.nickname ]) {
             [self.invites addObject:invite];
             [self.matchesTableViewController.tableView reloadData];
         }
