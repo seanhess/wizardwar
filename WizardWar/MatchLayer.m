@@ -167,6 +167,7 @@
 
 -(void)matchStarted {
     self.message.visible = NO;
+    self.pentagramViewController.view.hidden = NO;
     [self.match.players forEach:^(Player*player) {
         CCSprite * wizard = [[WizardSprite alloc] initWithPlayer:player units:self.units];
         [self addChild:wizard];
@@ -178,6 +179,7 @@
 
 -(void)matchEnded {
     
+    self.pentagramViewController.view.hidden = YES;
     if (self.match.currentPlayer.state == PlayerStateDead){
         [self.message setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"msg-you-lose.png"]];
         
