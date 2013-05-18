@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>wizard2-attack</key>
+		<dict>
+			<key>frame</key>
+			<string>{{0, 0}, {256, 256}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{56, 38}, {146, 181}}</string>
+			<key>sourceSize</key>
+			<string>{256, 256}</string>
+			<key>aliases</key>
+			<array>
+
+			</array>
+		</dict>
+		<key>wizard2-damage</key>
+		<dict>
+			<key>frame</key>
+			<string>{{0, 256}, {256, 256}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{36, 19}, {169, 217}}</string>
+			<key>sourceSize</key>
+			<string>{256, 256}</string>
+			<key>aliases</key>
+			<array>
+
+			</array>
+		</dict>
+		<key>wizard2-dead</key>
+		<dict>
+			<key>frame</key>
+			<string>{{256, 0}, {256, 256}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{81, 144}, {92, 71}}</string>
+			<key>sourceSize</key>
+			<string>{256, 256}</string>
+			<key>aliases</key>
+			<array>
+
+			</array>
+		</dict>
+		<key>wizard2-prepare</key>
+		<dict>
+			<key>frame</key>
+			<string>{{256, 256}, {256, 256}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{40, 31}, {176, 195}}</string>
+			<key>sourceSize</key>
+			<string>{256, 256}</string>
+			<key>aliases</key>
+			<array>
+
+			</array>
+		</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>textureFileName</key>
+		<string>wizard2.png</string>
+		<key>size</key>
+		<string>{512, 512}</string>
+	</dict></dict></plist>

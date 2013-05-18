@@ -37,6 +37,8 @@
 }
 
 -(void)setState:(PlayerState)state animated:(BOOL)animated {
+    // can't change if dead!
+    if (self.state == PlayerStateDead) return;
     self.state = state;
     if (animated) {
         if (state == PlayerStateHit)

@@ -17,6 +17,7 @@
 @property (nonatomic, strong) Units * units;
 
 @property (nonatomic, strong) CCLabelTTF * label;
+@property (nonatomic, strong) CCSpriteBatchNode * spriteSheet;
 @property (nonatomic, strong) CCSprite * skin;
 @end
 
@@ -30,9 +31,18 @@
         self.position = ccp([self.units toX:player.position], self.units.zeroY);
         NSLog(@"GOGO WIZRD %@ %f", NSStringFromCGPoint(self.position), player.position);
         
-        self.skin = [CCSprite spriteWithFile:@"wizard-1-prepare.png"];
-        self.skin.scale = 0.75;
-        [self addChild:self.skin];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard2.plist"];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard1.plist"];
+        
+        self.spriteSheet = [CCSpriteBatchNode batchNodeWithFile:[NSString stringWithFormat:@"%@.png", self.wizardIndexName]];
+        [self addChild:self.spriteSheet];
+        
+//        self.skin = [CCSprite spriteWithSpriteFrameName:@"wizard1-prepare"];
+//        [self.spriteSheet addChild:self.skin];
+        
+//        self.skin = [CCSprite spriteWithFile:@"wizard-1-prepare.png"];
+//        self.skin.scale = 0.75;
+//        [self addChild:self.skin];
         
 //        self.label = [CCLabelTTF labelWithString:@"X" fontName:@"Marker Felt" fontSize:18];
 //        self.label.position = ccp(self.contentSize.width / 2, self.contentSize.height/2);
@@ -53,20 +63,19 @@
 
 -(void)render {
 //    [self.label setString:[NSString stringWithFormat:@"%i", self.player.health]];
-    CCTexture2D * wizardImage = [self currentWizardImage];
+//    CCTexture2D * wizardImage = [self currentWizardImage];
 //    self.skin.contentSize = wizardImage.contentSize;
 //    NSLog(@"CONTENT SIZE %@", NSStringFromCGSize(wizardImage.contentSize));
     
-    [self.skin setTexture:wizardImage];
+//    [self.skin setTexture:wizardImage];
+    [self.spriteSheet removeAllChildren];
+    NSString * imageName = self.currentWizardImage;
+    NSLog(@"IMAGE NAME %@", imageName);
+    self.skin = [CCSprite spriteWithSpriteFrameName:imageName];
+    [self.spriteSheet addChild:self.skin];
 }
 
--(CCTexture2D*)currentWizardImage {
-    
-    NSInteger wizardIndex = 2;
-    
-    if (!self.player.isFirstPlayer)
-        wizardIndex = 1;
-    
+-(NSString*)currentWizardImage {
     NSString * stateName = @"prepare";
     
     if (self.player.state == PlayerStateCast)
@@ -78,7 +87,20 @@
     else if(self.player.state == PlayerStateDead)
         stateName = @"dead";
     
-    return [[CCTextureCache sharedTextureCache] addImage:[NSString stringWithFormat:@"wizard-%i-%@.png", wizardIndex, stateName]];
+    return [NSString stringWithFormat:@"%@-%@", self.wizardIndexName, stateName];
+    
+//    return [[CCTextureCache sharedTextureCache] addImage:[NSString stringWithFormat:@"wizard-%i-%@.png", wizardIndex, stateName]];
+}
+
+-(NSInteger)wizardIndex {
+    if (!self.player.isFirstPlayer)
+        return 1;
+    else
+        return 2;
+}
+
+-(NSString*)wizardIndexName {
+    return [NSString stringWithFormat:@"wizard%i", self.wizardIndex];
 }
 
 @end
