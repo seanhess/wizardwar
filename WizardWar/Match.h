@@ -15,6 +15,8 @@
 -(void)didAddSpell:(Spell*)spell;
 -(void)matchStarted;
 -(void)matchEnded;
+-(void)updateHealthWithDictionary:(NSArray*)healthAndManaDict;
+
 @end
 
 @interface Match : NSObject
@@ -22,6 +24,7 @@
 @property (nonatomic, strong) NSMutableArray * spells;
 @property (nonatomic, weak) id<MatchDelegate> delegate;
 @property (nonatomic, strong) Player * currentPlayer;
+@property (nonatomic, strong) Player * opponentPlayer;
 @property (nonatomic) BOOL started;
 @property (nonatomic, strong) Player * loser;
 -(void)update:(NSTimeInterval)dt;

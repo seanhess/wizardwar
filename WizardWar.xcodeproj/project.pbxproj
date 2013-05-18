@@ -299,6 +299,15 @@
 		78F6B3D81746E6D300AA070D /* SpellEarthwall.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3D71746E6D100AA070D /* SpellEarthwall.m */; };
 		78F6B3DB174705D000AA070D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3DA174705D000AA070D /* User.m */; };
 		78F6B3DE174705EA00AA070D /* Invite.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3DD174705EA00AA070D /* Invite.m */; };
+		F283A922174807A40068EEB2 /* LifeManaIndicatorNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F283A921174807A40068EEB2 /* LifeManaIndicatorNode.m */; };
+		F283A92517480F4F0068EEB2 /* mana-container-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F283A92317480F4F0068EEB2 /* mana-container-hd.png */; };
+		F283A92617480F4F0068EEB2 /* mana-container.png in Resources */ = {isa = PBXBuildFile; fileRef = F283A92417480F4F0068EEB2 /* mana-container.png */; };
+		F283A92D17480F5E0068EEB2 /* heart-damage-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F283A92717480F5E0068EEB2 /* heart-damage-hd.png */; };
+		F283A92E17480F5E0068EEB2 /* heart-damage.png in Resources */ = {isa = PBXBuildFile; fileRef = F283A92817480F5E0068EEB2 /* heart-damage.png */; };
+		F283A92F17480F5E0068EEB2 /* heart-empty-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F283A92917480F5E0068EEB2 /* heart-empty-hd.png */; };
+		F283A93017480F5E0068EEB2 /* heart-empty.png in Resources */ = {isa = PBXBuildFile; fileRef = F283A92A17480F5E0068EEB2 /* heart-empty.png */; };
+		F283A93117480F5E0068EEB2 /* heart-full-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F283A92B17480F5E0068EEB2 /* heart-full-hd.png */; };
+		F283A93217480F5E0068EEB2 /* heart-full.png in Resources */ = {isa = PBXBuildFile; fileRef = F283A92C17480F5E0068EEB2 /* heart-full.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -760,6 +769,16 @@
 		78F6B3DA174705D000AA070D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		78F6B3DC174705EA00AA070D /* Invite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Invite.h; sourceTree = "<group>"; };
 		78F6B3DD174705EA00AA070D /* Invite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Invite.m; sourceTree = "<group>"; };
+		F283A920174807A40068EEB2 /* LifeManaIndicatorNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LifeManaIndicatorNode.h; sourceTree = "<group>"; };
+		F283A921174807A40068EEB2 /* LifeManaIndicatorNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LifeManaIndicatorNode.m; sourceTree = "<group>"; };
+		F283A92317480F4F0068EEB2 /* mana-container-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mana-container-hd.png"; sourceTree = "<group>"; };
+		F283A92417480F4F0068EEB2 /* mana-container.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mana-container.png"; sourceTree = "<group>"; };
+		F283A92717480F5E0068EEB2 /* heart-damage-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-damage-hd.png"; sourceTree = "<group>"; };
+		F283A92817480F5E0068EEB2 /* heart-damage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-damage.png"; sourceTree = "<group>"; };
+		F283A92917480F5E0068EEB2 /* heart-empty-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-empty-hd.png"; sourceTree = "<group>"; };
+		F283A92A17480F5E0068EEB2 /* heart-empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-empty.png"; sourceTree = "<group>"; };
+		F283A92B17480F5E0068EEB2 /* heart-full-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-full-hd.png"; sourceTree = "<group>"; };
+		F283A92C17480F5E0068EEB2 /* heart-full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-full.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -801,6 +820,14 @@
 		78F193E717471A0E00BB8587 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				F283A92717480F5E0068EEB2 /* heart-damage-hd.png */,
+				F283A92817480F5E0068EEB2 /* heart-damage.png */,
+				F283A92917480F5E0068EEB2 /* heart-empty-hd.png */,
+				F283A92A17480F5E0068EEB2 /* heart-empty.png */,
+				F283A92B17480F5E0068EEB2 /* heart-full-hd.png */,
+				F283A92C17480F5E0068EEB2 /* heart-full.png */,
+				F283A92317480F4F0068EEB2 /* mana-container-hd.png */,
+				F283A92417480F4F0068EEB2 /* mana-container.png */,
 				78F195031747FBFA00BB8587 /* exit.png */,
 				78F195041747FBFA00BB8587 /* exit@2x.png */,
 				78F194F9174758B900BB8587 /* earthwall-animation.plist */,
@@ -1401,6 +1428,8 @@
 		78F6B3BD1746B27B00AA070D /* Match */ = {
 			isa = PBXGroup;
 			children = (
+				F283A920174807A40068EEB2 /* LifeManaIndicatorNode.h */,
+				F283A921174807A40068EEB2 /* LifeManaIndicatorNode.m */,
 				78F6B3AB1746B27600AA070D /* MatchLayer.h */,
 				78F6B3AC1746B27600AA070D /* MatchLayer.m */,
 				78F6B3AD1746B27600AA070D /* MatchGroundSprite.h */,
@@ -1633,6 +1662,14 @@
 				30CE78621747F72900848FE0 /* theme.wav in Resources */,
 				6F0FEF5F1747FA720028FE71 /* wizard-lobby.png in Resources */,
 				6F0FEF601747FA720028FE71 /* wizard-lobby@2x.png in Resources */,
+				F283A92517480F4F0068EEB2 /* mana-container-hd.png in Resources */,
+				F283A92617480F4F0068EEB2 /* mana-container.png in Resources */,
+				F283A92D17480F5E0068EEB2 /* heart-damage-hd.png in Resources */,
+				F283A92E17480F5E0068EEB2 /* heart-damage.png in Resources */,
+				F283A92F17480F5E0068EEB2 /* heart-empty-hd.png in Resources */,
+				F283A93017480F5E0068EEB2 /* heart-empty.png in Resources */,
+				F283A93117480F5E0068EEB2 /* heart-full-hd.png in Resources */,
+				F283A93217480F5E0068EEB2 /* heart-full.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1777,6 +1814,7 @@
 				6F0B2FAA174750FF00CFC092 /* PentEmblem.m in Sources */,
 				6F0B2FAF1747511800CFC092 /* DotsView.m in Sources */,
 				6F0B2FB01747511800CFC092 /* DrawingLayer.m in Sources */,
+				F283A922174807A40068EEB2 /* LifeManaIndicatorNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

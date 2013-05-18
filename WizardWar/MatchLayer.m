@@ -17,6 +17,7 @@
 #import "SpellFireball.h"
 #import "SpellEarthwall.h"
 #import "NSArray+Functional.h"
+#import "LifeManaIndicatorNode.h"
 
 @interface MatchLayer () <CCTouchOneByOneDelegate, MatchDelegate, PentagramDelegate>
 @property (nonatomic, strong) Match * match;
@@ -30,6 +31,9 @@
 @property (nonatomic, strong) CCSprite * background;
 
 @property (nonatomic, strong) UIButton * backButton;
+
+@property (nonatomic, strong) LifeManaIndicatorNode *player1Indicator;
+@property (nonatomic, strong) LifeManaIndicatorNode *player2Indicator;
 
 @end
 
@@ -92,6 +96,15 @@
         self.label.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
         [self addChild:self.label];
         
+        self.player1Indicator = [LifeManaIndicatorNode node];
+        self.player2Indicator = [LifeManaIndicatorNode node];
+        
+        self.player2Indicator.position = ccp(openGlView.frame.size.width - 150, 290);
+        self.player1Indicator.position = ccp(150, 290);
+        
+        [self addChild:self.player1Indicator];
+        [self addChild:self.player2Indicator];
+        
         [self scheduleUpdate];
         
         // BACK BUTTON
@@ -119,7 +132,7 @@
     [self.match update:delta];
 }
 
-// MATCH DELEGATE
+#pragma mark -  MATCH DELEGATE
 
 -(void)didRemoveSpell:(Spell *)spell {
     SpellSprite * sprite = [self.spellSprites find:^BOOL(SpellSprite * sprite) {
@@ -145,6 +158,15 @@
 -(void)matchEnded {
     self.label.visible = YES;
     self.label.string = @"Game Over";
+}
+
+-(void)updateHealthWithDictionary:(NSArray *)healthAndManaDict
+{
+    NSDictionary *player1 = [healthAndManaDict objectAtIndex:0];
+    NSDictionary *player2 = [healthAndManaDict objectAtIndex:1];
+    
+    [self.player1Indicator updateWithHealth:[[player1 objectForKey:@"health"] intValue] andMana:[[player1 objectForKey:@"mana"] intValue] ] ;
+    [self.player1Indicator updateWithHealth:[[player2 objectForKey:@"health"] intValue] andMana:[[player2 objectForKey:@"mana"] intValue] ] ;
 }
 
 -(void)drawWizard:(Player*)player {

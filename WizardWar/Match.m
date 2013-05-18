@@ -12,12 +12,15 @@
 #import <Firebase/Firebase.h>
 #import "NSArray+Functional.h"
 
+
 @interface Match ()
 @property (nonatomic, strong) Firebase * matchNode;
 @property (nonatomic, strong) Firebase * spellsNode;
 @property (nonatomic, strong) Firebase * playersNode;
+@property (nonatomic, strong) Firebase * opponentNode;
 
 @property (nonatomic, strong) NSString * lastCastSpellName;
+
 @end
 
 // don't really know which player you are until there are 2 players
@@ -27,6 +30,7 @@
 @implementation Match
 -(id)initWithId:(NSString *)id currentPlayer:(Player *)player {
     if ((self = [super init])) {
+        
         self.players = [NSMutableArray array];
         self.spells = [NSMutableArray array];
         
@@ -37,7 +41,6 @@
         self.spellsNode = [self.matchNode childByAppendingPath:@"spells"];
         self.playersNode = [self.matchNode childByAppendingPath:@"players"];
         
-        
         // PLAYERS
         [self.playersNode observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
             Player * player = [Player new];
@@ -46,10 +49,19 @@
             
             if ([player.name isEqualToString:self.currentPlayer.name]) {
                 self.currentPlayer = player;
+            } else {
+                self.opponentNode = [self.playersNode childByAppendingPath:player.name];
+                self.opponentPlayer = player;
+                
+                [self.opponentNode observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
+                    NSLog(@"opponent changed, %@", snapshot);
+                }];
             }
             
             [self checkStart];
         }];
+        
+        
         
         self.currentPlayer = player;
         
@@ -69,8 +81,13 @@
             NSLog(@"PASS! - %@", snapshot.name);
             Spell * spell = [Spell fromType:snapshot.value[@"type"]];
             spell.firebaseName = snapshot.name;
+            
             [spell setValuesForKeysWithDictionary:snapshot.value];
             [self addSpellLocally:spell];
+        }];
+        
+        [[NSNotificationCenter defaultCenter] addObserverForName:@"HealthManaUpdate" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+            [self updateLife];
         }];
     }
     return self;
@@ -89,6 +106,19 @@
     }];
     
     [self checkHits];
+}
+
+-(void)updateLife
+{
+    if ([self.players count] < 2) return;
+    Player *playerOne = [self.players objectAtIndex:0];
+    Player *playerTwo = [self.players objectAtIndex:1];
+    
+    NSDictionary *player1 = @{@"health": [NSNumber numberWithInt:playerOne.health], @"mana": [NSNumber numberWithInt:(int)playerOne.mana]};
+    NSDictionary *player2 = @{@"health": [NSNumber numberWithInt:playerTwo.health], @"mana": [NSNumber numberWithInt:(int)playerTwo.mana]};
+    
+    NSArray *playerData = @[player1, player2];
+    [self.delegate updateHealthWithDictionary:playerData];
 }
 
 -(void)checkHits {
@@ -193,6 +223,8 @@
     Firebase * spellNode = [self.spellsNode childByAutoId];
     self.lastCastSpellName = spellNode.name;
     NSLog(@"addSpell %@", spellNode.name);
+    NSLog(@"opponent values %@", [self.currentPlayer toObject]);
+    [self.opponentNode setValue:[self.currentPlayer toObject]];
 //    NSTimeInterval current = CACurrentMediaTime();
     [spellNode setValue:[spell toObject] withCompletionBlock:^(NSError *error) {
 //        NSLog(@"local - %@", spellNode.name);
@@ -222,9 +254,14 @@
 }
 
 -(void)castSpell:(Spell *)spell {
-    [spell setPositionFromPlayer:self.currentPlayer];
-    [self addSpell:spell]; // add spell
-    [self.currentPlayer setState:PlayerStateCast animated:YES];
+    if (self.currentPlayer.mana >= spell.mana) {
+        self.currentPlayer.mana =- spell.mana;
+        [spell setPositionFromPlayer:self.currentPlayer];
+        [self addSpell:spell]; // add spell
+        [self.currentPlayer setState:PlayerStateCast animated:YES];
+    } else {
+        NSLog(@"Not enough Mana you fiend!");
+    }
 }
 
 @end

@@ -59,6 +59,20 @@
             [self.delegate didUpdateForRender];
         }
     }
+    
+    float newMana = self.mana + dt;
+    
+    if (floor(self.mana - .05) != floor(newMana)) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"HealthManaUpdate" object:nil];
+    }
+    
+    self.mana = newMana;
+    
+    if (self.mana > self.health) {
+        self.mana = self.health;
+    } else if (self.mana < 0) {
+        self.mana = 0;
+    }
 }
 
 @end
