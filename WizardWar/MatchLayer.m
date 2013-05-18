@@ -16,6 +16,7 @@
 #import "NSArray+Functional.h"
 #import "NSArray+Functional.h"
 #import "Elements.h"
+#import "SimpleAudioEngine.h"
 
 #import "SpellFireball.h"
 #import "SpellEarthwall.h"

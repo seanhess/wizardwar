@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		309D45A817481AEE008CEF6C /* scream.wav in Resources */ = {isa = PBXBuildFile; fileRef = 309D45A717481AEE008CEF6C /* scream.wav */; };
+		309D45AA17481D99008CEF6C /* vine.wav in Resources */ = {isa = PBXBuildFile; fileRef = 309D45A917481D99008CEF6C /* vine.wav */; };
+		309D45AC17481F4F008CEF6C /* bubble.wav in Resources */ = {isa = PBXBuildFile; fileRef = 309D45AB17481F4F008CEF6C /* bubble.wav */; };
+		309D45AE17482165008CEF6C /* icewall.wav in Resources */ = {isa = PBXBuildFile; fileRef = 309D45AD17482165008CEF6C /* icewall.wav */; };
+		309D45B01748220C008CEF6C /* monster.wav in Resources */ = {isa = PBXBuildFile; fileRef = 309D45AF1748220C008CEF6C /* monster.wav */; };
+		309D45B217482257008CEF6C /* windblast.wav in Resources */ = {isa = PBXBuildFile; fileRef = 309D45B117482257008CEF6C /* windblast.wav */; };
 		30CE78601747F72900848FE0 /* earthwall.wav in Resources */ = {isa = PBXBuildFile; fileRef = 30CE785D1747F72900848FE0 /* earthwall.wav */; };
 		30CE78611747F72900848FE0 /* fireball.wav in Resources */ = {isa = PBXBuildFile; fileRef = 30CE785E1747F72900848FE0 /* fireball.wav */; };
 		30CE78621747F72900848FE0 /* theme.wav in Resources */ = {isa = PBXBuildFile; fileRef = 30CE785F1747F72900848FE0 /* theme.wav */; };
@@ -249,6 +255,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		309D45A717481AEE008CEF6C /* scream.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = scream.wav; path = sounds/scream.wav; sourceTree = "<group>"; };
+		309D45A917481D99008CEF6C /* vine.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = vine.wav; path = sounds/vine.wav; sourceTree = "<group>"; };
+		309D45AB17481F4F008CEF6C /* bubble.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = bubble.wav; path = sounds/bubble.wav; sourceTree = "<group>"; };
+		309D45AD17482165008CEF6C /* icewall.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = icewall.wav; path = sounds/icewall.wav; sourceTree = "<group>"; };
+		309D45AF1748220C008CEF6C /* monster.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = monster.wav; path = sounds/monster.wav; sourceTree = "<group>"; };
+		309D45B117482257008CEF6C /* windblast.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = windblast.wav; path = sounds/windblast.wav; sourceTree = "<group>"; };
 		30CE785D1747F72900848FE0 /* earthwall.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = earthwall.wav; path = sounds/earthwall.wav; sourceTree = "<group>"; };
 		30CE785E1747F72900848FE0 /* fireball.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = fireball.wav; path = sounds/fireball.wav; sourceTree = "<group>"; };
 		30CE785F1747F72900848FE0 /* theme.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = theme.wav; path = sounds/theme.wav; sourceTree = "<group>"; };
@@ -691,7 +703,13 @@
 		30CE785C1747F71B00848FE0 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				309D45B117482257008CEF6C /* windblast.wav */,
+				309D45AF1748220C008CEF6C /* monster.wav */,
+				309D45AD17482165008CEF6C /* icewall.wav */,
+				309D45A917481D99008CEF6C /* vine.wav */,
+				309D45AB17481F4F008CEF6C /* bubble.wav */,
 				30CE785D1747F72900848FE0 /* earthwall.wav */,
+				309D45A717481AEE008CEF6C /* scream.wav */,
 				30CE785E1747F72900848FE0 /* fireball.wav */,
 				30CE785F1747F72900848FE0 /* theme.wav */,
 			);
@@ -1427,6 +1445,12 @@
 				78F1954A17480F3A00BB8587 /* ogre-animation.plist in Resources */,
 				78F1954C1748119300BB8587 /* icewall-animation.plist in Resources */,
 				78F1954E1748122C00BB8587 /* windblast-animation.plist in Resources */,
+				309D45A817481AEE008CEF6C /* scream.wav in Resources */,
+				309D45AA17481D99008CEF6C /* vine.wav in Resources */,
+				309D45AC17481F4F008CEF6C /* bubble.wav in Resources */,
+				309D45AE17482165008CEF6C /* icewall.wav in Resources */,
+				309D45B01748220C008CEF6C /* monster.wav in Resources */,
+				309D45B217482257008CEF6C /* windblast.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

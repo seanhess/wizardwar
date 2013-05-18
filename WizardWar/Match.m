@@ -11,6 +11,14 @@
 #import "Player.h"
 #import <Firebase/Firebase.h>
 #import "NSArray+Functional.h"
+#import "SpellBubble.h"
+#import "SpellEarthwall.h"
+#import "SpellFireball.h"
+#import "SpellIcewall.h"
+#import "SpellMonster.h"
+#import "SpellVine.h"
+#import "SpellWindblast.h"
+#import "SimpleAudioEngine.h"
 
 @interface Match ()
 @property (nonatomic, strong) Firebase * matchNode;
@@ -54,10 +62,12 @@
         self.currentPlayer = player;
         
         // FAKE SECOND PLAYER
-        // Player * fakeSecondPlayer = [Player new];
-        // fakeSecondPlayer.name = @"ZFakeSecondPlayer";
-        // [self joinPlayer:fakeSecondPlayer];
-        
+        if (self.currentPlayer == nil) {
+            Player * fakeSecondPlayer = [Player new];
+            fakeSecondPlayer.name = @"ZFakeSecondPlayer";
+            self.currentPlayer = fakeSecondPlayer;
+        }
+
         [self joinPlayer:self.currentPlayer];
         
         
@@ -177,8 +187,8 @@
         return [p1.name compare:p2.name];
     }];
     
-    [self.players[0] setPosition:UNITS_MIN];
-    [self.players[1] setPosition:UNITS_MAX];
+    [(Player *)self.players[0] setPosition:UNITS_MIN];
+    [(Player *)self.players[1] setPosition:UNITS_MAX];
     [self.delegate matchStarted];
 }
 
@@ -210,6 +220,22 @@
 - (void)addSpellLocally:(Spell*)spell {
     [self.spells addObject:spell];
     [self.delegate didAddSpell:spell];
+    
+    if([spell isMemberOfClass: [SpellFireball class]]){
+        [[SimpleAudioEngine sharedEngine] playEffect:@"fireball.wav"];//play a sound
+    } else if([spell isMemberOfClass: [SpellEarthwall class]]){
+        [[SimpleAudioEngine sharedEngine] playEffect:@"earthwall.wav"];//play a sound
+    } else if([spell isMemberOfClass: [SpellVine class]]){
+        [[SimpleAudioEngine sharedEngine] playEffect:@"vine.wav"];//play a sound
+    } else if([spell isMemberOfClass: [SpellBubble class]]){
+        [[SimpleAudioEngine sharedEngine] playEffect:@"bubble.wav"];//play a sound
+    } else if([spell isMemberOfClass: [SpellIcewall class]]){
+        [[SimpleAudioEngine sharedEngine] playEffect:@"icewall.wav"];//play a sound
+    } else if([spell isMemberOfClass: [SpellMonster class]]){
+        [[SimpleAudioEngine sharedEngine] playEffect:@"monster.wav"];//play a sound
+    } else if([spell isMemberOfClass: [SpellWindblast class]]){
+        [[SimpleAudioEngine sharedEngine] playEffect:@"windblast.wav"];//play a sound
+    }
 }
 
 -(void)removeSpell:(Spell*)spell {

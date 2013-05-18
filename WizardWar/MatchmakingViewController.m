@@ -75,14 +75,12 @@
         [self addToLobbyList];
     }
     
-    // HACK CODE
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        Invite * invite = [Invite new];
-//        invite.invitee = @"Charlie";
-//        invite.inviter = @"Bad guy";
-//        invite.matchID = [NSString stringWithFormat:@"%i", arc4random()];
-//        [self joinMatch:invite playerName:@"Charlie"];
-//    });
+    
+    // secret button to play agains nobody
+    UIButton *secretButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    secretButton.frame = CGRectMake(self.view.bounds.size.height-22, self.view.bounds.size.width-22, 22, 22);
+    [secretButton addTarget:self action:@selector(didTapSecretButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:secretButton];
 }
 
 - (void)didReceiveMemoryWarning
@@ -91,7 +89,20 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)didTapSecretButton:(id)sender
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        Invite * invite = [Invite new];
+        invite.invitee = @"Charlie";
+        invite.inviter = @"Bad guy";
+        invite.matchID = [NSString stringWithFormat:@"%i", arc4random()];
+        [self joinMatch:invite playerName:@"Charlie"];
+    });
+}
+
 - (void)joinMatch:(Invite*)invite playerName:(NSString *)playerName {
+    if (self.isInMatch) return;
+    self.isInMatch = YES;
     NSAssert(invite.matchID, @"No match id!");
     NSLog(@"joining match %@ with %@", invite.matchID, playerName);
     // hide the navigation bar first, so the size of this view is correct!
@@ -117,6 +128,7 @@
 
 - (void)doneWithMatch {
 //    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.isInMatch = NO;
     [self.navigationController popViewControllerAnimated:YES];
 //    [self.navigationController setNavigationBarHidden:YES animated:YES];
     // [self.navigationController pushViewController:director animated:YES];
