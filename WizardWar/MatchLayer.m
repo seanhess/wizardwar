@@ -17,7 +17,7 @@
 #import "SpellFireball.h"
 #import "SpellEarthwall.h"
 
-@interface MatchLayer () <CCTouchOneByOneDelegate, MatchDelegate>
+@interface MatchLayer () <CCTouchOneByOneDelegate, MatchDelegate, PentagramDelegate>
 @property (nonatomic, strong) Match * match;
 @property (nonatomic, strong) Units * units;
 @property (nonatomic, strong) NSMutableArray * spellSprites;
@@ -42,6 +42,7 @@
         self.pentagramViewController = [[PentagramViewController alloc] init];
         self.pentagramViewController.view.backgroundColor = [UIColor clearColor];
         self.pentagramViewController.view.opaque = NO;
+        self.pentagramViewController.delegate = self;
         [openGlView addSubview:self.pentagramViewController.view];
         [openGlView bringSubviewToFront:self.pentagramViewController.view];
         
@@ -136,7 +137,7 @@
 }
 
 -(void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
-    if (!self.match.started) {
+    /*if (!self.match.started) {
         
         if (self.match.loser) {
             NSLog(@"OVER");
@@ -162,7 +163,19 @@
     [spell setPositionFromPlayer:self.match.currentPlayer];
     
     [self.match addSpell:spell]; // add spell
-    NSLog(@"NEW SPELL! %@", spell);
+    NSLog(@"NEW SPELL! %@", spell);*/
+}
+
+# pragma mark Pentagram Delegate
+
+-(void)didSelectElement:(NSArray *)elements
+{
+    NSLog(@"selected element %@", elements);
+}
+
+-(void)didCastSpell:(NSArray *)elements
+{
+    NSLog(@"cast spell %@", elements);
 }
 
 @end
