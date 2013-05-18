@@ -12,6 +12,8 @@
 @interface SpellSprite ()
 @property (nonatomic, strong) Units * units;
 @property (nonatomic, strong) CCSprite * skin;
+@property (nonatomic, strong) CCSpriteBatchNode * sheet;
+@property (nonatomic, strong) CCAction * action;
 @end
 
 @implementation SpellSprite
@@ -22,7 +24,17 @@
         self.spell = spell;
         self.units = units;
         
-        self.skin = [CCSprite spriteWithFile:@"fireball-1.png"];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"fireball.plist"];
+        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"fireball-animation.plist"];
+        
+        self.sheet = [CCSpriteBatchNode batchNodeWithFile:@"fireball.png"];
+        [self addChild:self.sheet];
+        
+        CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:@"fireball"];
+        CCAction * action = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:animation]];
+        
+        self.skin = [CCSprite spriteWithSpriteFrameName:@"fireball-1"];
+        [self.skin runAction:action];
         [self addChild:self.skin];
         
         spell.delegate = self;

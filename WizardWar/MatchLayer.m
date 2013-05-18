@@ -236,8 +236,7 @@
     }
     
     if (spell != nil) {
-        [spell setPositionFromPlayer:self.match.currentPlayer];
-        [self.match addSpell:spell];
+        [self.match castSpell:spell];
     }
 }
 

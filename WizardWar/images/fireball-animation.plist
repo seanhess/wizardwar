@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+	<key>animations</key>
+	<dict>
+		<key>fireball</key>
+		<dict>
+			<key>delay</key>
+			<real>0.125</real>
+			<key>frames</key>
+			<array>
+				<string>fireball-1</string>
+				<string>fireball-2</string>
+				<string>fireball-3</string>
+				<string>fireball-4</string>
+				<string>fireball-5</string>
+			</array>
+		</dict>
+	</dict>
+	</dict>
+</plist>

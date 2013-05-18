@@ -37,37 +37,16 @@
         self.spriteSheet = [CCSpriteBatchNode batchNodeWithFile:[NSString stringWithFormat:@"%@.png", self.wizardIndexName]];
         [self addChild:self.spriteSheet];
         
-//        self.skin = [CCSprite spriteWithSpriteFrameName:@"wizard1-prepare"];
-//        [self.spriteSheet addChild:self.skin];
-        
-//        self.skin = [CCSprite spriteWithFile:@"wizard-1-prepare.png"];
-//        self.skin.scale = 0.75;
-//        [self addChild:self.skin];
-        
-//        self.label = [CCLabelTTF labelWithString:@"X" fontName:@"Marker Felt" fontSize:18];
-//        self.label.position = ccp(self.contentSize.width / 2, self.contentSize.height/2);
-//        [self addChild:self.label];
-        
         [self render];
     }
     return self;
 }
-
-//-(void)draw {
-//    ccDrawSolidRect(ccp(0, 0), ccp(self.contentSize.width,self.contentSize.height), ccc4f(1, 0, 0, 1));
-//}
 
 -(void)didUpdateForRender {
     [self render];
 }
 
 -(void)render {
-//    [self.label setString:[NSString stringWithFormat:@"%i", self.player.health]];
-//    CCTexture2D * wizardImage = [self currentWizardImage];
-//    self.skin.contentSize = wizardImage.contentSize;
-//    NSLog(@"CONTENT SIZE %@", NSStringFromCGSize(wizardImage.contentSize));
-    
-//    [self.skin setTexture:wizardImage];
     [self.spriteSheet removeAllChildren];
     NSString * imageName = self.currentWizardImage;
     NSLog(@"IMAGE NAME %@", imageName);
@@ -88,8 +67,6 @@
         stateName = @"dead";
     
     return [NSString stringWithFormat:@"%@-%@", self.wizardIndexName, stateName];
-    
-//    return [[CCTextureCache sharedTextureCache] addImage:[NSString stringWithFormat:@"wizard-%i-%@.png", wizardIndex, stateName]];
 }
 
 -(NSInteger)wizardIndex {

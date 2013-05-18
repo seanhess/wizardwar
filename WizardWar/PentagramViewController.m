@@ -15,6 +15,7 @@
 
 @implementation PentagramViewController
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -22,8 +23,8 @@
     self.moves = [[NSMutableArray alloc] init];
     DrawingLayer *drawLayer = [[DrawingLayer alloc] initWithFrame:CGRectMake(0, 0, 600, 600)];
     self.drawingLayer = drawLayer;
-    self.drawingLayer.backgroundColor = [UIColor clearColor];
-    self.drawingLayer.opaque = NO;
+    drawLayer.opaque = NO;
+    drawLayer.backgroundColor = [UIColor clearColor];
     self.drawingLayer.points = [[NSMutableArray alloc] init];
     [self.view addSubview:drawLayer];
     
@@ -118,15 +119,13 @@
         UITouch *touch = obj;
         CGPoint touchPoint = [touch locationInView:self.view];
         
-        if ([self.drawingLayer.points count] == 1)
-        {
-//            [self.drawingLayer.points replaceObjectAtIndex:1 withObject:[NSValue valueWithCGPoint:touchPoint]];
+        if ([self.drawingLayer.points count] == 1) {
+            // [self.drawingLayer.points replaceObjectAtIndex:1 withObject:[NSValue valueWithCGPoint:touchPoint]];
             [self.drawingLayer.points addObject: [NSValue valueWithCGPoint:touchPoint]];
-        }else{
+        } else {
             [self.drawingLayer.points replaceObjectAtIndex:([self.drawingLayer.points count]-1) withObject:[NSValue valueWithCGPoint:touchPoint]];
         }
-        
-        
+
         [self.drawingLayer setNeedsDisplay];
         
         [self checkSelectedEmblems:touchPoint];

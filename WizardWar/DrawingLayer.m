@@ -24,14 +24,15 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextClearRect(context, self.bounds);
     // Drawing lines with a white stroke color
-	CGContextSetRGBStrokeColor(context, 1.0, 1.0, 1.0, 1.0);
+    CGContextSetRGBStrokeColor(context, 1.0, 1.0, 1.0, 1.0);
 	// Draw them with a 2.0 stroke width so they are a bit more visible.
 	CGContextSetLineWidth(context, 4.0);
-//	NSLog(@"%@", self.points);
+	// NSLog(@"%@", self.points);
+    
+
     
     if([self.points count] > 0)
     {
