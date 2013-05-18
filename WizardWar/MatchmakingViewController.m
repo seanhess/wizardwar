@@ -50,6 +50,8 @@
     self.matchesTableViewController = [[MatchmakingTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     self.matchesTableViewController.tableView.backgroundView = [[UIView alloc] init];
     self.matchesTableViewController.tableView.backgroundView.backgroundColor = [UIColor colorWithWhite:0.149 alpha:1.000];
+    [self.matchesTableViewController.tableView setSeparatorColor:[UIColor clearColor]];
+    [self.matchesTableViewController.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.matchesTableViewController.tableView.delegate = self;
     self.matchesTableViewController.tableView.dataSource = self;
     [self.view addSubview:self.matchesTableViewController.view];
@@ -270,16 +272,20 @@
     Invite * invite = [self.invites objectAtIndex:indexPath.row];
     
     if (invite.inviter == self.nickname) {
-        cell.textLabel.text = [NSString stringWithFormat:@"%@ (waiting...)", invite.invitee];
+        cell.textLabel.text = [NSString stringWithFormat:@"You invited %@ to a wizard's duel", invite.invitee];
         cell.userInteractionEnabled = NO;
-        cell.textLabel.enabled = NO;
-        cell.detailTextLabel.enabled = NO;
+        cell.textLabel.enabled = YES;
+        cell.detailTextLabel.enabled = YES;
+        cell.backgroundColor = [UIColor colorWithRed:0.827 green:0.820 blue:0.204 alpha:1.000];
+        cell.textLabel.textColor = [UIColor colorWithWhite:0.149 alpha:1.000];
     }
     else {
-        cell.textLabel.text = invite.inviter;
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ challenges you to a wizard's duel", invite.inviter];
         cell.userInteractionEnabled = YES;
         cell.textLabel.enabled = YES;
         cell.detailTextLabel.enabled = YES;
+        cell.backgroundColor = [UIColor colorWithRed:0.490 green:0.706 blue:0.275 alpha:1.000];
+        cell.textLabel.textColor = [UIColor colorWithWhite:0.149 alpha:1.000];
     }
     
     return cell;
