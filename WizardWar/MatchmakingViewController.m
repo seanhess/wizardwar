@@ -131,10 +131,10 @@
         User * user = [User new];
         [user setValuesForKeysWithDictionary:snapshot.value];
         // we don't want to show us in the list
-        if (user.name != self.nickname) {
+        //if (user.name != self.nickname) {
             [self.users addObject:user];
             [self.matchesTableViewController.tableView reloadData];
-        }
+        //}
     }];
     
     [self.firebaseLobby observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
@@ -164,6 +164,7 @@
         [removedInvite setValuesForKeysWithDictionary:snapshot.value];
         [self removeInvite:removedInvite];
     }];
+    
 }
 
 -(void)removeInvite:(Invite*)removedInvite {
@@ -247,8 +248,8 @@
     [inviteNode setValue:invite.toObject];
     [inviteNode onDisconnectRemoveValue];
         
-        // listen to the created invite for acceptance
-    Firebase * matchIDNode = [inviteNode childByAppendingPath:@"matchID"];
+    // listen to the created invite for acceptance
+    /* Firebase * matchIDNode = [inviteNode childByAppendingPath:@"matchID"];
     NSLog(@"MATCH ID NODE %@", matchIDNode);
     [matchIDNode observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
         if (snapshot.value != [NSNull null]) {
@@ -257,7 +258,7 @@
             self.matchID = snapshot.value;
             [self joinMatch:invite playerName:self.nickname];
         }
-    }];
+    }]; */
 }
 
 -(void)selectInvite:(Invite*)invite {
