@@ -7,14 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <Firebase/Firebase.h>
 
 @interface MatchmakingTableViewController : UITableViewController
-
-@property (nonatomic, strong) Firebase* firebaseLobby;
-@property (nonatomic, strong) Firebase* firebaseInvites;
-@property (nonatomic, strong) NSMutableArray* users;
-@property (nonatomic, strong) NSMutableArray* invites;
-@property (nonatomic, strong) NSString* nickname;
 
 @end
