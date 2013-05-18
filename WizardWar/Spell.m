@@ -28,6 +28,11 @@
     [self.delegate didUpdateForRender];
 }
 
+-(void)reflectFromSpell:(Spell*)spell {
+    self.direction *= -1;
+    self.position = spell.position + (1+(spell.size+self.size)/2)*self.direction;
+}
+
 -(NSDictionary*)toObject {
     return [self dictionaryWithValuesForKeys:@[@"speed", @"size", @"position", @"created", @"type", @"direction"]];
 }
@@ -86,13 +91,43 @@
     return self.position-self.size/2;
 }
 
+// sort them by speed
 -(BOOL)hitsSpell:(Spell *)spell {
+    
+    Spell * fastSpell = nil;
+    Spell * slowSpell = nil;
+
+//    if (spell.speed < self.speed) {
+        slowSpell = spell;
+        fastSpell = self;
+//    }
+//    
+//    else {
+//        slowSpell = self;
+//        fastSpell = spell;
+//    }
+    
+    // if A is going right
+    
 //    NSLog(@"SPELL %f %f", spell.leftEdge, spell.rightEdge);
 //    NSLog(@"SELF %f %f", self.leftEdge, self.rightEdge);
-    if( spell.position < self.position)
-        return (spell.rightEdge >= self.leftEdge);
-    else
-        return (spell.leftEdge <= self.rightEdge);
+    
+//    if(fastSpell.lastHitSpell == slowSpell) return NO;
+//    fastSpell.lastHitSpell = slowSpell;
+    
+    if(fastSpell.position < slowSpell.position) {
+        // want to check my right edge against the left edge
+        // if I am traveling towards them
+        return (fastSpell.rightEdge > slowSpell.leftEdge);
+    }
+    
+    else {
+        return (fastSpell.leftEdge < slowSpell.rightEdge);
+    }
+    
+    // only test one, so you don't get two hits
+    return NO;
+//  return (spell.leftEdge <= self.rightEdge);
 }
 
 +(Spell*)fromType:(NSString*)type {

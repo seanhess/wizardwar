@@ -15,7 +15,7 @@
 -(id)init {
     if ((self=[super init])) {
         self.speed = 0;
-        self.size = 25;
+        self.size = 20;
     }
     return self;
 }

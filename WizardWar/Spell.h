@@ -27,6 +27,7 @@
 @property (nonatomic) NSString * type; // tells me which class to instantiate. Use the string representation
 @property (nonatomic) NSString * creator;
 @property (nonatomic, weak) id<RenderDelegate>delegate;
+@property (nonatomic, strong) Spell * lastHitSpell;
 -(void)update:(NSTimeInterval)dt;
 -(NSDictionary*)toObject;
 -(void)setPositionFromPlayer:(Player*)player;
@@ -36,4 +37,5 @@
 -(BOOL)hitsPlayer:(Player*)player;
 -(BOOL)hitsSpell:(Spell*)spell;
 +(Spell*)fromType:(NSString*)type;
+-(void)reflectFromSpell:(Spell*)spell;
 @end

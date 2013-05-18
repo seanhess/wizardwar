@@ -24,13 +24,13 @@
 
 -(SpellInteraction *)interactSpell:(Spell *)spell {
     
-    if ([spell isType:[SpellIcewall class]]) {
-        self.direction *= -1;
+    if ([spell isType:[SpellWindblast class]]) {
+        [self reflectFromSpell:spell];
         return [SpellInteraction modify];
     }
     
     else if ([spell isType:[SpellIcewall class]]) {
-        self.direction *= -1;
+        [self reflectFromSpell:spell];
         return [SpellInteraction modify];
     }
     

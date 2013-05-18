@@ -64,9 +64,7 @@
         // SPELLS
         [self.spellsNode observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
             // ignore if we created it
-            NSLog(@"child added - %@", snapshot.name);
             if ([self.lastCastSpellName isEqualToString:snapshot.name]) return;
-            NSLog(@"PASS! - %@", snapshot.name);
             Spell * spell = [Spell fromType:snapshot.value[@"type"]];
             spell.firebaseName = snapshot.name;
             [spell setValuesForKeysWithDictionary:snapshot.value];
@@ -92,7 +90,10 @@
 }
 
 -(void)checkHits {
-    for (Spell * spell in self.spells) {
+    // HITS ARE CALLED MORE THAN ONCE!
+    // A hits B, B hits A
+    for (int i = 0; i < self.spells.count; i++) {
+        Spell * spell = self.spells[i];
         // spells are center anchored, so just check the position, not the width?
         // TODO add spell size to the equation
         // check to see if the spell hits ME, not all players
@@ -102,8 +103,9 @@
                 [self hitPlayer:player withSpell:spell];
         }
         
-        for (Spell * spell2 in self.spells) {
-            if (spell != spell2 && [spell hitsSpell:spell2])
+        for (int j = i+1; j < self.spells.count; j++) {
+            Spell * spell2 = self.spells[j];
+            if ([spell hitsSpell:spell2])
                 [self hitSpell:spell withSpell:spell2];
         }
     }
@@ -119,6 +121,7 @@
 }
 
 -(void)hitSpell:(Spell*)spell withSpell:(Spell*)spell2 {
+    NSLog(@"HIT %@ %@", spell, spell2);
     [self handleInteraction:[spell interactSpell:spell2] forSpell:spell];
     [self handleInteraction:[spell2 interactSpell:spell] forSpell:spell2];
 }
@@ -144,8 +147,8 @@
     }
     
     else if (interaction.type == SpellInteractionTypeModify) {
-        Firebase * node = [self.spellsNode childByAppendingPath:spell.firebaseName];
-        [node setValue:spell.toObject];
+//        Firebase * node = [self.spellsNode childByAppendingPath:spell.firebaseName];
+//        [node setValue:spell.toObject];
     }
     
     else if (interaction.type == SpellInteractionTypeNothing) {
