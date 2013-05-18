@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F03672F1747EB3700971B61 /* Icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F03672E1747EB3700971B61 /* Icon-57.png */; };
+		6F0367311747EB3C00971B61 /* Icon-57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F0367301747EB3C00971B61 /* Icon-57@2x.png */; };
 		6F0B2FA9174750FF00CFC092 /* PentagramViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0B2FA6174750FF00CFC092 /* PentagramViewController.m */; };
 		6F0B2FAA174750FF00CFC092 /* PentEmblem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0B2FA8174750FF00CFC092 /* PentEmblem.m */; };
 		6F0B2FAF1747511800CFC092 /* DotsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0B2FAC1747511800CFC092 /* DotsView.m */; };
@@ -293,6 +295,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6F03672E1747EB3700971B61 /* Icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-57.png"; sourceTree = "<group>"; };
+		6F0367301747EB3C00971B61 /* Icon-57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-57@2x.png"; sourceTree = "<group>"; };
 		6F0B2FA5174750FF00CFC092 /* PentagramViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PentagramViewController.h; sourceTree = "<group>"; };
 		6F0B2FA6174750FF00CFC092 /* PentagramViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PentagramViewController.m; sourceTree = "<group>"; };
 		6F0B2FA7174750FF00CFC092 /* PentEmblem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PentEmblem.h; sourceTree = "<group>"; };
@@ -904,6 +908,8 @@
 		78F6B1DA1746AD8900AA070D = {
 			isa = PBXGroup;
 			children = (
+				6F0367301747EB3C00971B61 /* Icon-57@2x.png */,
+				6F03672E1747EB3700971B61 /* Icon-57.png */,
 				78F193E5174715B500BB8587 /* Default@2x.png */,
 				78F193E3174715B100BB8587 /* Default.png */,
 				78F193E1174715A700BB8587 /* Default-568h@2x.png */,
@@ -1589,6 +1595,8 @@
 				78F19500174758B900BB8587 /* earthwall-hd.png in Resources */,
 				78F19501174758B900BB8587 /* earthwall.plist in Resources */,
 				78F19502174758B900BB8587 /* earthwall.png in Resources */,
+				6F03672F1747EB3700971B61 /* Icon-57.png in Resources */,
+				6F0367311747EB3C00971B61 /* Icon-57@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
