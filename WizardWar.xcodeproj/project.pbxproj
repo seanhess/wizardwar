@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30CE78601747F72900848FE0 /* earthwall.wav in Resources */ = {isa = PBXBuildFile; fileRef = 30CE785D1747F72900848FE0 /* earthwall.wav */; };
+		30CE78611747F72900848FE0 /* fireball.wav in Resources */ = {isa = PBXBuildFile; fileRef = 30CE785E1747F72900848FE0 /* fireball.wav */; };
+		30CE78621747F72900848FE0 /* theme.wav in Resources */ = {isa = PBXBuildFile; fileRef = 30CE785F1747F72900848FE0 /* theme.wav */; };
 		6F03672F1747EB3700971B61 /* Icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F03672E1747EB3700971B61 /* Icon-57.png */; };
 		6F0367311747EB3C00971B61 /* Icon-57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F0367301747EB3C00971B61 /* Icon-57@2x.png */; };
 		6F0B2FA9174750FF00CFC092 /* PentagramViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0B2FA6174750FF00CFC092 /* PentagramViewController.m */; };
 		6F0B2FAA174750FF00CFC092 /* PentEmblem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0B2FA8174750FF00CFC092 /* PentEmblem.m */; };
 		6F0B2FAF1747511800CFC092 /* DotsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0B2FAC1747511800CFC092 /* DotsView.m */; };
 		6F0B2FB01747511800CFC092 /* DrawingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0B2FAE1747511800CFC092 /* DrawingLayer.m */; };
+		6F0FEF5F1747FA720028FE71 /* wizard-lobby.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F0FEF5D1747FA720028FE71 /* wizard-lobby.png */; };
+		6F0FEF601747FA720028FE71 /* wizard-lobby@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F0FEF5E1747FA720028FE71 /* wizard-lobby@2x.png */; };
 		6F6ABA921746B7B500A2A9CE /* MatchmakingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6ABA911746B7B500A2A9CE /* MatchmakingTableViewController.m */; };
 		6F6ABA951746B7D100A2A9CE /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6ABA941746B7D100A2A9CE /* UserCell.m */; };
 		6FD1C7981746D90300E944F4 /* InviteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD1C7971746D90300E944F4 /* InviteCell.m */; };
@@ -297,6 +302,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		30CE785D1747F72900848FE0 /* earthwall.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = earthwall.wav; path = sounds/earthwall.wav; sourceTree = "<group>"; };
+		30CE785E1747F72900848FE0 /* fireball.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = fireball.wav; path = sounds/fireball.wav; sourceTree = "<group>"; };
+		30CE785F1747F72900848FE0 /* theme.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = theme.wav; path = sounds/theme.wav; sourceTree = "<group>"; };
 		6F03672E1747EB3700971B61 /* Icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-57.png"; sourceTree = "<group>"; };
 		6F0367301747EB3C00971B61 /* Icon-57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-57@2x.png"; sourceTree = "<group>"; };
 		6F0B2FA5174750FF00CFC092 /* PentagramViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PentagramViewController.h; sourceTree = "<group>"; };
@@ -307,6 +315,8 @@
 		6F0B2FAC1747511800CFC092 /* DotsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DotsView.m; sourceTree = "<group>"; };
 		6F0B2FAD1747511800CFC092 /* DrawingLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingLayer.h; sourceTree = "<group>"; };
 		6F0B2FAE1747511800CFC092 /* DrawingLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingLayer.m; sourceTree = "<group>"; };
+		6F0FEF5D1747FA720028FE71 /* wizard-lobby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard-lobby.png"; sourceTree = "<group>"; };
+		6F0FEF5E1747FA720028FE71 /* wizard-lobby@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard-lobby@2x.png"; sourceTree = "<group>"; };
 		6F6ABA901746B7B500A2A9CE /* MatchmakingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MatchmakingTableViewController.h; path = ../WizardWar/MatchmakingTableViewController.h; sourceTree = "<group>"; };
 		6F6ABA911746B7B500A2A9CE /* MatchmakingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MatchmakingTableViewController.m; path = ../WizardWar/MatchmakingTableViewController.m; sourceTree = "<group>"; };
 		6F6ABA931746B7D100A2A9CE /* UserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserCell.h; path = ../WizardWar/UserCell.h; sourceTree = "<group>"; };
@@ -778,6 +788,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		30CE785C1747F71B00848FE0 /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				30CE785D1747F72900848FE0 /* earthwall.wav */,
+				30CE785E1747F72900848FE0 /* fireball.wav */,
+				30CE785F1747F72900848FE0 /* theme.wav */,
+			);
+			name = sounds;
+			sourceTree = "<group>";
+		};
 		78F193E717471A0E00BB8587 /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -907,6 +927,8 @@
 				78F1944F17471A0E00BB8587 /* wind-blast-5@2x.png */,
 				78F1945017471A0E00BB8587 /* wind-blast-6.png */,
 				78F1945117471A0E00BB8587 /* wind-blast-6@2x.png */,
+				6F0FEF5D1747FA720028FE71 /* wizard-lobby.png */,
+				6F0FEF5E1747FA720028FE71 /* wizard-lobby@2x.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -980,6 +1002,7 @@
 				6FD1C7971746D90300E944F4 /* InviteCell.m */,
 				78F6B3C21746B29C00AA070D /* WWDirector.h */,
 				78F6B3C31746B29C00AA070D /* WWDirector.m */,
+				30CE785C1747F71B00848FE0 /* sounds */,
 				78F193E717471A0E00BB8587 /* images */,
 				78F6B3C11746B28B00AA070D /* Helpers */,
 				78F6B3BD1746B27B00AA070D /* Match */,
@@ -1605,6 +1628,11 @@
 				6F0367311747EB3C00971B61 /* Icon-57@2x.png in Resources */,
 				78F195051747FBFA00BB8587 /* exit.png in Resources */,
 				78F195061747FBFA00BB8587 /* exit@2x.png in Resources */,
+				30CE78601747F72900848FE0 /* earthwall.wav in Resources */,
+				30CE78611747F72900848FE0 /* fireball.wav in Resources */,
+				30CE78621747F72900848FE0 /* theme.wav in Resources */,
+				6F0FEF5F1747FA720028FE71 /* wizard-lobby.png in Resources */,
+				6F0FEF601747FA720028FE71 /* wizard-lobby@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

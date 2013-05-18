@@ -8,6 +8,7 @@
 
 #import "CCLayer.h"
 #import "PentagramViewController.h"
+#import "SimpleAudioEngine.h"
 
 @protocol MatchLayerDelegate
 -(void)doneWithMatch;
