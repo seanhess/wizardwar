@@ -70,8 +70,7 @@
             Spell * spell = [Spell fromType:snapshot.value[@"type"]];
             spell.firebaseName = snapshot.name;
             [spell setValuesForKeysWithDictionary:snapshot.value];
-            [self.spells addObject:spell];
-            [self.delegate didAddSpell:spell];
+            [self addSpellLocally:spell];
         }];
     }
     return self;
@@ -194,11 +193,12 @@
     Firebase * spellNode = [self.spellsNode childByAutoId];
     self.lastCastSpellName = spellNode.name;
     NSLog(@"addSpell %@", spellNode.name);
-    NSTimeInterval current = CACurrentMediaTime();
+//    NSTimeInterval current = CACurrentMediaTime();
     [spellNode setValue:[spell toObject] withCompletionBlock:^(NSError *error) {
 //        NSLog(@"local - %@", spellNode.name);
-        NSTimeInterval halfTrip = CACurrentMediaTime() - current;
-        [self performSelector:@selector(addSpellLocally:) withObject:spell afterDelay:halfTrip];
+//        NSTimeInterval halfTrip = CACurrentMediaTime() - current;
+//        [self performSelector:@selector(addSpellLocally:) withObject:spell afterDelay:halfTrip];
+        [self addSpellLocally:spell];
     }];
     [spellNode onDisconnectRemoveValue];
     spell.firebaseName = spellNode.name;
