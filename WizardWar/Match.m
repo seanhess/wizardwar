@@ -62,9 +62,9 @@
         self.currentPlayer = player;
         
         // FAKE SECOND PLAYER
-        // Player * fakeSecondPlayer = [Player new];
-        // fakeSecondPlayer.name = @"ZFakeSecondPlayer";
-        // [self joinPlayer:fakeSecondPlayer];
+        Player * fakeSecondPlayer = [Player new];
+        fakeSecondPlayer.name = @"ZFakeSecondPlayer";
+        [self joinPlayer:fakeSecondPlayer];
         
         [self joinPlayer:self.currentPlayer];
         
@@ -121,9 +121,6 @@
     [self removeSpell:spell];
     
     // this allows it to subtract health
-    if([spell isMemberOfClass: [SpellVine class]]){
-        [[SimpleAudioEngine sharedEngine] playEffect:@"scream.wav"];//play a sound
-    }
     [spell interactPlayer:player];
     [player.delegate didUpdateForRender];
     [self checkWin];
@@ -223,6 +220,16 @@
         [[SimpleAudioEngine sharedEngine] playEffect:@"fireball.wav"];//play a sound
     } else if([spell isMemberOfClass: [SpellEarthwall class]]){
         [[SimpleAudioEngine sharedEngine] playEffect:@"earthwall.wav"];//play a sound
+    } else if([spell isMemberOfClass: [SpellVine class]]){
+        [[SimpleAudioEngine sharedEngine] playEffect:@"vine.wav"];//play a sound
+    } else if([spell isMemberOfClass: [SpellBubble class]]){
+        [[SimpleAudioEngine sharedEngine] playEffect:@"bubble.wav"];//play a sound
+    } else if([spell isMemberOfClass: [SpellIcewall class]]){
+        [[SimpleAudioEngine sharedEngine] playEffect:@"icewall.wav"];//play a sound
+    } else if([spell isMemberOfClass: [SpellMonster class]]){
+        [[SimpleAudioEngine sharedEngine] playEffect:@"monster.wav"];//play a sound
+    } else if([spell isMemberOfClass: [SpellWindblast class]]){
+        [[SimpleAudioEngine sharedEngine] playEffect:@"windblast.wav"];//play a sound
     }
 }
 

@@ -76,13 +76,13 @@
     }
     
     // HACK CODE
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        Invite * invite = [Invite new];
-//        invite.invitee = @"Charlie";
-//        invite.inviter = @"Bad guy";
-//        invite.matchID = [NSString stringWithFormat:@"%i", arc4random()];
-//        [self joinMatch:invite playerName:@"Charlie"];
-//    });
+    dispatch_async(dispatch_get_main_queue(), ^{
+        Invite * invite = [Invite new];
+        invite.invitee = @"Charlie";
+        invite.inviter = @"Bad guy";
+        invite.matchID = [NSString stringWithFormat:@"%i", arc4random()];
+        [self joinMatch:invite playerName:@"Charlie"];
+    });
 }
 
 - (void)didReceiveMemoryWarning
