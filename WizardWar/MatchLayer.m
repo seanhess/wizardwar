@@ -44,6 +44,17 @@
         self.background = [CCSprite spriteWithFile:@"background-cave.png"];
         self.background.anchorPoint = ccp(0,0);
         [self addChild:self.background];
+        
+        // preload bg music
+        SimpleAudioEngine *sae = [SimpleAudioEngine sharedEngine];
+        if (sae != nil) {
+            [sae preloadBackgroundMusic:@"theme.wav"];
+            if (sae.willPlayBackgroundMusic) {
+                sae.backgroundMusicVolume = 0.4f;
+            }
+        }
+        
+        [sae playBackgroundMusic:@"theme.wav"];
 
         // Lets try and overlay some UIKit stuff for the pentagram!
         UIView *openGlView = [[CCDirector sharedDirector] view];
@@ -206,9 +217,11 @@
     
     if (hasFire && hasHeart && !hasWater && !hasWind && !hasEarth) {
         spell = [SpellFireball new];
+        [[SimpleAudioEngine sharedEngine] playEffect:@"fireball.wav"];
     }
     if (hasEarth && hasWater && !hasWind && !hasFire && !hasHeart) {
         spell = [SpellEarthwall new];
+        [[SimpleAudioEngine sharedEngine] playEffect:@"earthwall.wav"];
     }
     
     if (hasWind && hasHeart && !hasFire && !hasEarth && !hasWater) {
