@@ -16,12 +16,9 @@
         self.created = CACurrentMediaTime();
         self.size = 10; // don't make this too small or they could miss between frames!
         self.damage = 1; // default value
-<<<<<<< HEAD
         self.speed = 30;
         self.strength = 1;
-=======
         self.mana = 1;
->>>>>>> jake
     }
     return self;
 }

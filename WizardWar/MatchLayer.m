@@ -20,16 +20,13 @@
 
 #import "SpellFireball.h"
 #import "SpellEarthwall.h"
-<<<<<<< HEAD
 #import "SpellBubble.h"
 #import "SpellMonster.h"
 #import "SpellVine.h"
 #import "SpellWindblast.h"
 #import "SpellIcewall.h"
-=======
 #import "NSArray+Functional.h"
 #import "LifeManaIndicatorNode.h"
->>>>>>> jake
 
 @interface MatchLayer () <CCTouchOneByOneDelegate, MatchDelegate, PentagramDelegate>
 @property (nonatomic, strong) Match * match;

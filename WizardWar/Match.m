@@ -82,19 +82,16 @@
         self.currentPlayer = player;
         
         // FAKE SECOND PLAYER
-<<<<<<< HEAD
         if (self.currentPlayer == nil) {
             Player * fakeSecondPlayer = [Player new];
             fakeSecondPlayer.name = @"ZFakeSecondPlayer";
             self.currentPlayer = fakeSecondPlayer;
         }
 
-=======
 //        Player * fakeSecondPlayer = [Player new];
 //        fakeSecondPlayer.name = @"ZFakeSecondPlayer";
 //        [self joinPlayer:fakeSecondPlayer];
         
->>>>>>> jake
         [self joinPlayer:self.currentPlayer];
         
         
