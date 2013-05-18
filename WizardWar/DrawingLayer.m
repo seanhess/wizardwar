@@ -24,19 +24,18 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    // Drawing lines with a white stroke color
-	CGContextSetRGBStrokeColor(context, 0.1, 0.0, 1.0, 1.0);
-	// Draw them with a 2.0 stroke width so they are a bit more visible.
-	CGContextSetLineWidth(context, 2.0);
-	NSLog(@"%@", self.points);
     
-
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextClearRect(context, self.bounds);
+    // Drawing lines with a white stroke color
+	CGContextSetRGBStrokeColor(context, 1.0, 1.0, 1.0, 1.0);
+	// Draw them with a 2.0 stroke width so they are a bit more visible.
+	CGContextSetLineWidth(context, 4.0);
+//	NSLog(@"%@", self.points);
     
     if([self.points count] > 0)
     {
-        NSValue *value = [self.points objectAtIndex:0];
-        CGPoint point = [value CGPointValue];
+        CGPoint point = [[self.points objectAtIndex:0] CGPointValue];
         CGContextMoveToPoint(context, point.x, point.y);
     }
     
