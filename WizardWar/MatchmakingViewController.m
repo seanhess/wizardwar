@@ -45,7 +45,7 @@
     
     self.title = @"Matchmaking";
     self.view.backgroundColor = [UIColor redColor];
-    self.matchesTableViewController = [[MatchmakingTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    self.matchesTableViewController = [[MatchmakingTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     self.matchesTableViewController.tableView.delegate = self;
     self.matchesTableViewController.tableView.dataSource = self;
     [self.view addSubview:self.matchesTableViewController.view];
@@ -69,13 +69,13 @@
     }
     
     // HACK CODE
-    dispatch_async(dispatch_get_main_queue(), ^{
-        Invite * invite = [Invite new];
-        invite.invitee = @"Charlie";
-        invite.inviter = @"Bad guy";
-        invite.matchID = [NSString stringWithFormat:@"%i", arc4random()];
-        [self joinMatch:invite playerName:@"Charlie"];
-    });
+    // dispatch_async(dispatch_get_main_queue(), ^{
+    //     Invite * invite = [Invite new];
+    //     invite.invitee = @"Charlie";
+    //     invite.inviter = @"Bad guy";
+    //     invite.matchID = [NSString stringWithFormat:@"%i", arc4random()];
+    //     [self joinMatch:invite playerName:@"Charlie"];
+    // });
 }
 
 - (void)didReceiveMemoryWarning
@@ -195,12 +195,16 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 2;
+    if ([self.invites count] > 0) {
+        return 2;
+    } else {
+        return 1;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
+    if ([self.invites count] > 0 && section == 0) {
         return [self.invites count];
     } else {
         return [self.users count];
@@ -208,7 +212,7 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
+    if ([self.invites count] > 0 && section == 0) {
         return @"Invites";
     } else {
         return @"Lobby";
@@ -217,7 +221,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
+    if ([self.invites count] > 0 && indexPath.section == 0) {
         return [self tableView:tableView inviteCellForRowAtIndexPath:indexPath];
     } else {
         return [self tableView:tableView userCellForRowAtIndexPath:indexPath];
@@ -300,7 +304,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
+    if ([self.invites count] > 0 && indexPath.section == 0) {
         Invite * invite = [self.invites objectAtIndex:indexPath.row];
         [self selectInvite:invite];
     } else {
