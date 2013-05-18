@@ -15,7 +15,7 @@
 -(void)didAddSpell:(Spell*)spell;
 -(void)matchStarted;
 -(void)matchEnded;
--(void)updateHealthWithDictionary:(NSArray*)healthAndManaDict;
+-(void)didUpdateHealthAndMana;
 
 @end
 

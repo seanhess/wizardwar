@@ -7,12 +7,12 @@
 //
 
 #import "cocos2d.h"
+#import "Player.h"
 
 @interface LifeManaIndicatorNode : CCNode
 
-@property (nonatomic) NSInteger health;
-@property (nonatomic) NSInteger mana;
+@property (nonatomic, strong) Player * player;
 
--(void)updateWithHealth:(NSInteger)health andMana:(NSInteger)mana;
+-(void)updateFromPlayer;
 
 @end

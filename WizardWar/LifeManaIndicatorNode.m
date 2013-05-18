@@ -55,11 +55,11 @@
         CCSprite *heartBlank = [self.emptyHearts objectAtIndex:i];
         CCSprite *heartFull = [self.filledHearts objectAtIndex:i];
         
-        if (i <= mana) {
+        if (i <= mana - 1) {
             heartFull.opacity = 255;
             heartDamage.opacity = 0;
             heartBlank.opacity = 0;
-        } else if (i <= health) {
+        } else if (i <= health - 1) {
             heartFull.opacity = 0;
             heartDamage.opacity = 0;
             heartBlank.opacity = 255;
@@ -69,6 +69,11 @@
             heartBlank.opacity = 0;
         }
     }
+}
+
+-(void)updateFromPlayer
+{
+    [self updateWithHealth:self.player.health andMana:(NSInteger)self.player.mana];
 }
 
 @end

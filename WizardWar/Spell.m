@@ -65,6 +65,7 @@
 -(SpellInteraction*)interactPlayer:(Player*)player {
     player.health -= self.damage;
     [player setState:PlayerStateHit animated:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"HealthManaUpdate" object:nil];
     return nil;
 }
 

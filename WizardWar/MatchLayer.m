@@ -153,6 +153,9 @@
         CCSprite * wizard = [[WizardSprite alloc] initWithPlayer:player units:self.units];
         [self addChild:wizard];
     }];
+    
+    self.player1Indicator.player = self.match.players[0];
+    self.player2Indicator.player = self.match.players[1];
 }
 
 -(void)matchEnded {
@@ -160,13 +163,10 @@
     self.label.string = @"Game Over";
 }
 
--(void)updateHealthWithDictionary:(NSArray *)healthAndManaDict
+-(void)didUpdateHealthAndMana
 {
-    NSDictionary *player1 = [healthAndManaDict objectAtIndex:0];
-    NSDictionary *player2 = [healthAndManaDict objectAtIndex:1];
-    
-    [self.player1Indicator updateWithHealth:[[player1 objectForKey:@"health"] intValue] andMana:[[player1 objectForKey:@"mana"] intValue] ] ;
-    [self.player1Indicator updateWithHealth:[[player2 objectForKey:@"health"] intValue] andMana:[[player2 objectForKey:@"mana"] intValue] ] ;
+    [self.player1Indicator updateFromPlayer];
+    [self.player2Indicator updateFromPlayer];
 }
 
 -(void)drawWizard:(Player*)player {

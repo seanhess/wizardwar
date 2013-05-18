@@ -54,7 +54,15 @@
                 self.opponentPlayer = player;
                 
                 [self.opponentNode observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
-                    NSLog(@"opponent changed, %@", snapshot);
+                    NSLog(@"opponent changed, %@, %@", snapshot.name, snapshot.value);
+                    if ([snapshot.name isEqualToString:@"mana"]) {
+                        //NSLog(@"snapshot value %@, %@, %f", NSStringFromClass([snapshot.value class]), snapshot.value, [snapshot.value floatValue]);
+                        
+                        self.opponentPlayer.mana = [snapshot.value floatValue];
+                        NSLog(@"opponent %@, %@", self.opponentPlayer, self.players);
+                        //[self.opponentPlayer.delegate didUpdateForRender];
+                        [self.delegate didUpdateHealthAndMana];
+                    }
                 }];
             }
             
@@ -66,9 +74,9 @@
         self.currentPlayer = player;
         
         // FAKE SECOND PLAYER
-        // Player * fakeSecondPlayer = [Player new];
-        // fakeSecondPlayer.name = @"ZFakeSecondPlayer";
-        // [self joinPlayer:fakeSecondPlayer];
+//        Player * fakeSecondPlayer = [Player new];
+//        fakeSecondPlayer.name = @"ZFakeSecondPlayer";
+//        [self joinPlayer:fakeSecondPlayer];
         
         [self joinPlayer:self.currentPlayer];
         
@@ -87,7 +95,7 @@
         }];
         
         [[NSNotificationCenter defaultCenter] addObserverForName:@"HealthManaUpdate" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-            [self updateLife];
+            [self.delegate didUpdateHealthAndMana];
         }];
     }
     return self;
@@ -106,19 +114,6 @@
     }];
     
     [self checkHits];
-}
-
--(void)updateLife
-{
-    if ([self.players count] < 2) return;
-    Player *playerOne = [self.players objectAtIndex:0];
-    Player *playerTwo = [self.players objectAtIndex:1];
-    
-    NSDictionary *player1 = @{@"health": [NSNumber numberWithInt:playerOne.health], @"mana": [NSNumber numberWithInt:(int)playerOne.mana]};
-    NSDictionary *player2 = @{@"health": [NSNumber numberWithInt:playerTwo.health], @"mana": [NSNumber numberWithInt:(int)playerTwo.mana]};
-    
-    NSArray *playerData = @[player1, player2];
-    [self.delegate updateHealthWithDictionary:playerData];
 }
 
 -(void)checkHits {
@@ -222,7 +217,7 @@
 -(void)addSpell:(Spell*)spell {
     Firebase * spellNode = [self.spellsNode childByAutoId];
     self.lastCastSpellName = spellNode.name;
-    NSLog(@"addSpell %@", spellNode.name);
+
     NSLog(@"opponent values %@", [self.currentPlayer toObject]);
     [self.opponentNode setValue:[self.currentPlayer toObject]];
 //    NSTimeInterval current = CACurrentMediaTime();
@@ -255,7 +250,7 @@
 
 -(void)castSpell:(Spell *)spell {
     if (self.currentPlayer.mana >= spell.mana) {
-        self.currentPlayer.mana =- spell.mana;
+        self.currentPlayer.mana = self.currentPlayer.mana - (float)spell.mana;
         [spell setPositionFromPlayer:self.currentPlayer];
         [self addSpell:spell]; // add spell
         [self.currentPlayer setState:PlayerStateCast animated:YES];
