@@ -1,5 +1,5 @@
 //
-//  WWAppDelegate.h
+//  DrawingLayer.h
 //  WizardWar
 //
 //  Created by Dallin Skinner on 5/17/13.
@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WWAppDelegate : UIResponder <UIApplicationDelegate>
+@interface DrawingLayer : UIView
 
-@property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) NSMutableArray *points;
 
 @end

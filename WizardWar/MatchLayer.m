@@ -7,6 +7,7 @@
 //
 
 #import "MatchLayer.h"
+#import "PentagramViewController.h"
 #import "cocos2d.h"
 #import "MatchGroundSprite.h"
 #import "WizardSprite.h"
@@ -36,6 +37,11 @@
         self.matchId = matchId;
         self.playerName = playerName;
         NSLog(@"PLAYER NAME %@", self.playerName);
+        
+        // Lets try and overlay some UIKit stuff for the pentagram!
+        UIView *openGlView = [[CCDirector sharedDirector] view];
+        PentagramViewController *pentagramViewController = [[PentagramViewController alloc] init];
+        [openGlView addSubview:pentagramViewController.view];
         
         // I need to join. Am I 1st player or 2nd player?
         // Hmm... I need to know
