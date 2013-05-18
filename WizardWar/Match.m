@@ -16,6 +16,8 @@
 @property (nonatomic, strong) Firebase * matchNode;
 @property (nonatomic, strong) Firebase * spellsNode;
 @property (nonatomic, strong) Firebase * playersNode;
+
+@property (nonatomic, strong) NSString * lastCastSpellName;
 @end
 
 // don't really know which player you are until there are 2 players
@@ -61,6 +63,10 @@
         
         // SPELLS
         [self.spellsNode observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
+            // ignore if we created it
+            NSLog(@"child added - %@", snapshot.name);
+            if ([self.lastCastSpellName isEqualToString:snapshot.name]) return;
+            NSLog(@"PASS! - %@", snapshot.name);
             Spell * spell = [Spell fromType:snapshot.value[@"type"]];
             spell.firebaseName = snapshot.name;
             [spell setValuesForKeysWithDictionary:snapshot.value];
@@ -105,7 +111,6 @@
 }
 
 -(void)hitPlayer:(Player*)player withSpell:(Spell*)spell {
-    NSLog(@"HIT PLAYER %@ with %@", player, spell);
     [self removeSpell:spell];
     
     // this allows it to subtract health
@@ -115,7 +120,6 @@
 }
 
 -(void)hitSpell:(Spell*)spell withSpell:(Spell*)spell2 {
-    NSLog(@"HIT SPELL %@ with %@", spell, spell2);
     [self handleInteraction:[spell interactSpell:spell2] forSpell:spell];
     [self handleInteraction:[spell2 interactSpell:spell] forSpell:spell2];
 }
@@ -126,7 +130,6 @@
             [player setState:PlayerStateDead animated:NO];
             self.started = NO;
             self.loser = player;
-            NSLog(@"GAME OVER!");
             [self.delegate matchEnded];
         }
     }];
@@ -159,7 +162,6 @@
 // STARTING
 
 -(void)checkStart {
-    NSLog(@"check Start %@", self.players);
     if (self.players.count >= 2) {
         [self start];
     }
@@ -175,7 +177,6 @@
     
     [self.players[0] setPosition:UNITS_MIN];
     [self.players[1] setPosition:UNITS_MAX];
-    NSLog(@"START %@", self.players);
     [self.delegate matchStarted];
 }
 
@@ -190,16 +191,25 @@
 }
 
 -(void)addSpell:(Spell*)spell {
-//    [self.spells addObject:spell];
     Firebase * spellNode = [self.spellsNode childByAutoId];
-//    [spellNode onDisconnectRemoveValue];
-    [spellNode setValue:[spell toObject]];
+    self.lastCastSpellName = spellNode.name;
+    NSLog(@"addSpell %@", spellNode.name);
+    NSTimeInterval current = CACurrentMediaTime();
+    [spellNode setValue:[spell toObject] withCompletionBlock:^(NSError *error) {
+//        NSLog(@"local - %@", spellNode.name);
+        NSTimeInterval halfTrip = CACurrentMediaTime() - current;
+        [self performSelector:@selector(addSpellLocally:) withObject:spell afterDelay:halfTrip];
+    }];
     [spellNode onDisconnectRemoveValue];
     spell.firebaseName = spellNode.name;
 }
 
+- (void)addSpellLocally:(Spell*)spell {
+    [self.spells addObject:spell];
+    [self.delegate didAddSpell:spell];
+}
+
 -(void)removeSpell:(Spell*)spell {
-    NSLog(@"REMOVE SPELL %@", spell.firebaseName);
     NSAssert(spell.firebaseName, @"No firebase name on spell! %@", spell);
     Firebase * spellNode = [self.spellsNode childByAppendingPath:spell.firebaseName];
     [self.delegate didRemoveSpell:spell];

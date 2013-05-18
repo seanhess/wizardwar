@@ -29,7 +29,7 @@
         self.player.delegate = self;
         self.units = units;
         self.position = ccp([self.units toX:player.position], self.units.zeroY);
-        NSLog(@"GOGO WIZRD %@ %f", NSStringFromCGPoint(self.position), player.position);
+//        NSLog(@"GOGO WIZRD %@ %f", NSStringFromCGPoint(self.position), player.position);
         
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard2.plist"];
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard1.plist"];
@@ -49,7 +49,6 @@
 -(void)render {
     [self.spriteSheet removeAllChildren];
     NSString * imageName = self.currentWizardImage;
-    NSLog(@"IMAGE NAME %@", imageName);
     self.skin = [CCSprite spriteWithSpriteFrameName:imageName];
     [self.spriteSheet addChild:self.skin];
 }
