@@ -256,6 +256,15 @@
 		78F6B3D81746E6D300AA070D /* SpellEarthwall.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3D71746E6D100AA070D /* SpellEarthwall.m */; };
 		78F6B3DB174705D000AA070D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3DA174705D000AA070D /* User.m */; };
 		78F6B3DE174705EA00AA070D /* Invite.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3DD174705EA00AA070D /* Invite.m */; };
+		F283A922174807A40068EEB2 /* LifeManaIndicatorNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F283A921174807A40068EEB2 /* LifeManaIndicatorNode.m */; };
+		F283A92517480F4F0068EEB2 /* mana-container-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F283A92317480F4F0068EEB2 /* mana-container-hd.png */; };
+		F283A92617480F4F0068EEB2 /* mana-container.png in Resources */ = {isa = PBXBuildFile; fileRef = F283A92417480F4F0068EEB2 /* mana-container.png */; };
+		F283A92D17480F5E0068EEB2 /* heart-damage-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F283A92717480F5E0068EEB2 /* heart-damage-hd.png */; };
+		F283A92E17480F5E0068EEB2 /* heart-damage.png in Resources */ = {isa = PBXBuildFile; fileRef = F283A92817480F5E0068EEB2 /* heart-damage.png */; };
+		F283A92F17480F5E0068EEB2 /* heart-empty-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F283A92917480F5E0068EEB2 /* heart-empty-hd.png */; };
+		F283A93017480F5E0068EEB2 /* heart-empty.png in Resources */ = {isa = PBXBuildFile; fileRef = F283A92A17480F5E0068EEB2 /* heart-empty.png */; };
+		F283A93117480F5E0068EEB2 /* heart-full-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F283A92B17480F5E0068EEB2 /* heart-full-hd.png */; };
+		F283A93217480F5E0068EEB2 /* heart-full.png in Resources */ = {isa = PBXBuildFile; fileRef = F283A92C17480F5E0068EEB2 /* heart-full.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -680,6 +689,16 @@
 		78F6B3DA174705D000AA070D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		78F6B3DC174705EA00AA070D /* Invite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Invite.h; sourceTree = "<group>"; };
 		78F6B3DD174705EA00AA070D /* Invite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Invite.m; sourceTree = "<group>"; };
+		F283A920174807A40068EEB2 /* LifeManaIndicatorNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LifeManaIndicatorNode.h; sourceTree = "<group>"; };
+		F283A921174807A40068EEB2 /* LifeManaIndicatorNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LifeManaIndicatorNode.m; sourceTree = "<group>"; };
+		F283A92317480F4F0068EEB2 /* mana-container-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mana-container-hd.png"; sourceTree = "<group>"; };
+		F283A92417480F4F0068EEB2 /* mana-container.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mana-container.png"; sourceTree = "<group>"; };
+		F283A92717480F5E0068EEB2 /* heart-damage-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-damage-hd.png"; sourceTree = "<group>"; };
+		F283A92817480F5E0068EEB2 /* heart-damage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-damage.png"; sourceTree = "<group>"; };
+		F283A92917480F5E0068EEB2 /* heart-empty-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-empty-hd.png"; sourceTree = "<group>"; };
+		F283A92A17480F5E0068EEB2 /* heart-empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-empty.png"; sourceTree = "<group>"; };
+		F283A92B17480F5E0068EEB2 /* heart-full-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-full-hd.png"; sourceTree = "<group>"; };
+		F283A92C17480F5E0068EEB2 /* heart-full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-full.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -731,6 +750,14 @@
 				309D45B417483323008CEF6C /* messages-hd.png */,
 				309D45B517483323008CEF6C /* messages.plist */,
 				309D45B617483323008CEF6C /* messages.png */,
+				F283A92717480F5E0068EEB2 /* heart-damage-hd.png */,
+				F283A92817480F5E0068EEB2 /* heart-damage.png */,
+				F283A92917480F5E0068EEB2 /* heart-empty-hd.png */,
+				F283A92A17480F5E0068EEB2 /* heart-empty.png */,
+				F283A92B17480F5E0068EEB2 /* heart-full-hd.png */,
+				F283A92C17480F5E0068EEB2 /* heart-full.png */,
+				F283A92317480F4F0068EEB2 /* mana-container-hd.png */,
+				F283A92417480F4F0068EEB2 /* mana-container.png */,
 				78F195031747FBFA00BB8587 /* exit.png */,
 				78F195041747FBFA00BB8587 /* exit@2x.png */,
 				78F1953717480A4C00BB8587 /* vine-animation.plist */,
@@ -1274,6 +1301,8 @@
 		78F6B3BD1746B27B00AA070D /* Match */ = {
 			isa = PBXGroup;
 			children = (
+				F283A920174807A40068EEB2 /* LifeManaIndicatorNode.h */,
+				F283A921174807A40068EEB2 /* LifeManaIndicatorNode.m */,
 				78F6B3AB1746B27600AA070D /* MatchLayer.h */,
 				78F6B3AC1746B27600AA070D /* MatchLayer.m */,
 				78F6B3AD1746B27600AA070D /* MatchGroundSprite.h */,
@@ -1467,6 +1496,14 @@
 				309D45B817483323008CEF6C /* messages-hd.png in Resources */,
 				309D45B917483323008CEF6C /* messages.plist in Resources */,
 				309D45BA17483323008CEF6C /* messages.png in Resources */,
+				F283A92517480F4F0068EEB2 /* mana-container-hd.png in Resources */,
+				F283A92617480F4F0068EEB2 /* mana-container.png in Resources */,
+				F283A92D17480F5E0068EEB2 /* heart-damage-hd.png in Resources */,
+				F283A92E17480F5E0068EEB2 /* heart-damage.png in Resources */,
+				F283A92F17480F5E0068EEB2 /* heart-empty-hd.png in Resources */,
+				F283A93017480F5E0068EEB2 /* heart-empty.png in Resources */,
+				F283A93117480F5E0068EEB2 /* heart-full-hd.png in Resources */,
+				F283A93217480F5E0068EEB2 /* heart-full.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1617,6 +1654,7 @@
 				78F195121747FEA800BB8587 /* SpellVine.m in Sources */,
 				78F195151747FEB500BB8587 /* SpellWindblast.m in Sources */,
 				78F195181748024D00BB8587 /* Elements.m in Sources */,
+				F283A922174807A40068EEB2 /* LifeManaIndicatorNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1709,6 +1747,7 @@
 					"-lz",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1730,6 +1769,7 @@
 					"-lz",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

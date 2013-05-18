@@ -21,7 +21,7 @@ typedef enum PlayerState {
 @property (nonatomic, strong) NSString * name;
 @property (nonatomic) PlayerState state;
 @property (nonatomic) float position; // in units (not pixels)
-@property (nonatomic) NSInteger mana;
+@property (nonatomic) float mana;
 @property (nonatomic) NSInteger health;
 @property (nonatomic, weak) id<RenderDelegate>delegate;
 -(NSDictionary*)toObject;

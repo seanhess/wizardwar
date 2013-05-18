@@ -20,11 +20,16 @@
 
 #import "SpellFireball.h"
 #import "SpellEarthwall.h"
+<<<<<<< HEAD
 #import "SpellBubble.h"
 #import "SpellMonster.h"
 #import "SpellVine.h"
 #import "SpellWindblast.h"
 #import "SpellIcewall.h"
+=======
+#import "NSArray+Functional.h"
+#import "LifeManaIndicatorNode.h"
+>>>>>>> jake
 
 @interface MatchLayer () <CCTouchOneByOneDelegate, MatchDelegate, PentagramDelegate>
 @property (nonatomic, strong) Match * match;
@@ -38,6 +43,9 @@
 @property (nonatomic, strong) CCSprite * background;
 
 @property (nonatomic, strong) UIButton * backButton;
+
+@property (nonatomic, strong) LifeManaIndicatorNode *player1Indicator;
+@property (nonatomic, strong) LifeManaIndicatorNode *player2Indicator;
 
 @end
 
@@ -109,6 +117,15 @@
         self.message.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
         [self addChild:self.message];
         
+        self.player1Indicator = [LifeManaIndicatorNode node];
+        self.player2Indicator = [LifeManaIndicatorNode node];
+        
+        self.player2Indicator.position = ccp(openGlView.frame.size.width - 150, 290);
+        self.player1Indicator.position = ccp(150, 290);
+        
+        [self addChild:self.player1Indicator];
+        [self addChild:self.player2Indicator];
+        
         [self scheduleUpdate];
         
         // BACK BUTTON
@@ -136,7 +153,7 @@
     [self.match update:delta];
 }
 
-// MATCH DELEGATE
+#pragma mark -  MATCH DELEGATE
 
 -(void)didRemoveSpell:(Spell *)spell {
     SpellSprite * sprite = [self.spellSprites find:^BOOL(SpellSprite * sprite) {
@@ -157,6 +174,9 @@
         CCSprite * wizard = [[WizardSprite alloc] initWithPlayer:player units:self.units];
         [self addChild:wizard];
     }];
+    
+    self.player1Indicator.player = self.match.players[0];
+    self.player2Indicator.player = self.match.players[1];
 }
 
 -(void)matchEnded {
@@ -168,6 +188,12 @@
         [self.message setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"msg-you-won.png"]];
     }
     self.message.visible = YES;
+}
+
+-(void)didUpdateHealthAndMana
+{
+    [self.player1Indicator updateFromPlayer];
+    [self.player2Indicator updateFromPlayer];
 }
 
 -(void)drawWizard:(Player*)player {
