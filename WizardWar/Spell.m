@@ -63,6 +63,7 @@
 
 -(SpellInteraction*)interactPlayer:(Player*)player {
     player.health -= self.damage;
+    [player setState:PlayerStateHit animated:YES];
     return nil;
 }
 

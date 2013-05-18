@@ -26,6 +26,7 @@
 @property (nonatomic, strong) NSString * playerName;
 
 @property (nonatomic, strong) CCLabelTTF * label;
+@property (nonatomic, strong) CCSprite * background;
 
 @end
 
@@ -36,6 +37,12 @@
         self.matchId = matchId;
         self.playerName = playerName;
         NSLog(@"PLAYER NAME %@", self.playerName);
+        
+        // background
+//        self.background = [CCSprite spriteWithCGImage:[UIImage imageNamed:@""] key:<#(NSString *)#>]
+        self.background = [CCSprite spriteWithFile:@"background-cave.png"];
+        self.background.anchorPoint = ccp(0,0);
+        [self addChild:self.background];
         
         // I need to join. Am I 1st player or 2nd player?
         // Hmm... I need to know
@@ -50,15 +57,9 @@
         
         self.spellSprites = [NSMutableArray array];
         
-        self.units = [Units new];
-        self.units.wizardOffset = 50;
-        self.units.pixelsPerUnit = (self.contentSize.width-2*self.units.wizardOffset) / 100;
-        self.units.groundY = 75;
-        
-        CCSprite * ground = [MatchGroundSprite new];
-        ground.position = ccp(self.contentSize.width/2, 25);
-        ground.contentSize = CGSizeMake(self.contentSize.width, 50);
-        [self addChild:ground];
+        CGFloat zeroY = 100;
+        CGFloat wizardOffset = 75;
+        self.units = [[Units alloc] initWithZeroY:zeroY min:wizardOffset max:self.contentSize.width-wizardOffset];
         
         self.label = [CCLabelTTF labelWithString:@"Ready" fontName:@"Marker Felt" fontSize:36];
         self.label.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
@@ -145,16 +146,13 @@
     
     // add the spell here
     Spell * spell = nil;
-    
     if (touchPoint.x < winSize.width/2)
         spell = [SpellEarthwall new];
     else
         spell = [SpellFireball new];
     
-    [spell setPositionFromPlayer:self.match.currentPlayer];
-    
-    [self.match addSpell:spell]; // add spell
-    NSLog(@"NEW SPELL! %@", spell);
+    [self.match castSpell:spell];
 }
+
 
 @end

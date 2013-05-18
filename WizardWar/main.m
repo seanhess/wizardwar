@@ -1,15 +1,18 @@
 //
 //  main.m
-//  WizardWar
+//  WizardWar2
 //
 //  Created by Sean Hess on 5/17/13.
-//  Copyright The LAB 2013. All rights reserved.
+//  Copyright (c) 2013 The LAB. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-int main(int argc, char *argv[]) {
+#import "AppDelegate.h"
+
+int main(int argc, char *argv[])
+{
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, @"AppController");
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }
 }

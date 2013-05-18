@@ -27,4 +27,5 @@
 -(void)update:(NSTimeInterval)dt;
 -(void)addSpell:(Spell*)spell;
 -(id)initWithId:(NSString*)id currentPlayer:(Player*)player;
+-(void)castSpell:(Spell *)spell;
 @end

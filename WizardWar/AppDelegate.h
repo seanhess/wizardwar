@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "cocos2d.h"
+//#import "cocos2d.h"
 
-@interface AppController : NSObject <UIApplicationDelegate>
+@interface AppDelegate : NSObject <UIApplicationDelegate>
+@property (strong, nonatomic) UIWindow * window;
 @end

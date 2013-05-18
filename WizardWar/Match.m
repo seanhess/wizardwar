@@ -75,29 +75,33 @@
 /// UPDATES
 
 -(void)update:(NSTimeInterval)dt {
-    [self.spells enumerateObjectsUsingBlock:^(Spell* spell, NSUInteger idx, BOOL *stop) {
+    [self.spells forEach:^(Spell*spell) {
         [spell update:dt];
+    }];
+    
+    [self.players forEach:^(Player*player) {
+        [player update:dt];
     }];
     
     [self checkHits];
 }
 
 -(void)checkHits {
-    [self.spells forEach:^(Spell* spell) {
+    for (Spell * spell in self.spells) {
         // spells are center anchored, so just check the position, not the width?
         // TODO add spell size to the equation
         // check to see if the spell hits ME, not all players
         // or check to see how my spells hit?
-        [self.players forEach:^(Player* player) {
+        for (Player * player in self.players)  {
             if ([spell hitsPlayer:player])
                 [self hitPlayer:player withSpell:spell];
-        }];
+        }
         
-        [self.spells forEach:^(Spell* spell2) {
+        for (Spell * spell2 in self.spells) {
             if (spell != spell2 && [spell hitsSpell:spell2])
                 [self hitSpell:spell withSpell:spell2];
-        }];
-    }];
+        }
+    }
 }
 
 -(void)hitPlayer:(Player*)player withSpell:(Spell*)spell {
@@ -119,6 +123,7 @@
 -(void)checkWin {
     [self.players forEach:^(Player* player) {
         if (player.health == 0) {
+            [player setState:PlayerStateDead animated:NO];
             self.started = NO;
             self.loser = player;
             NSLog(@"GAME OVER!");
@@ -204,6 +209,12 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.spells removeObject:spell];
     });
+}
+
+-(void)castSpell:(Spell *)spell {
+    [spell setPositionFromPlayer:self.currentPlayer];
+    [self addSpell:spell]; // add spell
+    [self.currentPlayer setState:PlayerStateCast animated:YES];
 }
 
 @end

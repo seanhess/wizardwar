@@ -11,6 +11,7 @@
 
 @interface SpellSprite ()
 @property (nonatomic, strong) Units * units;
+@property (nonatomic, strong) CCSprite * skin;
 @end
 
 @implementation SpellSprite
@@ -20,17 +21,22 @@
     if ((self=[super init])) {
         self.spell = spell;
         self.units = units;
+        
+        self.skin = [CCSprite spriteWithFile:@"fireball-1.png"];
+        [self addChild:self.skin];
+        
         spell.delegate = self;
+        
     }
     return self;
 }
 
--(void)draw {
-    ccDrawSolidRect(ccp(0, 0), ccp(50, 50), ccc4f(0, 1, 0, 1));
+-(void)didUpdateForRender {
+    [self render];
 }
 
--(void)didUpdateForRender {
-    self.position = ccp([self.units pixelsXForUnitPosition:self.spell.position], self.units.groundY);
+-(void)render {
+    self.position = ccp([self.units toX:self.spell.position], self.units.zeroY);
 }
 
 @end

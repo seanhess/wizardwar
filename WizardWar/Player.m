@@ -10,6 +10,10 @@
 #import "Spell.h"
 #import "SpellFireball.h"
 
+@interface Player ()
+@property (nonatomic) NSTimeInterval stateAnimationTime;
+@end
+
 @implementation Player
 
 -(id)init {
@@ -30,6 +34,29 @@
 
 -(BOOL)isFirstPlayer {
     return self.position == UNITS_MIN;
+}
+
+-(void)setState:(PlayerState)state animated:(BOOL)animated {
+    self.state = state;
+    if (animated) {
+        if (state == PlayerStateHit)
+            self.stateAnimationTime = 0.5;
+        else if (state == PlayerStateCast)
+            self.stateAnimationTime = 1.0;
+    }
+    else
+        self.stateAnimationTime = 0.0;
+    [self.delegate didUpdateForRender];
+}
+
+-(void)update:(NSTimeInterval)dt {
+    if (self.stateAnimationTime > 0) {
+        self.stateAnimationTime -= dt;
+        if (self.stateAnimationTime <= 0) {
+            self.state = PlayerStateReady;
+            [self.delegate didUpdateForRender];
+        }
+    }
 }
 
 @end

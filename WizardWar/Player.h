@@ -10,12 +10,22 @@
 #import "Units.h"
 #import "RenderDelegate.h"
 
+typedef enum PlayerState {
+    PlayerStateReady,
+    PlayerStateCast,
+    PlayerStateHit,
+    PlayerStateDead,
+} PlayerState;
+
 @interface Player : NSObject
 @property (nonatomic, strong) NSString * name;
+@property (nonatomic) PlayerState state;
 @property (nonatomic) float position; // in units (not pixels)
 @property (nonatomic) NSInteger mana;
 @property (nonatomic) NSInteger health;
 @property (nonatomic, weak) id<RenderDelegate>delegate;
 -(NSDictionary*)toObject;
 -(BOOL)isFirstPlayer;
+-(void)setState:(PlayerState)state animated:(BOOL)animated;
+-(void)update:(NSTimeInterval)dt;
 @end

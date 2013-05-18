@@ -1,76 +1,89 @@
 //
 //  AppDelegate.m
-//  WizardWar
+//  WizardWar2
 //
 //  Created by Sean Hess on 5/17/13.
-//  Copyright The LAB 2013. All rights reserved.
+//  Copyright (c) 2013 The LAB. All rights reserved.
 //
-
 
 #import "AppDelegate.h"
 #import "MatchmakingViewController.h"
 #import "MainNavViewController.h"
-#import <Firebase/Firebase.h>
+#import "cocos2d.h"
 
-@implementation AppController
+@interface AppDelegate ()
+@property (nonatomic, strong) UIImageView * splash;
+
+@end
+
+@implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [application setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     
-    UIWindow * window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    NSString * imageName = @"Default.png";
+    if (UIScreen.mainScreen.bounds.size.height > 480) {
+        imageName = @"Default-568h.png";
+    }
+    
+    self.splash = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
+    
     
     MatchmakingViewController * matches = [MatchmakingViewController new];
     MainNavViewController * navigationController = [[MainNavViewController alloc] initWithRootViewController:matches];
+    [self.window setRootViewController:navigationController];
+    [self.window makeKeyAndVisible];
     
-    [window setRootViewController:navigationController];
-    [window makeKeyAndVisible];
+    [self.window addSubview:self.splash];
     
-    
-    // Create a reference to a Firebase location
-    Firebase* f = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/"];
-
-    // Write data to Firebase
-    [f setValue:@"Do you have data? You'll love Firebase."];
-
-    // Read data and react to changes
-    [f observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-          NSLog(@"%@ -> %@", snapshot.name, snapshot.value);
-    }];
+    [self performSelector:@selector(hideSplash) withObject:self afterDelay:1.0];
     
     return YES;
+}
+
+-(void) hideSplash {
+    [UIView animateWithDuration:0.2 animations:^{
+        self.splash.alpha = 0;
+    } completion:^(BOOL finished) {
+        [self.splash removeFromSuperview];
+    }];
 }
 
 // getting a call, pause the game
 -(void) applicationWillResignActive:(UIApplication *)application
 {
-//	if( [navController_ visibleViewController] == director_ )
-//		[director_ pause];
+    //	if( [navController_ visibleViewController] == director_ )
+    //		[director_ pause];
 }
 
 // call got rejected
 -(void) applicationDidBecomeActive:(UIApplication *)application
 {
-//	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];	
-//	if( [navController_ visibleViewController] == director_ )
-//		[director_ resume];
+    NSLog(@"ACTIVE");
+    //	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
+    //	if( [navController_ visibleViewController] == director_ )
+    //		[director_ resume];
 }
 
 -(void) applicationDidEnterBackground:(UIApplication*)application
 {
-//	if( [navController_ visibleViewController] == director_ )
-//		[director_ stopAnimation];
+    //	if( [navController_ visibleViewController] == director_ )
+    //		[director_ stopAnimation];
 }
 
 -(void) applicationWillEnterForeground:(UIApplication*)application
 {
-//	if( [navController_ visibleViewController] == director_ )
-//		[director_ startAnimation];
+    //	if( [navController_ visibleViewController] == director_ )
+    //		[director_ startAnimation];
 }
 
 // application will be killed
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-//	CC_DIRECTOR_END();
+    //	CC_DIRECTOR_END();
 }
 
 // next delta time will be zero
@@ -79,5 +92,5 @@
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
 }
 
-@end
 
+@end
