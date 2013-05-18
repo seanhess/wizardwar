@@ -228,7 +228,7 @@
         Firebase* inviteNode = [self.firebaseInvites childByAppendingPath:inviteKey];
         [inviteNode setValue:self.matchID];
         [inviteNode onDisconnectRemoveValue];
-        [(MatchmakingViewController *)self.parentViewController joinMatch:self.matchID playerName:invite[@"inviter"]];
+        [self joinMatch:self.matchID playerName:invite[@"inviter"]];
     } else {
         // create an invite
         NSDictionary* user = [self.users objectAtIndex:indexPath.row];
@@ -247,7 +247,7 @@
             if ([snapshot.value hasChildAtPath:@"matchID"]) {
                 // match has begun! join up
                 self.matchID = snapshot.value[@"matchID"];
-                [(MatchmakingViewController *)self.parentViewController joinMatch:self.matchID playerName:user[@"name"]];
+                [self joinMatch:self.matchID playerName:user[@"name"]];
             }
         }];
     }
