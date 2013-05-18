@@ -88,6 +88,7 @@
         {
             if(CGRectContainsPoint(emblem.frame, point) && ([self.moves indexOfObject:emblem.type] == NSNotFound))
             {
+                [self.drawingLayer.points addObject:[NSValue valueWithCGPoint:point]];
                 self.currentEmblem = emblem;
                 emblem.alpha = 1;
                 
@@ -117,7 +118,13 @@
         UITouch *touch = obj;
         CGPoint touchPoint = [touch locationInView:self.view];
         
-        [self.drawingLayer.points addObject: [NSValue valueWithCGPoint:touchPoint]];
+        if ([self.drawingLayer.points count] == 1) {
+            // [self.drawingLayer.points replaceObjectAtIndex:1 withObject:[NSValue valueWithCGPoint:touchPoint]];
+            [self.drawingLayer.points addObject: [NSValue valueWithCGPoint:touchPoint]];
+        } else {
+            [self.drawingLayer.points replaceObjectAtIndex:([self.drawingLayer.points count]-1) withObject:[NSValue valueWithCGPoint:touchPoint]];
+        }
+
         [self.drawingLayer setNeedsDisplay];
         
         [self checkSelectedEmblems:touchPoint];
