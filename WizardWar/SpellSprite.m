@@ -36,6 +36,7 @@
         [self addChild:self.sheet];
         
         self.skin = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"%@-1", self.sheetName]];
+        if (spell.direction < 0) self.skin.flipX = YES;
         [self.skin runAction:self.spellAction];
         [self addChild:self.skin];
         
