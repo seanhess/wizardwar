@@ -62,11 +62,13 @@
         self.currentPlayer = player;
         
         // FAKE SECOND PLAYER
-//        Player * fakeSecondPlayer = [Player new];
-//        fakeSecondPlayer.name = @"ZFakeSecondPlayer";
-//        [self joinPlayer:fakeSecondPlayer];
-//        
-//        [self joinPlayer:self.currentPlayer];
+        if (self.currentPlayer == nil) {
+            Player * fakeSecondPlayer = [Player new];
+            fakeSecondPlayer.name = @"ZFakeSecondPlayer";
+            self.currentPlayer = fakeSecondPlayer;
+        }
+
+        [self joinPlayer:self.currentPlayer];
         
         
         // SPELLS
