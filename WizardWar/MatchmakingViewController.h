@@ -20,5 +20,6 @@
 @property (nonatomic, strong) NSMutableArray* invites;
 @property (nonatomic, strong) NSString* nickname;
 @property (nonatomic, strong) NSString* matchID;
+@property (nonatomic) BOOL isInMatch;
 
 @end
