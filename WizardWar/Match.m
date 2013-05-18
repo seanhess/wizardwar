@@ -121,6 +121,9 @@
     [self removeSpell:spell];
     
     // this allows it to subtract health
+    if([spell isMemberOfClass: [SpellVine class]]){
+        [[SimpleAudioEngine sharedEngine] playEffect:@"scream.wav"];//play a sound
+    }
     [spell interactPlayer:player];
     [player.delegate didUpdateForRender];
     [self checkWin];

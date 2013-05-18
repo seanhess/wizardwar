@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		309D45A817481AEE008CEF6C /* scream.wav in Resources */ = {isa = PBXBuildFile; fileRef = 309D45A717481AEE008CEF6C /* scream.wav */; };
 		30CE78601747F72900848FE0 /* earthwall.wav in Resources */ = {isa = PBXBuildFile; fileRef = 30CE785D1747F72900848FE0 /* earthwall.wav */; };
 		30CE78611747F72900848FE0 /* fireball.wav in Resources */ = {isa = PBXBuildFile; fileRef = 30CE785E1747F72900848FE0 /* fireball.wav */; };
 		30CE78621747F72900848FE0 /* theme.wav in Resources */ = {isa = PBXBuildFile; fileRef = 30CE785F1747F72900848FE0 /* theme.wav */; };
@@ -249,6 +250,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		309D45A717481AEE008CEF6C /* scream.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = scream.wav; path = sounds/scream.wav; sourceTree = "<group>"; };
 		30CE785D1747F72900848FE0 /* earthwall.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = earthwall.wav; path = sounds/earthwall.wav; sourceTree = "<group>"; };
 		30CE785E1747F72900848FE0 /* fireball.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = fireball.wav; path = sounds/fireball.wav; sourceTree = "<group>"; };
 		30CE785F1747F72900848FE0 /* theme.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = theme.wav; path = sounds/theme.wav; sourceTree = "<group>"; };
@@ -692,6 +694,7 @@
 			isa = PBXGroup;
 			children = (
 				30CE785D1747F72900848FE0 /* earthwall.wav */,
+				309D45A717481AEE008CEF6C /* scream.wav */,
 				30CE785E1747F72900848FE0 /* fireball.wav */,
 				30CE785F1747F72900848FE0 /* theme.wav */,
 			);
@@ -1427,6 +1430,7 @@
 				78F1954A17480F3A00BB8587 /* ogre-animation.plist in Resources */,
 				78F1954C1748119300BB8587 /* icewall-animation.plist in Resources */,
 				78F1954E1748122C00BB8587 /* windblast-animation.plist in Resources */,
+				309D45A817481AEE008CEF6C /* scream.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
