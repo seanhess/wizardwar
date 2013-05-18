@@ -59,7 +59,7 @@
         self.skin = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"%@-1", self.sheetName]];
         if (spell.direction < 0) self.skin.flipX = YES;
         [self.skin runAction:self.spellAction];
-        [self addChild:self.skin];
+        [self.sheet addChild:self.skin];
         
         spell.delegate = self;
         
@@ -72,12 +72,15 @@
 }
 
 -(void)render {
+    CGFloat y = self.units.zeroY;
     if ([self.spell isType:[SpellEarthwall class]] || [self.spell isType:[SpellIcewall class]]) {
         // bump walls down
-self.position = ccp([self.units toX:self.spell.position], self.units.zeroY-25);
-    } else {
-        self.position = ccp([self.units toX:self.spell.position], self.units.zeroY);
+        y -= 25;
+        NSString * frameName = [NSString stringWithFormat:@"%@-%i", self.sheetName, self.spell.strength];
+        [self.skin setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
     }
+    
+    self.position = ccp([self.units toX:self.spell.position], y);
 }
 
 -(NSString*)sheetName {

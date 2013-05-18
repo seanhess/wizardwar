@@ -22,6 +22,7 @@
 @property (nonatomic) float size;  // in units
 @property (nonatomic) float position;  // in units
 @property (nonatomic) NSInteger direction;  // 1, or -1
+@property (nonatomic) NSInteger strength;
 @property (nonatomic) NSInteger damage;
 @property (nonatomic) NSTimeInterval created;
 @property (nonatomic) NSString * type; // tells me which class to instantiate. Use the string representation

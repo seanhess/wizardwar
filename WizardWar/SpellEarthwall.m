@@ -16,6 +16,7 @@
     if ((self=[super init])) {
         self.speed = 0;
         self.size = 20;
+        self.strength = 3;
     }
     return self;
 }
@@ -29,7 +30,12 @@
     
     else if ([spell isType:[SpellFireball class]]) {
         // TODO wear down!
-        return [SpellInteraction cancel];
+        self.strength -= 1;
+        
+        if (self.strength == 0)
+            return [SpellInteraction cancel];
+        else
+            return [SpellInteraction modify];
     }
     
     else if ([spell isType:[SpellMonster class]]) {

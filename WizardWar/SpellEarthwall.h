@@ -9,5 +9,4 @@
 #import "Spell.h"
 
 @interface SpellEarthwall : Spell
-
 @end
