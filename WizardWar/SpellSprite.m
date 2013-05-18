@@ -35,11 +35,8 @@
         self.sheet = [CCSpriteBatchNode batchNodeWithFile:[NSString stringWithFormat:@"%@.png", self.sheetName]];
         [self addChild:self.sheet];
         
-        CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:@"spell"];
-        CCAction * action = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:animation]];
-        
         self.skin = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"%@-1", self.sheetName]];
-        [self.skin runAction:action];
+        [self.skin runAction:self.spellAction];
         [self addChild:self.skin];
         
         spell.delegate = self;
@@ -65,7 +62,9 @@
 }
 
 -(CCAction*)spellAction {
-    CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:@"spell"];
+    CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:self.sheetName];
+    animation.restoreOriginalFrame = NO;
+    
     CCActionInterval * actionInterval = [CCAnimate actionWithAnimation:animation];
     CCAction * action = actionInterval;
     
