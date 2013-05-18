@@ -52,9 +52,9 @@
         self.currentPlayer = player;
         
         // FAKE SECOND PLAYER
-        Player * fakeSecondPlayer = [Player new];
-        fakeSecondPlayer.name = @"ZFakeSecondPlayer";
-        [self joinPlayer:fakeSecondPlayer];
+//        Player * fakeSecondPlayer = [Player new];
+//        fakeSecondPlayer.name = @"ZFakeSecondPlayer";
+//        [self joinPlayer:fakeSecondPlayer];
         
         [self joinPlayer:self.currentPlayer];
         
