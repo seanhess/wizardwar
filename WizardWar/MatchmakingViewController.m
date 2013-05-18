@@ -15,6 +15,7 @@
 #import "InviteCell.h"
 #import "User.h"
 #import "Invite.h"
+#import "NSArray+Functional.h"
 
 @interface MatchmakingViewController () <MatchLayerDelegate>
 @property (nonatomic, strong) CCDirectorIOS * director;
@@ -148,11 +149,9 @@
     [self.firebaseLobby observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
         User * removedUser = [User new];
         [removedUser setValuesForKeysWithDictionary:snapshot.value];
-        for (User * user in self.users) {
-            if ([user.name isEqualToString:removedUser.name]) {
-                [self.users removeObjectIdenticalTo:user];
-            }
-        }
+        self.users = [[self.users filter:^BOOL(User * user) {
+            return ![user.name isEqualToString:removedUser.name];
+        }] mutableCopy];
         [self.matchesTableViewController.tableView reloadData];
     }];
     
