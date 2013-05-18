@@ -17,6 +17,7 @@
 #import "SpellFireball.h"
 #import "SpellEarthwall.h"
 #import "NSArray+Functional.h"
+#import "Elements.h"
 
 @interface MatchLayer () <CCTouchOneByOneDelegate, MatchDelegate, PentagramDelegate>
 @property (nonatomic, strong) Match * match;
@@ -209,61 +210,40 @@
 -(void)didCastSpell:(NSArray *)elements
 {
 //    NSLog(@"cast spell %@", elements);
-    BOOL hasHeart = NO;
-    BOOL hasEarth = NO;
-    BOOL hasWind = NO;
-    BOOL hasFire = NO;
-    BOOL hasWater = NO;
-    for (NSString *element in elements) {
-        if ([element isEqualToString:@"heart"]) {
-            hasHeart = YES;
-        }
-        if ([element isEqualToString:@"earth"]) {
-            hasEarth = YES;
-        }
-        if ([element isEqualToString:@"wind"]) {
-            hasWind = YES;
-        }
-        if ([element isEqualToString:@"fire"]) {
-            hasFire = YES;
-        }
-        if ([element isEqualToString:@"water"]) {
-            hasWater = YES;
-        }
-    }
+    NSString * comboId = [Elements comboId:elements];
     
     Spell * spell = nil;
     
-    if (hasFire && hasHeart && !hasWater && !hasWind && !hasEarth) {
+    if ([comboId isEqualToString:@"FAF"]) {
         spell = [SpellFireball new];
         [[SimpleAudioEngine sharedEngine] playEffect:@"fireball.wav"];
     }
-    if (hasEarth && hasWater && !hasWind && !hasFire && !hasHeart) {
+    if ([comboId isEqualToString:@"EWE"]) {
         spell = [SpellEarthwall new];
         [[SimpleAudioEngine sharedEngine] playEffect:@"earthwall.wav"];
     }
     
-    if (hasWind && hasHeart && !hasFire && !hasEarth && !hasWater) {
+    if ([comboId isEqualToString:@"AHW"]) {
         NSLog(@"WINDBLAST!");
     }
     
-    if (hasEarth && hasFire && !hasHeart && !hasWind && !hasWater) {
+    if ([comboId isEqualToString:@"EFHW"]) {
         NSLog(@"SUMMON!");
     }
     
-    if (hasWater && hasWind && !hasHeart && !hasFire && !hasEarth) {
+    if ([comboId isEqualToString:@"WAE"]) {
         NSLog(@"ICE WALL!");
     }
     
-    if (hasWater && hasWind && !hasHeart && !hasFire && !hasEarth) {
+    if ([comboId isEqualToString:@"WAH"]) {
         NSLog(@"BUBBLE!");
     }
     
-    if (hasEarth && hasWater && hasHeart && !hasFire && !hasWind) {
+    if ([comboId isEqualToString:@"WAEH"]) {
         NSLog(@"VINE!");
     }
     
-    if (hasHeart && hasEarth && hasWind && hasFire && hasWater) {
+    if ([comboId isEqualToString:@"EFAWH"]) {
         NSLog(@"CAPTIAN PLANET");
     }
     
