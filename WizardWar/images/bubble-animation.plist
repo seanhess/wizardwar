@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>animations</key>
+	<dict>
+		<key>bubble</key>
+		<dict>
+			<key>delay</key>
+			<real>0.5</real>
+			<key>frames</key>
+			<array>
+				<string>bubble-1</string>
+				<string>bubble-2</string>
+			</array>
+		</dict>
+	</dict>
+</dict>
+</plist>

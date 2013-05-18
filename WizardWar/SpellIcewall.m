@@ -10,4 +10,12 @@
 
 @implementation SpellIcewall
 
+-(id)init {
+    if ((self=[super init])) {
+        self.speed = 0;
+        self.size = 25;
+    }
+    return self;
+}
+
 @end

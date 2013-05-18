@@ -14,10 +14,16 @@
 #import "Spell.h"
 #import "SpellSprite.h"
 #import "NSArray+Functional.h"
-#import "SpellFireball.h"
-#import "SpellEarthwall.h"
 #import "NSArray+Functional.h"
 #import "Elements.h"
+
+#import "SpellFireball.h"
+#import "SpellEarthwall.h"
+#import "SpellBubble.h"
+#import "SpellMonster.h"
+#import "SpellVine.h"
+#import "SpellWindblast.h"
+#import "SpellIcewall.h"
 
 @interface MatchLayer () <CCTouchOneByOneDelegate, MatchDelegate, PentagramDelegate>
 @property (nonatomic, strong) Match * match;
@@ -209,8 +215,8 @@
 
 -(void)didCastSpell:(NSArray *)elements
 {
-//    NSLog(@"cast spell %@", elements);
     NSString * comboId = [Elements comboId:elements];
+    NSLog(@"cast spell %@", comboId);
     
     Spell * spell = nil;
     
@@ -218,32 +224,34 @@
         spell = [SpellFireball new];
         [[SimpleAudioEngine sharedEngine] playEffect:@"fireball.wav"];
     }
-    if ([comboId isEqualToString:@"EWE"]) {
+    
+    else if ([comboId isEqualToString:@"EWE"]) {
         spell = [SpellEarthwall new];
         [[SimpleAudioEngine sharedEngine] playEffect:@"earthwall.wav"];
     }
     
-    if ([comboId isEqualToString:@"AHW"]) {
-        NSLog(@"WINDBLAST!");
+    else if ([comboId isEqualToString:@"AHW"]) {
+        spell = [SpellWindblast new];
     }
     
-    if ([comboId isEqualToString:@"EFHW"]) {
-        NSLog(@"SUMMON!");
+    else if ([comboId isEqualToString:@"EFHW"]) {
+        spell = [SpellMonster new];
     }
     
-    if ([comboId isEqualToString:@"WAE"]) {
-        NSLog(@"ICE WALL!");
+    else if ([comboId isEqualToString:@"WAE"]) {
+        spell = [SpellIcewall new];
     }
     
-    if ([comboId isEqualToString:@"WAH"]) {
-        NSLog(@"BUBBLE!");
+    else if ([comboId isEqualToString:@"WAH"]) {
+        spell = [SpellBubble new];
     }
     
-    if ([comboId isEqualToString:@"WAEH"]) {
-        NSLog(@"VINE!");
+    else if ([comboId isEqualToString:@"WAEH"]) {
+        spell = [SpellVine new];
     }
     
-    if ([comboId isEqualToString:@"EFAWH"]) {
+    else if ([comboId isEqualToString:@"EFAWH"]) {
+        spell = nil;
         NSLog(@"CAPTIAN PLANET");
     }
     

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>vine-9</key>
+			<dict>
+				<key>frame</key>
+				<string>{ { 0, 0 }, { 568, 208 } }</string>
+				<key>offset</key>
+				<string>{ 0, 0 }</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{ { 0, 0 }, { 568, 208 } }</string>
+				<key>sourceSize</key>
+				<string>{ 568, 207 }</string>
+			</dict> 
+			<key>vine-3</key>
+			<dict>
+				<key>frame</key>
+				<string>{ { 568, 0 }, { 568, 208 } }</string>
+				<key>offset</key>
+				<string>{ 0, 0 }</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{ { 0, 0 }, { 568, 208 } }</string>
+				<key>sourceSize</key>
+				<string>{ 568, 207 }</string>
+			</dict> 
+			<key>vine-5</key>
+			<dict>
+				<key>frame</key>
+				<string>{ { 1136, 0 }, { 568, 208 } }</string>
+				<key>offset</key>
+				<string>{ 0, 0 }</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{ { 0, 0 }, { 568, 208 } }</string>
+				<key>sourceSize</key>
+				<string>{ 568, 207 }</string>
+			</dict> 
+			<key>vine-10</key>
+			<dict>
+				<key>frame</key>
+				<string>{ { 0, 208 }, { 568, 208 } }</string>
+				<key>offset</key>
+				<string>{ 0, 0 }</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{ { 0, 0 }, { 568, 208 } }</string>
+				<key>sourceSize</key>
+				<string>{ 568, 207 }</string>
+			</dict> 
+			<key>vine-8</key>
+			<dict>
+				<key>frame</key>
+				<string>{ { 568, 208 }, { 568, 208 } }</string>
+				<key>offset</key>
+				<string>{ 0, 0 }</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{ { 0, 0 }, { 568, 208 } }</string>
+				<key>sourceSize</key>
+				<string>{ 568, 207 }</string>
+			</dict> 
+			<key>vine-2</key>
+			<dict>
+				<key>frame</key>
+				<string>{ { 1136, 208 }, { 568, 208 } }</string>
+				<key>offset</key>
+				<string>{ 0, 0 }</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{ { 0, 0 }, { 568, 208 } }</string>
+				<key>sourceSize</key>
+				<string>{ 568, 207 }</string>
+			</dict> 
+			<key>vine-7</key>
+			<dict>
+				<key>frame</key>
+				<string>{ { 0, 416 }, { 568, 208 } }</string>
+				<key>offset</key>
+				<string>{ 0, 0 }</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{ { 0, 0 }, { 568, 208 } }</string>
+				<key>sourceSize</key>
+				<string>{ 568, 207 }</string>
+			</dict> 
+			<key>vine-1</key>
+			<dict>
+				<key>frame</key>
+				<string>{ { 0, 624 }, { 568, 208 } }</string>
+				<key>offset</key>
+				<string>{ 0, 0 }</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{ { 0, 0 }, { 568, 208 } }</string>
+				<key>sourceSize</key>
+				<string>{ 568, 207 }</string>
+			</dict> 
+			<key>vine-4</key>
+			<dict>
+				<key>frame</key>
+				<string>{ { 0, 832 }, { 568, 208 } }</string>
+				<key>offset</key>
+				<string>{ 0, 0 }</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{ { 0, 0 }, { 568, 208 } }</string>
+				<key>sourceSize</key>
+				<string>{ 568, 207 }</string>
+			</dict> 
+			<key>vine-6</key>
+			<dict>
+				<key>frame</key>
+				<string>{ { 0, 1040 }, { 568, 208 } }</string>
+				<key>offset</key>
+				<string>{ 0, 0 }</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{ { 0, 0 }, { 568, 208 } }</string>
+				<key>sourceSize</key>
+				<string>{ 568, 207 }</string>
+			</dict> 
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>realTextureFileName</key>
+			<string>vine.png</string>
+			<key>size</key>
+			<string>{ 2048, 2048 }</string>
+			<key>textureFileName</key>
+			<string>vine.png</string>
+		</dict>
+	</dict>
+</plist>

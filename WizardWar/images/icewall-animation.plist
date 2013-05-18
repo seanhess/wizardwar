@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>animations</key>
+	<dict>
+		<key>icewall</key>
+		<dict>
+			<key>delay</key>
+			<real>0.25</real>
+			<key>frames</key>
+			<array>
+				<string>icewall-1</string>
+				<string>icewall-2</string>
+				<string>icewall-3</string>
+				<string>icewall-4</string>
+			</array>
+		</dict>
+	</dict>
+</dict>
+</plist>

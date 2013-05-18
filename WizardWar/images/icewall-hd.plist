@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>icewall-3</key>
+		<dict>
+			<key>frame</key>
+			<string>{ { 0, 0 }, { 300, 300 } }</string>
+			<key>offset</key>
+			<string>{ 0, 0 }</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{ { 0, 0 }, { 300, 300 } }</string>
+			<key>sourceSize</key>
+			<string>{ 300, 300 }</string>
+		</dict>
+		<key>icewall-1</key>
+		<dict>
+			<key>frame</key>
+			<string>{ { 300, 0 }, { 300, 300 } }</string>
+			<key>offset</key>
+			<string>{ 0, 0 }</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{ { 0, 0 }, { 300, 300 } }</string>
+			<key>sourceSize</key>
+			<string>{ 300, 300 }</string>
+		</dict>
+		<key>icewall-4</key>
+		<dict>
+			<key>frame</key>
+			<string>{ { 600, 0 }, { 300, 300 } }</string>
+			<key>offset</key>
+			<string>{ 0, 0 }</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{ { 0, 0 }, { 300, 300 } }</string>
+			<key>sourceSize</key>
+			<string>{ 300, 300 }</string>
+		</dict>
+		<key>icewall-2</key>
+		<dict>
+			<key>frame</key>
+			<string>{ { 0, 300 }, { 300, 300 } }</string>
+			<key>offset</key>
+			<string>{ 0, 0 }</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{ { 0, 0 }, { 300, 300 } }</string>
+			<key>sourceSize</key>
+			<string>{ 300, 300 }</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>realTextureFileName</key>
+		<string>icewall-hd.png</string>
+		<key>size</key>
+		<string>{ 1024, 1024 }</string>
+		<key>textureFileName</key>
+		<string>icewall-hd.png</string>
+	</dict>
+</dict>
+</plist>

@@ -106,7 +106,7 @@
         for(PentEmblem *emblem in self.emblems)
         {
 //            if(CGRectContainsPoint(emblem.frame, point) && ([self.moves indexOfObject:emblem.type] == NSNotFound))
-            if(CGRectContainsPoint(emblem.frame, point))
+            if(CGRectContainsPoint(emblem.frame, point) && (![[self.moves lastObject] isEqualToString:emblem.type]))
             {
                 
 //                NSLog(@"%f, %f", emblem.frame.origin.x, emblem.frame.origin.y);

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>animations</key>
+	<dict>
+		<key>ogre</key>
+		<dict>
+			<key>delay</key>
+			<real>0.166</real>
+			<key>frames</key>
+			<array>
+				<string>ogre-1</string>
+				<string>ogre-2</string>
+				<string>ogre-3</string>
+				<string>ogre-2</string>
+				<string>ogre-1</string>
+				<string>ogre-2</string>
+				<string>ogre-3</string>
+				<string>ogre-2</string>
+				<string>ogre-3</string>
+				<string>ogre-2</string>
+				<string>ogre-5</string>
+				<string>ogre-4</string>
+				<string>ogre-5</string>
+				<string>ogre-4</string>
+				<string>ogre-5</string>
+				<string>ogre-4</string>
+				<string>ogre-5</string>
+				<string>ogre-4</string>
+				<string>ogre-5</string>
+			</array>
+		</dict>
+	</dict>
+</dict>
+</plist>

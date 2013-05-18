@@ -10,6 +10,11 @@
 #import "cocos2d.h"
 #import "SpellFireball.h"
 #import "SpellEarthwall.h"
+#import "SpellVine.h"
+#import "SpellMonster.h"
+#import "SpellBubble.h"
+#import "SpellIcewall.h"
+#import "SpellWindblast.h"
 
 @interface SpellSprite ()
 @property (nonatomic, strong) Units * units;
@@ -31,6 +36,22 @@
         
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"earthwall.plist"];
         [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"earthwall-animation.plist"];
+        
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"vine.plist"];
+        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"vine-animation.plist"];
+        
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"ogre.plist"];
+        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"ogre-animation.plist"];
+        
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"bubble.plist"];
+        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"bubble-animation.plist"];
+        
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"icewall.plist"];
+        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"icewall-animation.plist"];
+        
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"windblast.plist"];
+        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"windblast-animation.plist"];
+        
         
         self.sheet = [CCSpriteBatchNode batchNodeWithFile:[NSString stringWithFormat:@"%@.png", self.sheetName]];
         [self addChild:self.sheet];
@@ -59,6 +80,26 @@
         return @"earthwall";
     }
     
+    else if ([self.spell isType:[SpellVine class]]) {
+        return @"vine";
+    }
+    
+    else if ([self.spell isType:[SpellMonster class]]) {
+        return @"ogre";
+    }
+    
+    else if ([self.spell isType:[SpellBubble class]]) {
+        return @"bubble";
+    }
+    
+    else if ([self.spell isType:[SpellIcewall class]]) {
+        return @"icewall";
+    }
+    
+    else if ([self.spell isType:[SpellWindblast class]]) {
+        return @"windblast";
+    }
+    
     return @"fireball";
 }
 
@@ -69,7 +110,7 @@
     CCActionInterval * actionInterval = [CCAnimate actionWithAnimation:animation];
     CCAction * action = actionInterval;
     
-    if ([self.spell isType:[SpellFireball class]]) {
+    if ([self.spell isType:[SpellFireball class]] || [self.spell isType:[SpellBubble class]] || [self.spell isType:[SpellWindblast class]]) {
         action = [CCRepeatForever actionWithAction:actionInterval];
     }
     
