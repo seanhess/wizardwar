@@ -90,19 +90,19 @@
             if(CGRectContainsPoint(emblem.frame, point) && ([self.moves indexOfObject:emblem.type] == NSNotFound))
             {
                 
-                NSLog(@"%f, %f", emblem.frame.origin.x, emblem.frame.origin.y);
+//                NSLog(@"%f, %f", emblem.frame.origin.x, emblem.frame.origin.y);
                 
                 [self.drawingLayer.points replaceObjectAtIndex: ([self.drawingLayer.points count] - 1) withObject:[NSValue valueWithCGPoint:CGPointMake((emblem.frame.origin.x + (emblem.frame.size.width / 2)), (emblem.frame.origin.y + (emblem.frame.size.height / 2)))]];
                 
                 [self.drawingLayer.points addObject:[NSValue valueWithCGPoint:point]];
                 
-                NSLog(@"%@", self.drawingLayer.points);
+//                NSLog(@"%@", self.drawingLayer.points);
                 self.currentEmblem = emblem;
                 emblem.alpha = 1;
                 
                 [self.moves addObject:emblem.type];
                 [self.delegate didSelectElement:self.moves];
-                NSLog(@"%@", self.moves);
+//                NSLog(@"%@", self.moves);
             }
         }
     }
@@ -146,7 +146,7 @@
         emblem.alpha = .4;
     }
     
-    NSLog(@"%@", self.moves);
+//    NSLog(@"%@", self.moves);
     [self.delegate didCastSpell:self.moves];
     
     

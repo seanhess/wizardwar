@@ -151,6 +151,7 @@
 }
 
 -(void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
+    NSLog(@"TOUCH");
     /*if (!self.match.started) {
         
         if (self.match.loser) {
@@ -184,12 +185,12 @@
 
 -(void)didSelectElement:(NSArray *)elements
 {
-    NSLog(@"selected element %@", elements);
+//    NSLog(@"selected element %@", elements);
 }
 
 -(void)didCastSpell:(NSArray *)elements
 {
-    NSLog(@"cast spell %@", elements);
+//    NSLog(@"cast spell %@", elements);
     BOOL hasHeart = NO;
     BOOL hasEarth = NO;
     BOOL hasWind = NO;

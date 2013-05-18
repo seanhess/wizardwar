@@ -25,6 +25,7 @@
 @property (nonatomic) NSInteger damage;
 @property (nonatomic) NSTimeInterval created;
 @property (nonatomic) NSString * type; // tells me which class to instantiate. Use the string representation
+@property (nonatomic) NSString * creator;
 @property (nonatomic, weak) id<RenderDelegate>delegate;
 -(void)update:(NSTimeInterval)dt;
 -(NSDictionary*)toObject;

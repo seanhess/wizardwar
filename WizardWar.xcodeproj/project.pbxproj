@@ -7,9 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		307D423D1747E56900DC8397 /* fireball.wav in Resources */ = {isa = PBXBuildFile; fileRef = 307D423C1747E56900DC8397 /* fireball.wav */; };
-		307D42421747F01B00DC8397 /* theme.wav in Resources */ = {isa = PBXBuildFile; fileRef = 307D42411747F01B00DC8397 /* theme.wav */; };
-		30CE785B1747F2A800848FE0 /* earthwall.wav in Resources */ = {isa = PBXBuildFile; fileRef = 30CE785A1747F2A800848FE0 /* earthwall.wav */; };
+		6F03672F1747EB3700971B61 /* Icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F03672E1747EB3700971B61 /* Icon-57.png */; };
+		6F0367311747EB3C00971B61 /* Icon-57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F0367301747EB3C00971B61 /* Icon-57@2x.png */; };
 		6F0B2FA9174750FF00CFC092 /* PentagramViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0B2FA6174750FF00CFC092 /* PentagramViewController.m */; };
 		6F0B2FAA174750FF00CFC092 /* PentEmblem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0B2FA8174750FF00CFC092 /* PentEmblem.m */; };
 		6F0B2FAF1747511800CFC092 /* DotsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0B2FAC1747511800CFC092 /* DotsView.m */; };
@@ -296,9 +295,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		307D423C1747E56900DC8397 /* fireball.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = fireball.wav; path = sounds/fireball.wav; sourceTree = "<group>"; };
-		307D42411747F01B00DC8397 /* theme.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = theme.wav; path = sounds/theme.wav; sourceTree = "<group>"; };
-		30CE785A1747F2A800848FE0 /* earthwall.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = earthwall.wav; path = sounds/earthwall.wav; sourceTree = "<group>"; };
+		6F03672E1747EB3700971B61 /* Icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-57.png"; sourceTree = "<group>"; };
+		6F0367301747EB3C00971B61 /* Icon-57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-57@2x.png"; sourceTree = "<group>"; };
 		6F0B2FA5174750FF00CFC092 /* PentagramViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PentagramViewController.h; sourceTree = "<group>"; };
 		6F0B2FA6174750FF00CFC092 /* PentagramViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PentagramViewController.m; sourceTree = "<group>"; };
 		6F0B2FA7174750FF00CFC092 /* PentEmblem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PentEmblem.h; sourceTree = "<group>"; };
@@ -776,16 +774,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		307D42391747E17100DC8397 /* sounds */ = {
-			isa = PBXGroup;
-			children = (
-				30CE785A1747F2A800848FE0 /* earthwall.wav */,
-				307D42411747F01B00DC8397 /* theme.wav */,
-				307D423C1747E56900DC8397 /* fireball.wav */,
-			);
-			name = sounds;
-			sourceTree = "<group>";
-		};
 		78F193E717471A0E00BB8587 /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -920,6 +908,8 @@
 		78F6B1DA1746AD8900AA070D = {
 			isa = PBXGroup;
 			children = (
+				6F0367301747EB3C00971B61 /* Icon-57@2x.png */,
+				6F03672E1747EB3700971B61 /* Icon-57.png */,
 				78F193E5174715B500BB8587 /* Default@2x.png */,
 				78F193E3174715B100BB8587 /* Default.png */,
 				78F193E1174715A700BB8587 /* Default-568h@2x.png */,
@@ -984,7 +974,6 @@
 				6FD1C7971746D90300E944F4 /* InviteCell.m */,
 				78F6B3C21746B29C00AA070D /* WWDirector.h */,
 				78F6B3C31746B29C00AA070D /* WWDirector.m */,
-				307D42391747E17100DC8397 /* sounds */,
 				78F193E717471A0E00BB8587 /* images */,
 				78F6B3C11746B28B00AA070D /* Helpers */,
 				78F6B3BD1746B27B00AA070D /* Match */,
@@ -1606,9 +1595,8 @@
 				78F19500174758B900BB8587 /* earthwall-hd.png in Resources */,
 				78F19501174758B900BB8587 /* earthwall.plist in Resources */,
 				78F19502174758B900BB8587 /* earthwall.png in Resources */,
-				307D423D1747E56900DC8397 /* fireball.wav in Resources */,
-				307D42421747F01B00DC8397 /* theme.wav in Resources */,
-				30CE785B1747F2A800848FE0 /* earthwall.wav in Resources */,
+				6F03672F1747EB3700971B61 /* Icon-57.png in Resources */,
+				6F0367311747EB3C00971B61 /* Icon-57@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
