@@ -203,12 +203,33 @@
     
     Spell * spell = nil;
     
-    if (hasFire && hasHeart) {
+    if (hasFire && hasHeart && !hasWater && !hasWind && !hasEarth) {
         spell = [SpellFireball new];
     }
-    if (hasEarth && hasWater) {
+    if (hasEarth && hasWater && !hasWind && !hasFire && !hasHeart) {
         spell = [SpellEarthwall new];
     }
+    
+    if (hasWind && hasHeart && !hasFire && !hasEarth && !hasWater) {
+        NSLog(@"WINDBLAST!");
+    }
+    
+    if (hasEarth && hasFire && !hasHeart && !hasWind && !hasWater) {
+        NSLog(@"SUMMON!");
+    }
+    
+    if (hasWater && hasWind && !hasHeart && !hasFire && !hasEarth) {
+        NSLog(@"ICE WALL!");
+    }
+    
+    if (hasWater && hasWind && !hasHeart && !hasFire && !hasEarth) {
+        NSLog(@"BUBBLE!");
+    }
+    
+    if (hasEarth && hasWater && hasHeart && !hasFire && !hasWind) {
+        NSLog(@"VINE!");
+    }
+    
     if (hasHeart && hasEarth && hasWind && hasFire && hasWater) {
         NSLog(@"CAPTIAN PLANET");
     }
