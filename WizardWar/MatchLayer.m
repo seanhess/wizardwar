@@ -34,7 +34,7 @@
 @property (nonatomic, strong) NSString * matchId;
 @property (nonatomic, strong) NSString * playerName;
 
-@property (nonatomic, strong) CCLabelTTF * label;
+@property (nonatomic, strong) CCSprite * message;
 @property (nonatomic, strong) CCSprite * background;
 
 @property (nonatomic, strong) UIButton * backButton;
@@ -96,9 +96,18 @@
         CGFloat wizardOffset = 75;
         self.units = [[Units alloc] initWithZeroY:zeroY min:wizardOffset max:self.contentSize.width-wizardOffset];
         
-        self.label = [CCLabelTTF labelWithString:@"Ready" fontName:@"Marker Felt" fontSize:36];
-        self.label.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
-        [self addChild:self.label];
+//        self.label = [CCLabelTTF labelWithString:@"Ready" fontName:@"Marker Felt" fontSize:36];
+//        self.label.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
+//        [self addChild:self.label];
+        
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"messages.plist"];
+        
+        
+        
+        
+        self.message = [[CCSprite alloc] initWithSpriteFrameName:@"msg-ready.png"];
+        self.message.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
+        [self addChild:self.message];
         
         [self scheduleUpdate];
         
@@ -143,7 +152,7 @@
 }
 
 -(void)matchStarted {
-    self.label.visible = NO;
+    self.message.visible = NO;
     [self.match.players forEach:^(Player*player) {
         CCSprite * wizard = [[WizardSprite alloc] initWithPlayer:player units:self.units];
         [self addChild:wizard];
@@ -151,8 +160,14 @@
 }
 
 -(void)matchEnded {
-    self.label.visible = YES;
-    self.label.string = @"Game Over";
+    
+    if (self.match.currentPlayer.state == PlayerStateDead){
+        [self.message setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"msg-you-lose.png"]];
+        
+    } else {
+        [self.message setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"msg-you-won.png"]];
+    }
+    self.message.visible = YES;
 }
 
 -(void)drawWizard:(Player*)player {

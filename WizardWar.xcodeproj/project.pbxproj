@@ -13,6 +13,10 @@
 		309D45AE17482165008CEF6C /* icewall.wav in Resources */ = {isa = PBXBuildFile; fileRef = 309D45AD17482165008CEF6C /* icewall.wav */; };
 		309D45B01748220C008CEF6C /* monster.wav in Resources */ = {isa = PBXBuildFile; fileRef = 309D45AF1748220C008CEF6C /* monster.wav */; };
 		309D45B217482257008CEF6C /* windblast.wav in Resources */ = {isa = PBXBuildFile; fileRef = 309D45B117482257008CEF6C /* windblast.wav */; };
+		309D45B717483323008CEF6C /* messages-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 309D45B317483322008CEF6C /* messages-hd.plist */; };
+		309D45B817483323008CEF6C /* messages-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 309D45B417483323008CEF6C /* messages-hd.png */; };
+		309D45B917483323008CEF6C /* messages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 309D45B517483323008CEF6C /* messages.plist */; };
+		309D45BA17483323008CEF6C /* messages.png in Resources */ = {isa = PBXBuildFile; fileRef = 309D45B617483323008CEF6C /* messages.png */; };
 		30CE78601747F72900848FE0 /* earthwall.wav in Resources */ = {isa = PBXBuildFile; fileRef = 30CE785D1747F72900848FE0 /* earthwall.wav */; };
 		30CE78611747F72900848FE0 /* fireball.wav in Resources */ = {isa = PBXBuildFile; fileRef = 30CE785E1747F72900848FE0 /* fireball.wav */; };
 		30CE78621747F72900848FE0 /* theme.wav in Resources */ = {isa = PBXBuildFile; fileRef = 30CE785F1747F72900848FE0 /* theme.wav */; };
@@ -261,6 +265,10 @@
 		309D45AD17482165008CEF6C /* icewall.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = icewall.wav; path = sounds/icewall.wav; sourceTree = "<group>"; };
 		309D45AF1748220C008CEF6C /* monster.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = monster.wav; path = sounds/monster.wav; sourceTree = "<group>"; };
 		309D45B117482257008CEF6C /* windblast.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = windblast.wav; path = sounds/windblast.wav; sourceTree = "<group>"; };
+		309D45B317483322008CEF6C /* messages-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "messages-hd.plist"; sourceTree = "<group>"; };
+		309D45B417483323008CEF6C /* messages-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "messages-hd.png"; sourceTree = "<group>"; };
+		309D45B517483323008CEF6C /* messages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = messages.plist; sourceTree = "<group>"; };
+		309D45B617483323008CEF6C /* messages.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = messages.png; sourceTree = "<group>"; };
 		30CE785D1747F72900848FE0 /* earthwall.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = earthwall.wav; path = sounds/earthwall.wav; sourceTree = "<group>"; };
 		30CE785E1747F72900848FE0 /* fireball.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = fireball.wav; path = sounds/fireball.wav; sourceTree = "<group>"; };
 		30CE785F1747F72900848FE0 /* theme.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = theme.wav; path = sounds/theme.wav; sourceTree = "<group>"; };
@@ -719,6 +727,10 @@
 		78F193E717471A0E00BB8587 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				309D45B317483322008CEF6C /* messages-hd.plist */,
+				309D45B417483323008CEF6C /* messages-hd.png */,
+				309D45B517483323008CEF6C /* messages.plist */,
+				309D45B617483323008CEF6C /* messages.png */,
 				78F195031747FBFA00BB8587 /* exit.png */,
 				78F195041747FBFA00BB8587 /* exit@2x.png */,
 				78F1953717480A4C00BB8587 /* vine-animation.plist */,
@@ -1451,6 +1463,10 @@
 				309D45AE17482165008CEF6C /* icewall.wav in Resources */,
 				309D45B01748220C008CEF6C /* monster.wav in Resources */,
 				309D45B217482257008CEF6C /* windblast.wav in Resources */,
+				309D45B717483323008CEF6C /* messages-hd.plist in Resources */,
+				309D45B817483323008CEF6C /* messages-hd.png in Resources */,
+				309D45B917483323008CEF6C /* messages.plist in Resources */,
+				309D45BA17483323008CEF6C /* messages.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
