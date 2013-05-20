@@ -29,6 +29,6 @@
 @property (nonatomic, strong) Player * loser;
 -(void)update:(NSTimeInterval)dt;
 -(void)addSpell:(Spell*)spell;
--(id)initWithId:(NSString*)id currentPlayer:(Player*)player;
+-(id)initWithId:(NSString*)id currentPlayer:(Player*)player withAI:(Player*)ai;
 -(void)castSpell:(Spell *)spell;
 @end

@@ -10,16 +10,12 @@
 #import "WWDirector.h"
 #import "CCScene+Layers.h"
 #import "MatchLayer.h"
-#import "MatchmakingTableViewController.h"
-#import "UserCell.h"
-#import "InviteCell.h"
 #import "User.h"
 #import "Invite.h"
 #import "NSArray+Functional.h"
 
 @interface MatchmakingViewController () <MatchLayerDelegate>
 @property (nonatomic, strong) CCDirectorIOS * director;
-
 @end
 
 @implementation MatchmakingViewController
@@ -47,7 +43,7 @@
     self.view.backgroundColor = [UIColor redColor];
     
     // init and style the lobby/invites table view
-    self.matchesTableViewController = [[MatchmakingTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    self.matchesTableViewController = [[UITableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     self.matchesTableViewController.tableView.backgroundView = [[UIView alloc] init];
     self.matchesTableViewController.tableView.backgroundView.backgroundColor = [UIColor colorWithWhite:0.149 alpha:1.000];
     [self.matchesTableViewController.tableView setSeparatorColor:[UIColor clearColor]];
@@ -75,12 +71,11 @@
         [self addToLobbyList];
     }
     
-    
     // secret button to play agains nobody
-    UIButton *secretButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    secretButton.frame = CGRectMake(self.view.bounds.size.height-22, self.view.bounds.size.width-22, 22, 22);
-    [secretButton addTarget:self action:@selector(didTapSecretButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:secretButton];
+//    UIButton *secretButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    secretButton.frame = CGRectMake(self.view.bounds.size.height-22, self.view.bounds.size.width-22, 22, 22);
+//    [secretButton addTarget:self action:@selector(didTapSecretButton:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:secretButton];
 }
 
 - (void)didReceiveMemoryWarning
@@ -101,18 +96,23 @@
 }
 
 - (void)joinMatch:(Invite*)invite playerName:(NSString *)playerName {
+    [self startGameWithMatchId:invite.matchID playerName:playerName];
+    [self removeInvite:invite];
+}
+
+- (void)startGameWithMatchId:(NSString*)matchId playerName:(NSString*)playerName {
     if (self.isInMatch) return;
     self.isInMatch = YES;
-    NSAssert(invite.matchID, @"No match id!");
-    NSLog(@"joining match %@ with %@", invite.matchID, playerName);
-    // hide the navigation bar first, so the size of this view is correct!
+    NSAssert(matchId, @"No match id!");
+    NSLog(@"joining match %@ with %@", matchId, playerName);
     
     if (!self.director) {
         self.director = [WWDirector directorWithBounds:self.view.bounds];
     }
     
-//    [self.navigationController setNavigationBarHidden:YES animated:YES];
-    MatchLayer * match = [[MatchLayer alloc] initWithMatchId:invite.matchID playerName:playerName];
+    Player * player = [Player new];
+    player.name = self.nickname;
+    MatchLayer * match = [[MatchLayer alloc] initWithMatchId:matchId player:player withAI:nil];
     match.delegate = self;
     
     if (self.director.runningScene) {
@@ -123,15 +123,11 @@
     }
     
     [self.navigationController pushViewController:self.director animated:YES];
-    [self removeInvite:invite];
 }
 
 - (void)doneWithMatch {
-//    [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.isInMatch = NO;
     [self.navigationController popViewControllerAnimated:YES];
-//    [self.navigationController setNavigationBarHidden:YES animated:YES];
-    // [self.navigationController pushViewController:director animated:YES];
 }
 
 #pragma mark - Alert view delegate
@@ -214,18 +210,13 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
-    if ([self.invites count] > 0) {
-        return 2;
-    } else {
-        return 1;
-    }
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ([self.invites count] > 0 && section == 0) {
-        return [self.invites count];
+    if (section == 0) {
+        return [self.invites count] + 1;
     } else {
         return [self.users count];
     }
@@ -234,8 +225,14 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *view = [[UIView alloc] init];
-    if ([self.invites count] > 0 && section == 0) {
-        
+    if (section == 0) {
+        UIImage *image = [UIImage imageNamed:@"navbar-logo.png"];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        imageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+        CGRect frame = imageView.frame;
+        frame.origin.y = 10;
+        imageView.frame = frame;
+        [view addSubview:imageView];
     } else {
         UIImage *image = [UIImage imageNamed:@"wizard-lobby.png"];
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
@@ -248,7 +245,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self.invites count] > 0 && indexPath.section == 0) {
+    if (indexPath.section == 0) {
         return [self tableView:tableView inviteCellForRowAtIndexPath:indexPath];
     } else {
         return [self tableView:tableView userCellForRowAtIndexPath:indexPath];
@@ -257,8 +254,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if ([self.invites count] > 0 && section == 0) {
-        return 0;
+    if (section == 0) {
+        return 60;
     } else {
         return 60;
     }
@@ -271,9 +268,9 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView userCellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"UserCell";
-    UserCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
-        cell = [[UserCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         cell.backgroundColor = [UIColor colorWithWhite:0.784 alpha:1.000];
         cell.textLabel.textColor = [UIColor colorWithWhite:0.149 alpha:1.000];
     }
@@ -286,29 +283,33 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView inviteCellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"InviteCell";
-    InviteCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
     if (!cell) {
-        cell = [[InviteCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    Invite * invite = [self.invites objectAtIndex:indexPath.row];
     
-    if (invite.inviter == self.nickname) {
-        cell.textLabel.text = [NSString stringWithFormat:@"You invited %@ to a wizard's duel", invite.invitee];
-        cell.userInteractionEnabled = NO;
-        cell.textLabel.enabled = YES;
-        cell.detailTextLabel.enabled = YES;
-        cell.backgroundColor = [UIColor colorWithRed:0.827 green:0.820 blue:0.204 alpha:1.000];
-        cell.textLabel.textColor = [UIColor colorWithWhite:0.149 alpha:1.000];
+    if (indexPath.row == 0) {
+        cell.textLabel.text = @"Practice Game";
     }
+    
     else {
-        cell.textLabel.text = [NSString stringWithFormat:@"%@ challenges you to a wizard's duel", invite.inviter];
-        cell.userInteractionEnabled = YES;
-        cell.textLabel.enabled = YES;
-        cell.detailTextLabel.enabled = YES;
-        cell.backgroundColor = [UIColor colorWithRed:0.490 green:0.706 blue:0.275 alpha:1.000];
-        cell.textLabel.textColor = [UIColor colorWithWhite:0.149 alpha:1.000];
+        Invite * invite = [self.invites objectAtIndex:indexPath.row-1];
+        if (invite.inviter == self.nickname) {
+            cell.textLabel.text = [NSString stringWithFormat:@"You invited %@", invite.invitee];
+            cell.userInteractionEnabled = NO;
+            cell.backgroundColor = [UIColor colorWithRed:0.827 green:0.820 blue:0.204 alpha:1.000];
+            cell.textLabel.textColor = [UIColor colorWithWhite:0.149 alpha:1.000];
+        }
+        else {
+            cell.textLabel.text = [NSString stringWithFormat:@"%@ challenges you!", invite.inviter];
+            cell.userInteractionEnabled = YES;
+            cell.backgroundColor = [UIColor colorWithRed:0.490 green:0.706 blue:0.275 alpha:1.000];
+            cell.textLabel.textColor = [UIColor colorWithWhite:0.149 alpha:1.000];
+        }
     }
+    
     
     return cell;
 }
@@ -349,11 +350,21 @@
     [self joinMatch:invite playerName:self.nickname];
 }
 
+-(void)startPracticeGame {
+    NSString * matchID = [NSString stringWithFormat:@"%i", arc4random()];
+    [self startGameWithMatchId:matchID playerName:self.nickname];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self.invites count] > 0 && indexPath.section == 0) {
-        Invite * invite = [self.invites objectAtIndex:indexPath.row];
-        [self selectInvite:invite];
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            [self startPracticeGame];
+        }
+        else {
+            Invite * invite = [self.invites objectAtIndex:indexPath.row-1];
+            [self selectInvite:invite];
+        }
     } else {
         User* user = [self.users objectAtIndex:indexPath.row];
         [self createInvite:user];

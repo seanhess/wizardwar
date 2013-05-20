@@ -8,6 +8,7 @@
 
 #import "CCLayer.h"
 #import "PentagramViewController.h"
+#import "Player.h"
 
 @protocol MatchLayerDelegate
 -(void)doneWithMatch;
@@ -16,5 +17,5 @@
 @interface MatchLayer : CCLayer
 @property (nonatomic, weak) id<MatchLayerDelegate>delegate;
 @property (nonatomic, strong) PentagramViewController *pentagramViewController;
--(id)initWithMatchId:(NSString*)matchId playerName:(NSString*)playerName;
+-(id)initWithMatchId:(NSString*)matchId player:(Player*)player withAI:(Player*)ai;
 @end

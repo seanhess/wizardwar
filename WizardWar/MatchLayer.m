@@ -34,7 +34,6 @@
 @property (nonatomic, strong) NSMutableArray * spellSprites;
 
 @property (nonatomic, strong) NSString * matchId;
-@property (nonatomic, strong) NSString * playerName;
 
 @property (nonatomic, strong) CCSprite * message;
 @property (nonatomic, strong) CCSprite * background;
@@ -48,14 +47,12 @@
 
 @implementation MatchLayer
 
--(id)initWithMatchId:(NSString*)matchId playerName:(NSString*)playerName {
+-(id)initWithMatchId:(NSString*)matchId player:(Player *)player withAI:(Player *)ai {
     if ((self = [super init])) {
         self.matchId = matchId;
-        self.playerName = playerName;
-        NSLog(@"PLAYER NAME %@", self.playerName);
+        NSLog(@"PLAYER NAME %@", player.name);
         
         // background
-//        self.background = [CCSprite spriteWithCGImage:[UIImage imageNamed:@""] key:<#(NSString *)#>]
         self.background = [CCSprite spriteWithFile:@"background-cave.png"];
         self.background.anchorPoint = ccp(0,0);
         [self addChild:self.background];
@@ -89,10 +86,7 @@
         
         [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:NO];
         
-        Player * currentPlayer = [Player new];
-        currentPlayer.name = playerName;
-        
-        self.match = [[Match alloc] initWithId:self.matchId currentPlayer:currentPlayer];
+        self.match = [[Match alloc] initWithId:self.matchId currentPlayer:player withAI:ai];
         self.match.delegate = self;
         
         self.spellSprites = [NSMutableArray array];
@@ -106,9 +100,6 @@
 //        [self addChild:self.label];
         
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"messages.plist"];
-        
-        
-        
         
         self.message = [[CCSprite alloc] initWithSpriteFrameName:@"msg-ready.png"];
         self.message.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
@@ -138,10 +129,6 @@
 - (void)onExit {
     [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
 }
-
-//-(void)draw {
-//    
-//}
 
 -(void)update:(ccTime)delta {
     //    NSLog(@"Updated %f", delta);

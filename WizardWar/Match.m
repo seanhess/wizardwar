@@ -28,7 +28,6 @@
 @property (nonatomic, strong) Firebase * opponentNode;
 
 @property (nonatomic, strong) NSString * lastCastSpellName;
-
 @end
 
 // don't really know which player you are until there are 2 players
@@ -36,7 +35,7 @@
 // Alphabetical order baby :)
 
 @implementation Match
--(id)initWithId:(NSString *)id currentPlayer:(Player *)player {
+-(id)initWithId:(NSString *)id currentPlayer:(Player *)player withAI:(Player *)ai {
     if ((self = [super init])) {
         
         self.players = [NSMutableArray array];
@@ -78,20 +77,12 @@
         }];
         
         
+        if (ai) {
+            self.opponentPlayer = ai;
+            [self joinPlayer:ai];
+        }
         
         self.currentPlayer = player;
-        
-        // FAKE SECOND PLAYER
-        if (self.currentPlayer == nil) {
-            Player * fakeSecondPlayer = [Player new];
-            fakeSecondPlayer.name = @"ZFakeSecondPlayer";
-            self.currentPlayer = fakeSecondPlayer;
-        }
-
-//        Player * fakeSecondPlayer = [Player new];
-//        fakeSecondPlayer.name = @"ZFakeSecondPlayer";
-//        [self joinPlayer:fakeSecondPlayer];
-        
         [self joinPlayer:self.currentPlayer];
         
         
