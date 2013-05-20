@@ -96,23 +96,27 @@
 }
 
 - (void)joinMatch:(Invite*)invite playerName:(NSString *)playerName {
-    [self startGameWithMatchId:invite.matchID playerName:playerName];
+    [self startGameWithMatchId:invite.matchID player:self.currentPlayer withAI:nil];
     [self removeInvite:invite];
 }
 
-- (void)startGameWithMatchId:(NSString*)matchId playerName:(NSString*)playerName {
+- (Player*)currentPlayer {
+    Player * player = [Player new];
+    player.name = self.nickname;
+    return player;
+}
+
+- (void)startGameWithMatchId:(NSString*)matchId player:(Player*)player withAI:(Player*)ai {
     if (self.isInMatch) return;
     self.isInMatch = YES;
     NSAssert(matchId, @"No match id!");
-    NSLog(@"joining match %@ with %@", matchId, playerName);
+    NSLog(@"joining match %@ with %@", matchId, player.name);
     
     if (!self.director) {
         self.director = [WWDirector directorWithBounds:self.view.bounds];
     }
     
-    Player * player = [Player new];
-    player.name = self.nickname;
-    MatchLayer * match = [[MatchLayer alloc] initWithMatchId:matchId player:player withAI:nil];
+    MatchLayer * match = [[MatchLayer alloc] initWithMatchId:matchId player:player withAI:ai];
     match.delegate = self;
     
     if (self.director.runningScene) {
@@ -352,7 +356,9 @@
 
 -(void)startPracticeGame {
     NSString * matchID = [NSString stringWithFormat:@"%i", arc4random()];
-    [self startGameWithMatchId:matchID playerName:self.nickname];
+    Player * ai = [Player new];
+    ai.name = @"zzzai";
+    [self startGameWithMatchId:matchID player:self.currentPlayer withAI:ai];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
