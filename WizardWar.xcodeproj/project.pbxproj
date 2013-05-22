@@ -31,6 +31,7 @@
 		781234DD174ADC19008EDE88 /* FirebaseCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 781234DC174ADC19008EDE88 /* FirebaseCollection.m */; };
 		7837F16B1749B9D000D29445 /* navbar-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7837F1691749B9CF00D29445 /* navbar-logo.png */; };
 		7837F16C1749B9D000D29445 /* navbar-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7837F16A1749B9CF00D29445 /* navbar-logo@2x.png */; };
+		787A2A81174D2771004C4FDB /* MatchmakingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787A2A80174D2771004C4FDB /* MatchmakingViewController.xib */; };
 		78F193E2174715A700BB8587 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F193E1174715A700BB8587 /* Default-568h@2x.png */; };
 		78F193E4174715B100BB8587 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F193E3174715B100BB8587 /* Default.png */; };
 		78F193E6174715B500BB8587 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F193E5174715B500BB8587 /* Default@2x.png */; };
@@ -298,6 +299,7 @@
 		781234DF174AE4C0008EDE88 /* Objectable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Objectable.h; sourceTree = "<group>"; };
 		7837F1691749B9CF00D29445 /* navbar-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar-logo.png"; sourceTree = "<group>"; };
 		7837F16A1749B9CF00D29445 /* navbar-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar-logo@2x.png"; sourceTree = "<group>"; };
+		787A2A80174D2771004C4FDB /* MatchmakingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchmakingViewController.xib; sourceTree = "<group>"; };
 		78F193E1174715A700BB8587 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		78F193E3174715B100BB8587 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		78F193E5174715B500BB8587 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -912,6 +914,7 @@
 				78F6B3991746B02100AA070D /* MainNavViewController.m */,
 				78F6B39A1746B02100AA070D /* MatchmakingViewController.h */,
 				78F6B39B1746B02100AA070D /* MatchmakingViewController.m */,
+				787A2A80174D2771004C4FDB /* MatchmakingViewController.xib */,
 				7837F1681749B66800D29445 /* Pentagram */,
 				78F6B3BD1746B27B00AA070D /* Match */,
 				78F6B3AA1746B26400AA070D /* Data */,
@@ -1520,6 +1523,7 @@
 				F283A93217480F5E0068EEB2 /* heart-full.png in Resources */,
 				7837F16B1749B9D000D29445 /* navbar-logo.png in Resources */,
 				7837F16C1749B9D000D29445 /* navbar-logo@2x.png in Resources */,
+				787A2A81174D2771004C4FDB /* MatchmakingViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -31,8 +31,7 @@
     
     self.splash = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
     
-    
-    MatchmakingViewController * matches = [MatchmakingViewController new];
+    MatchmakingViewController * matches = [[MatchmakingViewController alloc] initWithNibName:@"MatchmakingViewController" bundle:nil];
     MainNavViewController * navigationController = [[MainNavViewController alloc] initWithRootViewController:matches];
     [self.window setRootViewController:navigationController];
     [self.window makeKeyAndVisible];

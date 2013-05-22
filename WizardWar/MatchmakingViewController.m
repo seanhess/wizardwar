@@ -17,7 +17,7 @@
 
 @interface MatchmakingViewController () <MatchLayerDelegate, FirebaseCollectionDelegate>
 @property (nonatomic, strong) CCDirectorIOS * director;
-@property (nonatomic, strong) UITableView * tableView;
+@property (nonatomic, weak) IBOutlet UITableView * tableView;
 //@property (nonatomic, strong) NSMutableArray* users;
 @property (nonatomic, strong) NSMutableArray* invites;
 
@@ -36,31 +36,12 @@
     return self;
 }
 
--(void)loadView {
-    [super loadView];
-    
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
     self.title = @"Matchmaking";
-    self.view.backgroundColor = [UIColor redColor];
-    
-    // init and style the lobby/invites table view
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
-    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    self.tableView.backgroundView = [[UIView alloc] init];
-    self.tableView.backgroundView.backgroundColor = [UIColor colorWithWhite:0.149 alpha:1.000];
-    [self.tableView setSeparatorColor:[UIColor clearColor]];
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    [self.view addSubview:self.tableView];
-    
-    [self.view layoutIfNeeded];
     
     self.users = [NSMutableDictionary dictionary];
     self.invites = [[NSMutableArray alloc] init];
@@ -204,60 +185,68 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
         return [self.invites count];
-    } else {
+    } else if (section == 1){
         return [self.lobbyNames count];
+    } else {
+        return 1; // practice game
     }
+    
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *view = [[UIView alloc] init];
     if (section == 0) {
-//        UIImage *image = [UIImage imageNamed:@"navbar-logo.png"];
-//        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-//        imageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-//        CGRect frame = imageView.frame;
-//        frame.origin.y = 10;
-//        imageView.frame = frame;
-//        [view addSubview:imageView];
-    } else {
+        UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 100)];
         UIImage *image = [UIImage imageNamed:@"wizard-lobby.png"];
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-        CGRect size = self.view.bounds;
-        imageView.frame = CGRectMake(((size.size.width - 159)/ 2),20,159,20);
+        imageView.frame = CGRectMake(((view.bounds.size.width - 159)/2),15,159,20);
         [view addSubview:imageView];
+        return view;
     }
-    return view;
+    
+    else {
+        return nil;
+    }
+}
+
+- (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 0) return 30;
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
         return [self tableView:tableView inviteCellForRowAtIndexPath:indexPath];
-    } else {
+    } else if (indexPath.section == 1){
         return [self tableView:tableView userCellForRowAtIndexPath:indexPath];
-    }
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    if (section == 0) {
-        return 0;
     } else {
-        return 60;
+        return [self tableView:tableView practiceGameCellForRowAtIndexPath:indexPath];
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 44;
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView practiceGameCellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"UserCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell.backgroundColor = [UIColor colorWithWhite:0.784 alpha:1.000];
+        cell.textLabel.textColor = [UIColor colorWithWhite:0.149 alpha:1.000];
+    }
+    cell.textLabel.text = @"Practice Game";
+    return cell;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView userCellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -271,13 +260,7 @@
     
     NSString * userKey = [self.lobbyNames objectAtIndex:indexPath.row];
     User* user = [self.users objectForKey:userKey];
-    
-    if ([user.name isEqualToString:self.nickname]) {
-        cell.textLabel.text = @"Practice Game";
-    }
-    else {
-        cell.textLabel.text = user.name;
-    }
+    cell.textLabel.text = user.name;
     return cell;
 }
 
@@ -354,13 +337,12 @@
     if (indexPath.section == 0) {
         Invite * invite = [self.invites objectAtIndex:indexPath.row];
         [self selectInvite:invite];
-    } else {
+    } else if (indexPath.section == 1){
         NSString* userKey = [self.lobbyNames objectAtIndex:indexPath.row];
         User* user = [self.users objectForKey:userKey];
-        if ([user.name isEqualToString:self.nickname])
-            [self startPracticeGame];
-        else
-            [self createInvite:user];
+        [self createInvite:user];
+    } else {
+        [self startPracticeGame];
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
