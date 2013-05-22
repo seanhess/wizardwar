@@ -283,19 +283,6 @@
     invite.inviter = self.nickname;
     invite.invitee = user.name;
     [self.invitesCollection addObject:invite withName:invite.inviteId];
-    
-    // listen to the created invite for acceptance
-//    Firebase * matchIDNode = [inviteNode childByAppendingPath:@"matchID"];
-//    NSLog(@"MATCH ID NODE %@", matchIDNode);
-//    [matchIDNode observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-//        if (snapshot.value != [NSNull null]) {
-//            NSLog(@"Inivite Changed %@", snapshot.value);
-//            // match has begun! join up
-//            self.matchID = snapshot.value;
-//            invite.matchID = self.matchID;
-//            [self joinMatch:invite playerName:self.nickname];
-//        }
-//    }];
 }
 
 -(void)selectInvite:(Invite*)invite {
