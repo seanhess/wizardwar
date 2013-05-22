@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Objectable.h"
 
-@interface User : NSObject
+@interface User : NSObject <Objectable>
 @property (nonatomic, strong) NSString * name;
 -(NSDictionary*)toObject;
 @end

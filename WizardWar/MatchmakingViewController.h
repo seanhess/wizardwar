@@ -15,8 +15,6 @@
 @property (nonatomic, strong) Firebase* firebaseInvites;
 @property (nonatomic, strong) Firebase* firebaseMatches;
 @property (nonatomic, strong) UITableViewController * matchesTableViewController;
-@property (nonatomic, strong) NSMutableArray* users;
-@property (nonatomic, strong) NSMutableArray* invites;
 @property (nonatomic, strong) NSString* nickname;
 @property (nonatomic, strong) NSString* matchID;
 @property (nonatomic) BOOL isInMatch;

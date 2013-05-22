@@ -13,9 +13,16 @@
 #import "User.h"
 #import "Invite.h"
 #import "NSArray+Functional.h"
+#import "FirebaseCollection.h"
 
-@interface MatchmakingViewController () <MatchLayerDelegate>
+@interface MatchmakingViewController () <MatchLayerDelegate, FirebaseCollectionDelegate>
 @property (nonatomic, strong) CCDirectorIOS * director;
+@property (nonatomic, strong) UITableView * tableView;
+//@property (nonatomic, strong) NSMutableArray* users;
+@property (nonatomic, strong) NSMutableArray* invites;
+
+@property (nonatomic, strong) NSMutableDictionary* users;
+@property (nonatomic, strong) FirebaseCollection* usersCollection;
 @end
 
 @implementation MatchmakingViewController
@@ -43,18 +50,19 @@
     self.view.backgroundColor = [UIColor redColor];
     
     // init and style the lobby/invites table view
-    self.matchesTableViewController = [[UITableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    self.matchesTableViewController.tableView.backgroundView = [[UIView alloc] init];
-    self.matchesTableViewController.tableView.backgroundView.backgroundColor = [UIColor colorWithWhite:0.149 alpha:1.000];
-    [self.matchesTableViewController.tableView setSeparatorColor:[UIColor clearColor]];
-    [self.matchesTableViewController.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    self.matchesTableViewController.tableView.delegate = self;
-    self.matchesTableViewController.tableView.dataSource = self;
-    [self.view addSubview:self.matchesTableViewController.view];
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.tableView.backgroundView = [[UIView alloc] init];
+    self.tableView.backgroundView.backgroundColor = [UIColor colorWithWhite:0.149 alpha:1.000];
+    [self.tableView setSeparatorColor:[UIColor clearColor]];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.view addSubview:self.tableView];
     
     [self.view layoutIfNeeded];
     
-    self.users = [[NSMutableArray alloc] init];
+    self.users = [NSMutableDictionary dictionary];
     self.invites = [[NSMutableArray alloc] init];
     [self loadDataFromFirebase];
     
@@ -68,31 +76,14 @@
         [av show];
         av.delegate = self;
     } else {
-        [self addToLobbyList];
+        [self joinLobby];
     }
-    
-    // secret button to play agains nobody
-//    UIButton *secretButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    secretButton.frame = CGRectMake(self.view.bounds.size.height-22, self.view.bounds.size.width-22, 22, 22);
-//    [secretButton addTarget:self action:@selector(didTapSecretButton:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:secretButton];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(void)didTapSecretButton:(id)sender
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        Invite * invite = [Invite new];
-        invite.invitee = @"Charlie";
-        invite.inviter = @"Bad guy";
-        invite.matchID = [NSString stringWithFormat:@"%i", arc4random()];
-        [self joinMatch:invite playerName:@"Charlie"];
-    });
 }
 
 - (void)joinMatch:(Invite*)invite playerName:(NSString *)playerName {
@@ -141,7 +132,7 @@
     self.nickname = [alertView textFieldAtIndex:0].text;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:self.nickname forKey:@"nickname"];
-    [self addToLobbyList];
+    [self joinLobby];
 }
 
 #pragma mark - Firebase stuff
@@ -155,25 +146,8 @@
     self.firebaseMatches = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseio.com/match"];
     
     // LOBBY
-    [self.firebaseLobby observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
-        User * user = [User new];
-        [user setValuesForKeysWithDictionary:snapshot.value];
-        // we don't want to show us in the list
-        if (user.name != self.nickname) {
-            [self.users addObject:user];
-            [self.matchesTableViewController.tableView reloadData];
-        }
-    }];
-    
-    [self.firebaseLobby observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
-        User * removedUser = [User new];
-        [removedUser setValuesForKeysWithDictionary:snapshot.value];
-        self.users = [[self.users filter:^BOOL(User * user) {
-            return ![user.name isEqualToString:removedUser.name];
-        }] mutableCopy];
-        [self.matchesTableViewController.tableView reloadData];
-    }];
-    
+    self.usersCollection = [[FirebaseCollection alloc] initWithNode:self.firebaseLobby type:[User class] dictionary:self.users];
+    self.usersCollection.delegate = self;
     
     //INVITES
     [self.firebaseInvites observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
@@ -194,6 +168,24 @@
     
 }
 
+- (NSArray*)lobbyNames {
+    return [[self.users allKeys] filter:^BOOL(NSString * name) {
+        return ![name isEqualToString:self.nickname];
+    }];
+}
+
+- (void)didAddChild:(id)object {
+    [self.tableView reloadData];
+}
+
+- (void)didRemoveChild:(id)object {
+    [self.tableView reloadData];
+}
+
+- (void)didUpdateChild:(id)object {
+    [self.tableView reloadData];
+}
+
 -(void)removeInvite:(Invite*)removedInvite {
     self.invites = [[self.invites filter:^BOOL(Invite * invite) {
         return ![invite.inviteId isEqualToString:removedInvite.inviteId];
@@ -201,13 +193,11 @@
     [self.matchesTableViewController.tableView reloadData];
 }
 
-- (void)addToLobbyList
+- (void)joinLobby
 {
     User * user = [User new];
     user.name = self.nickname;
-    Firebase * userNode = [self.firebaseLobby childByAppendingPath:self.nickname];
-    [userNode setValue:user.toObject];
-    [userNode onDisconnectRemoveValue];
+    [self.usersCollection addObject:user withName:self.nickname];
 }
 
 #pragma mark - Table view data source
@@ -220,9 +210,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
-        return [self.invites count] + 1;
+        return [self.invites count];
     } else {
-        return [self.users count];
+        return [self.lobbyNames count];
     }
 }
 
@@ -230,13 +220,13 @@
 {
     UIView *view = [[UIView alloc] init];
     if (section == 0) {
-        UIImage *image = [UIImage imageNamed:@"navbar-logo.png"];
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-        imageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-        CGRect frame = imageView.frame;
-        frame.origin.y = 10;
-        imageView.frame = frame;
-        [view addSubview:imageView];
+//        UIImage *image = [UIImage imageNamed:@"navbar-logo.png"];
+//        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+//        imageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+//        CGRect frame = imageView.frame;
+//        frame.origin.y = 10;
+//        imageView.frame = frame;
+//        [view addSubview:imageView];
     } else {
         UIImage *image = [UIImage imageNamed:@"wizard-lobby.png"];
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
@@ -259,7 +249,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section == 0) {
-        return 60;
+        return 0;
     } else {
         return 60;
     }
@@ -279,9 +269,15 @@
         cell.textLabel.textColor = [UIColor colorWithWhite:0.149 alpha:1.000];
     }
     
-    User* user = [self.users objectAtIndex:indexPath.row];
+    NSString * userKey = [self.lobbyNames objectAtIndex:indexPath.row];
+    User* user = [self.users objectForKey:userKey];
     
-    cell.textLabel.text = user.name;
+    if ([user.name isEqualToString:self.nickname]) {
+        cell.textLabel.text = @"Practice Game";
+    }
+    else {
+        cell.textLabel.text = user.name;
+    }
     return cell;
 }
 
@@ -293,27 +289,19 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    
-    if (indexPath.row == 0) {
-        cell.textLabel.text = @"Practice Game";
+    Invite * invite = [self.invites objectAtIndex:indexPath.row];
+    if (invite.inviter == self.nickname) {
+        cell.textLabel.text = [NSString stringWithFormat:@"You invited %@", invite.invitee];
+        cell.userInteractionEnabled = NO;
+        cell.backgroundColor = [UIColor colorWithRed:0.827 green:0.820 blue:0.204 alpha:1.000];
+        cell.textLabel.textColor = [UIColor colorWithWhite:0.149 alpha:1.000];
     }
-    
     else {
-        Invite * invite = [self.invites objectAtIndex:indexPath.row-1];
-        if (invite.inviter == self.nickname) {
-            cell.textLabel.text = [NSString stringWithFormat:@"You invited %@", invite.invitee];
-            cell.userInteractionEnabled = NO;
-            cell.backgroundColor = [UIColor colorWithRed:0.827 green:0.820 blue:0.204 alpha:1.000];
-            cell.textLabel.textColor = [UIColor colorWithWhite:0.149 alpha:1.000];
-        }
-        else {
-            cell.textLabel.text = [NSString stringWithFormat:@"%@ challenges you!", invite.inviter];
-            cell.userInteractionEnabled = YES;
-            cell.backgroundColor = [UIColor colorWithRed:0.490 green:0.706 blue:0.275 alpha:1.000];
-            cell.textLabel.textColor = [UIColor colorWithWhite:0.149 alpha:1.000];
-        }
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ challenges you!", invite.inviter];
+        cell.userInteractionEnabled = YES;
+        cell.backgroundColor = [UIColor colorWithRed:0.490 green:0.706 blue:0.275 alpha:1.000];
+        cell.textLabel.textColor = [UIColor colorWithWhite:0.149 alpha:1.000];
     }
-    
     
     return cell;
 }
@@ -364,16 +352,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
-            [self startPracticeGame];
-        }
-        else {
-            Invite * invite = [self.invites objectAtIndex:indexPath.row-1];
-            [self selectInvite:invite];
-        }
+        Invite * invite = [self.invites objectAtIndex:indexPath.row];
+        [self selectInvite:invite];
     } else {
-        User* user = [self.users objectAtIndex:indexPath.row];
-        [self createInvite:user];
+        NSString* userKey = [self.lobbyNames objectAtIndex:indexPath.row];
+        User* user = [self.users objectForKey:userKey];
+        if ([user.name isEqualToString:self.nickname])
+            [self startPracticeGame];
+        else
+            [self createInvite:user];
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
