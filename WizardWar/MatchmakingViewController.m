@@ -15,14 +15,14 @@
 #import "NSArray+Functional.h"
 #import "FirebaseCollection.h"
 
-@interface MatchmakingViewController () <MatchLayerDelegate, FirebaseCollectionDelegate>
+@interface MatchmakingViewController () <MatchLayerDelegate>
 @property (nonatomic, strong) CCDirectorIOS * director;
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
-//@property (nonatomic, strong) NSMutableArray* users;
-@property (nonatomic, strong) NSMutableArray* invites;
 
+@property (nonatomic, strong) NSMutableDictionary* invites;
 @property (nonatomic, strong) NSMutableDictionary* users;
 @property (nonatomic, strong) FirebaseCollection* usersCollection;
+@property (nonatomic, strong) FirebaseCollection* invitesCollection;
 @end
 
 @implementation MatchmakingViewController
@@ -44,7 +44,7 @@
     self.title = @"Matchmaking";
     
     self.users = [NSMutableDictionary dictionary];
-    self.invites = [[NSMutableArray alloc] init];
+    self.invites = [NSMutableDictionary dictionary];
     [self loadDataFromFirebase];
     
     // check for set nickname
@@ -61,6 +61,11 @@
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    NSLog(@"HI");
+    return;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -69,7 +74,7 @@
 
 - (void)joinMatch:(Invite*)invite playerName:(NSString *)playerName {
     [self startGameWithMatchId:invite.matchID player:self.currentPlayer withAI:nil];
-    [self removeInvite:invite];
+    [self.invitesCollection removeObject:invite];
 }
 
 - (Player*)currentPlayer {
@@ -78,6 +83,7 @@
     return player;
 }
 
+// starting a game should remove ALL invites you have pending
 - (void)startGameWithMatchId:(NSString*)matchId player:(Player*)player withAI:(Player*)ai {
     if (self.isInMatch) return;
     self.isInMatch = YES;
@@ -121,57 +127,39 @@
 - (void)loadDataFromFirebase
 {
     self.firebaseLobby = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/lobby"];
-    
     self.firebaseInvites = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/invites"];
     
-    self.firebaseMatches = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseio.com/match"];
+    void(^reloadTable)(id) = ^(id obj) {
+        [self.tableView reloadData];
+    };
     
     // LOBBY
     self.usersCollection = [[FirebaseCollection alloc] initWithNode:self.firebaseLobby type:[User class] dictionary:self.users];
-    self.usersCollection.delegate = self;
+    [self.usersCollection didAddChild:reloadTable];
+    [self.usersCollection didRemoveChild:reloadTable];
+    [self.usersCollection didUpdateChild:reloadTable];
     
-    //INVITES
-    [self.firebaseInvites observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
-        Invite * invite = [Invite new];
-        [invite setValuesForKeysWithDictionary:snapshot.value];
-        // only show invites that apply to you
-        if ([invite.invitee isEqualToString:self.nickname] || [invite.inviter isEqualToString:self.nickname ]) {
-            [self.invites addObject:invite];
-            [self.matchesTableViewController.tableView reloadData];
+    self.invitesCollection = [[FirebaseCollection alloc] initWithNode:self.firebaseInvites type:[Invite class] dictionary:self.invites];
+    [self.invitesCollection didAddChild:reloadTable];
+    [self.invitesCollection didRemoveChild:reloadTable];
+    [self.invitesCollection didUpdateChild:^(Invite * invite) {
+        if ([invite.inviter isEqualToString:self.nickname] && invite.matchID) {
+            [self joinMatch:invite playerName:self.nickname];
         }
     }];
-    
-    [self.firebaseInvites observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
-        Invite * removedInvite = [Invite new];
-        [removedInvite setValuesForKeysWithDictionary:snapshot.value];
-        [self removeInvite:removedInvite];
-    }];
-    
 }
 
-- (NSArray*)lobbyNames {
-    return [[self.users allKeys] filter:^BOOL(NSString * name) {
-        return ![name isEqualToString:self.nickname];
+- (NSArray*)lobby {
+    return [self.users.allValues filter:^BOOL(User * user) {
+        return ![user.name isEqualToString:self.nickname];
     }];
 }
 
-- (void)didAddChild:(id)object {
-    [self.tableView reloadData];
-}
-
-- (void)didRemoveChild:(id)object {
-    [self.tableView reloadData];
-}
-
-- (void)didUpdateChild:(id)object {
-    [self.tableView reloadData];
-}
-
--(void)removeInvite:(Invite*)removedInvite {
-    self.invites = [[self.invites filter:^BOOL(Invite * invite) {
-        return ![invite.inviteId isEqualToString:removedInvite.inviteId];
-    }] mutableCopy];
-    [self.matchesTableViewController.tableView reloadData];
+- (NSArray*)myInvites {
+    // mapping back and forth between dictionary and array representation is annoying
+    return [self.invites.allValues filter:^BOOL(Invite * invite) {
+        return ([invite.invitee isEqualToString:self.nickname] || [invite.inviter isEqualToString:self.nickname]);
+    }];
 }
 
 - (void)joinLobby
@@ -191,9 +179,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
-        return [self.invites count];
+        return [self.myInvites count];
     } else if (section == 1){
-        return [self.lobbyNames count];
+        return [self.lobby count];
     } else {
         return 1; // practice game
     }
@@ -206,7 +194,7 @@
         UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 100)];
         UIImage *image = [UIImage imageNamed:@"wizard-lobby.png"];
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-        imageView.frame = CGRectMake(((view.bounds.size.width - 159)/2),15,159,20);
+        imageView.frame = CGRectMake(((view.bounds.size.width - 159)/2),10,159,20);
         [view addSubview:imageView];
         return view;
     }
@@ -217,7 +205,7 @@
 }
 
 - (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == 0) return 30;
+    if (section == 0) return 40;
     return 0;
 }
 
@@ -258,8 +246,7 @@
         cell.textLabel.textColor = [UIColor colorWithWhite:0.149 alpha:1.000];
     }
     
-    NSString * userKey = [self.lobbyNames objectAtIndex:indexPath.row];
-    User* user = [self.users objectForKey:userKey];
+    User* user = [self.lobby objectAtIndex:indexPath.row];
     cell.textLabel.text = user.name;
     return cell;
 }
@@ -272,7 +259,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    Invite * invite = [self.invites objectAtIndex:indexPath.row];
+    Invite * invite = [self.myInvites objectAtIndex:indexPath.row];
     if (invite.inviter == self.nickname) {
         cell.textLabel.text = [NSString stringWithFormat:@"You invited %@", invite.invitee];
         cell.userInteractionEnabled = NO;
@@ -295,23 +282,20 @@
     Invite * invite = [Invite new];
     invite.inviter = self.nickname;
     invite.invitee = user.name;
+    [self.invitesCollection addObject:invite withName:invite.inviteId];
     
-    Firebase * inviteNode = [self.firebaseInvites childByAppendingPath:invite.inviteId];
-    [inviteNode setValue:invite.toObject];
-    [inviteNode onDisconnectRemoveValue];
-        
     // listen to the created invite for acceptance
-    Firebase * matchIDNode = [inviteNode childByAppendingPath:@"matchID"];
-    NSLog(@"MATCH ID NODE %@", matchIDNode);
-    [matchIDNode observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-        if (snapshot.value != [NSNull null]) {
-            NSLog(@"Inivite Changed %@", snapshot.value);
-            // match has begun! join up
-            self.matchID = snapshot.value;
-            invite.matchID = self.matchID;
-            [self joinMatch:invite playerName:self.nickname];
-        }
-    }];
+//    Firebase * matchIDNode = [inviteNode childByAppendingPath:@"matchID"];
+//    NSLog(@"MATCH ID NODE %@", matchIDNode);
+//    [matchIDNode observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+//        if (snapshot.value != [NSNull null]) {
+//            NSLog(@"Inivite Changed %@", snapshot.value);
+//            // match has begun! join up
+//            self.matchID = snapshot.value;
+//            invite.matchID = self.matchID;
+//            [self joinMatch:invite playerName:self.nickname];
+//        }
+//    }];
 }
 
 -(void)selectInvite:(Invite*)invite {
@@ -335,11 +319,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        Invite * invite = [self.invites objectAtIndex:indexPath.row];
+        Invite * invite = [self.myInvites objectAtIndex:indexPath.row];
         [self selectInvite:invite];
     } else if (indexPath.section == 1){
-        NSString* userKey = [self.lobbyNames objectAtIndex:indexPath.row];
-        User* user = [self.users objectForKey:userKey];
+        User * user = [self.lobby objectAtIndex:indexPath.row];
         [self createInvite:user];
     } else {
         [self startPracticeGame];

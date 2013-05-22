@@ -13,7 +13,6 @@
 
 @property (nonatomic, strong) Firebase* firebaseLobby;
 @property (nonatomic, strong) Firebase* firebaseInvites;
-@property (nonatomic, strong) Firebase* firebaseMatches;
 @property (nonatomic, strong) UITableViewController * matchesTableViewController;
 @property (nonatomic, strong) NSString* nickname;
 @property (nonatomic, strong) NSString* matchID;

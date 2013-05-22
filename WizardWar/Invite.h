@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Objectable.h"
 
-@interface Invite : NSObject
+@interface Invite : NSObject <Objectable>
 @property (nonatomic, strong) NSString * invitee;
 @property (nonatomic, strong) NSString * inviter;
 @property (nonatomic, strong) NSString * matchID;
 -(NSString*)inviteId;
--(NSDictionary*)toObject;
 @end

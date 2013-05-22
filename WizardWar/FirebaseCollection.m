@@ -13,6 +13,9 @@
 @property (nonatomic, strong) NSMutableDictionary * objects;
 @property (nonatomic, strong) NSMapTable * names;
 @property (nonatomic, strong) Class type;
+@property (nonatomic, strong) void(^addCb)(id);
+@property (nonatomic, strong) void(^removeCb)(id);
+@property (nonatomic, strong) void(^updateCb)(id);
 @end
 
 @implementation FirebaseCollection
@@ -24,6 +27,10 @@
         self.node = node;
         self.names = [NSMapTable mapTableWithKeyOptions:NSPointerFunctionsObjectPointerPersonality valueOptions:NSPointerFunctionsWeakMemory];
         
+        self.addCb = ^(id obj) {};
+        self.removeCb = ^(id obj) {};
+        self.updateCb = ^(id obj) {};
+        
         // find the correct object and update locally
         [self.node observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
             id obj = [self.objects objectForKey:snapshot.name];
@@ -34,14 +41,14 @@
             }
             // update the object with values from the server and notify the delegate
             [obj setValuesForKeysWithDictionary:snapshot.value];
-            [self.delegate didAddChild:obj];
+            self.addCb(obj);
         }];
         
         [self.node observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
             id obj = [self.objects objectForKey:snapshot.name];
             if (!obj) return;
             [self.objects removeObjectForKey:snapshot.name];
-            [self.delegate didRemoveChild:obj];
+            self.removeCb(obj);
         }];
         
         [self.node observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
@@ -50,10 +57,22 @@
                 NSAssert(false, @"Object not found locally! %@", snapshot.name);
             }
             [obj setValuesForKeysWithDictionary:snapshot.value];
-            [self.delegate didUpdateChild:obj];
+            self.updateCb(obj);
         }];
     }
     return self;
+}
+
+- (void)didAddChild:(void(^)(id))cb {
+    self.addCb = cb;
+}
+
+- (void)didRemoveChild:(void(^)(id))cb {
+    self.removeCb = cb;
+}
+
+- (void)didUpdateChild:(void(^)(id))cb {
+    self.updateCb = cb;
 }
 
 - (void)removeObject:(id<Objectable>)object {
