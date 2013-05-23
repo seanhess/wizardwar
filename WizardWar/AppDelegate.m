@@ -11,9 +11,14 @@
 #import "MainNavViewController.h"
 #import "cocos2d.h"
 #import <Firebase/Firebase.h>
+#import "WizardDirector.h"
+
+// The director should belong to the app delegate or a singleton
+// and you should manually unload or reload it
 
 @interface AppDelegate ()
 @property (nonatomic, strong) MatchmakingViewController * matches;
+@property (nonatomic, strong) CCDirectorIOS * director;
 @end
 
 @implementation AppDelegate
@@ -28,6 +33,9 @@
     MainNavViewController * navigationController = [[MainNavViewController alloc] initWithRootViewController:self.matches];
     [self.window setRootViewController:navigationController];
     [self.window makeKeyAndVisible];
+    
+    // INITIALIZE DIRECTOR
+    [WizardDirector initializeWithBounds:self.window.bounds];
     
     return YES;
 }

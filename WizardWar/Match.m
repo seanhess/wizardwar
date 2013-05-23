@@ -41,7 +41,7 @@
         self.players = [NSMutableArray array];
         self.spells = [NSMutableArray array];
         
-        self.started = NO;
+        self.state = MatchStateReady;
         
         // Firebase
         self.matchNode = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"https://wizardwar.firebaseio.com/match/%@", id]];
@@ -160,9 +160,7 @@
     [self.players forEach:^(Player* player) {
         if (player.health == 0) {
             [player setState:PlayerStateDead animated:NO];
-            self.started = NO;
-            self.loser = player;
-            [self.delegate matchEnded];
+            self.state = MatchStateEnded;
         }
     }];
 }
@@ -200,7 +198,7 @@
 }
 
 -(void)start {
-    self.started = YES;
+    self.state = MatchStatePlaying;
     
     // sort alphabetically
     [self.players sortUsingComparator:^NSComparisonResult(Player * p1, Player *p2) {
@@ -209,7 +207,6 @@
     
     [(Player *)self.players[0] setPosition:UNITS_MIN];
     [(Player *)self.players[1] setPosition:UNITS_MAX];
-    [self.delegate matchStarted];
 }
 
 

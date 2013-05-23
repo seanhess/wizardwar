@@ -7,17 +7,17 @@
 //
 
 #import "MatchmakingViewController.h"
-#import "WWDirector.h"
-#import "CCScene+Layers.h"
+#import "WizardDirector.h"
 #import "MatchLayer.h"
 #import "User.h"
 #import "Invite.h"
 #import "NSArray+Functional.h"
 #import "FirebaseCollection.h"
 #import "FirebaseConnection.h"
+#import "TestLayer.h"
+#import "MatchViewController.h"
 
-@interface MatchmakingViewController () <MatchLayerDelegate>
-@property (nonatomic, strong) CCDirectorIOS * director;
+@interface MatchmakingViewController () 
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
 @property (weak, nonatomic) IBOutlet UIImageView *splashView;
 @property (weak, nonatomic) IBOutlet UILabel *splashLabel;
@@ -29,6 +29,7 @@
 @property (nonatomic, strong) FirebaseConnection* connection;
 
 @property (strong, nonatomic) User * currentUser;
+@property (strong, nonatomic) MatchLayer * match;
 @end
 
 @implementation MatchmakingViewController
@@ -51,8 +52,6 @@
     
     self.title = @"Matchmaking";
     
-    self.users = [NSMutableDictionary dictionary];
-    self.invites = [NSMutableDictionary dictionary];
     [self loadDataFromFirebase];
     
     // check for set nickname
@@ -131,32 +130,15 @@
 
 // starting a game should remove ALL invites you have pending
 - (void)startGameWithMatchId:(NSString*)matchId player:(Player*)player withAI:(Player*)ai {
-    if (self.isInMatch) return;
-    self.isInMatch = YES;
     NSAssert(matchId, @"No match id!");
     NSLog(@"joining match %@ with %@", matchId, player.name);
     
-    if (!self.director) {
-        self.director = [WWDirector directorWithBounds:self.view.bounds];
-    }
-    
-    MatchLayer * match = [[MatchLayer alloc] initWithMatchId:matchId player:player withAI:ai];
-    match.delegate = self;
-    
-    if (self.director.runningScene) {
-        [self.director replaceScene:[CCScene sceneWithLayer:match]];
-    }
-    else {
-        [self.director runWithScene:[CCScene sceneWithLayer:match]];
-    }
-    
-    [self.navigationController pushViewController:self.director animated:YES];
+    MatchViewController * match = [MatchViewController new];
+    [match connectToMatchWithId:matchId currentPlayer:player withAI:ai];
+    [self.navigationController pushViewController:match animated:YES];
 }
 
-- (void)doneWithMatch {
-    self.isInMatch = NO;
-    [self.navigationController popViewControllerAnimated:YES];
-}
+
 
 #pragma mark - Alert view delegate
 
@@ -177,6 +159,9 @@
     } onDisconnect:^{
         [self showSplash];
     }];
+    
+    self.users = [NSMutableDictionary dictionary];
+    self.invites = [NSMutableDictionary dictionary];
     
     self.firebaseLobby = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/lobby"];
     self.firebaseInvites = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/invites"];

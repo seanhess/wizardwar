@@ -33,6 +33,9 @@
 		7837F16C1749B9D000D29445 /* navbar-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7837F16A1749B9CF00D29445 /* navbar-logo@2x.png */; };
 		787A2A81174D2771004C4FDB /* MatchmakingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787A2A80174D2771004C4FDB /* MatchmakingViewController.xib */; };
 		787A2A85174E85E3004C4FDB /* FirebaseConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A2A84174E85E3004C4FDB /* FirebaseConnection.m */; };
+		787A2A91174E9FA3004C4FDB /* TestLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A2A90174E9FA3004C4FDB /* TestLayer.m */; };
+		787A2A99174EA43D004C4FDB /* MatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A2A97174EA43D004C4FDB /* MatchViewController.m */; };
+		787A2A9A174EA43D004C4FDB /* MatchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787A2A98174EA43D004C4FDB /* MatchViewController.xib */; };
 		78F193E2174715A700BB8587 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F193E1174715A700BB8587 /* Default-568h@2x.png */; };
 		78F193E4174715B100BB8587 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F193E3174715B100BB8587 /* Default.png */; };
 		78F193E6174715B500BB8587 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F193E5174715B500BB8587 /* Default@2x.png */; };
@@ -249,8 +252,7 @@
 		78F6B3B81746B27800AA070D /* MatchGroundSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3AE1746B27600AA070D /* MatchGroundSprite.m */; };
 		78F6B3B91746B27800AA070D /* WizardSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3B01746B27600AA070D /* WizardSprite.m */; };
 		78F6B3BA1746B27800AA070D /* SpellSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3B21746B27700AA070D /* SpellSprite.m */; };
-		78F6B3C01746B28800AA070D /* CCScene+Layers.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3BF1746B28800AA070D /* CCScene+Layers.m */; };
-		78F6B3C41746B29C00AA070D /* WWDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3C31746B29C00AA070D /* WWDirector.m */; };
+		78F6B3C41746B29C00AA070D /* WizardDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3C31746B29C00AA070D /* WizardDirector.m */; };
 		78F6B3C71746C4D300AA070D /* NSArray+Functional.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3C61746C4D300AA070D /* NSArray+Functional.m */; };
 		78F6B3CB1746D77B00AA070D /* Units.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3CA1746D77B00AA070D /* Units.m */; };
 		78F6B3CF1746E05E00AA070D /* SpellFireball.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3CE1746E05E00AA070D /* SpellFireball.m */; };
@@ -303,6 +305,11 @@
 		787A2A80174D2771004C4FDB /* MatchmakingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchmakingViewController.xib; sourceTree = "<group>"; };
 		787A2A83174E85E3004C4FDB /* FirebaseConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseConnection.h; sourceTree = "<group>"; };
 		787A2A84174E85E3004C4FDB /* FirebaseConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseConnection.m; sourceTree = "<group>"; };
+		787A2A8F174E9FA3004C4FDB /* TestLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestLayer.h; sourceTree = "<group>"; };
+		787A2A90174E9FA3004C4FDB /* TestLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestLayer.m; sourceTree = "<group>"; };
+		787A2A96174EA43D004C4FDB /* MatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchViewController.h; sourceTree = "<group>"; };
+		787A2A97174EA43D004C4FDB /* MatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchViewController.m; sourceTree = "<group>"; };
+		787A2A98174EA43D004C4FDB /* MatchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchViewController.xib; sourceTree = "<group>"; };
 		78F193E1174715A700BB8587 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		78F193E3174715B100BB8587 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		78F193E5174715B500BB8587 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -675,10 +682,8 @@
 		78F6B3B01746B27600AA070D /* WizardSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WizardSprite.m; path = WizardWar/WizardSprite.m; sourceTree = SOURCE_ROOT; };
 		78F6B3B11746B27700AA070D /* SpellSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpellSprite.h; path = WizardWar/SpellSprite.h; sourceTree = SOURCE_ROOT; };
 		78F6B3B21746B27700AA070D /* SpellSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpellSprite.m; path = WizardWar/SpellSprite.m; sourceTree = SOURCE_ROOT; };
-		78F6B3BE1746B28800AA070D /* CCScene+Layers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CCScene+Layers.h"; path = "WizardWar/CCScene+Layers.h"; sourceTree = SOURCE_ROOT; };
-		78F6B3BF1746B28800AA070D /* CCScene+Layers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CCScene+Layers.m"; path = "WizardWar/CCScene+Layers.m"; sourceTree = SOURCE_ROOT; };
-		78F6B3C21746B29C00AA070D /* WWDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WWDirector.h; path = WizardWar/WWDirector.h; sourceTree = SOURCE_ROOT; };
-		78F6B3C31746B29C00AA070D /* WWDirector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WWDirector.m; path = WizardWar/WWDirector.m; sourceTree = SOURCE_ROOT; };
+		78F6B3C21746B29C00AA070D /* WizardDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WizardDirector.h; path = WizardWar/WizardDirector.h; sourceTree = SOURCE_ROOT; };
+		78F6B3C31746B29C00AA070D /* WizardDirector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WizardDirector.m; path = WizardWar/WizardDirector.m; sourceTree = SOURCE_ROOT; };
 		78F6B3C51746C4D300AA070D /* NSArray+Functional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+Functional.h"; path = "../WizardWar/NSArray+Functional.h"; sourceTree = "<group>"; };
 		78F6B3C61746C4D300AA070D /* NSArray+Functional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+Functional.m"; path = "../WizardWar/NSArray+Functional.m"; sourceTree = "<group>"; };
 		78F6B3C91746D77B00AA070D /* Units.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Units.h; sourceTree = "<group>"; };
@@ -920,6 +925,8 @@
 				78F6B39A1746B02100AA070D /* MatchmakingViewController.h */,
 				78F6B39B1746B02100AA070D /* MatchmakingViewController.m */,
 				787A2A80174D2771004C4FDB /* MatchmakingViewController.xib */,
+				78F6B3C21746B29C00AA070D /* WizardDirector.h */,
+				78F6B3C31746B29C00AA070D /* WizardDirector.m */,
 				787A2A82174E81AC004C4FDB /* Service */,
 				7837F1681749B66800D29445 /* Pentagram */,
 				78F6B3BD1746B27B00AA070D /* Match */,
@@ -1321,8 +1328,9 @@
 		78F6B3BD1746B27B00AA070D /* Match */ = {
 			isa = PBXGroup;
 			children = (
-				78F6B3C21746B29C00AA070D /* WWDirector.h */,
-				78F6B3C31746B29C00AA070D /* WWDirector.m */,
+				787A2A96174EA43D004C4FDB /* MatchViewController.h */,
+				787A2A97174EA43D004C4FDB /* MatchViewController.m */,
+				787A2A98174EA43D004C4FDB /* MatchViewController.xib */,
 				F283A920174807A40068EEB2 /* LifeManaIndicatorNode.h */,
 				F283A921174807A40068EEB2 /* LifeManaIndicatorNode.m */,
 				78F6B3AB1746B27600AA070D /* MatchLayer.h */,
@@ -1333,6 +1341,8 @@
 				78F6B3B01746B27600AA070D /* WizardSprite.m */,
 				78F6B3B11746B27700AA070D /* SpellSprite.h */,
 				78F6B3B21746B27700AA070D /* SpellSprite.m */,
+				787A2A8F174E9FA3004C4FDB /* TestLayer.h */,
+				787A2A90174E9FA3004C4FDB /* TestLayer.m */,
 			);
 			name = Match;
 			sourceTree = "<group>";
@@ -1340,8 +1350,6 @@
 		78F6B3C11746B28B00AA070D /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				78F6B3BE1746B28800AA070D /* CCScene+Layers.h */,
-				78F6B3BF1746B28800AA070D /* CCScene+Layers.m */,
 				78F6B3C51746C4D300AA070D /* NSArray+Functional.h */,
 				78F6B3C61746C4D300AA070D /* NSArray+Functional.m */,
 			);
@@ -1529,6 +1537,7 @@
 				7837F16B1749B9D000D29445 /* navbar-logo.png in Resources */,
 				7837F16C1749B9D000D29445 /* navbar-logo@2x.png in Resources */,
 				787A2A81174D2771004C4FDB /* MatchmakingViewController.xib in Resources */,
+				787A2A9A174EA43D004C4FDB /* MatchViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1657,8 +1666,7 @@
 				78F6B3B81746B27800AA070D /* MatchGroundSprite.m in Sources */,
 				78F6B3B91746B27800AA070D /* WizardSprite.m in Sources */,
 				78F6B3BA1746B27800AA070D /* SpellSprite.m in Sources */,
-				78F6B3C01746B28800AA070D /* CCScene+Layers.m in Sources */,
-				78F6B3C41746B29C00AA070D /* WWDirector.m in Sources */,
+				78F6B3C41746B29C00AA070D /* WizardDirector.m in Sources */,
 				78F6B3C71746C4D300AA070D /* NSArray+Functional.m in Sources */,
 				78F6B3CB1746D77B00AA070D /* Units.m in Sources */,
 				78F6B3CF1746E05E00AA070D /* SpellFireball.m in Sources */,
@@ -1679,6 +1687,8 @@
 				F283A922174807A40068EEB2 /* LifeManaIndicatorNode.m in Sources */,
 				781234DD174ADC19008EDE88 /* FirebaseCollection.m in Sources */,
 				787A2A85174E85E3004C4FDB /* FirebaseConnection.m in Sources */,
+				787A2A91174E9FA3004C4FDB /* TestLayer.m in Sources */,
+				787A2A99174EA43D004C4FDB /* MatchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,9 +10,14 @@
 
 @interface NSArray (Functional)
 
--(NSArray*)filter:(BOOL(^)(id))block;
--(NSArray*)map:(id(^)(id))block;
+-(NSMutableArray*)filter:(BOOL(^)(id))block;
+-(NSMutableArray*)map:(id(^)(id))block;
 -(void)forEach:(void(^)(id))block;
 -(id)find:(BOOL(^)(id))block;
+
++(NSMutableArray*)array:(id<NSFastEnumeration>)array filter:(BOOL(^)(id))block;
++(id)array:(id<NSFastEnumeration>)array find:(BOOL(^)(id))block;
++(NSMutableArray*)array:(id<NSFastEnumeration>)array map:(id(^)(id))block;
++(void)array:(id<NSFastEnumeration>)array forEach:(void(^)(id))block;
 
 @end

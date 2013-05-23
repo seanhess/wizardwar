@@ -16,7 +16,6 @@
 #import "NSArray+Functional.h"
 #import "NSArray+Functional.h"
 #import "Elements.h"
-#import "SimpleAudioEngine.h"
 
 #import "SpellFireball.h"
 #import "SpellEarthwall.h"
@@ -28,10 +27,10 @@
 #import "NSArray+Functional.h"
 #import "LifeManaIndicatorNode.h"
 
-@interface MatchLayer () <CCTouchOneByOneDelegate, MatchDelegate, PentagramDelegate>
+@interface MatchLayer () <CCTouchOneByOneDelegate, MatchDelegate>
 @property (nonatomic, strong) Match * match;
 @property (nonatomic, strong) Units * units;
-@property (nonatomic, strong) NSMutableArray * spellSprites;
+@property (nonatomic, strong) CCLayer * spells;
 
 @property (nonatomic, strong) NSString * matchId;
 
@@ -47,87 +46,63 @@
 
 @implementation MatchLayer
 
--(id)initWithMatchId:(NSString*)matchId player:(Player *)player withAI:(Player *)ai {
+-(id)initWithMatch:(Match*)match size:(CGSize)size {
     if ((self = [super init])) {
-        self.matchId = matchId;
-        NSLog(@"PLAYER NAME %@", player.name);
-        
         // background
         self.background = [CCSprite spriteWithFile:@"background-cave.png"];
         self.background.anchorPoint = ccp(0,0);
         [self addChild:self.background];
         
-        // preload bg music
-        SimpleAudioEngine *sae = [SimpleAudioEngine sharedEngine];
-        if (sae != nil) {
-            [sae preloadBackgroundMusic:@"theme.wav"];
-            if (sae.willPlayBackgroundMusic) {
-                sae.backgroundMusicVolume = 0.4f;
-            }
-        }
+        // don't use contentSize.
+        NSLog(@"TESTING %@", NSStringFromCGSize(size));
         
-        [sae playBackgroundMusic:@"theme.wav"];
-
-        // Lets try and overlay some UIKit stuff for the pentagram!
-        UIView *openGlView = [[CCDirector sharedDirector] view];
-        self.pentagramViewController = [[PentagramViewController alloc] init];
-        self.pentagramViewController.view.backgroundColor = [UIColor clearColor];
-        CGRect frame = openGlView.frame;
-        frame.size.width = 246;
-        frame.origin.x = (openGlView.frame.size.width - frame.size.width)/2;
-        self.pentagramViewController.view.frame = frame;
-        self.pentagramViewController.view.opaque = NO;
-        self.pentagramViewController.delegate = self;
-        [openGlView addSubview:self.pentagramViewController.view];
-        [openGlView bringSubviewToFront:self.pentagramViewController.view];
-        
-        // I need to join. Am I 1st player or 2nd player?
-        // Hmm... I need to know
-        
-        [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:NO];
-        
-        self.match = [[Match alloc] initWithId:self.matchId currentPlayer:player withAI:ai];
+        // match
+        self.match = match;
         self.match.delegate = self;
+        [self.match addObserver:self forKeyPath:@"state" options:NSKeyValueObservingOptionNew context:nil];
         
-        self.spellSprites = [NSMutableArray array];
+        // add a layer instead!
+        self.spells = [CCLayer node];
+        [self addChild:self.spells];
         
         CGFloat zeroY = 100;
         CGFloat wizardOffset = 75;
-        self.units = [[Units alloc] initWithZeroY:zeroY min:wizardOffset max:self.contentSize.width-wizardOffset];
-        
-//        self.label = [CCLabelTTF labelWithString:@"Ready" fontName:@"Marker Felt" fontSize:36];
-//        self.label.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
-//        [self addChild:self.label];
+        self.units = [[Units alloc] initWithZeroY:zeroY min:wizardOffset max:size.width-wizardOffset];
         
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"messages.plist"];
         
         self.message = [[CCSprite alloc] initWithSpriteFrameName:@"msg-ready.png"];
-        self.message.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
+        self.message.position = ccp(size.width/2, size.height/2);
         [self addChild:self.message];
         
         self.player1Indicator = [LifeManaIndicatorNode node];
         self.player2Indicator = [LifeManaIndicatorNode node];
         
-        self.player2Indicator.position = ccp(openGlView.frame.size.width - 150, 290);
+        self.player2Indicator.position = ccp(size.width - 150, 290);
         self.player1Indicator.position = ccp(150, 290);
         
         [self addChild:self.player1Indicator];
         [self addChild:self.player2Indicator];
         
         [self scheduleUpdate];
-        
-        // BACK BUTTON
-        self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [self.backButton setImage:[UIImage imageNamed:@"exit.png"] forState:UIControlStateNormal];
-        self.backButton.frame = CGRectMake(8, 8, 28, 22);
-        [self.backButton addTarget:self action:@selector(didTapBack:) forControlEvents:UIControlEventTouchUpInside];
-        [openGlView addSubview:self.backButton];
     }
     return self;
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if (object == self.match && [keyPath isEqualToString:MATCH_STATE_KEYPATH]) {
+        if (self.match.state == MatchStateEnded) {
+            [self matchEnded];
+        }
+        
+        else if (self.match.state == MatchStatePlaying) {
+            [self matchStarted];
+        }
+    }
+}
+
 - (void)onExit {
-    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
+    NSLog(@"Match: onExit");
 }
 
 -(void)update:(ccTime)delta {
@@ -140,7 +115,7 @@
 #pragma mark -  MATCH DELEGATE
 
 -(void)didRemoveSpell:(Spell *)spell {
-    SpellSprite * sprite = [self.spellSprites find:^BOOL(SpellSprite * sprite) {
+    SpellSprite * sprite = [NSArray array:self.spells.children find:^BOOL(SpellSprite * sprite) {
         return (sprite.spell == spell);
     }];
     [self removeChild:sprite];
@@ -148,13 +123,11 @@
 
 -(void)didAddSpell:(Spell *)spell {
     SpellSprite * sprite = [[SpellSprite alloc] initWithSpell:spell units:self.units];
-    [self addChild:sprite];
-    [self.spellSprites addObject:sprite];
+    [self.spells addChild:sprite];
 }
 
 -(void)matchStarted {
     self.message.visible = NO;
-    self.pentagramViewController.view.hidden = NO;
     [self.match.players forEach:^(Player*player) {
         CCSprite * wizard = [[WizardSprite alloc] initWithPlayer:player units:self.units];
         [self addChild:wizard];
@@ -165,8 +138,7 @@
 }
 
 -(void)matchEnded {
-    
-    self.pentagramViewController.view.hidden = YES;
+//    self.pentagramViewController.view.hidden = YES;
     if (self.match.currentPlayer.state == PlayerStateDead){
         [self.message setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"msg-you-lose.png"]];
         
@@ -182,109 +154,8 @@
     [self.player2Indicator updateFromPlayer];
 }
 
--(void)drawWizard:(Player*)player {
-    
+- (void)dealloc {
+    NSLog(@"Match: dealloc%@", self);
 }
-
--(void)didTapBack:(id)sender {
-    [self.delegate doneWithMatch];
-}
-
-
-// TOUCHES
-
--(BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
-    return YES;
-}
-
--(void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event {
-    
-}
-
--(void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
-    
-//    CGPoint touchPoint = [touch locationInView:touch.view];
-    
-    /*if (!self.match.started) {
-        
-        if (self.match.loser) {
-            NSLog(@"OVER");
-            [self.delegate doneWithMatch];
-        }
-        else {
-            NSLog(@"NOT STARTED");
-        }
-        return;
-    }
-    
-    CGPoint touchPoint = [touch locationInView:touch.view];
-    CGSize winSize = [[CCDirector sharedDirector] winSize];
-    
-    // add the spell here
-    Spell * spell = nil;
-    if (touchPoint.x < winSize.width/2)
-        spell = [SpellEarthwall new];
-    else
-        spell = [SpellFireball new];
-    
-    [self.match castSpell:spell];
-    [spell setPositionFromPlayer:self.match.currentPlayer];
-    
-    [self.match addSpell:spell]; // add spell
-    NSLog(@"NEW SPELL! %@", spell);*/
-}
-
-# pragma mark Pentagram Delegate
-
--(void)didSelectElement:(NSArray *)elements
-{
-//    NSLog(@"selected element %@", elements);
-}
-
--(void)didCastSpell:(NSArray *)elements
-{
-    NSString * comboId = [Elements comboId:elements];
-    NSLog(@"cast spell %@", comboId);
-    
-    Spell * spell = nil;
-    
-    if ([comboId isEqualToString:@"FAF"]) {
-        spell = [SpellFireball new];
-    }
-    
-    else if ([comboId isEqualToString:@"EWE"]) {
-        spell = [SpellEarthwall new];
-    }
-    
-    else if ([comboId isEqualToString:@"AHW"]) {
-        spell = [SpellWindblast new];
-    }
-    
-    else if ([comboId isEqualToString:@"EFHW"]) {
-        spell = [SpellMonster new];
-    }
-    
-    else if ([comboId isEqualToString:@"WAE"]) {
-        spell = [SpellIcewall new];
-    }
-    
-    else if ([comboId isEqualToString:@"WAH"]) {
-        spell = [SpellBubble new];
-    }
-    
-    else if ([comboId isEqualToString:@"WAEH"]) {
-        spell = [SpellVine new];
-    }
-    
-    else if ([comboId isEqualToString:@"EFAWH"]) {
-        spell = nil;
-        NSLog(@"CAPTIAN PLANET");
-    }
-    
-    if (spell != nil) {
-        [self.match castSpell:spell];
-    }
-}
-
 
 @end

@@ -16,7 +16,6 @@
 @property (nonatomic, strong) UITableViewController * matchesTableViewController;
 @property (nonatomic, strong) NSString* nickname;
 @property (nonatomic, strong) NSString* matchID;
-@property (nonatomic) BOOL isInMatch;
 
 -(void)disconnect;
 -(void)reconnect;

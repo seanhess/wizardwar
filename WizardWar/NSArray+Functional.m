@@ -11,34 +11,56 @@
 @implementation NSArray (Functional)
 
 -(NSArray *)filter:(BOOL(^)(id))match {
-    NSPredicate * predicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary * bindings) {
-        return match(evaluatedObject);
-    }];
-    
-    return [self filteredArrayUsingPredicate:predicate];
+    return [NSArray array:self filter:match];
 }
 
--(NSArray *)map:(id(^)(id))tranform {
-    NSMutableArray * array = [NSMutableArray array];
-    for (id obj in self) {
-        [array addObject:tranform(obj)];
-    }
-    return array;
+-(NSArray *)map:(id(^)(id))transform {
+    return [NSArray array:self map:transform];
 }
 
 -(void)forEach:(void(^)(id))block {
-    id(^ignore)(id) = ^(id obj) {
-        block(obj);
-        return obj;
-    };
-    
-    [self map:ignore];
+    return [NSArray array:self forEach:block];
 }
 
 -(id)find:(BOOL(^)(id))match {
     NSArray * matches = [self filter:match];
     if (matches.count == 0) return nil;
     return matches[0];
+}
+
++(NSMutableArray*)array:(id<NSFastEnumeration>)array filter:(BOOL(^)(id))match {
+    NSMutableArray * found = [NSMutableArray array];
+    for (id obj in array) {
+        if (match(obj)) [found addObject:obj];
+    }
+    return found;
+}
+
++(NSArray*)array:(id<NSFastEnumeration>)array map:(id(^)(id))transform {
+    NSMutableArray * mapped = [NSMutableArray array];
+    for (id obj in array) {
+        id newobj = transform(obj);
+        [mapped addObject:newobj];
+    }
+    return mapped;
+}
+
++(void)array:(id<NSFastEnumeration>)array forEach:(void (^)(id))block {
+    id(^ignore)(id) = ^(id obj) {
+        block(obj);
+        return obj;
+    };
+    
+    [self array:array map:ignore];
+}
+
++(id)array:(id<NSFastEnumeration>)array find:(BOOL (^)(id))match {
+    for (id obj in array) {
+        if (match(obj)) {
+            return obj;
+        }
+    }
+    return nil;
 }
 
 @end

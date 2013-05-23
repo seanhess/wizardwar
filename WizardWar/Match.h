@@ -10,13 +10,18 @@
 #import "Spell.h"
 #import "Player.h"
 
+typedef enum MatchState {
+    MatchStateReady,
+    MatchStatePlaying,
+    MatchStateEnded,
+} MatchState;
+
+#define MATCH_STATE_KEYPATH @"state"
+
 @protocol MatchDelegate
 -(void)didRemoveSpell:(Spell*)spell;
 -(void)didAddSpell:(Spell*)spell;
--(void)matchStarted;
--(void)matchEnded;
 -(void)didUpdateHealthAndMana;
-
 @end
 
 @interface Match : NSObject
@@ -25,8 +30,9 @@
 @property (nonatomic, weak) id<MatchDelegate> delegate;
 @property (nonatomic, strong) Player * currentPlayer;
 @property (nonatomic, strong) Player * opponentPlayer;
-@property (nonatomic) BOOL started;
-@property (nonatomic, strong) Player * loser;
+
+@property (nonatomic) MatchState state;
+
 -(void)update:(NSTimeInterval)dt;
 -(void)addSpell:(Spell*)spell;
 -(id)initWithId:(NSString*)id currentPlayer:(Player*)player withAI:(Player*)ai;

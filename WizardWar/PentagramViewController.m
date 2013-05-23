@@ -28,6 +28,7 @@
 //    button.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 //    [self.view addSubview:button];
     
+    self.view.opaque = NO;
     DrawingLayer *drawLayer = [[DrawingLayer alloc] initWithFrame:self.view.bounds];
     self.drawingLayer = drawLayer;
     drawLayer.opaque = NO;

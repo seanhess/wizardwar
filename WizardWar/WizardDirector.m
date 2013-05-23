@@ -6,16 +6,23 @@
 //  Copyright (c) 2013 The LAB. All rights reserved.
 //
 
-#import "WWDirector.h"
+#import "WizardDirector.h"
 #import "cocos2d.h"
 
-@interface WWDirector ()
+@interface WizardDirector ()
 
 @end
 
-@implementation WWDirector
+@implementation WizardDirector
 
-+(CCDirectorIOS*)directorWithBounds:(CGRect)bounds {
++ (CCDirectorIOS *)shared
+{
+    // make sure to call initialize right away!
+    CCDirectorIOS * director = (CCDirectorIOS*) [CCDirector sharedDirector];
+    return director;
+}
+
++(CCDirectorIOS*)initializeWithBounds:(CGRect)bounds {
     // Custom initialization
     
     // CCGLView creation
@@ -81,7 +88,45 @@
     // Assume that PVR images have premultiplied alpha
     [CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
     
+    // you are supposed to make the SCENE be your big beefcake
+    // add an empty scene, so we can call replace from now on
+    [director runWithScene:[CCScene node]];
+    
+    [self stop];
+    
     return director;
+}
+
++(void)runLayer:(CCLayer*)layer {
+    CCDirectorIOS * director = [self shared];
+	CCScene *scene = [CCScene node];
+	[scene addChild:layer];
+    [director replaceScene:scene];
+    [self start];
+}
+
++(void)unload {
+    CCDirectorIOS * director = [self shared];
+    CCScene * empty = [CCScene new];
+    CCLayer * layer = [CCLayer new];
+    [empty addChild:layer];
+    [director replaceScene:empty];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self stop];
+    });
+}
+
++(void)stop {
+    CCDirectorIOS * director = [self shared];
+    [director stopAnimation];
+    [director pause];
+ }
+
++(void)start {
+    CCDirectorIOS * director = [self shared];
+    [director stopAnimation];
+    [director resume];
+    [director startAnimation];
 }
 
 @end
