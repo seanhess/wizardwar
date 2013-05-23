@@ -93,7 +93,7 @@
 }
 
 - (void)onExit {
-    NSLog(@"Match: onExit");
+    NSLog(@"MatchLayer: onExit");
 }
 
 -(void)update:(ccTime)delta {
@@ -148,7 +148,8 @@
 }
 
 - (void)dealloc {
-    NSLog(@"Match: dealloc%@", self);
+    [self.match removeObserver:self forKeyPath:MATCH_STATE_KEYPATH];
+    NSLog(@"MatchLayer: dealloc%@", self);
 }
 
 @end

@@ -65,7 +65,6 @@
 - (void)connectToMatchWithId:(NSString*)matchId currentPlayer:(Player*)player withAI:(Player*)ai {
     self.match = [[Match alloc] initWithId:matchId currentPlayer:player withAI:ai];
     [self.match addObserver:self forKeyPath:MATCH_STATE_KEYPATH options:NSKeyValueObservingOptionNew context:nil];
-    
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
@@ -89,6 +88,7 @@
 }
 
 - (IBAction)didTapBack:(id)sender {
+    [self.match disconnect];
     [WizardDirector unload]; // TODO make it dealloc without having to play it!
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -154,6 +154,8 @@
 }
 
 - (void)dealloc {
+    NSLog(@"MatchViewController: dealloc");
+    [self.match removeObserver:self forKeyPath:MATCH_STATE_KEYPATH];
     [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
 }
 

@@ -107,16 +107,12 @@
 
 +(void)unload {
     CCDirectorIOS * director = [self shared];
-    CCScene * empty = [CCScene new];
-    CCLayer * layer = [CCLayer new];
-    [empty addChild:layer];
-    [director replaceScene:empty];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self stop];
-    });
+    [[director runningScene] removeAllChildrenWithCleanup:YES];
+    [self stop];
 }
 
 +(void)stop {
+    NSLog(@"STOP");
     CCDirectorIOS * director = [self shared];
     [director stopAnimation];
     [director pause];

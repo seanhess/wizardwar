@@ -37,7 +37,6 @@
 @implementation Match
 -(id)initWithId:(NSString *)id currentPlayer:(Player *)player withAI:(Player *)ai {
     if ((self = [super init])) {
-        
         self.players = [NSMutableArray array];
         self.spells = [NSMutableArray array];
         
@@ -48,34 +47,34 @@
         self.spellsNode = [self.matchNode childByAppendingPath:@"spells"];
         self.playersNode = [self.matchNode childByAppendingPath:@"players"];
         
+        
         // PLAYERS
         [self.playersNode observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
             Player * player = [Player new];
             [player setValuesForKeysWithDictionary:snapshot.value];
             [self.players addObject:player];
-            
+
             if ([player.name isEqualToString:self.currentPlayer.name]) {
                 self.currentPlayer = player;
             } else {
                 self.opponentNode = [self.playersNode childByAppendingPath:player.name];
                 self.opponentPlayer = player;
-                
-                [self.opponentNode observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
-                    NSLog(@"opponent changed, %@, %@", snapshot.name, snapshot.value);
-                    if ([snapshot.name isEqualToString:@"mana"]) {
-                        //NSLog(@"snapshot value %@, %@, %f", NSStringFromClass([snapshot.value class]), snapshot.value, [snapshot.value floatValue]);
-                        
-                        self.opponentPlayer.mana = [snapshot.value floatValue];
-                        NSLog(@"opponent %@, %@", self.opponentPlayer, self.players);
-                        //[self.opponentPlayer.delegate didUpdateForRender];
-                        [self.delegate didUpdateHealthAndMana];
-                    }
-                }];
+
+//                [self.opponentNode observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
+//                    NSLog(@"opponent changed, %@, %@", snapshot.name, snapshot.value);
+//                    if ([snapshot.name isEqualToString:@"mana"]) {
+//                        //NSLog(@"snapshot value %@, %@, %f", NSStringFromClass([snapshot.value class]), snapshot.value, [snapshot.value floatValue]);
+//                        
+//                        self.opponentPlayer.mana = [snapshot.value floatValue];
+//                        NSLog(@"opponent %@, %@", self.opponentPlayer, self.players);
+//                        //[self.opponentPlayer.delegate didUpdateForRender];
+//                        [self.delegate didUpdateHealthAndMana];
+//                    }
+//                }];
             }
-            
+
             [self checkStart];
         }];
-        
         
         if (ai) {
             self.opponentPlayer = ai;
@@ -84,7 +83,7 @@
         
         self.currentPlayer = player;
         [self joinPlayer:self.currentPlayer];
-        
+
         
         // SPELLS
         [self.spellsNode observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
@@ -97,9 +96,9 @@
             [self addSpellLocally:spell];
         }];
         
-        [[NSNotificationCenter defaultCenter] addObserverForName:@"HealthManaUpdate" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-            [self.delegate didUpdateHealthAndMana];
-        }];
+//        [[NSNotificationCenter defaultCenter] addObserverForName:@"HealthManaUpdate" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+//            [self.delegate didUpdateHealthAndMana];
+//        }];
     }
     return self;
 }
@@ -280,6 +279,17 @@
     } else {
         NSLog(@"Not enough Mana you fiend!");
     }
+}
+
+- (void)disconnect {
+    [self.spellsNode removeAllObservers];
+    [self.playersNode removeAllObservers];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)dealloc {
+//    [self disconnect];
+    NSLog(@"Match: dealloc");
 }
 
 @end

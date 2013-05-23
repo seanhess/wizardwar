@@ -37,4 +37,6 @@ typedef enum MatchState {
 -(void)addSpell:(Spell*)spell;
 -(id)initWithId:(NSString*)id currentPlayer:(Player*)player withAI:(Player*)ai;
 -(void)castSpell:(Spell *)spell;
+
+-(void)disconnect;
 @end
