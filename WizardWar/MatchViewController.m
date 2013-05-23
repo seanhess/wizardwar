@@ -58,6 +58,8 @@
     director.view.frame = self.cocosView.bounds;
     MatchLayer * matchLayer = [[MatchLayer alloc] initWithMatch:self.match size:self.cocosView.bounds.size];
     [WizardDirector runLayer:matchLayer];
+    
+    [self renderMatch];
 }
 
 - (void)connectToMatchWithId:(NSString*)matchId currentPlayer:(Player*)player withAI:(Player*)ai {
@@ -67,9 +69,11 @@
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if (object == self.match) {
-        self.pentagram.view.hidden = (self.match.state != MatchStatePlaying);
-    }
+    if (object == self.match) [self renderMatch];
+}
+
+- (void)renderMatch {
+    self.pentagram.view.hidden = (self.match.state != MatchStatePlaying);
 }
 
 - (void)playMusic {

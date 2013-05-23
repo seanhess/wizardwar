@@ -53,9 +53,6 @@
         self.background.anchorPoint = ccp(0,0);
         [self addChild:self.background];
         
-        // don't use contentSize.
-        NSLog(@"TESTING %@", NSStringFromCGSize(size));
-        
         // match
         self.match = match;
         self.match.delegate = self;
@@ -91,13 +88,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if (object == self.match && [keyPath isEqualToString:MATCH_STATE_KEYPATH]) {
-        if (self.match.state == MatchStateEnded) {
-            [self matchEnded];
-        }
-        
-        else if (self.match.state == MatchStatePlaying) {
-            [self matchStarted];
-        }
+        [self renderMatchState];
     }
 }
 
@@ -126,26 +117,28 @@
     [self.spells addChild:sprite];
 }
 
--(void)matchStarted {
-    self.message.visible = NO;
-    [self.match.players forEach:^(Player*player) {
-        CCSprite * wizard = [[WizardSprite alloc] initWithPlayer:player units:self.units];
-        [self addChild:wizard];
-    }];
+- (void)renderMatchState {
+    self.message.visible = (self.match.state == MatchStateReady || self.match.state == MatchStateEnded);
     
-    self.player1Indicator.player = self.match.players[0];
-    self.player2Indicator.player = self.match.players[1];
-}
-
--(void)matchEnded {
-//    self.pentagramViewController.view.hidden = YES;
-    if (self.match.currentPlayer.state == PlayerStateDead){
-        [self.message setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"msg-you-lose.png"]];
+    if (self.match.state == MatchStatePlaying) {
+        // make a sprite for each player
+        [self.match.players forEach:^(Player*player) {
+            CCSprite * wizard = [[WizardSprite alloc] initWithPlayer:player units:self.units];
+            [self addChild:wizard];
+        }];
         
-    } else {
-        [self.message setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"msg-you-won.png"]];
+        self.player1Indicator.player = self.match.players[0];
+        self.player2Indicator.player = self.match.players[1];
     }
-    self.message.visible = YES;
+    
+    if (self.match.state == MatchStateEnded) {
+        NSString * messageFrameName = nil;
+        if (self.match.currentPlayer.state == PlayerStateDead)
+            messageFrameName = @"msg-you-lose.png";
+        else
+            messageFrameName = @"msg-you-won.png";
+        [self.message setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:messageFrameName]];
+    }
 }
 
 -(void)didUpdateHealthAndMana

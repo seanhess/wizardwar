@@ -198,7 +198,6 @@
 }
 
 -(void)start {
-    self.state = MatchStatePlaying;
     
     // sort alphabetically
     [self.players sortUsingComparator:^NSComparisonResult(Player * p1, Player *p2) {
@@ -207,6 +206,9 @@
     
     [(Player *)self.players[0] setPosition:UNITS_MIN];
     [(Player *)self.players[1] setPosition:UNITS_MAX];
+    
+    // MUST BE LAST
+    self.state = MatchStatePlaying;
 }
 
 
