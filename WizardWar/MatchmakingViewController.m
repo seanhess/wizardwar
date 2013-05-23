@@ -27,6 +27,8 @@
 @property (nonatomic, strong) FirebaseCollection* usersCollection;
 @property (nonatomic, strong) FirebaseCollection* invitesCollection;
 @property (nonatomic, strong) FirebaseConnection* connection;
+
+@property (strong, nonatomic) User * currentUser;
 @end
 
 @implementation MatchmakingViewController
@@ -63,7 +65,7 @@
         [av show];
         av.delegate = self;
     } else {
-        [self joinLobby];
+        // [self joinLobby];
     }
 }
 
@@ -76,6 +78,19 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)connectToLobby {
+    [self hideSplash];
+    [self joinLobby];
+}
+
+- (void)disconnect {
+    [self leaveLobby];
+}
+
+- (void)reconnect {
+    [self joinLobby];
 }
 
 // show this splash screen until connected
@@ -158,7 +173,7 @@
 - (void)loadDataFromFirebase
 {
     self.connection = [[FirebaseConnection alloc] initWithFirebaseName:@"wizardwar" onConnect:^{
-        [self hideSplash];
+        [self connectToLobby];
     } onDisconnect:^{
         [self showSplash];
     }];
@@ -201,9 +216,13 @@
 
 - (void)joinLobby
 {
-    User * user = [User new];
-    user.name = self.nickname;
-    [self.usersCollection addObject:user withName:self.nickname];
+    self.currentUser = [User new];
+    self.currentUser.name = self.nickname;
+    [self.usersCollection addObject:self.currentUser withName:self.nickname];
+}
+
+- (void)leaveLobby {
+    [self.usersCollection removeObject:self.currentUser];
 }
 
 #pragma mark - Table view data source

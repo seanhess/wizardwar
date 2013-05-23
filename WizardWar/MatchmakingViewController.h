@@ -18,4 +18,7 @@
 @property (nonatomic, strong) NSString* matchID;
 @property (nonatomic) BOOL isInMatch;
 
+-(void)disconnect;
+-(void)reconnect;
+
 @end
