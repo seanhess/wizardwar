@@ -250,12 +250,10 @@
     
     if ([comboId isEqualToString:@"FAF"]) {
         spell = [SpellFireball new];
-        [[SimpleAudioEngine sharedEngine] playEffect:@"fireball.wav"];
     }
     
     else if ([comboId isEqualToString:@"EWE"]) {
         spell = [SpellEarthwall new];
-        [[SimpleAudioEngine sharedEngine] playEffect:@"earthwall.wav"];
     }
     
     else if ([comboId isEqualToString:@"AHW"]) {
