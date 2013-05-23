@@ -12,8 +12,6 @@
 #import "cocos2d.h"
 
 @interface AppDelegate ()
-@property (nonatomic, strong) UIImageView * splash;
-
 @end
 
 @implementation AppDelegate
@@ -24,31 +22,13 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    NSString * imageName = @"Default.png";
-    if (UIScreen.mainScreen.bounds.size.height > 480) {
-        imageName = @"Default-568h.png";
-    }
-    
-    self.splash = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
     
     MatchmakingViewController * matches = [[MatchmakingViewController alloc] initWithNibName:@"MatchmakingViewController" bundle:nil];
     MainNavViewController * navigationController = [[MainNavViewController alloc] initWithRootViewController:matches];
     [self.window setRootViewController:navigationController];
     [self.window makeKeyAndVisible];
     
-    [self.window addSubview:self.splash];
-    
-    [self performSelector:@selector(hideSplash) withObject:self afterDelay:1.0];
-    
     return YES;
-}
-
--(void) hideSplash {
-    [UIView animateWithDuration:0.2 animations:^{
-        self.splash.alpha = 0;
-    } completion:^(BOOL finished) {
-        [self.splash removeFromSuperview];
-    }];
 }
 
 // getting a call, pause the game

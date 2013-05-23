@@ -14,15 +14,19 @@
 #import "Invite.h"
 #import "NSArray+Functional.h"
 #import "FirebaseCollection.h"
+#import "FirebaseConnection.h"
 
 @interface MatchmakingViewController () <MatchLayerDelegate>
 @property (nonatomic, strong) CCDirectorIOS * director;
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
+@property (weak, nonatomic) IBOutlet UIImageView *splashView;
+@property (weak, nonatomic) IBOutlet UILabel *splashLabel;
 
 @property (nonatomic, strong) NSMutableDictionary* invites;
 @property (nonatomic, strong) NSMutableDictionary* users;
 @property (nonatomic, strong) FirebaseCollection* usersCollection;
 @property (nonatomic, strong) FirebaseCollection* invitesCollection;
+@property (nonatomic, strong) FirebaseConnection* connection;
 @end
 
 @implementation MatchmakingViewController
@@ -40,6 +44,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    [self showSplash];
     
     self.title = @"Matchmaking";
     
@@ -70,6 +76,31 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+// show this splash screen until connected
+- (void)showSplash {
+    NSString * imageName = @"Default.png";
+    if (UIScreen.mainScreen.bounds.size.height > 480) {
+        imageName = @"Default-568h.png";
+    }
+    
+    // I STILL don't get why the splash images have to be rotated.
+    // maybe this should be a loading image anyway
+    self.splashView.transform = CGAffineTransformMakeRotation(M_PI/2);
+    self.splashView.image = [UIImage imageNamed:imageName];
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        self.splashView.alpha = 1.0;
+        self.splashLabel.alpha = 1.0;
+    }];
+}
+
+- (void)hideSplash {
+    [UIView animateWithDuration:0.2 animations:^{
+        self.splashView.alpha = 0.0;
+        self.splashLabel.alpha = 0.0;
+    }];
 }
 
 - (void)joinMatch:(Invite*)invite playerName:(NSString *)playerName {
@@ -126,6 +157,12 @@
 
 - (void)loadDataFromFirebase
 {
+    self.connection = [[FirebaseConnection alloc] initWithFirebaseName:@"wizardwar" onConnect:^{
+        [self hideSplash];
+    } onDisconnect:^{
+        [self showSplash];
+    }];
+    
     self.firebaseLobby = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/lobby"];
     self.firebaseInvites = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/invites"];
     

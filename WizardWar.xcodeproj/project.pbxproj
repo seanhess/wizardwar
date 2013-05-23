@@ -32,6 +32,7 @@
 		7837F16B1749B9D000D29445 /* navbar-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7837F1691749B9CF00D29445 /* navbar-logo.png */; };
 		7837F16C1749B9D000D29445 /* navbar-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7837F16A1749B9CF00D29445 /* navbar-logo@2x.png */; };
 		787A2A81174D2771004C4FDB /* MatchmakingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787A2A80174D2771004C4FDB /* MatchmakingViewController.xib */; };
+		787A2A85174E85E3004C4FDB /* FirebaseConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A2A84174E85E3004C4FDB /* FirebaseConnection.m */; };
 		78F193E2174715A700BB8587 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F193E1174715A700BB8587 /* Default-568h@2x.png */; };
 		78F193E4174715B100BB8587 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F193E3174715B100BB8587 /* Default.png */; };
 		78F193E6174715B500BB8587 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F193E5174715B500BB8587 /* Default@2x.png */; };
@@ -300,6 +301,8 @@
 		7837F1691749B9CF00D29445 /* navbar-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar-logo.png"; sourceTree = "<group>"; };
 		7837F16A1749B9CF00D29445 /* navbar-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar-logo@2x.png"; sourceTree = "<group>"; };
 		787A2A80174D2771004C4FDB /* MatchmakingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchmakingViewController.xib; sourceTree = "<group>"; };
+		787A2A83174E85E3004C4FDB /* FirebaseConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseConnection.h; sourceTree = "<group>"; };
+		787A2A84174E85E3004C4FDB /* FirebaseConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseConnection.m; sourceTree = "<group>"; };
 		78F193E1174715A700BB8587 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		78F193E3174715B100BB8587 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		78F193E5174715B500BB8587 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -744,16 +747,6 @@
 			name = sounds;
 			sourceTree = "<group>";
 		};
-		781234DE174AE269008EDE88 /* Firebase */ = {
-			isa = PBXGroup;
-			children = (
-				781234DB174ADC19008EDE88 /* FirebaseCollection.h */,
-				781234DC174ADC19008EDE88 /* FirebaseCollection.m */,
-				781234DF174AE4C0008EDE88 /* Objectable.h */,
-			);
-			name = Firebase;
-			sourceTree = "<group>";
-		};
 		7837F1681749B66800D29445 /* Pentagram */ = {
 			isa = PBXGroup;
 			children = (
@@ -767,6 +760,18 @@
 				6F0B2FA8174750FF00CFC092 /* PentEmblem.m */,
 			);
 			name = Pentagram;
+			sourceTree = "<group>";
+		};
+		787A2A82174E81AC004C4FDB /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				781234DB174ADC19008EDE88 /* FirebaseCollection.h */,
+				781234DC174ADC19008EDE88 /* FirebaseCollection.m */,
+				787A2A83174E85E3004C4FDB /* FirebaseConnection.h */,
+				787A2A84174E85E3004C4FDB /* FirebaseConnection.m */,
+				781234DF174AE4C0008EDE88 /* Objectable.h */,
+			);
+			name = Service;
 			sourceTree = "<group>";
 		};
 		78F193E717471A0E00BB8587 /* images */ = {
@@ -915,6 +920,7 @@
 				78F6B39A1746B02100AA070D /* MatchmakingViewController.h */,
 				78F6B39B1746B02100AA070D /* MatchmakingViewController.m */,
 				787A2A80174D2771004C4FDB /* MatchmakingViewController.xib */,
+				787A2A82174E81AC004C4FDB /* Service */,
 				7837F1681749B66800D29445 /* Pentagram */,
 				78F6B3BD1746B27B00AA070D /* Match */,
 				78F6B3AA1746B26400AA070D /* Data */,
@@ -1308,7 +1314,6 @@
 				78F6B3DD174705EA00AA070D /* Invite.m */,
 				78F195161748024C00BB8587 /* Elements.h */,
 				78F195171748024D00BB8587 /* Elements.m */,
-				781234DE174AE269008EDE88 /* Firebase */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -1673,6 +1678,7 @@
 				78F195181748024D00BB8587 /* Elements.m in Sources */,
 				F283A922174807A40068EEB2 /* LifeManaIndicatorNode.m in Sources */,
 				781234DD174ADC19008EDE88 /* FirebaseCollection.m in Sources */,
+				787A2A85174E85E3004C4FDB /* FirebaseConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
