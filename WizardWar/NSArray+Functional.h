@@ -13,6 +13,7 @@
 -(NSMutableArray*)filter:(BOOL(^)(id))block;
 -(NSMutableArray*)map:(id(^)(id))block;
 -(void)forEach:(void(^)(id))block;
+-(void)forEachIndex:(void(^)(int))block;
 -(id)find:(BOOL(^)(id))block;
 
 +(NSMutableArray*)array:(id<NSFastEnumeration>)array filter:(BOOL(^)(id))block;

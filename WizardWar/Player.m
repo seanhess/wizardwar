@@ -48,7 +48,6 @@
     }
     else
         self.stateAnimationTime = 0.0;
-    [self.delegate didUpdateForRender];
 }
 
 -(void)update:(NSTimeInterval)dt {
@@ -56,7 +55,6 @@
         self.stateAnimationTime -= dt;
         if (self.stateAnimationTime <= 0) {
             self.state = PlayerStateReady;
-            [self.delegate didUpdateForRender];
         }
     }
     

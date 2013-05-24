@@ -22,7 +22,6 @@ typedef enum MatchStatus {
 -(void)didRemoveSpell:(Spell*)spell;
 -(void)didAddSpell:(Spell*)spell;
 -(void)didAddPlayer:(Player*)player;
--(void)didUpdateHealthAndMana;
 @end
 
 @interface Match : NSObject

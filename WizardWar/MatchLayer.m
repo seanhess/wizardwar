@@ -27,11 +27,15 @@
 #import "NSArray+Functional.h"
 #import "LifeManaIndicatorNode.h"
 
+#define INDICATOR_PADDING_X 150
+#define INDICATOR_PADDING_Y 20
+
 @interface MatchLayer () <CCTouchOneByOneDelegate, MatchDelegate>
 @property (nonatomic, strong) Match * match;
 @property (nonatomic, strong) Units * units;
 @property (nonatomic, strong) CCLayer * spells;
 @property (nonatomic, strong) CCLayer * players;
+@property (nonatomic, strong) CCLayer * indicators;
 
 @property (nonatomic, strong) NSString * matchId;
 
@@ -39,9 +43,6 @@
 @property (nonatomic, strong) CCSprite * background;
 
 @property (nonatomic, strong) UIButton * backButton;
-
-@property (nonatomic, strong) LifeManaIndicatorNode *player1Indicator;
-@property (nonatomic, strong) LifeManaIndicatorNode *player2Indicator;
 
 @end
 
@@ -65,6 +66,8 @@
         self.spells = [CCLayer node];
         [self addChild:self.spells];
         
+        self.indicators = [CCLayer node];
+        [self addChild:self.indicators];
         
         CGFloat zeroY = 100;
         CGFloat wizardOffset = 75;
@@ -76,14 +79,15 @@
         self.message.position = ccp(size.width/2, size.height/2);
         [self addChild:self.message];
         
-        self.player1Indicator = [LifeManaIndicatorNode node];
-        self.player2Indicator = [LifeManaIndicatorNode node];
+        // LIFE MANA INDICATORS add two of them to the right spot
+        LifeManaIndicatorNode * player1Indicator = [LifeManaIndicatorNode node];
+        LifeManaIndicatorNode * player2Indicator = [LifeManaIndicatorNode node];
         
-        self.player2Indicator.position = ccp(size.width - 150, 290);
-        self.player1Indicator.position = ccp(150, 290);
+        player1Indicator.position = ccp(size.width - INDICATOR_PADDING_X, size.height - INDICATOR_PADDING_Y);
+        player2Indicator.position = ccp(INDICATOR_PADDING_X, size.height - INDICATOR_PADDING_Y);
         
-        [self addChild:self.player1Indicator];
-        [self addChild:self.player2Indicator];
+        [self.indicators addChild:player1Indicator];
+        [self.indicators addChild:player2Indicator];
         
         [self scheduleUpdate];
     }
@@ -132,16 +136,14 @@
     self.players.visible = (self.match.status == MatchStatusPlaying || self.match.status == MatchStatusEnded);
     
     if (self.match.status == MatchStatusPlaying) {
-        // we don't know until the match has started
-        // that the players have their correct assignments
-        
-////        self.player1Indicator.player = players[0];
-////        self.player2Indicator.player = players[1];
-//        
-//        NSArray * players = self.match.sortedPlayers;
-//            [players forEach:^(Player*player) {
-//            }];
-//        }
+        // assign players to indicators
+        NSArray * players = self.match.sortedPlayers;
+        [players forEachIndex:^(int i) {
+            // view can data-bind to player
+            LifeManaIndicatorNode * node = [self.indicators.children objectAtIndex:i];
+            Player * player = players[i];
+            node.player = player;
+        }];
     }
     
     if (self.match.status == MatchStatusEnded) {
@@ -152,12 +154,6 @@
             messageFrameName = @"msg-you-won.png";
         [self.message setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:messageFrameName]];
     }
-}
-
--(void)didUpdateHealthAndMana
-{
-    [self.player1Indicator updateFromPlayer];
-    [self.player2Indicator updateFromPlayer];
 }
 
 - (void)dealloc {

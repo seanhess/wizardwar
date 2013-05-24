@@ -48,6 +48,10 @@
     return self;
 }
 
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    
+}
+
 -(void)updateWithHealth:(NSInteger)health andMana:(NSInteger)mana
 {
     for (int i = 0; i < 5; i++) {

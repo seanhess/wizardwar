@@ -134,7 +134,6 @@
     
     // this allows it to subtract health
     [spell interactPlayer:player];
-    [player.delegate didUpdateForRender];
     [self checkWin];
 }
 
@@ -193,11 +192,7 @@
     [(Player *)players[0] setPosition:UNITS_MIN];
     [(Player *)players[1] setPosition:UNITS_MAX];
     
-    [players forEach:^(Player*player) {
-        [player.delegate didUpdateForRender];
-    }];
-    
-    // MUST BE LAST
+    // MUST BE LAST? (stupid data binding) I think it triggers the thing before positions are fixed on those players
     self.status = MatchStatusPlaying;
 }
 

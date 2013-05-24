@@ -10,6 +10,6 @@
 #import "Player.h"
 #import "RenderDelegate.h"
 
-@interface WizardSprite : CCSprite <RenderDelegate>
+@interface WizardSprite : CCSprite
 -(id)initWithPlayer:(Player*)player units:(Units*)units;
 @end

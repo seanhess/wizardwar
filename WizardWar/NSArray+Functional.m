@@ -22,6 +22,12 @@
     return [NSArray array:self forEach:block];
 }
 
+-(void)forEachIndex:(void(^)(int))block {
+    for (int i = 0; i < self.count; i++) {
+        block(i);
+    }
+}
+
 -(id)find:(BOOL(^)(id))match {
     NSArray * matches = [self filter:match];
     if (matches.count == 0) return nil;

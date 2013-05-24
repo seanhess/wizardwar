@@ -26,22 +26,10 @@
 -(id)initWithPlayer:(Player *)player units:(Units *)units {
     if ((self=[super init])) {
         self.player = player;
-        self.player.delegate = self;
         self.units = units;
-//        NSLog(@"GOGO WIZRD %@ %f", NSStringFromCGPoint(self.position), player.position);
         
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard2.plist"];
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard1.plist"];
-        
-        // the problem is the sprite sheet is set incorrectly
-        // so you can't just update it with data
-        // I could throw them into the same spritesheet?
-        // no, that's lame
-        
-        // what if the appearances were randomly assigned?
-        // we're going to have custom wizards later anyway
-        
-        // just make them both wizard 1?
         
         self.spriteSheet = [CCSpriteBatchNode batchNodeWithFile:[NSString stringWithFormat:@"%@.png", self.wizardSheetName]];
         [self addChild:self.spriteSheet];
@@ -49,18 +37,26 @@
         self.skin = [CCSprite spriteWithSpriteFrameName:self.currentWizardImage];
         [self.spriteSheet addChild:self.skin];
         
-        [self render];
+        // BIND: state, position
+        [self renderPosition];
+        [self renderStatus];
+        
+        [self.player addObserver:self forKeyPath:PLAYER_KEYPATH_POSITION options:NSKeyValueObservingOptionNew context:nil];
+        [self.player addObserver:self forKeyPath:PLAYER_KEYPATH_STATUS options:NSKeyValueObservingOptionNew context:nil];
     }
     return self;
 }
 
--(void)didUpdateForRender {
-    [self render];
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if ([keyPath isEqualToString:PLAYER_KEYPATH_STATUS]) [self renderStatus];
+    else if ([keyPath isEqualToString:PLAYER_KEYPATH_POSITION]) [self renderPosition];
 }
 
--(void)render {
+-(void)renderPosition {
     self.position = ccp([self.units toX:self.player.position], self.units.zeroY);
-    
+}
+
+-(void)renderStatus {
     // all wizard sprites should face the same direction
     NSString * imageName = self.currentWizardImage;
     [self.skin setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:imageName]];
@@ -84,6 +80,11 @@
 
 -(NSString*)wizardSheetName {
     return [NSString stringWithFormat:@"wizard%@", self.player.wizardType];
+}
+
+-(void)dealloc {
+    [self.player removeObserver:self forKeyPath:PLAYER_KEYPATH_STATUS];
+    [self.player removeObserver:self forKeyPath:PLAYER_KEYPATH_POSITION];
 }
 
 @end
