@@ -72,7 +72,7 @@
 }
 
 - (void)renderMatch {
-    self.pentagram.view.hidden = (self.match.state != MatchStatePlaying);
+    self.pentagram.view.hidden = (self.match.status != MatchStatusPlaying);
 }
 
 - (void)playMusic {

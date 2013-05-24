@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "Units.h"
 #import "RenderDelegate.h"
+#import "Objectable.h"
+
+#define WIZARD_TYPE_ONE @"1"
+#define WIZARD_TYPE_TWO @"2"
 
 typedef enum PlayerState {
     PlayerStateReady,
@@ -17,15 +21,16 @@ typedef enum PlayerState {
     PlayerStateDead,
 } PlayerState;
 
-@interface Player : NSObject
+@interface Player : NSObject <Objectable>
 @property (nonatomic, strong) NSString * name;
 @property (nonatomic) PlayerState state;
 @property (nonatomic) float position; // in units (not pixels)
 @property (nonatomic) float mana;
 @property (nonatomic) NSInteger health;
 @property (nonatomic, weak) id<RenderDelegate>delegate;
--(NSDictionary*)toObject;
+@property (nonatomic, strong) NSString * wizardType;
 -(BOOL)isFirstPlayer;
 -(void)setState:(PlayerState)state animated:(BOOL)animated;
 -(void)update:(NSTimeInterval)dt;
++(NSString*)randomWizardType;
 @end

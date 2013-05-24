@@ -19,6 +19,7 @@
 #import "SpellVine.h"
 #import "SpellWindblast.h"
 #import "SimpleAudioEngine.h"
+#import "FirebaseCollection.h"
 
 
 @interface Match ()
@@ -26,6 +27,9 @@
 @property (nonatomic, strong) Firebase * spellsNode;
 @property (nonatomic, strong) Firebase * playersNode;
 @property (nonatomic, strong) Firebase * opponentNode;
+
+@property (nonatomic, strong) FirebaseCollection *spellsCollection;
+@property (nonatomic, strong) FirebaseCollection *playersCollection;
 
 @property (nonatomic, strong) NSString * lastCastSpellName;
 @end
@@ -37,65 +41,49 @@
 @implementation Match
 -(id)initWithId:(NSString *)id currentPlayer:(Player *)player withAI:(Player *)ai {
     if ((self = [super init])) {
-        self.players = [NSMutableArray array];
-        self.spells = [NSMutableArray array];
+        self.players = [NSMutableDictionary dictionary];
+        self.spells = [NSMutableDictionary dictionary];
         
-        self.state = MatchStateReady;
+        self.status = MatchStatusReady;
+        
+        __weak Match * wself = self;
         
         // Firebase
         self.matchNode = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"https://wizardwar.firebaseio.com/match/%@", id]];
         self.spellsNode = [self.matchNode childByAppendingPath:@"spells"];
         self.playersNode = [self.matchNode childByAppendingPath:@"players"];
         
+        // SPELLS
+        self.spellsCollection = [[FirebaseCollection alloc] initWithNode:self.spellsNode dictionary:self.spells factory:^(NSDictionary*value) {
+            return [Spell fromType:value[@"type"]];
+        }];
+        
+        [self.spellsCollection didAddChild:^(Spell * spell) {
+            // TODO set it back in time to original position when it is accepted
+            [wself addedSpellLocally:spell];
+        }];
+        
+        [self.spellsCollection didRemoveChild:^(Spell * spell) {
+            [wself.delegate didRemoveSpell:spell];
+        }];
+        
         
         // PLAYERS
-        [self.playersNode observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
-            Player * player = [Player new];
-            [player setValuesForKeysWithDictionary:snapshot.value];
-            [self.players addObject:player];
-
-            if ([player.name isEqualToString:self.currentPlayer.name]) {
-                self.currentPlayer = player;
-            } else {
-                self.opponentNode = [self.playersNode childByAppendingPath:player.name];
-                self.opponentPlayer = player;
-
-//                [self.opponentNode observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
-//                    NSLog(@"opponent changed, %@, %@", snapshot.name, snapshot.value);
-//                    if ([snapshot.name isEqualToString:@"mana"]) {
-//                        //NSLog(@"snapshot value %@, %@, %f", NSStringFromClass([snapshot.value class]), snapshot.value, [snapshot.value floatValue]);
-//                        
-//                        self.opponentPlayer.mana = [snapshot.value floatValue];
-//                        NSLog(@"opponent %@, %@", self.opponentPlayer, self.players);
-//                        //[self.opponentPlayer.delegate didUpdateForRender];
-//                        [self.delegate didUpdateHealthAndMana];
-//                    }
-//                }];
-            }
-
-            [self checkStart];
+        self.playersCollection = [[FirebaseCollection alloc] initWithNode:self.playersNode dictionary:self.players type:[Player class]];
+        
+        [self.playersCollection didAddChild:^(Player * player) {
+            [wself.delegate didAddPlayer:player];
+            if (wself.players.count == 2) [wself start];
         }];
         
         if (ai) {
             self.opponentPlayer = ai;
-            [self joinPlayer:ai];
+            [self.playersCollection addObject:ai];
         }
         
         self.currentPlayer = player;
-        [self joinPlayer:self.currentPlayer];
+        [self.playersCollection addObject:self.currentPlayer];
 
-        
-        // SPELLS
-        [self.spellsNode observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
-            // ignore if we created it
-            if ([self.lastCastSpellName isEqualToString:snapshot.name]) return;
-            Spell * spell = [Spell fromType:snapshot.value[@"type"]];
-            spell.firebaseName = snapshot.name;
-            
-            [spell setValuesForKeysWithDictionary:snapshot.value];
-            [self addSpellLocally:spell];
-        }];
-        
 //        [[NSNotificationCenter defaultCenter] addObserverForName:@"HealthManaUpdate" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
 //            [self.delegate didUpdateHealthAndMana];
 //        }];
@@ -107,11 +95,11 @@
 /// UPDATES
 
 -(void)update:(NSTimeInterval)dt {
-    [self.spells forEach:^(Spell*spell) {
+    [self.spells.allValues forEach:^(Spell*spell) {
         [spell update:dt];
     }];
     
-    [self.players forEach:^(Player*player) {
+    [self.players.allValues forEach:^(Player*player) {
         [player update:dt];
     }];
     
@@ -121,19 +109,20 @@
 -(void)checkHits {
     // HITS ARE CALLED MORE THAN ONCE!
     // A hits B, B hits A
-    for (int i = 0; i < self.spells.count; i++) {
-        Spell * spell = self.spells[i];
+    NSArray * spells = self.spells.allValues;
+    for (int i = 0; i < spells.count; i++) {
+        Spell * spell = spells[i];
         // spells are center anchored, so just check the position, not the width?
         // TODO add spell size to the equation
         // check to see if the spell hits ME, not all players
         // or check to see how my spells hit?
-        for (Player * player in self.players)  {
+        for (Player * player in self.players.allValues)  {
             if ([spell hitsPlayer:player])
                 [self hitPlayer:player withSpell:spell];
         }
         
-        for (int j = i+1; j < self.spells.count; j++) {
-            Spell * spell2 = self.spells[j];
+        for (int j = i+1; j < spells.count; j++) {
+            Spell * spell2 = spells[j];
             if ([spell hitsSpell:spell2])
                 [self hitSpell:spell withSpell:spell2];
         }
@@ -141,7 +130,7 @@
 }
 
 -(void)hitPlayer:(Player*)player withSpell:(Spell*)spell {
-    [self removeSpell:spell];
+    [self.spellsCollection removeObject:spell];
     
     // this allows it to subtract health
     [spell interactPlayer:player];
@@ -156,21 +145,21 @@
 }
 
 -(void)checkWin {
-    [self.players forEach:^(Player* player) {
+    [self.players.allValues forEach:^(Player* player) {
         if (player.health == 0) {
             [player setState:PlayerStateDead animated:NO];
-            self.state = MatchStateEnded;
+            self.status = MatchStatusEnded;
         }
     }];
 }
 
 -(void)handleInteraction:(SpellInteraction*)interaction forSpell:(Spell*)spell {
     if (interaction.type == SpellInteractionTypeCancel) {
-        [self removeSpell:spell];
+        [self.spellsCollection removeObject:spell];
     }
     
     else if (interaction.type == SpellInteractionTypeCreate) {
-        [self addSpell:interaction.createdSpell];
+        [self.spellsCollection addObject:spell];
     }
     
     else if (interaction.type == SpellInteractionTypeModify) {
@@ -197,48 +186,30 @@
 }
 
 -(void)start {
+    // Assign position based on alphabetical order (so it happens the same on both player's devices)
     
-    // sort alphabetically
-    [self.players sortUsingComparator:^NSComparisonResult(Player * p1, Player *p2) {
-        return [p1.name compare:p2.name];
+    NSArray * players = self.sortedPlayers;
+    
+    [(Player *)players[0] setPosition:UNITS_MIN];
+    [(Player *)players[1] setPosition:UNITS_MAX];
+    
+    [players forEach:^(Player*player) {
+        [player.delegate didUpdateForRender];
     }];
-    
-    [(Player *)self.players[0] setPosition:UNITS_MIN];
-    [(Player *)self.players[1] setPosition:UNITS_MAX];
     
     // MUST BE LAST
-    self.state = MatchStatePlaying;
+    self.status = MatchStatusPlaying;
 }
 
-
-/// ADDING STUFF
-
--(void)joinPlayer:(Player*)player {
-    // [self.players addObject:player];
-    Firebase * node = [self.playersNode childByAppendingPath:player.name];
-    [node onDisconnectRemoveValue];
-    [node setValue:[player toObject]];
-}
-
--(void)addSpell:(Spell*)spell {
-    Firebase * spellNode = [self.spellsNode childByAutoId];
-    self.lastCastSpellName = spellNode.name;
-
-    NSLog(@"opponent values %@", [self.currentPlayer toObject]);
-    [self.opponentNode setValue:[self.currentPlayer toObject]];
-//    NSTimeInterval current = CACurrentMediaTime();
-    [spellNode setValue:[spell toObject] withCompletionBlock:^(NSError *error) {
-//        NSLog(@"local - %@", spellNode.name);
-//        NSTimeInterval halfTrip = CACurrentMediaTime() - current;
-//        [self performSelector:@selector(addSpellLocally:) withObject:spell afterDelay:halfTrip];
-        [self addSpellLocally:spell];
+- (NSArray*)sortedPlayers {
+    return [self.players.allValues sortedArrayUsingComparator:^NSComparisonResult(Player * p1, Player *p2) {
+        return [p1.name compare:p2.name];
     }];
-    [spellNode onDisconnectRemoveValue];
-    spell.firebaseName = spellNode.name;
 }
 
-- (void)addSpellLocally:(Spell*)spell {
-    [self.spells addObject:spell];
+
+
+- (void)addedSpellLocally:(Spell*)spell {
     [self.delegate didAddSpell:spell];
     
     if([spell isMemberOfClass: [SpellFireball class]]){
@@ -258,23 +229,11 @@
     }
 }
 
--(void)removeSpell:(Spell*)spell {
-    NSAssert(spell.firebaseName, @"No firebase name on spell! %@", spell);
-    Firebase * spellNode = [self.spellsNode childByAppendingPath:spell.firebaseName];
-    [self.delegate didRemoveSpell:spell];
-    [spellNode removeValue];
-    
-    // we need to remove this later, since we are enumerating it
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.spells removeObject:spell];
-    });
-}
-
 -(void)castSpell:(Spell *)spell {
     if (self.currentPlayer.mana >= spell.mana) {
         self.currentPlayer.mana = self.currentPlayer.mana - (float)spell.mana;
         [spell setPositionFromPlayer:self.currentPlayer];
-        [self addSpell:spell]; // add spell
+        [self.spellsCollection addObject:spell];
         [self.currentPlayer setState:PlayerStateCast animated:YES];
     } else {
         NSLog(@"Not enough Mana you fiend!");

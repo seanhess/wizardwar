@@ -16,7 +16,7 @@
 #import "Player.h"
 #import "SpellInteraction.h"
 
-@interface Spell : NSObject
+@interface Spell : NSObject <Objectable>
 @property (nonatomic) NSString* firebaseName;
 @property (nonatomic) float speed; // units per second
 @property (nonatomic) float size;  // in units
@@ -31,7 +31,6 @@
 @property (nonatomic, weak) id<RenderDelegate>delegate;
 @property (nonatomic, strong) Spell * lastHitSpell;
 -(void)update:(NSTimeInterval)dt;
--(NSDictionary*)toObject;
 -(void)setPositionFromPlayer:(Player*)player;
 -(BOOL)isType:(Class)class;
 -(SpellInteraction*)interactSpell:(Spell*)spell;

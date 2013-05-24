@@ -75,4 +75,10 @@
     }
 }
 
++(NSString*)randomWizardType {
+    NSArray * types = @[WIZARD_TYPE_ONE, WIZARD_TYPE_TWO];
+    NSUInteger randomIndex = arc4random() % types.count;
+    return types[randomIndex];
+}
+
 @end

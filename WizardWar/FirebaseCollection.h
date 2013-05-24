@@ -14,7 +14,8 @@
 // Keeps a dictionary in sync with the remote node, and creates local objects of the correct type
 @interface FirebaseCollection : NSObject
 
-- (id)initWithNode:(Firebase*)node type:(Class)type dictionary:(NSMutableDictionary*)dictionary;
+- (id)initWithNode:(Firebase*)node dictionary:(NSMutableDictionary*)dictionary type:(Class)type;
+- (id)initWithNode:(Firebase*)node dictionary:(NSMutableDictionary*)dictionary factory:(id(^)(NSDictionary*))factory;
 
 - (void)didAddChild:(void(^)(id))cb;
 - (void)didRemoveChild:(void(^)(id))cb;

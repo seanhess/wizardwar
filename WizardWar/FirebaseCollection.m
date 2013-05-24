@@ -20,7 +20,13 @@
 
 @implementation FirebaseCollection
 
-- (id)initWithNode:(Firebase*)node type:(__unsafe_unretained Class)type dictionary:(NSMutableDictionary *)dictionary {
+- (id)initWithNode:(Firebase*)node dictionary:(NSMutableDictionary *)dictionary type:(__unsafe_unretained Class)type {
+    return [self initWithNode:node dictionary:dictionary factory:^(NSDictionary * value) {
+        return [type new];
+    }];
+}
+
+- (id)initWithNode:(Firebase*)node dictionary:(NSMutableDictionary*)dictionary factory:(id(^)(NSDictionary*))factory {
     self = [super init];
     if (self) {
         self.objects = dictionary;
@@ -37,7 +43,7 @@
             NSLog(@"ADDED %@", obj);
             if (!obj) {
                 // add the object to the collection if it doesn't exist yet
-                obj = [type new];
+                obj = factory(snapshot.value);
                 [self addObjectLocally:obj name:snapshot.name];
             }
             // update the object with values from the server and notify the delegate

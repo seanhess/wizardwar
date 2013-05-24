@@ -28,14 +28,26 @@
         self.player = player;
         self.player.delegate = self;
         self.units = units;
-        self.position = ccp([self.units toX:player.position], self.units.zeroY);
 //        NSLog(@"GOGO WIZRD %@ %f", NSStringFromCGPoint(self.position), player.position);
         
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard2.plist"];
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard1.plist"];
         
-        self.spriteSheet = [CCSpriteBatchNode batchNodeWithFile:[NSString stringWithFormat:@"%@.png", self.wizardIndexName]];
+        // the problem is the sprite sheet is set incorrectly
+        // so you can't just update it with data
+        // I could throw them into the same spritesheet?
+        // no, that's lame
+        
+        // what if the appearances were randomly assigned?
+        // we're going to have custom wizards later anyway
+        
+        // just make them both wizard 1?
+        
+        self.spriteSheet = [CCSpriteBatchNode batchNodeWithFile:[NSString stringWithFormat:@"%@.png", self.wizardSheetName]];
         [self addChild:self.spriteSheet];
+        
+        self.skin = [CCSprite spriteWithSpriteFrameName:self.currentWizardImage];
+        [self.spriteSheet addChild:self.skin];
         
         [self render];
     }
@@ -47,10 +59,12 @@
 }
 
 -(void)render {
-    [self.spriteSheet removeAllChildren];
+    self.position = ccp([self.units toX:self.player.position], self.units.zeroY);
+    
+    // all wizard sprites should face the same direction
     NSString * imageName = self.currentWizardImage;
-    self.skin = [CCSprite spriteWithSpriteFrameName:imageName];
-    [self.spriteSheet addChild:self.skin];
+    [self.skin setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:imageName]];
+    if (self.player.position == UNITS_MAX) self.skin.flipX = YES;
 }
 
 -(NSString*)currentWizardImage {
@@ -65,18 +79,11 @@
     else if(self.player.state == PlayerStateDead)
         stateName = @"dead";
     
-    return [NSString stringWithFormat:@"%@-%@", self.wizardIndexName, stateName];
+    return [NSString stringWithFormat:@"%@-%@", self.wizardSheetName, stateName];
 }
 
--(NSInteger)wizardIndex {
-    if (!self.player.isFirstPlayer)
-        return 1;
-    else
-        return 2;
-}
-
--(NSString*)wizardIndexName {
-    return [NSString stringWithFormat:@"wizard%i", self.wizardIndex];
+-(NSString*)wizardSheetName {
+    return [NSString stringWithFormat:@"wizard%@", self.player.wizardType];
 }
 
 @end

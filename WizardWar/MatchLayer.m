@@ -31,6 +31,7 @@
 @property (nonatomic, strong) Match * match;
 @property (nonatomic, strong) Units * units;
 @property (nonatomic, strong) CCLayer * spells;
+@property (nonatomic, strong) CCLayer * players;
 
 @property (nonatomic, strong) NSString * matchId;
 
@@ -56,11 +57,14 @@
         // match
         self.match = match;
         self.match.delegate = self;
-        [self.match addObserver:self forKeyPath:@"state" options:NSKeyValueObservingOptionNew context:nil];
+        [self.match addObserver:self forKeyPath:MATCH_STATE_KEYPATH options:NSKeyValueObservingOptionNew context:nil];
         
-        // add a layer instead!
+        self.players = [CCLayer node];
+        [self addChild:self.players];
+        
         self.spells = [CCLayer node];
         [self addChild:self.spells];
+        
         
         CGFloat zeroY = 100;
         CGFloat wizardOffset = 75;
@@ -88,7 +92,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if (object == self.match && [keyPath isEqualToString:MATCH_STATE_KEYPATH]) {
-        [self renderMatchState];
+        [self renderMatchStatus];
     }
 }
 
@@ -109,7 +113,7 @@
     SpellSprite * sprite = [NSArray array:self.spells.children find:^BOOL(SpellSprite * sprite) {
         return (sprite.spell == spell);
     }];
-    [self removeChild:sprite];
+    [self.spells removeChild:sprite];
 }
 
 -(void)didAddSpell:(Spell *)spell {
@@ -117,21 +121,30 @@
     [self.spells addChild:sprite];
 }
 
-- (void)renderMatchState {
-    self.message.visible = (self.match.state == MatchStateReady || self.match.state == MatchStateEnded);
+- (void)didAddPlayer:(Player *)player {
+    WizardSprite * wizard = [[WizardSprite alloc] initWithPlayer:player units:self.units];
+    [self.players addChild:wizard];
+    NSLog(@"ADDED PLAYER %@", player);
+}
+
+- (void)renderMatchStatus {
+    self.message.visible = (self.match.status == MatchStatusReady || self.match.status == MatchStatusEnded);
+    self.players.visible = (self.match.status == MatchStatusPlaying || self.match.status == MatchStatusEnded);
     
-    if (self.match.state == MatchStatePlaying) {
-        // make a sprite for each player
-        [self.match.players forEach:^(Player*player) {
-            CCSprite * wizard = [[WizardSprite alloc] initWithPlayer:player units:self.units];
-            [self addChild:wizard];
-        }];
+    if (self.match.status == MatchStatusPlaying) {
+        // we don't know until the match has started
+        // that the players have their correct assignments
         
-        self.player1Indicator.player = self.match.players[0];
-        self.player2Indicator.player = self.match.players[1];
+////        self.player1Indicator.player = players[0];
+////        self.player2Indicator.player = players[1];
+//        
+//        NSArray * players = self.match.sortedPlayers;
+//            [players forEach:^(Player*player) {
+//            }];
+//        }
     }
     
-    if (self.match.state == MatchStateEnded) {
+    if (self.match.status == MatchStatusEnded) {
         NSString * messageFrameName = nil;
         if (self.match.currentPlayer.state == PlayerStateDead)
             messageFrameName = @"msg-you-lose.png";

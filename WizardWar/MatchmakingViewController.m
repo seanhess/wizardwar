@@ -125,6 +125,7 @@
 - (Player*)currentPlayer {
     Player * player = [Player new];
     player.name = self.nickname;
+    player.wizardType = [Player randomWizardType];
     return player;
 }
 
@@ -171,12 +172,12 @@
     };
     
     // LOBBY
-    self.usersCollection = [[FirebaseCollection alloc] initWithNode:self.firebaseLobby type:[User class] dictionary:self.users];
+    self.usersCollection = [[FirebaseCollection alloc] initWithNode:self.firebaseLobby dictionary:self.users type:[User class]];
     [self.usersCollection didAddChild:reloadTable];
     [self.usersCollection didRemoveChild:reloadTable];
     [self.usersCollection didUpdateChild:reloadTable];
     
-    self.invitesCollection = [[FirebaseCollection alloc] initWithNode:self.firebaseInvites type:[Invite class] dictionary:self.invites];
+    self.invitesCollection = [[FirebaseCollection alloc] initWithNode:self.firebaseInvites dictionary:self.invites type:[Invite class]];
     [self.invitesCollection didAddChild:reloadTable];
     [self.invitesCollection didRemoveChild:reloadTable];
     [self.invitesCollection didUpdateChild:^(Invite * invite) {
@@ -341,6 +342,7 @@
     NSString * matchID = [NSString stringWithFormat:@"%i", arc4random()];
     Player * ai = [Player new];
     ai.name = @"zzzai";
+    ai.wizardType = [Player randomWizardType];
     [self startGameWithMatchId:matchID player:self.currentPlayer withAI:ai];
 }
 
