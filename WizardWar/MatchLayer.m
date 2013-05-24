@@ -83,8 +83,8 @@
         LifeManaIndicatorNode * player1Indicator = [LifeManaIndicatorNode node];
         LifeManaIndicatorNode * player2Indicator = [LifeManaIndicatorNode node];
         
-        player1Indicator.position = ccp(size.width - INDICATOR_PADDING_X, size.height - INDICATOR_PADDING_Y);
-        player2Indicator.position = ccp(INDICATOR_PADDING_X, size.height - INDICATOR_PADDING_Y);
+        player1Indicator.position = ccp(INDICATOR_PADDING_X, size.height - INDICATOR_PADDING_Y);
+        player2Indicator.position = ccp(size.width - INDICATOR_PADDING_X, size.height - INDICATOR_PADDING_Y);
         
         [self.indicators addChild:player1Indicator];
         [self.indicators addChild:player2Indicator];

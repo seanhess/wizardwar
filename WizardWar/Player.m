@@ -10,8 +10,11 @@
 #import "Spell.h"
 #import "SpellFireball.h"
 
+#define SECONDS_PER_MANA 1.5
+
 @interface Player ()
 @property (nonatomic) NSTimeInterval stateAnimationTime;
+@property (nonatomic) float dMana;
 @end
 
 @implementation Player
@@ -50,6 +53,12 @@
         self.stateAnimationTime = 0.0;
 }
 
+-(void)spendMana:(NSInteger)mana {
+    // spends the mana and restarts the clock
+    self.dMana = 0.0;
+    self.mana -= mana;
+}
+
 -(void)update:(NSTimeInterval)dt {
     if (self.stateAnimationTime > 0) {
         self.stateAnimationTime -= dt;
@@ -58,18 +67,17 @@
         }
     }
     
-    float newMana = self.mana + dt / 2.0;
+    self.dMana += dt / SECONDS_PER_MANA;
     
-    if (floor(self.mana - .05) != floor(newMana)) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"HealthManaUpdate" object:nil];
-    }
-    
-    self.mana = newMana;
-    
-    if (self.mana > self.health) {
-        self.mana = self.health;
-    } else if (self.mana < 0) {
-        self.mana = 0;
+    if (self.dMana >= 1.0) {
+        self.dMana -= 1;
+        self.mana += 1;
+        
+        if (self.mana > self.health) {
+            self.mana = self.health;
+        } else if (self.mana < 0) {
+            self.mana = 0;
+        }
     }
 }
 

@@ -185,18 +185,14 @@
 }
 
 -(void)start {
-    // Assign position based on alphabetical order (so it happens the same on both player's devices)
-    
+    self.status = MatchStatusPlaying;
     NSArray * players = self.sortedPlayers;
-    
     [(Player *)players[0] setPosition:UNITS_MIN];
     [(Player *)players[1] setPosition:UNITS_MAX];
-    
-    // MUST BE LAST? (stupid data binding) I think it triggers the thing before positions are fixed on those players
-    self.status = MatchStatusPlaying;
 }
 
 - (NSArray*)sortedPlayers {
+    // sort players alphabetically (so it is the same on all devices)
     return [self.players.allValues sortedArrayUsingComparator:^NSComparisonResult(Player * p1, Player *p2) {
         return [p1.name compare:p2.name];
     }];
@@ -226,7 +222,7 @@
 
 -(void)castSpell:(Spell *)spell {
     if (self.currentPlayer.mana >= spell.mana) {
-        self.currentPlayer.mana = self.currentPlayer.mana - (float)spell.mana;
+        [self.currentPlayer spendMana:spell.mana];
         [spell setPositionFromPlayer:self.currentPlayer];
         [self.spellsCollection addObject:spell];
         [self.currentPlayer setState:PlayerStateCast animated:YES];

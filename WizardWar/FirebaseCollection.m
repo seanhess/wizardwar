@@ -40,7 +40,6 @@
         // find the correct object and update locally
         [self.node observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
             id obj = [self.objects objectForKey:snapshot.name];
-            NSLog(@"ADDED %@", obj);
             if (!obj) {
                 // add the object to the collection if it doesn't exist yet
                 obj = factory(snapshot.value);

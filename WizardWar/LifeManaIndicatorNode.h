@@ -10,9 +10,5 @@
 #import "Player.h"
 
 @interface LifeManaIndicatorNode : CCNode
-
 @property (nonatomic, strong) Player * player;
-
--(void)updateFromPlayer;
-
 @end

@@ -40,44 +40,67 @@
             [self.filledHearts addObject:heartFull];
             [self.deadHearts addObject:heartDamage];
             
-            [self addChild:heartDamage];
-            [self addChild:heartFull];
+            // Order matters!
+            // Blank -> Full -> Damage - if any are visible they can cover the others
             [self addChild:heartBlank];
+            [self addChild:heartFull];
+            [self addChild:heartDamage];
         }
+        
     }
     return self;
 }
 
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+// set player can be called many times with the same value
+-(void)setPlayer:(Player *)player {
+    if (_player == player) return;
+    [_player removeObserver:self forKeyPath:PLAYER_KEYPATH_MANA];
+    [_player removeObserver:self forKeyPath:PLAYER_KEYPATH_HEALTH];
     
+    _player = player;
+    
+    [player addObserver:self forKeyPath:PLAYER_KEYPATH_HEALTH options:NSKeyValueObservingOptionNew context:nil];
+    [player addObserver:self forKeyPath:PLAYER_KEYPATH_MANA options:NSKeyValueObservingOptionNew context:nil];
+    [self renderMana];
+    [self renderHealth];
 }
 
--(void)updateWithHealth:(NSInteger)health andMana:(NSInteger)mana
-{
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if ([keyPath isEqualToString:PLAYER_KEYPATH_HEALTH]) [self renderHealth];
+    else if ([keyPath isEqualToString:PLAYER_KEYPATH_MANA]) [self renderMana];
+}
+
+-(void)renderMana {
+    NSLog(@"RENDER MANA %i", self.player.mana);
     for (int i = 0; i < 5; i++) {
-        CCSprite *heartDamage = [self.deadHearts objectAtIndex:i];
-        CCSprite *heartBlank = [self.emptyHearts objectAtIndex:i];
         CCSprite *heartFull = [self.filledHearts objectAtIndex:i];
         
-        if (i <= mana - 1) {
+        if (i <= self.player.mana - 1) {
             heartFull.opacity = 255;
-            heartDamage.opacity = 0;
-            heartBlank.opacity = 0;
-        } else if (i <= health - 1) {
+        }
+        else {
             heartFull.opacity = 0;
-            heartDamage.opacity = 0;
-            heartBlank.opacity = 255;
-        } else {
-            heartFull.opacity = 0;
-            heartDamage.opacity = 255;
-            heartBlank.opacity = 0;
         }
     }
 }
 
--(void)updateFromPlayer
-{
-    [self updateWithHealth:self.player.health andMana:(NSInteger)self.player.mana];
+// rules: if health is down, heartDamage wins
+
+-(void)renderHealth {
+    NSLog(@"RENDER HEALTH %i", self.player.health);
+    for (int i = 0; i < 5; i++) {
+        CCSprite *heartDamage = [self.deadHearts objectAtIndex:i];
+        
+        if (i <= self.player.health - 1) {
+            heartDamage.opacity = 0;
+        } else {
+            heartDamage.opacity = 255;
+        }
+    }
+}
+
+-(void)dealloc {
+    self.player = nil;
 }
 
 @end
