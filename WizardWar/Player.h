@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "Units.h"
-#import "RenderDelegate.h"
 #import "Objectable.h"
 
 #define WIZARD_TYPE_ONE @"1"

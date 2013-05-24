@@ -10,7 +10,7 @@
 #import "Spell.h"
 #import "Units.h"
 
-@interface SpellSprite : CCSprite <RenderDelegate>
+@interface SpellSprite : CCSprite
 -(id)initWithSpell:(Spell*)spell units:(Units*)units;
 @property (nonatomic, strong) Spell * spell;
 @end

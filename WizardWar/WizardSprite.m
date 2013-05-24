@@ -9,6 +9,7 @@
 #import "WizardSprite.h"
 #import "cocos2d.h"
 #import "CCLabelTTF.h"
+#import <ReactiveCocoa.h>
 
 #define WIZARD_PADDING 20
 
@@ -41,26 +42,26 @@
         [self renderPosition];
         [self renderStatus];
         
-        [self.player addObserver:self forKeyPath:PLAYER_KEYPATH_POSITION options:NSKeyValueObservingOptionNew context:nil];
-        [self.player addObserver:self forKeyPath:PLAYER_KEYPATH_STATUS options:NSKeyValueObservingOptionNew context:nil];
+        [[RACAble(self.player.position) distinctUntilChanged] subscribeNext:^(id x) {
+            [self renderPosition];
+        }];
+        
+        [[RACAble(self.player.state) distinctUntilChanged] subscribeNext:^(id x) {
+            [self renderStatus];
+        }];
     }
     return self;
 }
 
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if ([keyPath isEqualToString:PLAYER_KEYPATH_STATUS]) [self renderStatus];
-    else if ([keyPath isEqualToString:PLAYER_KEYPATH_POSITION]) [self renderPosition];
-}
-
 -(void)renderPosition {
     self.position = ccp([self.units toX:self.player.position], self.units.zeroY);
+    if (self.player.position == UNITS_MAX) self.skin.flipX = YES;
 }
 
 -(void)renderStatus {
     // all wizard sprites should face the same direction
     NSString * imageName = self.currentWizardImage;
     [self.skin setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:imageName]];
-    if (self.player.position == UNITS_MAX) self.skin.flipX = YES;
 }
 
 -(NSString*)currentWizardImage {
@@ -80,11 +81,6 @@
 
 -(NSString*)wizardSheetName {
     return [NSString stringWithFormat:@"wizard%@", self.player.wizardType];
-}
-
--(void)dealloc {
-    [self.player removeObserver:self forKeyPath:PLAYER_KEYPATH_STATUS];
-    [self.player removeObserver:self forKeyPath:PLAYER_KEYPATH_POSITION];
 }
 
 @end

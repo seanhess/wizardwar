@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17B4123C5AF94AFB977F565E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97EFC7B8DBD643B88CEC6021 /* libPods.a */; };
 		309D45A817481AEE008CEF6C /* scream.wav in Resources */ = {isa = PBXBuildFile; fileRef = 309D45A717481AEE008CEF6C /* scream.wav */; };
 		309D45AA17481D99008CEF6C /* vine.wav in Resources */ = {isa = PBXBuildFile; fileRef = 309D45A917481D99008CEF6C /* vine.wav */; };
 		309D45AC17481F4F008CEF6C /* bubble.wav in Resources */ = {isa = PBXBuildFile; fileRef = 309D45AB17481F4F008CEF6C /* bubble.wav */; };
@@ -673,7 +674,6 @@
 		78F6B3A31746B25F00AA070D /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Match.m; path = WizardWar/Match.m; sourceTree = SOURCE_ROOT; };
 		78F6B3A41746B26000AA070D /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Player.h; path = WizardWar/Player.h; sourceTree = SOURCE_ROOT; };
 		78F6B3A51746B26000AA070D /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Player.m; path = WizardWar/Player.m; sourceTree = SOURCE_ROOT; };
-		78F6B3A61746B26000AA070D /* RenderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RenderDelegate.h; path = WizardWar/RenderDelegate.h; sourceTree = SOURCE_ROOT; };
 		78F6B3AB1746B27600AA070D /* MatchLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MatchLayer.h; path = WizardWar/MatchLayer.h; sourceTree = SOURCE_ROOT; };
 		78F6B3AC1746B27600AA070D /* MatchLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MatchLayer.m; path = WizardWar/MatchLayer.m; sourceTree = SOURCE_ROOT; };
 		78F6B3AD1746B27600AA070D /* MatchGroundSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MatchGroundSprite.h; path = WizardWar/MatchGroundSprite.h; sourceTree = SOURCE_ROOT; };
@@ -698,6 +698,8 @@
 		78F6B3DA174705D000AA070D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		78F6B3DC174705EA00AA070D /* Invite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Invite.h; sourceTree = "<group>"; };
 		78F6B3DD174705EA00AA070D /* Invite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Invite.m; sourceTree = "<group>"; };
+		97EFC7B8DBD643B88CEC6021 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE8809F786384C2C96220236 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		F283A920174807A40068EEB2 /* LifeManaIndicatorNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LifeManaIndicatorNode.h; sourceTree = "<group>"; };
 		F283A921174807A40068EEB2 /* LifeManaIndicatorNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LifeManaIndicatorNode.m; sourceTree = "<group>"; };
 		F283A92317480F4F0068EEB2 /* mana-container-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mana-container-hd.png"; sourceTree = "<group>"; };
@@ -730,6 +732,7 @@
 				78F6B1E71746AD8900AA070D /* UIKit.framework in Frameworks */,
 				78F6B1E91746AD8900AA070D /* Foundation.framework in Frameworks */,
 				78F6B3971746AFDE00AA070D /* Firebase.framework in Frameworks */,
+				17B4123C5AF94AFB977F565E /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -880,6 +883,7 @@
 				78F6B1EC1746AD8900AA070D /* WizardWar */,
 				78F6B1E51746AD8900AA070D /* Frameworks */,
 				78F6B1E41746AD8900AA070D /* Products */,
+				DE8809F786384C2C96220236 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -909,6 +913,7 @@
 				78F6B1E61746AD8900AA070D /* UIKit.framework */,
 				78F6B1E81746AD8900AA070D /* Foundation.framework */,
 				78F6B1EA1746AD8900AA070D /* CoreGraphics.framework */,
+				97EFC7B8DBD643B88CEC6021 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1312,7 +1317,6 @@
 				78F6B3A31746B25F00AA070D /* Match.m */,
 				78F6B3A41746B26000AA070D /* Player.h */,
 				78F6B3A51746B26000AA070D /* Player.m */,
-				78F6B3A61746B26000AA070D /* RenderDelegate.h */,
 				78F6B3C91746D77B00AA070D /* Units.h */,
 				78F6B3CA1746D77B00AA070D /* Units.m */,
 				78F6B3D9174705D000AA070D /* User.h */,
@@ -1388,9 +1392,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 78F6B2001746AD8900AA070D /* Build configuration list for PBXNativeTarget "WizardWar" */;
 			buildPhases = (
+				9DC65F6DED6A42038C00142C /* Check Pods Manifest.lock */,
 				78F6B1DF1746AD8900AA070D /* Sources */,
 				78F6B1E01746AD8900AA070D /* Frameworks */,
 				78F6B1E11746AD8900AA070D /* Resources */,
+				E10B0176894D41BBBBE6B073 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1542,6 +1548,37 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9DC65F6DED6A42038C00142C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+		};
+		E10B0176894D41BBBBE6B073 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		78F6B1DF1746AD8900AA070D /* Sources */ = {
@@ -1766,6 +1803,7 @@
 		};
 		78F6B2011746AD8900AA070D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE8809F786384C2C96220236 /* Pods.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1774,7 +1812,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WizardWar/WizardWar-Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"Cocos2d/Cocos2d/kazmath/include\"";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"Cocos2d/Cocos2d/kazmath/include\"",
+				);
 				INFOPLIST_FILE = "WizardWar/WizardWar-Info.plist";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1790,6 +1831,7 @@
 		};
 		78F6B2021746AD8900AA070D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE8809F786384C2C96220236 /* Pods.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1798,7 +1840,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WizardWar/WizardWar-Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"Cocos2d/Cocos2d/kazmath/include\"";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"Cocos2d/Cocos2d/kazmath/include\"",
+				);
 				INFOPLIST_FILE = "WizardWar/WizardWar-Info.plist";
 				OTHER_LDFLAGS = (
 					"-ObjC",

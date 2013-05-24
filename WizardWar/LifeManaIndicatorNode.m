@@ -7,6 +7,7 @@
 //
 
 #import "LifeManaIndicatorNode.h"
+#import <ReactiveCocoa.h>
 
 @interface LifeManaIndicatorNode()
 
@@ -47,31 +48,21 @@
             [self addChild:heartDamage];
         }
         
+        // OMG player doesn't even have to be set yet!!!!
+        [[RACAble(self.player.health) distinctUntilChanged] subscribeNext:^(id value) {
+            [self renderHealth];
+        }];
+        
+        [[RACAble(self.player.mana) distinctUntilChanged] subscribeNext:^(id value) {
+            [self renderMana];
+        }];
+        
     }
     return self;
 }
 
-// set player can be called many times with the same value
--(void)setPlayer:(Player *)player {
-    if (_player == player) return;
-    [_player removeObserver:self forKeyPath:PLAYER_KEYPATH_MANA];
-    [_player removeObserver:self forKeyPath:PLAYER_KEYPATH_HEALTH];
-    
-    _player = player;
-    
-    [player addObserver:self forKeyPath:PLAYER_KEYPATH_HEALTH options:NSKeyValueObservingOptionNew context:nil];
-    [player addObserver:self forKeyPath:PLAYER_KEYPATH_MANA options:NSKeyValueObservingOptionNew context:nil];
-    [self renderMana];
-    [self renderHealth];
-}
-
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if ([keyPath isEqualToString:PLAYER_KEYPATH_HEALTH]) [self renderHealth];
-    else if ([keyPath isEqualToString:PLAYER_KEYPATH_MANA]) [self renderMana];
-}
-
 -(void)renderMana {
-    NSLog(@"RENDER MANA %i", self.player.mana);
+//    NSLog(@"RENDER MANA %i", self.player.mana);
     for (int i = 0; i < 5; i++) {
         CCSprite *heartFull = [self.filledHearts objectAtIndex:i];
         
@@ -87,7 +78,7 @@
 // rules: if health is down, heartDamage wins
 
 -(void)renderHealth {
-    NSLog(@"RENDER HEALTH %i", self.player.health);
+//    NSLog(@"RENDER HEALTH %i", self.player.health);
     for (int i = 0; i < 5; i++) {
         CCSprite *heartDamage = [self.deadHearts objectAtIndex:i];
         
@@ -97,10 +88,6 @@
             heartDamage.opacity = 255;
         }
     }
-}
-
--(void)dealloc {
-    self.player = nil;
 }
 
 @end

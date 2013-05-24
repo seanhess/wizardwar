@@ -12,7 +12,6 @@
 // position 0 is the location of the left player
 
 #import <Foundation/Foundation.h>
-#import "RenderDelegate.h"
 #import "Player.h"
 #import "SpellInteraction.h"
 
@@ -28,7 +27,6 @@
 @property (nonatomic) NSTimeInterval created;
 @property (nonatomic) NSString * type; // tells me which class to instantiate. Use the string representation
 @property (nonatomic) NSString * creator;
-@property (nonatomic, weak) id<RenderDelegate>delegate;
 @property (nonatomic, strong) Spell * lastHitSpell;
 -(void)update:(NSTimeInterval)dt;
 -(void)setPositionFromPlayer:(Player*)player;

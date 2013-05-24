@@ -27,7 +27,6 @@
 // maybe update should be called on the sprites?
 -(void)update:(NSTimeInterval)dt {
     self.position += self.direction * self.speed * dt;
-    [self.delegate didUpdateForRender];
 }
 
 -(void)reflectFromSpell:(Spell*)spell {

@@ -15,6 +15,7 @@
 #import "SpellBubble.h"
 #import "SpellIcewall.h"
 #import "SpellWindblast.h"
+#import <ReactiveCocoa.h>
 
 @interface SpellSprite ()
 @property (nonatomic, strong) Units * units;
@@ -61,26 +62,37 @@
         [self.skin runAction:self.spellAction];
         [self.sheet addChild:self.skin];
         
-        spell.delegate = self;
         
+        [[RACAble(self.spell.position) distinctUntilChanged] subscribeNext:^(id x) {
+            [self renderPosition];
+        }];
+        
+        if ([self isWall:self.spell]) {
+            [[RACAble(self.spell.strength) distinctUntilChanged] subscribeNext:^(id x) {
+                [self renderWallStrength];
+            }];
+        }
     }
     return self;
 }
 
--(void)didUpdateForRender {
-    [self render];
+-(BOOL)isWall:(Spell*)spell {
+    return ([self.spell isType:[SpellEarthwall class]] || [self.spell isType:[SpellIcewall class]]);
 }
 
--(void)render {
+-(void)renderPosition {
     CGFloat y = self.units.zeroY;
-    if ([self.spell isType:[SpellEarthwall class]] || [self.spell isType:[SpellIcewall class]]) {
+    if ([self isWall:self.spell]) {
         // bump walls down
         y -= 25;
-        NSString * frameName = [NSString stringWithFormat:@"%@-%i", self.sheetName, self.spell.strength];
-        [self.skin setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
     }
     
     self.position = ccp([self.units toX:self.spell.position], y);
+}
+
+- (void)renderWallStrength {
+    NSString * frameName = [NSString stringWithFormat:@"%@-%i", self.sheetName, self.spell.strength];
+    [self.skin setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
 }
 
 -(NSString*)sheetName {
