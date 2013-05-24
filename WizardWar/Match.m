@@ -60,7 +60,6 @@
         }];
         
         [self.spellsCollection didAddChild:^(Spell * spell) {
-            // TODO set it back in time to original position when it is accepted
             [wself addedSpellLocally:spell];
         }];
         
@@ -241,7 +240,12 @@
         [self.currentPlayer spendMana:spell.mana];
         [spell setPositionFromPlayer:self.currentPlayer];
         [self.currentPlayer setState:PlayerStateCast animated:YES];
-        [self.spellsCollection addObject:spell];
+        NSLog(@"SPELL Cast %@", spell);
+        spell.connected = NO; // only happens locally
+        [self.spellsCollection addObject:spell onComplete:^(NSError*error) {
+            NSLog(@"SPELL Connected %@", spell);
+            spell.connected = YES;
+        }];
         [self.playersCollection updateObject:self.currentPlayer];
     } else {
         NSLog(@"Not enough Mana you fiend!");

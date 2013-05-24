@@ -72,6 +72,9 @@
                 [self renderWallStrength];
             }];
         }
+        
+        [self renderPosition];
+        [self renderWallStrength];
     }
     return self;
 }

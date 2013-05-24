@@ -19,6 +19,7 @@
         self.speed = 30;
         self.strength = 1;
         self.mana = 2;
+        self.connected = YES;
     }
     return self;
 }
@@ -26,6 +27,7 @@
 // then you also have to update the sprites BASED on this.
 // maybe update should be called on the sprites?
 -(void)update:(NSTimeInterval)dt {
+    if (!self.connected) return;
     self.position += self.direction * self.speed * dt;
 }
 

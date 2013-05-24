@@ -88,7 +88,7 @@
 
 - (IBAction)didTapBack:(id)sender {
     [self.match disconnect];
-    [WizardDirector unload]; // TODO make it dealloc without having to play it!
+    [WizardDirector unload];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

@@ -88,16 +88,25 @@
 }
 
 - (void)addObject:(id<Objectable>)obj {
-    [self addObject:obj withNode:[self.node childByAutoId]];
+    [self addObject:obj onComplete:nil];
 }
 
 - (void)addObject:(id<Objectable>)obj withName:(NSString *)name {
-    [self addObject:obj withNode:[self.node childByAppendingPath:name]];
+    [self addObject:obj withname:name onComplete:nil];
 }
 
-- (void)addObject:(id<Objectable>)obj withNode:(Firebase*)objnode {
+- (void)addObject:(id<Objectable>)obj onComplete:(void (^)(NSError*))cb {
+    [self addObject:obj withNode:[self.node childByAutoId] onComplete:cb];
+}
+
+- (void)addObject:(id<Objectable>)obj withname:(NSString *)name onComplete:(void (^)(NSError*))cb {
+    [self addObject:obj withNode:[self.node childByAppendingPath:name] onComplete:cb];
+}
+
+- (void)addObject:(id<Objectable>)obj withNode:(Firebase*)objnode onComplete:(void(^)(NSError*))cb {
+//    if (!cb) cb = ^(NSError*error) {};
     [objnode onDisconnectRemoveValue];
-    [objnode setValue:obj.toObject];
+    [objnode setValue:obj.toObject withCompletionBlock:cb];
     [self addObjectLocally:obj name:objnode.name];
 }
 

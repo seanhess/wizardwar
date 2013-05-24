@@ -23,7 +23,9 @@
 
 // you call these instead of adding them to your dictionary by hand
 - (void)addObject:(id<Objectable>)object;
+- (void)addObject:(id<Objectable>)object onComplete:(void(^)(NSError*))cb;
 - (void)addObject:(id<Objectable>)object withName:(NSString*)name;
+- (void)addObject:(id<Objectable>)object withName:(NSString*)name onComplete:(void(^)(NSError*))cb;
 - (void)removeObject:(id)object;
 - (void)updateObject:(id<Objectable>)object;
 

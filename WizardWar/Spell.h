@@ -28,6 +28,7 @@
 @property (nonatomic) NSString * type; // tells me which class to instantiate. Use the string representation
 @property (nonatomic) NSString * creator;
 @property (nonatomic, strong) Spell * lastHitSpell;
+@property (nonatomic) BOOL connected;
 -(void)update:(NSTimeInterval)dt;
 -(void)setPositionFromPlayer:(Player*)player;
 -(BOOL)isType:(Class)class;
