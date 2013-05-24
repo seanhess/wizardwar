@@ -19,9 +19,11 @@ typedef enum MatchStatus {
 #define MATCH_STATE_KEYPATH @"status"
 
 @protocol MatchDelegate
--(void)didRemoveSpell:(Spell*)spell;
 -(void)didAddSpell:(Spell*)spell;
+-(void)didRemoveSpell:(Spell*)spell;
+
 -(void)didAddPlayer:(Player*)player;
+-(void)didRemovePlayer:(Player*)player;
 @end
 
 @interface Match : NSObject

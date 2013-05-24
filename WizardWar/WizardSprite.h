@@ -10,5 +10,6 @@
 #import "Player.h"
 
 @interface WizardSprite : CCSprite
+@property (nonatomic, strong) Player * player;
 -(id)initWithPlayer:(Player*)player units:(Units*)units;
 @end

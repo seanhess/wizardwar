@@ -23,12 +23,21 @@
     if ((self=[super init])) {
         self.mana = 0;
         self.health = 5;
+        self.wizardType = WIZARD_TYPE_ONE;
     }
     return self;
 }
 
 -(NSDictionary*)toObject {
-    return [self dictionaryWithValuesForKeys:@[@"name", @"position", @"mana", @"health"]];
+    return [self dictionaryWithValuesForKeys:@[@"name", @"position", @"mana", @"health", @"state"]];
+}
+
+-(void)setValuesForKeysWithDictionary:(NSDictionary *)keyedValues {
+    PlayerState currentState = self.state;
+    [super setValuesForKeysWithDictionary:keyedValues];
+    if (currentState != self.state) {
+        [self setState:self.state animated:YES];
+    }
 }
 
 -(NSString*)description {

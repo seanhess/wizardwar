@@ -11,4 +11,5 @@
 // Kind of a silly name. Means you can turn it into a raw dictionary
 @protocol Objectable <NSObject>
 -(NSDictionary*)toObject;
+-(void)setValuesForKeysWithDictionary:(NSDictionary*)keyedValues;
 @end

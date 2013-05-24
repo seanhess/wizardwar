@@ -20,7 +20,7 @@
 #import "SpellWindblast.h"
 #import "SimpleAudioEngine.h"
 #import "FirebaseCollection.h"
-
+#import <ReactiveCocoa.h>
 
 @interface Match ()
 @property (nonatomic, strong) Firebase * matchNode;
@@ -37,6 +37,7 @@
 // don't really know which player you are until there are 2 players
 // then you can go off their name.
 // Alphabetical order baby :)
+// How do you know who is who?
 
 @implementation Match
 -(id)initWithId:(NSString *)id currentPlayer:(Player *)player withAI:(Player *)ai {
@@ -76,6 +77,16 @@
             if (wself.players.count == 2) [wself start];
         }];
         
+        [self.playersCollection didUpdateChild:^(Player * player) {
+            [wself checkWin];
+        }];
+        
+        [self.playersCollection didRemoveChild:^(Player * player) {
+            // Someone disconnected
+            [wself.delegate didRemovePlayer:player];
+            wself.status = MatchStatusEnded;
+        }];
+        
         if (ai) {
             self.opponentPlayer = ai;
             [self.playersCollection addObject:ai];
@@ -83,10 +94,6 @@
         
         self.currentPlayer = player;
         [self.playersCollection addObject:self.currentPlayer];
-
-//        [[NSNotificationCenter defaultCenter] addObserverForName:@"HealthManaUpdate" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-//            [self.delegate didUpdateHealthAndMana];
-//        }];
     }
     return self;
 }
@@ -109,18 +116,15 @@
 -(void)checkHits {
     // HITS ARE CALLED MORE THAN ONCE!
     // A hits B, B hits A
-    NSArray * spells = self.spells.allValues;
+    NSArray * spells = self.closeSpells;
     for (int i = 0; i < spells.count; i++) {
         Spell * spell = spells[i];
-        // spells are center anchored, so just check the position, not the width?
-        // TODO add spell size to the equation
-        // check to see if the spell hits ME, not all players
-        // or check to see how my spells hit?
-        for (Player * player in self.players.allValues)  {
-            if ([spell hitsPlayer:player])
-                [self hitPlayer:player withSpell:spell];
-        }
+        // spells are center anchored, so just check the position, not the width
+        // see if spell hits ME (don't check the other player)
+        if ([spell hitsPlayer:self.currentPlayer])
+            [self hitPlayer:self.currentPlayer withSpell:spell];
         
+        // start at the next spell (don't check collisons twice)
         for (int j = i+1; j < spells.count; j++) {
             Spell * spell2 = spells[j];
             if ([spell hitsSpell:spell2])
@@ -129,12 +133,24 @@
     }
 }
 
+// spells that are close to my side of the screen
+// these are the ones I "own" -- I decide where they are, collisions, etc
+-(NSArray*)closeSpells {
+    return [self.spells.allValues filter:^BOOL(Spell * spell) {
+        if (self.currentPlayer.isFirstPlayer) {
+            return (spell.position < UNITS_MID);
+        }
+        else {
+            return (spell.position >= UNITS_MID);
+        }
+    }];
+}
+
 -(void)hitPlayer:(Player*)player withSpell:(Spell*)spell {
     [self.spellsCollection removeObject:spell];
-    
     // this allows it to subtract health
     [spell interactPlayer:player];
-    [self checkWin];
+    [self.playersCollection updateObject:player];
 }
 
 -(void)hitSpell:(Spell*)spell withSpell:(Spell*)spell2 {
@@ -224,21 +240,22 @@
     if (self.currentPlayer.mana >= spell.mana) {
         [self.currentPlayer spendMana:spell.mana];
         [spell setPositionFromPlayer:self.currentPlayer];
-        [self.spellsCollection addObject:spell];
         [self.currentPlayer setState:PlayerStateCast animated:YES];
+        [self.spellsCollection addObject:spell];
+        [self.playersCollection updateObject:self.currentPlayer];
     } else {
         NSLog(@"Not enough Mana you fiend!");
     }
 }
 
 - (void)disconnect {
+    [self.playersCollection removeObject:self.currentPlayer];
     [self.spellsNode removeAllObservers];
     [self.playersNode removeAllObservers];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)dealloc {
-//    [self disconnect];
     NSLog(@"Match: dealloc");
 }
 

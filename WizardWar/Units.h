@@ -10,6 +10,8 @@
 
 #define UNITS_MIN 0
 #define UNITS_MAX 100
+#define UNITS_DISTANCE UNITS_MAX-UNITS_MIN
+#define UNITS_MID UNITS_DISTANCE/2
 
 @interface Units : NSObject
 -(id)initWithZeroY:(CGFloat)zeroY min:(CGFloat)min max:(CGFloat)max;

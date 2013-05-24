@@ -14,7 +14,6 @@
 #define WIZARD_PADDING 20
 
 @interface WizardSprite ()
-@property (nonatomic, strong) Player * player;
 @property (nonatomic, strong) Units * units;
 
 @property (nonatomic, strong) CCLabelTTF * label;
@@ -37,6 +36,9 @@
         
         self.skin = [CCSprite spriteWithSpriteFrameName:self.currentWizardImage];
         [self.spriteSheet addChild:self.skin];
+        
+        self.label = [CCLabelTTF labelWithString:player.name fontName:@"Marker Felt" fontSize:18];
+        [self addChild:self.label];
         
         // BIND: state, position
         [self renderPosition];

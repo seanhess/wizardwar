@@ -331,10 +331,7 @@
     // start the match!
     NSString * matchID = [NSString stringWithFormat:@"%i", arc4random()];
     invite.matchID = matchID;
-    
-    Firebase* inviteNode = [self.firebaseInvites childByAppendingPath:invite.inviteId];
-    [inviteNode setValue:invite.toObject];
-    [inviteNode onDisconnectRemoveValue];
+    [self.invitesCollection updateObject:invite];
     [self joinMatch:invite playerName:self.nickname];
 }
 

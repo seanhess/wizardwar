@@ -25,5 +25,6 @@
 - (void)addObject:(id<Objectable>)object;
 - (void)addObject:(id<Objectable>)object withName:(NSString*)name;
 - (void)removeObject:(id)object;
+- (void)updateObject:(id<Objectable>)object;
 
 @end

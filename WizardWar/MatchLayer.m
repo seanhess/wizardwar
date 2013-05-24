@@ -131,6 +131,14 @@
     NSLog(@"ADDED PLAYER %@", player);
 }
 
+- (void)didRemovePlayer:(Player *)player {
+    WizardSprite * sprite = [NSArray array:self.players.children find:^BOOL(WizardSprite * sprite) {
+        return (sprite.player == player);
+    }];
+    [self.players removeChild:sprite];
+    // Someone disconnected
+}
+
 - (void)renderMatchStatus {
     self.message.visible = (self.match.status == MatchStatusReady || self.match.status == MatchStatusEnded);
     self.players.visible = (self.match.status == MatchStatusPlaying || self.match.status == MatchStatusEnded);

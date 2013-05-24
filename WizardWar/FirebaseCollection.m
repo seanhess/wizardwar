@@ -39,7 +39,7 @@
         
         // find the correct object and update locally
         [self.node observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
-            id obj = [self.objects objectForKey:snapshot.name];
+            id<Objectable> obj = [self.objects objectForKey:snapshot.name];
             if (!obj) {
                 // add the object to the collection if it doesn't exist yet
                 obj = factory(snapshot.value);
@@ -51,14 +51,14 @@
         }];
         
         [self.node observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
-            id obj = [self.objects objectForKey:snapshot.name];
+            id<Objectable> obj = [self.objects objectForKey:snapshot.name];
             if (!obj) return;
             [self.objects removeObjectForKey:snapshot.name];
             self.removeCb(obj);
         }];
         
         [self.node observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
-            id obj = [self.objects objectForKey:snapshot.name];
+            id<Objectable> obj = [self.objects objectForKey:snapshot.name];
             if (!obj) {
                 NSAssert(false, @"Object not found locally! %@", snapshot.name);
             }
@@ -109,6 +109,12 @@
 - (void)removeObjectLocally:(id)obj name:(NSString*)name {
     [self.names removeObjectForKey:obj];
     [self.objects removeObjectForKey:name];
+}
+
+- (void)updateObject:(id<Objectable>)obj {
+    NSString * name = [self.names objectForKey:obj];
+    Firebase* objnode = [self.node childByAppendingPath:name];
+    [objnode setValue:obj.toObject];
 }
 
 - (void)dealloc {
