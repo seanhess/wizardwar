@@ -22,6 +22,9 @@
 #import "FirebaseCollection.h"
 #import <ReactiveCocoa.h>
 
+// sync spells to the server every N seconds
+#define SPELL_SYNC_TIME 0.5
+
 @interface Match ()
 @property (nonatomic, strong) Firebase * matchNode;
 @property (nonatomic, strong) Firebase * spellsNode;
@@ -67,6 +70,10 @@
             [wself.delegate didRemoveSpell:spell];
         }];
         
+//        [self.spellsCollection didUpdateChild:^(Spell * spell) {
+//            
+//        }];
+        
         
         // PLAYERS
         self.playersCollection = [[FirebaseCollection alloc] initWithNode:self.playersNode dictionary:self.players type:[Player class]];
@@ -101,8 +108,18 @@
 /// UPDATES
 
 -(void)update:(NSTimeInterval)dt {
+    
+    // this is "client side" prediction
     [self.spells.allValues forEach:^(Spell*spell) {
         [spell update:dt];
+        
+        // sync spells to server every N seconds
+        // waiiit... this won't work AT ALL
+        // because you don't have the timing guessed correctly
+//        if ([self isSpellClose:spell] && spell.timeSinceLastSync > SPELL_SYNC_TIME) {
+//            spell.timeSinceLastSync = 0;
+//            [self.spellsCollection updateObject:spell];
+//        }
     }];
     
     [self.players.allValues forEach:^(Player*player) {
@@ -136,13 +153,17 @@
 // these are the ones I "own" -- I decide where they are, collisions, etc
 -(NSArray*)closeSpells {
     return [self.spells.allValues filter:^BOOL(Spell * spell) {
-        if (self.currentPlayer.isFirstPlayer) {
-            return (spell.position < UNITS_MID);
-        }
-        else {
-            return (spell.position >= UNITS_MID);
-        }
+        return [self isSpellClose:spell];
     }];
+}
+
+-(BOOL)isSpellClose:(Spell*)spell {
+    if (self.currentPlayer.isFirstPlayer) {
+        return (spell.position < UNITS_MID);
+    }
+    else {
+        return (spell.position >= UNITS_MID);
+    }
 }
 
 -(void)hitPlayer:(Player*)player withSpell:(Spell*)spell {
@@ -177,8 +198,7 @@
     }
     
     else if (interaction.type == SpellInteractionTypeModify) {
-//        Firebase * node = [self.spellsNode childByAppendingPath:spell.firebaseName];
-//        [node setValue:spell.toObject];
+        [self.spellsCollection updateObject:spell];
     }
     
     else if (interaction.type == SpellInteractionTypeNothing) {

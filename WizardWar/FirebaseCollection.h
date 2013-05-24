@@ -29,4 +29,6 @@
 - (void)removeObject:(id)object;
 - (void)updateObject:(id<Objectable>)object;
 
+- (Firebase*)nodeForObject:(id<Objectable>)obj;
+
 @end

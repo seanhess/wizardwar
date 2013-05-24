@@ -82,9 +82,7 @@
 }
 
 - (void)removeObject:(id<Objectable>)object {
-    NSString * name = [self.names objectForKey:object];
-    Firebase * objnode = [self.node childByAppendingPath:name];
-    [objnode removeValue];
+    [[self nodeForObject:object] removeValue];
 }
 
 - (void)addObject:(id<Objectable>)obj {
@@ -92,14 +90,14 @@
 }
 
 - (void)addObject:(id<Objectable>)obj withName:(NSString *)name {
-    [self addObject:obj withname:name onComplete:nil];
+    [self addObject:obj withName:name onComplete:nil];
 }
 
 - (void)addObject:(id<Objectable>)obj onComplete:(void (^)(NSError*))cb {
     [self addObject:obj withNode:[self.node childByAutoId] onComplete:cb];
 }
 
-- (void)addObject:(id<Objectable>)obj withname:(NSString *)name onComplete:(void (^)(NSError*))cb {
+- (void)addObject:(id<Objectable>)obj withName:(NSString *)name onComplete:(void (^)(NSError*))cb {
     [self addObject:obj withNode:[self.node childByAppendingPath:name] onComplete:cb];
 }
 
@@ -121,9 +119,13 @@
 }
 
 - (void)updateObject:(id<Objectable>)obj {
+    [[self nodeForObject:obj] setValue:obj.toObject];
+}
+
+- (Firebase*)nodeForObject:(id<Objectable>)obj {
     NSString * name = [self.names objectForKey:obj];
     Firebase* objnode = [self.node childByAppendingPath:name];
-    [objnode setValue:obj.toObject];
+    return objnode;
 }
 
 - (void)dealloc {

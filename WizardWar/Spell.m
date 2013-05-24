@@ -29,6 +29,7 @@
 -(void)update:(NSTimeInterval)dt {
     if (!self.connected) return;
     self.position += self.direction * self.speed * dt;
+    self.timeSinceLastSync += dt;
 }
 
 -(void)reflectFromSpell:(Spell*)spell {
