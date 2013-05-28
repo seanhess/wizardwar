@@ -64,7 +64,6 @@
         [av show];
         av.delegate = self;
     } else {
-        // [self joinLobby];
     }
 }
 
@@ -80,6 +79,7 @@
 }
 
 - (void)connectToLobby {
+    if (!self.nickname) return;
     [self hideSplash];
     [self joinLobby];
 }
@@ -148,7 +148,7 @@
     self.nickname = [alertView textFieldAtIndex:0].text;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:self.nickname forKey:@"nickname"];
-    [self joinLobby];
+    [self connectToLobby];
 }
 
 #pragma mark - Firebase stuff

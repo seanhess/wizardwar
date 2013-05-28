@@ -42,6 +42,8 @@
 @property (nonatomic, strong) CCSprite * message;
 @property (nonatomic, strong) CCSprite * background;
 
+@property (nonatomic, strong) CCLabelTTF * debug;
+
 @property (nonatomic, strong) UIButton * backButton;
 
 @end
@@ -90,6 +92,13 @@
         [self.indicators addChild:player2Indicator];
         
         [self scheduleUpdate];
+        
+        
+        // DEBUG THING
+        self.debug = [CCLabelTTF labelWithString:@"0" fontName:@"Marker Felt" fontSize:120];
+        self.message.visible = NO;
+        self.debug.position = self.message.position;
+        [self addChild:self.debug];
     }
     return self;
 }
@@ -137,6 +146,10 @@
     }];
     [self.players removeChild:sprite];
     // Someone disconnected
+}
+
+- (void)didTick:(NSInteger)currentTick {
+    self.debug.string = [NSString stringWithFormat:@"%i", (int)(currentTick * TICK_INTERVAL)];
 }
 
 - (void)renderMatchStatus {

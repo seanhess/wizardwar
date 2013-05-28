@@ -58,6 +58,7 @@
         }];
         
         [self.node observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
+            NSLog(@"FATZO %@ - %@", snapshot.name, snapshot.value);
             id<Objectable> obj = [self.objects objectForKey:snapshot.name];
             if (!obj) {
                 NSAssert(false, @"Object not found locally! %@", snapshot.name);

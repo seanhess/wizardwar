@@ -10,6 +10,8 @@
 #import "Spell.h"
 #import "Player.h"
 
+#define TICK_INTERVAL 0.1
+
 typedef enum MatchStatus {
     MatchStatusReady,
     MatchStatusPlaying,
@@ -24,6 +26,8 @@ typedef enum MatchStatus {
 
 -(void)didAddPlayer:(Player*)player;
 -(void)didRemovePlayer:(Player*)player;
+
+-(void)didTick:(NSInteger)currentTick;
 @end
 
 @interface Match : NSObject

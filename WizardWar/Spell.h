@@ -29,7 +29,6 @@
 @property (nonatomic) NSString * creator;
 @property (nonatomic, strong) Spell * lastHitSpell;
 @property (nonatomic) BOOL connected;
-@property (nonatomic) NSTimeInterval timeSinceLastSync;
 -(void)update:(NSTimeInterval)dt;
 -(void)setPositionFromPlayer:(Player*)player;
 -(BOOL)isType:(Class)class;

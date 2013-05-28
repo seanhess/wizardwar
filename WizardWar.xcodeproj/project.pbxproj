@@ -30,6 +30,8 @@
 		6F0FEF5F1747FA720028FE71 /* wizard-lobby.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F0FEF5D1747FA720028FE71 /* wizard-lobby.png */; };
 		6F0FEF601747FA720028FE71 /* wizard-lobby@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F0FEF5E1747FA720028FE71 /* wizard-lobby@2x.png */; };
 		781234DD174ADC19008EDE88 /* FirebaseCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 781234DC174ADC19008EDE88 /* FirebaseCollection.m */; };
+		7837D6AD17540836001D820E /* GameTimerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7837D6AC17540836001D820E /* GameTimerService.m */; };
+		7837D6B017540893001D820E /* PlayerTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7837D6AF17540893001D820E /* PlayerTime.m */; };
 		7837F16B1749B9D000D29445 /* navbar-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7837F1691749B9CF00D29445 /* navbar-logo.png */; };
 		7837F16C1749B9D000D29445 /* navbar-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7837F16A1749B9CF00D29445 /* navbar-logo@2x.png */; };
 		787A2A81174D2771004C4FDB /* MatchmakingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787A2A80174D2771004C4FDB /* MatchmakingViewController.xib */; };
@@ -301,6 +303,10 @@
 		781234DB174ADC19008EDE88 /* FirebaseCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseCollection.h; sourceTree = "<group>"; };
 		781234DC174ADC19008EDE88 /* FirebaseCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseCollection.m; sourceTree = "<group>"; };
 		781234DF174AE4C0008EDE88 /* Objectable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Objectable.h; sourceTree = "<group>"; };
+		7837D6AB17540836001D820E /* GameTimerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTimerService.h; sourceTree = "<group>"; };
+		7837D6AC17540836001D820E /* GameTimerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTimerService.m; sourceTree = "<group>"; };
+		7837D6AE17540893001D820E /* PlayerTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerTime.h; sourceTree = "<group>"; };
+		7837D6AF17540893001D820E /* PlayerTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerTime.m; sourceTree = "<group>"; };
 		7837F1691749B9CF00D29445 /* navbar-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar-logo.png"; sourceTree = "<group>"; };
 		7837F16A1749B9CF00D29445 /* navbar-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar-logo@2x.png"; sourceTree = "<group>"; };
 		787A2A80174D2771004C4FDB /* MatchmakingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchmakingViewController.xib; sourceTree = "<group>"; };
@@ -778,6 +784,8 @@
 				787A2A83174E85E3004C4FDB /* FirebaseConnection.h */,
 				787A2A84174E85E3004C4FDB /* FirebaseConnection.m */,
 				781234DF174AE4C0008EDE88 /* Objectable.h */,
+				7837D6AB17540836001D820E /* GameTimerService.h */,
+				7837D6AC17540836001D820E /* GameTimerService.m */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -1315,6 +1323,8 @@
 				78F6B3CC1746E01200AA070D /* Spells */,
 				78F6B3A21746B25F00AA070D /* Match.h */,
 				78F6B3A31746B25F00AA070D /* Match.m */,
+				7837D6AE17540893001D820E /* PlayerTime.h */,
+				7837D6AF17540893001D820E /* PlayerTime.m */,
 				78F6B3A41746B26000AA070D /* Player.h */,
 				78F6B3A51746B26000AA070D /* Player.m */,
 				78F6B3C91746D77B00AA070D /* Units.h */,
@@ -1726,6 +1736,8 @@
 				787A2A85174E85E3004C4FDB /* FirebaseConnection.m in Sources */,
 				787A2A91174E9FA3004C4FDB /* TestLayer.m in Sources */,
 				787A2A99174EA43D004C4FDB /* MatchViewController.m in Sources */,
+				7837D6AD17540836001D820E /* GameTimerService.m in Sources */,
+				7837D6B017540893001D820E /* PlayerTime.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

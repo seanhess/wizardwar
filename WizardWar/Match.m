@@ -21,11 +21,12 @@
 #import "SimpleAudioEngine.h"
 #import "FirebaseCollection.h"
 #import <ReactiveCocoa.h>
+#import "GameTimerService.h"
 
 // sync spells to the server every N seconds
 #define SPELL_SYNC_TIME 0.5
 
-@interface Match ()
+@interface Match () <GameTimerDelegate>
 @property (nonatomic, strong) Firebase * matchNode;
 @property (nonatomic, strong) Firebase * spellsNode;
 @property (nonatomic, strong) Firebase * playersNode;
@@ -34,7 +35,11 @@
 @property (nonatomic, strong) FirebaseCollection *spellsCollection;
 @property (nonatomic, strong) FirebaseCollection *playersCollection;
 
+// spells to be added at the next tick
+@property (nonatomic, strong) NSMutableArray * actionQueue;
+
 @property (nonatomic, strong) NSString * lastCastSpellName;
+@property (nonatomic, strong) GameTimerService * timer;
 @end
 
 // don't really know which player you are until there are 2 players
@@ -63,7 +68,8 @@
         }];
         
         [self.spellsCollection didAddChild:^(Spell * spell) {
-            [wself addedSpellLocally:spell];
+//            [wself addedSpellLocally:spell];
+            [wself.actionQueue addObject:spell];
         }];
         
         [self.spellsCollection didRemoveChild:^(Spell * spell) {
@@ -80,7 +86,7 @@
         
         [self.playersCollection didAddChild:^(Player * player) {
             [wself.delegate didAddPlayer:player];
-            if (wself.players.count == 2) [wself start];
+            if (wself.players.count == 2) [wself playersReady];
         }];
         
         [self.playersCollection didUpdateChild:^(Player * player) {
@@ -105,27 +111,73 @@
 }
 
 
+
 /// UPDATES
 
--(void)update:(NSTimeInterval)dt {
+
+// STARTING
+
+-(void)playersReady {
+    NSLog(@"PLAYERS READY");
     
-    // this is "client side" prediction
+    // Sort the players
+    NSArray * players = self.sortedPlayers;
+    [(Player *)players[0] setPosition:UNITS_MIN];
+    [(Player *)players[1] setPosition:UNITS_MAX];
+    
+    BOOL isHost = (self.currentPlayer == self.host);
+    self.timer = [[GameTimerService alloc] initWithMatchNode:self.matchNode player:self.currentPlayer isHost:isHost];
+    self.timer.tickInterval = TICK_INTERVAL;
+    self.timer.delegate = self;
+    [self.timer sync];
+}
+
+- (void)gameShouldStartAt:(NSTimeInterval)startTime {
+    [self.timer startAt:startTime];
+}
+-(void)update:(NSTimeInterval)dt {
+    [self.timer update:dt];
+    
+    // move all the spells around and stuff, but don't simulate the game
     [self.spells.allValues forEach:^(Spell*spell) {
         [spell update:dt];
-        
-        // sync spells to server every N seconds
-        // waiiit... this won't work AT ALL
-        // because you don't have the timing guessed correctly
-//        if ([self isSpellClose:spell] && spell.timeSinceLastSync > SPELL_SYNC_TIME) {
-//            spell.timeSinceLastSync = 0;
-//            [self.spellsCollection updateObject:spell];
-//        }
     }];
     
     [self.players.allValues forEach:^(Player*player) {
         [player update:dt];
     }];
+}
+
+- (void)gameDidTick:(NSInteger)currentTick {
+    [self simulateTick:currentTick];
+    [self.delegate didTick:currentTick];
+}
+
+-(void)simulateTick:(NSInteger)currentTick {
+    // get new interactions on the queue that match the current tick
+    // get any interactions for previous ticks, and re-simulate those to get the new local state
     
+    // holy crap, this is nutso
+    // I need an object that represents the current game state
+    // then I can keep a few historic ones in case I need to run them again
+    
+    // it would be great to keep old copies of them around
+    // is there another way?
+    // you could try to reverse it (hard!)
+    // you could ignore interactions in the past (do this at first)
+        // just set the POSITION of objects in the past based on their speed and tick, etc
+    
+    // the STATE of the simulation is
+        // 1. the state of all the spells
+        // 2. the state of the players (health, mana, etc)
+    
+    // ONE TICK: directions are constant. See if spells MOVE THROUGH each other during that period
+    // can't keep your current algorithm, because they might pass through each other?
+    // naw, just don't make them that skinny
+    
+    // now, run the simulation
+    // speed is already in units per second
+    // run the simulation for the next game tick
     [self checkHits];
 }
 
@@ -211,19 +263,12 @@
     
 }
 
-// STARTING
-
--(void)checkStart {
-    if (self.players.count >= 2) {
-        [self start];
-    }
+-(Player*)host {
+    return self.sortedPlayers[0];
 }
 
 -(void)start {
     self.status = MatchStatusPlaying;
-    NSArray * players = self.sortedPlayers;
-    [(Player *)players[0] setPosition:UNITS_MIN];
-    [(Player *)players[1] setPosition:UNITS_MAX];
 }
 
 - (NSArray*)sortedPlayers {
@@ -262,6 +307,8 @@
         [self.currentPlayer setState:PlayerStateCast animated:YES];
         NSLog(@"SPELL Cast %@", spell);
         spell.connected = NO; // only happens locally
+        
+        // you need to inform them right away, but not update right away
         [self.spellsCollection addObject:spell onComplete:^(NSError*error) {
             NSLog(@"SPELL Connected %@", spell);
             spell.connected = YES;
