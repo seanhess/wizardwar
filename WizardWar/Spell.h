@@ -16,7 +16,7 @@
 #import "SpellInteraction.h"
 
 @interface Spell : NSObject <Objectable>
-@property (nonatomic) NSString* firebaseName;
+@property (nonatomic) NSString * spellId;
 @property (nonatomic) float speed; // units per second
 @property (nonatomic) float size;  // in units
 @property (nonatomic) float position;  // in units
@@ -26,9 +26,9 @@
 @property (nonatomic) NSInteger damage;
 @property (nonatomic) NSTimeInterval created;
 @property (nonatomic) NSString * type; // tells me which class to instantiate. Use the string representation
-@property (nonatomic) NSString * creator;
-@property (nonatomic, strong) Spell * lastHitSpell;
-@property (nonatomic) BOOL connected;
+@property (nonatomic) NSInteger createdTick;
+@property (nonatomic) NSInteger updatedTick;
+@property (nonatomic) BOOL destroyed;
 -(void)update:(NSTimeInterval)dt;
 -(void)setPositionFromPlayer:(Player*)player;
 -(BOOL)isType:(Class)class;
@@ -38,4 +38,5 @@
 -(BOOL)hitsSpell:(Spell*)spell;
 +(Spell*)fromType:(NSString*)type;
 -(void)reflectFromSpell:(Spell*)spell;
+-(void)move:(NSTimeInterval)dt;
 @end

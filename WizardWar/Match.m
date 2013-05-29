@@ -24,16 +24,13 @@
 #import "GameTimerService.h"
 
 // sync spells to the server every N seconds
-#define SPELL_SYNC_TIME 0.5
-
 @interface Match () <GameTimerDelegate>
 @property (nonatomic, strong) Firebase * matchNode;
 @property (nonatomic, strong) Firebase * spellsNode;
 @property (nonatomic, strong) Firebase * playersNode;
 @property (nonatomic, strong) Firebase * opponentNode;
 
-@property (nonatomic, strong) FirebaseCollection *spellsCollection;
-@property (nonatomic, strong) FirebaseCollection *playersCollection;
+@property (nonatomic, strong) FirebaseCollection * playersCollection;
 
 // spells to be added at the next tick
 @property (nonatomic, strong) NSMutableArray * actionQueue;
@@ -52,6 +49,7 @@
     if ((self = [super init])) {
         self.players = [NSMutableDictionary dictionary];
         self.spells = [NSMutableDictionary dictionary];
+        self.actionQueue = [NSMutableArray array];
         
         self.status = MatchStatusReady;
         
@@ -63,23 +61,28 @@
         self.playersNode = [self.matchNode childByAppendingPath:@"players"];
         
         // SPELLS
-        self.spellsCollection = [[FirebaseCollection alloc] initWithNode:self.spellsNode dictionary:self.spells factory:^(NSDictionary*value) {
-            return [Spell fromType:value[@"type"]];
-        }];
-        
-        [self.spellsCollection didAddChild:^(Spell * spell) {
-//            [wself addedSpellLocally:spell];
+        [self.spellsNode observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot*snapshot) {
+            // there is a new spell to add, add it to the queue
+            Spell * spell = [Spell fromType:snapshot.value[@"type"]];
+            spell.spellId = snapshot.name;
+            [spell setValuesForKeysWithDictionary:snapshot.value];
             [wself.actionQueue addObject:spell];
         }];
         
-        [self.spellsCollection didRemoveChild:^(Spell * spell) {
+        [self.spellsNode observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot*snapshot) {
+            // destroyed (strength = 0)
+            // speed = 0, etc.
+            Spell * spell = [wself.spells objectForKey:snapshot.name];
+            [spell setValuesForKeysWithDictionary:snapshot.value];
+        }];
+        
+        [self.spellsNode observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot*snapshot) {
+            Spell * spell = [wself.spells objectForKey:snapshot.name];
+            [wself.spells removeObjectForKey:spell.spellId];
             [wself.delegate didRemoveSpell:spell];
         }];
         
-//        [self.spellsCollection didUpdateChild:^(Spell * spell) {
-//            
-//        }];
-        
+        // TODO remove spells locally after they've been destroyed for a while (finished their animations)
         
         // PLAYERS
         self.playersCollection = [[FirebaseCollection alloc] initWithNode:self.playersNode dictionary:self.players type:[Player class]];
@@ -96,7 +99,7 @@
         [self.playersCollection didRemoveChild:^(Player * player) {
             // Someone disconnected
             [wself.delegate didRemovePlayer:player];
-            wself.status = MatchStatusEnded;
+            [wself stop];
         }];
         
         if (ai) {
@@ -136,10 +139,13 @@
     [self.timer startAt:startTime];
 }
 -(void)update:(NSTimeInterval)dt {
+    if (self.status == MatchStatusEnded) return;
     [self.timer update:dt];
     
+    if (self.status == MatchStatusReady) return;
+    
     // move all the spells around and stuff, but don't simulate the game
-    [self.spells.allValues forEach:^(Spell*spell) {
+    [self.activeSpells forEach:^(Spell*spell) {
         [spell update:dt];
     }];
     
@@ -149,48 +155,53 @@
 }
 
 - (void)gameDidTick:(NSInteger)currentTick {
+    if (currentTick == GAME_TIMER_FIRST_TICK)
+        self.status = MatchStatusPlaying;
     [self simulateTick:currentTick];
     [self.delegate didTick:currentTick];
 }
 
 -(void)simulateTick:(NSInteger)currentTick {
-    // get new interactions on the queue that match the current tick
-    // get any interactions for previous ticks, and re-simulate those to get the new local state
     
-    // holy crap, this is nutso
-    // I need an object that represents the current game state
-    // then I can keep a few historic ones in case I need to run them again
+    // Add all spells in the action queue
+    // alter based on how many ticks they are off
+    [self.actionQueue forEach:^(Spell * spell) {
+        if (spell.createdTick > currentTick) {
+            NSLog(@" !!! SPELL IN FUTURE");
+        }
+        else {
+            NSInteger tickDifference = currentTick - spell.createdTick;
+            NSLog(@"+++ Spell %i %@", tickDifference, spell);
+            [spell move:(tickDifference * self.timer.tickInterval)];
+            
+            [self.spells setObject:spell forKey:spell.spellId];
+            [self addedSpellLocally:spell];
+        }
+    }];
+    self.actionQueue = [NSMutableArray array];
     
-    // it would be great to keep old copies of them around
-    // is there another way?
-    // you could try to reverse it (hard!)
-    // you could ignore interactions in the past (do this at first)
-        // just set the POSITION of objects in the past based on their speed and tick, etc
-    
-    // the STATE of the simulation is
-        // 1. the state of all the spells
-        // 2. the state of the players (health, mana, etc)
-    
-    // ONE TICK: directions are constant. See if spells MOVE THROUGH each other during that period
-    // can't keep your current algorithm, because they might pass through each other?
-    // naw, just don't make them that skinny
-    
-    // now, run the simulation
-    // speed is already in units per second
-    // run the simulation for the next game tick
+    // run the simulation
+    // try to simulate EVERYTHING, but allow yourself to be corrected by owner
+    // in other words, go ahead and make all changes locally, but don't SYNC unless you own them
     [self checkHits];
+    
+    [self cleanupDestroyed];
 }
 
 -(void)checkHits {
     // HITS ARE CALLED MORE THAN ONCE!
     // A hits B, B hits A
-    NSArray * spells = self.closeSpells;
+    NSArray * spells = self.activeSpells;
+    NSArray * players = self.players.allValues;
     for (int i = 0; i < spells.count; i++) {
         Spell * spell = spells[i];
+        
         // spells are center anchored, so just check the position, not the width
         // see if spell hits ME (don't check the other player)
-        if ([spell hitsPlayer:self.currentPlayer])
-            [self hitPlayer:self.currentPlayer withSpell:spell];
+        for (Player * player in players) {
+            if ([spell hitsPlayer:player])
+                [self hitPlayer:player withSpell:spell];
+        }
         
         // start at the next spell (don't check collisons twice)
         for (int j = i+1; j < spells.count; j++) {
@@ -201,11 +212,26 @@
     }
 }
 
+- (void)cleanupDestroyed {
+    [[self.spells.allValues filter:^BOOL(Spell * spell) {
+        return spell.destroyed && (spell.updatedTick < self.timer.nextTick-10) && [self isSpellClose:spell];
+    }] forEach:^(Spell *spell) {
+        Firebase * node = [self.spellsNode childByAppendingPath:spell.spellId];
+        [node removeValue];
+    }];
+}
+
 // spells that are close to my side of the screen
 // these are the ones I "own" -- I decide where they are, collisions, etc
 -(NSArray*)closeSpells {
     return [self.spells.allValues filter:^BOOL(Spell * spell) {
         return [self isSpellClose:spell];
+    }];
+}
+
+-(NSArray*)activeSpells {
+    return [self.spells.allValues filter:^BOOL(Spell * spell) {
+        return !spell.destroyed;
     }];
 }
 
@@ -219,10 +245,21 @@
 }
 
 -(void)hitPlayer:(Player*)player withSpell:(Spell*)spell {
-    [self.spellsCollection removeObject:spell];
     // this allows it to subtract health
     [spell interactPlayer:player];
-    [self.playersCollection updateObject:player];
+    spell.destroyed = YES;
+    
+    // Only sync changes if owned spell and local player
+    if ([self isSpellClose:spell])
+        [self sendUpdateSpell:spell];
+    
+    if (player == self.currentPlayer) {
+        // only YOU can say you died
+        if (player.health == 0)
+            [player setState:PlayerStateDead animated:NO];
+        
+        [self.playersCollection updateObject:player];
+    }
 }
 
 -(void)hitSpell:(Spell*)spell withSpell:(Spell*)spell2 {
@@ -233,24 +270,36 @@
 
 -(void)checkWin {
     [self.players.allValues forEach:^(Player* player) {
-        if (player.health == 0) {
-            [player setState:PlayerStateDead animated:NO];
-            self.status = MatchStatusEnded;
+        if (player.state == PlayerStateDead) {
+            [self stop];
         }
     }];
 }
 
+- (void)sendUpdateSpell:(Spell*)spell {
+    spell.updatedTick = self.timer.nextTick;
+    Firebase * node = [self.spellsNode childByAppendingPath:spell.spellId];
+    [node setValue:spell.toObject];
+}
+
 -(void)handleInteraction:(SpellInteraction*)interaction forSpell:(Spell*)spell {
+    
     if (interaction.type == SpellInteractionTypeCancel) {
-        [self.spellsCollection removeObject:spell];
+        spell.destroyed = YES;
+        if ([self isSpellClose:spell])
+            [self sendUpdateSpell:spell];
     }
     
     else if (interaction.type == SpellInteractionTypeCreate) {
-        [self.spellsCollection addObject:spell];
+//        [self.spellsCollection addObject:spell];
     }
     
     else if (interaction.type == SpellInteractionTypeModify) {
-        [self.spellsCollection updateObject:spell];
+        // reflections ... need to make sure you have it right!
+        // TODO send tick information with reflection / updates, add to the action queue
+        // so you can get them on the other client
+        if ([self isSpellClose:spell])
+            [self sendUpdateSpell:spell];
     }
     
     else if (interaction.type == SpellInteractionTypeNothing) {
@@ -269,6 +318,11 @@
 
 -(void)start {
     self.status = MatchStatusPlaying;
+}
+
+-(void)stop {
+    self.status = MatchStatusEnded;
+    [self.timer stop];
 }
 
 - (NSArray*)sortedPlayers {
@@ -303,16 +357,22 @@
 -(void)castSpell:(Spell *)spell {
     if (self.currentPlayer.mana >= spell.mana) {
         [self.currentPlayer spendMana:spell.mana];
-        [spell setPositionFromPlayer:self.currentPlayer];
         [self.currentPlayer setState:PlayerStateCast animated:YES];
         NSLog(@"SPELL Cast %@", spell);
-        spell.connected = NO; // only happens locally
         
-        // you need to inform them right away, but not update right away
-        [self.spellsCollection addObject:spell onComplete:^(NSError*error) {
-            NSLog(@"SPELL Connected %@", spell);
-            spell.connected = YES;
-        }];
+        // update spell
+        [spell setPositionFromPlayer:self.currentPlayer];
+        [spell setCreatedTick:self.timer.nextTick];
+        
+        // add to firebase. It will be added to the queue when firebase calls the child added event
+        
+        Firebase * node = [self.spellsNode childByAutoId];
+        [node onDisconnectRemoveValue];
+        [node setValue:spell.toObject];
+        
+        NSLog(@" - (cast) complete");
+        
+        // update your mana, etc
         [self.playersCollection updateObject:self.currentPlayer];
     } else {
         NSLog(@"Not enough Mana you fiend!");
@@ -323,7 +383,6 @@
     [self.playersCollection removeObject:self.currentPlayer];
     [self.spellsNode removeAllObservers];
     [self.playersNode removeAllObservers];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)dealloc {

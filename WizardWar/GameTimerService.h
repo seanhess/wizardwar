@@ -10,6 +10,8 @@
 #import <Firebase/Firebase.h>
 #import "Player.h"
 
+#define GAME_TIMER_FIRST_TICK 1
+
 @protocol GameTimerDelegate
 -(void)gameShouldStartAt:(NSTimeInterval)startTime;
 -(void)gameDidTick:(NSInteger)currentTick;
@@ -18,7 +20,7 @@
 // Automatically starts the syncing process right when you create it
 @interface GameTimerService : NSObject
 @property (nonatomic) NSTimeInterval tickInterval;
-@property (nonatomic) NSInteger currentTick;
+@property (nonatomic, readonly) NSInteger nextTick;
 @property (nonatomic, weak) id<GameTimerDelegate> delegate;
 -(id)initWithMatchNode:(Firebase*)matchNode player:(Player*)player isHost:(BOOL)isHost;
 -(void)sync;

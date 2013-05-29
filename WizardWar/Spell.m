@@ -17,9 +17,8 @@
         self.size = 10; // don't make this too small or they could miss between frames!
         self.damage = 1; // default value
         self.speed = 30;
-        self.strength = 1;
+        self.strength = 1; // destroyed is read from this
         self.mana = 2;
-        self.connected = YES;
     }
     return self;
 }
@@ -27,7 +26,10 @@
 // then you also have to update the sprites BASED on this.
 // maybe update should be called on the sprites?
 -(void)update:(NSTimeInterval)dt {
-    if (!self.connected) return;
+    [self move:dt];
+}
+
+-(void)move:(NSTimeInterval)dt {
     self.position += self.direction * self.speed * dt;
 }
 
@@ -37,7 +39,7 @@
 }
 
 -(NSDictionary*)toObject {
-    return [self dictionaryWithValuesForKeys:@[@"speed", @"size", @"position", @"created", @"type", @"direction"]];
+    return [self dictionaryWithValuesForKeys:@[@"speed", @"size", @"position", @"created", @"type", @"direction", @"createdTick", @"strength"]];
 }
 
 -(void)setPositionFromPlayer:(Player*)player {
@@ -53,7 +55,7 @@
 }
 
 -(NSString*)description {
-    return [NSString stringWithFormat:@"%@ %@ - %f", super.description, self.type, self.position];
+    return [NSString stringWithFormat:@"%@ pos=%i", super.description, (int)self.position];
 }
 
 -(BOOL)isType:(Class)class {
@@ -116,9 +118,6 @@
 //    NSLog(@"SPELL %f %f", spell.leftEdge, spell.rightEdge);
 //    NSLog(@"SELF %f %f", self.leftEdge, self.rightEdge);
     
-//    if(fastSpell.lastHitSpell == slowSpell) return NO;
-//    fastSpell.lastHitSpell = slowSpell;
-    
     if(fastSpell.position < slowSpell.position) {
         // want to check my right edge against the left edge
         // if I am traveling towards them
@@ -137,5 +136,19 @@
 +(Spell*)fromType:(NSString*)type {
     return [NSClassFromString(type) new];
 }
+
+-(BOOL)isActive {
+    return self.strength > 0;
+}
+
+-(BOOL)destroyed {
+    return self.strength == 0;
+}
+
+-(void)setDestroyed:(BOOL)value {
+    if (value) self.strength = 0;
+    else if (self.strength == 0) self.strength = 1;
+}
+
 
 @end

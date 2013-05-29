@@ -83,7 +83,7 @@
         }
     }
     
-    [sae playBackgroundMusic:@"theme.wav"];
+//    [sae playBackgroundMusic:@"theme.wav"];
 }
 
 - (IBAction)didTapBack:(id)sender {

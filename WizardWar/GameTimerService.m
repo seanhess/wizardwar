@@ -12,7 +12,7 @@
 #import "NSArray+Functional.h"
 
 #define DELAY_START 1
-#define MAX_TOLERANCE 0.001
+#define MAX_TOLERANCE 0.01
 
 @interface GameTimerService ()
 @property (strong, nonatomic) Firebase * node;
@@ -20,6 +20,7 @@
 @property (strong, nonatomic) FirebaseCollection * timesCollection;
 @property (strong, nonatomic) PlayerTime * myTime;
 @property (strong, nonatomic) Player * player;
+@property (nonatomic) NSInteger currentTick;
 @property (nonatomic) NSTimeInterval nextTickTime;
 @property (nonatomic) BOOL isHost;
 @end
@@ -126,8 +127,8 @@
     NSTimeInterval currentTime = CACurrentMediaTime();
     if (self.nextTickTime < currentTime) {
         self.nextTickTime = self.nextTickTime + self.tickInterval;
-        self.currentTick++;
-        NSLog(@"TICK %i %f", self.currentTick, CACurrentMediaTime());
+        
+        self.currentTick = self.nextTick;
         [self.delegate gameDidTick:self.currentTick];
     }
 }
@@ -140,6 +141,10 @@
 
 - (void)stop {
     self.nextTickTime = 0;
+}
+
+- (NSInteger)nextTick {
+    return self.currentTick + 1;
 }
 
 @end

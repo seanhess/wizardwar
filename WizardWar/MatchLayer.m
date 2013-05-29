@@ -95,10 +95,10 @@
         
         
         // DEBUG THING
-        self.debug = [CCLabelTTF labelWithString:@"0" fontName:@"Marker Felt" fontSize:120];
-        self.message.visible = NO;
-        self.debug.position = self.message.position;
-        [self addChild:self.debug];
+//        self.debug = [CCLabelTTF labelWithString:@"0" fontName:@"Marker Felt" fontSize:120];
+//        self.message.visible = NO;
+//        self.debug.position = self.message.position;
+//        [self addChild:self.debug];
     }
     return self;
 }

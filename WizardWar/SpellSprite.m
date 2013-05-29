@@ -67,11 +67,10 @@
             [self renderPosition];
         }];
         
-        if ([self isWall:self.spell]) {
-            [[RACAble(self.spell.strength) distinctUntilChanged] subscribeNext:^(id x) {
-                [self renderWallStrength];
-            }];
-        }
+        [[RACAble(self.spell.strength) distinctUntilChanged] subscribeNext:^(id x) {
+            [self renderWallStrength];
+            [self renderDestroyed];
+        }];
         
         [self renderPosition];
         [self renderWallStrength];
@@ -94,8 +93,13 @@
 }
 
 - (void)renderWallStrength {
+    if (![self isWall:self.spell]) return;
     NSString * frameName = [NSString stringWithFormat:@"%@-%i", self.sheetName, self.spell.strength];
     [self.skin setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
+}
+
+- (void)renderDestroyed {
+    self.skin.visible = !self.spell.destroyed;
 }
 
 -(NSString*)sheetName {
