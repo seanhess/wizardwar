@@ -198,7 +198,7 @@
         // spells are center anchored, so just check the position, not the width
         // see if spell hits ME (don't check the other player)
         for (Player * player in players) {
-            if ([spell hitsPlayer:player])
+            if ([spell hitsPlayer:player duringInterval:TICK_INTERVAL])
                 [self hitPlayer:player withSpell:spell];
         }
         

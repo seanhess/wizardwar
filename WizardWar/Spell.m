@@ -14,7 +14,6 @@
     if ((self = [super init])) {
         self.type = NSStringFromClass([self class]);
         self.created = CACurrentMediaTime();
-        self.size = 10; // don't make this too small or they could miss between frames!
         self.damage = 1; // default value
         self.speed = 30;
         self.strength = 1; // destroyed is read from this
@@ -35,11 +34,12 @@
 
 -(void)reflectFromSpell:(Spell*)spell {
     self.direction *= -1;
-    self.position = spell.position + (1+(spell.size+self.size)/2)*self.direction;
+//    self.position = spell.position + (1+(spell.size+self.size)/2)*self.direction;
+//    self.position = spell.position + (1+(spell.size+self.size)/2)*self.direction;
 }
 
 -(NSDictionary*)toObject {
-    return [self dictionaryWithValuesForKeys:@[@"speed", @"size", @"position", @"created", @"type", @"direction", @"createdTick", @"strength"]];
+    return [self dictionaryWithValuesForKeys:@[@"speed", @"position", @"created", @"type", @"direction", @"createdTick", @"strength"]];
 }
 
 -(void)setPositionFromPlayer:(Player*)player {
@@ -49,9 +49,7 @@
         self.direction = -1;
     
     // makes it so it isn't RIGHT ON the player
-    self.position = player.position + self.size*self.direction;
-    
-//    NSLog(@"CHECK %@", self);
+    self.position = player.position + self.direction;
 }
 
 -(NSString*)description {
@@ -79,7 +77,12 @@
     return nil;
 }
 
--(BOOL)hitsPlayer:(Player*)player {
+-(BOOL)hitsPlayer:(Player*)player duringInterval:(NSTimeInterval)dt {
+    
+    // ignore the time interval. Wait until the spell is ALL THE WAY past the player
+    // unlike spells hits, we want to give the player the benefit of the doubt
+    // plus, can't reflect :)
+    
     if (player.isFirstPlayer) {
         return self.position <= player.position;
     }
@@ -87,16 +90,6 @@
         return self.position >= player.position;
     }
 }
-
-// in units
--(CGFloat)rightEdge {
-    return self.position+self.size/2;
-}
-
--(CGFloat)leftEdge {
-    return self.position-self.size/2;
-}
-
 
 
 // NEW HITTING ALGORITHM

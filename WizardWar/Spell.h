@@ -18,7 +18,6 @@
 @interface Spell : NSObject <Objectable>
 @property (nonatomic) NSString * spellId;
 @property (nonatomic) float speed; // units per second
-@property (nonatomic) float size;  // in units
 @property (nonatomic) float position;  // in units
 @property (nonatomic) NSInteger mana;
 @property (nonatomic) NSInteger direction;  // 1, or -1
@@ -34,7 +33,7 @@
 -(BOOL)isType:(Class)class;
 -(SpellInteraction*)interactSpell:(Spell*)spell;
 -(SpellInteraction*)interactPlayer:(Player*)spell; // ???
--(BOOL)hitsPlayer:(Player*)player;
+-(BOOL)hitsPlayer:(Player*)player duringInterval:(NSTimeInterval)dt;
 -(BOOL)hitsSpell:(Spell*)spell duringInterval:(NSTimeInterval)dt;
 +(Spell*)fromType:(NSString*)type;
 -(void)reflectFromSpell:(Spell*)spell;
