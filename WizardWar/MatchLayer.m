@@ -60,14 +60,12 @@
         self.background.anchorPoint = ccp(0,0);
         [self addChild:self.background];
         
+        __weak MatchLayer * wself = self;
+        
         // match
         // TODO: MatchLayer should create match if it is the delegate
         self.match = match;
         self.match.delegate = self;
-        
-        [[RACAble(self.match.status) distinctUntilChanged] subscribeNext:^(id value) {
-            [self renderMatchStatus];
-        }];
         
         self.players = [CCLayer node];
         [self addChild:self.players];
@@ -101,6 +99,9 @@
         [self.match connect];
         [self scheduleUpdate];
         
+        [[RACAble(self.match.status) distinctUntilChanged] subscribeNext:^(id value) {
+            [wself renderMatchStatus];
+        }];
         
         // DEBUG THING
 //        self.debug = [CCLabelTTF labelWithString:@"0" fontName:@"Marker Felt" fontSize:120];

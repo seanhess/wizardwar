@@ -77,8 +77,11 @@
     }
     [multiplayer connectToMatchId:matchId];
     self.match = [[Match alloc] initWithId:matchId currentPlayer:player withAI:ai multiplayer:multiplayer sync:sync];
+    
+    //  causes retain cycle with the view controller
+    __weak MatchViewController * wself = self;
     [[RACAble(self.match.status) distinctUntilChanged] subscribeNext:^(id x) {
-        [self renderMatchStatus];
+        [wself renderMatchStatus];
     }];
 }
 
@@ -101,6 +104,7 @@
 - (IBAction)didTapBack:(id)sender {
     [self.match disconnect];
     [WizardDirector unload];
+    [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -166,8 +170,6 @@
 
 - (void)dealloc {
     NSLog(@"MatchViewController: dealloc");
-    [self.match removeObserver:self forKeyPath:MATCH_STATE_KEYPATH];
-    [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
 }
 
 @end

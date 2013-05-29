@@ -38,7 +38,7 @@
     [self.timesCollection didAddChild:^(PlayerTime * time) {
         NSLog(@"Timer added %@ %i", time, isHost);
         NSTimeInterval currentTime = CACurrentMediaTime();
-        if (isHost && time != self.myTime) {
+        if (isHost && time != wself.myTime) {
             NSLog(@"ICH BIN HOST");
             [wself sendEstimate:time currentTime:currentTime];
         }
@@ -46,15 +46,15 @@
     
     [self.timesCollection didUpdateChild:^(PlayerTime * time) {
         NSTimeInterval currentTime = CACurrentMediaTime();
-        if (time == self.myTime && time.accepted) {
+        if (time == wself.myTime && time.accepted) {
             NSLog(@"(OTHER) ACCEPTED my time! %f", time.currentTime);
-            [self startWithPlayerTime:time];
+            [wself startWithPlayerTime:time];
         }
-        else if (time != self.myTime && !time.accepted) {
+        else if (time != wself.myTime && !time.accepted) {
             if ([wself checkEstimate:time currentTime:currentTime]) {
                 NSLog(@"(ME) ACCEPTING their time! %f", time.currentTime);
                 [wself acceptTime:time];
-                [self startWithPlayerTime:time];
+                [wself startWithPlayerTime:time];
             }
             else {
                 [wself sendEstimate:time currentTime:currentTime];
