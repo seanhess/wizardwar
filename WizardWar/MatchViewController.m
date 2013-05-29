@@ -26,6 +26,8 @@
 #import "SpellIcewall.h"
 #import "Match.h"
 #import "MultiplayerService.h"
+#import "SingleplayerService.h"
+#import <ReactiveCocoa.h>
 
 @interface MatchViewController () <PentagramDelegate>
 @property (strong, nonatomic) IBOutlet PentagramViewController *pentagram;
@@ -59,21 +61,25 @@
     MatchLayer * matchLayer = [[MatchLayer alloc] initWithMatch:self.match size:self.cocosView.bounds.size];
     [WizardDirector runLayer:matchLayer];
     
-    [self renderMatch];
+    [self renderMatchStatus];
 }
 
 - (void)connectToMatchWithId:(NSString*)matchId currentPlayer:(Player*)player withAI:(Player*)ai {
-    MultiplayerService * multiplayer = [MultiplayerService new];
+    id<Multiplayer> multiplayer = nil;
+    if (ai) {
+        multiplayer = [SingleplayerService new];
+    }
+    else {
+        multiplayer = [MultiplayerService new];
+    }
     [multiplayer connectToMatchId:matchId];
     self.match = [[Match alloc] initWithId:matchId currentPlayer:player withAI:ai multiplayer:multiplayer];
-    [self.match addObserver:self forKeyPath:MATCH_STATE_KEYPATH options:NSKeyValueObservingOptionNew context:nil];
+    [[RACAble(self.match.status) distinctUntilChanged] subscribeNext:^(id x) {
+        [self renderMatchStatus];
+    }];
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if (object == self.match) [self renderMatch];
-}
-
-- (void)renderMatch {
+- (void)renderMatchStatus {
     self.pentagram.view.hidden = (self.match.status != MatchStatusPlaying);
 }
 

@@ -23,6 +23,7 @@
 @end
 
 @implementation MultiplayerService
+@synthesize delegate;
 
 -(void)connectToMatchId:(NSString*)matchId {
     

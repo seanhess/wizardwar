@@ -39,6 +39,7 @@
 		787A2A91174E9FA3004C4FDB /* TestLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A2A90174E9FA3004C4FDB /* TestLayer.m */; };
 		787A2A99174EA43D004C4FDB /* MatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A2A97174EA43D004C4FDB /* MatchViewController.m */; };
 		787A2A9A174EA43D004C4FDB /* MatchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787A2A98174EA43D004C4FDB /* MatchViewController.xib */; };
+		789BAB8017566AA8003C0116 /* SingleplayerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 789BAB7F17566AA8003C0116 /* SingleplayerService.m */; };
 		78C46B5A17562CAC0077EE98 /* MultiplayerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C46B5917562CAC0077EE98 /* MultiplayerService.m */; };
 		78F193E2174715A700BB8587 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F193E1174715A700BB8587 /* Default-568h@2x.png */; };
 		78F193E4174715B100BB8587 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F193E3174715B100BB8587 /* Default.png */; };
@@ -318,6 +319,9 @@
 		787A2A96174EA43D004C4FDB /* MatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchViewController.h; sourceTree = "<group>"; };
 		787A2A97174EA43D004C4FDB /* MatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchViewController.m; sourceTree = "<group>"; };
 		787A2A98174EA43D004C4FDB /* MatchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchViewController.xib; sourceTree = "<group>"; };
+		789BAB7E17566AA8003C0116 /* SingleplayerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleplayerService.h; sourceTree = "<group>"; };
+		789BAB7F17566AA8003C0116 /* SingleplayerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleplayerService.m; sourceTree = "<group>"; };
+		789BAB8117566ABF003C0116 /* Multiplayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Multiplayer.h; sourceTree = "<group>"; };
 		78C46B5817562CAC0077EE98 /* MultiplayerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiplayerService.h; sourceTree = "<group>"; };
 		78C46B5917562CAC0077EE98 /* MultiplayerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiplayerService.m; sourceTree = "<group>"; };
 		78F193E1174715A700BB8587 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -791,6 +795,9 @@
 				7837D6AC17540836001D820E /* GameTimerService.m */,
 				78C46B5817562CAC0077EE98 /* MultiplayerService.h */,
 				78C46B5917562CAC0077EE98 /* MultiplayerService.m */,
+				789BAB7E17566AA8003C0116 /* SingleplayerService.h */,
+				789BAB7F17566AA8003C0116 /* SingleplayerService.m */,
+				789BAB8117566ABF003C0116 /* Multiplayer.h */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -1744,6 +1751,7 @@
 				7837D6AD17540836001D820E /* GameTimerService.m in Sources */,
 				7837D6B017540893001D820E /* PlayerTime.m in Sources */,
 				78C46B5A17562CAC0077EE98 /* MultiplayerService.m in Sources */,
+				789BAB8017566AA8003C0116 /* SingleplayerService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

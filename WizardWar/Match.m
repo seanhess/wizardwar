@@ -29,7 +29,7 @@
 // spells to be added at the next tick
 @property (nonatomic, strong) NSString * lastCastSpellName;
 @property (nonatomic, strong) GameTimerService * timer;
-@property (nonatomic, strong) MultiplayerService * multiplayer;
+@property (nonatomic, strong) id<Multiplayer> multiplayer;
 
 @property (nonatomic, strong) NSString * matchId;
 @property (nonatomic, strong) Player * ai;
@@ -37,7 +37,7 @@
 @end
 
 @implementation Match
--(id)initWithId:(NSString *)matchId currentPlayer:(Player *)player withAI:(Player *)ai multiplayer:(MultiplayerService *)multiplayer{
+-(id)initWithId:(NSString *)matchId currentPlayer:(Player *)player withAI:(Player *)ai multiplayer:(id<Multiplayer>)multiplayer{
     if ((self = [super init])) {
         self.matchId = matchId;
         self.players = [NSMutableDictionary dictionary];

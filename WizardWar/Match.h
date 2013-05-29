@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Spell.h"
 #import "Player.h"
-#import "MultiplayerService.h"
+#import "Multiplayer.h"
 
 #define TICK_INTERVAL 0.1
 
@@ -41,7 +41,7 @@ typedef enum MatchStatus {
 
 @property (nonatomic) MatchStatus status;
 
--(id)initWithId:(NSString*)matchId currentPlayer:(Player*)player withAI:(Player*)ai multiplayer:(MultiplayerService*)multiplayer;
+-(id)initWithId:(NSString*)matchId currentPlayer:(Player*)player withAI:(Player*)ai multiplayer:(id<Multiplayer>)multiplayer;
 -(void)update:(NSTimeInterval)dt;
 -(void)castSpell:(Spell *)spell;
 -(void)connect;

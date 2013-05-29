@@ -1,5 +1,5 @@
 //
-//  MultiplayerService.h
+//  SingleplayerService.h
 //  WizardWar
 //
 //  Created by Sean Hess on 5/29/13.
@@ -7,10 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Spell.h"
-#import "Player.h"
-#import <Firebase/Firebase.h>
 #import "Multiplayer.h"
 
-@interface MultiplayerService : NSObject <Multiplayer>
+@interface SingleplayerService : NSObject <Multiplayer>
+
 @end
