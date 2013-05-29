@@ -41,7 +41,7 @@ typedef enum MatchStatus {
 
 @property (nonatomic) MatchStatus status;
 
--(id)initWithId:(NSString*)id currentPlayer:(Player*)player withAI:(Player*)ai multiplayer:(MultiplayerService*)multiplayer;
+-(id)initWithId:(NSString*)matchId currentPlayer:(Player*)player withAI:(Player*)ai multiplayer:(MultiplayerService*)multiplayer;
 -(void)update:(NSTimeInterval)dt;
 -(void)castSpell:(Spell *)spell;
 -(void)connect;

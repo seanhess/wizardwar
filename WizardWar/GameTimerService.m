@@ -151,4 +151,8 @@
     return self.currentTick + 1;
 }
 
+- (void)disconnect {
+    [self.node removeValue];
+}
+
 @end

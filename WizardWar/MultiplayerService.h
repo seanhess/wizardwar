@@ -28,6 +28,7 @@
 
 -(void)addPlayer:(Player*)player;
 -(void)updatePlayer:(Player*)player;
+-(void)removePlayer:(Player*)player;
 
 -(void)addSpell:(Spell*)spell onTick:(NSInteger)tick;
 -(void)updateSpell:(Spell*)spell onTick:(NSInteger)tick;

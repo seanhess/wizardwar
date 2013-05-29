@@ -81,6 +81,10 @@
     [node setValue:player.toObject];
 }
 
+-(void)removePlayer:(Player*)player {
+    [[self.playersNode childByAppendingPath:player.name] removeValue];
+}
+
 - (void)updatePlayer:(Player *)player {
     Firebase * node = [self.playersNode childByAppendingPath:player.name];
     [node setValue:player.toObject];

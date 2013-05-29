@@ -37,8 +37,9 @@
 @end
 
 @implementation Match
--(id)initWithId:(NSString *)id currentPlayer:(Player *)player withAI:(Player *)ai multiplayer:(MultiplayerService *)multiplayer{
+-(id)initWithId:(NSString *)matchId currentPlayer:(Player *)player withAI:(Player *)ai multiplayer:(MultiplayerService *)multiplayer{
     if ((self = [super init])) {
+        self.matchId = matchId;
         self.players = [NSMutableDictionary dictionary];
         self.spells = [NSMutableDictionary dictionary];
         self.multiplayer = multiplayer;
@@ -170,7 +171,7 @@
     NSArray * newSpells = [self.spells.allValues filter:^BOOL(Spell *spell) {
         return spell.status == SpellStatusPrepare;
     }];
-    NSLog(@"TICK tick=%i queue=%i", currentTick, newSpells.count);
+//    NSLog(@"TICK tick=%i queue=%i", currentTick, newSpells.count);
     [newSpells forEach:^(Spell * spell) {
         if (spell.createdTick > currentTick) {
             NSLog(@" !!! SPELL IN FUTURE");
@@ -351,7 +352,9 @@
 }
 
 -(void)disconnect {
+    [self.multiplayer removePlayer:self.currentPlayer];
     [self.multiplayer disconnect];
+    [self.timer disconnect];
 }
 
 - (void)dealloc {

@@ -69,7 +69,6 @@
             [self renderMatchStatus];
         }];
         
-        
         self.players = [CCLayer node];
         [self addChild:self.players];
         

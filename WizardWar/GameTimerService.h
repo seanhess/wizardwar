@@ -26,4 +26,5 @@
 -(void)startAt:(NSTimeInterval)startTime;
 -(void)stop;
 -(void)update:(NSTimeInterval)dt;
+-(void)disconnect;
 @end
