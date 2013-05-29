@@ -28,6 +28,8 @@
 @property (nonatomic, strong) FirebaseCollection* invitesCollection;
 @property (nonatomic, strong) FirebaseConnection* connection;
 
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityView;
+
 @property (strong, nonatomic) User * currentUser;
 @property (strong, nonatomic) MatchLayer * match;
 @end
@@ -64,6 +66,7 @@
         [av show];
         av.delegate = self;
     } else {
+        [self connectToLobby];
     }
 }
 
@@ -156,9 +159,9 @@
 - (void)loadDataFromFirebase
 {
     self.connection = [[FirebaseConnection alloc] initWithFirebaseName:@"wizardwar" onConnect:^{
-        [self connectToLobby];
+        [self.activityView stopAnimating];
     } onDisconnect:^{
-        [self showSplash];
+        [self.activityView startAnimating];
     }];
     
     self.users = [NSMutableDictionary dictionary];
