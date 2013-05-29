@@ -28,6 +28,7 @@
 #import "MultiplayerService.h"
 #import "SingleplayerService.h"
 #import <ReactiveCocoa.h>
+#import "TimerSyncService.h"
 
 @interface MatchViewController () <PentagramDelegate>
 @property (strong, nonatomic) IBOutlet PentagramViewController *pentagram;
@@ -66,14 +67,16 @@
 
 - (void)connectToMatchWithId:(NSString*)matchId currentPlayer:(Player*)player withAI:(Player*)ai {
     id<Multiplayer> multiplayer = nil;
+    TimerSyncService * sync = nil;
     if (ai) {
         multiplayer = [SingleplayerService new];
     }
     else {
         multiplayer = [MultiplayerService new];
+        sync = [TimerSyncService new];
     }
     [multiplayer connectToMatchId:matchId];
-    self.match = [[Match alloc] initWithId:matchId currentPlayer:player withAI:ai multiplayer:multiplayer];
+    self.match = [[Match alloc] initWithId:matchId currentPlayer:player withAI:ai multiplayer:multiplayer sync:sync];
     [[RACAble(self.match.status) distinctUntilChanged] subscribeNext:^(id x) {
         [self renderMatchStatus];
     }];
@@ -92,7 +95,7 @@
         }
     }
     
-//    [sae playBackgroundMusic:@"theme.wav"];
+    [sae playBackgroundMusic:@"theme.wav"];
 }
 
 - (IBAction)didTapBack:(id)sender {

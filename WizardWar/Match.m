@@ -22,14 +22,16 @@
 #import "FirebaseCollection.h"
 #import <ReactiveCocoa.h>
 #import "GameTimerService.h"
+#import "TimerSyncService.h"
 
 // sync spells to the server every N seconds
-@interface Match () <GameTimerDelegate, MultiplayerDelegate>
+@interface Match () <GameTimerDelegate, MultiplayerDelegate, TimerSyncDelegate>
 
 // spells to be added at the next tick
 @property (nonatomic, strong) NSString * lastCastSpellName;
 @property (nonatomic, strong) GameTimerService * timer;
 @property (nonatomic, strong) id<Multiplayer> multiplayer;
+@property (nonatomic, strong) TimerSyncService * sync;
 
 @property (nonatomic, strong) NSString * matchId;
 @property (nonatomic, strong) Player * ai;
@@ -37,13 +39,15 @@
 @end
 
 @implementation Match
--(id)initWithId:(NSString *)matchId currentPlayer:(Player *)player withAI:(Player *)ai multiplayer:(id<Multiplayer>)multiplayer{
+-(id)initWithId:(NSString *)matchId currentPlayer:(Player *)player withAI:(Player *)ai multiplayer:(id<Multiplayer>)multiplayer sync:(TimerSyncService *)sync {
     if ((self = [super init])) {
         self.matchId = matchId;
         self.players = [NSMutableDictionary dictionary];
         self.spells = [NSMutableDictionary dictionary];
         self.multiplayer = multiplayer;
         self.multiplayer.delegate = self;
+        self.sync = sync;
+        self.sync.delegate = self;
         self.status = MatchStatusReady;
         self.currentPlayer = player;
         self.ai = ai;
@@ -135,7 +139,10 @@
     self.timer.delegate = self;
     
     // TODO; I only want to do this if the multiplayer so requires...
-    [self.timer syncTimerWithMatchId:self.matchId player:self.currentPlayer isHost:isHost];
+    if (self.sync)
+        [self.sync syncTimerWithMatchId:self.matchId player:self.currentPlayer isHost:isHost];
+    else
+        [self gameShouldStartAt:CACurrentMediaTime() + 0.1];
 }
 
 - (void)gameShouldStartAt:(NSTimeInterval)startTime {
@@ -257,10 +264,12 @@
     if ([self isSpellClose:spell])
         [self.multiplayer updateSpell:spell onTick:self.timer.nextTick];
     
-    if (player == self.currentPlayer) {
-        // only YOU can say you died
-        if (player.health == 0)
+    // only YOU can say you died
+    if (player == self.currentPlayer || player == self.ai) {
+        if (player.health == 0) {
             [player setState:PlayerStateDead animated:NO];
+            [self checkWin];
+        }
         
         [self.multiplayer updatePlayer:player];
     }
@@ -354,7 +363,7 @@
 -(void)disconnect {
     [self.multiplayer removePlayer:self.currentPlayer];
     [self.multiplayer disconnect];
-    [self.timer disconnect];
+    [self.sync disconnect];
 }
 
 - (void)dealloc {

@@ -7,13 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Firebase/Firebase.h>
 #import "Player.h"
 
 #define GAME_TIMER_FIRST_TICK 1
 
 @protocol GameTimerDelegate
--(void)gameShouldStartAt:(NSTimeInterval)startTime;
 -(void)gameDidTick:(NSInteger)currentTick;
 @end
 
@@ -22,9 +20,7 @@
 @property (nonatomic) NSTimeInterval tickInterval;
 @property (nonatomic, readonly) NSInteger nextTick;
 @property (nonatomic, weak) id<GameTimerDelegate> delegate;
--(void)syncTimerWithMatchId:(NSString*)matchId player:(Player*)player isHost:(BOOL)isHost;
 -(void)startAt:(NSTimeInterval)startTime;
 -(void)stop;
 -(void)update:(NSTimeInterval)dt;
--(void)disconnect;
 @end
