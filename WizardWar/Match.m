@@ -259,6 +259,7 @@
     // this allows it to subtract health
     [spell interactPlayer:player];
     spell.status = SpellStatusDestroyed;
+    spell.updatedTick = self.timer.nextTick;
     
     // Only sync changes if owned spell and local player
     if ([self isSpellClose:spell])
@@ -293,6 +294,7 @@
     
     if (interaction.type == SpellInteractionTypeCancel) {
         spell.status = SpellStatusDestroyed;
+        spell.updatedTick = self.timer.nextTick;
         if ([self isSpellClose:spell])
             [self.multiplayer updateSpell:spell onTick:self.timer.nextTick];
     }
@@ -305,6 +307,7 @@
         // reflections ... need to make sure you have it right!
         // TODO send tick information with reflection / updates, add to the action queue
         // so you can get them on the other client
+        spell.updatedTick = self.timer.nextTick;
         if ([self isSpellClose:spell])
             [self.multiplayer updateSpell:spell onTick:self.timer.nextTick];
     }

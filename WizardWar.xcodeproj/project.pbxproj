@@ -41,6 +41,11 @@
 		787A2A9A174EA43D004C4FDB /* MatchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787A2A98174EA43D004C4FDB /* MatchViewController.xib */; };
 		789BAB8017566AA8003C0116 /* SingleplayerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 789BAB7F17566AA8003C0116 /* SingleplayerService.m */; };
 		789BAB8417566CFE003C0116 /* TimerSyncService.m in Sources */ = {isa = PBXBuildFile; fileRef = 789BAB8317566CFE003C0116 /* TimerSyncService.m */; };
+		789BAB8B1756A95A003C0116 /* explode-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 789BAB861756A95A003C0116 /* explode-hd.plist */; };
+		789BAB8C1756A95A003C0116 /* explode-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 789BAB871756A95A003C0116 /* explode-hd.png */; };
+		789BAB8D1756A95A003C0116 /* explode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 789BAB881756A95A003C0116 /* explode.plist */; };
+		789BAB8E1756A95A003C0116 /* explode.png in Resources */ = {isa = PBXBuildFile; fileRef = 789BAB891756A95A003C0116 /* explode.png */; };
+		789BAB901756AA65003C0116 /* explode-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 789BAB8F1756AA65003C0116 /* explode-animation.plist */; };
 		78C46B5A17562CAC0077EE98 /* MultiplayerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C46B5917562CAC0077EE98 /* MultiplayerService.m */; };
 		78F193E2174715A700BB8587 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F193E1174715A700BB8587 /* Default-568h@2x.png */; };
 		78F193E4174715B100BB8587 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F193E3174715B100BB8587 /* Default.png */; };
@@ -325,6 +330,11 @@
 		789BAB8117566ABF003C0116 /* Multiplayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Multiplayer.h; sourceTree = "<group>"; };
 		789BAB8217566CFE003C0116 /* TimerSyncService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerSyncService.h; sourceTree = "<group>"; };
 		789BAB8317566CFE003C0116 /* TimerSyncService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerSyncService.m; sourceTree = "<group>"; };
+		789BAB861756A95A003C0116 /* explode-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "explode-hd.plist"; sourceTree = "<group>"; };
+		789BAB871756A95A003C0116 /* explode-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "explode-hd.png"; sourceTree = "<group>"; };
+		789BAB881756A95A003C0116 /* explode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = explode.plist; sourceTree = "<group>"; };
+		789BAB891756A95A003C0116 /* explode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = explode.png; sourceTree = "<group>"; };
+		789BAB8F1756AA65003C0116 /* explode-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "explode-animation.plist"; sourceTree = "<group>"; };
 		78C46B5817562CAC0077EE98 /* MultiplayerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiplayerService.h; sourceTree = "<group>"; };
 		78C46B5917562CAC0077EE98 /* MultiplayerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiplayerService.m; sourceTree = "<group>"; };
 		78F193E1174715A700BB8587 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -822,6 +832,11 @@
 				F283A92C17480F5E0068EEB2 /* heart-full.png */,
 				F283A92317480F4F0068EEB2 /* mana-container-hd.png */,
 				F283A92417480F4F0068EEB2 /* mana-container.png */,
+				789BAB8F1756AA65003C0116 /* explode-animation.plist */,
+				789BAB861756A95A003C0116 /* explode-hd.plist */,
+				789BAB871756A95A003C0116 /* explode-hd.png */,
+				789BAB881756A95A003C0116 /* explode.plist */,
+				789BAB891756A95A003C0116 /* explode.png */,
 				78F195031747FBFA00BB8587 /* exit.png */,
 				78F195041747FBFA00BB8587 /* exit@2x.png */,
 				78F1953717480A4C00BB8587 /* vine-animation.plist */,
@@ -1571,6 +1586,11 @@
 				7837F16C1749B9D000D29445 /* navbar-logo@2x.png in Resources */,
 				787A2A81174D2771004C4FDB /* MatchmakingViewController.xib in Resources */,
 				787A2A9A174EA43D004C4FDB /* MatchViewController.xib in Resources */,
+				789BAB8B1756A95A003C0116 /* explode-hd.plist in Resources */,
+				789BAB8C1756A95A003C0116 /* explode-hd.png in Resources */,
+				789BAB8D1756A95A003C0116 /* explode.plist in Resources */,
+				789BAB8E1756A95A003C0116 /* explode.png in Resources */,
+				789BAB901756AA65003C0116 /* explode-animation.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

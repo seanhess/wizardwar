@@ -22,6 +22,7 @@
 @property (nonatomic, strong) CCSprite * skin;
 @property (nonatomic, strong) CCSpriteBatchNode * sheet;
 @property (nonatomic, strong) CCAction * action;
+@property (nonatomic, strong) CCSpriteBatchNode * explosion;
 @end
 
 @implementation SpellSprite
@@ -31,6 +32,9 @@
     if ((self=[super init])) {
         self.spell = spell;
         self.units = units;
+        
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"explode.plist"];
+        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"explode-animation.plist"];
         
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"fireball.plist"];
         [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"fireball-animation.plist"];
@@ -52,6 +56,7 @@
         
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"windblast.plist"];
         [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"windblast-animation.plist"];
+        
         
         
         self.sheet = [CCSpriteBatchNode batchNodeWithFile:[NSString stringWithFormat:@"%@.png", self.sheetName]];
@@ -104,6 +109,14 @@
 
 - (void)renderStatus {
     self.skin.visible = self.spell.status == SpellStatusActive;
+    
+    if (!self.explosion && self.spell.status == SpellStatusDestroyed) {
+        self.explosion = [CCSpriteBatchNode batchNodeWithFile:@"explode.png"];
+        [self addChild:self.explosion];
+        CCSprite * sprite = [CCSprite spriteWithSpriteFrameName:@"explode-1"];
+        [sprite runAction:self.explodeAction];
+        [self.explosion addChild:sprite];
+    }
 }
 
 -(NSString*)sheetName {
@@ -146,6 +159,13 @@
     }
     
     return action;
+}
+
+-(CCAction*)explodeAction {
+    CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:@"explode"];
+    animation.restoreOriginalFrame = NO;
+    CCActionInterval * actionInterval = [CCAnimate actionWithAnimation:animation];
+    return actionInterval;
 }
 
 @end
