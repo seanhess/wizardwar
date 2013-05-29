@@ -69,7 +69,11 @@
         
         [[RACAble(self.spell.strength) distinctUntilChanged] subscribeNext:^(id x) {
             [self renderWallStrength];
-            [self renderDestroyed];
+        }];
+        
+        
+        [[RACAble(self.spell.status) distinctUntilChanged] subscribeNext:^(id x) {
+            [self renderStatus];
         }];
         
         [self renderPosition];
@@ -98,8 +102,8 @@
     [self.skin setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
 }
 
-- (void)renderDestroyed {
-    self.skin.visible = !self.spell.destroyed;
+- (void)renderStatus {
+    self.skin.visible = self.spell.status == SpellStatusActive;
 }
 
 -(NSString*)sheetName {

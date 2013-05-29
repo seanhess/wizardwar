@@ -39,7 +39,7 @@
 }
 
 -(NSDictionary*)toObject {
-    return [self dictionaryWithValuesForKeys:@[@"speed", @"position", @"created", @"type", @"direction", @"createdTick", @"strength"]];
+    return [self dictionaryWithValuesForKeys:@[@"speed", @"position", @"created", @"type", @"direction", @"createdTick", @"strength", @"status"]];
 }
 
 -(void)setPositionFromPlayer:(Player*)player {
@@ -112,21 +112,12 @@
     }
 }
 
++(NSString*)generateSpellId {
+    return [NSString stringWithFormat:@"%i", arc4random()];
+}
+
 +(Spell*)fromType:(NSString*)type {
     return [NSClassFromString(type) new];
-}
-
--(BOOL)isActive {
-    return self.strength > 0;
-}
-
--(BOOL)destroyed {
-    return self.strength == 0;
-}
-
--(void)setDestroyed:(BOOL)value {
-    if (value) self.strength = 0;
-    else if (self.strength == 0) self.strength = 1;
 }
 
 

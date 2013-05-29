@@ -17,6 +17,7 @@
 #import "NSArray+Functional.h"
 #import "Elements.h"
 
+#import "SimpleAudioEngine.h"
 #import "SpellFireball.h"
 #import "SpellEarthwall.h"
 #import "SpellBubble.h"
@@ -26,6 +27,8 @@
 #import "SpellIcewall.h"
 #import "NSArray+Functional.h"
 #import "LifeManaIndicatorNode.h"
+
+#import <ReactiveCocoa.h>
 
 #define INDICATOR_PADDING_X 150
 #define INDICATOR_PADDING_Y 20
@@ -58,9 +61,14 @@
         [self addChild:self.background];
         
         // match
+        // TODO: MatchLayer should create match if it is the delegate
         self.match = match;
         self.match.delegate = self;
-        [self.match addObserver:self forKeyPath:MATCH_STATE_KEYPATH options:NSKeyValueObservingOptionNew context:nil];
+        
+        [[RACAble(self.match.status) distinctUntilChanged] subscribeNext:^(id value) {
+            [self renderMatchStatus];
+        }];
+        
         
         self.players = [CCLayer node];
         [self addChild:self.players];
@@ -91,6 +99,7 @@
         [self.indicators addChild:player1Indicator];
         [self.indicators addChild:player2Indicator];
         
+        [self.match connect];
         [self scheduleUpdate];
         
         
@@ -101,12 +110,6 @@
 //        [self addChild:self.debug];
     }
     return self;
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if (object == self.match && [keyPath isEqualToString:MATCH_STATE_KEYPATH]) {
-        [self renderMatchStatus];
-    }
 }
 
 - (void)onExit {
@@ -132,6 +135,22 @@
 -(void)didAddSpell:(Spell *)spell {
     SpellSprite * sprite = [[SpellSprite alloc] initWithSpell:spell units:self.units];
     [self.spells addChild:sprite];
+    
+    if([spell isMemberOfClass: [SpellFireball class]]){
+        [[SimpleAudioEngine sharedEngine] playEffect:@"fireball.wav"];//play a sound
+    } else if([spell isMemberOfClass: [SpellEarthwall class]]){
+        [[SimpleAudioEngine sharedEngine] playEffect:@"earthwall.wav"];//play a sound
+    } else if([spell isMemberOfClass: [SpellVine class]]){
+        [[SimpleAudioEngine sharedEngine] playEffect:@"vine.wav"];//play a sound
+    } else if([spell isMemberOfClass: [SpellBubble class]]){
+        [[SimpleAudioEngine sharedEngine] playEffect:@"bubble.wav"];//play a sound
+    } else if([spell isMemberOfClass: [SpellIcewall class]]){
+        [[SimpleAudioEngine sharedEngine] playEffect:@"icewall.wav"];//play a sound
+    } else if([spell isMemberOfClass: [SpellMonster class]]){
+        [[SimpleAudioEngine sharedEngine] playEffect:@"monster.wav"];//play a sound
+    } else if([spell isMemberOfClass: [SpellWindblast class]]){
+        [[SimpleAudioEngine sharedEngine] playEffect:@"windblast.wav"];//play a sound
+    }
 }
 
 - (void)didAddPlayer:(Player *)player {
@@ -178,7 +197,6 @@
 }
 
 - (void)dealloc {
-    [self.match removeObserver:self forKeyPath:MATCH_STATE_KEYPATH];
     NSLog(@"MatchLayer: dealloc%@", self);
 }
 

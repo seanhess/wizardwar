@@ -30,49 +30,53 @@
 -(id)initWithMatchNode:(Firebase *)matchNode player:(Player *)player isHost:(BOOL)isHost {
     self = [super init];
     if (self) {
-        self.player = player;
-        self.isHost = isHost;
-        self.node = [matchNode childByAppendingPath:@"times"];
-        
-        // both players add themselves
-        self.times = [NSMutableDictionary dictionary];
-        self.timesCollection = [[FirebaseCollection alloc] initWithNode:self.node dictionary:self.times type:[PlayerTime class]];
-        
-        // you'll get the other guy here, not in update
-        __weak GameTimerService * wself = self;
-        [self.timesCollection didAddChild:^(PlayerTime * time) {
-            NSLog(@"Timer added %@ %i", time, isHost);
-            NSTimeInterval currentTime = CACurrentMediaTime();
-            if (isHost && time != self.myTime) {
-                NSLog(@"ICH BIN HOST");
-                [wself sendEstimate:time currentTime:currentTime];
-            }
-        }];
-        
-        [self.timesCollection didUpdateChild:^(PlayerTime * time) {
-            NSTimeInterval currentTime = CACurrentMediaTime();
-            if (time == self.myTime && time.accepted) {
-                NSLog(@"(OTHER) ACCEPTED my time! %f", time.currentTime);
-                [self startWithPlayerTime:time];
-            }
-            else if (time != self.myTime && !time.accepted) {
-                if ([wself checkEstimate:time currentTime:currentTime]) {
-                    NSLog(@"(ME) ACCEPTING their time! %f", time.currentTime);
-                    [wself acceptTime:time];
-                    [self startWithPlayerTime:time];
-                }
-                else {
-                    [wself sendEstimate:time currentTime:currentTime];
-                }
-            }
-            
-        }];
         
     }
     return self;
 }
 
-- (void)sync {
+- (void)syncTimerWithMatchId:(NSString *)matchId player:(Player *)player isHost:(BOOL)isHost {
+    
+    Firebase * matchNode = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"https://wizardwar.firebaseio.com/match/%@", matchId]];
+    self.node = [matchNode childByAppendingPath:@"times"];
+    self.player = player;
+    self.isHost = isHost;
+    
+    // both players add themselves
+    self.times = [NSMutableDictionary dictionary];
+    self.timesCollection = [[FirebaseCollection alloc] initWithNode:self.node dictionary:self.times type:[PlayerTime class]];
+    
+    // you'll get the other guy here, not in update
+    __weak GameTimerService * wself = self;
+    [self.timesCollection didAddChild:^(PlayerTime * time) {
+        NSLog(@"Timer added %@ %i", time, isHost);
+        NSTimeInterval currentTime = CACurrentMediaTime();
+        if (isHost && time != self.myTime) {
+            NSLog(@"ICH BIN HOST");
+            [wself sendEstimate:time currentTime:currentTime];
+        }
+    }];
+    
+    [self.timesCollection didUpdateChild:^(PlayerTime * time) {
+        NSTimeInterval currentTime = CACurrentMediaTime();
+        if (time == self.myTime && time.accepted) {
+            NSLog(@"(OTHER) ACCEPTED my time! %f", time.currentTime);
+            [self startWithPlayerTime:time];
+        }
+        else if (time != self.myTime && !time.accepted) {
+            if ([wself checkEstimate:time currentTime:currentTime]) {
+                NSLog(@"(ME) ACCEPTING their time! %f", time.currentTime);
+                [wself acceptTime:time];
+                [self startWithPlayerTime:time];
+            }
+            else {
+                [wself sendEstimate:time currentTime:currentTime];
+            }
+        }
+        
+    }];
+    
+    
     PlayerTime *myTime = [PlayerTime new];
     myTime.name = self.player.name;
     myTime.currentTime = CACurrentMediaTime();

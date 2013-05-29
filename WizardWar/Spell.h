@@ -15,6 +15,14 @@
 #import "Player.h"
 #import "SpellInteraction.h"
 
+
+typedef enum SpellStatus {
+    SpellStatusPrepare,
+    SpellStatusActive,
+    SpellStatusDestroyed,
+} SpellStatus;
+
+
 @interface Spell : NSObject <Objectable>
 @property (nonatomic) NSString * spellId;
 @property (nonatomic) float speed; // units per second
@@ -27,7 +35,7 @@
 @property (nonatomic) NSString * type; // tells me which class to instantiate. Use the string representation
 @property (nonatomic) NSInteger createdTick;
 @property (nonatomic) NSInteger updatedTick;
-@property (nonatomic) BOOL destroyed;
+@property (nonatomic) SpellStatus status;
 -(void)update:(NSTimeInterval)dt;
 -(void)setPositionFromPlayer:(Player*)player;
 -(BOOL)isType:(Class)class;
@@ -38,4 +46,5 @@
 +(Spell*)fromType:(NSString*)type;
 -(void)reflectFromSpell:(Spell*)spell;
 -(float)move:(NSTimeInterval)dt;
++(NSString*)generateSpellId;
 @end

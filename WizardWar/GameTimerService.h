@@ -22,8 +22,7 @@
 @property (nonatomic) NSTimeInterval tickInterval;
 @property (nonatomic, readonly) NSInteger nextTick;
 @property (nonatomic, weak) id<GameTimerDelegate> delegate;
--(id)initWithMatchNode:(Firebase*)matchNode player:(Player*)player isHost:(BOOL)isHost;
--(void)sync;
+-(void)syncTimerWithMatchId:(NSString*)matchId player:(Player*)player isHost:(BOOL)isHost;
 -(void)startAt:(NSTimeInterval)startTime;
 -(void)stop;
 -(void)update:(NSTimeInterval)dt;

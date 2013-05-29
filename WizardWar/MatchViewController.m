@@ -25,6 +25,7 @@
 #import "SpellWindblast.h"
 #import "SpellIcewall.h"
 #import "Match.h"
+#import "MultiplayerService.h"
 
 @interface MatchViewController () <PentagramDelegate>
 @property (strong, nonatomic) IBOutlet PentagramViewController *pentagram;
@@ -62,7 +63,9 @@
 }
 
 - (void)connectToMatchWithId:(NSString*)matchId currentPlayer:(Player*)player withAI:(Player*)ai {
-    self.match = [[Match alloc] initWithId:matchId currentPlayer:player withAI:ai];
+    MultiplayerService * multiplayer = [MultiplayerService new];
+    [multiplayer connectToMatchId:matchId];
+    self.match = [[Match alloc] initWithId:matchId currentPlayer:player withAI:ai multiplayer:multiplayer];
     [self.match addObserver:self forKeyPath:MATCH_STATE_KEYPATH options:NSKeyValueObservingOptionNew context:nil];
 }
 
