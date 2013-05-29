@@ -36,6 +36,9 @@ typedef enum SpellStatus {
 @property (nonatomic) NSInteger createdTick;
 @property (nonatomic) NSInteger updatedTick;
 @property (nonatomic) SpellStatus status;
+// how far away from the wizard should it start
+@property (nonatomic) float startOffsetPosition;
+
 -(void)update:(NSTimeInterval)dt;
 -(void)setPositionFromPlayer:(Player*)player;
 -(BOOL)isType:(Class)class;

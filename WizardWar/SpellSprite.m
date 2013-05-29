@@ -98,7 +98,7 @@
 
 - (void)renderWallStrength {
     if (![self isWall:self.spell]) return;
-    NSString * frameName = [NSString stringWithFormat:@"%@-%i", self.sheetName, self.spell.strength];
+    NSString * frameName = [NSString stringWithFormat:@"%@-%i", self.sheetName, (self.spell.strength+1)];
     [self.skin setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
 }
 

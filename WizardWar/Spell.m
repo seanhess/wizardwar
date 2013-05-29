@@ -8,6 +8,9 @@
 
 #import "Spell.h"
 
+@interface Spell ()
+@end
+
 @implementation Spell
 
 -(id)init {
@@ -17,6 +20,7 @@
         self.damage = 1; // default value
         self.speed = 30;
         self.strength = 1; // destroyed is read from this
+        self.startOffsetPosition = 1;
         self.mana = 1;
     }
     return self;
@@ -49,7 +53,7 @@
         self.direction = -1;
     
     // makes it so it isn't RIGHT ON the player
-    self.position = player.position + self.direction;
+    self.position = player.position + self.direction * self.startOffsetPosition;
 }
 
 -(NSString*)description {
