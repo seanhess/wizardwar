@@ -18,7 +18,7 @@
         self.damage = 1; // default value
         self.speed = 30;
         self.strength = 1; // destroyed is read from this
-        self.mana = 2;
+        self.mana = 1;
     }
     return self;
 }
@@ -26,11 +26,11 @@
 // then you also have to update the sprites BASED on this.
 // maybe update should be called on the sprites?
 -(void)update:(NSTimeInterval)dt {
-    [self move:dt];
+    self.position = [self move:dt];
 }
 
--(void)move:(NSTimeInterval)dt {
-    self.position += self.direction * self.speed * dt;
+-(float)move:(NSTimeInterval)dt {
+    return self.position + self.direction * self.speed * dt;
 }
 
 -(void)reflectFromSpell:(Spell*)spell {
@@ -97,40 +97,26 @@
     return self.position-self.size/2;
 }
 
-// sort them by speed
--(BOOL)hitsSpell:(Spell *)spell {
-    
-    Spell * fastSpell = nil;
-    Spell * slowSpell = nil;
 
-//    if (spell.speed < self.speed) {
-        slowSpell = spell;
-        fastSpell = self;
-//    }
-//    
-//    else {
-//        slowSpell = self;
-//        fastSpell = spell;
-//    }
+
+// NEW HITTING ALGORITHM
+// if the positions will cross during this tick, given their current directions
+-(BOOL)hitsSpell:(Spell *)spell duringInterval:(NSTimeInterval)dt {
+    // return if it WILL cross positions during this
+    float spellStart = spell.position;
+    float spellEnd = [spell move:dt];
     
-    // if A is going right
+    float selfStart = self.position;
+    float selfEnd = [self move:dt];
     
-//    NSLog(@"SPELL %f %f", spell.leftEdge, spell.rightEdge);
-//    NSLog(@"SELF %f %f", self.leftEdge, self.rightEdge);
     
-    if(fastSpell.position < slowSpell.position) {
-        // want to check my right edge against the left edge
-        // if I am traveling towards them
-        return (fastSpell.rightEdge > slowSpell.leftEdge);
+    if (spellStart < selfStart) {
+        return (spellEnd >= selfEnd);
     }
     
     else {
-        return (fastSpell.leftEdge < slowSpell.rightEdge);
+        return (spellEnd <= selfEnd);
     }
-    
-    // only test one, so you don't get two hits
-    return NO;
-//  return (spell.leftEdge <= self.rightEdge);
 }
 
 +(Spell*)fromType:(NSString*)type {

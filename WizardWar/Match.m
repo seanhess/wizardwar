@@ -171,7 +171,6 @@
         }
         else {
             NSInteger tickDifference = currentTick - spell.createdTick;
-            NSLog(@"+++ Spell %i %@", tickDifference, spell);
             [spell move:(tickDifference * self.timer.tickInterval)];
             
             [self.spells setObject:spell forKey:spell.spellId];
@@ -206,7 +205,7 @@
         // start at the next spell (don't check collisons twice)
         for (int j = i+1; j < spells.count; j++) {
             Spell * spell2 = spells[j];
-            if ([spell hitsSpell:spell2])
+            if ([spell hitsSpell:spell2 duringInterval:TICK_INTERVAL])
                 [self hitSpell:spell withSpell:spell2];
         }
     }
@@ -369,8 +368,6 @@
         Firebase * node = [self.spellsNode childByAutoId];
         [node onDisconnectRemoveValue];
         [node setValue:spell.toObject];
-        
-        NSLog(@" - (cast) complete");
         
         // update your mana, etc
         [self.playersCollection updateObject:self.currentPlayer];

@@ -35,8 +35,8 @@
 -(SpellInteraction*)interactSpell:(Spell*)spell;
 -(SpellInteraction*)interactPlayer:(Player*)spell; // ???
 -(BOOL)hitsPlayer:(Player*)player;
--(BOOL)hitsSpell:(Spell*)spell;
+-(BOOL)hitsSpell:(Spell*)spell duringInterval:(NSTimeInterval)dt;
 +(Spell*)fromType:(NSString*)type;
 -(void)reflectFromSpell:(Spell*)spell;
--(void)move:(NSTimeInterval)dt;
+-(float)move:(NSTimeInterval)dt;
 @end
