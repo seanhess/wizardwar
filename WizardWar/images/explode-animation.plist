@@ -7,7 +7,7 @@
 		<key>explode</key>
 		<dict>
 			<key>delay</key>
-			<real>0.166</real>
+			<real>0.1</real>
 			<key>frames</key>
 			<array>
 				<string>explode-1</string>

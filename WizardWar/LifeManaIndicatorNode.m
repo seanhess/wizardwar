@@ -57,6 +57,9 @@
             [self renderMana];
         }];
         
+        [[RACAble(self.match.status) distinctUntilChanged] subscribeNext:^(id value) {
+            [self renderMatchStatus];
+        }];
     }
     return self;
 }
@@ -88,6 +91,10 @@
             heartDamage.opacity = 255;
         }
     }
+}
+
+-(void)renderMatchStatus {
+    self.visible = self.match.status == MatchStatusPlaying;
 }
 
 @end

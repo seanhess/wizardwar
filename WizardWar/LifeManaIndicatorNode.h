@@ -8,7 +8,9 @@
 
 #import "cocos2d.h"
 #import "Player.h"
+#import "Match.h"
 
 @interface LifeManaIndicatorNode : CCNode
 @property (nonatomic, strong) Player * player;
+@property (nonatomic, strong) Match * match;
 @end
