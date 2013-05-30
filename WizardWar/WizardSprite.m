@@ -37,8 +37,8 @@
         self.skin = [CCSprite spriteWithSpriteFrameName:self.currentWizardImage];
         [self.spriteSheet addChild:self.skin];
         
-        self.label = [CCLabelTTF labelWithString:player.name fontName:@"Marker Felt" fontSize:18];
-        [self addChild:self.label];
+//        self.label = [CCLabelTTF labelWithString:player.name fontName:@"Marker Felt" fontSize:18];
+//        [self addChild:self.label];
         
         // BIND: state, position
         [self renderPosition];
