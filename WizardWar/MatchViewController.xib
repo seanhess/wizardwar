@@ -85,7 +85,6 @@
 						<string key="NSFrame">{{161, 0}, {246, 320}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="63972409"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -133,10 +132,7 @@
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="339064311"/>
-				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">1</int>
-					<bytes key="NSRGB">MSAwLjA1NTk3Njg1NjM3IDAuMTgwNDM1MzQ4AA</bytes>
-				</object>
+				<reference key="IBUIBackgroundColor" ref="63972409"/>
 				<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
 					<int key="IBUIInterfaceOrientation">3</int>
 					<int key="interfaceOrientation">3</int>
@@ -552,17 +548,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">MatchViewController</string>
 					<string key="superclassName">UIViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">didTapBack:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">didTapBack:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">didTapBack:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="cocosView">UIView</string>
 						<string key="pentagram">PentagramViewController</string>

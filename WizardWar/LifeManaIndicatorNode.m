@@ -37,6 +37,9 @@
             heartBlank.position = ccp(i * 25 + 25 - 75, 0);
             heartFull.position = ccp(i * 25 + 25 - 75, 0);
             
+            heartFull.opacity = 0;
+            heartDamage.opacity = 0;
+            
             [self.emptyHearts addObject:heartBlank];
             [self.filledHearts addObject:heartFull];
             [self.deadHearts addObject:heartDamage];
@@ -70,13 +73,32 @@
         CCSprite *heartFull = [self.filledHearts objectAtIndex:i];
         
         if (i <= self.player.mana - 1) {
-            heartFull.opacity = 255;
+            [self animateIn:heartFull];
         }
         else {
-            heartFull.opacity = 0;
+            [self animateOut:heartFull];
         }
     }
 }
+
+-(void)animateIn:(CCSprite*)sprite {
+    if (sprite.opacity == 0) {
+//        CCAction * fade = [CCFadeIn actionWithDuration:0.2];
+        CCAction * large = [CCScaleTo actionWithDuration:0.2 scale:1.2];
+        CCAction * small = [CCScaleTo actionWithDuration:0.2 scale:1.0];
+        sprite.scale = 0.1;
+        CCSequence * sequence = [CCSequence actionWithArray:@[large, small]];
+        [sprite runAction:sequence];
+        sprite.opacity = 255;
+    }
+}
+
+-(void)animateOut:(CCSprite*)sprite {
+    if (sprite.opacity == 255) {
+        [sprite runAction:[CCFadeOut actionWithDuration:0.2]];
+    }
+}
+
 
 // rules: if health is down, heartDamage wins
 
