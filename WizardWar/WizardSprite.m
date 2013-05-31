@@ -57,7 +57,8 @@
 
 -(void)renderPosition {
     self.position = ccp([self.units toX:self.player.position], self.units.zeroY);
-    if (self.player.position == UNITS_MAX) self.skin.flipX = YES;
+    
+    self.skin.flipX = (self.player.position == UNITS_MIN && [self.player.wizardType isEqualToString:WIZARD_TYPE_ONE]) || (self.player.position == UNITS_MAX && [self.player.wizardType isEqualToString:WIZARD_TYPE_TWO]);
 }
 
 -(void)renderStatus {
