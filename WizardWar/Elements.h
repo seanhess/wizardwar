@@ -8,15 +8,25 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum ElementType {
+    Air,
+    Earth,
+    Fire,
+    Heart,
+    Water
+} ElementType;
+
+#define AirId @"A"
+#define EarthId @"E"
+#define FireId @"F"
+#define HeartId @"H"
+#define WaterId @"W"
+
 @interface Elements : NSObject
 
 // gives you an id for a certain combo
 +(NSString*)comboId:(NSArray*)elements;
-
-+(NSString*)fire;
-+(NSString*)water;
-+(NSString*)air;
-+(NSString*)heart;
-+(NSString*)earth;
++(NSString*)elementId:(ElementType)element;
++(ElementType)elementWithId:(NSString*)elementId;
 
 @end

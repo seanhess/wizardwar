@@ -16,23 +16,18 @@
 #import "MatchLayer.h"
 #import "SimpleAudioEngine.h"
 #import "Elements.h"
-#import "Spell.h"
-#import "SpellFireball.h"
-#import "SpellEarthwall.h"
-#import "SpellBubble.h"
-#import "SpellMonster.h"
-#import "SpellVine.h"
-#import "SpellWindblast.h"
-#import "SpellIcewall.h"
+
 #import "Match.h"
 #import "MultiplayerService.h"
 #import <ReactiveCocoa.h>
 #import "TimerSyncService.h"
+#import "Combos.h"
 
 @interface MatchViewController () <PentagramDelegate>
 @property (strong, nonatomic) IBOutlet PentagramViewController *pentagram;
 @property (weak, nonatomic) IBOutlet UIView *cocosView;
 @property (strong, nonatomic) Match * match;
+@property (strong, nonatomic) Combos * combos;
 @end
 
 @implementation MatchViewController
@@ -52,6 +47,9 @@
     [self.pentagram viewDidLoad];
     self.pentagram.delegate = self;
     [self playMusic];
+    
+    
+    self.combos = [Combos new];
     
     
     // Add the director's view to us
@@ -122,45 +120,8 @@
 
 -(void)didCastSpell:(NSArray *)elements
 {
-    NSString * comboId = [Elements comboId:elements];
-    NSLog(@"cast spell %@", comboId);
-    
-    Spell * spell = nil;
-    
-    if ([comboId isEqualToString:@"FAF"]) {
-        spell = [SpellFireball new];
-    }
-    
-    else if ([comboId isEqualToString:@"EWE"]) {
-        spell = [SpellEarthwall new];
-    }
-    
-    else if ([comboId isEqualToString:@"AHW"]) {
-        spell = [SpellWindblast new];
-    }
-    
-    else if ([comboId isEqualToString:@"EFHW"]) {
-        spell = [SpellMonster new];
-    }
-    
-    else if ([comboId isEqualToString:@"WAE"]) {
-        spell = [SpellIcewall new];
-    }
-    
-    else if ([comboId isEqualToString:@"WAH"]) {
-        spell = [SpellBubble new];
-    }
-    
-    else if ([comboId isEqualToString:@"WAEH"]) {
-        spell = [SpellVine new];
-    }
-    
-    else if ([comboId isEqualToString:@"EFAWH"]) {
-        spell = nil;
-        NSLog(@"CAPTIAN PLANET");
-    }
-    
-    if (spell != nil) {
+    Spell * spell = [self.combos spellForElements:elements];
+    if (spell) {
         [self.match castSpell:spell];
     }
 }

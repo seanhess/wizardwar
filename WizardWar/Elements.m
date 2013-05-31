@@ -17,25 +17,23 @@
     }
     return output;
 }
-     
-+(NSString*)fire {
-    return @"F";
-}
-     
-+(NSString*)water {
-    return @"W";
-}
-     
-+(NSString*)air {
-    return @"A";
-}
-     
-+(NSString*)heart {
-    return @"H";
-}
-     
-+(NSString*)earth {
-    return @"E";
-}
  
++(NSString*)elementId:(ElementType)element {
+    if (element == Air) return AirId;
+    else if (element == Earth) return EarthId;
+    else if (element == Fire) return FireId;
+    else if (element == Heart) return HeartId;
+    else if (element == Water) return WaterId;
+    else return nil;
+}
+
++(ElementType)elementWithId:(NSString*)elementId {
+    if ([elementId isEqualToString:AirId]) return Air;
+    else if ([elementId isEqualToString:EarthId]) return Earth;
+    else if ([elementId isEqualToString:FireId]) return Fire;
+    else if ([elementId isEqualToString:HeartId]) return Heart;
+    else if ([elementId isEqualToString:WaterId]) return Water;
+    else return Air;
+}
+
 @end

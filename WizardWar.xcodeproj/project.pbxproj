@@ -46,6 +46,7 @@
 		789BAB8E1756A95A003C0116 /* explode.png in Resources */ = {isa = PBXBuildFile; fileRef = 789BAB891756A95A003C0116 /* explode.png */; };
 		789BAB901756AA65003C0116 /* explode-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 789BAB8F1756AA65003C0116 /* explode-animation.plist */; };
 		78C46B5A17562CAC0077EE98 /* MultiplayerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C46B5917562CAC0077EE98 /* MultiplayerService.m */; };
+		78E8EA6A1759427E00017747 /* Combos.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E8EA691759427E00017747 /* Combos.m */; };
 		78F193E2174715A700BB8587 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F193E1174715A700BB8587 /* Default-568h@2x.png */; };
 		78F193E4174715B100BB8587 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F193E3174715B100BB8587 /* Default.png */; };
 		78F193E6174715B500BB8587 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F193E5174715B500BB8587 /* Default@2x.png */; };
@@ -335,6 +336,8 @@
 		789BAB8F1756AA65003C0116 /* explode-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "explode-animation.plist"; sourceTree = "<group>"; };
 		78C46B5817562CAC0077EE98 /* MultiplayerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiplayerService.h; sourceTree = "<group>"; };
 		78C46B5917562CAC0077EE98 /* MultiplayerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiplayerService.m; sourceTree = "<group>"; };
+		78E8EA681759427E00017747 /* Combos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Combos.h; sourceTree = "<group>"; };
+		78E8EA691759427E00017747 /* Combos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Combos.m; sourceTree = "<group>"; };
 		78F193E1174715A700BB8587 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		78F193E3174715B100BB8587 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		78F193E5174715B500BB8587 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -1367,6 +1370,8 @@
 				78F6B3DD174705EA00AA070D /* Invite.m */,
 				78F195161748024C00BB8587 /* Elements.h */,
 				78F195171748024D00BB8587 /* Elements.m */,
+				78E8EA681759427E00017747 /* Combos.h */,
+				78E8EA691759427E00017747 /* Combos.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -1778,6 +1783,7 @@
 				78C46B5A17562CAC0077EE98 /* MultiplayerService.m in Sources */,
 				789BAB8417566CFE003C0116 /* TimerSyncService.m in Sources */,
 				78F97FDE1758F7F500764D70 /* PracticeModeAIService.m in Sources */,
+				78E8EA6A1759427E00017747 /* Combos.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
