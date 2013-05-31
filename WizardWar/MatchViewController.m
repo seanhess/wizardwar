@@ -26,7 +26,6 @@
 #import "SpellIcewall.h"
 #import "Match.h"
 #import "MultiplayerService.h"
-#import "SingleplayerService.h"
 #import <ReactiveCocoa.h>
 #import "TimerSyncService.h"
 
@@ -68,9 +67,7 @@
 - (void)connectToMatchWithId:(NSString*)matchId currentPlayer:(Player*)player withAI:(Player*)ai {
     id<Multiplayer> multiplayer = nil;
     TimerSyncService * sync = nil;
-    if (ai) {
-        multiplayer = [SingleplayerService new];
-    }
+    if (ai) { }
     else {
         multiplayer = [MultiplayerService new];
         sync = [TimerSyncService new];

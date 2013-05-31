@@ -59,7 +59,7 @@
     [self.playersNode observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot*snapshot) {
         Player * player = [Player new];
         [player setValuesForKeysWithDictionary:snapshot.value];
-        [wself.delegate mpDidAddPlayer:player];
+//        [wself.delegate mpDidAddPlayer:player];
     }];
     
     [self.playersNode observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot*snapshot) {

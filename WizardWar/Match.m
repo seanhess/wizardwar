@@ -23,23 +23,25 @@
 #import <ReactiveCocoa.h>
 #import "GameTimerService.h"
 #import "TimerSyncService.h"
+#import "PracticeModeAIService.h"
 
 // sync spells to the server every N seconds
-@interface Match () <GameTimerDelegate, MultiplayerDelegate, TimerSyncDelegate>
+@interface Match () <GameTimerDelegate, MultiplayerDelegate, TimerSyncDelegate, AIDelegate>
 
 // spells to be added at the next tick
 @property (nonatomic, strong) NSString * lastCastSpellName;
 @property (nonatomic, strong) GameTimerService * timer;
 @property (nonatomic, strong) id<Multiplayer> multiplayer;
 @property (nonatomic, strong) TimerSyncService * sync;
+@property (nonatomic, strong) PracticeModeAIService * ai;
 
 @property (nonatomic, strong) NSString * matchId;
-@property (nonatomic, strong) Player * ai;
+@property (nonatomic, strong) Player * aiPlayer;
 
 @end
 
 @implementation Match
--(id)initWithId:(NSString *)matchId currentPlayer:(Player *)player withAI:(Player *)ai multiplayer:(id<Multiplayer>)multiplayer sync:(TimerSyncService *)sync {
+-(id)initWithId:(NSString *)matchId currentPlayer:(Player *)player withAI:(Player *)aiPlayer multiplayer:(id<Multiplayer>)multiplayer sync:(TimerSyncService *)sync {
     if ((self = [super init])) {
         self.matchId = matchId;
         self.players = [NSMutableDictionary dictionary];
@@ -50,15 +52,20 @@
         self.sync.delegate = self;
         self.status = MatchStatusReady;
         self.currentPlayer = player;
-        self.ai = ai;
+        self.aiPlayer = aiPlayer;
+        
+        if (self.aiPlayer) {
+            self.ai = [PracticeModeAIService new];
+            self.ai.delegate = self;
+        }
     }
     return self;
 }
 
 -(void)connect {
     NSAssert(self.delegate, @"Delegate should be set before connect");
-    if (self.ai) {
-        [self addPlayer:self.ai];
+    if (self.aiPlayer) {
+        [self addPlayer:self.aiPlayer];
     }
     
     [self addPlayer:self.currentPlayer];
@@ -81,6 +88,14 @@
     [self.delegate didAddPlayer:player];
     if (self.players.count == 2) [self playersReady];
 }
+
+
+/// AI //
+
+- (void)aiDidCastSpell:(Spell *)spell {
+    [self player:self.aiPlayer castSpell:spell];
+}
+
 
 
 /// UPDATES
@@ -169,6 +184,8 @@
         self.status = MatchStatusPlaying;
     [self simulateTick:currentTick];
     [self.delegate didTick:currentTick];
+    
+    [self.ai simulateTick:currentTick interval:self.timer.tickInterval];
 }
 
 -(void)simulateTick:(NSInteger)currentTick {
@@ -266,7 +283,7 @@
         [self.multiplayer updateSpell:spell onTick:self.timer.nextTick];
     
     // only YOU can say you died
-    if (player == self.currentPlayer || player == self.ai) {
+    if (player == self.currentPlayer || player == self.aiPlayer) {
         if (player.health == 0) {
             [player setState:PlayerStateDead animated:NO];
             [self checkWin];
@@ -342,25 +359,29 @@
     }];
 }
 
-
--(void)castSpell:(Spell *)spell {
-    if (self.currentPlayer.mana >= spell.mana) {
-        [self.currentPlayer spendMana:spell.mana];
-        [self.currentPlayer setState:PlayerStateCast animated:YES];
+-(void)player:(Player*)player castSpell:(Spell*)spell {
+    if (player.mana >= spell.mana) {
+        [player spendMana:spell.mana];
+        [player setState:PlayerStateCast animated:YES];
         NSLog(@"SPELL Cast %@", spell);
         
         // update spell
-        [spell setPositionFromPlayer:self.currentPlayer];
+        [spell setPositionFromPlayer:player];
         [spell setSpellId:[Spell generateSpellId]];
         [spell setStatus:SpellStatusPrepare];
         
         // sync
         [self addSpell:spell];
         [self.multiplayer addSpell:spell onTick:self.timer.nextTick];
-        [self.multiplayer updatePlayer:self.currentPlayer]; // new mana total
+        [self.multiplayer updatePlayer:player]; // new mana total
     } else {
         NSLog(@"Not enough Mana you fiend!");
     }
+}
+
+
+-(void)castSpell:(Spell *)spell {
+    [self player:self.currentPlayer castSpell:spell];
 }
 
 -(void)disconnect {

@@ -39,7 +39,6 @@
 		787A2A91174E9FA3004C4FDB /* TestLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A2A90174E9FA3004C4FDB /* TestLayer.m */; };
 		787A2A99174EA43D004C4FDB /* MatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A2A97174EA43D004C4FDB /* MatchViewController.m */; };
 		787A2A9A174EA43D004C4FDB /* MatchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787A2A98174EA43D004C4FDB /* MatchViewController.xib */; };
-		789BAB8017566AA8003C0116 /* SingleplayerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 789BAB7F17566AA8003C0116 /* SingleplayerService.m */; };
 		789BAB8417566CFE003C0116 /* TimerSyncService.m in Sources */ = {isa = PBXBuildFile; fileRef = 789BAB8317566CFE003C0116 /* TimerSyncService.m */; };
 		789BAB8B1756A95A003C0116 /* explode-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 789BAB861756A95A003C0116 /* explode-hd.plist */; };
 		789BAB8C1756A95A003C0116 /* explode-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 789BAB871756A95A003C0116 /* explode-hd.png */; };
@@ -271,6 +270,7 @@
 		78F6B3D81746E6D300AA070D /* SpellEarthwall.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3D71746E6D100AA070D /* SpellEarthwall.m */; };
 		78F6B3DB174705D000AA070D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3DA174705D000AA070D /* User.m */; };
 		78F6B3DE174705EA00AA070D /* Invite.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3DD174705EA00AA070D /* Invite.m */; };
+		78F97FDE1758F7F500764D70 /* PracticeModeAIService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F97FDD1758F7F500764D70 /* PracticeModeAIService.m */; };
 		F283A922174807A40068EEB2 /* LifeManaIndicatorNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F283A921174807A40068EEB2 /* LifeManaIndicatorNode.m */; };
 		F283A92517480F4F0068EEB2 /* mana-container-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F283A92317480F4F0068EEB2 /* mana-container-hd.png */; };
 		F283A92617480F4F0068EEB2 /* mana-container.png in Resources */ = {isa = PBXBuildFile; fileRef = F283A92417480F4F0068EEB2 /* mana-container.png */; };
@@ -325,8 +325,6 @@
 		787A2A96174EA43D004C4FDB /* MatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchViewController.h; sourceTree = "<group>"; };
 		787A2A97174EA43D004C4FDB /* MatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchViewController.m; sourceTree = "<group>"; };
 		787A2A98174EA43D004C4FDB /* MatchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchViewController.xib; sourceTree = "<group>"; };
-		789BAB7E17566AA8003C0116 /* SingleplayerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleplayerService.h; sourceTree = "<group>"; };
-		789BAB7F17566AA8003C0116 /* SingleplayerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleplayerService.m; sourceTree = "<group>"; };
 		789BAB8117566ABF003C0116 /* Multiplayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Multiplayer.h; sourceTree = "<group>"; };
 		789BAB8217566CFE003C0116 /* TimerSyncService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerSyncService.h; sourceTree = "<group>"; };
 		789BAB8317566CFE003C0116 /* TimerSyncService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerSyncService.m; sourceTree = "<group>"; };
@@ -724,6 +722,8 @@
 		78F6B3DA174705D000AA070D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		78F6B3DC174705EA00AA070D /* Invite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Invite.h; sourceTree = "<group>"; };
 		78F6B3DD174705EA00AA070D /* Invite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Invite.m; sourceTree = "<group>"; };
+		78F97FDC1758F7F500764D70 /* PracticeModeAIService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeModeAIService.h; sourceTree = "<group>"; };
+		78F97FDD1758F7F500764D70 /* PracticeModeAIService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PracticeModeAIService.m; sourceTree = "<group>"; };
 		97EFC7B8DBD643B88CEC6021 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE8809F786384C2C96220236 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		F283A920174807A40068EEB2 /* LifeManaIndicatorNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LifeManaIndicatorNode.h; sourceTree = "<group>"; };
@@ -810,8 +810,8 @@
 				789BAB8317566CFE003C0116 /* TimerSyncService.m */,
 				78C46B5817562CAC0077EE98 /* MultiplayerService.h */,
 				78C46B5917562CAC0077EE98 /* MultiplayerService.m */,
-				789BAB7E17566AA8003C0116 /* SingleplayerService.h */,
-				789BAB7F17566AA8003C0116 /* SingleplayerService.m */,
+				78F97FDC1758F7F500764D70 /* PracticeModeAIService.h */,
+				78F97FDD1758F7F500764D70 /* PracticeModeAIService.m */,
 				789BAB8117566ABF003C0116 /* Multiplayer.h */,
 			);
 			name = Service;
@@ -1776,8 +1776,8 @@
 				7837D6AD17540836001D820E /* GameTimerService.m in Sources */,
 				7837D6B017540893001D820E /* PlayerTime.m in Sources */,
 				78C46B5A17562CAC0077EE98 /* MultiplayerService.m in Sources */,
-				789BAB8017566AA8003C0116 /* SingleplayerService.m in Sources */,
 				789BAB8417566CFE003C0116 /* TimerSyncService.m in Sources */,
+				78F97FDE1758F7F500764D70 /* PracticeModeAIService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
