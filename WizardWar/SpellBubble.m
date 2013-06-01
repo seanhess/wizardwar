@@ -34,6 +34,10 @@
         return [SpellInteraction modify];
     }
     
+    else if ([spell isType:[SpellMonster class]]) {
+        return [SpellInteraction cancel];
+    }
+    
     return [SpellInteraction nothing];
 }
 

@@ -13,6 +13,7 @@
 #import "SpellBubble.h"
 #import "SpellVine.h"
 #import "SpellWindblast.h"
+#import "Tick.h"
 
 // Windblast just slows things down, etc
 
@@ -22,13 +23,14 @@
     if ((self=[super init])) {
         self.speed = 100;
         self.damage = 0;
+        self.castTimeInTicks = (int)round(TICKS_PER_SECOND * 0.5);
     }
     return self;
 }
 
 -(SpellInteraction *)interactSpell:(Spell *)spell {
     if ([spell isType:[SpellMonster class]]) {
-//        return [SpellInteraction cancel];
+        return [SpellInteraction cancel];
     }
     
     else if ([spell isType:[SpellFireball class]]) {
