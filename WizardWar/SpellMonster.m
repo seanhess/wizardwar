@@ -15,7 +15,7 @@
 #import "SpellVine.h"
 #import "SpellWindblast.h"
 
-#define MONSTER_SPEED 15
+#define MONSTER_SPEED 25
 
 @implementation SpellMonster
 

@@ -21,7 +21,6 @@
     if ((self=[super init])) {
         self.speed = 0;
         self.startOffsetPosition = 15;
-        self.castTimeInTicks = (int)round(TICKS_PER_SECOND * 0.5);
     }
     return self;
 }

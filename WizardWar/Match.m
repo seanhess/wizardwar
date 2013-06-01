@@ -224,15 +224,10 @@
     
     
     [newSpells forEach:^(Spell * spell) {
-        NSInteger referenceTick = spell.createdTick + spell.castTimeInTicks;
-        NSInteger tickDifference = currentTick - referenceTick;
-        if (tickDifference >= 0) {
-            spell.position = [spell moveFromReferencePosition:(tickDifference * self.timer.tickInterval)];
-            spell.status = SpellStatusActive;
-        }
-        else {
-            // The spell is building
-        }
+        NSInteger tickDifference = currentTick - spell.createdTick;
+        if (tickDifference < 0) NSLog(@" SPELL (C) IN FUTURE");
+        spell.position = [spell moveFromReferencePosition:(tickDifference * self.timer.tickInterval)];
+        spell.status = SpellStatusActive;
     }];
     
     
@@ -386,14 +381,10 @@
 }
 
 -(void)modifySpell:(Spell*)spell {
-    // reflections ... need to make sure you have it right!
-    // TODO send tick information with reflection / updates, add to the action queue
-    // so you can get them on the other client
     spell.updatedTick = self.timer.nextTick;
+    spell.referencePosition = spell.position;
+
     if ([self isSpellClose:spell]) {
-//        NSLog(@"MODIFY %@ %i", spell, spell.updatedTick);
-        spell.referencePosition = spell.position;
-        // spell.status = SpellStatusPrepare;
         [self.multiplayer updateSpell:spell];
     }
 }
@@ -407,16 +398,6 @@
 
 -(void)player:(Player*)player castSpell:(Spell*)spell {
     [player setState:PlayerStateCast animated:YES];
-    
-    Spell * preparing = [self.spells.allValues find:^BOOL(Spell*spell) {
-        return (spell.status == SpellStatusPrepare && [spell.creator isEqualToString:player.name]);
-    }];
-    
-    NSLog(@"CAST old=%@ new=%@", preparing, spell);
-    
-    if (preparing) {
-        [self destroySpell:preparing];
-    }
     
     // update spell
     [spell setCreator:player.name];

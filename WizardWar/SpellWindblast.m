@@ -23,7 +23,6 @@
     if ((self=[super init])) {
         self.speed = 100;
         self.damage = 0;
-        self.castTimeInTicks = (int)round(TICKS_PER_SECOND * 0.5);
     }
     return self;
 }

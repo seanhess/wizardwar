@@ -178,6 +178,7 @@
 - (void)renderMatchStatus {
     self.message.visible = (self.match.status == MatchStatusReady || self.match.status == MatchStatusEnded);
     self.players.visible = (self.match.status == MatchStatusPlaying || self.match.status == MatchStatusEnded);
+    self.spells.visible = (self.match.status == MatchStatusPlaying);
     
     if (self.match.status == MatchStatusPlaying) {
         // assign players to indicators

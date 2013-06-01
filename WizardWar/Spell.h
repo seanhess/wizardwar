@@ -36,7 +36,6 @@ typedef enum SpellStatus {
 @property (nonatomic) NSInteger createdTick;
 @property (nonatomic) NSInteger updatedTick;
 @property (nonatomic) SpellStatus status;
-@property (nonatomic) NSInteger castTimeInTicks;
 @property (nonatomic) NSString * creator;
 
 
