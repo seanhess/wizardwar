@@ -13,4 +13,5 @@
 #import "Multiplayer.h"
 
 @interface MultiplayerService : NSObject <Multiplayer>
+@property (nonatomic) NSTimeInterval simulatedLatency;
 @end

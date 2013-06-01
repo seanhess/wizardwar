@@ -36,8 +36,8 @@
     return self.position + self.direction * self.speed * dt;
 }
 
--(void)moveFromReferencePosition:(NSTimeInterval)dt {
-    
+-(float)moveFromReferencePosition:(NSTimeInterval)dt {
+    return self.referencePosition + self.direction * self.speed * dt;
 }
 
 -(void)reflectFromSpell:(Spell*)spell {
@@ -47,7 +47,7 @@
 }
 
 -(NSDictionary*)toObject {
-    return [self dictionaryWithValuesForKeys:@[@"speed", @"position", @"created", @"type", @"direction", @"createdTick", @"strength", @"status"]];
+    return [self dictionaryWithValuesForKeys:@[@"speed", @"referencePosition", @"created", @"type", @"direction", @"createdTick", @"strength", @"status", @"updatedTick"]];
 }
 
 -(void)setPositionFromPlayer:(Player*)player {
@@ -57,7 +57,8 @@
         self.direction = -1;
     
     // makes it so it isn't RIGHT ON the player
-    self.position = player.position + self.direction * self.startOffsetPosition;
+    self.referencePosition = player.position + self.direction * self.startOffsetPosition;
+    self.position = self.referencePosition;
 }
 
 -(NSString*)description {
@@ -80,8 +81,8 @@
 
 -(SpellInteraction*)interactPlayer:(Player*)player {
     player.health -= self.damage;
-    [player setState:PlayerStateHit animated:YES];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"HealthManaUpdate" object:nil];
+    if (self.damage > 0)
+        [player setState:PlayerStateHit animated:YES];
     return nil;
 }
 

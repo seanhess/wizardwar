@@ -97,6 +97,8 @@
 }
 
 
+// TODO: simulate long latency in sends
+
 
 /// UPDATES
 // we only make changes locally if they haven't been made yet
@@ -109,7 +111,6 @@
 -(void)mpDidUpdate:(NSDictionary*)updates spellWithId:(NSString*)spellId {
     // doesn't matter if you run this more than once
     Spell * spell = [self.spells objectForKey:spellId];
-    NSLog(@"mpDidUpdate %@", spell);
     [spell setValuesForKeysWithDictionary:updates];
 }
 
@@ -208,8 +209,8 @@
             // couldd be created tick or updated
             NSInteger referenceTick = MAX(spell.updatedTick, spell.createdTick);
             NSInteger tickDifference = currentTick - referenceTick;
-            NSLog(@" (C) %@ currentTick=%i referenceTick=%i", spell, currentTick, referenceTick);
-            spell.position = [spell move:(tickDifference * self.timer.tickInterval)];
+            NSLog(@" (C) %@ NOW=%i cr=%i up=%i", spell, currentTick, spell.createdTick, spell.updatedTick);
+            spell.position = [spell moveFromReferencePosition:(tickDifference * self.timer.tickInterval)];
             spell.status = SpellStatusActive;
         }
     }];
@@ -339,6 +340,7 @@
         spell.updatedTick = self.timer.nextTick;        
         if ([self isSpellClose:spell]) {
             NSLog(@"MODIFY %@", spell);
+            spell.referencePosition = spell.position;
             spell.status = SpellStatusPrepare;
             [self.multiplayer updateSpell:spell];
         }

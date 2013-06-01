@@ -92,15 +92,22 @@
 }
 
 - (void)updateSpell:(Spell *)spell {
-    Firebase * node = [self.spellsNode childByAppendingPath:spell.spellId];
-    [node setValue:spell.toObject];
+    NSDictionary * object = spell.toObject;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.simulatedLatency * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        Firebase * node = [self.spellsNode childByAppendingPath:spell.spellId];
+        [node setValue:object];
+    });
 }
 
 -(void)addSpell:(Spell *)spell {
-//    Firebase * node = [self.spellsNode childByAutoId];
-    Firebase * node = [self.spellsNode childByAppendingPath:spell.spellId];
-    [node onDisconnectRemoveValue];
-    [node setValue:spell.toObject];
+    NSDictionary * object = spell.toObject;    
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.simulatedLatency * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        Firebase * node = [self.spellsNode childByAppendingPath:spell.spellId];
+        [node onDisconnectRemoveValue];
+        [node setValue:object];
+    });
 }
 
 -(void)removeSpells:(NSArray *)spells {

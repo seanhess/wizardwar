@@ -67,7 +67,9 @@
     TimerSyncService * sync = nil;
     if (ai) { }
     else {
-        multiplayer = [MultiplayerService new];
+        MultiplayerService * mp = [MultiplayerService new];
+        mp.simulatedLatency = 0.5;
+        multiplayer = mp;
         sync = [TimerSyncService new];
     }
     [multiplayer connectToMatchId:matchId];
