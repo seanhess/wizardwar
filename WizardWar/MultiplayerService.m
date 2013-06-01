@@ -91,14 +91,12 @@
     [node setValue:player.toObject];
 }
 
-- (void)updateSpell:(Spell *)spell onTick:(NSInteger)tick {
-    spell.updatedTick = tick;
+- (void)updateSpell:(Spell *)spell {
     Firebase * node = [self.spellsNode childByAppendingPath:spell.spellId];
     [node setValue:spell.toObject];
 }
 
--(void)addSpell:(Spell *)spell onTick:(NSInteger)tick {
-    [spell setCreatedTick:tick];
+-(void)addSpell:(Spell *)spell {
 //    Firebase * node = [self.spellsNode childByAutoId];
     Firebase * node = [self.spellsNode childByAppendingPath:spell.spellId];
     [node onDisconnectRemoveValue];

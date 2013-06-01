@@ -27,6 +27,7 @@ typedef enum SpellStatus {
 @property (nonatomic) NSString * spellId;
 @property (nonatomic) float speed; // units per second
 @property (nonatomic) float position;  // in units
+@property (nonatomic) float referencePosition; // where it started, or last sync
 @property (nonatomic) NSInteger mana;
 @property (nonatomic) NSInteger direction;  // 1, or -1
 @property (nonatomic) NSInteger strength;
@@ -36,6 +37,9 @@ typedef enum SpellStatus {
 @property (nonatomic) NSInteger createdTick;
 @property (nonatomic) NSInteger updatedTick;
 @property (nonatomic) SpellStatus status;
+
+
+
 // how far away from the wizard should it start
 @property (nonatomic) float startOffsetPosition;
 
@@ -49,5 +53,6 @@ typedef enum SpellStatus {
 +(Spell*)fromType:(NSString*)type;
 -(void)reflectFromSpell:(Spell*)spell;
 -(float)move:(NSTimeInterval)dt;
+//-(float)moveFromReferencePosition:(NSTimeInterval)dt;
 +(NSString*)generateSpellId;
 @end

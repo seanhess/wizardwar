@@ -109,6 +109,7 @@
 -(void)mpDidUpdate:(NSDictionary*)updates spellWithId:(NSString*)spellId {
     // doesn't matter if you run this more than once
     Spell * spell = [self.spells objectForKey:spellId];
+    NSLog(@"mpDidUpdate %@", spell);
     [spell setValuesForKeysWithDictionary:updates];
 }
 
@@ -204,10 +205,12 @@
             NSLog(@" !!! SPELL IN FUTURE");
         }
         else {
-            NSLog(@" - %@", spell);
+            // couldd be created tick or updated
+            NSInteger referenceTick = MAX(spell.updatedTick, spell.createdTick);
+            NSInteger tickDifference = currentTick - referenceTick;
+            NSLog(@" (C) %@ currentTick=%i referenceTick=%i", spell, currentTick, referenceTick);
+            spell.position = [spell move:(tickDifference * self.timer.tickInterval)];
             spell.status = SpellStatusActive;
-            NSInteger tickDifference = currentTick - spell.createdTick;
-            [spell move:(tickDifference * self.timer.tickInterval)];
         }
     }];
     
@@ -289,7 +292,7 @@
     
     // Only sync changes if owned spell and local player
     if ([self isSpellClose:spell])
-        [self.multiplayer updateSpell:spell onTick:self.timer.nextTick];
+        [self.multiplayer updateSpell:spell];
     
     // only YOU can say you died
     if (player == self.currentPlayer || player == self.aiPlayer) {
@@ -322,7 +325,7 @@
         spell.status = SpellStatusDestroyed;
         spell.updatedTick = self.timer.nextTick;
         if ([self isSpellClose:spell])
-            [self.multiplayer updateSpell:spell onTick:self.timer.nextTick];
+            [self.multiplayer updateSpell:spell];
     }
     
     else if (interaction.type == SpellInteractionTypeCreate) {
@@ -333,9 +336,13 @@
         // reflections ... need to make sure you have it right!
         // TODO send tick information with reflection / updates, add to the action queue
         // so you can get them on the other client
-        spell.updatedTick = self.timer.nextTick;
-        if ([self isSpellClose:spell])
-            [self.multiplayer updateSpell:spell onTick:self.timer.nextTick];
+        spell.updatedTick = self.timer.nextTick;        
+        if ([self isSpellClose:spell]) {
+            NSLog(@"MODIFY %@", spell);
+            spell.status = SpellStatusPrepare;
+            [self.multiplayer updateSpell:spell];
+        }
+        
     }
     
     else if (interaction.type == SpellInteractionTypeNothing) {
@@ -372,16 +379,18 @@
     if (player.mana >= spell.mana) {
         [player spendMana:spell.mana];
         [player setState:PlayerStateCast animated:YES];
-        NSLog(@"SPELL Cast %@", spell);
         
         // update spell
         [spell setPositionFromPlayer:player];
         [spell setSpellId:[Spell generateSpellId]];
         [spell setStatus:SpellStatusPrepare];
+        [spell setCreatedTick:self.timer.nextTick];
+        
+        NSLog(@"CAST %@", spell);
         
         // sync
         [self addSpell:spell];
-        [self.multiplayer addSpell:spell onTick:self.timer.nextTick];
+        [self.multiplayer addSpell:spell];
         [self.multiplayer updatePlayer:player]; // new mana total
     } else {
         NSLog(@"Not enough Mana you fiend!");

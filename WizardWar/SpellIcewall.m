@@ -34,6 +34,11 @@
         return [SpellInteraction cancel];
     }
     
+    else if ([spell isType:[SpellEarthwall class]] || [spell isType:[SpellIcewall class]]) {
+        if (self.created < spell.created) // if older
+            return [SpellInteraction cancel];
+    }
+    
     return [SpellInteraction nothing];
 }
 

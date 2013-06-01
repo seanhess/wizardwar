@@ -30,7 +30,7 @@
 -(void)updatePlayer:(Player*)player;
 -(void)removePlayer:(Player*)player;
 
--(void)addSpell:(Spell*)spell onTick:(NSInteger)tick;
--(void)updateSpell:(Spell*)spell onTick:(NSInteger)tick;
+-(void)addSpell:(Spell*)spell;
+-(void)updateSpell:(Spell*)spell;
 -(void)removeSpells:(NSArray*)spell;
 @end

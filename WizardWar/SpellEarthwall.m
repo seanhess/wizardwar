@@ -9,6 +9,7 @@
 #import "SpellEarthwall.h"
 #import "SpellFireball.h"
 #import "SpellMonster.h"
+#import "SpellIcewall.h"
 
 @implementation SpellEarthwall
 
@@ -24,7 +25,7 @@
 
 -(SpellInteraction *)interactSpell:(Spell *)spell {
     
-    if ([spell isType:[SpellEarthwall class]]) {
+    if ([spell isType:[SpellEarthwall class]] || [spell isType:[SpellIcewall class]]) {
         if (self.created < spell.created) // if older
             return [SpellInteraction cancel];
     }

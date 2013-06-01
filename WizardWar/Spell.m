@@ -36,6 +36,10 @@
     return self.position + self.direction * self.speed * dt;
 }
 
+-(void)moveFromReferencePosition:(NSTimeInterval)dt {
+    
+}
+
 -(void)reflectFromSpell:(Spell*)spell {
     self.direction *= -1;
 //    self.position = spell.position + (1+(spell.size+self.size)/2)*self.direction;
