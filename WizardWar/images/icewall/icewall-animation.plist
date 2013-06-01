@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+	<key>animations</key>
+	<dict>
+		<key>icewall-cast</key>
+		<dict>
+			<key>delay</key>
+			<real>0.25</real>
+			<key>frames</key>
+			<array>
+				<string>icewall-1.png</string>
+				<string>icewall-2.png</string>
+				<string>icewall-3.png</string>
+				<string>icewall-4.png</string>
+			</array>
+		</dict>
+		<key>icewall-destroy</key>
+		<dict>
+			<key>delay</key>
+			<real>0.25</real>
+			<key>frames</key>
+			<array>
+				<string>icewall-4.png</string>
+				<string>icewall-3.png</string>
+				<string>icewall-2.png</string>
+				<string>icewall-1.png</string>
+			</array>
+		</dict>
+	</dict>
+	</dict>
+</plist>

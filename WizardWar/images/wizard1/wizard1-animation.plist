@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+	<key>animations</key>
+	<dict>
+		<key>wizard1-attack</key>
+		<dict>
+			<key>delay</key>
+			<real>0.066</real>
+			<key>frames</key>
+			<array>
+				<string>wizard1-attack.png</string>
+			</array>
+		</dict>
+		<key>wizard1-prepare</key>
+		<dict>
+			<key>delay</key>
+			<real>0.066</real>
+			<key>frames</key>
+			<array>
+				<string>wizard1-prepare.png</string>
+			</array>
+		</dict>
+		<key>wizard1-damage</key>
+		<dict>
+			<key>delay</key>
+			<real>0.066</real>
+			<key>frames</key>
+			<array>
+				<string>wizard1-damage.png</string>
+			</array>
+		</dict>
+		<key>wizard1-dead</key>
+		<dict>
+			<key>delay</key>
+			<real>0.066</real>
+			<key>frames</key>
+			<array>
+				<string>wizard1-dead.png</string>
+			</array>
+		</dict>
+	</dict>
+	</dict>
+</plist>
