@@ -27,7 +27,7 @@
 }
 
 -(NSDictionary*)toObject {
-    return [self dictionaryWithValuesForKeys:@[@"name", @"position", @"mana", @"health", @"state"]];
+    return [self dictionaryWithValuesForKeys:@[@"name", @"position", @"health", @"state"]];
 }
 
 -(void)setValuesForKeysWithDictionary:(NSDictionary *)keyedValues {

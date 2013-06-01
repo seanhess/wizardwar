@@ -75,6 +75,7 @@
 }
 
 - (void)addSpell:(Spell*)spell {
+    spell.position = spell.referencePosition;    
     [self.spells setObject:spell forKey:spell.spellId];
     [self.delegate didAddSpell:spell];
 }
@@ -228,6 +229,9 @@
         if (tickDifference >= 0) {
             spell.position = [spell moveFromReferencePosition:(tickDifference * self.timer.tickInterval)];
             spell.status = SpellStatusActive;
+        }
+        else {
+            // The spell is building
         }
     }];
     
