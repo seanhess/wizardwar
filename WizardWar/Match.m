@@ -91,6 +91,14 @@
 }
 
 
+
+
+
+
+
+
+
+
 /// AI //
 
 - (void)aiDidCastSpell:(Spell *)spell {
@@ -206,9 +214,7 @@
     }];
 
     
-    NSLog(@"SIMULATE %i new=%i updated=%i", currentTick, newSpells.count, updatedSpells.count);
     [updatedSpells forEach:^(Spell * spell) {
-        NSLog(@" UPDATE %@ current=%i updated=%i", spell, currentTick, spell.updatedTick);
         NSInteger tickDifference = currentTick - spell.updatedTick;
         if (tickDifference < 0) NSLog(@" SPELL (U) IN FUTURE");
         spell.position = [spell moveFromReferencePosition:(tickDifference * self.timer.tickInterval)];
@@ -318,7 +324,7 @@
 }
 
 -(void)hitSpell:(Spell*)spell withSpell:(Spell*)spell2 {
-    NSLog(@"HIT %@ %@", spell, spell2);
+//    NSLog(@"HIT %@ %@", spell, spell2);
     [self handleInteraction:[spell interactSpell:spell2] forSpell:spell];
     [self handleInteraction:[spell2 interactSpell:spell] forSpell:spell2];
 }
@@ -334,10 +340,7 @@
 -(void)handleInteraction:(SpellInteraction*)interaction forSpell:(Spell*)spell {
     
     if (interaction.type == SpellInteractionTypeCancel) {
-        spell.status = SpellStatusDestroyed;
-        spell.updatedTick = self.timer.nextTick;
-        if ([self isSpellClose:spell])
-            [self.multiplayer updateSpell:spell];
+        [self destroySpell:spell];
     }
     
     else if (interaction.type == SpellInteractionTypeCreate) {
@@ -345,17 +348,7 @@
     }
     
     else if (interaction.type == SpellInteractionTypeModify) {
-        // reflections ... need to make sure you have it right!
-        // TODO send tick information with reflection / updates, add to the action queue
-        // so you can get them on the other client
-        spell.updatedTick = self.timer.nextTick;        
-        if ([self isSpellClose:spell]) {
-            NSLog(@"MODIFY %@ %i", spell, spell.updatedTick);
-            spell.referencePosition = spell.position;
-            // spell.status = SpellStatusPrepare;
-            [self.multiplayer updateSpell:spell];
-        }
-        
+        [self modifySpell:spell];
     }
     
     else if (interaction.type == SpellInteractionTypeNothing) {
@@ -381,6 +374,26 @@
     [self.timer stop];
 }
 
+-(void)destroySpell:(Spell*)spell {
+    spell.status = SpellStatusDestroyed;
+    spell.updatedTick = self.timer.nextTick;
+    if ([self isSpellClose:spell])
+        [self.multiplayer updateSpell:spell];
+}
+
+-(void)modifySpell:(Spell*)spell {
+    // reflections ... need to make sure you have it right!
+    // TODO send tick information with reflection / updates, add to the action queue
+    // so you can get them on the other client
+    spell.updatedTick = self.timer.nextTick;
+    if ([self isSpellClose:spell]) {
+//        NSLog(@"MODIFY %@ %i", spell, spell.updatedTick);
+        spell.referencePosition = spell.position;
+        // spell.status = SpellStatusPrepare;
+        [self.multiplayer updateSpell:spell];
+    }
+}
+
 - (NSArray*)sortedPlayers {
     // sort players alphabetically (so it is the same on all devices)
     return [self.players.allValues sortedArrayUsingComparator:^NSComparisonResult(Player * p1, Player *p2) {
@@ -391,13 +404,22 @@
 -(void)player:(Player*)player castSpell:(Spell*)spell {
     [player setState:PlayerStateCast animated:YES];
     
+    Spell * preparing = [self.spells.allValues find:^BOOL(Spell*spell) {
+        return (spell.status == SpellStatusPrepare && [spell.creator isEqualToString:player.name]);
+    }];
+    
+    NSLog(@"CAST old=%@ new=%@", preparing, spell);
+    
+    if (preparing) {
+        [self destroySpell:preparing];
+    }
+    
     // update spell
+    [spell setCreator:player.name];
     [spell setPositionFromPlayer:player];
     [spell setSpellId:[Spell generateSpellId]];
     [spell setStatus:SpellStatusPrepare];
     [spell setCreatedTick:self.timer.nextTick];
-    
-    NSLog(@"CAST %@", spell);
     
     // sync
     [self addSpell:spell];

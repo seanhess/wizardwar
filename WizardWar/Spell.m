@@ -22,7 +22,7 @@
         self.speed = 25;
         self.strength = 1; // destroyed is read from this
         self.startOffsetPosition = 1;
-        self.castTimeInTicks = (int)round(TICKS_PER_SECOND * 0.3); // really, should be a # of ticks
+        self.castTimeInTicks = (int)round(TICKS_PER_SECOND * 1.0);
     }
     return self;
 }

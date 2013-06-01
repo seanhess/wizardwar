@@ -10,6 +10,7 @@
 #import "SpellFireball.h"
 #import "SpellMonster.h"
 #import "SpellIcewall.h"
+#import "Tick.h"
 
 @implementation SpellEarthwall
 
@@ -18,6 +19,7 @@
         self.speed = 0;
         self.strength = 3;
         self.startOffsetPosition = 15;
+        self.castTimeInTicks = (int)round(TICKS_PER_SECOND * 0.5);
     }
     return self;
 }

@@ -26,6 +26,7 @@ typedef enum PlayerState {
 @property (nonatomic) float position; // in units (not pixels)
 @property (nonatomic) NSInteger health;
 @property (nonatomic, strong) NSString * wizardType;
+
 -(BOOL)isFirstPlayer;
 -(void)setState:(PlayerState)state animated:(BOOL)animated;
 -(void)update:(NSTimeInterval)dt;

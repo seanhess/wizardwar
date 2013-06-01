@@ -21,7 +21,7 @@
     if ((self=[super init])) {
         // TODO mana cost higher!
         // TODO harder to cast!
-        self.castTimeInTicks = (int)round(TICKS_PER_SECOND * 2.0); // really, should be a # of ticks
+        self.castTimeInTicks = (int)round(TICKS_PER_SECOND * 3.0); // really, should be a # of ticks
     }
     return self;
 }
