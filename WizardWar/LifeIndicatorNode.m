@@ -6,18 +6,17 @@
 //  Copyright (c) 2013 The LAB. All rights reserved.
 //
 
-#import "LifeManaIndicatorNode.h"
+#import "LifeIndicatorNode.h"
 #import <ReactiveCocoa.h>
 
-@interface LifeManaIndicatorNode()
+@interface LifeIndicatorNode()
 
 @property (nonatomic, strong) NSMutableArray *emptyHearts;
 @property (nonatomic, strong) NSMutableArray *filledHearts;
-@property (nonatomic, strong) NSMutableArray *deadHearts;
 
 @end
 
-@implementation LifeManaIndicatorNode
+@implementation LifeIndicatorNode
 
 -(id)init {
     if (self == [super init]) {
@@ -26,29 +25,22 @@
         
         self.emptyHearts = [NSMutableArray array];
         self.filledHearts = [NSMutableArray array];
-        self.deadHearts = [NSMutableArray array];
         
         for (int i = 0; i < 5; i++) {
-            CCSprite *heartDamage = [CCSprite spriteWithFile:@"heart-damage.png"];
             CCSprite *heartBlank = [CCSprite spriteWithFile:@"heart-empty.png"];
             CCSprite *heartFull = [CCSprite spriteWithFile:@"heart-full.png"];
             
-            heartDamage.position = ccp(i * 25 + 25 - 75, 0);
             heartBlank.position = ccp(i * 25 + 25 - 75, 0);
             heartFull.position = ccp(i * 25 + 25 - 75, 0);
             
             heartFull.opacity = 0;
-            heartDamage.opacity = 0;
             
             [self.emptyHearts addObject:heartBlank];
             [self.filledHearts addObject:heartFull];
-            [self.deadHearts addObject:heartDamage];
             
-            // Order matters!
-            // Blank -> Full -> Damage - if any are visible they can cover the others
+            // Blank -> Full
             [self addChild:heartBlank];
             [self addChild:heartFull];
-            [self addChild:heartDamage];
         }
         
         // OMG player doesn't even have to be set yet!!!!
@@ -56,29 +48,11 @@
             [self renderHealth];
         }];
         
-        [[RACAble(self.player.mana) distinctUntilChanged] subscribeNext:^(id value) {
-            [self renderMana];
-        }];
-        
         [[RACAble(self.match.status) distinctUntilChanged] subscribeNext:^(id value) {
             [self renderMatchStatus];
         }];
     }
     return self;
-}
-
--(void)renderMana {
-//    NSLog(@"RENDER MANA %i", self.player.mana);
-    for (int i = 0; i < 5; i++) {
-        CCSprite *heartFull = [self.filledHearts objectAtIndex:i];
-        
-        if (i <= self.player.mana - 1) {
-            [self animateIn:heartFull];
-        }
-        else {
-            [self animateOut:heartFull];
-        }
-    }
 }
 
 -(void)animateIn:(CCSprite*)sprite {
@@ -99,18 +73,16 @@
     }
 }
 
-
 // rules: if health is down, heartDamage wins
 
 -(void)renderHealth {
 //    NSLog(@"RENDER HEALTH %i", self.player.health);
     for (int i = 0; i < 5; i++) {
-        CCSprite *heartDamage = [self.deadHearts objectAtIndex:i];
-        
+        CCSprite *heartFull = [self.filledHearts objectAtIndex:i];
         if (i <= self.player.health - 1) {
-            heartDamage.opacity = 0;
+            [self animateIn:heartFull];
         } else {
-            heartDamage.opacity = 255;
+            [self animateOut:heartFull];
         }
     }
 }

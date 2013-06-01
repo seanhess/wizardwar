@@ -13,11 +13,6 @@
 #define WIZARD_TYPE_ONE @"1"
 #define WIZARD_TYPE_TWO @"2"
 
-#define PLAYER_KEYPATH_MANA @"mana"
-#define PLAYER_KEYPATH_HEALTH @"health"
-#define PLAYER_KEYPATH_POSITION @"position"
-#define PLAYER_KEYPATH_STATUS @"state"
-
 typedef enum PlayerState {
     PlayerStateReady,
     PlayerStateCast,
@@ -29,12 +24,10 @@ typedef enum PlayerState {
 @property (nonatomic, strong) NSString * name;
 @property (nonatomic) PlayerState state;
 @property (nonatomic) float position; // in units (not pixels)
-@property (nonatomic) NSInteger mana;
 @property (nonatomic) NSInteger health;
 @property (nonatomic, strong) NSString * wizardType;
 -(BOOL)isFirstPlayer;
 -(void)setState:(PlayerState)state animated:(BOOL)animated;
 -(void)update:(NSTimeInterval)dt;
 +(NSString*)randomWizardType;
--(void)spendMana:(NSInteger)mana;
 @end

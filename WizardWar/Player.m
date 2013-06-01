@@ -14,14 +14,12 @@
 
 @interface Player ()
 @property (nonatomic) NSTimeInterval stateAnimationTime;
-@property (nonatomic) float dMana;
 @end
 
 @implementation Player
 
 -(id)init {
     if ((self=[super init])) {
-        self.mana = 0;
         self.health = 5;
         self.wizardType = WIZARD_TYPE_ONE;
     }
@@ -64,12 +62,6 @@
         self.stateAnimationTime = 0.0;
 }
 
--(void)spendMana:(NSInteger)mana {
-    // spends the mana and restarts the clock
-    self.dMana = 0.0;
-    self.mana -= mana;
-}
-
 -(void)update:(NSTimeInterval)dt {
 
     // destroy the timer if set to dead
@@ -80,19 +72,6 @@
         self.stateAnimationTime -= dt;
         if (self.stateAnimationTime <= 0) {
             self.state = PlayerStateReady;
-        }
-    }
-    
-    self.dMana += dt / SECONDS_PER_MANA;
-    
-    if (self.dMana >= 1.0) {
-        self.dMana -= 1;
-        self.mana += 1;
-        
-        if (self.mana > self.health) {
-            self.mana = self.health;
-        } else if (self.mana < 0) {
-            self.mana = 0;
         }
     }
 }

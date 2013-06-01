@@ -18,7 +18,7 @@
         self.type = NSStringFromClass([self class]);
         self.created = CACurrentMediaTime();
         self.damage = 1; // default value
-        self.speed = 30;
+        self.speed = 25;
         self.strength = 1; // destroyed is read from this
         self.startOffsetPosition = 1;
         self.mana = 1;

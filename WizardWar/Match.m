@@ -378,25 +378,20 @@
 }
 
 -(void)player:(Player*)player castSpell:(Spell*)spell {
-    if (player.mana >= spell.mana) {
-        [player spendMana:spell.mana];
-        [player setState:PlayerStateCast animated:YES];
-        
-        // update spell
-        [spell setPositionFromPlayer:player];
-        [spell setSpellId:[Spell generateSpellId]];
-        [spell setStatus:SpellStatusPrepare];
-        [spell setCreatedTick:self.timer.nextTick];
-        
-        NSLog(@"CAST %@", spell);
-        
-        // sync
-        [self addSpell:spell];
-        [self.multiplayer addSpell:spell];
-        [self.multiplayer updatePlayer:player]; // new mana total
-    } else {
-        NSLog(@"Not enough Mana you fiend!");
-    }
+    [player setState:PlayerStateCast animated:YES];
+    
+    // update spell
+    [spell setPositionFromPlayer:player];
+    [spell setSpellId:[Spell generateSpellId]];
+    [spell setStatus:SpellStatusPrepare];
+    [spell setCreatedTick:self.timer.nextTick];
+    
+    NSLog(@"CAST %@", spell);
+    
+    // sync
+    [self addSpell:spell];
+    [self.multiplayer addSpell:spell];
+    [self.multiplayer updatePlayer:player]; // new mana total
 }
 
 

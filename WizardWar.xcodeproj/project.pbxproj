@@ -273,7 +273,7 @@
 		78F6B3DB174705D000AA070D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3DA174705D000AA070D /* User.m */; };
 		78F6B3DE174705EA00AA070D /* Invite.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3DD174705EA00AA070D /* Invite.m */; };
 		78F97FDE1758F7F500764D70 /* PracticeModeAIService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F97FDD1758F7F500764D70 /* PracticeModeAIService.m */; };
-		F283A922174807A40068EEB2 /* LifeManaIndicatorNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F283A921174807A40068EEB2 /* LifeManaIndicatorNode.m */; };
+		F283A922174807A40068EEB2 /* LifeIndicatorNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F283A921174807A40068EEB2 /* LifeIndicatorNode.m */; };
 		F283A92517480F4F0068EEB2 /* mana-container-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F283A92317480F4F0068EEB2 /* mana-container-hd.png */; };
 		F283A92617480F4F0068EEB2 /* mana-container.png in Resources */ = {isa = PBXBuildFile; fileRef = F283A92417480F4F0068EEB2 /* mana-container.png */; };
 		F283A92D17480F5E0068EEB2 /* heart-damage-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F283A92717480F5E0068EEB2 /* heart-damage-hd.png */; };
@@ -731,8 +731,8 @@
 		78F97FDD1758F7F500764D70 /* PracticeModeAIService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PracticeModeAIService.m; sourceTree = "<group>"; };
 		97EFC7B8DBD643B88CEC6021 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE8809F786384C2C96220236 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
-		F283A920174807A40068EEB2 /* LifeManaIndicatorNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LifeManaIndicatorNode.h; sourceTree = "<group>"; };
-		F283A921174807A40068EEB2 /* LifeManaIndicatorNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LifeManaIndicatorNode.m; sourceTree = "<group>"; };
+		F283A920174807A40068EEB2 /* LifeIndicatorNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LifeIndicatorNode.h; sourceTree = "<group>"; };
+		F283A921174807A40068EEB2 /* LifeIndicatorNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LifeIndicatorNode.m; sourceTree = "<group>"; };
 		F283A92317480F4F0068EEB2 /* mana-container-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mana-container-hd.png"; sourceTree = "<group>"; };
 		F283A92417480F4F0068EEB2 /* mana-container.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mana-container.png"; sourceTree = "<group>"; };
 		F283A92717480F5E0068EEB2 /* heart-damage-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-damage-hd.png"; sourceTree = "<group>"; };
@@ -1385,8 +1385,8 @@
 				787A2A96174EA43D004C4FDB /* MatchViewController.h */,
 				787A2A97174EA43D004C4FDB /* MatchViewController.m */,
 				787A2A98174EA43D004C4FDB /* MatchViewController.xib */,
-				F283A920174807A40068EEB2 /* LifeManaIndicatorNode.h */,
-				F283A921174807A40068EEB2 /* LifeManaIndicatorNode.m */,
+				F283A920174807A40068EEB2 /* LifeIndicatorNode.h */,
+				F283A921174807A40068EEB2 /* LifeIndicatorNode.m */,
 				78F6B3AB1746B27600AA070D /* MatchLayer.h */,
 				78F6B3AC1746B27600AA070D /* MatchLayer.m */,
 				78F6B3AD1746B27600AA070D /* MatchGroundSprite.h */,
@@ -1777,7 +1777,7 @@
 				78F195121747FEA800BB8587 /* SpellVine.m in Sources */,
 				78F195151747FEB500BB8587 /* SpellWindblast.m in Sources */,
 				78F195181748024D00BB8587 /* Elements.m in Sources */,
-				F283A922174807A40068EEB2 /* LifeManaIndicatorNode.m in Sources */,
+				F283A922174807A40068EEB2 /* LifeIndicatorNode.m in Sources */,
 				781234DD174ADC19008EDE88 /* FirebaseCollection.m in Sources */,
 				787A2A85174E85E3004C4FDB /* FirebaseConnection.m in Sources */,
 				787A2A91174E9FA3004C4FDB /* TestLayer.m in Sources */,

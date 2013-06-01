@@ -26,7 +26,7 @@
 #import "SpellWindblast.h"
 #import "SpellIcewall.h"
 #import "NSArray+Functional.h"
-#import "LifeManaIndicatorNode.h"
+#import "LifeIndicatorNode.h"
 
 #import <ReactiveCocoa.h>
 
@@ -87,8 +87,8 @@
         [self addChild:self.message];
         
         // LIFE MANA INDICATORS add two of them to the right spot
-        LifeManaIndicatorNode * player1Indicator = [LifeManaIndicatorNode node];
-        LifeManaIndicatorNode * player2Indicator = [LifeManaIndicatorNode node];
+        LifeIndicatorNode * player1Indicator = [LifeIndicatorNode node];
+        LifeIndicatorNode * player2Indicator = [LifeIndicatorNode node];
         
         player1Indicator.match = self.match;
         player2Indicator.match = self.match;
@@ -183,7 +183,7 @@
         NSArray * players = self.match.sortedPlayers;
         [players forEachIndex:^(int i) {
             // view can data-bind to player
-            LifeManaIndicatorNode * node = [self.indicators.children objectAtIndex:i];
+            LifeIndicatorNode * node = [self.indicators.children objectAtIndex:i];
             Player * player = players[i];
             node.player = player;
         }];
