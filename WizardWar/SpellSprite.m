@@ -62,7 +62,7 @@
         self.sheet = [CCSpriteBatchNode batchNodeWithFile:[NSString stringWithFormat:@"%@.png", self.sheetName]];
         [self addChild:self.sheet];
         
-        self.skin = [CCSprite spriteWithTexture:self.sheet.texture];
+        self.skin = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"%@-1", self.sheetName]];
         [self.skin runAction:self.spellAction];
         [self.sheet addChild:self.skin];
         
@@ -88,6 +88,7 @@
         [self renderPosition];
         [self renderWallStrength];
         [self renderDirection];
+        [self renderStatus];
     }
     return self;
 }
@@ -117,7 +118,8 @@
 }
 
 - (void)renderStatus {
-    self.skin.visible = (self.spell.status == SpellStatusActive);
+    self.skin.visible = (self.spell.status == SpellStatusActive || self.spell.status == SpellStatusPrepare);
+//    NSLog(@" - status=%i", self.spell.status);
     
     if (!self.explosion && self.spell.status == SpellStatusDestroyed) {
         self.explosion = [CCSpriteBatchNode batchNodeWithFile:@"explode.png"];

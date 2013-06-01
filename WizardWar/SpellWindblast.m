@@ -28,7 +28,7 @@
 
 -(SpellInteraction *)interactSpell:(Spell *)spell {
     if ([spell isType:[SpellMonster class]]) {
-        return [SpellInteraction cancel];
+//        return [SpellInteraction cancel];
     }
     
     else if ([spell isType:[SpellFireball class]]) {

@@ -196,25 +196,35 @@
 
 -(void)simulateTick:(NSInteger)currentTick {
     
-    // Add all spells in the action queue
-    // alter based on how many ticks they are off
+    NSArray * updatedSpells = [self.spells.allValues filter:^BOOL(Spell * spell) {
+        return (spell.status == SpellStatusActive && spell.updatedTick >= currentTick);
+    }];
+    
+    // NEW SPELLS
     NSArray * newSpells = [self.spells.allValues filter:^BOOL(Spell *spell) {
         return spell.status == SpellStatusPrepare;
     }];
-//    NSLog(@"TICK tick=%i queue=%i", currentTick, newSpells.count);
+
+    
+    NSLog(@"SIMULATE %i new=%i updated=%i", currentTick, newSpells.count, updatedSpells.count);
+    [updatedSpells forEach:^(Spell * spell) {
+        NSLog(@" UPDATE %@ current=%i updated=%i", spell, currentTick, spell.updatedTick);
+        NSInteger tickDifference = currentTick - spell.updatedTick;
+        if (tickDifference < 0) NSLog(@" SPELL (U) IN FUTURE");
+        spell.position = [spell moveFromReferencePosition:(tickDifference * self.timer.tickInterval)];
+    }];
+    
+    
+    
     [newSpells forEach:^(Spell * spell) {
-        if (spell.createdTick > currentTick) {
-            NSLog(@" !!! SPELL IN FUTURE");
-        }
-        else {
-            // couldd be created tick or updated
-            NSInteger referenceTick = MAX(spell.updatedTick, spell.createdTick);
-            NSInteger tickDifference = currentTick - referenceTick;
-            NSLog(@" (C) %@ NOW=%i cr=%i up=%i", spell, currentTick, spell.createdTick, spell.updatedTick);
+        NSInteger referenceTick = spell.createdTick + spell.castTimeInTicks;
+        NSInteger tickDifference = currentTick - referenceTick;
+        if (tickDifference >= 0) {
             spell.position = [spell moveFromReferencePosition:(tickDifference * self.timer.tickInterval)];
             spell.status = SpellStatusActive;
         }
     }];
+    
     
     // run the simulation
     // try to simulate EVERYTHING, but allow yourself to be corrected by owner
@@ -340,9 +350,9 @@
         // so you can get them on the other client
         spell.updatedTick = self.timer.nextTick;        
         if ([self isSpellClose:spell]) {
-            NSLog(@"MODIFY %@", spell);
+            NSLog(@"MODIFY %@ %i", spell, spell.updatedTick);
             spell.referencePosition = spell.position;
-            spell.status = SpellStatusPrepare;
+            // spell.status = SpellStatusPrepare;
             [self.multiplayer updateSpell:spell];
         }
         

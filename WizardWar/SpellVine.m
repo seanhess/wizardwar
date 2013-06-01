@@ -13,6 +13,7 @@
 #import "SpellBubble.h"
 #import "SpellVine.h"
 #import "SpellWindblast.h"
+#import "Tick.h"
 
 @implementation SpellVine
 
@@ -20,7 +21,7 @@
     if ((self=[super init])) {
         // TODO mana cost higher!
         // TODO harder to cast!
-        self.mana = 5;
+        self.castTimeInTicks = (int)round(TICKS_PER_SECOND * 2.0); // really, should be a # of ticks
     }
     return self;
 }

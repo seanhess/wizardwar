@@ -28,7 +28,6 @@ typedef enum SpellStatus {
 @property (nonatomic) float speed; // units per second
 @property (nonatomic) float position;  // in units
 @property (nonatomic) float referencePosition; // where it started, or last sync
-@property (nonatomic) NSInteger mana;
 @property (nonatomic) NSInteger direction;  // 1, or -1
 @property (nonatomic) NSInteger strength;
 @property (nonatomic) NSInteger damage;

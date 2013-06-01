@@ -19,7 +19,6 @@
 -(id)init {
     if ((self=[super init])) {
         self.speed = 0;
-        self.mana = 1;
         self.startOffsetPosition = 15;
     }
     return self;

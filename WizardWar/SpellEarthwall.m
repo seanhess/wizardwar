@@ -17,7 +17,6 @@
     if ((self=[super init])) {
         self.speed = 0;
         self.strength = 3;
-        self.mana = 1;
         self.startOffsetPosition = 15;
     }
     return self;
