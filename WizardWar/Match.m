@@ -139,6 +139,9 @@
 
 
 // STARTING
+// sync player health and mana better
+// ... send the player every so often
+// ... every X ticks?
 
 -(void)playersReady {
     NSLog(@"PLAYERS READY");
@@ -212,6 +215,12 @@
     // try to simulate EVERYTHING, but allow yourself to be corrected by owner
     // in other words, go ahead and make all changes locally, but don't SYNC unless you own them
     [self checkHits];
+    
+    // Maybe sync the player every second
+    if ((currentTick % (int)round(TICKS_PER_SECOND)) == 0) {
+        //NSLog(@"SYNC PLAYER health=%i mana=%i", self.currentPlayer.health, self.currentPlayer.mana);
+        [self.multiplayer updatePlayer:self.currentPlayer];
+    }
     
     [self cleanupDestroyed];
 }

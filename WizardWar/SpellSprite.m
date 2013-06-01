@@ -108,7 +108,7 @@
 }
 
 - (void)renderStatus {
-    self.skin.visible = self.spell.status == SpellStatusActive;
+    self.skin.visible = (self.spell.status == SpellStatusActive);
     
     if (!self.explosion && self.spell.status == SpellStatusDestroyed) {
         self.explosion = [CCSpriteBatchNode batchNodeWithFile:@"explode.png"];

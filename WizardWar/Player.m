@@ -57,6 +57,8 @@
             self.stateAnimationTime = 0.5;
         else if (state == PlayerStateCast)
             self.stateAnimationTime = 1.0;
+        else
+            self.stateAnimationTime = 0.0;
     }
     else
         self.stateAnimationTime = 0.0;
@@ -69,6 +71,11 @@
 }
 
 -(void)update:(NSTimeInterval)dt {
+
+    // destroy the timer if set to dead
+    if (self.state == PlayerStateDead)
+        self.stateAnimationTime = 0;
+    
     if (self.stateAnimationTime > 0) {
         self.stateAnimationTime -= dt;
         if (self.stateAnimationTime <= 0) {
