@@ -27,6 +27,7 @@
 #import "SpellIcewall.h"
 #import "NSArray+Functional.h"
 #import "LifeIndicatorNode.h"
+#import "Tick.h"
 
 #import <ReactiveCocoa.h>
 

@@ -24,6 +24,7 @@
 #import "GameTimerService.h"
 #import "TimerSyncService.h"
 #import "PracticeModeAIService.h"
+#import "Tick.h"
 
 // sync spells to the server every N seconds
 @interface Match () <GameTimerDelegate, MultiplayerDelegate, TimerSyncDelegate, AIDelegate>

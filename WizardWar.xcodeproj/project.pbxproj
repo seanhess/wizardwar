@@ -336,6 +336,7 @@
 		789BAB891756A95A003C0116 /* explode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = explode.png; sourceTree = "<group>"; };
 		789BAB8F1756AA65003C0116 /* explode-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "explode-animation.plist"; sourceTree = "<group>"; };
 		78ABA886175A5CA5003D2F23 /* PentagramViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PentagramViewController.xib; sourceTree = "<group>"; };
+		78ABA888175A6C70003D2F23 /* Tick.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tick.h; sourceTree = "<group>"; };
 		78C46B5817562CAC0077EE98 /* MultiplayerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiplayerService.h; sourceTree = "<group>"; };
 		78C46B5917562CAC0077EE98 /* MultiplayerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiplayerService.m; sourceTree = "<group>"; };
 		78E8EA681759427E00017747 /* Combos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Combos.h; sourceTree = "<group>"; };
@@ -819,6 +820,7 @@
 				78F97FDC1758F7F500764D70 /* PracticeModeAIService.h */,
 				78F97FDD1758F7F500764D70 /* PracticeModeAIService.m */,
 				789BAB8117566ABF003C0116 /* Multiplayer.h */,
+				78ABA888175A6C70003D2F23 /* Tick.h */,
 			);
 			name = Service;
 			sourceTree = "<group>";

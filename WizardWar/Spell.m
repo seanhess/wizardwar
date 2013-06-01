@@ -7,6 +7,7 @@
 //
 
 #import "Spell.h"
+#import "Tick.h"
 
 @interface Spell ()
 @end
@@ -22,6 +23,8 @@
         self.strength = 1; // destroyed is read from this
         self.startOffsetPosition = 1;
         self.mana = 1;
+        self.castTimeInTicks = (int)round(TICKS_PER_SECOND * 0.3); // really, should be a # of ticks
+        NSLog(@"CAST TIME IN TICKS %i", self.castTimeInTicks);
     }
     return self;
 }

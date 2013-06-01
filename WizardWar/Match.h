@@ -12,9 +12,6 @@
 #import "Multiplayer.h"
 #import "TimerSyncService.h"
 
-#define TICK_INTERVAL 0.1
-#define TICKS_PER_SECOND 1/TICK_INTERVAL
-
 typedef enum MatchStatus {
     MatchStatusReady,
     MatchStatusPlaying,
