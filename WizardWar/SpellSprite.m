@@ -62,8 +62,7 @@
         self.sheet = [CCSpriteBatchNode batchNodeWithFile:[NSString stringWithFormat:@"%@.png", self.sheetName]];
         [self addChild:self.sheet];
         
-        self.skin = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"%@-1", self.sheetName]];
-        if (spell.direction < 0) self.skin.flipX = YES;
+        self.skin = [CCSprite spriteWithTexture:self.sheet.texture];
         [self.skin runAction:self.spellAction];
         [self.sheet addChild:self.skin];
         
@@ -81,14 +80,24 @@
             [self renderStatus];
         }];
         
+        [[RACAble(self.spell.direction) distinctUntilChanged] subscribeNext:^(id x) {
+            [self renderDirection];
+        }];
+        
+        
         [self renderPosition];
         [self renderWallStrength];
+        [self renderDirection];
     }
     return self;
 }
 
 -(BOOL)isWall:(Spell*)spell {
     return ([self.spell isType:[SpellEarthwall class]] || [self.spell isType:[SpellIcewall class]]);
+}
+
+-(void)renderDirection {
+    self.skin.flipX = (self.spell.direction < 0);
 }
 
 -(void)renderPosition {
@@ -154,7 +163,7 @@
     CCActionInterval * actionInterval = [CCAnimate actionWithAnimation:animation];
     CCAction * action = actionInterval;
     
-    if ([self.spell isType:[SpellFireball class]] || [self.spell isType:[SpellBubble class]] || [self.spell isType:[SpellWindblast class]]) {
+    if ([self.spell isType:[SpellFireball class]] || [self.spell isType:[SpellBubble class]] || [self.spell isType:[SpellWindblast class]] || [self.spell isType:[SpellMonster class]]) {
         action = [CCRepeatForever actionWithAction:actionInterval];
     }
     

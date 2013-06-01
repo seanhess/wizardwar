@@ -93,21 +93,19 @@
 
 - (void)updateSpell:(Spell *)spell {
     NSDictionary * object = spell.toObject;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.simulatedLatency * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+    [self runWithLag:^{
         Firebase * node = [self.spellsNode childByAppendingPath:spell.spellId];
         [node setValue:object];
-    });
+    }];
 }
 
 -(void)addSpell:(Spell *)spell {
-    NSDictionary * object = spell.toObject;    
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.simulatedLatency * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+    NSDictionary * object = spell.toObject;
+    [self runWithLag:^{
         Firebase * node = [self.spellsNode childByAppendingPath:spell.spellId];
         [node onDisconnectRemoveValue];
         [node setValue:object];
-    });
+    }];
 }
 
 -(void)removeSpells:(NSArray *)spells {
@@ -115,6 +113,18 @@
         Firebase * node = [self.spellsNode childByAppendingPath:spell.spellId];
         [node removeValue];
     }];
+}
+
+-(void)runWithLag:(void(^)(void))action {
+    if (self.simulatedLatency) {
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.simulatedLatency * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            action();
+        });
+    }
+    else {
+        action();
+    }
 }
 
 

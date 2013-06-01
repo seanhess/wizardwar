@@ -15,10 +15,13 @@
 #import "SpellVine.h"
 #import "SpellWindblast.h"
 
+#define MONSTER_SPEED 15
+
 @implementation SpellMonster
 
 -(id)init {
     if ((self=[super init])) {
+        self.speed = MONSTER_SPEED;
     }
     return self;
 }
@@ -38,7 +41,15 @@
     }
     
     else if ([spell isType:[SpellWindblast class]]) {
-        self.speed *= 0.5;
+        if (self.direction == spell.direction) {
+            self.speed += 30;
+        }
+        else {
+            self.direction *= -1;
+            self.speed = 0;
+        }
+        
+            
         return [SpellInteraction modify];
     }
     

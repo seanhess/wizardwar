@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Elements.h"
 
-@interface PentEmblem : UIView
+@interface PentEmblem : UIImageView
 
 @property (copy, nonatomic) NSString* elementId;
 

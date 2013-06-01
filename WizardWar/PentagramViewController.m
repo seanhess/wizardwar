@@ -11,6 +11,11 @@
 #import "Elements.h"
 
 @interface PentagramViewController ()
+@property (weak, nonatomic) IBOutlet PentEmblem *windEmblem;
+@property (weak, nonatomic) IBOutlet PentEmblem *fireEmblem;
+@property (weak, nonatomic) IBOutlet PentEmblem *earthEmblem;
+@property (weak, nonatomic) IBOutlet PentEmblem *waterEmblem;
+@property (weak, nonatomic) IBOutlet PentEmblem *heartEmblem;
 @end
 
 @implementation PentagramViewController
@@ -22,19 +27,13 @@
     [self.view setMultipleTouchEnabled:YES];
     self.moves = [[NSMutableArray alloc] init];
     
-//    self.view.backgroundColor = [UIColor redColor];
-//    UIButton * button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//    button.frame = self.view.bounds;
-//    button.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-//    [self.view addSubview:button];
-    
     self.view.opaque = NO;
     DrawingLayer *drawLayer = [[DrawingLayer alloc] initWithFrame:self.view.bounds];
     self.drawingLayer = drawLayer;
     drawLayer.opaque = NO;
     drawLayer.backgroundColor = [UIColor clearColor];
     self.drawingLayer.points = [[NSMutableArray alloc] init];
-    [self.view addSubview:drawLayer];
+    [self.view insertSubview:self.drawingLayer atIndex:0];
     [self setUpPentagram];
 }
 
@@ -46,38 +45,22 @@
 
 - (void)setUpPentagram
 {
-    PentEmblem *fireEmblem = [[PentEmblem alloc]initWithFrame:CGRectMake(99, 37, 46, 47)];
-    fireEmblem.elementId = FireId;
-    fireEmblem.alpha = .4;
-    [fireEmblem setBackgroundColor:[[UIColor alloc] initWithPatternImage:[UIImage imageNamed: @"pentagram-fire.png"]]];
-    [self.view addSubview:fireEmblem];
+    self.fireEmblem.elementId = FireId;
+    self.fireEmblem.alpha = .4;
     
-    PentEmblem *heartEmblem = [[PentEmblem alloc]initWithFrame:CGRectMake(198, 106, 48, 47)];
-    heartEmblem.elementId = HeartId;
-    heartEmblem.alpha = .4;
-    [heartEmblem setBackgroundColor:[[UIColor alloc] initWithPatternImage:[UIImage imageNamed: @"pentagram-heart.png"]]];
-    [self.view addSubview:heartEmblem];
+    self.heartEmblem.elementId = HeartId;
+    self.heartEmblem.alpha = .4;
     
-    PentEmblem *waterEmblem = [[PentEmblem alloc]initWithFrame:CGRectMake(159, 219, 48, 47)];
-    waterEmblem.elementId = WaterId;
-    waterEmblem.alpha = .4;
-    [waterEmblem setBackgroundColor:[[UIColor alloc] initWithPatternImage:[UIImage imageNamed: @"pentagram-water.png"]]];
-    [self.view addSubview:waterEmblem];
+    self.waterEmblem.elementId = WaterId;
+    self.waterEmblem.alpha = .4;
     
-    PentEmblem *earthEmblem = [[PentEmblem alloc]initWithFrame:CGRectMake(38, 219, 46, 47)];
-    earthEmblem.elementId = EarthId;
-    earthEmblem.alpha = .4;
-    [earthEmblem setBackgroundColor:[[UIColor alloc] initWithPatternImage:[UIImage imageNamed: @"pentagram-earth.png"]]];
-    [self.view addSubview:earthEmblem];
+    self.earthEmblem.elementId = EarthId;
+    self.earthEmblem.alpha = .4;
     
-    PentEmblem *windEmblem =[[PentEmblem alloc]initWithFrame:CGRectMake(0, 106, 47, 47)];
-    windEmblem.elementId = AirId;
-    windEmblem.alpha = .4;
-    [windEmblem setBackgroundColor:[[UIColor alloc] initWithPatternImage:[UIImage imageNamed: @"pentagram-wind.png"]]];
-    [self.view addSubview:windEmblem];
+    self.windEmblem.elementId = AirId;
+    self.windEmblem.alpha = .4;
     
-    self.emblems = [NSArray arrayWithObjects: fireEmblem, heartEmblem, waterEmblem, earthEmblem, windEmblem, nil];
-    
+    self.emblems = [NSArray arrayWithObjects: self.fireEmblem, self.heartEmblem, self.waterEmblem, self.earthEmblem, self.windEmblem, nil];
 }
 
 - (void)didReceiveMemoryWarning

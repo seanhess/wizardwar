@@ -45,6 +45,7 @@
 		789BAB8D1756A95A003C0116 /* explode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 789BAB881756A95A003C0116 /* explode.plist */; };
 		789BAB8E1756A95A003C0116 /* explode.png in Resources */ = {isa = PBXBuildFile; fileRef = 789BAB891756A95A003C0116 /* explode.png */; };
 		789BAB901756AA65003C0116 /* explode-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 789BAB8F1756AA65003C0116 /* explode-animation.plist */; };
+		78ABA887175A5CA6003D2F23 /* PentagramViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78ABA886175A5CA5003D2F23 /* PentagramViewController.xib */; };
 		78C46B5A17562CAC0077EE98 /* MultiplayerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C46B5917562CAC0077EE98 /* MultiplayerService.m */; };
 		78E8EA6A1759427E00017747 /* Combos.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E8EA691759427E00017747 /* Combos.m */; };
 		78F193E2174715A700BB8587 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F193E1174715A700BB8587 /* Default-568h@2x.png */; };
@@ -334,6 +335,7 @@
 		789BAB881756A95A003C0116 /* explode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = explode.plist; sourceTree = "<group>"; };
 		789BAB891756A95A003C0116 /* explode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = explode.png; sourceTree = "<group>"; };
 		789BAB8F1756AA65003C0116 /* explode-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "explode-animation.plist"; sourceTree = "<group>"; };
+		78ABA886175A5CA5003D2F23 /* PentagramViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PentagramViewController.xib; sourceTree = "<group>"; };
 		78C46B5817562CAC0077EE98 /* MultiplayerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiplayerService.h; sourceTree = "<group>"; };
 		78C46B5917562CAC0077EE98 /* MultiplayerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiplayerService.m; sourceTree = "<group>"; };
 		78E8EA681759427E00017747 /* Combos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Combos.h; sourceTree = "<group>"; };
@@ -793,6 +795,7 @@
 				6F0B2FAE1747511800CFC092 /* DrawingLayer.m */,
 				6F0B2FA5174750FF00CFC092 /* PentagramViewController.h */,
 				6F0B2FA6174750FF00CFC092 /* PentagramViewController.m */,
+				78ABA886175A5CA5003D2F23 /* PentagramViewController.xib */,
 				6F0B2FA7174750FF00CFC092 /* PentEmblem.h */,
 				6F0B2FA8174750FF00CFC092 /* PentEmblem.m */,
 			);
@@ -1596,6 +1599,7 @@
 				789BAB8D1756A95A003C0116 /* explode.plist in Resources */,
 				789BAB8E1756A95A003C0116 /* explode.png in Resources */,
 				789BAB901756AA65003C0116 /* explode-animation.plist in Resources */,
+				78ABA887175A5CA6003D2F23 /* PentagramViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

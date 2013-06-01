@@ -14,10 +14,14 @@
 #import "SpellVine.h"
 #import "SpellWindblast.h"
 
+// Windblast just slows things down, etc
+
 @implementation SpellWindblast
 
 -(id)init {
     if ((self=[super init])) {
+        self.speed = 100;
+        self.damage = 0;
     }
     return self;
 }

@@ -24,7 +24,8 @@
 #import "Combos.h"
 
 @interface MatchViewController () <PentagramDelegate>
-@property (strong, nonatomic) IBOutlet PentagramViewController *pentagram;
+@property (strong, nonatomic) PentagramViewController * pentagram;
+@property (weak, nonatomic) IBOutlet UIView *pentagramView;
 @property (weak, nonatomic) IBOutlet UIView *cocosView;
 @property (strong, nonatomic) Match * match;
 @property (strong, nonatomic) Combos * combos;
@@ -44,8 +45,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.pentagram viewDidLoad];
+    
+    self.pentagram = [PentagramViewController new];
     self.pentagram.delegate = self;
+    [self.pentagramView addSubview:self.pentagram.view];
+    [self.pentagram viewDidLoad];
+    
+    
     [self playMusic];
     
     
@@ -68,7 +74,7 @@
     if (ai) { }
     else {
         MultiplayerService * mp = [MultiplayerService new];
-        mp.simulatedLatency = 0.5;
+        mp.simulatedLatency = 0.0;
         multiplayer = mp;
         sync = [TimerSyncService new];
     }
