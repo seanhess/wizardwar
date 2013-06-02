@@ -9,8 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "Elements.h"
 
+typedef enum EmblemStatus {
+    EmblemStatusNormal,
+    EmblemStatusHighlight,
+    EmblemStatusDisabled
+} EmblemStatus;
+
 @interface PentEmblem : UIImageView
 
-@property (copy, nonatomic) NSString* elementId;
+@property (strong, nonatomic) NSString* elementId;
+@property (nonatomic) EmblemStatus status;
 
 @end

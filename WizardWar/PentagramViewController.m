@@ -9,6 +9,7 @@
 #import "PentagramViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "Elements.h"
+#import "NSArray+Functional.h"
 
 @interface PentagramViewController ()
 @property (weak, nonatomic) IBOutlet PentEmblem *windEmblem;
@@ -16,6 +17,11 @@
 @property (weak, nonatomic) IBOutlet PentEmblem *earthEmblem;
 @property (weak, nonatomic) IBOutlet PentEmblem *waterEmblem;
 @property (weak, nonatomic) IBOutlet PentEmblem *heartEmblem;
+
+@property (strong, nonatomic) NSMutableArray * selectedEmblems;
+
+@property (strong, nonatomic) NSTimer * timer;
+
 @end
 
 @implementation PentagramViewController
@@ -26,6 +32,8 @@
     [super viewDidLoad];
     [self.view setMultipleTouchEnabled:YES];
     self.moves = [[NSMutableArray alloc] init];
+    
+    self.selectedEmblems = [NSMutableArray array];
     
     self.view.opaque = NO;
     DrawingLayer *drawLayer = [[DrawingLayer alloc] initWithFrame:self.view.bounds];
@@ -46,19 +54,19 @@
 - (void)setUpPentagram
 {
     self.fireEmblem.elementId = FireId;
-    self.fireEmblem.alpha = .4;
+    self.fireEmblem.status = EmblemStatusNormal;
     
     self.heartEmblem.elementId = HeartId;
-    self.heartEmblem.alpha = .4;
+    self.heartEmblem.status = EmblemStatusNormal;
     
     self.waterEmblem.elementId = WaterId;
-    self.waterEmblem.alpha = .4;
+    self.waterEmblem.status = EmblemStatusNormal;
     
     self.earthEmblem.elementId = EarthId;
-    self.earthEmblem.alpha = .4;
+    self.earthEmblem.status = EmblemStatusNormal;
     
     self.windEmblem.elementId = AirId;
-    self.windEmblem.alpha = .4;
+    self.windEmblem.status = EmblemStatusNormal;
     
     self.emblems = [NSArray arrayWithObjects: self.fireEmblem, self.heartEmblem, self.waterEmblem, self.earthEmblem, self.windEmblem, nil];
 }
@@ -74,6 +82,28 @@
     if (UIInterfaceOrientationIsPortrait(fromInterfaceOrientation)) {
         NSLog(@"layout here!");
     }
+}
+
+- (void)onTimer {
+    NSArray * disabledEmblems = [self.emblems filter:^BOOL(PentEmblem*emblem) {
+        return emblem.status == EmblemStatusDisabled;
+    }];
+    
+    NSUInteger numDisabled = disabledEmblems.count;
+    
+    if (numDisabled) {
+        NSUInteger randomIndex = arc4random() % disabledEmblems.count;
+        PentEmblem * emblem = disabledEmblems[randomIndex];
+        emblem.status = EmblemStatusNormal;
+        
+        if (numDisabled > 1) {
+            [self startRecharge];
+        }
+    }
+}
+
+- (void)startRecharge {
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(onTimer) userInfo:nil repeats:NO];
 }
 
 - (void)checkSelectedEmblems:(CGPoint)point {
@@ -101,8 +131,9 @@
                 
 //                NSLog(@"%@", self.drawingLayer.points);
                 self.currentEmblem = emblem;
-                emblem.alpha = 1;
+                emblem.status = EmblemStatusHighlight;
                 
+                [self.selectedEmblems addObject:emblem];
                 [self.moves addObject:emblem.elementId];
                 [self.delegate didSelectElement:self.moves];
 //                NSLog(@"%@", self.moves);
@@ -144,10 +175,15 @@
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    for(UIView *emblem in self.emblems)
+    
+    for(PentEmblem *emblem in self.selectedEmblems)
     {
-        emblem.alpha = .4;
+        emblem.status = EmblemStatusDisabled;
     }
+    
+    self.selectedEmblems = [NSMutableArray array];
+    
+    [self startRecharge];
     
 //    NSLog(@"%@", self.moves);
     [self.delegate didCastSpell:self.moves];

@@ -41,6 +41,7 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrame">{{239, 88}, {71, 80}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="371801788"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<int key="IBUIContentMode">4</int>
@@ -56,6 +57,7 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrame">{{124, 10}, {71, 80}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="111847821"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<int key="IBUIContentMode">4</int>
@@ -71,6 +73,7 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrame">{{10, 88}, {71, 80}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="512994264"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<int key="IBUIContentMode">4</int>
@@ -86,6 +89,7 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrame">{{67, 214}, {71, 80}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="98874762"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<int key="IBUIContentMode">4</int>
@@ -101,6 +105,7 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrame">{{196, 214}, {71, 80}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<int key="IBUIContentMode">4</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -113,6 +118,7 @@
 				</array>
 				<string key="NSFrameSize">{320, 320}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="933943642"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -748,7 +754,68 @@
 			<nil key="sourceID"/>
 			<int key="maxID">219</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">NSLayoutConstraint</string>
+					<string key="superclassName">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/NSLayoutConstraint.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">PentEmblem</string>
+					<string key="superclassName">UIImageView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/PentEmblem.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">PentagramViewController</string>
+					<string key="superclassName">UIViewController</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="earthEmblem">PentEmblem</string>
+						<string key="fireEmblem">PentEmblem</string>
+						<string key="heartEmblem">PentEmblem</string>
+						<string key="pentagram">UIImageView</string>
+						<string key="waterEmblem">PentEmblem</string>
+						<string key="windEmblem">PentEmblem</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="earthEmblem">
+							<string key="name">earthEmblem</string>
+							<string key="candidateClassName">PentEmblem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="fireEmblem">
+							<string key="name">fireEmblem</string>
+							<string key="candidateClassName">PentEmblem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="heartEmblem">
+							<string key="name">heartEmblem</string>
+							<string key="candidateClassName">PentEmblem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="pentagram">
+							<string key="name">pentagram</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="waterEmblem">
+							<string key="name">waterEmblem</string>
+							<string key="candidateClassName">PentEmblem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="windEmblem">
+							<string key="name">windEmblem</string>
+							<string key="candidateClassName">PentEmblem</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/PentagramViewController.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
