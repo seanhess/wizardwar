@@ -87,6 +87,7 @@ static CCAnimationCache *_sharedAnimationCache=nil;
 
 -(void) addAnimation:(CCAnimation*)animation name:(NSString*)name
 {
+//    NSLog(@"ANIMATION %@ %@", name, animation);
 	[_animations setObject:animation forKey:name];
 }
 

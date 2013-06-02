@@ -23,18 +23,30 @@
 
 @implementation WizardSprite
 
++(void)loadSprites {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSLog(@"LOAD WIZARD SPRITES");
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard2.plist"];
+        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"wizard2-animation.plist"];
+        
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard1.plist"];
+        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"wizard1-animation.plist"];
+    });
+}
+
+
 -(id)initWithPlayer:(Player *)player units:(Units *)units {
     if ((self=[super init])) {
         self.player = player;
         self.units = units;
         
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard2.plist"];
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard1.plist"];
+        [WizardSprite loadSprites];
         
         self.spriteSheet = [CCSpriteBatchNode batchNodeWithFile:[NSString stringWithFormat:@"%@.png", self.wizardSheetName]];
         [self addChild:self.spriteSheet];
         
-        self.skin = [CCSprite spriteWithSpriteFrameName:self.currentWizardImage];
+        self.skin = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"%@.png", self.stateAnimationName]];
         [self.spriteSheet addChild:self.skin];
         
 //        self.label = [CCLabelTTF labelWithString:player.name fontName:@"Marker Felt" fontSize:18];
@@ -62,12 +74,28 @@
 }
 
 -(void)renderStatus {
-    // all wizard sprites should face the same direction
-    NSString * imageName = self.currentWizardImage;
+    NSString * imageName = [NSString stringWithFormat:@"%@.png", self.stateAnimationName];
     [self.skin setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:imageName]];
+    [self.skin runAction:self.stateAction];
 }
 
--(NSString*)currentWizardImage {
+-(CCAction*)stateAction {
+    CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:self.stateAnimationName];
+    animation.restoreOriginalFrame = NO;
+//    animation.delayPerUnit = 0.5;
+    
+    CCActionInterval * actionInterval = [CCAnimate actionWithAnimation:animation];
+    CCAction * action = actionInterval;
+    
+    // only repeat ready?
+//    if (self.player.state == PlayerStateReady) {
+//        action = [CCRepeatForever actionWithAction:actionInterval];
+//    }
+    
+    return action;
+}
+
+-(NSString*)stateAnimationName {
     NSString * stateName = @"prepare";
     
     if (self.player.state == PlayerStateCast)
@@ -79,7 +107,7 @@
     else if(self.player.state == PlayerStateDead)
         stateName = @"dead";
     
-    return [NSString stringWithFormat:@"%@-%@.png", self.wizardSheetName, stateName];
+    return [NSString stringWithFormat:@"%@-%@", self.wizardSheetName, stateName];
 }
 
 -(NSString*)wizardSheetName {

@@ -27,12 +27,10 @@
 
 @implementation SpellSprite
 
-
--(id)initWithSpell:(Spell*)spell units:(Units *)units {
-    if ((self=[super init])) {
-        self.spell = spell;
-        self.units = units;
-        
++(void)loadSprites {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSLog(@"LOAD SPELL SPRITES");
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"explode.plist"];
         [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"explode-animation.plist"];
         
@@ -55,14 +53,22 @@
         [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"icewall-animation.plist"];
         
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"windblast.plist"];
-        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"windblast-animation.plist"];
+        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"windblast-animation.plist"];        
+    });
+}
+
+
+-(id)initWithSpell:(Spell*)spell units:(Units *)units {
+    if ((self=[super init])) {
+        self.spell = spell;
+        self.units = units;
         
-        
+        [SpellSprite loadSprites];
         
         self.sheet = [CCSpriteBatchNode batchNodeWithFile:[NSString stringWithFormat:@"%@.png", self.sheetName]];
         [self addChild:self.sheet];
         
-        self.skin = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"%@-1", self.sheetName]];
+        self.skin = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"%@-1.png", self.sheetName]];
         [self.skin runAction:self.spellAction];
         [self.sheet addChild:self.skin];
         

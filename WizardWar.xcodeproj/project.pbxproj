@@ -92,6 +92,8 @@
 		78F09BCF175AE45200BA775E /* vine.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F09BCC175AE45200BA775E /* vine.png */; };
 		78F09BD2175AE45800BA775E /* vine-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78F09BD0175AE45800BA775E /* vine-hd.plist */; };
 		78F09BD3175AE45800BA775E /* vine-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F09BD1175AE45800BA775E /* vine-hd.png */; };
+		78F09BD5175AE5E100BA775E /* wizard1-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78F09BD4175AE5E100BA775E /* wizard1-animation.plist */; };
+		78F09BD7175AE5E800BA775E /* wizard2-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78F09BD6175AE5E800BA775E /* wizard2-animation.plist */; };
 		78F193E2174715A700BB8587 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F193E1174715A700BB8587 /* Default-568h@2x.png */; };
 		78F193E4174715B100BB8587 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F193E3174715B100BB8587 /* Default.png */; };
 		78F193E6174715B500BB8587 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F193E5174715B500BB8587 /* Default@2x.png */; };
@@ -378,6 +380,8 @@
 		78F09BCC175AE45200BA775E /* vine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vine.png; path = vine/vine.png; sourceTree = "<group>"; };
 		78F09BD0175AE45800BA775E /* vine-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "vine-hd.plist"; path = "vine-hd/vine-hd.plist"; sourceTree = "<group>"; };
 		78F09BD1175AE45800BA775E /* vine-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "vine-hd.png"; path = "vine-hd/vine-hd.png"; sourceTree = "<group>"; };
+		78F09BD4175AE5E100BA775E /* wizard1-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "wizard1-animation.plist"; path = "wizard1/wizard1-animation.plist"; sourceTree = "<group>"; };
+		78F09BD6175AE5E800BA775E /* wizard2-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "wizard2-animation.plist"; path = "wizard2/wizard2-animation.plist"; sourceTree = "<group>"; };
 		78F193E1174715A700BB8587 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		78F193E3174715B100BB8587 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		78F193E5174715B500BB8587 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -887,10 +891,12 @@
 				6F0FEF5E1747FA720028FE71 /* wizard-lobby@2x.png */,
 				7837F1691749B9CF00D29445 /* navbar-logo.png */,
 				7837F16A1749B9CF00D29445 /* navbar-logo@2x.png */,
+				78F09BD4175AE5E100BA775E /* wizard1-animation.plist */,
 				78ABA89E175A730A003D2F23 /* wizard1.plist */,
 				78ABA89F175A730B003D2F23 /* wizard1.png */,
 				78ABA8A3175A7312003D2F23 /* wizard1-hd.plist */,
 				78ABA8A4175A7313003D2F23 /* wizard1-hd.png */,
+				78F09BD6175AE5E800BA775E /* wizard2-animation.plist */,
 				78ABA8A8175A7321003D2F23 /* wizard2.plist */,
 				78ABA8A9175A7322003D2F23 /* wizard2.png */,
 				78ABA8AD175A7330003D2F23 /* wizard2-hd.plist */,
@@ -1574,6 +1580,8 @@
 				78F09BCF175AE45200BA775E /* vine.png in Resources */,
 				78F09BD2175AE45800BA775E /* vine-hd.plist in Resources */,
 				78F09BD3175AE45800BA775E /* vine-hd.png in Resources */,
+				78F09BD5175AE5E100BA775E /* wizard1-animation.plist in Resources */,
+				78F09BD7175AE5E800BA775E /* wizard2-animation.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

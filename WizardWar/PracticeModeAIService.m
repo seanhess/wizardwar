@@ -34,8 +34,6 @@
 }
 
 -(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
-    return;
-    
     // interval is seconds per tick
     float ticksPerSecond = 1/interval;
     NSInteger castTickInterval = 3*ticksPerSecond;
