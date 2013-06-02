@@ -113,7 +113,7 @@
 
 - (void)renderWallStrength {
     if (![self isWall:self.spell]) return;
-    NSString * frameName = [NSString stringWithFormat:@"%@-%i", self.sheetName, (self.spell.strength+1)];
+    NSString * frameName = [NSString stringWithFormat:@"%@-%i.png", self.sheetName, (self.spell.strength+1)];
     [self.skin setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
 }
 
@@ -159,7 +159,7 @@
 }
 
 -(CCAction*)spellAction {
-    CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:self.sheetName];
+    CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:self.castAnimationName];
     animation.restoreOriginalFrame = NO;
     
     CCActionInterval * actionInterval = [CCAnimate actionWithAnimation:animation];
@@ -170,6 +170,10 @@
     }
     
     return action;
+}
+
+-(NSString*)castAnimationName {
+    return [NSString stringWithFormat:@"%@-cast", self.sheetName];
 }
 
 -(CCAction*)explodeAction {

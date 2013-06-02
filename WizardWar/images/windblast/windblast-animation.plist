@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+	<key>animations</key>
+	<dict>
+		<key>windblast-cast</key>
+		<dict>
+			<key>delay</key>
+			<real>0.166</real>
+			<key>frames</key>
+			<array>
+				<string>windblast-1.png</string>
+				<string>windblast-2.png</string>
+				<string>windblast-3.png</string>
+				<string>windblast-4.png</string>
+			</array>
+		</dict>
+	</dict>
+	</dict>
+</plist>

@@ -58,7 +58,7 @@
 -(void)renderPosition {
     self.position = ccp([self.units toX:self.player.position], self.units.zeroY);
     
-    self.skin.flipX = (self.player.position == UNITS_MIN && [self.player.wizardType isEqualToString:WIZARD_TYPE_ONE]) || (self.player.position == UNITS_MAX && [self.player.wizardType isEqualToString:WIZARD_TYPE_TWO]);
+    self.skin.flipX = (self.player.position == UNITS_MAX);
 }
 
 -(void)renderStatus {
@@ -79,7 +79,7 @@
     else if(self.player.state == PlayerStateDead)
         stateName = @"dead";
     
-    return [NSString stringWithFormat:@"%@-%@", self.wizardSheetName, stateName];
+    return [NSString stringWithFormat:@"%@-%@.png", self.wizardSheetName, stateName];
 }
 
 -(NSString*)wizardSheetName {

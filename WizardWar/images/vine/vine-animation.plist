@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+	<key>animations</key>
+	<dict>
+		<key>vine-cast</key>
+		<dict>
+			<key>delay</key>
+			<real>0.166</real>
+			<key>frames</key>
+			<array>
+				<string>vine-1.png</string>
+				<string>vine-2.png</string>
+				<string>vine-3.png</string>
+				<string>vine-4.png</string>
+				<string>vine-5.png</string>
+				<string>vine-6.png</string>
+				<string>vine-7.png</string>
+				<string>vine-8.png</string>
+				<string>vine-9.png</string>
+				<string>vine-10.png</string>
+				<string>vine-9.png</string>
+				<string>vine-10.png</string>
+				<string>vine-9.png</string>
+				<string>vine-10.png</string>
+				<string>vine-9.png</string>
+				<string>vine-10.png</string>
+				<string>vine-9.png</string>
+			</array>
+		</dict>
+	</dict>
+	</dict>
+</plist>
