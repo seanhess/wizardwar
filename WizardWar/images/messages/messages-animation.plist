@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+	<key>animations</key>
+	<dict>
+		<key>msg-you-won</key>
+		<dict>
+			<key>delay</key>
+			<real>0.066</real>
+			<key>frames</key>
+			<array>
+				<string>msg-you-won.png</string>
+			</array>
+		</dict>
+		<key>msg-you-lose</key>
+		<dict>
+			<key>delay</key>
+			<real>0.066</real>
+			<key>frames</key>
+			<array>
+				<string>msg-you-lose.png</string>
+			</array>
+		</dict>
+		<key>msg-ready</key>
+		<dict>
+			<key>delay</key>
+			<real>0.066</real>
+			<key>frames</key>
+			<array>
+				<string>msg-ready.png</string>
+			</array>
+		</dict>
+		<key>msg-war</key>
+		<dict>
+			<key>delay</key>
+			<real>0.066</real>
+			<key>frames</key>
+			<array>
+				<string>msg-war.png</string>
+			</array>
+		</dict>
+	</dict>
+	</dict>
+</plist>
