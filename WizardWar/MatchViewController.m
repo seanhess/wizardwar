@@ -54,18 +54,22 @@
     
     [self playMusic];
     
-    
-    self.combos = [Combos new];
-    
-    
-    // Add the director's view to us
     CCDirectorIOS * director = [WizardDirector shared];
     [self.cocosView addSubview:director.view];
+    
+    
+    self.combos = [Combos new];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    // Add the director's view to us
+
+    CCDirectorIOS * director = [WizardDirector shared];
     director.view.frame = self.cocosView.bounds;
-    MatchLayer * matchLayer = [[MatchLayer alloc] initWithMatch:self.match size:self.cocosView.bounds.size];
+    MatchLayer * matchLayer = [[MatchLayer alloc] initWithMatch:self.match size:self.view.bounds.size];
     [WizardDirector runLayer:matchLayer];
     
-    [self renderMatchStatus];
+    [self renderMatchStatus];    
 }
 
 - (void)connectToMatchWithId:(NSString*)matchId currentPlayer:(Player*)player withAI:(Player*)ai {
