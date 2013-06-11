@@ -17,6 +17,7 @@
 #import "SpellWindblast.h"
 #import "SpellInvisibility.h"
 #import "SpellFirewall.h"
+#import "SpellFist.h"
 #import <ReactiveCocoa.h>
 
 @interface SpellSprite ()
@@ -25,6 +26,7 @@
 @property (nonatomic, strong) CCSpriteBatchNode * sheet;
 @property (nonatomic, strong) CCAction * action;
 @property (nonatomic, strong) CCSpriteBatchNode * explosion;
+@property (nonatomic) NSInteger currentAltitude;
 @end
 
 @implementation SpellSprite
@@ -71,14 +73,14 @@
         
         [SpellSprite loadSprites];
         
-        if ([spell isType:[SpellFirewall class]]) {
-            self.skin = [CCSprite spriteWithFile:@"firewall.png"];
+        // STATIC sprites
+        if ([spell isType:[SpellFirewall class]] || [spell isType:[SpellFist class]]) {
+            self.skin = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", self.sheetName]];
             [self addChild:self.skin];
         }
-        
-        else {
 
-            // ANIMATED spells
+        // ANIMATED sprites
+        else {
             self.sheet = [CCSpriteBatchNode batchNodeWithFile:[NSString stringWithFormat:@"%@.png", self.sheetName]];
             [self addChild:self.sheet];
             
@@ -90,7 +92,7 @@
         
         
         
-        
+        // TODO add a cool reduce thing to make sure they both get changed or something
         
         [[RACAble(self.spell.position) distinctUntilChanged] subscribeNext:^(id x) {
             [self renderPosition];
@@ -108,6 +110,12 @@
         [[RACAble(self.spell.direction) distinctUntilChanged] subscribeNext:^(id x) {
             [self renderDirection];
         }];
+        
+        self.currentAltitude = self.spell.altitude;
+        [[RACAble(self.spell.altitude) distinctUntilChanged] subscribeNext:^(id x) {
+            [self renderAltitude];
+        }];
+
         
         
         [self renderPosition];
@@ -127,13 +135,31 @@
 }
 
 -(void)renderPosition {
-    CGFloat y = self.units.zeroY;
+    self.position = ccp(self.spellX, self.spellY);
+}
+
+- (CGFloat)spellY {
+    CGFloat y = self.units.zeroY + (75 * self.spell.altitude);
     if ([self isWall:self.spell]) {
         // bump walls down
         y -= 25;
     }
+    return y;
+}
+
+- (CGFloat)spellX {
+    return [self.units toX:self.spell.position];
+}
+
+- (void)renderAltitude {
+    if (self.spell.altitude == 2) {
+
+    }
+    else if (self.spell.altitude == 1) {
+        [self runAction:[CCMoveTo actionWithDuration:1.0 position:ccp(self.spellX, self.units.zeroY)]];
+    }
     
-    self.position = ccp([self.units toX:self.spell.position], y);
+    self.currentAltitude = self.spell.altitude;
 }
 
 - (void)renderWallStrength {
@@ -144,7 +170,6 @@
 
 - (void)renderStatus {
     self.skin.visible = (self.spell.status == SpellStatusActive || self.spell.status == SpellStatusPrepare);
-//    NSLog(@" - status=%i", self.spell.status);
     
     if (!self.explosion && self.spell.status == SpellStatusDestroyed) {
         self.explosion = [CCSpriteBatchNode batchNodeWithFile:@"explode.png"];
@@ -178,6 +203,14 @@
     
     else if ([self.spell isType:[SpellWindblast class]]) {
         return @"windblast";
+    }
+    
+    else if ([self.spell isType:[SpellFirewall class]]) {
+        return @"firewall";
+    }
+
+    else if ([self.spell isType:[SpellFist class]]) {
+        return @"fist";
     }
     
     return @"fireball";

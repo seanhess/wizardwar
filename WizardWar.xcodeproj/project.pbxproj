@@ -37,6 +37,9 @@
 		786246441767C95A001904AC /* SpellWall.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246431767C959001904AC /* SpellWall.m */; };
 		786246491767CC29001904AC /* firewall.png in Resources */ = {isa = PBXBuildFile; fileRef = 786246471767CC29001904AC /* firewall.png */; };
 		7862464A1767CC29001904AC /* firewall-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 786246481767CC29001904AC /* firewall-hd.png */; };
+		7862464D1767CF64001904AC /* SpellFist.m in Sources */ = {isa = PBXBuildFile; fileRef = 7862464C1767CF63001904AC /* SpellFist.m */; };
+		786246501767D05C001904AC /* fist-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 7862464E1767D05C001904AC /* fist-hd.png */; };
+		786246511767D05C001904AC /* fist.png in Resources */ = {isa = PBXBuildFile; fileRef = 7862464F1767D05C001904AC /* fist.png */; };
 		787A2A81174D2771004C4FDB /* MatchmakingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787A2A80174D2771004C4FDB /* MatchmakingViewController.xib */; };
 		787A2A85174E85E3004C4FDB /* FirebaseConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A2A84174E85E3004C4FDB /* FirebaseConnection.m */; };
 		787A2A91174E9FA3004C4FDB /* TestLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A2A90174E9FA3004C4FDB /* TestLayer.m */; };
@@ -330,6 +333,10 @@
 		786246431767C959001904AC /* SpellWall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellWall.m; sourceTree = "<group>"; };
 		786246471767CC29001904AC /* firewall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firewall.png; sourceTree = "<group>"; };
 		786246481767CC29001904AC /* firewall-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "firewall-hd.png"; sourceTree = "<group>"; };
+		7862464B1767CF62001904AC /* SpellFist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellFist.h; sourceTree = "<group>"; };
+		7862464C1767CF63001904AC /* SpellFist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellFist.m; sourceTree = "<group>"; };
+		7862464E1767D05C001904AC /* fist-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fist-hd.png"; sourceTree = "<group>"; };
+		7862464F1767D05C001904AC /* fist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fist.png; sourceTree = "<group>"; };
 		787A2A80174D2771004C4FDB /* MatchmakingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchmakingViewController.xib; sourceTree = "<group>"; };
 		787A2A83174E85E3004C4FDB /* FirebaseConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseConnection.h; sourceTree = "<group>"; };
 		787A2A84174E85E3004C4FDB /* FirebaseConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseConnection.m; sourceTree = "<group>"; };
@@ -851,6 +858,8 @@
 			children = (
 				786246471767CC29001904AC /* firewall.png */,
 				786246481767CC29001904AC /* firewall-hd.png */,
+				7862464E1767D05C001904AC /* fist-hd.png */,
+				7862464F1767D05C001904AC /* fist.png */,
 				78F09BBC175AE3EF00BA775E /* messages-hd.plist */,
 				78F09BBD175AE3EF00BA775E /* messages-hd.png */,
 				78F09BB6175AE3DD00BA775E /* messages-animation.plist */,
@@ -1443,6 +1452,8 @@
 				786246431767C959001904AC /* SpellWall.m */,
 				78F6B3CD1746E05E00AA070D /* SpellFireball.h */,
 				78F6B3CE1746E05E00AA070D /* SpellFireball.m */,
+				7862464B1767CF62001904AC /* SpellFist.h */,
+				7862464C1767CF63001904AC /* SpellFist.m */,
 				78F6B3D61746E6D000AA070D /* SpellEarthwall.h */,
 				78F6B3D71746E6D100AA070D /* SpellEarthwall.m */,
 				7862463F1767C8D2001904AC /* SpellFirewall.h */,
@@ -1625,6 +1636,8 @@
 				78F09BD7175AE5E800BA775E /* wizard2-animation.plist in Resources */,
 				786246491767CC29001904AC /* firewall.png in Resources */,
 				7862464A1767CC29001904AC /* firewall-hd.png in Resources */,
+				786246501767D05C001904AC /* fist-hd.png in Resources */,
+				786246511767D05C001904AC /* fist.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1818,6 +1831,7 @@
 				786246391767BF19001904AC /* EffectInvisible.m in Sources */,
 				786246411767C8D3001904AC /* SpellFirewall.m in Sources */,
 				786246441767C95A001904AC /* SpellWall.m in Sources */,
+				7862464D1767CF64001904AC /* SpellFist.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

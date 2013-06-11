@@ -38,6 +38,7 @@ typedef enum SpellStatus {
 @property (nonatomic) NSInteger updatedTick;
 @property (nonatomic) SpellStatus status;
 @property (nonatomic) NSString * creator;
+@property (nonatomic) NSInteger altitude; // how high it is. normal = 0;
 
 // how far away from the wizard should it start
 @property (nonatomic) float startOffsetPosition;

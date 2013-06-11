@@ -23,6 +23,7 @@
         self.strength = 1; // destroyed is read from this
         self.startOffsetPosition = 1;
         self.status = SpellStatusPrepare;
+        self.altitude = 0;
         
         self.spellId = [Spell generateSpellId];
     }
@@ -60,7 +61,7 @@
 }
 
 -(NSDictionary*)toObject {
-    return [self dictionaryWithValuesForKeys:@[@"speed", @"referencePosition", @"created", @"type", @"direction", @"createdTick", @"strength", @"status", @"updatedTick", @"target"]];
+    return [self dictionaryWithValuesForKeys:@[@"speed", @"referencePosition", @"created", @"type", @"direction", @"createdTick", @"strength", @"status", @"updatedTick"]];
 }
 
 -(void)setPositionFromPlayer:(Player*)player {
@@ -108,10 +109,10 @@
     // plus, can't reflect :)
     
     if (player.isFirstPlayer) {
-        return self.position <= player.position;
+        return self.altitude == player.altitude && self.position <= player.position;
     }
     else {
-        return self.position >= player.position;
+        return self.altitude == player.altitude && self.position >= player.position;
     }
 }
 
