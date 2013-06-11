@@ -78,7 +78,10 @@
     if (ai) { }
     else {
         MultiplayerService * mp = [MultiplayerService new];
-        mp.simulatedLatency = 0.0;
+#if DEBUG
+        mp.simulatedLatency = 0.5;
+        NSLog(@"*** SIMULATED LATENCY *** %f", mp.simulatedLatency);
+#endif
         multiplayer = mp;
         sync = [TimerSyncService new];
     }

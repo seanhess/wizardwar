@@ -26,6 +26,8 @@
 #import "PracticeModeAIService.h"
 #import "Tick.h"
 
+#define CLEANUP_TICKS 50 // 10 is 1 second
+
 // sync spells to the server every N seconds
 @interface Match () <GameTimerDelegate, MultiplayerDelegate, TimerSyncDelegate, AIDelegate>
 
@@ -206,30 +208,20 @@
 -(void)simulateTick:(NSInteger)currentTick {
     
     NSArray * updatedSpells = [self.spells.allValues filter:^BOOL(Spell * spell) {
-        return (spell.status == SpellStatusActive && spell.updatedTick >= currentTick);
+        return (spell.status == SpellStatusUpdated);
     }];
     
-    // NEW SPELLS
     NSArray * newSpells = [self.spells.allValues filter:^BOOL(Spell *spell) {
         return spell.status == SpellStatusPrepare;
     }];
 
-    
     [updatedSpells forEach:^(Spell * spell) {
-        NSInteger tickDifference = currentTick - spell.updatedTick;
-        if (tickDifference < 0) NSLog(@" SPELL (U) IN FUTURE");
-        spell.position = [spell moveFromReferencePosition:(tickDifference * self.timer.tickInterval)];
+        [self positionSpell:spell referenceTick:spell.updatedTick currentTick:currentTick];
     }];
-    
-    
     
     [newSpells forEach:^(Spell * spell) {
-        NSInteger tickDifference = currentTick - spell.createdTick;
-        if (tickDifference < 0) NSLog(@" SPELL (C) IN FUTURE");
-        spell.position = [spell moveFromReferencePosition:(tickDifference * self.timer.tickInterval)];
-        spell.status = SpellStatusActive;
+        [self positionSpell:spell referenceTick:spell.createdTick currentTick:currentTick];
     }];
-    
     
     // run the simulation
     // try to simulate EVERYTHING, but allow yourself to be corrected by owner
@@ -243,6 +235,13 @@
     }
     
     [self cleanupDestroyed];
+}
+
+-(void)positionSpell:(Spell*)spell referenceTick:(NSInteger)referenceTick currentTick:(NSInteger)currentTick {
+    NSInteger tickDifference = currentTick - referenceTick;
+    if (tickDifference < 0) NSLog(@" SPELL IN FUTURE");
+    spell.position = [spell moveFromReferencePosition:(tickDifference * self.timer.tickInterval)];
+    spell.status = SpellStatusActive;    
 }
 
 -(void)checkHits {
@@ -293,6 +292,7 @@
 
 // Spells close to you are the ones you "own" in multiplayer
 -(BOOL)isSpellClose:(Spell*)spell {
+//    NSLog(@" - isSpellClose pos=%i play=%i mid=%f", (int)spell.position, self.currentPlayer.isFirstPlayer, UNITS_MID);
     if (self.currentPlayer.isFirstPlayer) {
         return (spell.position < UNITS_MID);
     }
@@ -374,6 +374,7 @@
 }
 
 -(void)destroySpell:(Spell*)spell {
+//    NSLog(@" - destroySpell %@", spell);
     spell.status = SpellStatusDestroyed;
     spell.updatedTick = self.timer.nextTick;
     if ([self isSpellClose:spell])
@@ -381,6 +382,8 @@
 }
 
 -(void)modifySpell:(Spell*)spell {
+//    NSLog(@" - modifySpell %@ close=%i", spell, [self isSpellClose:spell]);
+    spell.status = SpellStatusUpdated;
     spell.updatedTick = self.timer.nextTick;
     spell.referencePosition = spell.position;
 

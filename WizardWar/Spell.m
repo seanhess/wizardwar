@@ -62,7 +62,7 @@
 }
 
 -(NSString*)description {
-    return [NSString stringWithFormat:@"%@ pos=%i", super.description, (int)self.position];
+    return [NSString stringWithFormat:@"<%@ pos=%i dir=%i status=%i>", self.type, (int)self.position, self.direction, self.status];
 }
 
 -(BOOL)isType:(Class)class {

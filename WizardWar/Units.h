@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-#define UNITS_MIN 0
-#define UNITS_MAX 100
-#define UNITS_DISTANCE UNITS_MAX-UNITS_MIN
-#define UNITS_MID UNITS_DISTANCE/2
+#define UNITS_MIN 0.0
+#define UNITS_MAX 100.0
+#define UNITS_DISTANCE (UNITS_MAX-UNITS_MIN)
+#define UNITS_MID (UNITS_DISTANCE/2.0)
 
 @interface Units : NSObject
 -(id)initWithZeroY:(CGFloat)zeroY min:(CGFloat)min max:(CGFloat)max;

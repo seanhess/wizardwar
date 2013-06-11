@@ -20,6 +20,7 @@ typedef enum SpellStatus {
     SpellStatusPrepare,
     SpellStatusActive,
     SpellStatusDestroyed,
+    SpellStatusUpdated,
 } SpellStatus;
 
 
