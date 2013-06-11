@@ -1,13 +1,13 @@
 //
-//  SpellIcewall.h
+//  SpellFirewall.h
 //  WizardWar
 //
-//  Created by Sean Hess on 5/18/13.
+//  Created by Sean Hess on 6/11/13.
 //  Copyright (c) 2013 The LAB. All rights reserved.
 //
 
 #import "SpellWall.h"
 
-@interface SpellIcewall : SpellWall
+@interface SpellFirewall : SpellWall
 
 @end

@@ -17,14 +17,6 @@
 
 @implementation SpellIcewall
 
--(id)init {
-    if ((self=[super init])) {
-        self.speed = 0;
-        self.startOffsetPosition = 15;
-    }
-    return self;
-}
-
 -(SpellInteraction *)interactSpell:(Spell *)spell {
     if ([spell isType:[SpellMonster class]]) {
         return [SpellInteraction cancel];
@@ -34,9 +26,8 @@
         return [SpellInteraction cancel];
     }
     
-    else if ([spell isType:[SpellEarthwall class]] || [spell isType:[SpellIcewall class]]) {
-        if (self.created < spell.created) // if older
-            return [SpellInteraction cancel];
+    else if ([self isNewerWall:spell]) {
+        return [SpellInteraction cancel];
     }
     
     return [SpellInteraction nothing];

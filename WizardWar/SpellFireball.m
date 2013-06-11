@@ -22,6 +22,7 @@
     return self;
 }
 
+
 -(SpellInteraction*)interactSpell:(Spell*)spell {
     
     if ([spell isType:[SpellEarthwall class]]) {

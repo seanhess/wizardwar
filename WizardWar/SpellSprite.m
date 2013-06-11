@@ -16,6 +16,7 @@
 #import "SpellIcewall.h"
 #import "SpellWindblast.h"
 #import "SpellInvisibility.h"
+#import "SpellFirewall.h"
 #import <ReactiveCocoa.h>
 
 @interface SpellSprite ()
@@ -70,12 +71,25 @@
         
         [SpellSprite loadSprites];
         
-        self.sheet = [CCSpriteBatchNode batchNodeWithFile:[NSString stringWithFormat:@"%@.png", self.sheetName]];
-        [self addChild:self.sheet];
+        if ([spell isType:[SpellFirewall class]]) {
+            self.skin = [CCSprite spriteWithFile:@"firewall.png"];
+            [self addChild:self.skin];
+        }
         
-        self.skin = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"%@-1.png", self.sheetName]];
-        [self.skin runAction:self.spellAction];
-        [self.sheet addChild:self.skin];
+        else {
+
+            // ANIMATED spells
+            self.sheet = [CCSpriteBatchNode batchNodeWithFile:[NSString stringWithFormat:@"%@.png", self.sheetName]];
+            [self addChild:self.sheet];
+            
+            self.skin = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"%@-1.png", self.sheetName]];
+            [self.skin runAction:self.spellAction];
+            [self.sheet addChild:self.skin];            
+        }
+        
+        
+        
+        
         
         
         [[RACAble(self.spell.position) distinctUntilChanged] subscribeNext:^(id x) {

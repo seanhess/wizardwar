@@ -33,7 +33,10 @@
 		786246321767B790001904AC /* SpellInvisibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246311767B790001904AC /* SpellInvisibility.m */; };
 		786246351767BE47001904AC /* Effect.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246341767BE47001904AC /* Effect.m */; };
 		786246391767BF19001904AC /* EffectInvisible.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246381767BF19001904AC /* EffectInvisible.m */; };
-		7862463E1767C7A0001904AC /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7862463D1767C79F001904AC /* README.md */; };
+		786246411767C8D3001904AC /* SpellFirewall.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246401767C8D3001904AC /* SpellFirewall.m */; };
+		786246441767C95A001904AC /* SpellWall.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246431767C959001904AC /* SpellWall.m */; };
+		786246491767CC29001904AC /* firewall.png in Resources */ = {isa = PBXBuildFile; fileRef = 786246471767CC29001904AC /* firewall.png */; };
+		7862464A1767CC29001904AC /* firewall-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 786246481767CC29001904AC /* firewall-hd.png */; };
 		787A2A81174D2771004C4FDB /* MatchmakingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787A2A80174D2771004C4FDB /* MatchmakingViewController.xib */; };
 		787A2A85174E85E3004C4FDB /* FirebaseConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A2A84174E85E3004C4FDB /* FirebaseConnection.m */; };
 		787A2A91174E9FA3004C4FDB /* TestLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A2A90174E9FA3004C4FDB /* TestLayer.m */; };
@@ -321,6 +324,12 @@
 		786246371767BF19001904AC /* EffectInvisible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectInvisible.h; sourceTree = "<group>"; };
 		786246381767BF19001904AC /* EffectInvisible.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectInvisible.m; sourceTree = "<group>"; };
 		7862463D1767C79F001904AC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		7862463F1767C8D2001904AC /* SpellFirewall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellFirewall.h; sourceTree = "<group>"; };
+		786246401767C8D3001904AC /* SpellFirewall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellFirewall.m; sourceTree = "<group>"; };
+		786246421767C959001904AC /* SpellWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellWall.h; sourceTree = "<group>"; };
+		786246431767C959001904AC /* SpellWall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellWall.m; sourceTree = "<group>"; };
+		786246471767CC29001904AC /* firewall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firewall.png; sourceTree = "<group>"; };
+		786246481767CC29001904AC /* firewall-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "firewall-hd.png"; sourceTree = "<group>"; };
 		787A2A80174D2771004C4FDB /* MatchmakingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchmakingViewController.xib; sourceTree = "<group>"; };
 		787A2A83174E85E3004C4FDB /* FirebaseConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseConnection.h; sourceTree = "<group>"; };
 		787A2A84174E85E3004C4FDB /* FirebaseConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseConnection.m; sourceTree = "<group>"; };
@@ -840,6 +849,8 @@
 		78F193E717471A0E00BB8587 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				786246471767CC29001904AC /* firewall.png */,
+				786246481767CC29001904AC /* firewall-hd.png */,
 				78F09BBC175AE3EF00BA775E /* messages-hd.plist */,
 				78F09BBD175AE3EF00BA775E /* messages-hd.png */,
 				78F09BB6175AE3DD00BA775E /* messages-animation.plist */,
@@ -1428,10 +1439,14 @@
 				78F6B3A11746B25F00AA070D /* Spell.m */,
 				78F6B3D01746E2E000AA070D /* SpellInteraction.h */,
 				78F6B3D11746E2E000AA070D /* SpellInteraction.m */,
+				786246421767C959001904AC /* SpellWall.h */,
+				786246431767C959001904AC /* SpellWall.m */,
 				78F6B3CD1746E05E00AA070D /* SpellFireball.h */,
 				78F6B3CE1746E05E00AA070D /* SpellFireball.m */,
 				78F6B3D61746E6D000AA070D /* SpellEarthwall.h */,
 				78F6B3D71746E6D100AA070D /* SpellEarthwall.m */,
+				7862463F1767C8D2001904AC /* SpellFirewall.h */,
+				786246401767C8D3001904AC /* SpellFirewall.m */,
 				78F195071747FE4200BB8587 /* SpellBubble.h */,
 				78F195081747FE4200BB8587 /* SpellBubble.m */,
 				78F1950A1747FE7E00BB8587 /* SpellIcewall.h */,
@@ -1608,7 +1623,8 @@
 				78F09BD3175AE45800BA775E /* vine-hd.png in Resources */,
 				78F09BD5175AE5E100BA775E /* wizard1-animation.plist in Resources */,
 				78F09BD7175AE5E800BA775E /* wizard2-animation.plist in Resources */,
-				7862463E1767C7A0001904AC /* README.md in Resources */,
+				786246491767CC29001904AC /* firewall.png in Resources */,
+				7862464A1767CC29001904AC /* firewall-hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1800,6 +1816,8 @@
 				786246321767B790001904AC /* SpellInvisibility.m in Sources */,
 				786246351767BE47001904AC /* Effect.m in Sources */,
 				786246391767BF19001904AC /* EffectInvisible.m in Sources */,
+				786246411767C8D3001904AC /* SpellFirewall.m in Sources */,
+				786246441767C95A001904AC /* SpellWall.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

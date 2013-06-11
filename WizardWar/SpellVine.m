@@ -14,6 +14,7 @@
 #import "SpellVine.h"
 #import "SpellWindblast.h"
 #import "Tick.h"
+#import "SpellFirewall.h"
 
 @implementation SpellVine
 
@@ -26,6 +27,11 @@
 }
 
 -(SpellInteraction *)interactSpell:(Spell *)spell {
+
+    if ([spell isType:[SpellFirewall class]]) {
+        return [SpellInteraction cancel];
+    }
+    
     return [SpellInteraction nothing];
 }
 

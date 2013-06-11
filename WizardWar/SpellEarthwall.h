@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 The LAB. All rights reserved.
 //
 
-#import "Spell.h"
+#import "SpellWall.h"
 
-@interface SpellEarthwall : Spell
+@interface SpellEarthwall : SpellWall
 @end
