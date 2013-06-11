@@ -68,13 +68,13 @@
     
     // 4 combos
     hitCombos[@"AEFH_"] = [NSObject class];
-    hitCombos[@"AEF_W"] = [NSObject class];
+    hitCombos[@"AEF_W"] = [SpellVine class];
     hitCombos[@"AE_HW"] = [SpellFist class];
     hitCombos[@"A_FHW"] = [SpellInvisibility class];
     hitCombos[@"_EFHW"] = [SpellMonster class];
     
     // 5 combos
-    hitCombos[@"AEFHW"] = [SpellVine class];
+    hitCombos[@"AEFHW"] = [NSObject class];
     
     return hitCombos;
 }
