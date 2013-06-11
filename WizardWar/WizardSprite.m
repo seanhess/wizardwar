@@ -10,6 +10,8 @@
 #import "cocos2d.h"
 #import "CCLabelTTF.h"
 #import <ReactiveCocoa.h>
+#import "SpellInvisibility.h"
+#import "EffectInvisible.h"
 
 #define WIZARD_PADDING 20
 
@@ -63,6 +65,10 @@
         [[RACAble(self.player.state) distinctUntilChanged] subscribeNext:^(id x) {
             [self renderStatus];
         }];
+        
+        [[RACAble(self.player.effect) distinctUntilChanged] subscribeNext:^(id x) {
+            [self renderEffect];
+        }];
     }
     return self;
 }
@@ -79,6 +85,17 @@
     [self.skin runAction:self.stateAction];
 }
 
+- (void)renderEffect {
+    if ([self.player.effect class] == [EffectInvisible class]) {
+        NSLog(@"FADE BABY %f", self.player.effect.delay);
+        [self.skin runAction:[CCFadeTo actionWithDuration:self.player.effect.delay opacity:40]];
+    }
+    else {
+        [self.skin runAction:[CCFadeTo actionWithDuration:0.2 opacity:255]];
+    }
+}
+
+
 -(CCAction*)stateAction {
     CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:self.stateAnimationName];
     animation.restoreOriginalFrame = NO;
@@ -94,6 +111,7 @@
     
     return action;
 }
+
 
 -(NSString*)stateAnimationName {
     NSString * stateName = @"prepare";

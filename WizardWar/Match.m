@@ -271,7 +271,7 @@
 // this only matters
 - (void)cleanupDestroyed {
     NSArray * oldSpells = [self.spells.allValues filter:^BOOL(Spell * spell) {
-        return ((spell.status == SpellStatusDestroyed) && (spell.updatedTick < self.timer.nextTick-10));
+        return ((spell.status == SpellStatusDestroyed) && (spell.updatedTick < self.timer.nextTick-10)) || ((spell.status == SpellStatusActive && (spell.position < UNITS_MIN-UNITS_DISTANCE || spell.position > UNITS_MAX+UNITS_DISTANCE)));
     }];
     
     [oldSpells forEach:^(Spell * spell) {
@@ -302,15 +302,11 @@
 }
 
 -(void)hitPlayer:(Player*)player withSpell:(Spell*)spell {
-    // this allows it to subtract health
-    [spell interactPlayer:player];
-    spell.status = SpellStatusDestroyed;
-    spell.updatedTick = self.timer.nextTick;
+
+    SpellInteraction * interaction = [spell interactPlayer:player];
+    [self handleInteraction:interaction forSpell:spell];
     
-    // Only sync changes if owned spell and local player
-    if ([self isSpellClose:spell])
-        [self.multiplayer updateSpell:spell];
-    
+    // handle player sync / update / death check
     // only YOU can say you died
     if (player == self.currentPlayer || player == self.aiPlayer) {
         if (player.health == 0) {
@@ -401,18 +397,15 @@
 
 -(void)player:(Player*)player castSpell:(Spell*)spell {
     [player setState:PlayerStateCast animated:YES];
+    [player.effect playerDidCastSpell:player];
     
     // update spell
-    [spell setCreator:player.name];
-    [spell setPositionFromPlayer:player];
-    [spell setSpellId:[Spell generateSpellId]];
-    [spell setStatus:SpellStatusPrepare];
-    [spell setCreatedTick:self.timer.nextTick];
+    [spell initCaster:player tick:self.timer.nextTick];
     
     // sync
     [self addSpell:spell];
     [self.multiplayer addSpell:spell];
-    [self.multiplayer updatePlayer:player]; // new mana total
+    [self.multiplayer updatePlayer:player]; // new mana total?
 }
 
 

@@ -22,8 +22,21 @@
         self.speed = 30;
         self.strength = 1; // destroyed is read from this
         self.startOffsetPosition = 1;
+        self.status = SpellStatusPrepare;
+        
+        self.spellId = [Spell generateSpellId];
     }
     return self;
+}
+
++(NSString*)type {
+    return NSStringFromClass(self);
+}
+
+-(void)initCaster:(Player*)player tick:(NSInteger)tick {
+    self.creator = player.name;
+    self.createdTick = tick;
+    [self setPositionFromPlayer:player];
 }
 
 // then you also have to update the sprites BASED on this.
@@ -47,7 +60,7 @@
 }
 
 -(NSDictionary*)toObject {
-    return [self dictionaryWithValuesForKeys:@[@"speed", @"referencePosition", @"created", @"type", @"direction", @"createdTick", @"strength", @"status", @"updatedTick"]];
+    return [self dictionaryWithValuesForKeys:@[@"speed", @"referencePosition", @"created", @"type", @"direction", @"createdTick", @"strength", @"status", @"updatedTick", @"target"]];
 }
 
 -(void)setPositionFromPlayer:(Player*)player {
@@ -80,10 +93,12 @@
 }
 
 -(SpellInteraction*)interactPlayer:(Player*)player {
-    player.health -= self.damage;
-    if (self.damage > 0)
-        [player setState:PlayerStateHit animated:YES];
-    return nil;
+    if (player.effect) {
+        return [player.effect interactPlayer:player spell:self];        
+    }
+    else {
+        return [[Effect new] interactPlayer:player spell:self];
+    }
 }
 
 -(BOOL)hitsPlayer:(Player*)player duringInterval:(NSTimeInterval)dt {

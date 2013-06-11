@@ -14,7 +14,7 @@
 #import <Foundation/Foundation.h>
 #import "Player.h"
 #import "SpellInteraction.h"
-
+#import "Effect.h"
 
 typedef enum SpellStatus {
     SpellStatusPrepare,
@@ -39,19 +39,18 @@ typedef enum SpellStatus {
 @property (nonatomic) SpellStatus status;
 @property (nonatomic) NSString * creator;
 
-
-
 // how far away from the wizard should it start
 @property (nonatomic) float startOffsetPosition;
 
 -(void)update:(NSTimeInterval)dt;
--(void)setPositionFromPlayer:(Player*)player;
+-(void)initCaster:(Player*)player tick:(NSInteger)tick;
 -(BOOL)isType:(Class)class;
 -(SpellInteraction*)interactSpell:(Spell*)spell;
--(SpellInteraction*)interactPlayer:(Player*)spell; // ???
+-(SpellInteraction*)interactPlayer:(Player*)player;
 -(BOOL)hitsPlayer:(Player*)player duringInterval:(NSTimeInterval)dt;
 -(BOOL)hitsSpell:(Spell*)spell duringInterval:(NSTimeInterval)dt;
 +(Spell*)fromType:(NSString*)type;
++(NSString*)type;
 -(void)reflectFromSpell:(Spell*)spell;
 -(float)move:(NSTimeInterval)dt;
 -(float)moveFromReferencePosition:(NSTimeInterval)dt;

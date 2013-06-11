@@ -15,6 +15,7 @@
 #import "SpellBubble.h"
 #import "SpellIcewall.h"
 #import "SpellWindblast.h"
+#import "SpellInvisibility.h"
 #import <ReactiveCocoa.h>
 
 @interface SpellSprite ()
@@ -62,6 +63,10 @@
     if ((self=[super init])) {
         self.spell = spell;
         self.units = units;
+        
+        if ([spell isType:[SpellInvisibility class]]) {
+            return self;
+        }
         
         [SpellSprite loadSprites];
         

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Units.h"
 #import "Objectable.h"
+#import "Effect.h"
 
 #define WIZARD_TYPE_ONE @"1"
 #define WIZARD_TYPE_TWO @"2"
@@ -26,6 +27,7 @@ typedef enum PlayerState {
 @property (nonatomic) float position; // in units (not pixels)
 @property (nonatomic) NSInteger health;
 @property (nonatomic, strong) NSString * wizardType;
+@property (nonatomic, strong) Effect * effect; // current effect applied
 
 -(BOOL)isFirstPlayer;
 -(void)setState:(PlayerState)state animated:(BOOL)animated;

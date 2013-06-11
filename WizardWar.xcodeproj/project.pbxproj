@@ -30,6 +30,10 @@
 		7837D6B017540893001D820E /* PlayerTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7837D6AF17540893001D820E /* PlayerTime.m */; };
 		7837F16B1749B9D000D29445 /* navbar-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7837F1691749B9CF00D29445 /* navbar-logo.png */; };
 		7837F16C1749B9D000D29445 /* navbar-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7837F16A1749B9CF00D29445 /* navbar-logo@2x.png */; };
+		786246321767B790001904AC /* SpellInvisibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246311767B790001904AC /* SpellInvisibility.m */; };
+		786246351767BE47001904AC /* Effect.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246341767BE47001904AC /* Effect.m */; };
+		786246391767BF19001904AC /* EffectInvisible.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246381767BF19001904AC /* EffectInvisible.m */; };
+		7862463E1767C7A0001904AC /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7862463D1767C79F001904AC /* README.md */; };
 		787A2A81174D2771004C4FDB /* MatchmakingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787A2A80174D2771004C4FDB /* MatchmakingViewController.xib */; };
 		787A2A85174E85E3004C4FDB /* FirebaseConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A2A84174E85E3004C4FDB /* FirebaseConnection.m */; };
 		787A2A91174E9FA3004C4FDB /* TestLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A2A90174E9FA3004C4FDB /* TestLayer.m */; };
@@ -310,6 +314,13 @@
 		7837D6AF17540893001D820E /* PlayerTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerTime.m; sourceTree = "<group>"; };
 		7837F1691749B9CF00D29445 /* navbar-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar-logo.png"; sourceTree = "<group>"; };
 		7837F16A1749B9CF00D29445 /* navbar-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar-logo@2x.png"; sourceTree = "<group>"; };
+		786246301767B790001904AC /* SpellInvisibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellInvisibility.h; sourceTree = "<group>"; };
+		786246311767B790001904AC /* SpellInvisibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellInvisibility.m; sourceTree = "<group>"; };
+		786246331767BE47001904AC /* Effect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Effect.h; sourceTree = "<group>"; };
+		786246341767BE47001904AC /* Effect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Effect.m; sourceTree = "<group>"; };
+		786246371767BF19001904AC /* EffectInvisible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectInvisible.h; sourceTree = "<group>"; };
+		786246381767BF19001904AC /* EffectInvisible.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectInvisible.m; sourceTree = "<group>"; };
+		7862463D1767C79F001904AC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		787A2A80174D2771004C4FDB /* MatchmakingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchmakingViewController.xib; sourceTree = "<group>"; };
 		787A2A83174E85E3004C4FDB /* FirebaseConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseConnection.h; sourceTree = "<group>"; };
 		787A2A84174E85E3004C4FDB /* FirebaseConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseConnection.m; sourceTree = "<group>"; };
@@ -793,6 +804,17 @@
 			name = Pentagram;
 			sourceTree = "<group>";
 		};
+		786246361767BF0B001904AC /* Effects */ = {
+			isa = PBXGroup;
+			children = (
+				786246331767BE47001904AC /* Effect.h */,
+				786246341767BE47001904AC /* Effect.m */,
+				786246371767BF19001904AC /* EffectInvisible.h */,
+				786246381767BF19001904AC /* EffectInvisible.m */,
+			);
+			name = Effects;
+			sourceTree = "<group>";
+		};
 		787A2A82174E81AC004C4FDB /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -908,6 +930,7 @@
 		78F6B1DA1746AD8900AA070D = {
 			isa = PBXGroup;
 			children = (
+				7862463D1767C79F001904AC /* README.md */,
 				6F0367301747EB3C00971B61 /* Icon-57@2x.png */,
 				6F03672E1747EB3700971B61 /* Icon-57.png */,
 				78F193E5174715B500BB8587 /* Default@2x.png */,
@@ -1346,6 +1369,7 @@
 			isa = PBXGroup;
 			children = (
 				78F6B3CC1746E01200AA070D /* Spells */,
+				786246361767BF0B001904AC /* Effects */,
 				78F6B3A21746B25F00AA070D /* Match.h */,
 				78F6B3A31746B25F00AA070D /* Match.m */,
 				7837D6AE17540893001D820E /* PlayerTime.h */,
@@ -1418,6 +1442,8 @@
 				78F195111747FEA800BB8587 /* SpellVine.m */,
 				78F195131747FEB500BB8587 /* SpellWindblast.h */,
 				78F195141747FEB500BB8587 /* SpellWindblast.m */,
+				786246301767B790001904AC /* SpellInvisibility.h */,
+				786246311767B790001904AC /* SpellInvisibility.m */,
 			);
 			name = Spells;
 			sourceTree = "<group>";
@@ -1582,6 +1608,7 @@
 				78F09BD3175AE45800BA775E /* vine-hd.png in Resources */,
 				78F09BD5175AE5E100BA775E /* wizard1-animation.plist in Resources */,
 				78F09BD7175AE5E800BA775E /* wizard2-animation.plist in Resources */,
+				7862463E1767C7A0001904AC /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1770,6 +1797,9 @@
 				789BAB8417566CFE003C0116 /* TimerSyncService.m in Sources */,
 				78F97FDE1758F7F500764D70 /* PracticeModeAIService.m in Sources */,
 				78E8EA6A1759427E00017747 /* Combos.m in Sources */,
+				786246321767B790001904AC /* SpellInvisibility.m in Sources */,
+				786246351767BE47001904AC /* Effect.m in Sources */,
+				786246391767BF19001904AC /* EffectInvisible.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
