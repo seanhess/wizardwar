@@ -7,6 +7,7 @@
 //
 
 #import "SpellFist.h"
+#import "SpellHelmet.h"
 
 @implementation SpellFist
 
@@ -43,6 +44,11 @@
 }
 
 -(SpellInteraction*)interactSpell:(Spell*)spell {
+    
+    if ([spell isType:[SpellHelmet class]]) {
+        return [SpellInteraction cancel];
+    }
+    
     return [SpellInteraction nothing];
 }
 

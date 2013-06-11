@@ -18,6 +18,7 @@
 #import "SpellInvisibility.h"
 #import "SpellFirewall.h"
 #import "SpellFist.h"
+#import "SpellHelmet.h"
 #import <ReactiveCocoa.h>
 
 @interface SpellSprite ()
@@ -74,7 +75,7 @@
         [SpellSprite loadSprites];
         
         // STATIC sprites
-        if ([spell isType:[SpellFirewall class]] || [spell isType:[SpellFist class]]) {
+        if ([spell isType:[SpellFirewall class]] || [spell isType:[SpellFist class]] || [spell isType:[SpellHelmet class]]) {
             self.skin = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", self.sheetName]];
             [self addChild:self.skin];
         }
@@ -144,22 +145,34 @@
         // bump walls down
         y -= 25;
     }
+    
+    else if ([self.spell isType:[SpellHelmet class]]) {
+        y += 30;
+    }
+
     return y;
 }
 
 - (CGFloat)spellX {
-    return [self.units toX:self.spell.position];
-}
-
-- (void)renderAltitude {
-    if (self.spell.altitude == 2) {
-
-    }
-    else if (self.spell.altitude == 1) {
-        [self runAction:[CCMoveTo actionWithDuration:1.0 position:ccp(self.spellX, self.units.zeroY)]];
+    
+    CGFloat x = [self.units toX:self.spell.position];
+    
+    if ([self.spell isType:[SpellHelmet class]]) {
+        x -= 15*self.spell.direction;
     }
     
-    self.currentAltitude = self.spell.altitude;
+    return x;
+}
+
+- (void)renderAltitude { 
+    if ([self.spell isType:[SpellFist class]]) {
+        if (self.spell.altitude == 2) {
+            
+        }
+        else if (self.spell.altitude == 1) {
+            [self runAction:[CCMoveTo actionWithDuration:1.0 position:ccp(self.spellX, self.units.zeroY)]];
+        }        
+    }
 }
 
 - (void)renderWallStrength {
@@ -211,6 +224,10 @@
 
     else if ([self.spell isType:[SpellFist class]]) {
         return @"fist";
+    }
+    
+    else if ([self.spell isType:[SpellHelmet class]]) {
+        return @"helmet";
     }
     
     return @"fireball";

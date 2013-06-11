@@ -17,6 +17,7 @@
 #import "SpellInvisibility.h"
 #import "SpellFirewall.h"
 #import "SpellFist.h"
+#import "SpellHelmet.h"
 
 @interface Combos ()
 @property (strong, nonatomic) NSDictionary * hitCombos;
@@ -60,7 +61,7 @@
     hitCombos[@"A_FH_"] = [SpellFireball class];
     hitCombos[@"A_F_W"] = [SpellWindblast class];
     hitCombos[@"A__HW"] = [SpellBubble class];
-    hitCombos[@"_EFH_"] = [NSObject class];
+    hitCombos[@"_EFH_"] = [SpellHelmet class];
     hitCombos[@"_EF_W"] = [NSObject class];
     hitCombos[@"_E_HW"] = [SpellEarthwall class];
     hitCombos[@"__FHW"] = [NSObject class];
