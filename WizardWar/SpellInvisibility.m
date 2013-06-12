@@ -21,16 +21,7 @@
 
 -(Effect*)effect {
     Effect * effect = [EffectInvisible new];
-    effect.active = NO;
-    effect.delay = 1.0;
-    
-    // now wait for a bit
-    double delayInSeconds = effect.delay;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        effect.active = YES;
-    });
-    
+    [effect start];
     return effect;
 }
 

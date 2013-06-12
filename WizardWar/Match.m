@@ -220,6 +220,12 @@
     }];
     
     [newSpells forEach:^(Spell * spell) {
+        
+        Player * creator = [self.players.allValues find:^BOOL(Player* player) {
+            return [player.name isEqualToString:spell.creator];
+        }];
+        [creator.effect playerDidCastSpell:creator];
+
         Effect * effect = spell.effect;
         if (effect) [self createSpell:spell effect:effect];
         else [self positionSpell:spell referenceTick:spell.createdTick currentTick:currentTick];
@@ -246,6 +252,7 @@
     spell.status = SpellStatusActive;    
 }
 
+// does a spell automatically change the effect?
 -(void)createSpell:(Spell*)spell effect:(Effect*)effect {
     Player * player = [self.players.allValues min:^float(Player*player) {
         return fabsf(spell.position - player.position);
@@ -410,7 +417,6 @@
 
 -(void)player:(Player*)player castSpell:(Spell*)spell {
     [player setState:PlayerStateCast animated:YES];
-    [player.effect playerDidCastSpell:player];
     
     // update spell
     [spell initCaster:player tick:self.timer.nextTick];

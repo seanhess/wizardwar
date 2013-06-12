@@ -9,5 +9,4 @@
 #import "Effect.h"
 
 @interface EffectInvisible : Effect
-
 @end

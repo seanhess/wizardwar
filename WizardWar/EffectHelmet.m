@@ -11,9 +11,10 @@
 
 @implementation EffectHelmet
 
+// effects need to be able to cancel the spells themselves!
 -(SpellInteraction*)interactPlayer:(Player*)player spell:(Spell*)spell {
     if ([spell isType:[SpellFist class]]) {
-        return [SpellInteraction nothing];
+        return [SpellInteraction cancel];
     }
     else {
         return [super interactPlayer:player spell:spell];

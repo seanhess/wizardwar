@@ -12,6 +12,24 @@
 
 @implementation EffectInvisible
 
+-(id)init {
+    self = [super init];
+    if (self) {
+        self.active = NO;
+        self.delay = 1.0;
+    }
+    return self;
+}
+
+-(void)start {
+    // now wait for a bit
+    double delayInSeconds = self.delay;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        self.active = YES;
+    });
+}
+
 -(SpellInteraction*)interactPlayer:(Player*)player spell:(Spell*)spell {
     if (self.active && ![spell isType:[SpellFist class]]) {
         return [SpellInteraction nothing];
@@ -20,5 +38,10 @@
         return [super interactPlayer:player spell:spell];
     }
 }
+
+-(void)playerDidCastSpell:(Player*)player {
+    player.effect = nil;
+}
+
 
 @end

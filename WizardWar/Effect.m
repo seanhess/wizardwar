@@ -12,6 +12,17 @@
 
 @implementation Effect
 
+-(id)init {
+    self = [super init];
+    if (self) {
+        self.active = YES;
+        self.delay = 0;
+    }
+    return self;
+}
+
+-(void)start {}
+
 -(SpellInteraction*)interactPlayer:(Player*)player spell:(Spell*)spell {
     player.health -= spell.damage;
     if (spell.damage > 0)
@@ -21,7 +32,7 @@
 }
 
 -(void)playerDidCastSpell:(Player*)player {
-    player.effect = nil;
+
 }
 
 @end

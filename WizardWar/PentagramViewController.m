@@ -11,7 +11,7 @@
 #import "Elements.h"
 #import "NSArray+Functional.h"
 
-#define RECHARGE_INTERVAL 0.5
+#define RECHARGE_INTERVAL 0.7
 
 @interface PentagramViewController ()
 @property (weak, nonatomic) IBOutlet PentEmblem *windEmblem;

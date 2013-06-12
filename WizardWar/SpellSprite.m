@@ -68,7 +68,7 @@
         self.spell = spell;
         self.units = units;
         
-        if ([spell isType:[SpellInvisibility class]]) {
+        if ([spell isType:[SpellInvisibility class]] || [spell isType:[SpellHelmet class]]) {
             return self;
         }
         
@@ -123,6 +123,7 @@
         [self renderWallStrength];
         [self renderDirection];
         [self renderStatus];
+        [self renderAltitude];
     }
     return self;
 }
@@ -140,7 +141,7 @@
 }
 
 - (CGFloat)spellY {
-    CGFloat y = self.units.zeroY + (75 * self.spell.altitude);
+    CGFloat y = self.units.zeroY + 100*self.spell.altitude;
     if ([self isWall:self.spell]) {
         // bump walls down
         y -= 25;
@@ -167,10 +168,10 @@
 - (void)renderAltitude { 
     if ([self.spell isType:[SpellFist class]]) {
         if (self.spell.altitude == 2) {
-            
+
         }
         else if (self.spell.altitude == 1) {
-            [self runAction:[CCMoveTo actionWithDuration:1.0 position:ccp(self.spellX, self.units.zeroY)]];
+            [self runAction:[CCMoveTo actionWithDuration:1.0 position:ccp(self.spellX, self.units.zeroY + 120)]];
         }        
     }
 }

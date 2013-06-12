@@ -16,6 +16,7 @@
 @property (nonatomic) BOOL active;
 @property (nonatomic) NSTimeInterval delay; // how long it takes to active
 
+-(void)start;
 -(SpellInteraction*)interactPlayer:(Player*)player spell:(Spell*)spell;
 -(void)playerDidCastSpell:(Player*)player;
 

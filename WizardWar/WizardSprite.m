@@ -12,6 +12,7 @@
 #import <ReactiveCocoa.h>
 #import "SpellInvisibility.h"
 #import "EffectInvisible.h"
+#import "EffectHelmet.h"
 
 #define WIZARD_PADDING 20
 
@@ -21,6 +22,7 @@
 @property (nonatomic, strong) CCLabelTTF * label;
 @property (nonatomic, strong) CCSpriteBatchNode * spriteSheet;
 @property (nonatomic, strong) CCSprite * skin;
+@property (nonatomic, strong) CCSprite * effect;
 @end
 
 @implementation WizardSprite
@@ -86,12 +88,26 @@
 }
 
 - (void)renderEffect {
+    
+    if (self.effect) {
+        [self removeChild:self.effect];
+    }
+    
+    // set opactiy based on invisible
     if ([self.player.effect class] == [EffectInvisible class]) {
         NSLog(@"FADE BABY %f", self.player.effect.delay);
         [self.skin runAction:[CCFadeTo actionWithDuration:self.player.effect.delay opacity:40]];
     }
     else {
         [self.skin runAction:[CCFadeTo actionWithDuration:0.2 opacity:255]];
+    }
+    
+    NSLog(@"RENDER EFFECT YO %@", self.player.effect);
+    if ([self.player.effect class] == [EffectHelmet class]) {
+        self.effect = [CCSprite spriteWithFile:@"helmet.png"];
+        self.effect.position = ccp(-15, 100);
+        self.effect.flipX = self.player.position == UNITS_MAX;
+        [self addChild:self.effect];
     }
 }
 
