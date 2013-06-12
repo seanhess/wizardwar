@@ -77,7 +77,7 @@
 }
 
 - (void)addSpell:(Spell*)spell {
-    spell.position = spell.referencePosition;    
+    spell.position = spell.referencePosition;
     [self.spells setObject:spell forKey:spell.spellId];
     [self.delegate didAddSpell:spell];
 }
@@ -220,7 +220,9 @@
     }];
     
     [newSpells forEach:^(Spell * spell) {
-        [self positionSpell:spell referenceTick:spell.createdTick currentTick:currentTick];
+        Effect * effect = spell.effect;
+        if (effect) [self createSpell:spell effect:effect];
+        else [self positionSpell:spell referenceTick:spell.createdTick currentTick:currentTick];
     }];
     
     // run the simulation
@@ -242,6 +244,17 @@
     if (tickDifference < 0) NSLog(@" SPELL IN FUTURE");
     spell.position = [spell moveFromReferencePosition:(tickDifference * self.timer.tickInterval)];
     spell.status = SpellStatusActive;    
+}
+
+-(void)createSpell:(Spell*)spell effect:(Effect*)effect {
+    Player * player = [self.players.allValues min:^float(Player*player) {
+        return fabsf(spell.position - player.position);
+    }];
+    
+    spell.updatedTick = self.timer.nextTick;
+    spell.status = SpellStatusDestroyed;
+    
+    player.effect = effect;
 }
 
 -(void)checkHits {

@@ -341,7 +341,7 @@
 -(void)startPracticeGame {
     NSString * matchID = [NSString stringWithFormat:@"%i", arc4random()];
     Player * ai = [Player new];
-    ai.name = @"zzzai";
+    ai.name = @"aaaai";
     ai.wizardType = [Player randomWizardType];
     [self startGameWithMatchId:matchID player:self.currentPlayer withAI:ai];
 }

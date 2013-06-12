@@ -1,19 +1,18 @@
 //
-//  EffectInvisible.m
+//  EffectHelmet.m
 //  WizardWar
 //
 //  Created by Sean Hess on 6/11/13.
 //  Copyright (c) 2013 The LAB. All rights reserved.
 //
 
-#import "EffectInvisible.h"
-#import "Spell.h"
+#import "EffectHelmet.h"
 #import "SpellFist.h"
 
-@implementation EffectInvisible
+@implementation EffectHelmet
 
 -(SpellInteraction*)interactPlayer:(Player*)player spell:(Spell*)spell {
-    if (self.active && ![spell isType:[SpellFist class]]) {
+    if ([spell isType:[SpellFist class]]) {
         return [SpellInteraction nothing];
     }
     else {

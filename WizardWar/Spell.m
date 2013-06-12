@@ -102,17 +102,23 @@
     }
 }
 
+-(SpellInteraction*)interactEffect:(Effect*)player {
+    return [SpellInteraction nothing];
+}
+
 -(BOOL)hitsPlayer:(Player*)player duringInterval:(NSTimeInterval)dt {
+    
+    if (self.altitude != player.altitude) return NO;
     
     // ignore the time interval. Wait until the spell is ALL THE WAY past the player
     // unlike spells hits, we want to give the player the benefit of the doubt
     // plus, can't reflect :)
     
     if (player.isFirstPlayer) {
-        return self.altitude == player.altitude && self.position <= player.position;
+        return self.position <= player.position;
     }
     else {
-        return self.altitude == player.altitude && self.position >= player.position;
+        return self.position >= player.position;
     }
 }
 
@@ -120,6 +126,8 @@
 // NEW HITTING ALGORITHM
 // if the positions will cross during this tick, given their current directions
 -(BOOL)hitsSpell:(Spell *)spell duringInterval:(NSTimeInterval)dt {
+    
+    if (self.altitude != spell.altitude) return NO;
     // return if it WILL cross positions during this
     float spellStart = spell.position;
     float spellEnd = [spell move:dt];

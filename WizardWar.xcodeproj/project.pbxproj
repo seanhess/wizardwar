@@ -43,6 +43,7 @@
 		786246541767D71A001904AC /* SpellHelmet.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246531767D71A001904AC /* SpellHelmet.m */; };
 		786246571767D885001904AC /* helmet-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 786246551767D885001904AC /* helmet-hd.png */; };
 		786246581767D885001904AC /* helmet.png in Resources */ = {isa = PBXBuildFile; fileRef = 786246561767D885001904AC /* helmet.png */; };
+		7862465B1767EAE2001904AC /* EffectHelmet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7862465A1767EAE2001904AC /* EffectHelmet.m */; };
 		787A2A81174D2771004C4FDB /* MatchmakingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787A2A80174D2771004C4FDB /* MatchmakingViewController.xib */; };
 		787A2A85174E85E3004C4FDB /* FirebaseConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A2A84174E85E3004C4FDB /* FirebaseConnection.m */; };
 		787A2A91174E9FA3004C4FDB /* TestLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A2A90174E9FA3004C4FDB /* TestLayer.m */; };
@@ -344,6 +345,8 @@
 		786246531767D71A001904AC /* SpellHelmet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellHelmet.m; sourceTree = "<group>"; };
 		786246551767D885001904AC /* helmet-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "helmet-hd.png"; sourceTree = "<group>"; };
 		786246561767D885001904AC /* helmet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helmet.png; sourceTree = "<group>"; };
+		786246591767EAE2001904AC /* EffectHelmet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectHelmet.h; sourceTree = "<group>"; };
+		7862465A1767EAE2001904AC /* EffectHelmet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectHelmet.m; sourceTree = "<group>"; };
 		787A2A80174D2771004C4FDB /* MatchmakingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchmakingViewController.xib; sourceTree = "<group>"; };
 		787A2A83174E85E3004C4FDB /* FirebaseConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseConnection.h; sourceTree = "<group>"; };
 		787A2A84174E85E3004C4FDB /* FirebaseConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseConnection.m; sourceTree = "<group>"; };
@@ -834,6 +837,8 @@
 				786246341767BE47001904AC /* Effect.m */,
 				786246371767BF19001904AC /* EffectInvisible.h */,
 				786246381767BF19001904AC /* EffectInvisible.m */,
+				786246591767EAE2001904AC /* EffectHelmet.h */,
+				7862465A1767EAE2001904AC /* EffectHelmet.m */,
 			);
 			name = Effects;
 			sourceTree = "<group>";
@@ -1846,6 +1851,7 @@
 				786246441767C95A001904AC /* SpellWall.m in Sources */,
 				7862464D1767CF64001904AC /* SpellFist.m in Sources */,
 				786246541767D71A001904AC /* SpellHelmet.m in Sources */,
+				7862465B1767EAE2001904AC /* EffectHelmet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

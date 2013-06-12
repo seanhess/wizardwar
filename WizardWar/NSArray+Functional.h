@@ -15,6 +15,8 @@
 -(void)forEach:(void(^)(id))block;
 -(void)forEachIndex:(void(^)(int))block;
 -(id)find:(BOOL(^)(id))block;
+-(id)max:(float(^)(id))block;
+-(id)min:(float(^)(id))block;
 
 +(NSMutableArray*)array:(id<NSFastEnumeration>)array filter:(BOOL(^)(id))block;
 +(id)array:(id<NSFastEnumeration>)array find:(BOOL(^)(id))block;

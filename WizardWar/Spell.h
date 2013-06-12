@@ -39,6 +39,7 @@ typedef enum SpellStatus {
 @property (nonatomic) SpellStatus status;
 @property (nonatomic) NSString * creator;
 @property (nonatomic) NSInteger altitude; // how high it is. normal = 0;
+@property (nonatomic) Effect * effect; // if the spell creates a player effect
 
 // how far away from the wizard should it start
 @property (nonatomic) float startOffsetPosition;
@@ -48,6 +49,7 @@ typedef enum SpellStatus {
 -(BOOL)isType:(Class)class;
 -(SpellInteraction*)interactSpell:(Spell*)spell;
 -(SpellInteraction*)interactPlayer:(Player*)player;
+-(SpellInteraction*)interactEffect:(Effect*)player;
 -(BOOL)hitsPlayer:(Player*)player duringInterval:(NSTimeInterval)dt;
 -(BOOL)hitsSpell:(Spell*)spell duringInterval:(NSTimeInterval)dt;
 +(Spell*)fromType:(NSString*)type;

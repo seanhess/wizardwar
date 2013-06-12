@@ -11,6 +11,8 @@
 #import "Elements.h"
 #import "NSArray+Functional.h"
 
+#define RECHARGE_INTERVAL 0.5
+
 @interface PentagramViewController ()
 @property (weak, nonatomic) IBOutlet PentEmblem *windEmblem;
 @property (weak, nonatomic) IBOutlet PentEmblem *fireEmblem;
@@ -103,7 +105,7 @@
 }
 
 - (void)startRecharge {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(onTimer) userInfo:nil repeats:NO];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:RECHARGE_INTERVAL target:self selector:@selector(onTimer) userInfo:nil repeats:NO];
 }
 
 - (void)checkSelectedEmblems:(CGPoint)point {

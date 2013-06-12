@@ -34,6 +34,36 @@
     return matches[0];
 }
 
+-(id)max:(float(^)(id))block {    
+    id maxObj = nil;
+    CGFloat maxValue = CGFLOAT_MIN;
+    
+    for (id obj in self) {
+        CGFloat value = block(obj);
+        if (value > maxValue) {
+            maxValue = value;
+            maxObj = obj;
+        }
+    }
+    
+    return maxObj;
+}
+
+-(id)min:(float(^)(id))block {
+    id maxObj = nil;
+    CGFloat maxValue = CGFLOAT_MAX;
+    
+    for (id obj in self) {
+        CGFloat value = block(obj);
+        if (value < maxValue) {
+            maxValue = value;
+            maxObj = obj;
+        }
+    }
+    
+    return maxObj;
+}
+
 +(NSMutableArray*)array:(id<NSFastEnumeration>)array filter:(BOOL(^)(id))match {
     NSMutableArray * found = [NSMutableArray array];
     for (id obj in array) {
