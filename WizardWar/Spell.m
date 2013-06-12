@@ -65,11 +65,7 @@
 }
 
 -(void)setPositionFromPlayer:(Player*)player {
-    self.direction = 1;
-    
-    if (!player.isFirstPlayer)
-        self.direction = -1;
-    
+    self.direction = player.direction;
     // makes it so it isn't RIGHT ON the player
     self.referencePosition = player.position + self.direction * self.startOffsetPosition;
     self.position = self.referencePosition;

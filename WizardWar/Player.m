@@ -46,6 +46,10 @@
     return self.position == UNITS_MIN;
 }
 
+-(NSInteger)direction {
+    return (self.isFirstPlayer) ? 1 : -1;
+}
+
 -(void)setState:(PlayerState)state animated:(BOOL)animated {
     // can't change if dead!
     if (self.state == PlayerStateDead) return;

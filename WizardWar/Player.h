@@ -29,6 +29,7 @@ typedef enum PlayerState {
 @property (nonatomic, strong) NSString * wizardType;
 @property (nonatomic, strong) Effect * effect; // current effect applied
 @property (nonatomic) NSInteger altitude; // how high you are. 0 = normal
+@property (readonly) NSInteger direction; 
 
 -(BOOL)isFirstPlayer;
 -(void)setState:(PlayerState)state animated:(BOOL)animated;

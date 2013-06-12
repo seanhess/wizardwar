@@ -105,8 +105,8 @@
     NSLog(@"RENDER EFFECT YO %@", self.player.effect);
     if ([self.player.effect class] == [EffectHelmet class]) {
         self.effect = [CCSprite spriteWithFile:@"helmet.png"];
-        self.effect.position = ccp(-15, 100);
         self.effect.flipX = self.player.position == UNITS_MAX;
+        self.effect.position = ccp(-15*self.player.direction, 100);
         [self addChild:self.effect];
     }
 }
