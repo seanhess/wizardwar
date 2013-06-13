@@ -20,13 +20,14 @@
 #import "SpellFist.h"
 #import "SpellHelmet.h"
 #import "SpellSleep.h"
+#import "EffectSleep.h"
 #import <ReactiveCocoa.h>
 
 @interface SpellSprite ()
 @property (nonatomic, strong) Units * units;
 @property (nonatomic, strong) CCSprite * skin;
 @property (nonatomic, strong) CCSpriteBatchNode * sheet;
-@property (nonatomic, strong) CCAction * action;
+@property (nonatomic, strong) CCAction * frameAnimation;
 @property (nonatomic, strong) CCSpriteBatchNode * explosion;
 @property (nonatomic) NSInteger currentAltitude;
 @end
@@ -87,7 +88,8 @@
             [self addChild:self.sheet];
             
             self.skin = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"%@-1.png", self.sheetName]];
-            [self.skin runAction:self.spellAction];
+            self.frameAnimation = self.spellAction;
+            [self.skin runAction:self.frameAnimation];
             [self.sheet addChild:self.skin];            
         }
         
@@ -111,6 +113,10 @@
         
         [[RACAble(self.spell.direction) distinctUntilChanged] subscribeNext:^(id x) {
             [self renderDirection];
+        }];
+        
+        [[RACAble(self.spell.effect) distinctUntilChanged] subscribeNext:^(id x) {
+            [self renderEffect];
         }];
         
         self.currentAltitude = self.spell.altitude;
@@ -192,6 +198,23 @@
         CCSprite * sprite = [CCSprite spriteWithSpriteFrameName:@"explode-1"];
         [sprite runAction:self.explodeAction];
         [self.explosion addChild:sprite];
+    }
+}
+
+- (void)renderEffect {
+    if (self.spell.targetSelf) return;
+    
+    if ([self.spell.effect class] == [EffectSleep class]) {
+        CCFiniteTimeAction * toPos = [CCMoveTo actionWithDuration:0.2 position:ccp(self.spellX, self.spellY - 30)];
+        CCFiniteTimeAction * rotate = [CCRotateTo actionWithDuration:0.2 angle:90.0];
+        [self stopAction:self.self.frameAnimation];
+        [self runAction:toPos];
+        [self runAction:rotate];
+    }
+    
+    else {
+        [self runAction:[CCMoveTo actionWithDuration:0.2 position:ccp(self.spellX, self.spellY)]];
+        [self runAction:[CCRotateTo actionWithDuration:0.2 angle:0]];
     }
 }
 

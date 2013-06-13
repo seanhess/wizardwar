@@ -23,6 +23,7 @@
     if ((self=[super init])) {
         self.speed = 100;
         self.damage = 0;
+        self.heavy = NO;
     }
     return self;
 }

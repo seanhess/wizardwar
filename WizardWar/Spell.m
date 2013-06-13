@@ -25,6 +25,7 @@
         self.status = SpellStatusPrepare;
         self.altitude = 0;
         self.targetSelf = NO;
+        self.heavy = YES;
         
         self.spellId = [Spell generateSpellId];
     }
@@ -74,7 +75,11 @@
     // makes it so it isn't RIGHT ON the player
     self.referencePosition = player.position + self.direction * self.startOffsetPosition;
     self.position = self.referencePosition;
-    self.altitude = player.altitude;
+    
+    if (self.heavy)
+        self.altitude = 0;
+    else
+        self.altitude = player.altitude;
 }
 
 -(NSString*)description {

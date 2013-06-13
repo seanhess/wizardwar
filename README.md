@@ -1,6 +1,9 @@
 IDEA: we can have some spells take "more mana", meaning they reduce the size of the indicators used MORE
 
 
+[ ] Make walls and monsters fall
+
+
 
 [ ] More spells. Fill it up!
 [ ] Add random "fail" spells (with two elements) any 2 elements triggers a random fail spell

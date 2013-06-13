@@ -15,6 +15,7 @@
 -(id)init {
     if ((self=[super init])) {
         self.damage = 0;
+        self.heavy = NO;
     }
     return self;
 }
