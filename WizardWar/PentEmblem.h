@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Elements.h"
 
-#define MAX_MANA 4
+#define MAX_MANA 3
 
 typedef enum EmblemStatus {
     EmblemStatusNormal,

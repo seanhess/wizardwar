@@ -57,23 +57,23 @@
 {
     self.fireEmblem.elementId = FireId;
     self.fireEmblem.status = EmblemStatusNormal;
-    self.fireEmblem.mana = 5;
+    self.fireEmblem.mana = MAX_MANA;
     
     self.heartEmblem.elementId = HeartId;
     self.heartEmblem.status = EmblemStatusNormal;
-    self.heartEmblem.mana = 5;
+    self.heartEmblem.mana = MAX_MANA;
     
     self.waterEmblem.elementId = WaterId;
     self.waterEmblem.status = EmblemStatusNormal;
-    self.waterEmblem.mana = 5;
+    self.waterEmblem.mana = MAX_MANA;
     
     self.earthEmblem.elementId = EarthId;
     self.earthEmblem.status = EmblemStatusNormal;
-    self.earthEmblem.mana = 5;
+    self.earthEmblem.mana = MAX_MANA;
     
     self.windEmblem.elementId = AirId;
     self.windEmblem.status = EmblemStatusNormal;
-    self.windEmblem.mana = 5;
+    self.windEmblem.mana = MAX_MANA;
     
     self.emblems = [NSArray arrayWithObjects: self.fireEmblem, self.heartEmblem, self.waterEmblem, self.earthEmblem, self.windEmblem, nil];
 }
