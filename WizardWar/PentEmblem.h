@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "Elements.h"
 
+#define MAX_MANA 4
+
 typedef enum EmblemStatus {
     EmblemStatusNormal,
     EmblemStatusHighlight,
@@ -19,5 +21,6 @@ typedef enum EmblemStatus {
 
 @property (strong, nonatomic) NSString* elementId;
 @property (nonatomic) EmblemStatus status;
+@property (nonatomic) NSInteger mana;
 
 @end

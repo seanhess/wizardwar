@@ -11,7 +11,7 @@
 #import "Elements.h"
 #import "NSArray+Functional.h"
 
-#define RECHARGE_INTERVAL 0.7
+#define RECHARGE_INTERVAL 2.5
 
 @interface PentagramViewController ()
 @property (weak, nonatomic) IBOutlet PentEmblem *windEmblem;
@@ -57,18 +57,23 @@
 {
     self.fireEmblem.elementId = FireId;
     self.fireEmblem.status = EmblemStatusNormal;
+    self.fireEmblem.mana = 5;
     
     self.heartEmblem.elementId = HeartId;
     self.heartEmblem.status = EmblemStatusNormal;
+    self.heartEmblem.mana = 5;
     
     self.waterEmblem.elementId = WaterId;
     self.waterEmblem.status = EmblemStatusNormal;
+    self.waterEmblem.mana = 5;
     
     self.earthEmblem.elementId = EarthId;
     self.earthEmblem.status = EmblemStatusNormal;
+    self.earthEmblem.mana = 5;
     
     self.windEmblem.elementId = AirId;
     self.windEmblem.status = EmblemStatusNormal;
+    self.windEmblem.mana = 5;
     
     self.emblems = [NSArray arrayWithObjects: self.fireEmblem, self.heartEmblem, self.waterEmblem, self.earthEmblem, self.windEmblem, nil];
 }
@@ -87,24 +92,33 @@
 }
 
 - (void)onTimer {
-    NSArray * disabledEmblems = [self.emblems filter:^BOOL(PentEmblem*emblem) {
-        return emblem.status == EmblemStatusDisabled;
+//    NSArray * disabledEmblems = [self.emblems filter:^BOOL(PentEmblem*emblem) {
+//        return emblem.status == EmblemStatusDisabled;
+//    }];
+    
+    [self.emblems forEach:^(PentEmblem * emblem) {
+        emblem.mana += 1;
     }];
     
-    NSUInteger numDisabled = disabledEmblems.count;
+    [self startRecharge];
     
-    if (numDisabled) {
-        NSUInteger randomIndex = arc4random() % disabledEmblems.count;
-        PentEmblem * emblem = disabledEmblems[randomIndex];
-        emblem.status = EmblemStatusNormal;
-        
-        if (numDisabled > 1) {
-            [self startRecharge];
-        }
-    }
+//    NSUInteger numDisabled = disabledEmblems.count;
+//    
+//    if (numDisabled) {
+//        NSUInteger randomIndex = arc4random() % disabledEmblems.count;
+//        PentEmblem * emblem = disabledEmblems[randomIndex];
+//        emblem.status = EmblemStatusNormal;
+//        
+//        if (numDisabled > 1) {
+//            [self startRecharge];
+//        }
+//    }
 }
 
 - (void)startRecharge {
+    // resets the timer if running
+    [self.timer invalidate];
+    
     self.timer = [NSTimer scheduledTimerWithTimeInterval:RECHARGE_INTERVAL target:self selector:@selector(onTimer) userInfo:nil repeats:NO];
 }
 
@@ -180,7 +194,9 @@
     
     for(PentEmblem *emblem in self.selectedEmblems)
     {
-        emblem.status = EmblemStatusDisabled;
+//        emblem.status = EmblemStatusDisabled;
+        emblem.status = EmblemStatusNormal;
+        emblem.mana -= 1;
     }
     
     self.selectedEmblems = [NSMutableArray array];
