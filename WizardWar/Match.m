@@ -280,8 +280,8 @@
     spell.status = SpellStatusDestroyed;
     
     // apply the effect
-    [effect start:spell.createdTick];
     player.effect = effect;
+    [effect start:spell.createdTick player:player];
 }
 
 -(void)checkHits {

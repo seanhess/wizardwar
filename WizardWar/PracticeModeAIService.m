@@ -31,7 +31,7 @@
     self = [super init];
     if (self) {
         
-        self.allSpells = @[[SpellFireball class], [SpellEarthwall class], [SpellWindblast class], [SpellMonster class], [SpellIcewall class], [SpellBubble class], [SpellVine class], [SpellFirewall class], [SpellFist class], [SpellHelmet class], [SpellInvisibility class], [SpellFireball class]];
+        self.allSpells = @[[SpellFireball class], [SpellEarthwall class], [SpellWindblast class], [SpellMonster class], [SpellBubble class], [SpellVine class], [SpellFist class], [SpellHelmet class], [SpellFireball class]];
         
     }
     return self;

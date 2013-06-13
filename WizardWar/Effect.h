@@ -24,7 +24,8 @@
 @property (nonatomic) NSTimeInterval duration; // how long before it wears off?
 @property (nonatomic) NSInteger startTick; // when it began operating.
 
--(void)start:(NSInteger)tick;
+-(void)start:(NSInteger)tick player:(Player*)player;
+-(void)cancel:(Player*)player;
 -(SpellInteraction*)interactPlayer:(Player*)player spell:(Spell*)spell;
 -(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval player:(Player*)player;
 

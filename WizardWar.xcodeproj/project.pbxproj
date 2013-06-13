@@ -49,6 +49,8 @@
 		787A2A91174E9FA3004C4FDB /* TestLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A2A90174E9FA3004C4FDB /* TestLayer.m */; };
 		787A2A99174EA43D004C4FDB /* MatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A2A97174EA43D004C4FDB /* MatchViewController.m */; };
 		787A2A9A174EA43D004C4FDB /* MatchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787A2A98174EA43D004C4FDB /* MatchViewController.xib */; };
+		78915283176A72DB001694B1 /* SpellLevitate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78915280176A7136001694B1 /* SpellLevitate.m */; };
+		78915284176A72DE001694B1 /* EffectLevitate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78915282176A72A8001694B1 /* EffectLevitate.m */; };
 		789BAB8417566CFE003C0116 /* TimerSyncService.m in Sources */ = {isa = PBXBuildFile; fileRef = 789BAB8317566CFE003C0116 /* TimerSyncService.m */; };
 		789BAB8B1756A95A003C0116 /* explode-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 789BAB861756A95A003C0116 /* explode-hd.plist */; };
 		789BAB8C1756A95A003C0116 /* explode-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 789BAB871756A95A003C0116 /* explode-hd.png */; };
@@ -358,6 +360,10 @@
 		787A2A96174EA43D004C4FDB /* MatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchViewController.h; sourceTree = "<group>"; };
 		787A2A97174EA43D004C4FDB /* MatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchViewController.m; sourceTree = "<group>"; };
 		787A2A98174EA43D004C4FDB /* MatchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchViewController.xib; sourceTree = "<group>"; };
+		7891527F176A7136001694B1 /* SpellLevitate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpellLevitate.h; sourceTree = "<group>"; };
+		78915280176A7136001694B1 /* SpellLevitate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpellLevitate.m; sourceTree = "<group>"; };
+		78915281176A72A8001694B1 /* EffectLevitate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EffectLevitate.h; sourceTree = "<group>"; };
+		78915282176A72A8001694B1 /* EffectLevitate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EffectLevitate.m; sourceTree = "<group>"; };
 		789BAB8117566ABF003C0116 /* Multiplayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Multiplayer.h; sourceTree = "<group>"; };
 		789BAB8217566CFE003C0116 /* TimerSyncService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerSyncService.h; sourceTree = "<group>"; };
 		789BAB8317566CFE003C0116 /* TimerSyncService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerSyncService.m; sourceTree = "<group>"; };
@@ -853,6 +859,8 @@
 				78D0855A176A4B2800EDC405 /* EffectHeal.m */,
 				78D0855C176A4C7C00EDC405 /* EffectSleep.h */,
 				78D0855D176A4C7C00EDC405 /* EffectSleep.m */,
+				78915281176A72A8001694B1 /* EffectLevitate.h */,
+				78915282176A72A8001694B1 /* EffectLevitate.m */,
 			);
 			name = Effects;
 			sourceTree = "<group>";
@@ -1503,6 +1511,8 @@
 				786246311767B790001904AC /* SpellInvisibility.m */,
 				78D08556176A4AC400EDC405 /* SpellHeal.h */,
 				78D08557176A4AC400EDC405 /* SpellHeal.m */,
+				7891527F176A7136001694B1 /* SpellLevitate.h */,
+				78915280176A7136001694B1 /* SpellLevitate.m */,
 			);
 			name = Spells;
 			sourceTree = "<group>";
@@ -1844,6 +1854,7 @@
 				6F0B2FAA174750FF00CFC092 /* PentEmblem.m in Sources */,
 				6F0B2FAF1747511800CFC092 /* DotsView.m in Sources */,
 				6F0B2FB01747511800CFC092 /* DrawingLayer.m in Sources */,
+				78915283176A72DB001694B1 /* SpellLevitate.m in Sources */,
 				78F195091747FE4200BB8587 /* SpellBubble.m in Sources */,
 				78F1950C1747FE7E00BB8587 /* SpellIcewall.m in Sources */,
 				78F1950F1747FE9700BB8587 /* SpellMonster.m in Sources */,
@@ -1863,6 +1874,7 @@
 				78E8EA6A1759427E00017747 /* Combos.m in Sources */,
 				786246321767B790001904AC /* SpellInvisibility.m in Sources */,
 				786246351767BE47001904AC /* Effect.m in Sources */,
+				78915284176A72DE001694B1 /* EffectLevitate.m in Sources */,
 				786246391767BF19001904AC /* EffectInvisible.m in Sources */,
 				786246411767C8D3001904AC /* SpellFirewall.m in Sources */,
 				786246441767C95A001904AC /* SpellWall.m in Sources */,

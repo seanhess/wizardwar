@@ -15,7 +15,6 @@ BUGS
 - pulls you out of a game if you are in one already
 
 
-
 SLEEP: If hit they fall asleep? Or is it automatic?  How would you defend against it if it doesn't shoot out? 
   - invisible
   - will sleep any animal

@@ -19,6 +19,7 @@
 #import "SpellFist.h"
 #import "SpellHelmet.h"
 #import "SpellHeal.h"
+#import "SpellLevitate.h"
 
 @interface Combos ()
 @property (strong, nonatomic) NSDictionary * hitCombos;
@@ -58,14 +59,14 @@
     // 3 combos
     hitCombos[@"AEF__"] = [SpellFirewall class];
     hitCombos[@"AE_H_"] = [SpellHeal class];
-    hitCombos[@"AE__W"] = [SpellIcewall class];
+    hitCombos[@"AE__W"] = [NSObject class];
     hitCombos[@"A_FH_"] = [SpellFireball class];
     hitCombos[@"A_F_W"] = [SpellWindblast class];
-    hitCombos[@"A__HW"] = [SpellBubble class];
+    hitCombos[@"A__HW"] = [SpellLevitate class];
     hitCombos[@"_EFH_"] = [SpellHelmet class];
-    hitCombos[@"_EF_W"] = [NSObject class];
-    hitCombos[@"_E_HW"] = [SpellEarthwall class];
-    hitCombos[@"__FHW"] = [NSObject class];
+    hitCombos[@"_EF_W"] = [SpellEarthwall class];
+    hitCombos[@"_E_HW"] = [SpellIcewall class];
+    hitCombos[@"__FHW"] = [SpellBubble class];
     
     // 4 combos
     hitCombos[@"AEFH_"] = [NSObject class];

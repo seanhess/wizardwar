@@ -74,6 +74,7 @@
     // makes it so it isn't RIGHT ON the player
     self.referencePosition = player.position + self.direction * self.startOffsetPosition;
     self.position = self.referencePosition;
+    self.altitude = player.altitude;
 }
 
 -(NSString*)description {

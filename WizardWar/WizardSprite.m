@@ -16,6 +16,7 @@
 #import "EffectHeal.h"
 
 #define WIZARD_PADDING 20
+#define PIXELS_HIGH_PER_ALTITUDE 100
 
 @interface WizardSprite ()
 @property (nonatomic, strong) Units * units;
@@ -24,6 +25,8 @@
 @property (nonatomic, strong) CCSpriteBatchNode * spriteSheet;
 @property (nonatomic, strong) CCSprite * skin;
 @property (nonatomic, strong) CCSprite * effect;
+
+@property (nonatomic, strong) CCAction * hoverAction;
 @end
 
 @implementation WizardSprite
@@ -72,13 +75,20 @@
         [[RACAble(self.player.effect) distinctUntilChanged] subscribeNext:^(id x) {
             [self renderEffect];
         }];
+        
+        [[RACAble(self.player.altitude) distinctUntilChanged] subscribeNext:^(id x) {
+            [self renderAltitude];
+        }];
     }
     return self;
 }
 
+-(CGPoint)calculatedPosition {
+    return ccp([self.units toX:self.player.position], self.units.zeroY + PIXELS_HIGH_PER_ALTITUDE*self.player.altitude);
+}
+
 -(void)renderPosition {
-    self.position = ccp([self.units toX:self.player.position], self.units.zeroY);
-    
+    self.position = self.calculatedPosition;
     self.skin.flipX = (self.player.position == UNITS_MAX);
 }
 
@@ -125,6 +135,19 @@
     }
 }
 
+-(void)renderAltitude {
+    CGPoint pos = self.calculatedPosition;
+    CCFiniteTimeAction * toPos = [CCMoveTo actionWithDuration:0.2 position:ccp(pos.x, pos.y)];
+    if (self.player.altitude > 0) {
+        CCFiniteTimeAction * toHover = [CCMoveTo actionWithDuration:0.2 position:ccp(pos.x, pos.y+5)];
+        self.hoverAction = [CCRepeatForever actionWithAction:[CCSequence actions:toPos, toHover, nil]];
+        [self runAction:self.hoverAction];
+    }
+    else {
+        [self stopAction:self.hoverAction];
+        [self runAction:toPos];
+    }
+}
 
 -(CCAction*)stateAction {
     CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:self.stateAnimationName];
