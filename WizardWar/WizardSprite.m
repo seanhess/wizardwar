@@ -102,7 +102,6 @@
         [self.skin runAction:[CCFadeTo actionWithDuration:0.2 opacity:255]];
     }
     
-    NSLog(@"RENDER EFFECT YO %@", self.player.effect);
     if ([self.player.effect class] == [EffectHelmet class]) {
         self.effect = [CCSprite spriteWithFile:@"helmet.png"];
         self.effect.flipX = self.player.position == UNITS_MAX;
