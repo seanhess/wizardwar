@@ -30,7 +30,7 @@
         self.emptyHearts = [NSMutableArray array];
         self.filledHearts = [NSMutableArray array];
         
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < MAX_HEALTH; i++) {
             CCSprite *heartBlank = [CCSprite spriteWithFile:@"heart-empty.png"];
             CCSprite *heartFull = [CCSprite spriteWithFile:@"heart-full.png"];
             
@@ -85,7 +85,7 @@
 // crap, when you heal up, you need to render effect again :(
 
 -(void)renderHealth {
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < MAX_HEALTH; i++) {
         CCSprite *heartFull = [self.filledHearts objectAtIndex:i];
         [heartFull stopAction:self.healAction];
         if (i <= self.player.health - 1) {
@@ -104,9 +104,10 @@
         }        
     }
     else {
-        [self.filledHearts forEach:^(CCSprite * sprite) {
-            [sprite stopAction:self.healAction];
-        }];
+        [self renderHealth];
+//        [self.filledHearts forEach:^(CCSprite * sprite) {
+//            [sprite stopAction:self.healAction];
+//        }];
     }
 }
 

@@ -43,7 +43,7 @@
 }
 
 - (void)setHealth:(NSInteger)health {
-    if (health > 5) health = 5;
+    if (health > MAX_HEALTH) health = MAX_HEALTH;
     else if (health < 0) health = 0;
     
     _health = health;

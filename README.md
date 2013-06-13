@@ -1,3 +1,6 @@
+IDEA: we can have some spells take "more mana", meaning they reduce the size of the indicators used MORE
+
+
 
 [ ] More spells. Fill it up!
 [ ] Add random "fail" spells (with two elements) any 2 elements triggers a random fail spell
@@ -12,8 +15,6 @@ BUGS
 - pulls you out of a game if you are in one already
 
 
-HEAL: you cast it an you begin to heal slowly until you do something else. 
-  - make him glow red with code or something
 
 SLEEP: If hit they fall asleep? Or is it automatic?  How would you defend against it if it doesn't shoot out? 
   - invisible
