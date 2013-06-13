@@ -17,6 +17,7 @@
     if (self) {
         self.active = NO;
         self.delay = 1.0;
+        self.cancelsOnCast = YES;
     }
     return self;
 }

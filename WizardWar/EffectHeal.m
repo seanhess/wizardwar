@@ -7,10 +7,32 @@
 //
 
 #import "EffectHeal.h"
+#import "Player.h"
+
+
 
 @implementation EffectHeal
 
-// I need to be able to interact with the player on the simulation
-// Unfortunately, the player has me, not vice versa
+-(id)init {
+    self = [super init];
+    if (self) {
+        self.cancelsOnCast = YES;
+        self.cancelsOnHit = YES;
+    }
+    return self;
+}
+
+// ok, so I need to check to see if they've waited long enough to heal
+// it can only heal ONE heart
+// if you get hit in the meantime it doesn't work
+-(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval player:(Player*)player {    
+    NSInteger ticksPerHeal = round(EFFECT_HEAL_TIME / interval);
+    NSInteger elapsedTicks = (currentTick - self.startTick);
+    
+    if (elapsedTicks >= ticksPerHeal) {
+        player.effect = nil;
+        player.health += 1;
+    }
+}
 
 @end

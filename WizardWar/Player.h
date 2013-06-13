@@ -14,6 +14,7 @@
 
 #define WIZARD_TYPE_ONE @"1"
 #define WIZARD_TYPE_TWO @"2"
+#define MAX_HEALTH 5
 
 typedef enum PlayerState {
     PlayerStateReady,

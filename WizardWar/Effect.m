@@ -22,15 +22,19 @@
     return self;
 }
 
--(void)start {
-
+-(void)start:(NSInteger)tick {
+    self.startTick = tick;
 }
 
 // the default effect is to damage the player and cancel the spell
 -(SpellInteraction*)interactPlayer:(Player*)player spell:(Spell*)spell {
     player.health -= spell.damage;
+    
     if (spell.damage > 0)
         [player setState:PlayerStateHit animated:YES];
+    
+    if (player.effect.cancelsOnHit)
+        player.effect = nil;
     
     return [SpellInteraction cancel];
 }

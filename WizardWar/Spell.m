@@ -24,6 +24,7 @@
         self.startOffsetPosition = 1;
         self.status = SpellStatusPrepare;
         self.altitude = 0;
+        self.visual = YES;
         
         self.spellId = [Spell generateSpellId];
     }

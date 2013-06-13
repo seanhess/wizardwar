@@ -275,11 +275,13 @@
         return fabsf(spell.position - player.position);
     }];
     
+    // destroy the effect spell
     spell.updatedTick = self.timer.nextTick;
     spell.status = SpellStatusDestroyed;
     
+    // apply the effect
+    [effect start:spell.createdTick];
     player.effect = effect;
-    [effect start];
 }
 
 -(void)checkHits {

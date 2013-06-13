@@ -13,6 +13,7 @@
 #import "SpellInvisibility.h"
 #import "EffectInvisible.h"
 #import "EffectHelmet.h"
+#import "EffectHeal.h"
 
 #define WIZARD_PADDING 20
 
@@ -93,9 +94,11 @@
         [self removeChild:self.effect];
     }
     
+    self.skin.color = ccc3(255, 255, 255);
+    [self.skin stopAllActions];
+    
     // set opactiy based on invisible
     if ([self.player.effect class] == [EffectInvisible class]) {
-        NSLog(@"FADE BABY %f", self.player.effect.delay);
         [self.skin runAction:[CCFadeTo actionWithDuration:self.player.effect.delay opacity:40]];
     }
     else {
@@ -107,6 +110,18 @@
         self.effect.flipX = self.player.position == UNITS_MAX;
         self.effect.position = ccp(-15*self.player.direction, 100);
         [self addChild:self.effect];
+    }
+    
+    else if ([self.player.effect class] == [EffectHeal class]) {
+//        self.skin.color = ccc3(255, 255, 255);
+//        [self.skin setBlendFunc: (ccBlendFunc) { GL_ONE, GL_ONE }];
+//        [self.skin runAction: [CCRepeatForever actionWithAction:[CCSequence actions:[CCScaleTo actionWithDuration:0.9f scaleX:size.width scaleY:size.height], [CCScaleTo actionWithDuration:0.9f scaleX:size.width*0.75f scaleY:size. height*0.75f], nil] ]];
+        
+//        [self.skin runAction: [CCRepeatForever actionWithAction:[CCSequence actions:[CCFadeTo actionWithDuration:0.9f opacity:150], [CCFadeTo actionWithDuration:0.9f opacity:255], nil]]];
+        CCFiniteTimeAction * toRed = [CCTintTo actionWithDuration:1 red:230 green:130 blue:190];
+        CCFiniteTimeAction * toNormal = [CCTintTo actionWithDuration:1 red:255 green:255 blue:255];
+        CCAction * glowRed = [CCRepeatForever actionWithAction:[CCSequence actions:toRed, toNormal, nil]];
+        [self.skin runAction:glowRed];
     }
 }
 

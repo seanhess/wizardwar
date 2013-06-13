@@ -68,7 +68,7 @@
         self.spell = spell;
         self.units = units;
         
-        if ([spell isType:[SpellInvisibility class]] || [spell isType:[SpellHelmet class]]) {
+        if (!spell.visual) {
             return self;
         }
         

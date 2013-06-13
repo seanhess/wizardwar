@@ -20,7 +20,7 @@
 
 -(id)init {
     if ((self=[super init])) {
-        self.health = 5;
+        self.health = 2;
         self.wizardType = WIZARD_TYPE_ONE;
     }
     return self;
@@ -40,6 +40,13 @@
 
 -(NSString*)description {
     return [NSString stringWithFormat:@"%@ %@ - %f", super.description, self.name, self.position];
+}
+
+- (void)setHealth:(NSInteger)health {
+    if (health > 5) health = 5;
+    else if (health < 0) health = 0;
+    
+    _health = health;
 }
 
 -(BOOL)isFirstPlayer {

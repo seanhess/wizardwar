@@ -7,7 +7,7 @@
 //
 
 #import "SpellHeal.h"
-#import "EffectInvisible.h"
+#import "EffectHeal.h"
 
 @implementation SpellHeal
 
@@ -15,7 +15,8 @@
     if ((self=[super init])) {
         self.speed = 0;
         self.damage = 0;
-        self.effect = [EffectInvisible new];
+        self.effect = [EffectHeal new];
+        self.visual = NO;
     }
     return self;
 }

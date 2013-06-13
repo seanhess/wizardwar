@@ -41,6 +41,7 @@ typedef enum SpellStatus {
 @property (nonatomic) NSString * creator;
 @property (nonatomic) NSInteger altitude; // how high it is. normal = 0;
 @property (nonatomic) Effect * effect; // if the spell creates a player effect
+@property (nonatomic) BOOL visual; // whether it has a visual component or no
 
 // how far away from the wizard should it start
 @property (nonatomic) float startOffsetPosition;

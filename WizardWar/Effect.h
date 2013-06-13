@@ -19,10 +19,12 @@
 @property (nonatomic) BOOL active;
 @property (nonatomic) BOOL disablesPlayer;
 @property (nonatomic) BOOL cancelsOnCast;
+@property (nonatomic) BOOL cancelsOnHit;
 @property (nonatomic) NSTimeInterval delay; // how long it takes to active
 @property (nonatomic) NSTimeInterval duration; // how long before it wears off?
+@property (nonatomic) NSInteger startTick; // when it began operating.
 
--(void)start;
+-(void)start:(NSInteger)tick;
 -(SpellInteraction*)interactPlayer:(Player*)player spell:(Spell*)spell;
 -(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval player:(Player*)player;
 

@@ -16,6 +16,7 @@
         self.speed = 0;
         self.damage = 0;
         self.effect = [EffectHelmet new];
+        self.visual = NO;
     }
     return self;
 }

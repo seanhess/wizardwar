@@ -8,6 +8,10 @@
 
 #import "Effect.h"
 
+
+// time (in seconds) to heal 1 heart
+#define EFFECT_HEAL_TIME 6.0
+
 @interface EffectHeal : Effect
 
 @end
