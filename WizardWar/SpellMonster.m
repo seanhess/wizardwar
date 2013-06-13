@@ -15,6 +15,7 @@
 #import "SpellVine.h"
 #import "SpellWindblast.h"
 #import "SpellFirewall.h"
+#import "SpellSleep.h"
 
 #define MONSTER_SPEED 25
 
@@ -43,6 +44,10 @@
     
     else if ([spell isType:[SpellFirewall class]]) {
         return [SpellInteraction cancel];
+    }
+    
+    else if ([spell isType:[SpellSleep class]]) {
+        return [spell.effect interactSpell:self];
     }
     
     else if ([spell isType:[SpellWindblast class]]) {

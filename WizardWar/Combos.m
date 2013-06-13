@@ -20,6 +20,7 @@
 #import "SpellHelmet.h"
 #import "SpellHeal.h"
 #import "SpellLevitate.h"
+#import "SpellSleep.h"
 
 @interface Combos ()
 @property (strong, nonatomic) NSDictionary * hitCombos;
@@ -59,7 +60,7 @@
     // 3 combos
     hitCombos[@"AEF__"] = [SpellFirewall class];
     hitCombos[@"AE_H_"] = [SpellHeal class];
-    hitCombos[@"AE__W"] = [NSObject class];
+    hitCombos[@"AE__W"] = [SpellSleep class]; // Tornado, Geyser, Sleep,
     hitCombos[@"A_FH_"] = [SpellFireball class];
     hitCombos[@"A_F_W"] = [SpellWindblast class];
     hitCombos[@"A__HW"] = [SpellLevitate class];

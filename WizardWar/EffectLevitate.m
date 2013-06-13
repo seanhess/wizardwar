@@ -9,7 +9,7 @@
 #import "EffectLevitate.h"
 #import "Player.h"
 
-#define EFFECT_LEVITATE_DURATION 3
+#define EFFECT_LEVITATE_DURATION 4.5
 
 @implementation EffectLevitate
 
@@ -36,9 +36,6 @@
     // no, hard to differentiate between switching effects
 }
 
-// ok, so I need to check to see if they've waited long enough to heal
-// it can only heal ONE heart
-// if you get hit in the meantime it doesn't work
 -(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval player:(Player*)player {
     NSInteger ticksPerDuration = round(EFFECT_LEVITATE_DURATION / interval);
     if ((currentTick - self.startTick) >= ticksPerDuration) {

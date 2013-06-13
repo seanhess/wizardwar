@@ -16,7 +16,7 @@
         self.speed = 0;
         self.damage = 0;
         self.effect = [EffectLevitate new];
-        self.visual = NO;
+        self.targetSelf = YES;
     }
     return self;
 }

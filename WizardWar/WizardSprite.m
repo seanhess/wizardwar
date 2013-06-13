@@ -14,6 +14,7 @@
 #import "EffectInvisible.h"
 #import "EffectHelmet.h"
 #import "EffectHeal.h"
+#import "EffectSleep.h"
 
 #define WIZARD_PADDING 20
 #define PIXELS_HIGH_PER_ALTITUDE 100
@@ -104,7 +105,6 @@
         [self removeChild:self.effect];
     }
     
-    self.skin.color = ccc3(255, 255, 255);
     [self.skin stopAllActions];
     
     // set opactiy based on invisible
@@ -133,6 +133,22 @@
         CCAction * glowRed = [CCRepeatForever actionWithAction:[CCSequence actions:toRed, toNormal, nil]];
         [self.skin runAction:glowRed];
     }
+    
+    else if ([self.player.effect class] == [EffectSleep class]) {
+        NSLog(@"SLEEP TIME!");
+        CGPoint pos = self.calculatedPosition;
+        CCFiniteTimeAction * toPos = [CCMoveTo actionWithDuration:0.2 position:ccp(pos.x, pos.y - 30)];
+        CCFiniteTimeAction * rotate = [CCRotateTo actionWithDuration:0.2 angle:90.0];
+        [self runAction:toPos];
+        [self runAction:rotate];
+    }
+    
+    else {
+        self.skin.color = ccc3(255, 255, 255);
+        [self runAction:[CCMoveTo actionWithDuration:0.2 position:self.calculatedPosition]];
+        [self runAction:[CCRotateTo actionWithDuration:0.2 angle:0]];
+    }
+
 }
 
 -(void)renderAltitude {

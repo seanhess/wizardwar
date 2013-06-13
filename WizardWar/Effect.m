@@ -31,7 +31,7 @@
 }
 
 // the default effect is to damage the player and cancel the spell
--(SpellInteraction*)interactPlayer:(Player*)player spell:(Spell*)spell {
+-(SpellInteraction*)interactPlayer:(Player*)player spell:(Spell*)spell currentTick:(NSInteger)currentTick {
     player.health -= spell.damage;
     
     if (spell.damage > 0)
@@ -41,6 +41,10 @@
         [player.effect cancel:player];
     
     return [SpellInteraction cancel];
+}
+
+-(SpellInteraction*)interactSpell:(Spell*)spell {
+    return [SpellInteraction nothing];
 }
 
 -(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval player:(Player*)player {

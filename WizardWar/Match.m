@@ -220,7 +220,7 @@
     // run the simulation
     // try to simulate EVERYTHING, but allow yourself to be corrected by owner
     // in other words, go ahead and make all changes locally, but don't SYNC unless you own them
-    [self checkHits];
+    [self checkHitsWithCurrentTick:currentTick interval:tickInterval];
     
     // HACK: sync the player every second
     if ((currentTick % (int)round(TICKS_PER_SECOND)) == 0) {
@@ -257,7 +257,7 @@
             creator.effect = nil;
         
         Effect * effect = spell.effect;
-        if (effect) [self createSpell:spell effect:effect];
+        if (spell.targetSelf && effect) [self createSpell:spell effect:effect];
         else [self positionSpell:spell referenceTick:spell.createdTick currentTick:currentTick];
     }];
 }
@@ -284,7 +284,7 @@
     [effect start:spell.createdTick player:player];
 }
 
--(void)checkHits {
+-(void)checkHitsWithCurrentTick:(NSInteger)currentTick interval:(NSTimeInterval)tickInterval {
     // HITS ARE CALLED MORE THAN ONCE!
     // A hits B, B hits A
     NSArray * spells = self.activeSpells;
@@ -295,8 +295,8 @@
         // spells are center anchored, so just check the position, not the width
         // see if spell hits ME (don't check the other player)
         for (Player * player in players) {
-            if ([spell hitsPlayer:player duringInterval:TICK_INTERVAL])
-                [self hitPlayer:player withSpell:spell];
+            if ([spell hitsPlayer:player duringInterval:tickInterval])
+                [self hitPlayer:player withSpell:spell atTick:currentTick];
         }
         
         // start at the next spell (don't check collisons twice)
@@ -341,9 +341,9 @@
     }
 }
 
--(void)hitPlayer:(Player*)player withSpell:(Spell*)spell {
+-(void)hitPlayer:(Player*)player withSpell:(Spell*)spell atTick:(NSInteger)currentTick {
 
-    SpellInteraction * interaction = [spell interactPlayer:player];
+    SpellInteraction * interaction = [spell interactPlayer:player currentTick:currentTick];
     [self handleInteraction:interaction forSpell:spell];
     
     // handle player sync / update / death check

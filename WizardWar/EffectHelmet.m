@@ -12,12 +12,12 @@
 @implementation EffectHelmet
 
 // effects need to be able to cancel the spells themselves!
--(SpellInteraction*)interactPlayer:(Player*)player spell:(Spell*)spell {
+-(SpellInteraction*)interactPlayer:(Player*)player spell:(Spell*)spell currentTick:(NSInteger)currentTick {
     if ([spell isType:[SpellFist class]]) {
         return [SpellInteraction cancel];
     }
     else {
-        return [super interactPlayer:player spell:spell];
+        return [super interactPlayer:player spell:spell currentTick:currentTick];
     }
 }
 

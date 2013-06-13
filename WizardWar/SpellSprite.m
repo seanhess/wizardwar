@@ -19,6 +19,7 @@
 #import "SpellFirewall.h"
 #import "SpellFist.h"
 #import "SpellHelmet.h"
+#import "SpellSleep.h"
 #import <ReactiveCocoa.h>
 
 @interface SpellSprite ()
@@ -68,14 +69,14 @@
         self.spell = spell;
         self.units = units;
         
-        if (!spell.visual) {
+        if (spell.targetSelf) {
             return self;
         }
         
         [SpellSprite loadSprites];
         
         // STATIC sprites
-        if ([spell isType:[SpellFirewall class]] || [spell isType:[SpellFist class]] || [spell isType:[SpellHelmet class]]) {
+        if ([spell isType:[SpellFirewall class]] || [spell isType:[SpellFist class]] || [spell isType:[SpellHelmet class]] || [spell isType:[SpellSleep class]] ) {
             self.skin = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", self.sheetName]];
             [self addChild:self.skin];
         }
@@ -229,6 +230,10 @@
     
     else if ([self.spell isType:[SpellHelmet class]]) {
         return @"helmet";
+    }
+    
+    else if ([self.spell isType:[SpellSleep class]]) {
+        return @"sleep";
     }
     
     return @"fireball";

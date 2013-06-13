@@ -31,12 +31,12 @@
     });
 }
 
--(SpellInteraction*)interactPlayer:(Player*)player spell:(Spell*)spell {
+-(SpellInteraction*)interactPlayer:(Player*)player spell:(Spell*)spell currentTick:(NSInteger)currentTick {
     if (self.active && ![spell isType:[SpellFist class]]) {
         return [SpellInteraction nothing];
     }
     else {
-        return [super interactPlayer:player spell:spell];
+        return [super interactPlayer:player spell:spell currentTick:currentTick];
     }
 }
 

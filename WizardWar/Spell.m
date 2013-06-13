@@ -24,7 +24,7 @@
         self.startOffsetPosition = 1;
         self.status = SpellStatusPrepare;
         self.altitude = 0;
-        self.visual = YES;
+        self.targetSelf = NO;
         
         self.spellId = [Spell generateSpellId];
     }
@@ -95,12 +95,16 @@
     return [SpellInteraction nothing];
 }
 
--(SpellInteraction*)interactPlayer:(Player*)player {
+-(SpellInteraction*)interactPlayer:(Player*)player currentTick:(NSInteger)currentTick {
     if (player.effect) {
-        return [player.effect interactPlayer:player spell:self];        
+        return [player.effect interactPlayer:player spell:self currentTick:currentTick];
     }
+    else if (self.effect) {
+        return [self.effect interactPlayer:player spell:self currentTick:currentTick];
+    }
+    
     else {
-        return [[Effect new] interactPlayer:player spell:self];
+        return [[Effect new] interactPlayer:player spell:self currentTick:currentTick];
     }
 }
 

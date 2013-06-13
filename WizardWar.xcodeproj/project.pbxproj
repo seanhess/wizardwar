@@ -30,6 +30,9 @@
 		7837D6B017540893001D820E /* PlayerTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7837D6AF17540893001D820E /* PlayerTime.m */; };
 		7837F16B1749B9D000D29445 /* navbar-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7837F1691749B9CF00D29445 /* navbar-logo.png */; };
 		7837F16C1749B9D000D29445 /* navbar-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7837F16A1749B9CF00D29445 /* navbar-logo@2x.png */; };
+		783BD39E176A79A50092D93C /* SpellSleep.m in Sources */ = {isa = PBXBuildFile; fileRef = 78915288176A7815001694B1 /* SpellSleep.m */; };
+		783E8061176A7B5700A21FE5 /* sleep-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 783E8060176A7B5700A21FE5 /* sleep-hd.png */; };
+		783E8063176A7B8500A21FE5 /* sleep.png in Resources */ = {isa = PBXBuildFile; fileRef = 783E8062176A7B8500A21FE5 /* sleep.png */; };
 		786246321767B790001904AC /* SpellInvisibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246311767B790001904AC /* SpellInvisibility.m */; };
 		786246351767BE47001904AC /* Effect.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246341767BE47001904AC /* Effect.m */; };
 		786246391767BF19001904AC /* EffectInvisible.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246381767BF19001904AC /* EffectInvisible.m */; };
@@ -329,6 +332,8 @@
 		7837D6AF17540893001D820E /* PlayerTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerTime.m; sourceTree = "<group>"; };
 		7837F1691749B9CF00D29445 /* navbar-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar-logo.png"; sourceTree = "<group>"; };
 		7837F16A1749B9CF00D29445 /* navbar-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar-logo@2x.png"; sourceTree = "<group>"; };
+		783E8060176A7B5700A21FE5 /* sleep-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sleep-hd.png"; sourceTree = "<group>"; };
+		783E8062176A7B8500A21FE5 /* sleep.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sleep.png; sourceTree = "<group>"; };
 		786246301767B790001904AC /* SpellInvisibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellInvisibility.h; sourceTree = "<group>"; };
 		786246311767B790001904AC /* SpellInvisibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellInvisibility.m; sourceTree = "<group>"; };
 		786246331767BE47001904AC /* Effect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Effect.h; sourceTree = "<group>"; };
@@ -364,6 +369,8 @@
 		78915280176A7136001694B1 /* SpellLevitate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpellLevitate.m; sourceTree = "<group>"; };
 		78915281176A72A8001694B1 /* EffectLevitate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EffectLevitate.h; sourceTree = "<group>"; };
 		78915282176A72A8001694B1 /* EffectLevitate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EffectLevitate.m; sourceTree = "<group>"; };
+		78915287176A7815001694B1 /* SpellSleep.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpellSleep.h; sourceTree = "<group>"; };
+		78915288176A7815001694B1 /* SpellSleep.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpellSleep.m; sourceTree = "<group>"; };
 		789BAB8117566ABF003C0116 /* Multiplayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Multiplayer.h; sourceTree = "<group>"; };
 		789BAB8217566CFE003C0116 /* TimerSyncService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerSyncService.h; sourceTree = "<group>"; };
 		789BAB8317566CFE003C0116 /* TimerSyncService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerSyncService.m; sourceTree = "<group>"; };
@@ -890,6 +897,8 @@
 		78F193E717471A0E00BB8587 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				783E8060176A7B5700A21FE5 /* sleep-hd.png */,
+				783E8062176A7B8500A21FE5 /* sleep.png */,
 				786246551767D885001904AC /* helmet-hd.png */,
 				786246561767D885001904AC /* helmet.png */,
 				786246471767CC29001904AC /* firewall.png */,
@@ -1513,6 +1522,8 @@
 				78D08557176A4AC400EDC405 /* SpellHeal.m */,
 				7891527F176A7136001694B1 /* SpellLevitate.h */,
 				78915280176A7136001694B1 /* SpellLevitate.m */,
+				78915287176A7815001694B1 /* SpellSleep.h */,
+				78915288176A7815001694B1 /* SpellSleep.m */,
 			);
 			name = Spells;
 			sourceTree = "<group>";
@@ -1683,6 +1694,8 @@
 				786246511767D05C001904AC /* fist.png in Resources */,
 				786246571767D885001904AC /* helmet-hd.png in Resources */,
 				786246581767D885001904AC /* helmet.png in Resources */,
+				783E8061176A7B5700A21FE5 /* sleep-hd.png in Resources */,
+				783E8063176A7B8500A21FE5 /* sleep.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1884,6 +1897,7 @@
 				78D08558176A4AC500EDC405 /* SpellHeal.m in Sources */,
 				78D0855B176A4B2800EDC405 /* EffectHeal.m in Sources */,
 				78D0855E176A4C7C00EDC405 /* EffectSleep.m in Sources */,
+				783BD39E176A79A50092D93C /* SpellSleep.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
