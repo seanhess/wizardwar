@@ -80,6 +80,9 @@
 		78ABA8B9175A74A4003D2F23 /* windblast-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78ABA8B7175A74A2003D2F23 /* windblast-hd.plist */; };
 		78ABA8BA175A74A4003D2F23 /* windblast-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 78ABA8B8175A74A3003D2F23 /* windblast-hd.png */; };
 		78C46B5A17562CAC0077EE98 /* MultiplayerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C46B5917562CAC0077EE98 /* MultiplayerService.m */; };
+		78D08558176A4AC500EDC405 /* SpellHeal.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D08557176A4AC400EDC405 /* SpellHeal.m */; };
+		78D0855B176A4B2800EDC405 /* EffectHeal.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D0855A176A4B2800EDC405 /* EffectHeal.m */; };
+		78D0855E176A4C7C00EDC405 /* EffectSleep.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D0855D176A4C7C00EDC405 /* EffectSleep.m */; };
 		78E8EA6A1759427E00017747 /* Combos.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E8EA691759427E00017747 /* Combos.m */; };
 		78F09BA5175AE32600BA775E /* earthwall-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78F09BA2175AE32600BA775E /* earthwall-animation.plist */; };
 		78F09BA6175AE32600BA775E /* earthwall.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78F09BA3175AE32600BA775E /* earthwall.plist */; };
@@ -390,6 +393,13 @@
 		78ABA8B8175A74A3003D2F23 /* windblast-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "windblast-hd.png"; path = "windblast-hd/windblast-hd.png"; sourceTree = "<group>"; };
 		78C46B5817562CAC0077EE98 /* MultiplayerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiplayerService.h; sourceTree = "<group>"; };
 		78C46B5917562CAC0077EE98 /* MultiplayerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiplayerService.m; sourceTree = "<group>"; };
+		78D08556176A4AC400EDC405 /* SpellHeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellHeal.h; sourceTree = "<group>"; };
+		78D08557176A4AC400EDC405 /* SpellHeal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellHeal.m; sourceTree = "<group>"; };
+		78D08559176A4B2800EDC405 /* EffectHeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectHeal.h; sourceTree = "<group>"; };
+		78D0855A176A4B2800EDC405 /* EffectHeal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectHeal.m; sourceTree = "<group>"; };
+		78D0855C176A4C7C00EDC405 /* EffectSleep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectSleep.h; sourceTree = "<group>"; };
+		78D0855D176A4C7C00EDC405 /* EffectSleep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectSleep.m; sourceTree = "<group>"; };
+		78D0855F176A4D7900EDC405 /* Simulated.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Simulated.h; sourceTree = "<group>"; };
 		78E8EA681759427E00017747 /* Combos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Combos.h; sourceTree = "<group>"; };
 		78E8EA691759427E00017747 /* Combos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Combos.m; sourceTree = "<group>"; };
 		78F09BA2175AE32600BA775E /* earthwall-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "earthwall-animation.plist"; path = "earthwall/earthwall-animation.plist"; sourceTree = "<group>"; };
@@ -839,6 +849,10 @@
 				786246381767BF19001904AC /* EffectInvisible.m */,
 				786246591767EAE2001904AC /* EffectHelmet.h */,
 				7862465A1767EAE2001904AC /* EffectHelmet.m */,
+				78D08559176A4B2800EDC405 /* EffectHeal.h */,
+				78D0855A176A4B2800EDC405 /* EffectHeal.m */,
+				78D0855C176A4C7C00EDC405 /* EffectSleep.h */,
+				78D0855D176A4C7C00EDC405 /* EffectSleep.m */,
 			);
 			name = Effects;
 			sourceTree = "<group>";
@@ -1442,6 +1456,7 @@
 				78F6B3B21746B27700AA070D /* SpellSprite.m */,
 				787A2A8F174E9FA3004C4FDB /* TestLayer.h */,
 				787A2A90174E9FA3004C4FDB /* TestLayer.m */,
+				78D0855F176A4D7900EDC405 /* Simulated.h */,
 			);
 			name = Match;
 			sourceTree = "<group>";
@@ -1486,6 +1501,8 @@
 				78F195141747FEB500BB8587 /* SpellWindblast.m */,
 				786246301767B790001904AC /* SpellInvisibility.h */,
 				786246311767B790001904AC /* SpellInvisibility.m */,
+				78D08556176A4AC400EDC405 /* SpellHeal.h */,
+				78D08557176A4AC400EDC405 /* SpellHeal.m */,
 			);
 			name = Spells;
 			sourceTree = "<group>";
@@ -1852,6 +1869,9 @@
 				7862464D1767CF64001904AC /* SpellFist.m in Sources */,
 				786246541767D71A001904AC /* SpellHelmet.m in Sources */,
 				7862465B1767EAE2001904AC /* EffectHelmet.m in Sources */,
+				78D08558176A4AC500EDC405 /* SpellHeal.m in Sources */,
+				78D0855B176A4B2800EDC405 /* EffectHeal.m in Sources */,
+				78D0855E176A4C7C00EDC405 /* EffectSleep.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

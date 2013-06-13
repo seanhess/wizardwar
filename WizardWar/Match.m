@@ -199,14 +199,42 @@
 - (void)gameDidTick:(NSInteger)currentTick {
     if (currentTick == GAME_TIMER_FIRST_TICK)
         self.status = MatchStatusPlaying;
-    [self simulateTick:currentTick];
+    [self simulateTick:currentTick interval:self.timer.tickInterval];
     [self.delegate didTick:currentTick];
-    
-    [self.ai simulateTick:currentTick interval:self.timer.tickInterval];
 }
 
--(void)simulateTick:(NSInteger)currentTick {
+-(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)tickInterval {
     
+    [self simulateUpdatedSpells:currentTick interval:tickInterval];
+    
+    // SIMULATE PLAYERS. Players handle simulating their own effects
+    [self.players.allValues forEach:^(Player * player) {
+        [player simulateTick:currentTick interval:tickInterval];
+    }];
+    
+    // SIMULATE SPELLS
+    [self.activeSpells forEach:^(Spell * spell) {
+        [spell simulateTick:currentTick interval:tickInterval];
+    }];
+    
+    // run the simulation
+    // try to simulate EVERYTHING, but allow yourself to be corrected by owner
+    // in other words, go ahead and make all changes locally, but don't SYNC unless you own them
+    [self checkHits];
+    
+    // HACK: sync the player every second
+    if ((currentTick % (int)round(TICKS_PER_SECOND)) == 0) {
+        //NSLog(@"SYNC PLAYER health=%i mana=%i", self.currentPlayer.health, self.currentPlayer.mana);
+        [self.multiplayer updatePlayer:self.currentPlayer];
+    }
+    
+    [self cleanupDestroyed];
+    
+    // SIMULATE AI
+    [self.ai simulateTick:currentTick interval:tickInterval];
+}
+
+-(void)simulateUpdatedSpells:(NSInteger)currentTick interval:(NSTimeInterval)tickInterval {
     NSArray * updatedSpells = [self.spells.allValues filter:^BOOL(Spell * spell) {
         return (spell.status == SpellStatusUpdated);
     }];
@@ -214,7 +242,7 @@
     NSArray * newSpells = [self.spells.allValues filter:^BOOL(Spell *spell) {
         return spell.status == SpellStatusPrepare;
     }];
-
+    
     [updatedSpells forEach:^(Spell * spell) {
         [self positionSpell:spell referenceTick:spell.updatedTick currentTick:currentTick];
     }];
@@ -224,25 +252,14 @@
         Player * creator = [self.players.allValues find:^BOOL(Player* player) {
             return [player.name isEqualToString:spell.creator];
         }];
-        [creator.effect playerDidCastSpell:creator];
-
+        
+        if (creator.effect.cancelsOnCast)
+            creator.effect = nil;
+        
         Effect * effect = spell.effect;
         if (effect) [self createSpell:spell effect:effect];
         else [self positionSpell:spell referenceTick:spell.createdTick currentTick:currentTick];
     }];
-    
-    // run the simulation
-    // try to simulate EVERYTHING, but allow yourself to be corrected by owner
-    // in other words, go ahead and make all changes locally, but don't SYNC unless you own them
-    [self checkHits];
-    
-    // Maybe sync the player every second
-    if ((currentTick % (int)round(TICKS_PER_SECOND)) == 0) {
-        //NSLog(@"SYNC PLAYER health=%i mana=%i", self.currentPlayer.health, self.currentPlayer.mana);
-        [self.multiplayer updatePlayer:self.currentPlayer];
-    }
-    
-    [self cleanupDestroyed];
 }
 
 -(void)positionSpell:(Spell*)spell referenceTick:(NSInteger)referenceTick currentTick:(NSInteger)currentTick {
@@ -262,6 +279,7 @@
     spell.status = SpellStatusDestroyed;
     
     player.effect = effect;
+    [effect start];
 }
 
 -(void)checkHits {
@@ -416,6 +434,9 @@
 }
 
 -(void)player:(Player*)player castSpell:(Spell*)spell {
+    
+    if (player.effect.disablesPlayer) return;
+    
     [player setState:PlayerStateCast animated:YES];
     
     // update spell

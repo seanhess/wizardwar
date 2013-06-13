@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "Spell.h"
+#import "Simulated.h"
 
 @protocol AIDelegate <NSObject>
 -(void)aiDidCastSpell:(Spell*)spell;
 @end
 
-@interface PracticeModeAIService : NSObject
+@interface PracticeModeAIService : NSObject <Simulated>
 @property (nonatomic, weak) id<AIDelegate> delegate;
--(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval;
 @end

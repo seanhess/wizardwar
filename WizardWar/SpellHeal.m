@@ -1,15 +1,15 @@
 //
-//  SpellInvisibility.m
+//  SpellHeal.m
 //  WizardWar
 //
-//  Created by Sean Hess on 6/11/13.
+//  Created by Sean Hess on 6/13/13.
 //  Copyright (c) 2013 The LAB. All rights reserved.
 //
 
-#import "SpellInvisibility.h"
+#import "SpellHeal.h"
 #import "EffectInvisible.h"
 
-@implementation SpellInvisibility
+@implementation SpellHeal
 
 -(id)init {
     if ((self=[super init])) {
@@ -23,6 +23,5 @@
 -(SpellInteraction *)interactSpell:(Spell *)spell {
     return [SpellInteraction nothing];
 }
-
 
 @end

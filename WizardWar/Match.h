@@ -11,6 +11,7 @@
 #import "Player.h"
 #import "Multiplayer.h"
 #import "TimerSyncService.h"
+#import "Simulated.h"
 
 typedef enum MatchStatus {
     MatchStatusReady,
@@ -30,7 +31,7 @@ typedef enum MatchStatus {
 -(void)didTick:(NSInteger)currentTick;
 @end
 
-@interface Match : NSObject
+@interface Match : NSObject <Simulated>
 @property (nonatomic, strong) NSMutableDictionary * players;
 @property (nonatomic, strong) NSMutableDictionary * spells;
 @property (nonatomic, weak) id<MatchDelegate> delegate;

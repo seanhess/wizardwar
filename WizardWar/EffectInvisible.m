@@ -39,9 +39,4 @@
     }
 }
 
--(void)playerDidCastSpell:(Player*)player {
-    player.effect = nil;
-}
-
-
 @end

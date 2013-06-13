@@ -80,6 +80,10 @@
     }
 }
 
+- (void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
+    [self.effect simulateTick:currentTick interval:interval player:self];
+}
+
 +(NSString*)randomWizardType {
     NSArray * types = @[WIZARD_TYPE_ONE, WIZARD_TYPE_TWO];
     NSUInteger randomIndex = arc4random() % types.count;

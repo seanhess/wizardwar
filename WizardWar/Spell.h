@@ -15,6 +15,7 @@
 #import "Player.h"
 #import "SpellInteraction.h"
 #import "Effect.h"
+#import "Simulated.h"
 
 typedef enum SpellStatus {
     SpellStatusPrepare,
@@ -24,7 +25,7 @@ typedef enum SpellStatus {
 } SpellStatus;
 
 
-@interface Spell : NSObject <Objectable>
+@interface Spell : NSObject <Objectable, Simulated>
 @property (nonatomic) NSString * spellId;
 @property (nonatomic) float speed; // units per second
 @property (nonatomic) float position;  // in units

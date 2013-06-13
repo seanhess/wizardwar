@@ -10,6 +10,7 @@
 #import "Units.h"
 #import "Objectable.h"
 #import "Effect.h"
+#import "Simulated.h"
 
 #define WIZARD_TYPE_ONE @"1"
 #define WIZARD_TYPE_TWO @"2"
@@ -21,7 +22,7 @@ typedef enum PlayerState {
     PlayerStateDead,
 } PlayerState;
 
-@interface Player : NSObject <Objectable>
+@interface Player : NSObject <Objectable, Simulated>
 @property (nonatomic, strong) NSString * name;
 @property (nonatomic) PlayerState state;
 @property (nonatomic) float position; // in units (not pixels)

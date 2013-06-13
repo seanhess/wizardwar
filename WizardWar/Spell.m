@@ -46,6 +46,10 @@
     self.position = [self move:dt];
 }
 
+-(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
+    
+}
+
 -(float)move:(NSTimeInterval)dt {
     return self.position + self.direction * self.speed * dt;
 }
