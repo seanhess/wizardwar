@@ -8,7 +8,7 @@
 
 #import "Effect.h"
 #import "Spell.h"
-#import "Player.h"
+#import "Wizard.h"
 
 @implementation Effect
 
@@ -22,16 +22,16 @@
     return self;
 }
 
--(void)start:(NSInteger)tick player:(Player *)player {
+-(void)start:(NSInteger)tick player:(Wizard *)player {
     self.startTick = tick;
 }
 
--(void)cancel:(Player*)player {
+-(void)cancel:(Wizard*)player {
     player.effect = nil;
 }
 
 // the default effect is to damage the player and cancel the spell
--(SpellInteraction*)interactPlayer:(Player*)player spell:(Spell*)spell currentTick:(NSInteger)currentTick {
+-(SpellInteraction*)interactPlayer:(Wizard*)player spell:(Spell*)spell currentTick:(NSInteger)currentTick {
     player.health -= spell.damage;
     
     if (spell.damage > 0)
@@ -47,7 +47,7 @@
     return [SpellInteraction nothing];
 }
 
--(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval player:(Player*)player {
+-(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval player:(Wizard*)player {
     
 }
 

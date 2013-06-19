@@ -1,3 +1,10 @@
+### Links
+
+* http://refactr.com/blog/2012/09/ios-tips-custom-fonts/
+
+[ ] Lobby:
+
+
 [ ] Ready screen so you can see who you are
 [ ] Fix wind blast
 [ ] Add random "fail" spells (with two elements) any 2 elements triggers a random fail spell
@@ -5,9 +12,7 @@
   [ ] Fail sound
   [ ] "Try dragging between elements"
   [ ] Spell cast graphic
-[ ] Merge and finish lobby code
-
-
+[x] Merge and finish lobby code
 
 
 IDEA: we can have some spells take "more mana", meaning they reduce the size of the indicators used MORE

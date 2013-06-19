@@ -7,7 +7,7 @@
 //
 
 #import "EffectLevitate.h"
-#import "Player.h"
+#import "Wizard.h"
 
 #define EFFECT_LEVITATE_DURATION 4.5
 
@@ -23,12 +23,12 @@
 
 // TODO
 
--(void)start:(NSInteger)tick player:(Player *)player {
+-(void)start:(NSInteger)tick player:(Wizard *)player {
     [super start:tick player:player];
     player.altitude = 1;
 }
 
--(void)cancel:(Player*)player {
+-(void)cancel:(Wizard*)player {
     [super cancel:player];
     player.altitude = 0;
     
@@ -36,7 +36,7 @@
     // no, hard to differentiate between switching effects
 }
 
--(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval player:(Player*)player {
+-(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval player:(Wizard*)player {
     NSInteger ticksPerDuration = round(EFFECT_LEVITATE_DURATION / interval);
     if ((currentTick - self.startTick) >= ticksPerDuration) {
         player.effect = nil;

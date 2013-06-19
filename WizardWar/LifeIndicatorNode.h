@@ -7,10 +7,10 @@
 //
 
 #import "cocos2d.h"
-#import "Player.h"
+#import "Wizard.h"
 #import "Match.h"
 
 @interface LifeIndicatorNode : CCNode
-@property (nonatomic, strong) Player * player;
+@property (nonatomic, strong) Wizard * player;
 @property (nonatomic, strong) Match * match;
 @end

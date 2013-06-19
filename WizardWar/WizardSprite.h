@@ -7,9 +7,9 @@
 //
 
 #import "CCSprite.h"
-#import "Player.h"
+#import "Wizard.h"
 
 @interface WizardSprite : CCSprite
-@property (nonatomic, strong) Player * player;
--(id)initWithPlayer:(Player*)player units:(Units*)units;
+@property (nonatomic, strong) Wizard * player;
+-(id)initWithPlayer:(Wizard*)player units:(Units*)units;
 @end

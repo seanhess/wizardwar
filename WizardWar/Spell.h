@@ -12,7 +12,7 @@
 // position 0 is the location of the left player
 
 #import <Foundation/Foundation.h>
-#import "Player.h"
+#import "Wizard.h"
 #import "SpellInteraction.h"
 #import "Effect.h"
 #import "Simulated.h"
@@ -48,12 +48,12 @@ typedef enum SpellStatus {
 @property (nonatomic) float startOffsetPosition;
 
 -(void)update:(NSTimeInterval)dt;
--(void)initCaster:(Player*)player tick:(NSInteger)tick;
+-(void)initCaster:(Wizard*)player tick:(NSInteger)tick;
 -(BOOL)isType:(Class)class;
 -(SpellInteraction*)interactSpell:(Spell*)spell;
--(SpellInteraction*)interactPlayer:(Player*)player currentTick:(NSInteger)currentTick;
+-(SpellInteraction*)interactPlayer:(Wizard*)player currentTick:(NSInteger)currentTick;
 -(SpellInteraction*)interactEffect:(Effect*)player;
--(BOOL)hitsPlayer:(Player*)player duringInterval:(NSTimeInterval)dt;
+-(BOOL)hitsPlayer:(Wizard*)player duringInterval:(NSTimeInterval)dt;
 -(BOOL)hitsSpell:(Spell*)spell duringInterval:(NSTimeInterval)dt;
 +(Spell*)fromType:(NSString*)type;
 +(NSString*)type;

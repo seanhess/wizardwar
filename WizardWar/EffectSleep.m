@@ -28,13 +28,13 @@
 }
 
 // the default effect is to damage the player and cancel the spell
--(SpellInteraction*)interactPlayer:(Player*)player spell:(Spell*)spell currentTick:(NSInteger)currentTick {
+-(SpellInteraction*)interactPlayer:(Wizard*)player spell:(Spell*)spell currentTick:(NSInteger)currentTick {
     player.effect = self;
     [player.effect start:currentTick player:player];
     return [SpellInteraction cancel];
 }
 
--(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval player:(Player *)player {
+-(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval player:(Wizard *)player {
     NSInteger ticksPerDuration = round(EFFECT_SLEEP_DURATION / interval);
     if ((currentTick - self.startTick) >= ticksPerDuration) {
         player.effect = nil;

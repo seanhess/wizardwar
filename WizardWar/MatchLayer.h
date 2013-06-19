@@ -8,7 +8,7 @@
 
 #import "CCLayer.h"
 #import "PentagramViewController.h"
-#import "Player.h"
+#import "Wizard.h"
 #import "Match.h"
 
 @interface MatchLayer : CCLayer

@@ -44,7 +44,7 @@
 }
 
 
--(id)initWithPlayer:(Player *)player units:(Units *)units {
+-(id)initWithPlayer:(Wizard *)player units:(Units *)units {
     if ((self=[super init])) {
         self.player = player;
         self.units = units;

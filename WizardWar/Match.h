@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Spell.h"
-#import "Player.h"
+#import "Wizard.h"
 #import "Multiplayer.h"
 #import "TimerSyncService.h"
 #import "Simulated.h"
@@ -25,8 +25,8 @@ typedef enum MatchStatus {
 -(void)didAddSpell:(Spell*)spell;
 -(void)didRemoveSpell:(Spell*)spell;
 
--(void)didAddPlayer:(Player*)player;
--(void)didRemovePlayer:(Player*)player;
+-(void)didAddPlayer:(Wizard*)player;
+-(void)didRemovePlayer:(Wizard*)player;
 
 -(void)didTick:(NSInteger)currentTick;
 @end
@@ -35,13 +35,13 @@ typedef enum MatchStatus {
 @property (nonatomic, strong) NSMutableDictionary * players;
 @property (nonatomic, strong) NSMutableDictionary * spells;
 @property (nonatomic, weak) id<MatchDelegate> delegate;
-@property (nonatomic, strong) Player * currentPlayer;
+@property (nonatomic, strong) Wizard * currentPlayer;
 
 @property (nonatomic, readonly) NSArray * sortedPlayers;
 
 @property (nonatomic) MatchStatus status;
 
--(id)initWithId:(NSString*)matchId currentPlayer:(Player*)player withAI:(Player*)ai multiplayer:(id<Multiplayer>)multiplayer sync:(TimerSyncService*)sync;
+-(id)initWithId:(NSString*)matchId currentPlayer:(Wizard*)player withAI:(Wizard*)ai multiplayer:(id<Multiplayer>)multiplayer sync:(TimerSyncService*)sync;
 -(void)update:(NSTimeInterval)dt;
 -(void)castSpell:(Spell *)spell;
 -(void)connect;

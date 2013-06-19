@@ -10,7 +10,7 @@
 #import "FirebaseCollection.h"
 #import <Firebase/Firebase.h>
 #import "Spell.h"
-#import "Player.h"
+#import "Wizard.h"
 #import "NSArray+Functional.h"
 
 @interface MultiplayerService () 
@@ -57,7 +57,7 @@
     
     // PLAYERS
     [self.playersNode observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot*snapshot) {
-        Player * player = [Player new];
+        Wizard * player = [Wizard new];
         [player setValuesForKeysWithDictionary:snapshot.value];
         [wself.delegate mpDidAddPlayer:player];
     }];
@@ -76,17 +76,17 @@
     [self.playersNode removeAllObservers];
 }
 
-- (void)addPlayer:(Player *)player {
+- (void)addPlayer:(Wizard *)player {
     Firebase * node = [self.playersNode childByAppendingPath:player.name];
     [node onDisconnectRemoveValue];
     [node setValue:player.toObject];
 }
 
--(void)removePlayer:(Player*)player {
+-(void)removePlayer:(Wizard*)player {
     [[self.playersNode childByAppendingPath:player.name] removeValue];
 }
 
-- (void)updatePlayer:(Player *)player {
+- (void)updatePlayer:(Wizard *)player {
     Firebase * node = [self.playersNode childByAppendingPath:player.name];
     [node setValue:player.toObject];
 }

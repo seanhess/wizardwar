@@ -8,10 +8,12 @@
 
 #import "AppDelegate.h"
 #import "MatchmakingViewController.h"
-#import "MainNavViewController.h"
 #import "cocos2d.h"
 #import <Firebase/Firebase.h>
 #import "WizardDirector.h"
+#import "LandingViewController.h"
+#import "MainNavViewController.h"
+#import "AppStyle.h"
 
 // The director should belong to the app delegate or a singleton
 // and you should manually unload or reload it
@@ -27,15 +29,26 @@
 {
     [application setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     
+    [AppStyle customizeUIKitStyles];
+    
+    
+    
+    /// LOAD //////////////////
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    self.matches = [[MatchmakingViewController alloc] initWithNibName:@"MatchmakingViewController" bundle:nil];
-    MainNavViewController * navigationController = [[MainNavViewController alloc] initWithRootViewController:self.matches];
+    LandingViewController * landing = [LandingViewController new];
+    MainNavViewController * navigationController = [[MainNavViewController alloc] initWithRootViewController:landing];
     [self.window setRootViewController:navigationController];
     [self.window makeKeyAndVisible];
     
     // INITIALIZE DIRECTOR
     [WizardDirector initializeWithBounds:self.window.bounds];
+    
+    
+    //    NSLog(@"FONT: %@",[UIFont fontNamesForFamilyName:@"ComicZineOT"]);
+    //    NSLog(@"FONT: %@",[UIFont fontNamesForFamilyName:@"Comic Zine OT"]);
+    //    NSLog(@"FAMLIES %@", [UIFont familyNames]);
     
     return YES;
 }

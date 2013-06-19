@@ -7,7 +7,7 @@
 //
 
 #import "EffectHeal.h"
-#import "Player.h"
+#import "Wizard.h"
 
 
 
@@ -25,7 +25,7 @@
 // ok, so I need to check to see if they've waited long enough to heal
 // it can only heal ONE heart
 // if you get hit in the meantime it doesn't work
--(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval player:(Player*)player {    
+-(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval player:(Wizard*)player {    
     NSInteger ticksPerHeal = round(EFFECT_HEAL_TIME / interval);
     NSInteger elapsedTicks = (currentTick - self.startTick);
     

@@ -8,14 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "Spell.h"
-#import "Player.h"
+#import "Wizard.h"
 
 @protocol MultiplayerDelegate <NSObject>
 -(void)mpDidAddSpell:(Spell*)spell;
 -(void)mpDidUpdate:(NSDictionary*)updates spellWithId:(NSString*)spellId;
 -(void)mpDidRemoveSpellWithId:(NSString*)spellId;
 
--(void)mpDidAddPlayer:(Player*)player;
+-(void)mpDidAddPlayer:(Wizard*)player;
 -(void)mpDidUpdate:(NSDictionary*)updates playerWithName:(NSString*)name;
 -(void)mpDidRemovePlayerWithName:(NSString*)name;
 @end
@@ -26,9 +26,9 @@
 -(void)connectToMatchId:(NSString*)matchId;
 -(void)disconnect;
 
--(void)addPlayer:(Player*)player;
--(void)updatePlayer:(Player*)player;
--(void)removePlayer:(Player*)player;
+-(void)addPlayer:(Wizard*)player;
+-(void)updatePlayer:(Wizard*)player;
+-(void)removePlayer:(Wizard*)player;
 
 -(void)addSpell:(Spell*)spell;
 -(void)updateSpell:(Spell*)spell;

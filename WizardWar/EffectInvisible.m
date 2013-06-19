@@ -31,7 +31,7 @@
     });
 }
 
--(SpellInteraction*)interactPlayer:(Player*)player spell:(Spell*)spell currentTick:(NSInteger)currentTick {
+-(SpellInteraction*)interactPlayer:(Wizard*)player spell:(Spell*)spell currentTick:(NSInteger)currentTick {
     if (self.active && ![spell isType:[SpellFist class]]) {
         return [SpellInteraction nothing];
     }

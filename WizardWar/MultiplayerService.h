@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Spell.h"
-#import "Player.h"
+#import "Wizard.h"
 #import <Firebase/Firebase.h>
 #import "Multiplayer.h"
 

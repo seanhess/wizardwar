@@ -9,9 +9,6 @@
 #import "User.h"
 
 @implementation User
-
--(NSDictionary*)toObject {
-    return [self dictionaryWithValuesForKeys:@[@"name"]];
-}
-
+-(NSDictionary*)toObject { return nil; };
+-(void)setValuesForKeysWithDictionary:(NSDictionary*)keyedValues {}
 @end

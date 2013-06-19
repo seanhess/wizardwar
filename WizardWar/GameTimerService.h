@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Player.h"
+#import "Wizard.h"
 
 #define GAME_TIMER_FIRST_TICK 1
 

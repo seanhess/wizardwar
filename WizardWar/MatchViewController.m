@@ -72,7 +72,11 @@
     [self renderMatchStatus];    
 }
 
-- (void)connectToMatchWithId:(NSString*)matchId currentPlayer:(Player*)player withAI:(Player*)ai {
+-(NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskLandscape;
+}
+
+- (void)connectToMatchWithId:(NSString*)matchId currentPlayer:(Wizard*)player withAI:(Wizard*)ai {
     id<Multiplayer> multiplayer = nil;
     TimerSyncService * sync = nil;
     if (ai) { }
@@ -115,7 +119,8 @@
     [self.match disconnect];
     [WizardDirector unload];
     [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

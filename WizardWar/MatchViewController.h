@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Player.h"
+#import "Wizard.h"
 
 @interface MatchViewController : UIViewController
-- (void)connectToMatchWithId:(NSString*)matchId currentPlayer:(Player*)player withAI:(Player*)ai;
+- (void)connectToMatchWithId:(NSString*)matchId currentPlayer:(Wizard*)player withAI:(Wizard*)ai;
 @end

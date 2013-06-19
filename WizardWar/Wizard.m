@@ -6,17 +6,17 @@
 //  Copyright (c) 2013 The LAB. All rights reserved.
 //
 
-#import "Player.h"
+#import "Wizard.h"
 #import "Spell.h"
 #import "SpellFireball.h"
 
 #define SECONDS_PER_MANA 1.5
 
-@interface Player ()
+@interface Wizard ()
 @property (nonatomic) NSTimeInterval stateAnimationTime;
 @end
 
-@implementation Player
+@implementation Wizard
 
 -(id)init {
     if ((self=[super init])) {

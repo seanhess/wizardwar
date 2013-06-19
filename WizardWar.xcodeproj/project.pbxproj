@@ -44,6 +44,28 @@
 		785FBE9F17724FA20021AEE5 /* wizard1-set1-animations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 785FBE9E17724FA20021AEE5 /* wizard1-set1-animations.plist */; };
 		785FBEA217725A780021AEE5 /* pillow-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEA017725A780021AEE5 /* pillow-hd.png */; };
 		785FBEA317725A780021AEE5 /* pillow.png in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEA117725A780021AEE5 /* pillow.png */; };
+		785FBEC4177261BD0021AEE5 /* InstagramEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEA6177261BD0021AEE5 /* InstagramEnemy.m */; };
+		785FBEC5177261BD0021AEE5 /* Interaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEA8177261BD0021AEE5 /* Interaction.m */; };
+		785FBEC6177261BD0021AEE5 /* LandingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEAA177261BD0021AEE5 /* LandingViewController.m */; };
+		785FBEC7177261BD0021AEE5 /* LandingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEAB177261BD0021AEE5 /* LandingViewController.xib */; };
+		785FBEC8177261BD0021AEE5 /* LocalParty.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEAD177261BD0021AEE5 /* LocalParty.m */; };
+		785FBEC9177261BD0021AEE5 /* LocalPartyService.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEAF177261BD0021AEE5 /* LocalPartyService.m */; };
+		785FBECA177261BD0021AEE5 /* MainNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEB1177261BD0021AEE5 /* MainNavViewController.m */; };
+		785FBECB177261BD0021AEE5 /* MatchmakingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEB3177261BD0021AEE5 /* MatchmakingViewController.m */; };
+		785FBECC177261BD0021AEE5 /* MatchmakingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEB4177261BD0021AEE5 /* MatchmakingViewController.xib */; };
+		785FBECD177261BD0021AEE5 /* MenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEB6177261BD0021AEE5 /* MenuButton.m */; };
+		785FBECE177261BD0021AEE5 /* PartiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEB8177261BD0021AEE5 /* PartiesViewController.m */; };
+		785FBECF177261BD0021AEE5 /* PartiesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEB9177261BD0021AEE5 /* PartiesViewController.xib */; };
+		785FBED0177261BD0021AEE5 /* Party.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEBB177261BD0021AEE5 /* Party.m */; };
+		785FBED1177261BD0021AEE5 /* PartyInviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEBD177261BD0021AEE5 /* PartyInviteViewController.m */; };
+		785FBED2177261BD0021AEE5 /* PartyInviteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEBE177261BD0021AEE5 /* PartyInviteViewController.xib */; };
+		785FBED3177261BD0021AEE5 /* PartyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEC0177261BD0021AEE5 /* PartyViewController.m */; };
+		785FBED4177261BD0021AEE5 /* PartyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEC1177261BD0021AEE5 /* PartyViewController.xib */; };
+		785FBED5177261BD0021AEE5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEC3177261BD0021AEE5 /* User.m */; };
+		785FBEDC1772628C0021AEE5 /* LoveYaLikeASister.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 785FBED91772628C0021AEE5 /* LoveYaLikeASister.ttf */; };
+		785FBEDD1772628C0021AEE5 /* LoveYaLikeASisterSolid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEDA1772628C0021AEE5 /* LoveYaLikeASisterSolid.ttf */; };
+		785FBEDE1772628C0021AEE5 /* comic_zine_ot.otf in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEDB1772628C0021AEE5 /* comic_zine_ot.otf */; };
+		785FBEE3177263850021AEE5 /* AppStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEE2177263850021AEE5 /* AppStyle.m */; };
 		786246321767B790001904AC /* SpellInvisibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246311767B790001904AC /* SpellInvisibility.m */; };
 		786246351767BE47001904AC /* Effect.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246341767BE47001904AC /* Effect.m */; };
 		786246391767BF19001904AC /* EffectInvisible.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246381767BF19001904AC /* EffectInvisible.m */; };
@@ -58,7 +80,6 @@
 		786246571767D885001904AC /* helmet-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 786246551767D885001904AC /* helmet-hd.png */; };
 		786246581767D885001904AC /* helmet.png in Resources */ = {isa = PBXBuildFile; fileRef = 786246561767D885001904AC /* helmet.png */; };
 		7862465B1767EAE2001904AC /* EffectHelmet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7862465A1767EAE2001904AC /* EffectHelmet.m */; };
-		787A2A81174D2771004C4FDB /* MatchmakingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787A2A80174D2771004C4FDB /* MatchmakingViewController.xib */; };
 		787A2A85174E85E3004C4FDB /* FirebaseConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A2A84174E85E3004C4FDB /* FirebaseConnection.m */; };
 		787A2A91174E9FA3004C4FDB /* TestLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A2A90174E9FA3004C4FDB /* TestLayer.m */; };
 		787A2A99174EA43D004C4FDB /* MatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A2A97174EA43D004C4FDB /* MatchViewController.m */; };
@@ -282,12 +303,10 @@
 		78F6B3931746AFA000AA070D /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F6B3921746AFA000AA070D /* OpenAL.framework */; };
 		78F6B3951746AFAC00AA070D /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F6B3941746AFAC00AA070D /* GameKit.framework */; };
 		78F6B3971746AFDE00AA070D /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F6B3961746AFDE00AA070D /* Firebase.framework */; };
-		78F6B39C1746B02100AA070D /* MainNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3991746B02100AA070D /* MainNavViewController.m */; };
-		78F6B39D1746B02100AA070D /* MatchmakingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B39B1746B02100AA070D /* MatchmakingViewController.m */; };
 		78F6B39F1746B04600AA070D /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F6B39E1746B04600AA070D /* libicucore.dylib */; };
 		78F6B3A71746B26000AA070D /* Spell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3A11746B25F00AA070D /* Spell.m */; };
 		78F6B3A81746B26000AA070D /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3A31746B25F00AA070D /* Match.m */; };
-		78F6B3A91746B26000AA070D /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3A51746B26000AA070D /* Player.m */; };
+		78F6B3A91746B26000AA070D /* Wizard.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3A51746B26000AA070D /* Wizard.m */; };
 		78F6B3B71746B27800AA070D /* MatchLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3AC1746B27600AA070D /* MatchLayer.m */; };
 		78F6B3B81746B27800AA070D /* MatchGroundSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3AE1746B27600AA070D /* MatchGroundSprite.m */; };
 		78F6B3B91746B27800AA070D /* WizardSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3B01746B27600AA070D /* WizardSprite.m */; };
@@ -298,7 +317,6 @@
 		78F6B3CF1746E05E00AA070D /* SpellFireball.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3CE1746E05E00AA070D /* SpellFireball.m */; };
 		78F6B3D21746E2E000AA070D /* SpellInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3D11746E2E000AA070D /* SpellInteraction.m */; };
 		78F6B3D81746E6D300AA070D /* SpellEarthwall.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3D71746E6D100AA070D /* SpellEarthwall.m */; };
-		78F6B3DB174705D000AA070D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3DA174705D000AA070D /* User.m */; };
 		78F6B3DE174705EA00AA070D /* Invite.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3DD174705EA00AA070D /* Invite.m */; };
 		78F97FDE1758F7F500764D70 /* PracticeModeAIService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F97FDD1758F7F500764D70 /* PracticeModeAIService.m */; };
 		F283A922174807A40068EEB2 /* LifeIndicatorNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F283A921174807A40068EEB2 /* LifeIndicatorNode.m */; };
@@ -357,6 +375,43 @@
 		785FBE9E17724FA20021AEE5 /* wizard1-set1-animations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set1-animations.plist"; sourceTree = "<group>"; };
 		785FBEA017725A780021AEE5 /* pillow-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pillow-hd.png"; sourceTree = "<group>"; };
 		785FBEA117725A780021AEE5 /* pillow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pillow.png; sourceTree = "<group>"; };
+		785FBEA5177261BD0021AEE5 /* InstagramEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramEnemy.h; sourceTree = "<group>"; };
+		785FBEA6177261BD0021AEE5 /* InstagramEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramEnemy.m; sourceTree = "<group>"; };
+		785FBEA7177261BD0021AEE5 /* Interaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Interaction.h; sourceTree = "<group>"; };
+		785FBEA8177261BD0021AEE5 /* Interaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Interaction.m; sourceTree = "<group>"; };
+		785FBEA9177261BD0021AEE5 /* LandingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LandingViewController.h; sourceTree = "<group>"; };
+		785FBEAA177261BD0021AEE5 /* LandingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandingViewController.m; sourceTree = "<group>"; };
+		785FBEAB177261BD0021AEE5 /* LandingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LandingViewController.xib; sourceTree = "<group>"; };
+		785FBEAC177261BD0021AEE5 /* LocalParty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalParty.h; sourceTree = "<group>"; };
+		785FBEAD177261BD0021AEE5 /* LocalParty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalParty.m; sourceTree = "<group>"; };
+		785FBEAE177261BD0021AEE5 /* LocalPartyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalPartyService.h; sourceTree = "<group>"; };
+		785FBEAF177261BD0021AEE5 /* LocalPartyService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalPartyService.m; sourceTree = "<group>"; };
+		785FBEB0177261BD0021AEE5 /* MainNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainNavViewController.h; sourceTree = "<group>"; };
+		785FBEB1177261BD0021AEE5 /* MainNavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainNavViewController.m; sourceTree = "<group>"; };
+		785FBEB2177261BD0021AEE5 /* MatchmakingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchmakingViewController.h; sourceTree = "<group>"; };
+		785FBEB3177261BD0021AEE5 /* MatchmakingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchmakingViewController.m; sourceTree = "<group>"; };
+		785FBEB4177261BD0021AEE5 /* MatchmakingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchmakingViewController.xib; sourceTree = "<group>"; };
+		785FBEB5177261BD0021AEE5 /* MenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuButton.h; sourceTree = "<group>"; };
+		785FBEB6177261BD0021AEE5 /* MenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuButton.m; sourceTree = "<group>"; };
+		785FBEB7177261BD0021AEE5 /* PartiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartiesViewController.h; sourceTree = "<group>"; };
+		785FBEB8177261BD0021AEE5 /* PartiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartiesViewController.m; sourceTree = "<group>"; };
+		785FBEB9177261BD0021AEE5 /* PartiesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PartiesViewController.xib; sourceTree = "<group>"; };
+		785FBEBA177261BD0021AEE5 /* Party.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Party.h; sourceTree = "<group>"; };
+		785FBEBB177261BD0021AEE5 /* Party.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Party.m; sourceTree = "<group>"; };
+		785FBEBC177261BD0021AEE5 /* PartyInviteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartyInviteViewController.h; sourceTree = "<group>"; };
+		785FBEBD177261BD0021AEE5 /* PartyInviteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartyInviteViewController.m; sourceTree = "<group>"; };
+		785FBEBE177261BD0021AEE5 /* PartyInviteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PartyInviteViewController.xib; sourceTree = "<group>"; };
+		785FBEBF177261BD0021AEE5 /* PartyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartyViewController.h; sourceTree = "<group>"; };
+		785FBEC0177261BD0021AEE5 /* PartyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartyViewController.m; sourceTree = "<group>"; };
+		785FBEC1177261BD0021AEE5 /* PartyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PartyViewController.xib; sourceTree = "<group>"; };
+		785FBEC2177261BD0021AEE5 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		785FBEC3177261BD0021AEE5 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		785FBED8177262320021AEE5 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
+		785FBED91772628C0021AEE5 /* LoveYaLikeASister.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LoveYaLikeASister.ttf; sourceTree = "<group>"; };
+		785FBEDA1772628C0021AEE5 /* LoveYaLikeASisterSolid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LoveYaLikeASisterSolid.ttf; sourceTree = "<group>"; };
+		785FBEDB1772628C0021AEE5 /* comic_zine_ot.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = comic_zine_ot.otf; sourceTree = "<group>"; };
+		785FBEE1177263840021AEE5 /* AppStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppStyle.h; sourceTree = "<group>"; };
+		785FBEE2177263850021AEE5 /* AppStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppStyle.m; sourceTree = "<group>"; };
 		786246301767B790001904AC /* SpellInvisibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellInvisibility.h; sourceTree = "<group>"; };
 		786246311767B790001904AC /* SpellInvisibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellInvisibility.m; sourceTree = "<group>"; };
 		786246331767BE47001904AC /* Effect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Effect.h; sourceTree = "<group>"; };
@@ -380,7 +435,6 @@
 		786246561767D885001904AC /* helmet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helmet.png; sourceTree = "<group>"; };
 		786246591767EAE2001904AC /* EffectHelmet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectHelmet.h; sourceTree = "<group>"; };
 		7862465A1767EAE2001904AC /* EffectHelmet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectHelmet.m; sourceTree = "<group>"; };
-		787A2A80174D2771004C4FDB /* MatchmakingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchmakingViewController.xib; sourceTree = "<group>"; };
 		787A2A83174E85E3004C4FDB /* FirebaseConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseConnection.h; sourceTree = "<group>"; };
 		787A2A84174E85E3004C4FDB /* FirebaseConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseConnection.m; sourceTree = "<group>"; };
 		787A2A8F174E9FA3004C4FDB /* TestLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestLayer.h; sourceTree = "<group>"; };
@@ -766,17 +820,13 @@
 		78F6B3921746AFA000AA070D /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		78F6B3941746AFAC00AA070D /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		78F6B3961746AFDE00AA070D /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
-		78F6B3981746B02100AA070D /* MainNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainNavViewController.h; path = WizardWar/MainNavViewController.h; sourceTree = SOURCE_ROOT; };
-		78F6B3991746B02100AA070D /* MainNavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainNavViewController.m; path = WizardWar/MainNavViewController.m; sourceTree = SOURCE_ROOT; };
-		78F6B39A1746B02100AA070D /* MatchmakingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MatchmakingViewController.h; path = WizardWar/MatchmakingViewController.h; sourceTree = SOURCE_ROOT; };
-		78F6B39B1746B02100AA070D /* MatchmakingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MatchmakingViewController.m; path = WizardWar/MatchmakingViewController.m; sourceTree = SOURCE_ROOT; };
 		78F6B39E1746B04600AA070D /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		78F6B3A01746B25F00AA070D /* Spell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Spell.h; path = WizardWar/Spell.h; sourceTree = SOURCE_ROOT; };
 		78F6B3A11746B25F00AA070D /* Spell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Spell.m; path = WizardWar/Spell.m; sourceTree = SOURCE_ROOT; };
 		78F6B3A21746B25F00AA070D /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Match.h; path = WizardWar/Match.h; sourceTree = SOURCE_ROOT; };
 		78F6B3A31746B25F00AA070D /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Match.m; path = WizardWar/Match.m; sourceTree = SOURCE_ROOT; };
-		78F6B3A41746B26000AA070D /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Player.h; path = WizardWar/Player.h; sourceTree = SOURCE_ROOT; };
-		78F6B3A51746B26000AA070D /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Player.m; path = WizardWar/Player.m; sourceTree = SOURCE_ROOT; };
+		78F6B3A41746B26000AA070D /* Wizard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Wizard.h; path = WizardWar/Wizard.h; sourceTree = SOURCE_ROOT; };
+		78F6B3A51746B26000AA070D /* Wizard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Wizard.m; path = WizardWar/Wizard.m; sourceTree = SOURCE_ROOT; };
 		78F6B3AB1746B27600AA070D /* MatchLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MatchLayer.h; path = WizardWar/MatchLayer.h; sourceTree = SOURCE_ROOT; };
 		78F6B3AC1746B27600AA070D /* MatchLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MatchLayer.m; path = WizardWar/MatchLayer.m; sourceTree = SOURCE_ROOT; };
 		78F6B3AD1746B27600AA070D /* MatchGroundSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MatchGroundSprite.h; path = WizardWar/MatchGroundSprite.h; sourceTree = SOURCE_ROOT; };
@@ -797,8 +847,6 @@
 		78F6B3D11746E2E000AA070D /* SpellInteraction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellInteraction.m; sourceTree = "<group>"; };
 		78F6B3D61746E6D000AA070D /* SpellEarthwall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellEarthwall.h; sourceTree = "<group>"; };
 		78F6B3D71746E6D100AA070D /* SpellEarthwall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellEarthwall.m; sourceTree = "<group>"; };
-		78F6B3D9174705D000AA070D /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		78F6B3DA174705D000AA070D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		78F6B3DC174705EA00AA070D /* Invite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Invite.h; sourceTree = "<group>"; };
 		78F6B3DD174705EA00AA070D /* Invite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Invite.m; sourceTree = "<group>"; };
 		78F97FDC1758F7F500764D70 /* PracticeModeAIService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeModeAIService.h; sourceTree = "<group>"; };
@@ -876,6 +924,87 @@
 			name = Pentagram;
 			sourceTree = "<group>";
 		};
+		785FBEA4177261BD0021AEE5 /* Menus */ = {
+			isa = PBXGroup;
+			children = (
+				785FBEB0177261BD0021AEE5 /* MainNavViewController.h */,
+				785FBEB1177261BD0021AEE5 /* MainNavViewController.m */,
+				785FBEA9177261BD0021AEE5 /* LandingViewController.h */,
+				785FBEAA177261BD0021AEE5 /* LandingViewController.m */,
+				785FBEAB177261BD0021AEE5 /* LandingViewController.xib */,
+				785FBEBC177261BD0021AEE5 /* PartyInviteViewController.h */,
+				785FBEBD177261BD0021AEE5 /* PartyInviteViewController.m */,
+				785FBEBE177261BD0021AEE5 /* PartyInviteViewController.xib */,
+				785FBEBF177261BD0021AEE5 /* PartyViewController.h */,
+				785FBEC0177261BD0021AEE5 /* PartyViewController.m */,
+				785FBEC1177261BD0021AEE5 /* PartyViewController.xib */,
+				785FBEB7177261BD0021AEE5 /* PartiesViewController.h */,
+				785FBEB8177261BD0021AEE5 /* PartiesViewController.m */,
+				785FBEB9177261BD0021AEE5 /* PartiesViewController.xib */,
+				785FBEB2177261BD0021AEE5 /* MatchmakingViewController.h */,
+				785FBEB3177261BD0021AEE5 /* MatchmakingViewController.m */,
+				785FBEB4177261BD0021AEE5 /* MatchmakingViewController.xib */,
+				785FBEB5177261BD0021AEE5 /* MenuButton.h */,
+				785FBEB6177261BD0021AEE5 /* MenuButton.m */,
+				785FBED6177261D00021AEE5 /* Service */,
+				785FBED7177262010021AEE5 /* Data */,
+			);
+			path = Menus;
+			sourceTree = "<group>";
+		};
+		785FBED6177261D00021AEE5 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				785FBEAE177261BD0021AEE5 /* LocalPartyService.h */,
+				785FBEAF177261BD0021AEE5 /* LocalPartyService.m */,
+			);
+			name = Service;
+			sourceTree = "<group>";
+		};
+		785FBED7177262010021AEE5 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				785FBEAC177261BD0021AEE5 /* LocalParty.h */,
+				785FBEAD177261BD0021AEE5 /* LocalParty.m */,
+				785FBEBA177261BD0021AEE5 /* Party.h */,
+				785FBEBB177261BD0021AEE5 /* Party.m */,
+				785FBEC2177261BD0021AEE5 /* User.h */,
+				785FBEC3177261BD0021AEE5 /* User.m */,
+				785FBEA5177261BD0021AEE5 /* InstagramEnemy.h */,
+				785FBEA6177261BD0021AEE5 /* InstagramEnemy.m */,
+				785FBEA7177261BD0021AEE5 /* Interaction.h */,
+				785FBEA8177261BD0021AEE5 /* Interaction.m */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		785FBEDF177262920021AEE5 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				785FBED91772628C0021AEE5 /* LoveYaLikeASister.ttf */,
+				785FBEDA1772628C0021AEE5 /* LoveYaLikeASisterSolid.ttf */,
+				785FBEDB1772628C0021AEE5 /* comic_zine_ot.otf */,
+			);
+			name = fonts;
+			sourceTree = "<group>";
+		};
+		785FBEE0177262E90021AEE5 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				7837D6AB17540836001D820E /* GameTimerService.h */,
+				7837D6AC17540836001D820E /* GameTimerService.m */,
+				789BAB8217566CFE003C0116 /* TimerSyncService.h */,
+				789BAB8317566CFE003C0116 /* TimerSyncService.m */,
+				78C46B5817562CAC0077EE98 /* MultiplayerService.h */,
+				78C46B5917562CAC0077EE98 /* MultiplayerService.m */,
+				78F97FDC1758F7F500764D70 /* PracticeModeAIService.h */,
+				78F97FDD1758F7F500764D70 /* PracticeModeAIService.m */,
+				789BAB8117566ABF003C0116 /* Multiplayer.h */,
+				78ABA888175A6C70003D2F23 /* Tick.h */,
+			);
+			name = Service;
+			sourceTree = "<group>";
+		};
 		786246361767BF0B001904AC /* Effects */ = {
 			isa = PBXGroup;
 			children = (
@@ -903,16 +1032,6 @@
 				787A2A83174E85E3004C4FDB /* FirebaseConnection.h */,
 				787A2A84174E85E3004C4FDB /* FirebaseConnection.m */,
 				781234DF174AE4C0008EDE88 /* Objectable.h */,
-				7837D6AB17540836001D820E /* GameTimerService.h */,
-				7837D6AC17540836001D820E /* GameTimerService.m */,
-				789BAB8217566CFE003C0116 /* TimerSyncService.h */,
-				789BAB8317566CFE003C0116 /* TimerSyncService.m */,
-				78C46B5817562CAC0077EE98 /* MultiplayerService.h */,
-				78C46B5917562CAC0077EE98 /* MultiplayerService.m */,
-				78F97FDC1758F7F500764D70 /* PracticeModeAIService.h */,
-				78F97FDD1758F7F500764D70 /* PracticeModeAIService.m */,
-				789BAB8117566ABF003C0116 /* Multiplayer.h */,
-				78ABA888175A6C70003D2F23 /* Tick.h */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -1075,21 +1194,19 @@
 		78F6B1EC1746AD8900AA070D /* WizardWar */ = {
 			isa = PBXGroup;
 			children = (
+				785FBEDF177262920021AEE5 /* fonts */,
 				30CE785C1747F71B00848FE0 /* sounds */,
 				78F193E717471A0E00BB8587 /* images */,
 				78F6B1F51746AD8900AA070D /* AppDelegate.h */,
 				78F6B1F61746AD8900AA070D /* AppDelegate.m */,
-				78F6B3981746B02100AA070D /* MainNavViewController.h */,
-				78F6B3991746B02100AA070D /* MainNavViewController.m */,
-				78F6B39A1746B02100AA070D /* MatchmakingViewController.h */,
-				78F6B39B1746B02100AA070D /* MatchmakingViewController.m */,
-				787A2A80174D2771004C4FDB /* MatchmakingViewController.xib */,
+				785FBEE1177263840021AEE5 /* AppStyle.h */,
+				785FBEE2177263850021AEE5 /* AppStyle.m */,
+				785FBED8177262320021AEE5 /* Color.h */,
 				78F6B3C21746B29C00AA070D /* WizardDirector.h */,
 				78F6B3C31746B29C00AA070D /* WizardDirector.m */,
+				785FBEA4177261BD0021AEE5 /* Menus */,
 				787A2A82174E81AC004C4FDB /* Service */,
-				7837F1681749B66800D29445 /* Pentagram */,
 				78F6B3BD1746B27B00AA070D /* Match */,
-				78F6B3AA1746B26400AA070D /* Data */,
 				78F6B1ED1746AD8900AA070D /* Supporting Files */,
 			);
 			path = WizardWar;
@@ -1472,12 +1589,10 @@
 				78F6B3A31746B25F00AA070D /* Match.m */,
 				7837D6AE17540893001D820E /* PlayerTime.h */,
 				7837D6AF17540893001D820E /* PlayerTime.m */,
-				78F6B3A41746B26000AA070D /* Player.h */,
-				78F6B3A51746B26000AA070D /* Player.m */,
+				78F6B3A41746B26000AA070D /* Wizard.h */,
+				78F6B3A51746B26000AA070D /* Wizard.m */,
 				78F6B3C91746D77B00AA070D /* Units.h */,
 				78F6B3CA1746D77B00AA070D /* Units.m */,
-				78F6B3D9174705D000AA070D /* User.h */,
-				78F6B3DA174705D000AA070D /* User.m */,
 				78F6B3DC174705EA00AA070D /* Invite.h */,
 				78F6B3DD174705EA00AA070D /* Invite.m */,
 				78F195161748024C00BB8587 /* Elements.h */,
@@ -1491,6 +1606,9 @@
 		78F6B3BD1746B27B00AA070D /* Match */ = {
 			isa = PBXGroup;
 			children = (
+				785FBEE0177262E90021AEE5 /* Service */,
+				78F6B3AA1746B26400AA070D /* Data */,
+				7837F1681749B66800D29445 /* Pentagram */,
 				787A2A96174EA43D004C4FDB /* MatchViewController.h */,
 				787A2A97174EA43D004C4FDB /* MatchViewController.m */,
 				787A2A98174EA43D004C4FDB /* MatchViewController.xib */,
@@ -1665,7 +1783,6 @@
 				F283A93217480F5E0068EEB2 /* heart-full.png in Resources */,
 				7837F16B1749B9D000D29445 /* navbar-logo.png in Resources */,
 				7837F16C1749B9D000D29445 /* navbar-logo@2x.png in Resources */,
-				787A2A81174D2771004C4FDB /* MatchmakingViewController.xib in Resources */,
 				787A2A9A174EA43D004C4FDB /* MatchViewController.xib in Resources */,
 				789BAB8B1756A95A003C0116 /* explode-hd.plist in Resources */,
 				789BAB8C1756A95A003C0116 /* explode-hd.png in Resources */,
@@ -1741,6 +1858,14 @@
 				785FBE9F17724FA20021AEE5 /* wizard1-set1-animations.plist in Resources */,
 				785FBEA217725A780021AEE5 /* pillow-hd.png in Resources */,
 				785FBEA317725A780021AEE5 /* pillow.png in Resources */,
+				785FBEC7177261BD0021AEE5 /* LandingViewController.xib in Resources */,
+				785FBECC177261BD0021AEE5 /* MatchmakingViewController.xib in Resources */,
+				785FBECF177261BD0021AEE5 /* PartiesViewController.xib in Resources */,
+				785FBED2177261BD0021AEE5 /* PartyInviteViewController.xib in Resources */,
+				785FBED4177261BD0021AEE5 /* PartyViewController.xib in Resources */,
+				785FBEDC1772628C0021AEE5 /* LoveYaLikeASister.ttf in Resources */,
+				785FBEDD1772628C0021AEE5 /* LoveYaLikeASisterSolid.ttf in Resources */,
+				785FBEDE1772628C0021AEE5 /* comic_zine_ot.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1891,11 +2016,9 @@
 				78F6B37C1746AE5900AA070D /* vec2.c in Sources */,
 				78F6B37D1746AE5900AA070D /* vec3.c in Sources */,
 				78F6B37E1746AE5900AA070D /* vec4.c in Sources */,
-				78F6B39C1746B02100AA070D /* MainNavViewController.m in Sources */,
-				78F6B39D1746B02100AA070D /* MatchmakingViewController.m in Sources */,
 				78F6B3A71746B26000AA070D /* Spell.m in Sources */,
 				78F6B3A81746B26000AA070D /* Match.m in Sources */,
-				78F6B3A91746B26000AA070D /* Player.m in Sources */,
+				78F6B3A91746B26000AA070D /* Wizard.m in Sources */,
 				78F6B3B71746B27800AA070D /* MatchLayer.m in Sources */,
 				78F6B3B81746B27800AA070D /* MatchGroundSprite.m in Sources */,
 				78F6B3B91746B27800AA070D /* WizardSprite.m in Sources */,
@@ -1906,7 +2029,6 @@
 				78F6B3CF1746E05E00AA070D /* SpellFireball.m in Sources */,
 				78F6B3D21746E2E000AA070D /* SpellInteraction.m in Sources */,
 				78F6B3D81746E6D300AA070D /* SpellEarthwall.m in Sources */,
-				78F6B3DB174705D000AA070D /* User.m in Sources */,
 				78F6B3DE174705EA00AA070D /* Invite.m in Sources */,
 				6F0B2FA9174750FF00CFC092 /* PentagramViewController.m in Sources */,
 				6F0B2FAA174750FF00CFC092 /* PentEmblem.m in Sources */,
@@ -1944,6 +2066,20 @@
 				78D0855E176A4C7C00EDC405 /* EffectSleep.m in Sources */,
 				783BD39E176A79A50092D93C /* SpellSleep.m in Sources */,
 				783E8066176A88B800A21FE5 /* SpellVortex.m in Sources */,
+				785FBEC4177261BD0021AEE5 /* InstagramEnemy.m in Sources */,
+				785FBEC5177261BD0021AEE5 /* Interaction.m in Sources */,
+				785FBEC6177261BD0021AEE5 /* LandingViewController.m in Sources */,
+				785FBEC8177261BD0021AEE5 /* LocalParty.m in Sources */,
+				785FBEC9177261BD0021AEE5 /* LocalPartyService.m in Sources */,
+				785FBECA177261BD0021AEE5 /* MainNavViewController.m in Sources */,
+				785FBECB177261BD0021AEE5 /* MatchmakingViewController.m in Sources */,
+				785FBECD177261BD0021AEE5 /* MenuButton.m in Sources */,
+				785FBECE177261BD0021AEE5 /* PartiesViewController.m in Sources */,
+				785FBED0177261BD0021AEE5 /* Party.m in Sources */,
+				785FBED1177261BD0021AEE5 /* PartyInviteViewController.m in Sources */,
+				785FBED3177261BD0021AEE5 /* PartyViewController.m in Sources */,
+				785FBED5177261BD0021AEE5 /* User.m in Sources */,
+				785FBEE3177263850021AEE5 /* AppStyle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

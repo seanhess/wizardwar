@@ -12,7 +12,7 @@
 
 #define EFFECT_INDEFINITE 0
 
-@class Player;
+@class Wizard;
 @class Spell;
 
 @interface Effect : NSObject
@@ -24,10 +24,10 @@
 @property (nonatomic) NSTimeInterval duration; // how long before it wears off?
 @property (nonatomic) NSInteger startTick; // when it began operating.
 
--(void)start:(NSInteger)tick player:(Player*)player;
--(void)cancel:(Player*)player;
--(SpellInteraction*)interactPlayer:(Player*)player spell:(Spell*)spell currentTick:(NSInteger)currentTick;
+-(void)start:(NSInteger)tick player:(Wizard*)player;
+-(void)cancel:(Wizard*)player;
+-(SpellInteraction*)interactPlayer:(Wizard*)player spell:(Spell*)spell currentTick:(NSInteger)currentTick;
 -(SpellInteraction*)interactSpell:(Spell*)spell;
--(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval player:(Player*)player;
+-(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval player:(Wizard*)player;
 
 @end

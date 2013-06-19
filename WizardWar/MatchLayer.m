@@ -157,13 +157,13 @@
     }
 }
 
-- (void)didAddPlayer:(Player *)player {
+- (void)didAddPlayer:(Wizard *)player {
     WizardSprite * wizard = [[WizardSprite alloc] initWithPlayer:player units:self.units];
     [self.players addChild:wizard];
     NSLog(@"ADDED PLAYER %@", player);
 }
 
-- (void)didRemovePlayer:(Player *)player {
+- (void)didRemovePlayer:(Wizard *)player {
     WizardSprite * sprite = [NSArray array:self.players.children find:^BOOL(WizardSprite * sprite) {
         return (sprite.player == player);
     }];
@@ -186,7 +186,7 @@
         [players forEachIndex:^(int i) {
             // view can data-bind to player
             LifeIndicatorNode * node = [self.indicators.children objectAtIndex:i];
-            Player * player = players[i];
+            Wizard * player = players[i];
             node.player = player;
         }];
     }

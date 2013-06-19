@@ -23,7 +23,7 @@ typedef enum PlayerState {
     PlayerStateDead,
 } PlayerState;
 
-@interface Player : NSObject <Objectable, Simulated>
+@interface Wizard : NSObject <Objectable, Simulated>
 @property (nonatomic, strong) NSString * name;
 @property (nonatomic) PlayerState state;
 @property (nonatomic) float position; // in units (not pixels)

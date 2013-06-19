@@ -32,7 +32,7 @@
     return self;
 }
 
--(void)setPositionFromPlayer:(Player*)player {
+-(void)setPositionFromPlayer:(Wizard*)player {
     self.direction = 1;
     
     if (player.position == UNITS_MIN)

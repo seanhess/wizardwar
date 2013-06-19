@@ -24,7 +24,7 @@
 
 @implementation TimerSyncService
 
-- (void)syncTimerWithMatchId:(NSString *)matchId player:(Player *)player isHost:(BOOL)isHost {
+- (void)syncTimerWithMatchId:(NSString *)matchId player:(Wizard *)player isHost:(BOOL)isHost {
     
     Firebase * matchNode = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"https://wizardwar.firebaseio.com/match/%@", matchId]];
     self.node = [matchNode childByAppendingPath:@"times"];

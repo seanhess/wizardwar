@@ -9,13 +9,12 @@
 #import "MatchmakingViewController.h"
 #import "WizardDirector.h"
 #import "MatchLayer.h"
-#import "User.h"
 #import "Invite.h"
 #import "NSArray+Functional.h"
 #import "FirebaseCollection.h"
 #import "FirebaseConnection.h"
-#import "TestLayer.h"
 #import "MatchViewController.h"
+#import "User.h"
 
 @interface MatchmakingViewController () 
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
@@ -75,6 +74,10 @@
     return;
 }
 
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -120,26 +123,25 @@
     }];
 }
 
-- (void)joinMatch:(Invite*)invite playerName:(NSString *)playerName {
-    [self startGameWithMatchId:invite.matchID player:self.currentPlayer withAI:nil];
+- (void)joinMatch:(Invite*)invite wizardName:(NSString *)wizardName {
+    [self startGameWithMatchId:invite.matchID wizard:self.currentWizard withAI:nil];
     [self.invitesCollection removeObject:invite];
 }
 
-- (Player*)currentPlayer {
-    Player * player = [Player new];
-    player.name = self.nickname;
-//    player.wizardType = [Player randomWizardType];
-    player.wizardType = WIZARD_TYPE_ONE;
-    return player;
+- (Wizard*)currentWizard {
+    Wizard * wizard = [Wizard new];
+    wizard.name = self.nickname;
+    wizard.wizardType = WIZARD_TYPE_ONE;
+    return wizard;
 }
 
 // starting a game should remove ALL invites you have pending
-- (void)startGameWithMatchId:(NSString*)matchId player:(Player*)player withAI:(Player*)ai {
+- (void)startGameWithMatchId:(NSString*)matchId wizard:(Wizard*)wizard withAI:(Wizard*)ai {
     NSAssert(matchId, @"No match id!");
-    NSLog(@"joining match %@ with %@", matchId, player.name);
+    NSLog(@"joining match %@ with %@", matchId, wizard.name);
     
     MatchViewController * match = [MatchViewController new];
-    [match connectToMatchWithId:matchId currentPlayer:player withAI:ai];
+    [match connectToMatchWithId:matchId currentPlayer:wizard withAI:ai];
     [self.navigationController pushViewController:match animated:YES];
 }
 
@@ -186,7 +188,7 @@
     [self.invitesCollection didRemoveChild:reloadTable];
     [self.invitesCollection didUpdateChild:^(Invite * invite) {
         if ([invite.inviter isEqualToString:self.nickname] && invite.matchID) {
-            [self joinMatch:invite playerName:self.nickname];
+            [self joinMatch:invite wizardName:self.nickname];
         }
     }];
 }
@@ -336,16 +338,15 @@
     NSString * matchID = [NSString stringWithFormat:@"%i", arc4random()];
     invite.matchID = matchID;
     [self.invitesCollection updateObject:invite];
-    [self joinMatch:invite playerName:self.nickname];
+    [self joinMatch:invite wizardName:self.nickname];
 }
 
 -(void)startPracticeGame {
     NSString * matchID = [NSString stringWithFormat:@"%i", arc4random()];
-    Player * ai = [Player new];
+    Wizard * ai = [Wizard new];
     ai.name = @"zzzai";
-    //ai.wizardType = [Player randomWizardType];
     ai.wizardType = WIZARD_TYPE_ONE;
-    [self startGameWithMatchId:matchID player:self.currentPlayer withAI:ai];
+    [self startGameWithMatchId:matchID wizard:self.currentWizard withAI:ai];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

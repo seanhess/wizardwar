@@ -36,7 +36,7 @@
     return NSStringFromClass(self);
 }
 
--(void)initCaster:(Player*)player tick:(NSInteger)tick {
+-(void)initCaster:(Wizard*)player tick:(NSInteger)tick {
     self.creator = player.name;
     self.createdTick = tick;
     [self setPositionFromPlayer:player];
@@ -70,7 +70,7 @@
     return [self dictionaryWithValuesForKeys:@[@"speed", @"referencePosition", @"created", @"type", @"direction", @"createdTick", @"strength", @"status", @"updatedTick"]];
 }
 
--(void)setPositionFromPlayer:(Player*)player {
+-(void)setPositionFromPlayer:(Wizard*)player {
     self.direction = player.direction;
     // makes it so it isn't RIGHT ON the player
     self.referencePosition = player.position + self.direction * self.startOffsetPosition;
@@ -100,7 +100,7 @@
     return [SpellInteraction nothing];
 }
 
--(SpellInteraction*)interactPlayer:(Player*)player currentTick:(NSInteger)currentTick {
+-(SpellInteraction*)interactPlayer:(Wizard*)player currentTick:(NSInteger)currentTick {
     if (player.effect) {
         return [player.effect interactPlayer:player spell:self currentTick:currentTick];
     }
@@ -117,7 +117,7 @@
     return [SpellInteraction nothing];
 }
 
--(BOOL)hitsPlayer:(Player*)player duringInterval:(NSTimeInterval)dt {
+-(BOOL)hitsPlayer:(Wizard*)player duringInterval:(NSTimeInterval)dt {
     
     if (self.altitude != player.altitude) return NO;
     

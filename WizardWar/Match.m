@@ -8,7 +8,7 @@
 
 #import "Match.h"
 #import "Spell.h"
-#import "Player.h"
+#import "Wizard.h"
 #import <Firebase/Firebase.h>
 #import "NSArray+Functional.h"
 #import "SpellBubble.h"
@@ -39,12 +39,12 @@
 @property (nonatomic, strong) PracticeModeAIService * ai;
 
 @property (nonatomic, strong) NSString * matchId;
-@property (nonatomic, strong) Player * aiPlayer;
+@property (nonatomic, strong) Wizard * aiPlayer;
 
 @end
 
 @implementation Match
--(id)initWithId:(NSString *)matchId currentPlayer:(Player *)player withAI:(Player *)aiPlayer multiplayer:(id<Multiplayer>)multiplayer sync:(TimerSyncService *)sync {
+-(id)initWithId:(NSString *)matchId currentPlayer:(Wizard *)player withAI:(Wizard *)aiPlayer multiplayer:(id<Multiplayer>)multiplayer sync:(TimerSyncService *)sync {
     if ((self = [super init])) {
         self.matchId = matchId;
         self.players = [NSMutableDictionary dictionary];
@@ -87,7 +87,7 @@
     [self.delegate didRemoveSpell:spell];
 }
 
-- (void)addPlayer:(Player*)player {
+- (void)addPlayer:(Wizard*)player {
     [self.players setObject:player forKey:player.name];
     [self.delegate didAddPlayer:player];
     if (self.players.count == 2) [self playersReady];
@@ -131,20 +131,20 @@
     if (spell) [self removeSpell:spell];
 }
 
--(void)mpDidAddPlayer:(Player *)player {
+-(void)mpDidAddPlayer:(Wizard *)player {
     if (![self.players objectForKey:player.name])
         [self addPlayer:player];
 }
 
 -(void)mpDidUpdate:(NSDictionary *)updates playerWithName:(NSString *)name {
-    Player * player = [self.players objectForKey:name];
+    Wizard * player = [self.players objectForKey:name];
     [player setValuesForKeysWithDictionary:updates];
     [self checkWin];
 }
 
 -(void)mpDidRemovePlayerWithName:(NSString *)name {
     // Someone disconnected
-    Player * player = [self.players objectForKey:name];
+    Wizard * player = [self.players objectForKey:name];
     [self.players removeObjectForKey:name];
     [self.delegate didRemovePlayer:player];
     [self stop];
@@ -162,8 +162,8 @@
     
     // Sort the players
     NSArray * players = self.sortedPlayers;
-    [(Player *)players[0] setPosition:UNITS_MIN];
-    [(Player *)players[1] setPosition:UNITS_MAX];
+    [(Wizard *)players[0] setPosition:UNITS_MIN];
+    [(Wizard *)players[1] setPosition:UNITS_MAX];
     
     BOOL isHost = (self.currentPlayer == self.host);
     self.timer = [GameTimerService new];
@@ -191,7 +191,7 @@
         [spell update:dt];
     }];
     
-    [self.players.allValues forEach:^(Player*player) {
+    [self.players.allValues forEach:^(Wizard*player) {
         [player update:dt];
     }];
 }
@@ -208,7 +208,7 @@
     [self simulateUpdatedSpells:currentTick interval:tickInterval];
     
     // SIMULATE PLAYERS. Players handle simulating their own effects
-    [self.players.allValues forEach:^(Player * player) {
+    [self.players.allValues forEach:^(Wizard * player) {
         [player simulateTick:currentTick interval:tickInterval];
     }];
     
@@ -249,7 +249,7 @@
     
     [newSpells forEach:^(Spell * spell) {
         
-        Player * creator = [self.players.allValues find:^BOOL(Player* player) {
+        Wizard * creator = [self.players.allValues find:^BOOL(Wizard* player) {
             return [player.name isEqualToString:spell.creator];
         }];
         
@@ -271,7 +271,7 @@
 
 // does a spell automatically change the effect?
 -(void)createSpell:(Spell*)spell effect:(Effect*)effect {
-    Player * player = [self.players.allValues min:^float(Player*player) {
+    Wizard * player = [self.players.allValues min:^float(Wizard*player) {
         return fabsf(spell.position - player.position);
     }];
     
@@ -294,7 +294,7 @@
         
         // spells are center anchored, so just check the position, not the width
         // see if spell hits ME (don't check the other player)
-        for (Player * player in players) {
+        for (Wizard * player in players) {
             if ([spell hitsPlayer:player duringInterval:tickInterval])
                 [self hitPlayer:player withSpell:spell atTick:currentTick];
         }
@@ -341,7 +341,7 @@
     }
 }
 
--(void)hitPlayer:(Player*)player withSpell:(Spell*)spell atTick:(NSInteger)currentTick {
+-(void)hitPlayer:(Wizard*)player withSpell:(Spell*)spell atTick:(NSInteger)currentTick {
 
     SpellInteraction * interaction = [spell interactPlayer:player currentTick:currentTick];
     [self handleInteraction:interaction forSpell:spell];
@@ -365,7 +365,7 @@
 }
 
 -(void)checkWin {
-    [self.players.allValues forEach:^(Player* player) {
+    [self.players.allValues forEach:^(Wizard* player) {
         if (player.state == PlayerStateDead) {
             [self stop];
         }
@@ -396,7 +396,7 @@
     
 }
 
--(Player*)host {
+-(Wizard*)host {
     return self.sortedPlayers[0];
 }
 
@@ -430,12 +430,12 @@
 
 - (NSArray*)sortedPlayers {
     // sort players alphabetically (so it is the same on all devices)
-    return [self.players.allValues sortedArrayUsingComparator:^NSComparisonResult(Player * p1, Player *p2) {
+    return [self.players.allValues sortedArrayUsingComparator:^NSComparisonResult(Wizard * p1, Wizard *p2) {
         return [p1.name compare:p2.name];
     }];
 }
 
--(void)player:(Player*)player castSpell:(Spell*)spell {
+-(void)player:(Wizard*)player castSpell:(Spell*)spell {
     
     if (player.effect.disablesPlayer) return;
     
