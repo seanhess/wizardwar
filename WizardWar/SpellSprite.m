@@ -80,6 +80,11 @@
         if ([spell isType:[SpellFirewall class]] || [spell isType:[SpellFist class]] || [spell isType:[SpellHelmet class]] || [spell isType:[SpellSleep class]] ) {
             self.skin = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", self.sheetName]];
             [self addChild:self.skin];
+            
+            if ([spell class] == [SpellSleep class]) {
+                CCActionInterval * rotate = [CCRotateBy actionWithDuration:1.4 angle:360.0];
+                [self.skin runAction:[CCRepeatForever actionWithAction:rotate]];
+            }
         }
 
         // ANIMATED sprites
@@ -256,7 +261,7 @@
     }
     
     else if ([self.spell isType:[SpellSleep class]]) {
-        return @"sleep";
+        return @"pillow";
     }
     
     return @"fireball";
