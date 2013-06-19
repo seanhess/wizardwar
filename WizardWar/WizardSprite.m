@@ -23,7 +23,6 @@
 @property (nonatomic, strong) Units * units;
 
 @property (nonatomic, strong) CCLabelTTF * label;
-@property (nonatomic, strong) CCSpriteBatchNode * spriteSheet;
 @property (nonatomic, strong) CCSprite * skin;
 @property (nonatomic, strong) CCSprite * effect;
 
@@ -36,11 +35,11 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         NSLog(@"LOAD WIZARD SPRITES");
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard2.plist"];
-        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"wizard2-animation.plist"];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard1-set2.plist"];
+        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"wizard1-set2-animations.plist"];
         
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard1.plist"];
-        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"wizard1-animation.plist"];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard1-set1.plist"];
+        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"wizard1-set1-animations.plist"];
     });
 }
 
@@ -51,13 +50,15 @@
         self.units = units;
         
         [WizardSprite loadSprites];
+
+        // To use BatchNodes, you need to add the sprite TO the batch node
+        // Then it only uses one draw call
+//        [CCSpriteBatchNode batchNodeWithFile:@"wizard1-set1.png"];
+//        [CCSpriteBatchNode batchNodeWithFile:@"wizard1-set2.png"]; 
         
-        self.spriteSheet = [CCSpriteBatchNode batchNodeWithFile:[NSString stringWithFormat:@"%@.png", self.wizardSheetName]];
-        [self addChild:self.spriteSheet];
-        
-        self.skin = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"%@.png", self.stateAnimationName]];
-        [self.spriteSheet addChild:self.skin];
-        
+        self.skin = [CCSprite node];
+        [self addChild:self.skin];
+            
 //        self.label = [CCLabelTTF labelWithString:player.name fontName:@"Marker Felt" fontSize:18];
 //        [self addChild:self.label];
         
@@ -94,9 +95,19 @@
 }
 
 -(void)renderStatus {
-    NSString * imageName = [NSString stringWithFormat:@"%@.png", self.stateAnimationName];
-    [self.skin setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:imageName]];
-    [self.skin runAction:self.stateAction];
+    
+    [self.skin stopAllActions];
+    
+    NSString * animationName = [NSString stringWithFormat:@"%@", self.stateAnimationName];
+    CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:animationName];
+    NSAssert(animation, @"DID NOT LOAD ANIMATION");
+    CCActionInterval * actionInterval = [CCAnimate actionWithAnimation:animation];
+//        animation.restoreOriginalFrame = NO;
+    [self.skin runAction:actionInterval];
+    
+//    NSString * imageName = [NSString stringWithFormat:@"%@.png", self.stateAnimationName];
+//    [self.skin setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:imageName]];
+//    [self.skin runAction:self.stateAction];
 }
 
 - (void)renderEffect {
@@ -135,18 +146,28 @@
     }
     
     else if ([self.player.effect class] == [EffectSleep class]) {
-        NSLog(@"SLEEP TIME!");
+        CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:@"wizard1-sleep"];
+        NSAssert(animation, @"DID NOT LOAD ANIMATION");
+        CCFiniteTimeAction * wait = [CCFadeTo actionWithDuration:0.2 opacity:255];
+        CCActionInterval * actionInterval = [CCAnimate actionWithAnimation:animation];
+        CCSequence * sequence = [CCSequence actions:wait, actionInterval, nil];
+        [self.skin runAction:sequence];
+        
+        // then when the effect wears off, we need to re-render status
         CGPoint pos = self.calculatedPosition;
-        CCFiniteTimeAction * toPos = [CCMoveTo actionWithDuration:0.2 position:ccp(pos.x, pos.y - 30)];
-        CCFiniteTimeAction * rotate = [CCRotateTo actionWithDuration:0.2 angle:90.0];
+        self.rotation = -90.0;
+        CCFiniteTimeAction * toPos = [CCMoveTo actionWithDuration:0.2 position:pos];
+        CCFiniteTimeAction * rotate = [CCRotateTo actionWithDuration:0.2 angle:0.0];
         [self runAction:toPos];
         [self runAction:rotate];
     }
     
     else {
         self.skin.color = ccc3(255, 255, 255);
-        [self runAction:[CCMoveTo actionWithDuration:0.2 position:self.calculatedPosition]];
-        [self runAction:[CCRotateTo actionWithDuration:0.2 angle:0]];
+//        [self runAction:[CCMoveTo actionWithDuration:0.2 position:self.calculatedPosition]];
+//        [self runAction:[CCRotateTo actionWithDuration:0.2 angle:0]];
+        [self renderStatus];
+        
     }
 
 }

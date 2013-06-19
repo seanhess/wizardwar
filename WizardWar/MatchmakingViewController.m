@@ -128,7 +128,8 @@
 - (Player*)currentPlayer {
     Player * player = [Player new];
     player.name = self.nickname;
-    player.wizardType = [Player randomWizardType];
+//    player.wizardType = [Player randomWizardType];
+    player.wizardType = WIZARD_TYPE_ONE;
     return player;
 }
 
@@ -342,7 +343,8 @@
     NSString * matchID = [NSString stringWithFormat:@"%i", arc4random()];
     Player * ai = [Player new];
     ai.name = @"zzzai";
-    ai.wizardType = [Player randomWizardType];
+    //ai.wizardType = [Player randomWizardType];
+    ai.wizardType = WIZARD_TYPE_ONE;
     [self startGameWithMatchId:matchID player:self.currentPlayer withAI:ai];
 }
 

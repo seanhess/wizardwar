@@ -26,6 +26,15 @@
 		6F0FEF5F1747FA720028FE71 /* wizard-lobby.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F0FEF5D1747FA720028FE71 /* wizard-lobby.png */; };
 		6F0FEF601747FA720028FE71 /* wizard-lobby@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F0FEF5E1747FA720028FE71 /* wizard-lobby@2x.png */; };
 		781234DD174ADC19008EDE88 /* FirebaseCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 781234DC174ADC19008EDE88 /* FirebaseCollection.m */; };
+		7829934017710C4A00881DA8 /* wizard1-set1-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7829933C17710C4A00881DA8 /* wizard1-set1-hd.plist */; };
+		7829934117710C4A00881DA8 /* wizard1-set1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 7829933D17710C4A00881DA8 /* wizard1-set1-hd.png */; };
+		7829934217710C4A00881DA8 /* wizard1-set2-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7829933E17710C4A00881DA8 /* wizard1-set2-hd.plist */; };
+		7829934317710C4A00881DA8 /* wizard1-set2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 7829933F17710C4A00881DA8 /* wizard1-set2-hd.png */; };
+		7829934B17710C5D00881DA8 /* wizard1-set1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7829934517710C5D00881DA8 /* wizard1-set1.plist */; };
+		7829934C17710C5D00881DA8 /* wizard1-set1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7829934617710C5D00881DA8 /* wizard1-set1.png */; };
+		7829934D17710C5D00881DA8 /* wizard1-set2-animations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7829934717710C5D00881DA8 /* wizard1-set2-animations.plist */; };
+		7829934E17710C5D00881DA8 /* wizard1-set2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7829934817710C5D00881DA8 /* wizard1-set2.plist */; };
+		7829934F17710C5D00881DA8 /* wizard1-set2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7829934917710C5D00881DA8 /* wizard1-set2.png */; };
 		7837D6AD17540836001D820E /* GameTimerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7837D6AC17540836001D820E /* GameTimerService.m */; };
 		7837D6B017540893001D820E /* PlayerTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7837D6AF17540893001D820E /* PlayerTime.m */; };
 		7837F16B1749B9D000D29445 /* navbar-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7837F1691749B9CF00D29445 /* navbar-logo.png */; };
@@ -33,6 +42,8 @@
 		783BD39E176A79A50092D93C /* SpellSleep.m in Sources */ = {isa = PBXBuildFile; fileRef = 78915288176A7815001694B1 /* SpellSleep.m */; };
 		783E8061176A7B5700A21FE5 /* sleep-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 783E8060176A7B5700A21FE5 /* sleep-hd.png */; };
 		783E8063176A7B8500A21FE5 /* sleep.png in Resources */ = {isa = PBXBuildFile; fileRef = 783E8062176A7B8500A21FE5 /* sleep.png */; };
+		783E8066176A88B800A21FE5 /* SpellVortex.m in Sources */ = {isa = PBXBuildFile; fileRef = 783E8065176A88B800A21FE5 /* SpellVortex.m */; };
+		785FBE9F17724FA20021AEE5 /* wizard1-set1-animations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 785FBE9E17724FA20021AEE5 /* wizard1-set1-animations.plist */; };
 		786246321767B790001904AC /* SpellInvisibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246311767B790001904AC /* SpellInvisibility.m */; };
 		786246351767BE47001904AC /* Effect.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246341767BE47001904AC /* Effect.m */; };
 		786246391767BF19001904AC /* EffectInvisible.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246381767BF19001904AC /* EffectInvisible.m */; };
@@ -326,6 +337,15 @@
 		781234DB174ADC19008EDE88 /* FirebaseCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseCollection.h; sourceTree = "<group>"; };
 		781234DC174ADC19008EDE88 /* FirebaseCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseCollection.m; sourceTree = "<group>"; };
 		781234DF174AE4C0008EDE88 /* Objectable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Objectable.h; sourceTree = "<group>"; };
+		7829933C17710C4A00881DA8 /* wizard1-set1-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set1-hd.plist"; sourceTree = "<group>"; };
+		7829933D17710C4A00881DA8 /* wizard1-set1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard1-set1-hd.png"; sourceTree = "<group>"; };
+		7829933E17710C4A00881DA8 /* wizard1-set2-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set2-hd.plist"; sourceTree = "<group>"; };
+		7829933F17710C4A00881DA8 /* wizard1-set2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard1-set2-hd.png"; sourceTree = "<group>"; };
+		7829934517710C5D00881DA8 /* wizard1-set1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set1.plist"; sourceTree = "<group>"; };
+		7829934617710C5D00881DA8 /* wizard1-set1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard1-set1.png"; sourceTree = "<group>"; };
+		7829934717710C5D00881DA8 /* wizard1-set2-animations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set2-animations.plist"; sourceTree = "<group>"; };
+		7829934817710C5D00881DA8 /* wizard1-set2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set2.plist"; sourceTree = "<group>"; };
+		7829934917710C5D00881DA8 /* wizard1-set2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard1-set2.png"; sourceTree = "<group>"; };
 		7837D6AB17540836001D820E /* GameTimerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTimerService.h; sourceTree = "<group>"; };
 		7837D6AC17540836001D820E /* GameTimerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTimerService.m; sourceTree = "<group>"; };
 		7837D6AE17540893001D820E /* PlayerTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerTime.h; sourceTree = "<group>"; };
@@ -334,6 +354,9 @@
 		7837F16A1749B9CF00D29445 /* navbar-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar-logo@2x.png"; sourceTree = "<group>"; };
 		783E8060176A7B5700A21FE5 /* sleep-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sleep-hd.png"; sourceTree = "<group>"; };
 		783E8062176A7B8500A21FE5 /* sleep.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sleep.png; sourceTree = "<group>"; };
+		783E8064176A88B800A21FE5 /* SpellVortex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellVortex.h; sourceTree = "<group>"; };
+		783E8065176A88B800A21FE5 /* SpellVortex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellVortex.m; sourceTree = "<group>"; };
+		785FBE9E17724FA20021AEE5 /* wizard1-set1-animations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set1-animations.plist"; sourceTree = "<group>"; };
 		786246301767B790001904AC /* SpellInvisibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellInvisibility.h; sourceTree = "<group>"; };
 		786246311767B790001904AC /* SpellInvisibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellInvisibility.m; sourceTree = "<group>"; };
 		786246331767BE47001904AC /* Effect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Effect.h; sourceTree = "<group>"; };
@@ -897,6 +920,16 @@
 		78F193E717471A0E00BB8587 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				7829933C17710C4A00881DA8 /* wizard1-set1-hd.plist */,
+				7829933D17710C4A00881DA8 /* wizard1-set1-hd.png */,
+				7829933E17710C4A00881DA8 /* wizard1-set2-hd.plist */,
+				7829933F17710C4A00881DA8 /* wizard1-set2-hd.png */,
+				785FBE9E17724FA20021AEE5 /* wizard1-set1-animations.plist */,
+				7829934517710C5D00881DA8 /* wizard1-set1.plist */,
+				7829934617710C5D00881DA8 /* wizard1-set1.png */,
+				7829934717710C5D00881DA8 /* wizard1-set2-animations.plist */,
+				7829934817710C5D00881DA8 /* wizard1-set2.plist */,
+				7829934917710C5D00881DA8 /* wizard1-set2.png */,
 				783E8060176A7B5700A21FE5 /* sleep-hd.png */,
 				783E8062176A7B8500A21FE5 /* sleep.png */,
 				786246551767D885001904AC /* helmet-hd.png */,
@@ -1524,6 +1557,8 @@
 				78915280176A7136001694B1 /* SpellLevitate.m */,
 				78915287176A7815001694B1 /* SpellSleep.h */,
 				78915288176A7815001694B1 /* SpellSleep.m */,
+				783E8064176A88B800A21FE5 /* SpellVortex.h */,
+				783E8065176A88B800A21FE5 /* SpellVortex.m */,
 			);
 			name = Spells;
 			sourceTree = "<group>";
@@ -1696,6 +1731,16 @@
 				786246581767D885001904AC /* helmet.png in Resources */,
 				783E8061176A7B5700A21FE5 /* sleep-hd.png in Resources */,
 				783E8063176A7B8500A21FE5 /* sleep.png in Resources */,
+				7829934017710C4A00881DA8 /* wizard1-set1-hd.plist in Resources */,
+				7829934117710C4A00881DA8 /* wizard1-set1-hd.png in Resources */,
+				7829934217710C4A00881DA8 /* wizard1-set2-hd.plist in Resources */,
+				7829934317710C4A00881DA8 /* wizard1-set2-hd.png in Resources */,
+				7829934B17710C5D00881DA8 /* wizard1-set1.plist in Resources */,
+				7829934C17710C5D00881DA8 /* wizard1-set1.png in Resources */,
+				7829934D17710C5D00881DA8 /* wizard1-set2-animations.plist in Resources */,
+				7829934E17710C5D00881DA8 /* wizard1-set2.plist in Resources */,
+				7829934F17710C5D00881DA8 /* wizard1-set2.png in Resources */,
+				785FBE9F17724FA20021AEE5 /* wizard1-set1-animations.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1898,6 +1943,7 @@
 				78D0855B176A4B2800EDC405 /* EffectHeal.m in Sources */,
 				78D0855E176A4C7C00EDC405 /* EffectSleep.m in Sources */,
 				783BD39E176A79A50092D93C /* SpellSleep.m in Sources */,
+				783E8066176A88B800A21FE5 /* SpellVortex.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

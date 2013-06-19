@@ -1,11 +1,5 @@
-IDEA: we can have some spells take "more mana", meaning they reduce the size of the indicators used MORE
-
-
-[ ] Make walls and monsters fall
-
-
-
-[ ] More spells. Fill it up!
+[ ] Ready screen so you can see who you are
+[ ] Fix wind blast
 [ ] Add random "fail" spells (with two elements) any 2 elements triggers a random fail spell
 [ ] Add feedback! 
   [ ] Fail sound
@@ -14,20 +8,18 @@ IDEA: we can have some spells take "more mana", meaning they reduce the size of 
 [ ] Merge and finish lobby code
 
 
+
+
+IDEA: we can have some spells take "more mana", meaning they reduce the size of the indicators used MORE
+
+
+[x] Make walls and monsters fall
+[x] More spells. Fill it up!
+
 BUGS
 - pulls you out of a game if you are in one already
 
 
-SLEEP: If hit they fall asleep? Or is it automatic?  How would you defend against it if it doesn't shoot out? 
-  - invisible
-  - will sleep any animal
-  - need green bolt.
-
-LEVITATE: (effect)
-  - you go up one alititude
-  - after a bit you go back down. Or cast another effect. 
-  - some spells sink: monster, walls, vine
-  - others just won't hit
 
 SUMMON DEATH: 
   - slow monster who marches out and kills the first living thing he touches
