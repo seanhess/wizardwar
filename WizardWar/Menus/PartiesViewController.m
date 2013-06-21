@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray * parties; // Array of parties!
 @property (strong, nonatomic) User * user;
+
+// need to add the local lobby
 @end
 
 @implementation PartiesViewController

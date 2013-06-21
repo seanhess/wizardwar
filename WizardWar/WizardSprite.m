@@ -129,7 +129,7 @@
     if ([self.player.effect class] == [EffectHelmet class]) {
         self.effect = [CCSprite spriteWithFile:@"helmet.png"];
         self.effect.flipX = self.player.position == UNITS_MAX;
-        self.effect.position = ccp(-15*self.player.direction, 100);
+        self.effect.position = ccp(-4*self.player.direction, 80);
         [self addChild:self.effect];
     }
     

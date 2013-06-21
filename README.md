@@ -2,8 +2,12 @@
 
 * http://refactr.com/blog/2012/09/ios-tips-custom-fonts/
 
-[ ] Lobby:
-
+[ ] Lobby: get local lobby working
+    [ ] Local Lobby: initial indicator of how many people are in it. 
+    [ ] Local Lobby: chat
+    [ ] Local Lobby: show ALL the people under the indicator.
+    [ ] Local Lobby: issue a challenge
+    
 
 [ ] Ready screen so you can see who you are
 [ ] Fix wind blast
