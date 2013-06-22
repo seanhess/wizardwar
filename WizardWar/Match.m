@@ -27,6 +27,7 @@
 #import "Tick.h"
 
 #define CLEANUP_TICKS 50 // 10 is 1 second
+#define MIN_READY_STATE 4.0
 
 // sync spells to the server every N seconds
 @interface Match () <GameTimerDelegate, MultiplayerDelegate, TimerSyncDelegate, AIDelegate>
@@ -44,6 +45,8 @@
 @property (nonatomic, strong) NSString * hostName;
 @property (nonatomic, strong) NSString * matchId;
 @property (nonatomic, strong) Wizard * aiWizard;
+
+@property (nonatomic) BOOL enoughTimeAsReady;
 
 @end
 
@@ -63,7 +66,8 @@
         self.status = MatchStatusReady;
         self.currentWizard = wizard;
         self.aiWizard = ai;
-
+        
+        self.enoughTimeAsReady = NO;
 
         if (self.aiWizard) {
             self.ai = [PracticeModeAIService new];
@@ -84,6 +88,12 @@
     [self addPlayer:self.currentWizard];
     [self.multiplayer addPlayer:self.currentWizard];
     
+    __weak Match * wself = self;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MIN_READY_STATE * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        wself.enoughTimeAsReady = YES;
+        NSLog(@"TIME TO GO");
+    });
 }
 
 - (void)addSpell:(Spell*)spell {
@@ -98,6 +108,8 @@
 }
 
 - (void)addPlayer:(Wizard*)player {
+    [self.players setObject:player forKey:player.name];
+    
     if ([player.name isEqualToString:self.hostName]) {
         player.position = UNITS_MIN;        
         [self.sortedPlayers insertObject:player atIndex:0];
@@ -108,7 +120,7 @@
     }
     
     [self.delegate didAddPlayer:player];
-    if (self.players.count == 2) [self playersReady];
+    [self startIfReady];
 }
 
 
@@ -125,9 +137,6 @@
 - (void)aiDidCastSpell:(Spell *)spell {
     [self player:self.aiWizard castSpell:spell];
 }
-
-
-// TODO: simulate long latency in sends
 
 
 /// UPDATES
@@ -168,10 +177,11 @@
     [self stop];
 }
 
--(void)playersReady {
-    NSLog(@"PLAYERS READY");
-    return;
+-(void)startIfReady {
+    if (self.players.count < 2) return;
     
+    NSLog(@"*** Starting Sync");
+
     BOOL isHost = (self.currentWizard == self.host);
     self.timer = [GameTimerService new];
     self.timer.tickInterval = TICK_INTERVAL;
@@ -204,8 +214,10 @@
 }
 
 - (void)gameDidTick:(NSInteger)currentTick {
-    if (currentTick == GAME_TIMER_FIRST_TICK)
+    if (!self.enoughTimeAsReady) return;
+    if (self.status == MatchStatusReady && currentTick >= GAME_TIMER_FIRST_TICK) {
         self.status = MatchStatusPlaying;
+    }
     [self simulateTick:currentTick interval:self.timer.tickInterval];
     [self.delegate didTick:currentTick];
 }
@@ -405,10 +417,6 @@
 
 -(Wizard*)host {
     return self.sortedPlayers[0];
-}
-
--(void)start {
-    self.status = MatchStatusPlaying;
 }
 
 -(void)stop {

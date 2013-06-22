@@ -67,7 +67,7 @@
         [self addChild:self.skin];
         
         // I need to only show this if the game hasn't started!
-        self.label = [CCLabelTTF labelWithString:wizard.name fontName:@"Marker Felt" fontSize:36];
+        self.label = [CCLabelTTF labelWithString:self.wizardName fontName:@"Marker Felt" fontSize:36];
         self.label.position = ccp(0, 130);
         [self addChild:self.label];
         
@@ -129,6 +129,13 @@
         self.skin.color = ccc3(0, 255, 0);
     else
         self.skin.color = ccWHITE;
+    
+    self.label.visible = (self.match.status == MatchStatusReady);
+}
+
+- (NSString*)wizardName {
+    if (self.isCurrentWizard) return @"You";
+    else return self.wizard.name;
 }
 
 - (void)renderEffect {
