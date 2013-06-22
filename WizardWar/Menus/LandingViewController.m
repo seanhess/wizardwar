@@ -10,6 +10,9 @@
 #import "Wizard.h"
 #import "MatchViewController.h"
 #import "PartiesViewController.h"
+#import "MatchmakingViewController.h"
+#import "UserService.h"
+#import "LobbyService.h"
 
 @interface LandingViewController ()
 
@@ -34,6 +37,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    [UserService.shared connect];
+    [LobbyService.shared connect];
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,15 +64,19 @@
     [self.navigationController presentViewController:match animated:YES completion:nil];
 }
 
-- (IBAction)didTapParties:(id)sender {
-    User * user = [User new];
-    user.name = @"fake";
-    user.userId = @"fake";
-    user.parties = @[];
-    
-    PartiesViewController * parties = [[PartiesViewController alloc] initWithUser:user];
-    [self.navigationController pushViewController:parties animated:YES];
-}
+//- (IBAction)didTapParties:(id)sender {
+//    User * user = [User new];
+//    user.name = @"fake";
+//    user.userId = @"fake";
+//    user.parties = @[];
+//    
+//    PartiesViewController * parties = [[PartiesViewController alloc] initWithUser:user];
+//    [self.navigationController pushViewController:parties animated:YES];
+//}
 
+- (IBAction)didTapMultiplayer:(id)sender {
+    MatchmakingViewController * matchMaking = [MatchmakingViewController new];
+    [self.navigationController pushViewController:matchMaking animated:YES];
+}
 
 @end

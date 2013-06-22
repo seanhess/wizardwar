@@ -12,8 +12,4 @@
 @interface User : NSObject <Objectable>
 @property (strong, nonatomic) NSString * name;
 @property (strong, nonatomic) NSString * userId;
-
-// Only contains partyId and name, not members
-// Look up the party info to get everything
-@property (strong, nonatomic) NSArray * parties;
 @end

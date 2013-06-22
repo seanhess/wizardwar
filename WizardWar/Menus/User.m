@@ -9,6 +9,22 @@
 #import "User.h"
 
 @implementation User
--(NSDictionary*)toObject { return nil; };
--(void)setValuesForKeysWithDictionary:(NSDictionary*)keyedValues {}
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    [encoder encodeObject:self.name forKey:@"name"];
+    [encoder encodeObject:self.userId forKey:@"userId"];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    if((self = [super init])) {
+        self.name = [decoder decodeObjectForKey:@"name"];
+        self.userId = [decoder decodeObjectForKey:@"userId"];
+    }
+    return self;
+}
+
+-(NSDictionary*)toObject {
+    return [self dictionaryWithValuesForKeys:@[@"name", @"userId"]];
+};
+
 @end

@@ -59,6 +59,9 @@
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"icewall.plist"];
         [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"icewall-animation.plist"];
         
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"firewall.plist"];
+        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"firewall-animation.plist"];
+        
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"windblast.plist"];
         [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"windblast-animation.plist"];        
     });
@@ -77,7 +80,7 @@
         [SpellSprite loadSprites];
         
         // STATIC sprites
-        if ([spell isType:[SpellFirewall class]] || [spell isType:[SpellFist class]] || [spell isType:[SpellHelmet class]] || [spell isType:[SpellSleep class]] ) {
+        if ([spell isType:[SpellFist class]] || [spell isType:[SpellHelmet class]] || [spell isType:[SpellSleep class]] ) {
             self.skin = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", self.sheetName]];
             [self addChild:self.skin];
             
@@ -154,7 +157,8 @@
 
 - (CGFloat)spellY {
     CGFloat y = self.units.zeroY + 100*self.spell.altitude;
-    if ([self isWall:self.spell]) {
+
+    if ([self isWall:self.spell] || [self.spell class] == [SpellFirewall class]) {
         // bump walls down
         y -= 25;
     }
@@ -276,6 +280,19 @@
     
     if ([self.spell isType:[SpellFireball class]] || [self.spell isType:[SpellBubble class]] || [self.spell isType:[SpellWindblast class]] || [self.spell isType:[SpellMonster class]]) {
         action = [CCRepeatForever actionWithAction:actionInterval];
+    }
+    
+    else if (self.spell.class == SpellFirewall.class) {
+        
+        // also do a start animation!
+        // WOW this is a hack.
+        // Why can't I just play the normal one after the first one is done?
+        // I hate cocos2d
+        CCAnimation * startAnimation = [[CCAnimationCache sharedAnimationCache] animationByName:@"firewall-start"];
+        CCActionInterval * start = [CCAnimate actionWithAnimation:startAnimation];
+        CCActionInterval * burn = [CCRepeat actionWithAction:actionInterval times:10000];
+        CCSequence * startThenBurn = [CCSequence actions:start, burn, nil];
+        action = startThenBurn;
     }
     
     return action;

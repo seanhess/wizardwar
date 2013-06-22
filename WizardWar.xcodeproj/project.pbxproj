@@ -26,6 +26,11 @@
 		6F0FEF5F1747FA720028FE71 /* wizard-lobby.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F0FEF5D1747FA720028FE71 /* wizard-lobby.png */; };
 		6F0FEF601747FA720028FE71 /* wizard-lobby@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F0FEF5E1747FA720028FE71 /* wizard-lobby@2x.png */; };
 		781234DD174ADC19008EDE88 /* FirebaseCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 781234DC174ADC19008EDE88 /* FirebaseCollection.m */; };
+		7826027D1773D8F700059981 /* firewall-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 782602781773D8F700059981 /* firewall-animation.plist */; };
+		7826027E1773D8F700059981 /* firewall-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 782602791773D8F700059981 /* firewall-hd.plist */; };
+		7826027F1773D8F700059981 /* firewall-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 7826027A1773D8F700059981 /* firewall-hd.png */; };
+		782602801773D8F700059981 /* firewall.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7826027B1773D8F700059981 /* firewall.plist */; };
+		782602811773D8F700059981 /* firewall.png in Resources */ = {isa = PBXBuildFile; fileRef = 7826027C1773D8F700059981 /* firewall.png */; };
 		7829934017710C4A00881DA8 /* wizard1-set1-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7829933C17710C4A00881DA8 /* wizard1-set1-hd.plist */; };
 		7829934117710C4A00881DA8 /* wizard1-set1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 7829933D17710C4A00881DA8 /* wizard1-set1-hd.png */; };
 		7829934217710C4A00881DA8 /* wizard1-set2-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7829933E17710C4A00881DA8 /* wizard1-set2-hd.plist */; };
@@ -41,6 +46,11 @@
 		7837F16C1749B9D000D29445 /* navbar-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7837F16A1749B9CF00D29445 /* navbar-logo@2x.png */; };
 		783BD39E176A79A50092D93C /* SpellSleep.m in Sources */ = {isa = PBXBuildFile; fileRef = 78915288176A7815001694B1 /* SpellSleep.m */; };
 		783E8066176A88B800A21FE5 /* SpellVortex.m in Sources */ = {isa = PBXBuildFile; fileRef = 783E8065176A88B800A21FE5 /* SpellVortex.m */; };
+		784D3BDB17748BF1009945F8 /* menu-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 784D3BDA17748BF1009945F8 /* menu-bg.png */; };
+		784D3BDE1774F753009945F8 /* LobbyService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BDD1774F753009945F8 /* LobbyService.m */; };
+		784D3BE1177501E9009945F8 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BE0177501E9009945F8 /* UserService.m */; };
+		784D3BE417750441009945F8 /* IdService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BE317750441009945F8 /* IdService.m */; };
+		784D3BEC17751411009945F8 /* ChallengeService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BEB17751411009945F8 /* ChallengeService.m */; };
 		785FBE9F17724FA20021AEE5 /* wizard1-set1-animations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 785FBE9E17724FA20021AEE5 /* wizard1-set1-animations.plist */; };
 		785FBEA217725A780021AEE5 /* pillow-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEA017725A780021AEE5 /* pillow-hd.png */; };
 		785FBEA317725A780021AEE5 /* pillow.png in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEA117725A780021AEE5 /* pillow.png */; };
@@ -71,8 +81,6 @@
 		786246391767BF19001904AC /* EffectInvisible.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246381767BF19001904AC /* EffectInvisible.m */; };
 		786246411767C8D3001904AC /* SpellFirewall.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246401767C8D3001904AC /* SpellFirewall.m */; };
 		786246441767C95A001904AC /* SpellWall.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246431767C959001904AC /* SpellWall.m */; };
-		786246491767CC29001904AC /* firewall.png in Resources */ = {isa = PBXBuildFile; fileRef = 786246471767CC29001904AC /* firewall.png */; };
-		7862464A1767CC29001904AC /* firewall-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 786246481767CC29001904AC /* firewall-hd.png */; };
 		7862464D1767CF64001904AC /* SpellFist.m in Sources */ = {isa = PBXBuildFile; fileRef = 7862464C1767CF63001904AC /* SpellFist.m */; };
 		786246501767D05C001904AC /* fist-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 7862464E1767D05C001904AC /* fist-hd.png */; };
 		786246511767D05C001904AC /* fist.png in Resources */ = {isa = PBXBuildFile; fileRef = 7862464F1767D05C001904AC /* fist.png */; };
@@ -301,7 +309,6 @@
 		78F6B38F1746AF9100AA070D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F6B38E1746AF9100AA070D /* Security.framework */; };
 		78F6B3911746AF9600AA070D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F6B3901746AF9600AA070D /* CFNetwork.framework */; };
 		78F6B3931746AFA000AA070D /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F6B3921746AFA000AA070D /* OpenAL.framework */; };
-		78F6B3951746AFAC00AA070D /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F6B3941746AFAC00AA070D /* GameKit.framework */; };
 		78F6B3971746AFDE00AA070D /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F6B3961746AFDE00AA070D /* Firebase.framework */; };
 		78F6B39F1746B04600AA070D /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F6B39E1746B04600AA070D /* libicucore.dylib */; };
 		78F6B3A71746B26000AA070D /* Spell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3A11746B25F00AA070D /* Spell.m */; };
@@ -317,7 +324,7 @@
 		78F6B3CF1746E05E00AA070D /* SpellFireball.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3CE1746E05E00AA070D /* SpellFireball.m */; };
 		78F6B3D21746E2E000AA070D /* SpellInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3D11746E2E000AA070D /* SpellInteraction.m */; };
 		78F6B3D81746E6D300AA070D /* SpellEarthwall.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3D71746E6D100AA070D /* SpellEarthwall.m */; };
-		78F6B3DE174705EA00AA070D /* Invite.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3DD174705EA00AA070D /* Invite.m */; };
+		78F6B3DE174705EA00AA070D /* Challenge.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3DD174705EA00AA070D /* Challenge.m */; };
 		78F97FDE1758F7F500764D70 /* PracticeModeAIService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F97FDD1758F7F500764D70 /* PracticeModeAIService.m */; };
 		F283A922174807A40068EEB2 /* LifeIndicatorNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F283A921174807A40068EEB2 /* LifeIndicatorNode.m */; };
 		F283A92517480F4F0068EEB2 /* mana-container-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F283A92317480F4F0068EEB2 /* mana-container-hd.png */; };
@@ -355,6 +362,11 @@
 		781234DB174ADC19008EDE88 /* FirebaseCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseCollection.h; sourceTree = "<group>"; };
 		781234DC174ADC19008EDE88 /* FirebaseCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseCollection.m; sourceTree = "<group>"; };
 		781234DF174AE4C0008EDE88 /* Objectable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Objectable.h; sourceTree = "<group>"; };
+		782602781773D8F700059981 /* firewall-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "firewall-animation.plist"; sourceTree = "<group>"; };
+		782602791773D8F700059981 /* firewall-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "firewall-hd.plist"; sourceTree = "<group>"; };
+		7826027A1773D8F700059981 /* firewall-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "firewall-hd.png"; sourceTree = "<group>"; };
+		7826027B1773D8F700059981 /* firewall.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = firewall.plist; sourceTree = "<group>"; };
+		7826027C1773D8F700059981 /* firewall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firewall.png; sourceTree = "<group>"; };
 		7829933C17710C4A00881DA8 /* wizard1-set1-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set1-hd.plist"; sourceTree = "<group>"; };
 		7829933D17710C4A00881DA8 /* wizard1-set1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard1-set1-hd.png"; sourceTree = "<group>"; };
 		7829933E17710C4A00881DA8 /* wizard1-set2-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set2-hd.plist"; sourceTree = "<group>"; };
@@ -372,6 +384,15 @@
 		7837F16A1749B9CF00D29445 /* navbar-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar-logo@2x.png"; sourceTree = "<group>"; };
 		783E8064176A88B800A21FE5 /* SpellVortex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellVortex.h; sourceTree = "<group>"; };
 		783E8065176A88B800A21FE5 /* SpellVortex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellVortex.m; sourceTree = "<group>"; };
+		784D3BDA17748BF1009945F8 /* menu-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-bg.png"; path = "../../../WizardWar2/WizardWar/images/menu-bg.png"; sourceTree = "<group>"; };
+		784D3BDC1774F753009945F8 /* LobbyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LobbyService.h; sourceTree = "<group>"; };
+		784D3BDD1774F753009945F8 /* LobbyService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LobbyService.m; sourceTree = "<group>"; };
+		784D3BDF177501E9009945F8 /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserService.h; sourceTree = "<group>"; };
+		784D3BE0177501E9009945F8 /* UserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserService.m; sourceTree = "<group>"; };
+		784D3BE217750441009945F8 /* IdService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdService.h; sourceTree = "<group>"; };
+		784D3BE317750441009945F8 /* IdService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdService.m; sourceTree = "<group>"; };
+		784D3BEA17751411009945F8 /* ChallengeService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeService.h; sourceTree = "<group>"; };
+		784D3BEB17751411009945F8 /* ChallengeService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeService.m; sourceTree = "<group>"; };
 		785FBE9E17724FA20021AEE5 /* wizard1-set1-animations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set1-animations.plist"; sourceTree = "<group>"; };
 		785FBEA017725A780021AEE5 /* pillow-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pillow-hd.png"; sourceTree = "<group>"; };
 		785FBEA117725A780021AEE5 /* pillow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pillow.png; sourceTree = "<group>"; };
@@ -423,8 +444,6 @@
 		786246401767C8D3001904AC /* SpellFirewall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellFirewall.m; sourceTree = "<group>"; };
 		786246421767C959001904AC /* SpellWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellWall.h; sourceTree = "<group>"; };
 		786246431767C959001904AC /* SpellWall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellWall.m; sourceTree = "<group>"; };
-		786246471767CC29001904AC /* firewall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firewall.png; sourceTree = "<group>"; };
-		786246481767CC29001904AC /* firewall-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "firewall-hd.png"; sourceTree = "<group>"; };
 		7862464B1767CF62001904AC /* SpellFist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellFist.h; sourceTree = "<group>"; };
 		7862464C1767CF63001904AC /* SpellFist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellFist.m; sourceTree = "<group>"; };
 		7862464E1767D05C001904AC /* fist-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fist-hd.png"; sourceTree = "<group>"; };
@@ -847,8 +866,8 @@
 		78F6B3D11746E2E000AA070D /* SpellInteraction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellInteraction.m; sourceTree = "<group>"; };
 		78F6B3D61746E6D000AA070D /* SpellEarthwall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellEarthwall.h; sourceTree = "<group>"; };
 		78F6B3D71746E6D100AA070D /* SpellEarthwall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellEarthwall.m; sourceTree = "<group>"; };
-		78F6B3DC174705EA00AA070D /* Invite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Invite.h; sourceTree = "<group>"; };
-		78F6B3DD174705EA00AA070D /* Invite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Invite.m; sourceTree = "<group>"; };
+		78F6B3DC174705EA00AA070D /* Challenge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Challenge.h; path = ../Challenge.h; sourceTree = "<group>"; };
+		78F6B3DD174705EA00AA070D /* Challenge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Challenge.m; path = ../Challenge.m; sourceTree = "<group>"; };
 		78F97FDC1758F7F500764D70 /* PracticeModeAIService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeModeAIService.h; sourceTree = "<group>"; };
 		78F97FDD1758F7F500764D70 /* PracticeModeAIService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PracticeModeAIService.m; sourceTree = "<group>"; };
 		97EFC7B8DBD643B88CEC6021 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -871,7 +890,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				78F6B39F1746B04600AA070D /* libicucore.dylib in Frameworks */,
-				78F6B3951746AFAC00AA070D /* GameKit.framework in Frameworks */,
 				78F6B3931746AFA000AA070D /* OpenAL.framework in Frameworks */,
 				78F6B3911746AF9600AA070D /* CFNetwork.framework in Frameworks */,
 				78F6B38F1746AF9100AA070D /* Security.framework in Frameworks */,
@@ -924,6 +942,13 @@
 			name = Pentagram;
 			sourceTree = "<group>";
 		};
+		784D3BE51775102A009945F8 /* lobby */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = lobby;
+			sourceTree = "<group>";
+		};
 		785FBEA4177261BD0021AEE5 /* Menus */ = {
 			isa = PBXGroup;
 			children = (
@@ -957,6 +982,14 @@
 			children = (
 				785FBEAE177261BD0021AEE5 /* LocalPartyService.h */,
 				785FBEAF177261BD0021AEE5 /* LocalPartyService.m */,
+				784D3BDC1774F753009945F8 /* LobbyService.h */,
+				784D3BDD1774F753009945F8 /* LobbyService.m */,
+				784D3BDF177501E9009945F8 /* UserService.h */,
+				784D3BE0177501E9009945F8 /* UserService.m */,
+				784D3BEA17751411009945F8 /* ChallengeService.h */,
+				784D3BEB17751411009945F8 /* ChallengeService.m */,
+				784D3BE217750441009945F8 /* IdService.h */,
+				784D3BE317750441009945F8 /* IdService.m */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -974,6 +1007,8 @@
 				785FBEA6177261BD0021AEE5 /* InstagramEnemy.m */,
 				785FBEA7177261BD0021AEE5 /* Interaction.h */,
 				785FBEA8177261BD0021AEE5 /* Interaction.m */,
+				78F6B3DC174705EA00AA070D /* Challenge.h */,
+				78F6B3DD174705EA00AA070D /* Challenge.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -1039,6 +1074,7 @@
 		78F193E717471A0E00BB8587 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				784D3BE51775102A009945F8 /* lobby */,
 				7829933C17710C4A00881DA8 /* wizard1-set1-hd.plist */,
 				7829933D17710C4A00881DA8 /* wizard1-set1-hd.png */,
 				7829933E17710C4A00881DA8 /* wizard1-set2-hd.plist */,
@@ -1053,10 +1089,13 @@
 				785FBEA117725A780021AEE5 /* pillow.png */,
 				786246551767D885001904AC /* helmet-hd.png */,
 				786246561767D885001904AC /* helmet.png */,
-				786246471767CC29001904AC /* firewall.png */,
-				786246481767CC29001904AC /* firewall-hd.png */,
 				7862464E1767D05C001904AC /* fist-hd.png */,
 				7862464F1767D05C001904AC /* fist.png */,
+				782602781773D8F700059981 /* firewall-animation.plist */,
+				782602791773D8F700059981 /* firewall-hd.plist */,
+				7826027A1773D8F700059981 /* firewall-hd.png */,
+				7826027B1773D8F700059981 /* firewall.plist */,
+				7826027C1773D8F700059981 /* firewall.png */,
 				78F09BBC175AE3EF00BA775E /* messages-hd.plist */,
 				78F09BBD175AE3EF00BA775E /* messages-hd.png */,
 				78F09BB6175AE3DD00BA775E /* messages-animation.plist */,
@@ -1140,6 +1179,7 @@
 				78ABA8A9175A7322003D2F23 /* wizard2.png */,
 				78ABA8AD175A7330003D2F23 /* wizard2-hd.plist */,
 				78ABA8AE175A7331003D2F23 /* wizard2-hd.png */,
+				784D3BDA17748BF1009945F8 /* menu-bg.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -1593,8 +1633,6 @@
 				78F6B3A51746B26000AA070D /* Wizard.m */,
 				78F6B3C91746D77B00AA070D /* Units.h */,
 				78F6B3CA1746D77B00AA070D /* Units.m */,
-				78F6B3DC174705EA00AA070D /* Invite.h */,
-				78F6B3DD174705EA00AA070D /* Invite.m */,
 				78F195161748024C00BB8587 /* Elements.h */,
 				78F195171748024D00BB8587 /* Elements.m */,
 				78E8EA681759427E00017747 /* Combos.h */,
@@ -1840,8 +1878,6 @@
 				78F09BD3175AE45800BA775E /* vine-hd.png in Resources */,
 				78F09BD5175AE5E100BA775E /* wizard1-animation.plist in Resources */,
 				78F09BD7175AE5E800BA775E /* wizard2-animation.plist in Resources */,
-				786246491767CC29001904AC /* firewall.png in Resources */,
-				7862464A1767CC29001904AC /* firewall-hd.png in Resources */,
 				786246501767D05C001904AC /* fist-hd.png in Resources */,
 				786246511767D05C001904AC /* fist.png in Resources */,
 				786246571767D885001904AC /* helmet-hd.png in Resources */,
@@ -1866,6 +1902,12 @@
 				785FBEDC1772628C0021AEE5 /* LoveYaLikeASister.ttf in Resources */,
 				785FBEDD1772628C0021AEE5 /* LoveYaLikeASisterSolid.ttf in Resources */,
 				785FBEDE1772628C0021AEE5 /* comic_zine_ot.otf in Resources */,
+				7826027D1773D8F700059981 /* firewall-animation.plist in Resources */,
+				7826027E1773D8F700059981 /* firewall-hd.plist in Resources */,
+				7826027F1773D8F700059981 /* firewall-hd.png in Resources */,
+				782602801773D8F700059981 /* firewall.plist in Resources */,
+				782602811773D8F700059981 /* firewall.png in Resources */,
+				784D3BDB17748BF1009945F8 /* menu-bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2029,7 +2071,7 @@
 				78F6B3CF1746E05E00AA070D /* SpellFireball.m in Sources */,
 				78F6B3D21746E2E000AA070D /* SpellInteraction.m in Sources */,
 				78F6B3D81746E6D300AA070D /* SpellEarthwall.m in Sources */,
-				78F6B3DE174705EA00AA070D /* Invite.m in Sources */,
+				78F6B3DE174705EA00AA070D /* Challenge.m in Sources */,
 				6F0B2FA9174750FF00CFC092 /* PentagramViewController.m in Sources */,
 				6F0B2FAA174750FF00CFC092 /* PentEmblem.m in Sources */,
 				6F0B2FAF1747511800CFC092 /* DotsView.m in Sources */,
@@ -2080,6 +2122,10 @@
 				785FBED3177261BD0021AEE5 /* PartyViewController.m in Sources */,
 				785FBED5177261BD0021AEE5 /* User.m in Sources */,
 				785FBEE3177263850021AEE5 /* AppStyle.m in Sources */,
+				784D3BDE1774F753009945F8 /* LobbyService.m in Sources */,
+				784D3BE1177501E9009945F8 /* UserService.m in Sources */,
+				784D3BE417750441009945F8 /* IdService.m in Sources */,
+				784D3BEC17751411009945F8 /* ChallengeService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>animations</key>
+	<dict>
+		<key>firewall-start</key>
+		<dict>
+			<key>delay</key>
+			<real>0.09</real>
+			<key>frames</key>
+			<array>
+				<string>firewall-1.png</string>
+				<string>firewall-2.png</string>
+				<string>firewall-3.png</string>
+				<string>firewall-4.png</string>
+			</array>
+		</dict>
+		<key>firewall-cast</key>
+		<dict>
+			<key>delay</key>
+			<real>0.09</real>
+			<key>frames</key>
+			<array>
+				<string>firewall-4-1.png</string>
+				<string>firewall-4.png</string>
+				<string>firewall-4-2.png</string>
+				<string>firewall-4.png</string>
+			</array>
+		</dict>
+	</dict>
+</dict>
+</plist>

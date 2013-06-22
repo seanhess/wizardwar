@@ -38,8 +38,8 @@
     
     // You only want to add the local party if there are people near you
     // But we DO want to show how many people are in there
-    NSArray * local = @[[LocalParty new]];
-    self.parties = [local arrayByAddingObjectsFromArray:self.user.parties];
+//    NSArray * local = @[[LocalParty new]];
+//    self.parties = [local arrayByAddingObjectsFromArray:self.user.parties];
     
     // Do any additional setup after loading the view from its nib.
     
