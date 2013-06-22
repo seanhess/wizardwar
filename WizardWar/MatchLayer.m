@@ -176,11 +176,11 @@
 }
 
 - (void)renderMatchStatus {
-    self.message.visible = (self.match.status == MatchStatusReady || self.match.status == MatchStatusEnded);
-    self.players.visible = (self.match.status == MatchStatusPlaying || self.match.status == MatchStatusEnded);
     self.spells.visible = (self.match.status == MatchStatusPlaying);
     
     if (self.match.status == MatchStatusPlaying) {
+        
+        self.message.visible = NO;
         // assign players to indicators
         NSArray * players = self.match.sortedPlayers;
         [players forEachIndex:^(int i) {

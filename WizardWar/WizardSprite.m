@@ -125,12 +125,12 @@
 }
 
 - (void)renderMatchStatus {
-    if (self.match.status == MatchStatusReady && self.isCurrentWizard)
+    if ((self.match.status == MatchStatusReady || self.match.status == MatchStatusSyncing) && self.isCurrentWizard)
         self.skin.color = ccc3(0, 255, 0);
     else
         self.skin.color = ccWHITE;
     
-    self.label.visible = (self.match.status == MatchStatusReady);
+    self.label.visible = (self.match.status == MatchStatusReady || self.match.status == MatchStatusSyncing);
 }
 
 - (NSString*)wizardName {

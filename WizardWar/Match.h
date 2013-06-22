@@ -15,6 +15,7 @@
 
 typedef enum MatchStatus {
     MatchStatusReady,
+    MatchStatusSyncing,
     MatchStatusPlaying,
     MatchStatusEnded,
 } MatchStatus;

@@ -70,7 +70,7 @@
     }
 }
 
-- (void)user:(User*)user challengeOpponent:(User*)opponent {
+- (Challenge*)user:(User*)user challengeOpponent:(User*)opponent {
     Challenge * challenge = [Challenge new];
     challenge.main = user;
     challenge.opponent = opponent;
@@ -78,6 +78,8 @@
     Firebase * child = [self.node childByAppendingPath:challenge.matchId];
     [child onDisconnectRemoveValue];
     [child setValue:challenge.toObject];
+    
+    return challenge;
 }
 
 

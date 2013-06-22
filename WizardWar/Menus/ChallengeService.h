@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <ReactiveCocoa.h>
 #import "User.h"
+#import "Challenge.h"
 
 @interface ChallengeService : NSObject
 
@@ -17,6 +18,6 @@
 
 + (ChallengeService *)shared;
 - (void)connect;
-- (void)user:(User*)user challengeOpponent:(User*)opponent;
+- (Challenge*)user:(User*)user challengeOpponent:(User*)opponent;
 
 @end

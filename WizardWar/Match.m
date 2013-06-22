@@ -27,7 +27,7 @@
 #import "Tick.h"
 
 #define CLEANUP_TICKS 50 // 10 is 1 second
-#define MIN_READY_STATE 4.0
+#define MIN_READY_STATE 2.5
 
 // sync spells to the server every N seconds
 @interface Match () <GameTimerDelegate, MultiplayerDelegate, TimerSyncDelegate, AIDelegate>
@@ -123,6 +123,14 @@
     [self startIfReady];
 }
 
+- (void)removePlayer:(Wizard*)player {
+    [self.players removeObjectForKey:player.name];
+    [self.delegate didRemovePlayer:player];
+    [self.sortedPlayers removeObject:player];
+    
+    if (self.status == MatchStatusPlaying || self.status == MatchStatusSyncing)
+        [self stop];
+}
 
 
 
@@ -172,9 +180,7 @@
 -(void)mpDidRemovePlayerWithName:(NSString *)name {
     // Someone disconnected
     Wizard * player = [self.players objectForKey:name];
-    [self.players removeObjectForKey:name];
-    [self.delegate didRemovePlayer:player];
-    [self stop];
+    [self removePlayer:player];
 }
 
 -(void)startIfReady {
@@ -186,6 +192,8 @@
     self.timer = [GameTimerService new];
     self.timer.tickInterval = TICK_INTERVAL;
     self.timer.delegate = self;
+    
+    self.status = MatchStatusSyncing;
     
     // TODO; I only want to do this if the multiplayer so requires...
     if (self.sync)
@@ -201,7 +209,7 @@
 -(void)update:(NSTimeInterval)dt {
     [self.timer update:dt];
     
-    if (self.status == MatchStatusReady) return;
+    if (self.status == MatchStatusSyncing || self.status == MatchStatusReady) return;
     
     // move all the spells around and stuff, but don't simulate the game
     [self.activeSpells forEach:^(Spell*spell) {
@@ -215,7 +223,7 @@
 
 - (void)gameDidTick:(NSInteger)currentTick {
     if (!self.enoughTimeAsReady) return;
-    if (self.status == MatchStatusReady && currentTick >= GAME_TIMER_FIRST_TICK) {
+    if (self.status == MatchStatusSyncing && currentTick >= GAME_TIMER_FIRST_TICK) {
         self.status = MatchStatusPlaying;
     }
     [self simulateTick:currentTick interval:self.timer.tickInterval];

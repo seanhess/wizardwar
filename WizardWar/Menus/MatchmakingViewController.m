@@ -33,7 +33,7 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityView;
 @property (weak, nonatomic) IBOutlet UILabel *userLoginLabel;
 
-@property (strong, nonatomic) User * currentUser;
+@property (nonatomic, readonly) User * currentUser;
 @property (strong, nonatomic) MatchLayer * match;
 @end
 
@@ -67,7 +67,7 @@
     self.activityView.hidesWhenStopped = YES;
     if (!LobbyService.shared.joined)
         [self.activityView startAnimating];
-    self.userLoginLabel.text = UserService.shared.currentUser.name;
+    self.userLoginLabel.text = self.currentUser.name;
     [RACAble(LobbyService.shared, joined) subscribeNext:^(id x) {
         [self.activityView stopAnimating];
     }];
@@ -114,16 +114,20 @@
     return LobbyService.shared.localUsers.allValues;
 }
 
+- (User*)currentUser {
+    return UserService.shared.currentUser;
+}
+
 
 #pragma mark - Firebase stuff
 
 - (void)joinLobby
 {
-    [LobbyService.shared joinLobby:UserService.shared.currentUser];
+    [LobbyService.shared joinLobby:self.currentUser];
 }
 
 - (void)leaveLobby {
-    [LobbyService.shared leaveLobby:UserService.shared.currentUser];
+    [LobbyService.shared leaveLobby:self.currentUser];
 }
 
 #pragma mark - Table view data source
@@ -186,11 +190,16 @@
     }
     
     Challenge * challenge = self.challenges[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ vs %@", challenge.main.name, challenge.opponent.name];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ vs %@", [self nameOrYou:challenge.main.name], [self nameOrYou:challenge.opponent.name]];
     cell.backgroundColor = [UIColor colorWithRed:0.490 green:0.706 blue:0.275 alpha:1.000];
     cell.textLabel.textColor = [UIColor colorWithWhite:0.149 alpha:1.000];
     
     return cell;
+}
+
+- (NSString*)nameOrYou:(NSString*)name {
+    if ([name isEqualToString:self.currentUser.name]) return @"You";
+    else return name;
 }
 
 #pragma mark - Table view delegate
@@ -206,7 +215,11 @@
 }
 
 - (void)didSelectUser:(User*)user {
-    [ChallengeService.shared user:UserService.shared.currentUser challengeOpponent:user];
+    Challenge * challenge = [ChallengeService.shared user:self.currentUser challengeOpponent:user];
+    
+    MatchViewController * match = [MatchViewController new];
+    [match startChallenge:challenge currentWizard:UserService.shared.currentWizard];
+    [self.navigationController presentViewController:match animated:YES completion:nil];    
 }
 
 - (void)didSelectChallenge:(Challenge*)challenge {
