@@ -27,6 +27,11 @@
 @property (nonatomic, strong) CCSprite * effect;
 
 @property (nonatomic, strong) CCAction * hoverAction;
+
+@property (nonatomic, strong) Match * match;
+@property (nonatomic) BOOL isCurrentWizard;
+
+
 @end
 
 @implementation WizardSprite
@@ -44,10 +49,12 @@
 }
 
 
--(id)initWithPlayer:(Wizard *)player units:(Units *)units {
+-(id)initWithWizard:(Wizard *)wizard units:(Units *)units match:(Match*)match isCurrentWizard:(BOOL)isCurrentWizard {
     if ((self=[super init])) {
-        self.player = player;
+        self.wizard = wizard;
         self.units = units;
+        self.match = match;
+        self.isCurrentWizard = isCurrentWizard;
         
         [WizardSprite loadSprites];
 
@@ -58,40 +65,47 @@
         
         self.skin = [CCSprite node];
         [self addChild:self.skin];
-            
-//        self.label = [CCLabelTTF labelWithString:player.name fontName:@"Marker Felt" fontSize:18];
-//        [self addChild:self.label];
+        
+        // I need to only show this if the game hasn't started!
+        self.label = [CCLabelTTF labelWithString:wizard.name fontName:@"Marker Felt" fontSize:36];
+        self.label.position = ccp(0, 130);
+        [self addChild:self.label];
         
         // BIND: state, position
         [self renderPosition];
         [self renderStatus];
+        [self renderMatchStatus];
         
-        [[RACAble(self.player.position) distinctUntilChanged] subscribeNext:^(id x) {
+        [[RACAble(self.wizard.position) distinctUntilChanged] subscribeNext:^(id x) {
             [self renderPosition];
         }];
         
-        [[RACAble(self.player.state) distinctUntilChanged] subscribeNext:^(id x) {
+        [[RACAble(self.wizard.state) distinctUntilChanged] subscribeNext:^(id x) {
             [self renderStatus];
         }];
         
-        [[RACAble(self.player.effect) distinctUntilChanged] subscribeNext:^(id x) {
+        [[RACAble(self.wizard.effect) distinctUntilChanged] subscribeNext:^(id x) {
             [self renderEffect];
         }];
         
-        [[RACAble(self.player.altitude) distinctUntilChanged] subscribeNext:^(id x) {
+        [[RACAble(self.wizard.altitude) distinctUntilChanged] subscribeNext:^(id x) {
             [self renderAltitude];
+        }];
+        
+        [[RACAble(self.match.status) distinctUntilChanged] subscribeNext:^(id x) {
+            [self renderMatchStatus];
         }];
     }
     return self;
 }
 
 -(CGPoint)calculatedPosition {
-    return ccp([self.units toX:self.player.position], self.units.zeroY + PIXELS_HIGH_PER_ALTITUDE*self.player.altitude);
+    return ccp([self.units toX:self.wizard.position], self.units.zeroY + PIXELS_HIGH_PER_ALTITUDE*self.wizard.altitude);
 }
 
 -(void)renderPosition {
     self.position = self.calculatedPosition;
-    self.skin.flipX = (self.player.position == UNITS_MAX);
+    self.skin.flipX = (self.wizard.position == UNITS_MAX);
 }
 
 -(void)renderStatus {
@@ -110,6 +124,13 @@
 //    [self.skin runAction:self.stateAction];
 }
 
+- (void)renderMatchStatus {
+    if (self.match.status == MatchStatusReady && self.isCurrentWizard)
+        self.skin.color = ccc3(0, 255, 0);
+    else
+        self.skin.color = ccWHITE;
+}
+
 - (void)renderEffect {
     
     if (self.effect) {
@@ -119,21 +140,21 @@
     [self.skin stopAllActions];
     
     // set opactiy based on invisible
-    if ([self.player.effect class] == [EffectInvisible class]) {
-        [self.skin runAction:[CCFadeTo actionWithDuration:self.player.effect.delay opacity:40]];
+    if ([self.wizard.effect class] == [EffectInvisible class]) {
+        [self.skin runAction:[CCFadeTo actionWithDuration:self.wizard.effect.delay opacity:40]];
     }
     else {
         [self.skin runAction:[CCFadeTo actionWithDuration:0.2 opacity:255]];
     }
     
-    if ([self.player.effect class] == [EffectHelmet class]) {
+    if ([self.wizard.effect class] == [EffectHelmet class]) {
         self.effect = [CCSprite spriteWithFile:@"helmet.png"];
-        self.effect.flipX = self.player.position == UNITS_MAX;
-        self.effect.position = ccp(-4*self.player.direction, 80);
+        self.effect.flipX = self.wizard.position == UNITS_MAX;
+        self.effect.position = ccp(-4*self.wizard.direction, 80);
         [self addChild:self.effect];
     }
     
-    else if ([self.player.effect class] == [EffectHeal class]) {
+    else if ([self.wizard.effect class] == [EffectHeal class]) {
 //        self.skin.color = ccc3(255, 255, 255);
 //        [self.skin setBlendFunc: (ccBlendFunc) { GL_ONE, GL_ONE }];
 //        [self.skin runAction: [CCRepeatForever actionWithAction:[CCSequence actions:[CCScaleTo actionWithDuration:0.9f scaleX:size.width scaleY:size.height], [CCScaleTo actionWithDuration:0.9f scaleX:size.width*0.75f scaleY:size. height*0.75f], nil] ]];
@@ -145,7 +166,7 @@
         [self.skin runAction:glowRed];
     }
     
-    else if ([self.player.effect class] == [EffectSleep class]) {
+    else if ([self.wizard.effect class] == [EffectSleep class]) {
         CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:@"wizard1-sleep"];
         NSAssert(animation, @"DID NOT LOAD ANIMATION");
         CCFiniteTimeAction * wait = [CCFadeTo actionWithDuration:0.2 opacity:255];
@@ -175,7 +196,7 @@
 -(void)renderAltitude {
     CGPoint pos = self.calculatedPosition;
     CCFiniteTimeAction * toPos = [CCMoveTo actionWithDuration:0.2 position:ccp(pos.x, pos.y)];
-    if (self.player.altitude > 0) {
+    if (self.wizard.altitude > 0) {
         CCFiniteTimeAction * toHover = [CCMoveTo actionWithDuration:0.2 position:ccp(pos.x, pos.y+5)];
         self.hoverAction = [CCRepeatForever actionWithAction:[CCSequence actions:toPos, toHover, nil]];
         [self runAction:self.hoverAction];
@@ -195,7 +216,7 @@
     CCAction * action = actionInterval;
     
     // only repeat ready?
-//    if (self.player.state == PlayerStateReady) {
+//    if (self.wizard.state == PlayerStateReady) {
 //        action = [CCRepeatForever actionWithAction:actionInterval];
 //    }
     
@@ -206,20 +227,20 @@
 -(NSString*)stateAnimationName {
     NSString * stateName = @"prepare";
     
-    if (self.player.state == PlayerStateCast)
+    if (self.wizard.state == PlayerStateCast)
         stateName = @"attack";
     
-    else if(self.player.state == PlayerStateHit)
+    else if(self.wizard.state == PlayerStateHit)
         stateName = @"damage";
     
-    else if(self.player.state == PlayerStateDead)
+    else if(self.wizard.state == PlayerStateDead)
         stateName = @"dead";
     
     return [NSString stringWithFormat:@"%@-%@", self.wizardSheetName, stateName];
 }
 
 -(NSString*)wizardSheetName {
-    return [NSString stringWithFormat:@"wizard%@", self.player.wizardType];
+    return [NSString stringWithFormat:@"wizard%@", self.wizard.wizardType];
 }
 
 @end

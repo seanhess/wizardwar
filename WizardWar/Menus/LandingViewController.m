@@ -49,18 +49,12 @@
 }
 
 - (IBAction)didTapQuest:(id)sender {
-    Wizard * guest = [Wizard new];
-    guest.name = @"guest";
-//    guest.wizardType = [Wizard randomWizardType];
-    guest.wizardType = WIZARD_TYPE_ONE;
-    
     Wizard * ai = [Wizard new];
-    ai.name = @"zai";
+    ai.name = @"Zorlak Bot";
     ai.wizardType = WIZARD_TYPE_ONE;
     
     MatchViewController * match = [MatchViewController new];
-    [match connectToMatchWithId:@"Practice" currentPlayer:guest withAI:ai];
-    match.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [match startMatchAsWizard:UserService.shared.currentWizard withAI:ai];
     [self.navigationController presentViewController:match animated:YES completion:nil];
 }
 

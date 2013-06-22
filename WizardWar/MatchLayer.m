@@ -100,7 +100,6 @@
         [self.indicators addChild:player1Indicator];
         [self.indicators addChild:player2Indicator];
         
-        [self.match connect];
         [self scheduleUpdate];
         
         [[RACAble(self.match.status) distinctUntilChanged] subscribeNext:^(id value) {
@@ -157,15 +156,16 @@
     }
 }
 
-- (void)didAddPlayer:(Wizard *)player {
-    WizardSprite * wizard = [[WizardSprite alloc] initWithPlayer:player units:self.units];
-    [self.players addChild:wizard];
-    NSLog(@"ADDED PLAYER %@", player);
+- (void)didAddPlayer:(Wizard *)wizard {
+    BOOL isCurrentWizard = (wizard == self.match.currentWizard);
+    WizardSprite * sprite = [[WizardSprite alloc] initWithWizard:wizard units:self.units match:self.match isCurrentWizard:isCurrentWizard];
+
+    [self.players addChild:sprite];
 }
 
-- (void)didRemovePlayer:(Wizard *)player {
+- (void)didRemovePlayer:(Wizard *)wizard {
     WizardSprite * sprite = [NSArray array:self.players.children find:^BOOL(WizardSprite * sprite) {
-        return (sprite.player == player);
+        return (sprite.wizard == wizard);
     }];
     [self.players removeChild:sprite];
     // Someone disconnected
@@ -193,7 +193,7 @@
     
     if (self.match.status == MatchStatusEnded) {
         NSString * messageFrameName = nil;
-        if (self.match.currentPlayer.state == PlayerStateDead)
+        if (self.match.currentWizard.state == PlayerStateDead)
             messageFrameName = @"msg-you-lose.png";
         else
             messageFrameName = @"msg-you-won.png";

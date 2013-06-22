@@ -32,16 +32,14 @@ typedef enum MatchStatus {
 @end
 
 @interface Match : NSObject <Simulated>
-@property (nonatomic, strong) NSMutableDictionary * players;
-@property (nonatomic, strong) NSMutableDictionary * spells;
 @property (nonatomic, weak) id<MatchDelegate> delegate;
-@property (nonatomic, strong) Wizard * currentPlayer;
+@property (nonatomic, strong) Wizard * currentWizard;
 
-@property (nonatomic, readonly) NSArray * sortedPlayers;
+@property (nonatomic, strong) NSMutableArray * sortedPlayers;
 
 @property (nonatomic) MatchStatus status;
 
--(id)initWithId:(NSString*)matchId currentPlayer:(Wizard*)player withAI:(Wizard*)ai multiplayer:(id<Multiplayer>)multiplayer sync:(TimerSyncService*)sync;
+-(id)initWithMatchId:(NSString*)matchId hostName:(NSString*)hostName currentWizard:(Wizard*)wizard withAI:(Wizard*)ai multiplayer:(id<Multiplayer>)multiplayer sync:(TimerSyncService*)sync;
 -(void)update:(NSTimeInterval)dt;
 -(void)castSpell:(Spell *)spell;
 -(void)connect;

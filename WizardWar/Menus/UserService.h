@@ -8,12 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "User.h"
+#import "Wizard.h"
 
 @interface UserService : NSObject
 
 @property (nonatomic, strong) User * currentUser;
+@property (nonatomic, readonly) Wizard * currentWizard;
 
 + (UserService *)shared;
 - (void)connect;
+
 
 @end

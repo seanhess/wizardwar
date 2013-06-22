@@ -8,8 +8,11 @@
 
 #import "CCSprite.h"
 #import "Wizard.h"
+#import "Match.h"
 
 @interface WizardSprite : CCSprite
-@property (nonatomic, strong) Wizard * player;
--(id)initWithPlayer:(Wizard*)player units:(Units*)units;
+
+@property (nonatomic, strong) Wizard * wizard;
+
+-(id)initWithWizard:(Wizard*)wizard units:(Units*)units match:(Match*)match isCurrentWizard:(BOOL)isCurrentWizard;
 @end

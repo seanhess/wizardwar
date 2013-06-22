@@ -51,6 +51,13 @@
     return user;
 }
 
+- (Wizard*)currentWizard {
+    Wizard * wizard = [Wizard new];
+    wizard.name = self.currentUser.name;
+    wizard.wizardType = WIZARD_TYPE_ONE;
+    return wizard;
+}
+
 
 
 @end

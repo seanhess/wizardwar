@@ -38,26 +38,34 @@
 @property (nonatomic, strong) TimerSyncService * sync;
 @property (nonatomic, strong) PracticeModeAIService * ai;
 
+@property (nonatomic, strong) NSMutableDictionary * players;
+@property (nonatomic, strong) NSMutableDictionary * spells;
+
+@property (nonatomic, strong) NSString * hostName;
 @property (nonatomic, strong) NSString * matchId;
-@property (nonatomic, strong) Wizard * aiPlayer;
+@property (nonatomic, strong) Wizard * aiWizard;
 
 @end
 
+// Always use a challenge!
 @implementation Match
--(id)initWithId:(NSString *)matchId currentPlayer:(Wizard *)player withAI:(Wizard *)aiPlayer multiplayer:(id<Multiplayer>)multiplayer sync:(TimerSyncService *)sync {
+-(id)initWithMatchId:(NSString *)matchId hostName:(NSString *)hostName currentWizard:(Wizard *)wizard withAI:(Wizard *)ai multiplayer:(id<Multiplayer>)multiplayer sync:(TimerSyncService *)sync {
     if ((self = [super init])) {
         self.matchId = matchId;
+        self.hostName = hostName;
         self.players = [NSMutableDictionary dictionary];
         self.spells = [NSMutableDictionary dictionary];
+        self.sortedPlayers = [NSMutableArray array];
         self.multiplayer = multiplayer;
         self.multiplayer.delegate = self;
         self.sync = sync;
         self.sync.delegate = self;
         self.status = MatchStatusReady;
-        self.currentPlayer = player;
-        self.aiPlayer = aiPlayer;
-        
-        if (self.aiPlayer) {
+        self.currentWizard = wizard;
+        self.aiWizard = ai;
+
+
+        if (self.aiWizard) {
             self.ai = [PracticeModeAIService new];
             self.ai.delegate = self;
         }
@@ -67,12 +75,14 @@
 
 -(void)connect {
     NSAssert(self.delegate, @"Delegate should be set before connect");
-    if (self.aiPlayer) {
-        [self addPlayer:self.aiPlayer];
+    if (self.aiWizard) {
+        [self addPlayer:self.aiWizard];
     }
     
-    [self addPlayer:self.currentPlayer];
-    [self.multiplayer addPlayer:self.currentPlayer];
+    [self.multiplayer connectToMatchId:self.matchId];
+    
+    [self addPlayer:self.currentWizard];
+    [self.multiplayer addPlayer:self.currentWizard];
     
 }
 
@@ -88,7 +98,15 @@
 }
 
 - (void)addPlayer:(Wizard*)player {
-    [self.players setObject:player forKey:player.name];
+    if ([player.name isEqualToString:self.hostName]) {
+        player.position = UNITS_MIN;        
+        [self.sortedPlayers insertObject:player atIndex:0];
+    }
+    else {
+        player.position = UNITS_MAX;
+        [self.sortedPlayers addObject:player];
+    }
+    
     [self.delegate didAddPlayer:player];
     if (self.players.count == 2) [self playersReady];
 }
@@ -105,7 +123,7 @@
 /// AI //
 
 - (void)aiDidCastSpell:(Spell *)spell {
-    [self player:self.aiPlayer castSpell:spell];
+    [self player:self.aiWizard castSpell:spell];
 }
 
 
@@ -150,29 +168,18 @@
     [self stop];
 }
 
-
-
-// STARTING
-// sync player health and mana better
-// ... send the player every so often
-// ... every X ticks?
-
 -(void)playersReady {
     NSLog(@"PLAYERS READY");
+    return;
     
-    // Sort the players
-    NSArray * players = self.sortedPlayers;
-    [(Wizard *)players[0] setPosition:UNITS_MIN];
-    [(Wizard *)players[1] setPosition:UNITS_MAX];
-    
-    BOOL isHost = (self.currentPlayer == self.host);
+    BOOL isHost = (self.currentWizard == self.host);
     self.timer = [GameTimerService new];
     self.timer.tickInterval = TICK_INTERVAL;
     self.timer.delegate = self;
     
     // TODO; I only want to do this if the multiplayer so requires...
     if (self.sync)
-        [self.sync syncTimerWithMatchId:self.matchId player:self.currentPlayer isHost:isHost];
+        [self.sync syncTimerWithMatchId:self.matchId player:self.currentWizard isHost:isHost];
     else
         [self gameShouldStartAt:CACurrentMediaTime() + 0.1];
 }
@@ -224,8 +231,8 @@
     
     // HACK: sync the player every second
     if ((currentTick % (int)round(TICKS_PER_SECOND)) == 0) {
-        //NSLog(@"SYNC PLAYER health=%i mana=%i", self.currentPlayer.health, self.currentPlayer.mana);
-        [self.multiplayer updatePlayer:self.currentPlayer];
+        //NSLog(@"SYNC PLAYER health=%i mana=%i", self.currentWizard.health, self.currentWizard.mana);
+        [self.multiplayer updatePlayer:self.currentWizard];
     }
     
     [self cleanupDestroyed];
@@ -332,8 +339,8 @@
 
 // Spells close to you are the ones you "own" in multiplayer
 -(BOOL)isSpellClose:(Spell*)spell {
-//    NSLog(@" - isSpellClose pos=%i play=%i mid=%f", (int)spell.position, self.currentPlayer.isFirstPlayer, UNITS_MID);
-    if (self.currentPlayer.isFirstPlayer) {
+//    NSLog(@" - isSpellClose pos=%i play=%i mid=%f", (int)spell.position, self.currentWizard.isFirstPlayer, UNITS_MID);
+    if (self.currentWizard.isFirstPlayer) {
         return (spell.position < UNITS_MID);
     }
     else {
@@ -348,7 +355,7 @@
     
     // handle player sync / update / death check
     // only YOU can say you died
-    if (player == self.currentPlayer || player == self.aiPlayer) {
+    if (player == self.currentWizard || player == self.aiWizard) {
         if (player.health == 0) {
             [player setState:PlayerStateDead animated:NO];
             [self checkWin];
@@ -428,13 +435,6 @@
     }
 }
 
-- (NSArray*)sortedPlayers {
-    // sort players alphabetically (so it is the same on all devices)
-    return [self.players.allValues sortedArrayUsingComparator:^NSComparisonResult(Wizard * p1, Wizard *p2) {
-        return [p1.name compare:p2.name];
-    }];
-}
-
 -(void)player:(Wizard*)player castSpell:(Spell*)spell {
     
     if (player.effect.disablesPlayer) return;
@@ -452,11 +452,11 @@
 
 
 -(void)castSpell:(Spell *)spell {
-    [self player:self.currentPlayer castSpell:spell];
+    [self player:self.currentWizard castSpell:spell];
 }
 
 -(void)disconnect {
-    [self.multiplayer removePlayer:self.currentPlayer];
+    [self.multiplayer removePlayer:self.currentWizard];
     [self.multiplayer disconnect];
     [self.sync disconnect];
 }

@@ -59,15 +59,28 @@
     
     
     self.combos = [Combos new];
+    
+    
+    //  causes retain cycle with the view controller
+    __weak MatchViewController * wself = self;
+    [[RACAble(self.match.status) distinctUntilChanged] subscribeNext:^(id x) {
+        [wself renderMatchStatus];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     // Add the director's view to us
+    
+    self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 
     CCDirectorIOS * director = [WizardDirector shared];
     director.view.frame = self.cocosView.bounds;
     MatchLayer * matchLayer = [[MatchLayer alloc] initWithMatch:self.match size:self.view.bounds.size];
     [WizardDirector runLayer:matchLayer];
+    
+    // CONNECT / START!
+    // this always happens after? LAME!
+    [self.match connect];
     
     [self renderMatchStatus];    
 }
@@ -76,27 +89,29 @@
     return UIInterfaceOrientationMaskLandscape;
 }
 
-- (void)connectToMatchWithId:(NSString*)matchId currentPlayer:(Wizard*)player withAI:(Wizard*)ai {
-    id<Multiplayer> multiplayer = nil;
-    TimerSyncService * sync = nil;
-    if (ai) { }
-    else {
-        MultiplayerService * mp = [MultiplayerService new];
+- (void)createMatch:(Challenge*)challenge currentWizard:(Wizard*)wizard withAI:(Wizard*)ai multiplayer:(id<Multiplayer>)multiplayer sync:(TimerSyncService*)sync {
+}
+
+- (id<Multiplayer>)defaultMultiplayerService {
+    MultiplayerService * mp = [MultiplayerService new];
 #if DEBUG
-        mp.simulatedLatency = 0.5;
-        NSLog(@"*** SIMULATED LATENCY *** %f", mp.simulatedLatency);
+    mp.simulatedLatency = 0.5;
+    NSLog(@"*** SIMULATED LATENCY *** %f", mp.simulatedLatency);
 #endif
-        multiplayer = mp;
-        sync = [TimerSyncService new];
-    }
-    [multiplayer connectToMatchId:matchId];
-    self.match = [[Match alloc] initWithId:matchId currentPlayer:player withAI:ai multiplayer:multiplayer sync:sync];
-    
-    //  causes retain cycle with the view controller
-    __weak MatchViewController * wself = self;
-    [[RACAble(self.match.status) distinctUntilChanged] subscribeNext:^(id x) {
-        [wself renderMatchStatus];
-    }];
+    return mp;
+}
+
+- (TimerSyncService*)defaultSyncService {
+    return [TimerSyncService new];
+}
+
+- (void)startChallenge:(Challenge *)challenge currentWizard:(Wizard *)wizard {
+    // join in the ready screen!
+    self.match = [[Match alloc] initWithMatchId:challenge.matchId hostName:challenge.main.name currentWizard:wizard withAI:nil multiplayer:self.defaultMultiplayerService sync:self.defaultSyncService];
+}
+
+- (void)startMatchAsWizard:(Wizard *)wizard withAI:(Wizard *)ai {
+    self.match = [[Match alloc] initWithMatchId:@"Practice" hostName:wizard.name currentWizard:wizard withAI:ai multiplayer:nil sync:nil];
 }
 
 - (void)renderMatchStatus {

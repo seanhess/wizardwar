@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Wizard.h"
+#import "Challenge.h"
 
 @interface MatchViewController : UIViewController
-- (void)connectToMatchWithId:(NSString*)matchId currentPlayer:(Wizard*)player withAI:(Wizard*)ai;
+- (void)startMatchAsWizard:(Wizard*)wizard withAI:(Wizard*)ai;
+- (void)startChallenge:(Challenge*)challenge currentWizard:(Wizard*)wizard;
 @end

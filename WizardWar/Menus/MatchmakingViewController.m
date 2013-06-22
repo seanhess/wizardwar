@@ -75,18 +75,12 @@
     [LobbyService.shared.updated subscribeNext:^(id x) {
         [wself.tableView reloadData];
     }];
-    
-    
+
     
     [self joinLobby];
-
-    
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    NSLog(@"HI");
-    return;
-}
+- (void)viewDidAppear:(BOOL)animated {}
 
 - (NSUInteger)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskPortrait;
@@ -98,11 +92,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)connectToLobby {
-    if (!self.nickname) return;
-    [self joinLobby];
-}
-
 - (void)disconnect {
     [self leaveLobby];
 }
@@ -111,37 +100,11 @@
     [self joinLobby];
 }
 
-- (void)joinMatch:(Challenge*)invite wizardName:(NSString *)wizardName {
-//    [self startGameWithMatchId:invite.matchID wizard:self.currentWizard withAI:nil];
-//    [self.invitesCollection removeObject:invite];
-}
-
-- (Wizard*)currentWizard {
-    Wizard * wizard = [Wizard new];
-    wizard.name = self.nickname;
-    wizard.wizardType = WIZARD_TYPE_ONE;
-    return wizard;
-}
-
-// starting a game should remove ALL invites you have pending
-- (void)startGameWithMatchId:(NSString*)matchId wizard:(Wizard*)wizard withAI:(Wizard*)ai {
-    NSAssert(matchId, @"No match id!");
-    NSLog(@"joining match %@ with %@", matchId, wizard.name);
-    
-    MatchViewController * match = [MatchViewController new];
-    [match connectToMatchWithId:matchId currentPlayer:wizard withAI:ai];
-    [self.navigationController pushViewController:match animated:YES];
-}
-
-
-
 #pragma mark - Login
 
 - (IBAction)didTapLogin:(id)sender {
     
 }
-
-
 
 - (NSArray*)challenges {
     return ChallengeService.shared.myChallenges.allValues;
@@ -153,30 +116,6 @@
 
 
 #pragma mark - Firebase stuff
-
-- (void)loadDataFromFirebase
-{
-//    self.connection = [[FirebaseConnection alloc] initWithFirebaseName:@"wizardwar" onConnect:^{
-//        [self.activityView stopAnimating];
-//    } onDisconnect:^{
-//        [self.activityView startAnimating];
-//    }];
-    
-
-}
-
-//- (NSArray*)lobby {
-//    return [self.users.allValues filter:^BOOL(User * user) {
-//        return ![user.name isEqualToString:self.nickname];
-//    }];
-//}
-
-//- (NSArray*)myInvites {
-//    // mapping back and forth between dictionary and array representation is annoying
-//    return [self.invites.allValues filter:^BOOL(Invite * invite) {
-//        return ([invite.invitee isEqualToString:self.nickname] || [invite.inviter isEqualToString:self.nickname]);
-//    }];
-//}
 
 - (void)joinLobby
 {
@@ -223,11 +162,6 @@
         return [self tableView:tableView userCellForRowAtIndexPath:indexPath];
     }
 }
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return 44;
-//}
 
 -(UITableViewCell*)tableView:(UITableView *)tableView userCellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"UserCell";
@@ -278,6 +212,11 @@
 - (void)didSelectChallenge:(Challenge*)challenge {
     // Join the ready screen yo yo yo
     NSLog(@"JOIN THE READY SCREEN %@", challenge.matchId);
+    
+    MatchViewController * match = [MatchViewController new];
+    [match startChallenge:challenge currentWizard:UserService.shared.currentWizard];
+    [self.navigationController presentViewController:match animated:YES completion:nil];
+    
 }
 
 - (void)dealloc {
