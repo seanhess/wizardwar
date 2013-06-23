@@ -13,6 +13,7 @@
 #import "MatchmakingViewController.h"
 #import "UserService.h"
 #import "LobbyService.h"
+#import "AccountViewController.h"
 
 @interface LandingViewController ()
 
@@ -69,8 +70,8 @@
 //}
 
 - (IBAction)didTapMultiplayer:(id)sender {
-    MatchmakingViewController * matchMaking = [MatchmakingViewController new];
-    [self.navigationController pushViewController:matchMaking animated:YES];
+    MatchmakingViewController * matchmaking = [MatchmakingViewController new];
+    [self.navigationController pushViewController:matchmaking animated:YES];
 }
 
 @end

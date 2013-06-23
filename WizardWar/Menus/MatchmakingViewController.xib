@@ -234,6 +234,14 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">accountView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="1067616233"/>
+					</object>
+					<int key="connectionID">123</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">dataSource</string>
 						<reference key="source" ref="1051326240"/>
 						<reference key="destination" ref="372490531"/>
@@ -576,6 +584,7 @@
 							<reference ref="713294228"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
+						<string key="objectName">AccountView</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">84</int>
@@ -738,7 +747,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">122</int>
+			<int key="maxID">123</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -757,6 +766,7 @@
 						</object>
 					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="accountView">UIView</string>
 						<string key="activityView">UIActivityIndicatorView</string>
 						<string key="splashLabel">UILabel</string>
 						<string key="splashView">UIImageView</string>
@@ -764,6 +774,10 @@
 						<string key="userLoginLabel">UILabel</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="accountView">
+							<string key="name">accountView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="activityView">
 							<string key="name">activityView</string>
 							<string key="candidateClassName">UIActivityIndicatorView</string>

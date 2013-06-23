@@ -16,7 +16,10 @@
 @property (nonatomic, readonly) Wizard * currentWizard;
 
 + (UserService *)shared;
-- (void)connect;
 
+- (void)connect;
+- (BOOL)isAuthenticated;
+- (User*)newUserWithName:(NSString*)name;
+- (void)saveCurrentUser:(User*)user;
 
 @end

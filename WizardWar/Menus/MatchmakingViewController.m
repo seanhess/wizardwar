@@ -18,12 +18,12 @@
 #import "LobbyService.h"
 #import "UserService.h"
 #import "ChallengeService.h"
+#import "AccountViewController.h"
 #import <ReactiveCocoa.h>
 
-@interface MatchmakingViewController () 
+@interface MatchmakingViewController () <AccountFormDelegate>
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
-@property (weak, nonatomic) IBOutlet UIImageView *splashView;
-@property (weak, nonatomic) IBOutlet UILabel *splashLabel;
+@property (weak, nonatomic) IBOutlet UIView *accountView;
 
 @property (nonatomic, readonly) NSArray * challenges;
 @property (nonatomic, readonly) NSArray * users;
@@ -39,21 +39,25 @@
 
 @implementation MatchmakingViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
     self.title = @"Matchmaking";
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
+    // CHECK AUTHENTICATED
+    if ([UserService shared].isAuthenticated) {
+        [self connect];
+    }
+    else {
+        AccountViewController * accounts = [AccountViewController new];
+        accounts.delegate = self;
+        [self.navigationController presentViewController:accounts animated:YES completion:nil];
+    }
+}
+
+- (void)connect {
     
     __weak MatchmakingViewController * wself = self;
     
@@ -64,21 +68,23 @@
     }];
     
     // LOBBY
-    self.activityView.hidesWhenStopped = YES;
-    if (!LobbyService.shared.joined)
-        [self.activityView startAnimating];
-    self.userLoginLabel.text = self.currentUser.name;
-    [RACAble(LobbyService.shared, joined) subscribeNext:^(id x) {
-        [self.activityView stopAnimating];
-    }];
-
+    self.accountView.hidden = YES;
+//    self.activityView.hidesWhenStopped = YES;
+//    if (!LobbyService.shared.joined)
+//        [self.activityView startAnimating];
+//    self.userLoginLabel.text = self.currentUser.name;
+//    [RACAble(LobbyService.shared, joined) subscribeNext:^(id x) {
+//        [self.activityView stopAnimating];
+//    }];
+    
     [LobbyService.shared.updated subscribeNext:^(id x) {
         [wself.tableView reloadData];
     }];
-
+    
     
     [self joinLobby];
 }
+
 
 - (void)viewDidAppear:(BOOL)animated {}
 
@@ -98,6 +104,19 @@
 
 - (void)reconnect {
     [self joinLobby];
+}
+
+#pragma mark - AccountFormDelegate
+-(void)didCancelAccountForm {
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
+-(void)didSubmitAccountForm:(NSString *)name {
+    User * user = [UserService.shared newUserWithName:name];
+    [UserService.shared saveCurrentUser:user];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [self connect];
 }
 
 #pragma mark - Login

@@ -51,6 +51,8 @@
 		784D3BE1177501E9009945F8 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BE0177501E9009945F8 /* UserService.m */; };
 		784D3BE417750441009945F8 /* IdService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BE317750441009945F8 /* IdService.m */; };
 		784D3BEC17751411009945F8 /* ChallengeService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BEB17751411009945F8 /* ChallengeService.m */; };
+		784D3BF01777AFFD009945F8 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BEE1777AFFD009945F8 /* AccountViewController.m */; };
+		784D3BF11777AFFD009945F8 /* AccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 784D3BEF1777AFFD009945F8 /* AccountViewController.xib */; };
 		785FBE9F17724FA20021AEE5 /* wizard1-set1-animations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 785FBE9E17724FA20021AEE5 /* wizard1-set1-animations.plist */; };
 		785FBEA217725A780021AEE5 /* pillow-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEA017725A780021AEE5 /* pillow-hd.png */; };
 		785FBEA317725A780021AEE5 /* pillow.png in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEA117725A780021AEE5 /* pillow.png */; };
@@ -393,6 +395,9 @@
 		784D3BE317750441009945F8 /* IdService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdService.m; sourceTree = "<group>"; };
 		784D3BEA17751411009945F8 /* ChallengeService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeService.h; sourceTree = "<group>"; };
 		784D3BEB17751411009945F8 /* ChallengeService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeService.m; sourceTree = "<group>"; };
+		784D3BED1777AFFD009945F8 /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
+		784D3BEE1777AFFD009945F8 /* AccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountViewController.m; sourceTree = "<group>"; };
+		784D3BEF1777AFFD009945F8 /* AccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountViewController.xib; sourceTree = "<group>"; };
 		785FBE9E17724FA20021AEE5 /* wizard1-set1-animations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set1-animations.plist"; sourceTree = "<group>"; };
 		785FBEA017725A780021AEE5 /* pillow-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pillow-hd.png"; sourceTree = "<group>"; };
 		785FBEA117725A780021AEE5 /* pillow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pillow.png; sourceTree = "<group>"; };
@@ -957,6 +962,9 @@
 				785FBEA9177261BD0021AEE5 /* LandingViewController.h */,
 				785FBEAA177261BD0021AEE5 /* LandingViewController.m */,
 				785FBEAB177261BD0021AEE5 /* LandingViewController.xib */,
+				784D3BED1777AFFD009945F8 /* AccountViewController.h */,
+				784D3BEE1777AFFD009945F8 /* AccountViewController.m */,
+				784D3BEF1777AFFD009945F8 /* AccountViewController.xib */,
 				785FBEBC177261BD0021AEE5 /* PartyInviteViewController.h */,
 				785FBEBD177261BD0021AEE5 /* PartyInviteViewController.m */,
 				785FBEBE177261BD0021AEE5 /* PartyInviteViewController.xib */,
@@ -1908,6 +1916,7 @@
 				782602801773D8F700059981 /* firewall.plist in Resources */,
 				782602811773D8F700059981 /* firewall.png in Resources */,
 				784D3BDB17748BF1009945F8 /* menu-bg.png in Resources */,
+				784D3BF11777AFFD009945F8 /* AccountViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2126,6 +2135,7 @@
 				784D3BE1177501E9009945F8 /* UserService.m in Sources */,
 				784D3BE417750441009945F8 /* IdService.m in Sources */,
 				784D3BEC17751411009945F8 /* ChallengeService.m in Sources */,
+				784D3BF01777AFFD009945F8 /* AccountViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

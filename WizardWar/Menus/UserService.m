@@ -7,7 +7,11 @@
 //
 
 #import "UserService.h"
-#import "IdService.h"
+#import <Firebase/Firebase.h>
+
+@interface UserService ()
+@property (nonatomic, strong) Firebase * node;
+@end
 
 @implementation UserService
 
@@ -21,12 +25,8 @@
 }
 
 - (void)connect {
-    // load user?
     self.currentUser = [self loadCurrentUser];
-    if (!self.currentUser) {
-        self.currentUser = [self guestUser];
-        [self saveCurrentUser];
-    }
+    self.node = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/users"];
 }
 
 - (User*)loadCurrentUser {
@@ -37,18 +37,17 @@
     return user;
 }
 
-- (void)saveCurrentUser {
+- (void)saveCurrentUser:(User *)user {
+    self.currentUser = user;
+    
+    // Save locally
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.currentUser];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:data forKey:@"currentUser"];
-}
-
-- (User*)guestUser {
-    User * user = [User new];
-    NSString * name = [NSString stringWithFormat:@"Guest%@", [IdService randomId:4]];
-    user.userId = name;
-    user.name = name;
-    return user;
+    
+    // Save to firebase
+    Firebase * child = [self.node childByAppendingPath:user.userId];
+    [child setValue:user.toObject];
 }
 
 - (Wizard*)currentWizard {
@@ -56,6 +55,18 @@
     wizard.name = self.currentUser.name;
     wizard.wizardType = WIZARD_TYPE_ONE;
     return wizard;
+}
+
+- (BOOL)isAuthenticated {
+    return self.currentUser != nil;
+}
+
+- (User*)newUserWithName:(NSString*)name {
+    User * user = [User new];
+    user.name = name;
+    user.userId = [UIDevice currentDevice].identifierForVendor.UUIDString;
+    return user;
+    
 }
 
 
