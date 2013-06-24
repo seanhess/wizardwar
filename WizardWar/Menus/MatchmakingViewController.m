@@ -160,8 +160,13 @@
 }
 
 - (NSArray*)friends {
-    return [UserFriendService.shared.friends.allValues filter:^BOOL(User * user) {
+    // Or filter it the other direction :)
+    return [[UserFriendService.shared.friends.allValues filter:^BOOL(User * user) {
         return (LobbyService.shared.localUsers[user.userId] == nil);
+    }] sortedArrayUsingComparator:^NSComparisonResult(User * user, User * buser) {
+        if (user.friendCount > buser.friendCount) return NSOrderedAscending;
+        else if (user.friendCount < buser.friendCount) return NSOrderedDescending;
+        else return NSOrderedSame;
     }];
 }
 
@@ -235,10 +240,14 @@
     }
     
     User* user = self.users[indexPath.row];
+    cell.textLabel.text = user.name;
+    
+    if ([LobbyService.shared userIsOnline:user])
+        cell.textLabel.textColor = [UIColor greenColor];
+    else
+        cell.textLabel.textColor = [UIColor darkTextColor];
     
     CLLocationDistance distance = [LocationService.shared distanceFrom:user.location];
-    
-    cell.textLabel.text = user.name;
     cell.detailTextLabel.text = [LocationService.shared distanceString:distance];
     return cell;
 }
@@ -253,6 +262,11 @@
     }
     
     User* user = self.friends[indexPath.row];
+   
+    if ([LobbyService.shared userIsOnline:user])
+        cell.textLabel.textColor = [UIColor greenColor];
+    else
+        cell.textLabel.textColor = [UIColor darkTextColor];
     
     cell.textLabel.text = user.name;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%i games played", user.friendCount];

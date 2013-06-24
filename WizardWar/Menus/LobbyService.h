@@ -29,5 +29,6 @@
 
 // any lobby user with the given id
 - (User*)userWithId:(NSString*)userId;
+- (BOOL)userIsOnline:(User*)user;
 
 @end

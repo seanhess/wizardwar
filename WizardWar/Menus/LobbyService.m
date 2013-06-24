@@ -136,13 +136,14 @@
 }
 
 - (User*)userWithId:(NSString*)userId {
-    
     if ([userId isEqualToString:self.currentUser.userId])
          return self.currentUser;
     
-    return [self.allUsers.allValues find:^BOOL(User*user) {
-        return [user.userId isEqualToString:userId];
-    }];
+    return [self.allUsers objectForKey:userId];
+}
+
+- (BOOL)userIsOnline:(User*)user {
+    return ([self.allUsers objectForKey:user.userId] != nil);
 }
 
 // Gives you local users or 3 random all users
