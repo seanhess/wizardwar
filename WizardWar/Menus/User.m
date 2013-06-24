@@ -24,7 +24,7 @@
 }
 
 -(NSDictionary*)toObject {
-    return [self dictionaryWithValuesForKeys:@[@"name", @"userId"]];
+    return [self dictionaryWithValuesForKeys:@[@"name", @"userId", @"latitude", @"longitude"]];
 };
 
 @end

@@ -18,6 +18,8 @@
 @property (nonatomic, strong) User * currentUser;
 @end
 
+// Use location is central to LOBBY
+
 @implementation LobbyService
 
 + (LobbyService *)shared {
@@ -25,17 +27,27 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance = [[LobbyService alloc] init];
+        instance.updated = [RACSubject subject];
+        instance.joined = NO;
+        
     });
     return instance;
 }
 
+// I don't really want to connect until I have MY location
+// so I don't get the updates too early
 - (void)connect {
     
+    if (!self.currentUser) {
+        NSLog(@"LobbyService: SKIP - wait until join lobby");
+        return;
+    }
+    
+    NSLog(@"CONNECT LobbyService");
+    
     // The LOBBY contains a list of users currently active in the game
-    self.updated = [RACSubject subject];
     self.localUsers = [NSMutableDictionary dictionary];
     self.lobby = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/lobby"];
-    self.joined = NO;
     
     __weak LobbyService * wself = self;
 
@@ -46,6 +58,10 @@
     [self.lobby observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
         [wself onRemoved:snapshot];
     }];
+    
+    [self.lobby observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
+        [wself onChanged:snapshot];
+    }];
 }
 
 -(void)onAdded:(FDataSnapshot *)snapshot {
@@ -54,16 +70,25 @@
     if ([user.name isEqualToString:self.currentUser.name]) {
         self.joined = YES;
     }
+    // That's ALL of them
     else if ([self isLocal:user]) {
+        NSLog(@"NEW USER %@", user);
         self.localUsers[snapshot.name] = user;
-        [self.updated sendNext:self.localUsers];
+        [self.updated sendNext:user];
     }
 }
 
 -(void)onRemoved:(FDataSnapshot*)snapshot {
-    if (self.localUsers[snapshot.name]) {
+    User * removed = self.localUsers[snapshot.name];    
+    if (removed) {
         [self.localUsers removeObjectForKey:snapshot.name];
-        [self.updated sendNext:self.localUsers];
+        [self.updated sendNext:removed];
+    }
+}
+
+-(void)onChanged:(FDataSnapshot*)snapshot {
+    if (self.localUsers[snapshot.name]) {
+        
     }
 }
 
@@ -73,11 +98,18 @@
 
 
 // Joins us to the lobby, por favor!
+// MAKE SURE that the location is set before doing this!
 - (void)joinLobby:(User *)user {
+    NSLog(@"JOIN LOBBY LocationService %@", user);
+    
     self.currentUser = user;
+    
+    if (!self.lobby) [self connect];
+    
     Firebase * node = [self.lobby childByAppendingPath:user.userId];
     [node onDisconnectRemoveValue];
     [node setValue:user.toObject];
+    
 }
 
 - (void)leaveLobby:(User*)user {

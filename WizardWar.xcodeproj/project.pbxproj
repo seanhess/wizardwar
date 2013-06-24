@@ -53,6 +53,8 @@
 		784D3BEC17751411009945F8 /* ChallengeService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BEB17751411009945F8 /* ChallengeService.m */; };
 		784D3BF01777AFFD009945F8 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BEE1777AFFD009945F8 /* AccountViewController.m */; };
 		784D3BF11777AFFD009945F8 /* AccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 784D3BEF1777AFFD009945F8 /* AccountViewController.xib */; };
+		784D3BF41777C622009945F8 /* LocationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BF31777C622009945F8 /* LocationService.m */; };
+		784D3BF61777C832009945F8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 784D3BF51777C832009945F8 /* CoreLocation.framework */; };
 		785FBE9F17724FA20021AEE5 /* wizard1-set1-animations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 785FBE9E17724FA20021AEE5 /* wizard1-set1-animations.plist */; };
 		785FBEA217725A780021AEE5 /* pillow-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEA017725A780021AEE5 /* pillow-hd.png */; };
 		785FBEA317725A780021AEE5 /* pillow.png in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEA117725A780021AEE5 /* pillow.png */; };
@@ -277,7 +279,7 @@
 		78F6B3661746AE5900AA070D /* TGAlib.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B2D41746AE5900AA070D /* TGAlib.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		78F6B3671746AE5900AA070D /* TransformUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B2D61746AE5900AA070D /* TransformUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		78F6B3681746AE5900AA070D /* ZipUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B2DA1746AE5900AA070D /* ZipUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		78F6B3691746AE5900AA070D /* CDAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B2DE1746AE5900AA070D /* CDAudioManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		78F6B3691746AE5900AA070D /* CDAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B2DE1746AE5900AA070D /* CDAudioManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
 		78F6B36A1746AE5900AA070D /* CDOpenALSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B2E11746AE5900AA070D /* CDOpenALSupport.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		78F6B36B1746AE5900AA070D /* CDXMacOSXSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B2E31746AE5900AA070D /* CDXMacOSXSupport.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		78F6B36C1746AE5900AA070D /* CDXPropertyModifierAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B2E51746AE5900AA070D /* CDXPropertyModifierAction.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -398,6 +400,9 @@
 		784D3BED1777AFFD009945F8 /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
 		784D3BEE1777AFFD009945F8 /* AccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountViewController.m; sourceTree = "<group>"; };
 		784D3BEF1777AFFD009945F8 /* AccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountViewController.xib; sourceTree = "<group>"; };
+		784D3BF21777C622009945F8 /* LocationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationService.h; sourceTree = "<group>"; };
+		784D3BF31777C622009945F8 /* LocationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationService.m; sourceTree = "<group>"; };
+		784D3BF51777C832009945F8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		785FBE9E17724FA20021AEE5 /* wizard1-set1-animations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set1-animations.plist"; sourceTree = "<group>"; };
 		785FBEA017725A780021AEE5 /* pillow-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pillow-hd.png"; sourceTree = "<group>"; };
 		785FBEA117725A780021AEE5 /* pillow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pillow.png; sourceTree = "<group>"; };
@@ -894,6 +899,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				784D3BF61777C832009945F8 /* CoreLocation.framework in Frameworks */,
 				78F6B39F1746B04600AA070D /* libicucore.dylib in Frameworks */,
 				78F6B3931746AFA000AA070D /* OpenAL.framework in Frameworks */,
 				78F6B3911746AF9600AA070D /* CFNetwork.framework in Frameworks */,
@@ -998,6 +1004,8 @@
 				784D3BEB17751411009945F8 /* ChallengeService.m */,
 				784D3BE217750441009945F8 /* IdService.h */,
 				784D3BE317750441009945F8 /* IdService.m */,
+				784D3BF21777C622009945F8 /* LocationService.h */,
+				784D3BF31777C622009945F8 /* LocationService.m */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -1195,6 +1203,7 @@
 		78F6B1DA1746AD8900AA070D = {
 			isa = PBXGroup;
 			children = (
+				784D3BF51777C832009945F8 /* CoreLocation.framework */,
 				7862463D1767C79F001904AC /* README.md */,
 				6F0367301747EB3C00971B61 /* Icon-57@2x.png */,
 				6F03672E1747EB3700971B61 /* Icon-57.png */,
@@ -2136,6 +2145,7 @@
 				784D3BE417750441009945F8 /* IdService.m in Sources */,
 				784D3BEC17751411009945F8 /* ChallengeService.m in Sources */,
 				784D3BF01777AFFD009945F8 /* AccountViewController.m in Sources */,
+				784D3BF41777C622009945F8 /* LocationService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

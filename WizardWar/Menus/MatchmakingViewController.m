@@ -19,6 +19,7 @@
 #import "UserService.h"
 #import "ChallengeService.h"
 #import "AccountViewController.h"
+#import "LocationService.h"
 #import <ReactiveCocoa.h>
 
 @interface MatchmakingViewController () <AccountFormDelegate>
@@ -35,6 +36,7 @@
 
 @property (nonatomic, readonly) User * currentUser;
 @property (strong, nonatomic) MatchLayer * match;
+
 @end
 
 @implementation MatchmakingViewController
@@ -58,14 +60,11 @@
 }
 
 - (void)connect {
-    
+    [LocationService.shared connect];
+    [ChallengeService.shared connect];
+
     __weak MatchmakingViewController * wself = self;
     
-    // CHALLENGES
-    [ChallengeService.shared connect];
-    [ChallengeService.shared.updated subscribeNext:^(id x) {
-        [wself.tableView reloadData];
-    }];
     
     // LOBBY
     self.accountView.hidden = YES;
@@ -78,11 +77,20 @@
 //    }];
     
     [LobbyService.shared.updated subscribeNext:^(id x) {
+        NSLog(@"UPDATED USERS");
         [wself.tableView reloadData];
     }];
     
+    [[RACSignal combineLatest:@[RACAble(LocationService.shared, latitude), RACAble(LocationService.shared, longitude)]] subscribeNext:^(id x) {
+        [wself didUpdateLocation];
+    }];
+    [self didUpdateLocation];
     
-    [self joinLobby];
+    // CHALLENGES
+    [ChallengeService.shared.updated subscribeNext:^(id x) {
+        NSLog(@"UPDATED CHALLENGES");
+        [wself.tableView reloadData];
+    }];
 }
 
 
@@ -105,6 +113,21 @@
 - (void)reconnect {
     [self joinLobby];
 }
+
+
+#pragma mark - Location
+-(void)didUpdateLocation {
+    
+    if (LocationService.shared.hasLocation) {
+        self.currentUser.latitude = LocationService.shared.latitude;
+        self.currentUser.longitude= LocationService.shared.longitude;
+    }
+    
+    if (LocationService.shared.hasLocation || LocationService.shared.denied) {
+        [self joinLobby];
+    }
+}
+
 
 #pragma mark - AccountFormDelegate
 -(void)didCancelAccountForm {

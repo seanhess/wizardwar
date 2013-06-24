@@ -14,6 +14,8 @@
 #import "UserService.h"
 #import "LobbyService.h"
 #import "AccountViewController.h"
+#import "LocationService.h"
+#import "ChallengeService.h"
 
 @interface LandingViewController ()
 

@@ -24,6 +24,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance = [[ChallengeService alloc] init];
+        instance.updated = [RACSubject subject];
     });
     return instance;
 }
@@ -32,7 +33,8 @@
     if (self.connected) return;
     self.connected = YES;
     
-    self.updated = [RACSubject subject];
+    NSLog(@"CONNECT ChallengeService");
+    
     self.node = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/challenges"];
     self.myChallenges = [NSMutableDictionary dictionary];
     
@@ -53,7 +55,10 @@
     Challenge * challenge = [Challenge new];
     [challenge setValuesForKeysWithDictionary:snapshot.value];
     
+    NSLog(@"*** NEW CHALLENGE");
+    
     if ([challenge.main.userId isEqualToString:UserService.shared.currentUser.userId] || [challenge.opponent.userId isEqualToString:UserService.shared.currentUser.userId]) {
+        NSLog(@" ok ok ok");        
         
         challenge.main = [LobbyService.shared userWithId:challenge.main.userId];
         challenge.opponent = [LobbyService.shared userWithId:challenge.opponent.userId];        
