@@ -33,6 +33,10 @@
     return [self imageWithColor:self.blueNavColor];
 }
 
++(UIColor*)greenGrassColor {
+    return UIColorFromRGB(0x6CA24A);
+}
+
 +(UIImage *)imageWithColor:(UIColor *)color {
     CGRect rect = CGRectMake(0, 0, 1, 1);
     // Create a 1 by 1 pixel context

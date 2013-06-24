@@ -17,5 +17,6 @@
 +(void)customizeUIKitStyles;
 +(UIColor*)blueNavColor;
 +(UIImage*)blueNavColorImage;
++(UIColor*)greenGrassColor;
 +(UIImage *)imageWithColor:(UIColor *)color;
 @end
