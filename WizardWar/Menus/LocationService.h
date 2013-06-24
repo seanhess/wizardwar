@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
+#define MAX_SAME_LOCATION_DISTANCE 100.0
+
 @interface LocationService : NSObject
 
 @property (nonatomic, strong) CLLocation * location;

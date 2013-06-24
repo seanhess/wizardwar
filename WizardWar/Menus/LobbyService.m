@@ -11,8 +11,7 @@
 #import "User.h"
 #import "IdService.h"
 #import "NSArray+Functional.h"
-
-#define MAX_SAME_LOCATION_DISTANCE 100.0
+#import "LocationService.h"
 
 // Just implement global people for this yo
 @interface LobbyService ()

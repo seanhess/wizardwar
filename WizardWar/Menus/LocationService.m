@@ -37,7 +37,7 @@
 }
 
 - (void)updateLocation:(CLLocation*)location {
-    NSLog(@"UPDATED LOCATION");
+    NSLog(@"LOCATION: (BOOM) %@", location);
     self.location = location;
 }
 
@@ -49,7 +49,6 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
-    
     NSLog(@"LOCATION: (status) %i", status);
 }
 
@@ -68,6 +67,11 @@
 
 - (NSString*)distanceString:(CLLocationDistance)distance {
     NSString * units = @"m";
+    
+    if (distance < MAX_SAME_LOCATION_DISTANCE) {
+        return @"HERE";
+    }
+    
     if (distance > 1000) {
         distance = distance / 1000;
         units = @"km";
