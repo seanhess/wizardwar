@@ -13,6 +13,5 @@
 @interface User : NSObject <Objectable>
 @property (strong, nonatomic) NSString * name;
 @property (strong, nonatomic) NSString * userId;
-@property (nonatomic) double latitude;
-@property (nonatomic) double longitude;
+@property (nonatomic) CLLocation * location;
 @end

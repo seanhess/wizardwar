@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <ReactiveCocoa.h>
 #import "User.h"
+#import <CoreLocation/CoreLocation.h>
 
 // Maintains the connection to the lobby
 // Let's you know whenever users join/quit
@@ -16,14 +17,14 @@
 
 @interface LobbyService : NSObject
 
-@property (nonatomic, strong) NSMutableDictionary * localUsers;
+@property (nonatomic, readonly) NSDictionary * localUsers;
 @property (nonatomic, strong) RACSubject * updated;
 @property (nonatomic) BOOL joined;
 
 + (LobbyService *)shared;
 - (void)connect;
 
-- (void)joinLobby:(User*)user;
+- (void)joinLobby:(User*)user location:(CLLocation*)location;
 - (void)leaveLobby:(User*)user;
 
 // any lobby user with the given id

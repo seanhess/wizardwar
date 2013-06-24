@@ -81,7 +81,7 @@
         [wself.tableView reloadData];
     }];
     
-    [[RACSignal combineLatest:@[RACAble(LocationService.shared, latitude), RACAble(LocationService.shared, longitude)]] subscribeNext:^(id x) {
+    [RACAble(LocationService.shared, location) subscribeNext:^(id x) {
         [wself didUpdateLocation];
     }];
     [self didUpdateLocation];
@@ -119,8 +119,7 @@
 -(void)didUpdateLocation {
     
     if (LocationService.shared.hasLocation) {
-        self.currentUser.latitude = LocationService.shared.latitude;
-        self.currentUser.longitude= LocationService.shared.longitude;
+        self.currentUser.location = LocationService.shared.location;
     }
     
     if (LocationService.shared.hasLocation || LocationService.shared.denied) {
@@ -165,7 +164,7 @@
 
 - (void)joinLobby
 {
-    [LobbyService.shared joinLobby:self.currentUser];
+    [LobbyService.shared joinLobby:self.currentUser location:LocationService.shared.location];
 }
 
 - (void)leaveLobby {
@@ -219,7 +218,10 @@
     }
     
     User* user = self.users[indexPath.row];
+    CLLocationDistance distance = [LocationService.shared distanceFrom:user.location];
+    
     cell.textLabel.text = user.name;
+    cell.detailTextLabel.text = [LocationService.shared distanceString:distance];
     return cell;
 }
 

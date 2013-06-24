@@ -32,15 +32,13 @@
     self.locationManager.distanceFilter = 100; // before being notified again
     self.locationManager.activityType = CLActivityTypeFitness;
     self.locationManager.delegate = self;
-//    [self.locationManager startUpdatingLocation];
-    [self.locationManager startMonitoringSignificantLocationChanges];
+    [self.locationManager startUpdatingLocation];
+//    [self.locationManager startMonitoringSignificantLocationChanges];
 }
 
 - (void)updateLocation:(CLLocation*)location {
-    CLLocationCoordinate2D coordinate = [location coordinate];
-    NSLog(@"UPDATED LOCATION %f %f", coordinate.latitude, coordinate.longitude);
-    self.latitude = coordinate.latitude;
-    self.longitude = coordinate.longitude;
+    NSLog(@"UPDATED LOCATION");
+    self.location = location;
 }
 
 - (void)locationManager:(CLLocationManager *)manager
@@ -61,7 +59,21 @@
 }
 
 - (BOOL)hasLocation {
-    return (self.latitude);
+    return (self.location != nil);
+}
+
+- (CLLocationDistance)distanceFrom:(CLLocation*)location {
+    return [self.location distanceFromLocation:location];
+}
+
+- (NSString*)distanceString:(CLLocationDistance)distance {
+    NSString * units = @"m";
+    if (distance > 1000) {
+        distance = distance / 1000;
+        units = @"km";
+    }
+    
+    return [NSString stringWithFormat:@"%i %@", (int)round(distance), units];
 }
 
 @end

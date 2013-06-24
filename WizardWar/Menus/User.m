@@ -24,7 +24,20 @@
 }
 
 -(NSDictionary*)toObject {
-    return [self dictionaryWithValuesForKeys:@[@"name", @"userId", @"latitude", @"longitude"]];
+    NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:[self dictionaryWithValuesForKeys:@[@"name", @"userId"]]];
+    dict[@"location"] = @{
+        @"latitude": @(self.location.coordinate.latitude),
+        @"longitude": @(self.location.coordinate.longitude)
+    };
+    return dict;
 };
+
+- (void)setValuesForKeysWithDictionary:(NSDictionary *)keyedValues {
+    NSMutableDictionary * values = [NSMutableDictionary dictionaryWithDictionary:keyedValues];
+    NSDictionary * location = values[@"location"];
+    [values removeObjectForKey:@"location"];
+    [super setValuesForKeysWithDictionary:values];
+    self.location = [[CLLocation alloc] initWithLatitude:[location[@"latitude"] doubleValue] longitude:[location[@"longitude"] doubleValue]];
+}
 
 @end

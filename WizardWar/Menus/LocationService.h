@@ -11,13 +11,14 @@
 
 @interface LocationService : NSObject
 
-@property (nonatomic) CLLocationDegrees latitude;
-@property (nonatomic) CLLocationDegrees longitude;
+@property (nonatomic, strong) CLLocation * location;
 @property (nonatomic) BOOL denied;
 @property (nonatomic, readonly) BOOL hasLocation;
 
 + (LocationService *)shared;
-
 - (void)connect;
+
+- (CLLocationDistance)distanceFrom:(CLLocation*)location;
+- (NSString*)distanceString:(CLLocationDistance)distance;
 
 @end

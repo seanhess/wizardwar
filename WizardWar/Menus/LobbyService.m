@@ -12,10 +12,15 @@
 #import "IdService.h"
 #import "NSArray+Functional.h"
 
+#define MAX_SAME_LOCATION_DISTANCE 100.0
+
 // Just implement global people for this yo
 @interface LobbyService ()
 @property (nonatomic, strong) Firebase * lobby;
 @property (nonatomic, strong) User * currentUser;
+@property (nonatomic, strong) CLLocation * currentLocation;
+@property (nonatomic, strong) NSMutableDictionary * allUsers;
+@property (nonatomic, strong) NSMutableDictionary * closeUsers;
 @end
 
 // Use location is central to LOBBY
@@ -46,7 +51,8 @@
     NSLog(@"CONNECT LobbyService");
     
     // The LOBBY contains a list of users currently active in the game
-    self.localUsers = [NSMutableDictionary dictionary];
+    self.closeUsers = [NSMutableDictionary dictionary];
+    self.allUsers = [NSMutableDictionary dictionary];
     self.lobby = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/lobby"];
     
     __weak LobbyService * wself = self;
@@ -59,9 +65,9 @@
         [wself onRemoved:snapshot];
     }];
     
-    [self.lobby observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
-        [wself onChanged:snapshot];
-    }];
+//    [self.lobby observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
+//        [wself onChanged:snapshot];
+//    }];
 }
 
 -(void)onAdded:(FDataSnapshot *)snapshot {
@@ -70,39 +76,51 @@
     if ([user.name isEqualToString:self.currentUser.name]) {
         self.joined = YES;
     }
-    // That's ALL of them
-    else if ([self isLocal:user]) {
-        NSLog(@"NEW USER %@", user);
-        self.localUsers[snapshot.name] = user;
+    
+    else {
+        self.allUsers[snapshot.name] = user;
+        
+        if ([self isLocal:user]) {
+            NSLog(@" - close");
+            self.closeUsers[snapshot.name] = user;
+        }
+        else {
+            NSLog(@" - far");
+        }
+    
         [self.updated sendNext:user];
     }
 }
 
 -(void)onRemoved:(FDataSnapshot*)snapshot {
-    User * removed = self.localUsers[snapshot.name];    
+    User * removed = self.allUsers[snapshot.name];
     if (removed) {
-        [self.localUsers removeObjectForKey:snapshot.name];
+        [self.allUsers removeObjectForKey:snapshot.name];
+        [self.closeUsers removeObjectForKey:snapshot.name];
         [self.updated sendNext:removed];
     }
 }
 
 -(void)onChanged:(FDataSnapshot*)snapshot {
-    if (self.localUsers[snapshot.name]) {
-        
-    }
+//    if (self.closeUsers[snapshot.name]) {
+//        
+//    }
 }
 
 -(BOOL)isLocal:(User*)user {
-    return YES;
+    CLLocationDistance distance = [user.location distanceFromLocation:self.currentLocation];
+    NSLog(@"OTHER USER %@ %f", user.name, distance);
+    return (distance < MAX_SAME_LOCATION_DISTANCE);
 }
 
 
 // Joins us to the lobby, por favor!
 // MAKE SURE that the location is set before doing this!
-- (void)joinLobby:(User *)user {
+- (void)joinLobby:(User *)user location:(CLLocation *)location {
     NSLog(@"JOIN LOBBY LocationService %@", user);
     
     self.currentUser = user;
+    self.currentLocation = location;
     
     if (!self.lobby) [self connect];
     
@@ -123,9 +141,20 @@
     if ([userId isEqualToString:self.currentUser.userId])
          return self.currentUser;
     
-    return [self.localUsers.allValues find:^BOOL(User*user) {
+    return [self.allUsers.allValues find:^BOOL(User*user) {
         return [user.userId isEqualToString:userId];
     }];
+}
+
+// Gives you local users or 3 random all users
+- (NSDictionary*)localUsers {
+    // Just take the first couple
+    if (self.closeUsers.count == 0) {
+        NSArray * keys = self.allUsers.allKeys;
+        NSInteger end = MIN(3, keys.count);
+        return [self.allUsers dictionaryWithValuesForKeys:[self.allUsers.allKeys subarrayWithRange:NSMakeRange(0, end)]];
+    }
+    return self.closeUsers;
 }
 
 @end
