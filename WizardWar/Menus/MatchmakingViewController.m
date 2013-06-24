@@ -160,7 +160,9 @@
 }
 
 - (NSArray*)friends {
-    return UserFriendService.shared.friends.allValues;
+    return [UserFriendService.shared.friends.allValues filter:^BOOL(User * user) {
+        return (LobbyService.shared.localUsers[user.userId] == nil);
+    }];
 }
 
 
@@ -199,6 +201,13 @@
     return nil;
 }
 
+- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+//    if (section == 0) return @"Challenges";
+//    else if (section == 1) return @"Local Users";
+//    else return @"Friends";
+    return nil;
+}
+
 - (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section {
     return 0;
 }
@@ -221,7 +230,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-        cell.backgroundColor = [UIColor colorWithWhite:0.784 alpha:1.000];
+        cell.contentView.backgroundColor = [UIColor colorWithWhite:0.784 alpha:1.000];
         cell.textLabel.textColor = [UIColor colorWithWhite:0.149 alpha:1.000];
     }
     
@@ -239,7 +248,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-        cell.backgroundColor = [UIColor colorWithWhite:0.784 alpha:1.000];
+        cell.contentView.backgroundColor = [UIColor colorWithWhite:0.784 alpha:1.000];
         cell.textLabel.textColor = [UIColor colorWithWhite:0.149 alpha:1.000];
     }
     
@@ -256,12 +265,12 @@
     
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell.contentView.backgroundColor = [UIColor colorWithRed:0.490 green:0.706 blue:0.275 alpha:1.000];
+        cell.textLabel.textColor = [UIColor colorWithWhite:0.149 alpha:1.000];        
     }
     
     Challenge * challenge = self.challenges[indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"%@ vs %@", [self nameOrYou:challenge.main.name], [self nameOrYou:challenge.opponent.name]];
-    cell.backgroundColor = [UIColor colorWithRed:0.490 green:0.706 blue:0.275 alpha:1.000];
-    cell.textLabel.textColor = [UIColor colorWithWhite:0.149 alpha:1.000];
     
     return cell;
 }
@@ -277,16 +286,22 @@
 {
     if (indexPath.section == 0)
         [self didSelectChallenge:self.challenges[indexPath.row]];
-    else
+    else if (indexPath.section == 1)
         [self didSelectUser:self.users[indexPath.row]];
+    else
+        [self didSelectFriend:self.friends[indexPath.row]];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (void)didSelectUser:(User*)user {    
+- (void)didSelectUser:(User*)user {
     Challenge * challenge = [ChallengeService.shared user:self.currentUser challengeOpponent:user];
     [self joinMatch:challenge];
     [UserFriendService.shared user:UserService.shared.currentUser addChallenge:challenge]; 
+}
+
+- (void)didSelectFriend:(User*)user {
+    // WHAT DO WE DO WITH YOU?!??
 }
 
 - (void)didSelectChallenge:(Challenge*)challenge {
