@@ -13,5 +13,10 @@
 @interface User : NSObject <Objectable>
 @property (strong, nonatomic) NSString * name;
 @property (strong, nonatomic) NSString * userId;
+
+// Lobby propertyes
 @property (nonatomic) CLLocation * location;
+
+// Friend properties
+@property (nonatomic) NSInteger friendCount;
 @end

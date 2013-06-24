@@ -20,6 +20,7 @@
 #import "ChallengeService.h"
 #import "AccountViewController.h"
 #import "LocationService.h"
+#import "UserFriendService.h"
 #import <ReactiveCocoa.h>
 
 @interface MatchmakingViewController () <AccountFormDelegate>
@@ -64,7 +65,6 @@
     [ChallengeService.shared connect];
 
     __weak MatchmakingViewController * wself = self;
-    
     
     // LOBBY
     self.accountView.hidden = YES;
@@ -159,6 +159,10 @@
     return UserService.shared.currentUser;
 }
 
+- (NSArray*)friends {
+    return UserFriendService.shared.friends.allValues;
+}
+
 
 #pragma mark - Firebase stuff
 
@@ -175,7 +179,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -185,7 +189,7 @@
     } else if (section == 1){
         return [self.users count];
     } else {
-        return 1; // practice game
+        return [self.friends count];
     }
     
 }
@@ -203,8 +207,12 @@
 {
     if (indexPath.section == 0) {
         return [self tableView:tableView challengeCellForRowAtIndexPath:indexPath];
-    } else {
+    } else if (indexPath.section == 1) {
         return [self tableView:tableView userCellForRowAtIndexPath:indexPath];
+    } else if (indexPath.section == 2) {
+        return [self tableView:tableView friendCellForRowAtIndexPath:indexPath];
+    } else {
+        return nil;
     }
 }
 
@@ -218,10 +226,27 @@
     }
     
     User* user = self.users[indexPath.row];
+    
     CLLocationDistance distance = [LocationService.shared distanceFrom:user.location];
     
     cell.textLabel.text = user.name;
     cell.detailTextLabel.text = [LocationService.shared distanceString:distance];
+    return cell;
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView friendCellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"FriendCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell.backgroundColor = [UIColor colorWithWhite:0.784 alpha:1.000];
+        cell.textLabel.textColor = [UIColor colorWithWhite:0.149 alpha:1.000];
+    }
+    
+    User* user = self.friends[indexPath.row];
+    
+    cell.textLabel.text = user.name;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%i games played", user.friendCount];
     return cell;
 }
 
@@ -258,22 +283,22 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (void)didSelectUser:(User*)user {
+- (void)didSelectUser:(User*)user {    
     Challenge * challenge = [ChallengeService.shared user:self.currentUser challengeOpponent:user];
-    
-    MatchViewController * match = [MatchViewController new];
-    [match startChallenge:challenge currentWizard:UserService.shared.currentWizard];
-    [self.navigationController presentViewController:match animated:YES completion:nil];    
+    [self joinMatch:challenge];
+    [UserFriendService.shared user:UserService.shared.currentUser addChallenge:challenge]; 
 }
 
 - (void)didSelectChallenge:(Challenge*)challenge {
-    // Join the ready screen yo yo yo
-    NSLog(@"JOIN THE READY SCREEN %@", challenge.matchId);
-    
+    [self joinMatch:challenge];
+}
+
+- (void)joinMatch:(Challenge*)challenge {
+    return;
+    NSLog(@"JOIN THE READY SCREEN %@", challenge.matchId);    
     MatchViewController * match = [MatchViewController new];
     [match startChallenge:challenge currentWizard:UserService.shared.currentWizard];
     [self.navigationController presentViewController:match animated:YES completion:nil];
-    
 }
 
 - (void)dealloc {

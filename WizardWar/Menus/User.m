@@ -13,12 +13,14 @@
 - (void)encodeWithCoder:(NSCoder *)encoder {
     [encoder encodeObject:self.name forKey:@"name"];
     [encoder encodeObject:self.userId forKey:@"userId"];
+    [encoder encodeObject:@(self.friendCount) forKey:@"friendCount"];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder {
     if((self = [super init])) {
         self.name = [decoder decodeObjectForKey:@"name"];
         self.userId = [decoder decodeObjectForKey:@"userId"];
+        self.friendCount = [[decoder decodeObjectForKey:@"friendCount"] intValue];
     }
     return self;
 }
@@ -38,6 +40,10 @@
     [values removeObjectForKey:@"location"];
     [super setValuesForKeysWithDictionary:values];
     self.location = [[CLLocation alloc] initWithLatitude:[location[@"latitude"] doubleValue] longitude:[location[@"longitude"] doubleValue]];
+}
+
+- (NSString*)description {
+    return [NSString stringWithFormat:@"%@ name:%@ count:%i", super.description, self.name, self.friendCount];
 }
 
 @end

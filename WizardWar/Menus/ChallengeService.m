@@ -60,6 +60,7 @@
     if ([challenge.main.userId isEqualToString:UserService.shared.currentUser.userId] || [challenge.opponent.userId isEqualToString:UserService.shared.currentUser.userId]) {
         NSLog(@" ok ok ok");        
         
+        // Uh oh.. If the challenge comes in before
         challenge.main = [LobbyService.shared userWithId:challenge.main.userId];
         challenge.opponent = [LobbyService.shared userWithId:challenge.opponent.userId];        
         
