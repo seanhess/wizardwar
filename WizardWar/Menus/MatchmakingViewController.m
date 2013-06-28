@@ -309,13 +309,22 @@
 }
 
 - (void)didSelectUser:(User*)user {
-    Challenge * challenge = [ChallengeService.shared user:self.currentUser challengeOpponent:user];
-    [self joinMatch:challenge];
-    [UserFriendService.shared user:UserService.shared.currentUser addChallenge:challenge]; 
+
+    // Issue the challenge
+    if ([LobbyService.shared userIsOnline:user]) {
+        Challenge * challenge = [ChallengeService.shared user:self.currentUser challengeOpponent:user];
+        [self joinMatch:challenge];
+        [UserFriendService.shared user:UserService.shared.currentUser addChallenge:challenge];
+    }
+    
+    // Or send a push notification
+    else {
+        NSLog(@"PUSH NOTIFICATION BABY");
+    }
 }
 
 - (void)didSelectFriend:(User*)user {
-    // WHAT DO WE DO WITH YOU?!??
+    [self didSelectUser:user];
 }
 
 - (void)didSelectChallenge:(Challenge*)challenge {
@@ -323,7 +332,6 @@
 }
 
 - (void)joinMatch:(Challenge*)challenge {
-    return;
     NSLog(@"JOIN THE READY SCREEN %@", challenge.matchId);    
     MatchViewController * match = [MatchViewController new];
     [match startChallenge:challenge currentWizard:UserService.shared.currentWizard];

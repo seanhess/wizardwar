@@ -31,4 +31,9 @@
 - (User*)userWithId:(NSString*)userId;
 - (BOOL)userIsOnline:(User*)user;
 
+// AppID 3hsi88WR19iXGN11miDSH8B031uqyoBYBXHQe9bo
+// ClientKey CjkxlkZw0YOMdzdjJzhHfQm4vkPrA2ZWhY9n2Nfo
+// Rest API A9kgNN3UKkYDHyUebFe16StpKWVHQZrjCBJyI5Sk
+// Master ruR8hExEHPI3Gk9P8lsgNcbYOOP2j7TbkaCwACt4
+
 @end
