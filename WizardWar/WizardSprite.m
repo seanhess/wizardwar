@@ -41,10 +41,10 @@
     dispatch_once(&onceToken, ^{
         NSLog(@"LOAD WIZARD SPRITES");
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard1-set2.plist"];
-        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"wizard1-set2-animations.plist"];
+//        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"wizard1-set2-animations.plist"];
         
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard1-set1.plist"];
-        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"wizard1-set1-animations.plist"];
+//        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard1-set1.plist"];
+//        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"wizard1-set1-animations.plist"];
     });
 }
 
@@ -112,15 +112,14 @@
     
     [self.skin stopAllActions];
     
-    NSString * animationName = [NSString stringWithFormat:@"%@", self.stateAnimationName];
-    CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:animationName];
-    NSAssert(animation, @"DID NOT LOAD ANIMATION");
-    CCActionInterval * actionInterval = [CCAnimate actionWithAnimation:animation];
-//        animation.restoreOriginalFrame = NO;
-    [self.skin runAction:actionInterval];
+//    NSString * animationName = [NSString stringWithFormat:@"%@", self.stateAnimationName];
+//    CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:animationName];
+//    NSAssert(animation, @"DID NOT LOAD ANIMATION");
+//    CCActionInterval * actionInterval = [CCAnimate actionWithAnimation:animation];
+//    [self.skin runAction:actionInterval];
     
-//    NSString * imageName = [NSString stringWithFormat:@"%@.png", self.stateAnimationName];
-//    [self.skin setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:imageName]];
+    NSString * imageName = [NSString stringWithFormat:@"%@.png", @"wizard1-sleep1"];
+    [self.skin setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:imageName]];
 //    [self.skin runAction:self.stateAction];
 }
 

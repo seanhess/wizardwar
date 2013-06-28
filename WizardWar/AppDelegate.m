@@ -14,7 +14,7 @@
 #import "LandingViewController.h"
 #import "MainNavViewController.h"
 #import "AppStyle.h"
-//#import <Parse/Parse.h>
+#import <Parse/Parse.h>
 
 // The director should belong to the app delegate or a singleton
 // and you should manually unload or reload it
@@ -47,8 +47,8 @@
     [WizardDirector initializeWithBounds:self.window.bounds];
     
     // PARSE
-//    [Parse setApplicationId:@"3hsi88WR19iXGN11miDSH8B031uqyoBYBXHQe9bo" clientKey:@"CjkxlkZw0YOMdzdjJzhHfQm4vkPrA2ZWhY9n2Nfo"];
-//    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    [Parse setApplicationId:@"3hsi88WR19iXGN11miDSH8B031uqyoBYBXHQe9bo" clientKey:@"CjkxlkZw0YOMdzdjJzhHfQm4vkPrA2ZWhY9n2Nfo"];
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     
     //    NSLog(@"FONT: %@",[UIFont fontNamesForFamilyName:@"ComicZineOT"]);
