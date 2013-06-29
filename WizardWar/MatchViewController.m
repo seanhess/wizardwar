@@ -22,6 +22,8 @@
 #import <ReactiveCocoa.h>
 #import "TimerSyncService.h"
 #import "Combos.h"
+#import "AppStyle.h"
+#import "Color.h"
 
 @interface MatchViewController () <PentagramDelegate>
 @property (strong, nonatomic) PentagramViewController * pentagram;
@@ -29,6 +31,8 @@
 @property (weak, nonatomic) IBOutlet UIView *cocosView;
 @property (strong, nonatomic) Match * match;
 @property (strong, nonatomic) Combos * combos;
+@property (weak, nonatomic) IBOutlet UILabel *message;
+@property (weak, nonatomic) IBOutlet UILabel *subMessage;
 @end
 
 @implementation MatchViewController
@@ -46,11 +50,17 @@
 {
     [super viewDidLoad];
     
+    self.message.font = [UIFont fontWithName:FONT_COMIC_ZINE size:100];
+    self.message.textColor = UIColorFromRGB(0xF9A843);
+    
+    self.subMessage.font = [UIFont fontWithName:FONT_COMIC_ZINE size:40];
+    self.subMessage.textColor = UIColorFromRGB(0xCACACA);
+    self.subMessage.hidden = YES;
+    
     self.pentagram = [PentagramViewController new];
     self.pentagram.delegate = self;
     [self.pentagramView addSubview:self.pentagram.view];
     [self.pentagram viewDidLoad];
-    
     
     [self playMusic];
     
@@ -116,6 +126,37 @@
 
 - (void)renderMatchStatus {
     self.pentagram.view.hidden = (self.match.status != MatchStatusPlaying);
+    self.subMessage.hidden = YES;
+    
+    if (self.match.status == MatchStatusReady) {
+        self.message.alpha = 1.0;
+        self.message.textColor = UIColorFromRGB(0xF9A843);
+        self.message.text = @"READY?";
+    }
+    
+    else if (self.match.status == MatchStatusPlaying) {
+        self.message.textColor = UIColorFromRGB(0xF9A843);
+        self.message.text = @"WAR!";
+        
+        [UIView animateWithDuration:1.0 animations:^{
+            self.message.alpha = 0;
+        }];
+    }
+    
+    else if (self.match.status == MatchStatusEnded) {
+        self.message.alpha = 1.0;
+        if (self.match.currentWizard.state == WizardStatusWon) {
+            self.message.textColor = UIColorFromRGB(0x18AB34);
+            self.message.text = @"YOU WON!";
+        }
+        else {
+            self.message.textColor = UIColorFromRGB(0xB02410);
+            self.message.text = @"DEATH!";
+            self.subMessage.hidden = NO;
+            self.subMessage.textColor = UIColorFromRGB(0xCACACA);
+            self.subMessage.text = @"(YOU LOSE)";
+        }
+    }
 }
 
 - (void)playMusic {

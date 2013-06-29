@@ -11,6 +11,7 @@
 #define FONT_LOVEYA @"LoveYaLikeASister"
 #define FONT_LOVEYA_BOLD @"LoveYaLikeASisterSolid"
 #define FONT_COMIC_ZINE @"ComicZineOT"
+#define FONT_COMIC_ZINE_SOLID @"ComicZineSolid-Regular"
 
 @interface AppStyle : NSObject
 
@@ -19,4 +20,5 @@
 +(UIImage*)blueNavColorImage;
 +(UIColor*)greenGrassColor;
 +(UIImage *)imageWithColor:(UIColor *)color;
+
 @end

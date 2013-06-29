@@ -43,7 +43,6 @@
 
 @property (nonatomic, strong) NSString * matchId;
 
-@property (nonatomic, strong) CCSprite * message;
 @property (nonatomic, strong) CCSprite * background;
 
 @property (nonatomic, strong) CCLabelTTF * debug;
@@ -80,12 +79,6 @@
         CGFloat zeroY = 100;
         CGFloat wizardOffset = 75;
         self.units = [[Units alloc] initWithZeroY:zeroY min:wizardOffset max:size.width-wizardOffset];
-        
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"messages.plist"];
-        
-        self.message = [[CCSprite alloc] initWithSpriteFrameName:@"msg-ready.png"];
-        self.message.position = ccp(size.width/2, size.height/2);
-        [self addChild:self.message];
         
         // LIFE MANA INDICATORS add two of them to the right spot
         LifeIndicatorNode * player1Indicator = [LifeIndicatorNode node];
@@ -179,8 +172,6 @@
     self.spells.visible = (self.match.status == MatchStatusPlaying);
     
     if (self.match.status == MatchStatusPlaying) {
-        
-        self.message.visible = NO;
         // assign players to indicators
         NSArray * players = self.match.sortedPlayers;
         [players forEachIndex:^(int i) {
@@ -192,12 +183,10 @@
     }
     
     if (self.match.status == MatchStatusEnded) {
-        NSString * messageFrameName = nil;
-        if (self.match.currentWizard.state == WizardStatusDead)
-            messageFrameName = @"msg-you-lose.png";
-        else
-            messageFrameName = @"msg-you-won.png";
-        [self.message setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:messageFrameName]];
+//        if (self.match.currentWizard.state == WizardStatusDead)
+//            messageFrameName = @"msg-you-lose.png";
+//        else
+//            messageFrameName = @"msg-you-won.png";
     }
 }
 

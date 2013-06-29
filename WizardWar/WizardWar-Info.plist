@@ -39,7 +39,8 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>comic_zine_ot.otf</string>
+		<string>ComicZineOT.otf</string>
+		<string>ComicZineSolid.otf</string>
 		<string>LoveYaLikeASisterSolid.ttf</string>
 		<string>LoveYaLikeASister.ttf</string>
 	</array>

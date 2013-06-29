@@ -22,6 +22,7 @@
 #import "LocationService.h"
 #import "UserFriendService.h"
 #import <ReactiveCocoa.h>
+#import "ComicZineDoubleLabel.h"
 
 @interface MatchmakingViewController () <AccountFormDelegate>
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
@@ -48,6 +49,7 @@
 
     self.title = @"Matchmaking";
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.navigationItem.titleView = [ComicZineDoubleLabel titleViewWithViewController:self];
     
     // CHECK AUTHENTICATED
     if ([UserService shared].isAuthenticated) {

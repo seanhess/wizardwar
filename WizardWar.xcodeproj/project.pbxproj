@@ -87,7 +87,6 @@
 		785FBED5177261BD0021AEE5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEC3177261BD0021AEE5 /* User.m */; };
 		785FBEDC1772628C0021AEE5 /* LoveYaLikeASister.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 785FBED91772628C0021AEE5 /* LoveYaLikeASister.ttf */; };
 		785FBEDD1772628C0021AEE5 /* LoveYaLikeASisterSolid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEDA1772628C0021AEE5 /* LoveYaLikeASisterSolid.ttf */; };
-		785FBEDE1772628C0021AEE5 /* comic_zine_ot.otf in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEDB1772628C0021AEE5 /* comic_zine_ot.otf */; };
 		785FBEE3177263850021AEE5 /* AppStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEE2177263850021AEE5 /* AppStyle.m */; };
 		786246321767B790001904AC /* SpellInvisibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246311767B790001904AC /* SpellInvisibility.m */; };
 		786246351767BE47001904AC /* Effect.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246341767BE47001904AC /* Effect.m */; };
@@ -135,6 +134,9 @@
 		78D08558176A4AC500EDC405 /* SpellHeal.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D08557176A4AC400EDC405 /* SpellHeal.m */; };
 		78D0855B176A4B2800EDC405 /* EffectHeal.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D0855A176A4B2800EDC405 /* EffectHeal.m */; };
 		78D0855E176A4C7C00EDC405 /* EffectSleep.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D0855D176A4C7C00EDC405 /* EffectSleep.m */; };
+		78D28BE9177F6F8A00FF5D6E /* ComicZineOT.otf in Resources */ = {isa = PBXBuildFile; fileRef = 78D28BE7177F6F8A00FF5D6E /* ComicZineOT.otf */; };
+		78D28BEA177F6F8A00FF5D6E /* ComicZineSolid.otf in Resources */ = {isa = PBXBuildFile; fileRef = 78D28BE8177F6F8A00FF5D6E /* ComicZineSolid.otf */; };
+		78D28BF1177F71D500FF5D6E /* ComicZineDoubleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D28BF0177F71D500FF5D6E /* ComicZineDoubleLabel.m */; };
 		78E8EA6A1759427E00017747 /* Combos.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E8EA691759427E00017747 /* Combos.m */; };
 		78F09BA5175AE32600BA775E /* earthwall-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78F09BA2175AE32600BA775E /* earthwall-animation.plist */; };
 		78F09BA6175AE32600BA775E /* earthwall.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78F09BA3175AE32600BA775E /* earthwall.plist */; };
@@ -146,11 +148,6 @@
 		78F09BB3175AE36E00BA775E /* bubble-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78F09BB0175AE36E00BA775E /* bubble-animation.plist */; };
 		78F09BB4175AE36E00BA775E /* bubble.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78F09BB1175AE36E00BA775E /* bubble.plist */; };
 		78F09BB5175AE36E00BA775E /* bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F09BB2175AE36E00BA775E /* bubble.png */; };
-		78F09BB9175AE3DD00BA775E /* messages-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78F09BB6175AE3DD00BA775E /* messages-animation.plist */; };
-		78F09BBA175AE3DD00BA775E /* messages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78F09BB7175AE3DD00BA775E /* messages.plist */; };
-		78F09BBB175AE3DD00BA775E /* messages.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F09BB8175AE3DD00BA775E /* messages.png */; };
-		78F09BBE175AE3EF00BA775E /* messages-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78F09BBC175AE3EF00BA775E /* messages-hd.plist */; };
-		78F09BBF175AE3EF00BA775E /* messages-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F09BBD175AE3EF00BA775E /* messages-hd.png */; };
 		78F09BC3175AE42900BA775E /* ogre-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78F09BC0175AE42900BA775E /* ogre-animation.plist */; };
 		78F09BC4175AE42900BA775E /* ogre.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78F09BC1175AE42900BA775E /* ogre.plist */; };
 		78F09BC5175AE42900BA775E /* ogre.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F09BC2175AE42900BA775E /* ogre.png */; };
@@ -449,7 +446,6 @@
 		785FBED8177262320021AEE5 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
 		785FBED91772628C0021AEE5 /* LoveYaLikeASister.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LoveYaLikeASister.ttf; sourceTree = "<group>"; };
 		785FBEDA1772628C0021AEE5 /* LoveYaLikeASisterSolid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LoveYaLikeASisterSolid.ttf; sourceTree = "<group>"; };
-		785FBEDB1772628C0021AEE5 /* comic_zine_ot.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = comic_zine_ot.otf; sourceTree = "<group>"; };
 		785FBEE1177263840021AEE5 /* AppStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppStyle.h; sourceTree = "<group>"; };
 		785FBEE2177263850021AEE5 /* AppStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppStyle.m; sourceTree = "<group>"; };
 		786246301767B790001904AC /* SpellInvisibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellInvisibility.h; sourceTree = "<group>"; };
@@ -523,6 +519,10 @@
 		78D0855C176A4C7C00EDC405 /* EffectSleep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectSleep.h; sourceTree = "<group>"; };
 		78D0855D176A4C7C00EDC405 /* EffectSleep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectSleep.m; sourceTree = "<group>"; };
 		78D0855F176A4D7900EDC405 /* Simulated.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Simulated.h; sourceTree = "<group>"; };
+		78D28BE7177F6F8A00FF5D6E /* ComicZineOT.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ComicZineOT.otf; sourceTree = "<group>"; };
+		78D28BE8177F6F8A00FF5D6E /* ComicZineSolid.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ComicZineSolid.otf; sourceTree = "<group>"; };
+		78D28BEF177F71D500FF5D6E /* ComicZineDoubleLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComicZineDoubleLabel.h; sourceTree = "<group>"; };
+		78D28BF0177F71D500FF5D6E /* ComicZineDoubleLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComicZineDoubleLabel.m; sourceTree = "<group>"; };
 		78E8EA681759427E00017747 /* Combos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Combos.h; sourceTree = "<group>"; };
 		78E8EA691759427E00017747 /* Combos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Combos.m; sourceTree = "<group>"; };
 		78F09BA2175AE32600BA775E /* earthwall-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "earthwall-animation.plist"; path = "earthwall/earthwall-animation.plist"; sourceTree = "<group>"; };
@@ -535,11 +535,6 @@
 		78F09BB0175AE36E00BA775E /* bubble-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "bubble-animation.plist"; path = "bubble/bubble-animation.plist"; sourceTree = "<group>"; };
 		78F09BB1175AE36E00BA775E /* bubble.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = bubble.plist; path = bubble/bubble.plist; sourceTree = "<group>"; };
 		78F09BB2175AE36E00BA775E /* bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bubble.png; path = bubble/bubble.png; sourceTree = "<group>"; };
-		78F09BB6175AE3DD00BA775E /* messages-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "messages-animation.plist"; path = "messages/messages-animation.plist"; sourceTree = "<group>"; };
-		78F09BB7175AE3DD00BA775E /* messages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = messages.plist; path = messages/messages.plist; sourceTree = "<group>"; };
-		78F09BB8175AE3DD00BA775E /* messages.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = messages.png; path = messages/messages.png; sourceTree = "<group>"; };
-		78F09BBC175AE3EF00BA775E /* messages-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "messages-hd.plist"; path = "messages-hd/messages-hd.plist"; sourceTree = "<group>"; };
-		78F09BBD175AE3EF00BA775E /* messages-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "messages-hd.png"; path = "messages-hd/messages-hd.png"; sourceTree = "<group>"; };
 		78F09BC0175AE42900BA775E /* ogre-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "ogre-animation.plist"; path = "ogre/ogre-animation.plist"; sourceTree = "<group>"; };
 		78F09BC1175AE42900BA775E /* ogre.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ogre.plist; path = ogre/ogre.plist; sourceTree = "<group>"; };
 		78F09BC2175AE42900BA775E /* ogre.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ogre.png; path = ogre/ogre.png; sourceTree = "<group>"; };
@@ -1086,7 +1081,8 @@
 			children = (
 				785FBED91772628C0021AEE5 /* LoveYaLikeASister.ttf */,
 				785FBEDA1772628C0021AEE5 /* LoveYaLikeASisterSolid.ttf */,
-				785FBEDB1772628C0021AEE5 /* comic_zine_ot.otf */,
+				78D28BE7177F6F8A00FF5D6E /* ComicZineOT.otf */,
+				78D28BE8177F6F8A00FF5D6E /* ComicZineSolid.otf */,
 			);
 			name = fonts;
 			sourceTree = "<group>";
@@ -1139,6 +1135,17 @@
 			name = Service;
 			sourceTree = "<group>";
 		};
+		78D28BEB177F70D000FF5D6E /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				785FBEE1177263840021AEE5 /* AppStyle.h */,
+				785FBEE2177263850021AEE5 /* AppStyle.m */,
+				78D28BEF177F71D500FF5D6E /* ComicZineDoubleLabel.h */,
+				78D28BF0177F71D500FF5D6E /* ComicZineDoubleLabel.m */,
+			);
+			name = Style;
+			sourceTree = "<group>";
+		};
 		78F193E717471A0E00BB8587 /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -1155,11 +1162,6 @@
 				7826027A1773D8F700059981 /* firewall-hd.png */,
 				7826027B1773D8F700059981 /* firewall.plist */,
 				7826027C1773D8F700059981 /* firewall.png */,
-				78F09BBC175AE3EF00BA775E /* messages-hd.plist */,
-				78F09BBD175AE3EF00BA775E /* messages-hd.png */,
-				78F09BB6175AE3DD00BA775E /* messages-animation.plist */,
-				78F09BB7175AE3DD00BA775E /* messages.plist */,
-				78F09BB8175AE3DD00BA775E /* messages.png */,
 				F283A92717480F5E0068EEB2 /* heart-damage-hd.png */,
 				F283A92817480F5E0068EEB2 /* heart-damage.png */,
 				F283A92917480F5E0068EEB2 /* heart-empty-hd.png */,
@@ -1292,8 +1294,7 @@
 				78F193E717471A0E00BB8587 /* images */,
 				78F6B1F51746AD8900AA070D /* AppDelegate.h */,
 				78F6B1F61746AD8900AA070D /* AppDelegate.m */,
-				785FBEE1177263840021AEE5 /* AppStyle.h */,
-				785FBEE2177263850021AEE5 /* AppStyle.m */,
+				78D28BEB177F70D000FF5D6E /* Style */,
 				785FBED8177262320021AEE5 /* Color.h */,
 				78F6B3C21746B29C00AA070D /* WizardDirector.h */,
 				78F6B3C31746B29C00AA070D /* WizardDirector.m */,
@@ -1906,11 +1907,6 @@
 				78F09BB3175AE36E00BA775E /* bubble-animation.plist in Resources */,
 				78F09BB4175AE36E00BA775E /* bubble.plist in Resources */,
 				78F09BB5175AE36E00BA775E /* bubble.png in Resources */,
-				78F09BB9175AE3DD00BA775E /* messages-animation.plist in Resources */,
-				78F09BBA175AE3DD00BA775E /* messages.plist in Resources */,
-				78F09BBB175AE3DD00BA775E /* messages.png in Resources */,
-				78F09BBE175AE3EF00BA775E /* messages-hd.plist in Resources */,
-				78F09BBF175AE3EF00BA775E /* messages-hd.png in Resources */,
 				78F09BC3175AE42900BA775E /* ogre-animation.plist in Resources */,
 				78F09BC4175AE42900BA775E /* ogre.plist in Resources */,
 				78F09BC5175AE42900BA775E /* ogre.png in Resources */,
@@ -1944,7 +1940,6 @@
 				785FBED4177261BD0021AEE5 /* PartyViewController.xib in Resources */,
 				785FBEDC1772628C0021AEE5 /* LoveYaLikeASister.ttf in Resources */,
 				785FBEDD1772628C0021AEE5 /* LoveYaLikeASisterSolid.ttf in Resources */,
-				785FBEDE1772628C0021AEE5 /* comic_zine_ot.otf in Resources */,
 				7826027D1773D8F700059981 /* firewall-animation.plist in Resources */,
 				7826027E1773D8F700059981 /* firewall-hd.plist in Resources */,
 				7826027F1773D8F700059981 /* firewall-hd.png in Resources */,
@@ -1953,6 +1948,8 @@
 				784D3BDB17748BF1009945F8 /* menu-bg.png in Resources */,
 				784D3BF11777AFFD009945F8 /* AccountViewController.xib in Resources */,
 				789787A61778F11C00094AF9 /* menu-bg@2x.png in Resources */,
+				78D28BE9177F6F8A00FF5D6E /* ComicZineOT.otf in Resources */,
+				78D28BEA177F6F8A00FF5D6E /* ComicZineSolid.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2174,6 +2171,7 @@
 				784D3BF01777AFFD009945F8 /* AccountViewController.m in Sources */,
 				784D3BF41777C622009945F8 /* LocationService.m in Sources */,
 				789787A91778F27300094AF9 /* UserFriendService.m in Sources */,
+				78D28BF1177F71D500FF5D6E /* ComicZineDoubleLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
