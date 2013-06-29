@@ -62,7 +62,9 @@
         // Then it only uses one draw call
         // see SpellSprite
 //        [CCSpriteBatchNode batchNodeWithFile:@"wizard1-set1.png"];
-//        [CCSpriteBatchNode batchNodeWithFile:@"wizard1-set2.png"]; 
+//        [CCSpriteBatchNode batchNodeWithFile:@"wizard1-set2.png"];
+        
+        __weak WizardSprite * wself = self;
         
         self.skin = [CCSprite node];
         [self addChild:self.skin];
@@ -78,23 +80,23 @@
         [self renderMatchStatus];
         
         [[RACAble(self.wizard.position) distinctUntilChanged] subscribeNext:^(id x) {
-            [self renderPosition];
+            [wself renderPosition];
         }];
         
         [[RACAble(self.wizard.state) distinctUntilChanged] subscribeNext:^(id x) {
-            [self renderStatus];
+            [wself renderStatus];
         }];
         
         [[RACAble(self.wizard.effect) distinctUntilChanged] subscribeNext:^(id x) {
-            [self renderEffect];
+            [wself renderEffect];
         }];
         
         [[RACAble(self.wizard.altitude) distinctUntilChanged] subscribeNext:^(id x) {
-            [self renderAltitude];
+            [wself renderAltitude];
         }];
         
         [[RACAble(self.match.status) distinctUntilChanged] subscribeNext:^(id x) {
-            [self renderMatchStatus];
+            [wself renderMatchStatus];
         }];
     }
     return self;
@@ -117,7 +119,12 @@
     CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:animationName];
     NSAssert(animation, @"DID NOT LOAD ANIMATION");
     CCActionInterval * actionInterval = [CCAnimate actionWithAnimation:animation];
-    [self.skin runAction:actionInterval];
+    CCAction * action = actionInterval;
+    
+    if (self.wizard.state == WizardStatusReady || self.wizard.state == WizardStatusWon)
+        action = [CCRepeatForever actionWithAction:actionInterval];
+    
+    [self.skin runAction:action];
     
 //    NSString * imageName = [NSString stringWithFormat:@"%@.png", @"wizard1-sleep1"];
 //    [self.skin setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:imageName]];
@@ -213,34 +220,21 @@
     }
 }
 
--(CCAction*)stateAction {
-    CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:self.stateAnimationName];
-    animation.restoreOriginalFrame = NO;
-//    animation.delayPerUnit = 0.5;
-    
-    CCActionInterval * actionInterval = [CCAnimate actionWithAnimation:animation];
-    CCAction * action = actionInterval;
-    
-    // only repeat ready?
-//    if (self.wizard.state == PlayerStateReady) {
-//        action = [CCRepeatForever actionWithAction:actionInterval];
-//    }
-    
-    return action;
-}
-
 
 -(NSString*)stateAnimationName {
     NSString * stateName = @"prepare";
     
-    if (self.wizard.state == PlayerStateCast)
+    if (self.wizard.state == WizardStatusCast)
         stateName = @"attack";
     
-    else if(self.wizard.state == PlayerStateHit)
+    else if(self.wizard.state == WizardStatusHit)
         stateName = @"damage";
     
-    else if(self.wizard.state == PlayerStateDead)
+    else if(self.wizard.state == WizardStatusDead)
         stateName = @"dead";
+    
+    else if(self.wizard.state == WizardStatusWon)
+        stateName = @"celebrate";
     
     return [NSString stringWithFormat:@"%@-%@", self.wizardSheetName, stateName];
 }

@@ -377,7 +377,14 @@
     // only YOU can say you died
     if (player == self.currentWizard || player == self.aiWizard) {
         if (player.health == 0) {
-            [player setState:PlayerStateDead animated:NO];
+            [player setState:WizardStatusDead animated:NO];
+            // need to set the OTHER wizard to something else
+            Wizard * otherWizard = [self.players.allValues find:^BOOL(Wizard* aWizard) {
+                return (aWizard != player);
+            }];
+            
+            [otherWizard setState:WizardStatusWon animated:NO];
+            
             [self checkWin];
         }
         
@@ -393,7 +400,7 @@
 
 -(void)checkWin {
     [self.players.allValues forEach:^(Wizard* player) {
-        if (player.state == PlayerStateDead) {
+        if (player.state == WizardStatusDead) {
             [self stop];
         }
     }];
@@ -455,7 +462,7 @@
     
     if (player.effect.disablesPlayer) return;
     
-    [player setState:PlayerStateCast animated:YES];
+    [player setState:WizardStatusCast animated:YES];
     
     // update spell
     [spell initCaster:player tick:self.timer.nextTick];

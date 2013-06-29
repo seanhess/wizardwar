@@ -35,7 +35,7 @@
     player.health -= spell.damage;
     
     if (spell.damage > 0)
-        [player setState:PlayerStateHit animated:YES];
+        [player setState:WizardStatusHit animated:YES];
     
     if (player.effect.cancelsOnHit)
         [player.effect cancel:player];

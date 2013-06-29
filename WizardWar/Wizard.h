@@ -16,16 +16,17 @@
 #define WIZARD_TYPE_TWO @"2"
 #define MAX_HEALTH 5
 
-typedef enum PlayerState {
-    PlayerStateReady,
-    PlayerStateCast,
-    PlayerStateHit,
-    PlayerStateDead,
-} PlayerState;
+typedef enum WizardStatus {
+    WizardStatusReady,
+    WizardStatusCast,
+    WizardStatusHit,
+    WizardStatusDead,
+    WizardStatusWon,
+} WizardStatus;
 
 @interface Wizard : NSObject <Objectable, Simulated>
 @property (nonatomic, strong) NSString * name;
-@property (nonatomic) PlayerState state;
+@property (nonatomic) WizardStatus state;
 @property (nonatomic) float position; // in units (not pixels)
 @property (nonatomic) NSInteger health;
 @property (nonatomic, strong) NSString * wizardType;
@@ -34,7 +35,7 @@ typedef enum PlayerState {
 @property (readonly) NSInteger direction; 
 
 -(BOOL)isFirstPlayer;
--(void)setState:(PlayerState)state animated:(BOOL)animated;
+-(void)setState:(WizardStatus)state animated:(BOOL)animated;
 -(void)update:(NSTimeInterval)dt;
 +(NSString*)randomWizardType;
 @end

@@ -31,7 +31,7 @@
 }
 
 -(void)setValuesForKeysWithDictionary:(NSDictionary *)keyedValues {
-    PlayerState currentState = self.state;
+    WizardStatus currentState = self.state;
     [super setValuesForKeysWithDictionary:keyedValues];
     if (currentState != self.state) {
         [self setState:self.state animated:YES];
@@ -57,14 +57,14 @@
     return (self.isFirstPlayer) ? 1 : -1;
 }
 
--(void)setState:(PlayerState)state animated:(BOOL)animated {
+-(void)setState:(WizardStatus)state animated:(BOOL)animated {
     // can't change if dead!
-    if (self.state == PlayerStateDead) return;
+    if (self.state == WizardStatusDead) return;
     self.state = state;
     if (animated) {
-        if (state == PlayerStateHit)
+        if (state == WizardStatusHit)
             self.stateAnimationTime = 0.5;
-        else if (state == PlayerStateCast)
+        else if (state == WizardStatusCast)
             self.stateAnimationTime = 1.0;
         else
             self.stateAnimationTime = 0.0;
@@ -76,13 +76,13 @@
 -(void)update:(NSTimeInterval)dt {
 
     // destroy the timer if set to dead
-    if (self.state == PlayerStateDead)
+    if (self.state == WizardStatusDead)
         self.stateAnimationTime = 0;
     
     if (self.stateAnimationTime > 0) {
         self.stateAnimationTime -= dt;
         if (self.stateAnimationTime <= 0) {
-            self.state = PlayerStateReady;
+            self.state = WizardStatusReady;
         }
     }
 }

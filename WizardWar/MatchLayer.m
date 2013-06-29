@@ -193,7 +193,7 @@
     
     if (self.match.status == MatchStatusEnded) {
         NSString * messageFrameName = nil;
-        if (self.match.currentWizard.state == PlayerStateDead)
+        if (self.match.currentWizard.state == WizardStatusDead)
             messageFrameName = @"msg-you-lose.png";
         else
             messageFrameName = @"msg-you-won.png";
