@@ -120,16 +120,17 @@
 -(BOOL)hitsPlayer:(Wizard*)player duringInterval:(NSTimeInterval)dt {
     
     if (self.altitude != player.altitude) return NO;
+
+    // TEST: does it start on one side of the player and end up on the other?
     
-    // ignore the time interval. Wait until the spell is ALL THE WAY past the player
-    // unlike spells hits, we want to give the player the benefit of the doubt
-    // plus, can't reflect :)
+    float spellStart = self.position;
+    float spellEnd = [self move:dt];
     
-    if (player.isFirstPlayer) {
-        return self.position <= player.position;
+    if (spellStart < player.position) {
+        return spellEnd >= player.position;
     }
     else {
-        return self.position >= player.position;
+        return spellEnd <= player.position;
     }
 }
 
@@ -139,7 +140,8 @@
 -(BOOL)hitsSpell:(Spell *)spell duringInterval:(NSTimeInterval)dt {
     
     if (self.altitude != spell.altitude) return NO;
-    // return if it WILL cross positions during this
+
+    // return if it WILL cross positions during this time interval
     float spellStart = spell.position;
     float spellEnd = [spell move:dt];
     
