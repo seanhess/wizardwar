@@ -113,6 +113,9 @@
 
 -(void)renderStatus {
     
+    if (self.wizard.effect.class == EffectSleep.class && (self.wizard.state == WizardStatusReady || self.wizard.state == WizardStatusHit || self.wizard.state == WizardStatusCast))
+        return;
+    
     [self.skin stopAllActions];
     
     NSString * animationName = [NSString stringWithFormat:@"%@", self.stateAnimationName];
@@ -182,7 +185,8 @@
         NSAssert(animation, @"DID NOT LOAD ANIMATION");
         CCFiniteTimeAction * wait = [CCFadeTo actionWithDuration:0.2 opacity:255];
         CCActionInterval * actionInterval = [CCAnimate actionWithAnimation:animation];
-        CCSequence * sequence = [CCSequence actions:wait, actionInterval, nil];
+        CCActionInterval * sleep = [CCRepeat actionWithAction:actionInterval times:10000];
+        CCSequence * sequence = [CCSequence actions:wait, sleep, nil];
         [self.skin runAction:sequence];
         
         // then when the effect wears off, we need to re-render status

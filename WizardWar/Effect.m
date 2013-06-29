@@ -32,6 +32,12 @@
 
 // the default effect is to damage the player and cancel the spell
 -(SpellInteraction*)interactPlayer:(Wizard*)player spell:(Spell*)spell currentTick:(NSInteger)currentTick {
+    
+    // if the spell has an effect, have that run instead of the default
+    if (spell.effect) {
+        return [spell.effect interactPlayer:player spell:spell currentTick:currentTick];
+    }
+    
     player.health -= spell.damage;
     
     if (spell.damage > 0)
@@ -39,6 +45,7 @@
     
     if (player.effect.cancelsOnHit)
         [player.effect cancel:player];
+    
     
     return [SpellInteraction cancel];
 }

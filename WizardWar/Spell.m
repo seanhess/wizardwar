@@ -101,13 +101,11 @@
 }
 
 -(SpellInteraction*)interactPlayer:(Wizard*)player currentTick:(NSInteger)currentTick {
+    // if the player has an effect applied, let it control the interaction
     if (player.effect) {
         return [player.effect interactPlayer:player spell:self currentTick:currentTick];
     }
-    else if (self.effect) {
-        return [self.effect interactPlayer:player spell:self currentTick:currentTick];
-    }
-    
+    // otherwise run the default code on effect base class
     else {
         return [[Effect new] interactPlayer:player spell:self currentTick:currentTick];
     }
