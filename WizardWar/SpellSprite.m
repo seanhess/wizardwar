@@ -206,6 +206,7 @@
     if (self.spell.damage > 1) {
         self.skin.scale = self.spell.damage;
     }
+    else self.skin.scale = 1.0;
 }
 
 - (void)renderWallStrength {
@@ -215,7 +216,7 @@
 }
 
 - (void)renderStatus {
-    self.skin.visible = (self.spell.status == SpellStatusActive || self.spell.status == SpellStatusPrepare);
+    self.skin.visible = (self.spell.status != SpellStatusDestroyed);
     
     if (!self.explosion && self.spell.status == SpellStatusDestroyed) {
         self.explosion = [CCSpriteBatchNode batchNodeWithFile:@"explode.png"];
