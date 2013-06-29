@@ -231,7 +231,6 @@
 }
 
 -(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)tickInterval {
-    
     [self simulateUpdatedSpells:currentTick interval:tickInterval];
     
     // SIMULATE PLAYERS. Players handle simulating their own effects
@@ -275,7 +274,6 @@
     }];
     
     [newSpells forEach:^(Spell * spell) {
-        
         Wizard * creator = [self.players.allValues find:^BOOL(Wizard* player) {
             return [player.name isEqualToString:spell.creator];
         }];

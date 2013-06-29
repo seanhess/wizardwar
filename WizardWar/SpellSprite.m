@@ -30,6 +30,7 @@
 @property (nonatomic, strong) CCAction * frameAnimation;
 @property (nonatomic, strong) CCSpriteBatchNode * explosion;
 @property (nonatomic) NSInteger currentAltitude;
+@property (nonatomic, strong) CCAction * positionAction;
 @end
 
 @implementation SpellSprite
@@ -135,7 +136,7 @@
 
         
         
-        [self renderPosition];
+        self.position = ccp(self.spellX, self.spellY);
         [self renderWallStrength];
         [self renderDirection];
         [self renderStatus];
@@ -153,6 +154,10 @@
 }
 
 -(void)renderPosition {
+    // should be 1 tick length?
+//    [self stopAction:self.positionAction];
+//    self.positionAction = [CCMoveTo actionWithDuration:0.2 position:ccp(self.spellX, self.spellY)];
+//    [self runAction:self.positionAction];
     self.position = ccp(self.spellX, self.spellY);
 }
 

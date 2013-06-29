@@ -19,7 +19,7 @@
         self.type = NSStringFromClass([self class]);
         self.created = CACurrentMediaTime();
         self.damage = 1; // default value
-        self.speed = 30;
+        self.speed = 30; // 30 units per second
         self.strength = 1; // destroyed is read from this
         self.startOffsetPosition = 1;
         self.status = SpellStatusPrepare;
@@ -45,11 +45,11 @@
 // then you also have to update the sprites BASED on this.
 // maybe update should be called on the sprites?
 -(void)update:(NSTimeInterval)dt {
-    self.position = [self move:dt];
+    
 }
 
 -(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
-    
+    self.position = [self move:interval];
 }
 
 -(float)move:(NSTimeInterval)dt {
