@@ -95,7 +95,8 @@
             self.sheet = [CCSpriteBatchNode batchNodeWithFile:[NSString stringWithFormat:@"%@.png", self.sheetName]];
             [self addChild:self.sheet];
             
-            self.skin = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"%@-1.png", self.sheetName]];
+            // Make the skin use the right texture, but not decide what to display
+            self.skin = [CCSprite spriteWithTexture:self.sheet.texture rect:CGRectZero];
             self.frameAnimation = self.spellAction;
             [self.skin runAction:self.frameAnimation];
             [self.sheet addChild:self.skin];            
@@ -275,6 +276,8 @@
     CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:self.castAnimationName];
     animation.restoreOriginalFrame = NO;
     
+    NSAssert(animation, @"Animation not defined");
+    
     CCActionInterval * actionInterval = [CCAnimate actionWithAnimation:animation];
     CCAction * action = actionInterval;
     
@@ -283,7 +286,6 @@
     }
     
     else if (self.spell.class == SpellFirewall.class) {
-        
         // also do a start animation!
         // WOW this is a hack.
         // Why can't I just play the normal one after the first one is done?

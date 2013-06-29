@@ -60,6 +60,7 @@
 
         // To use BatchNodes, you need to add the sprite TO the batch node
         // Then it only uses one draw call
+        // see SpellSprite
 //        [CCSpriteBatchNode batchNodeWithFile:@"wizard1-set1.png"];
 //        [CCSpriteBatchNode batchNodeWithFile:@"wizard1-set2.png"]; 
         

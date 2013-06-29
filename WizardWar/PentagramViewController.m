@@ -92,6 +92,7 @@
 }
 
 - (void)onTimer {
+    return;
 //    NSArray * disabledEmblems = [self.emblems filter:^BOOL(PentEmblem*emblem) {
 //        return emblem.status == EmblemStatusDisabled;
 //    }];
@@ -116,6 +117,7 @@
 }
 
 - (void)startRecharge {
+    return;
     // resets the timer if running
     [self.timer invalidate];
     
@@ -194,9 +196,8 @@
     
     for(PentEmblem *emblem in self.selectedEmblems)
     {
-//        emblem.status = EmblemStatusDisabled;
         emblem.status = EmblemStatusNormal;
-        emblem.mana -= 1;
+//        emblem.mana -= 1;
     }
     
     self.selectedEmblems = [NSMutableArray array];
