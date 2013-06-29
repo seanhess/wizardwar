@@ -60,12 +60,6 @@
     return self.referencePosition + self.direction * self.speed * dt;
 }
 
--(void)reflectFromSpell:(Spell*)spell {
-    self.direction *= -1;
-//    self.position = spell.position + (1+(spell.size+self.size)/2)*self.direction;
-//    self.position = spell.position + (1+(spell.size+self.size)/2)*self.direction;
-}
-
 -(NSDictionary*)toObject {
     return [self dictionaryWithValuesForKeys:@[@"speed", @"referencePosition", @"created", @"type", @"direction", @"createdTick", @"strength", @"status", @"updatedTick"]];
 }

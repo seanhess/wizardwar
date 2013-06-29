@@ -17,7 +17,7 @@
 
 -(id)init {
     if ((self=[super init])) {
-        self.speed = 40;
+//        self.speed = 40; // make it slower so you can do the windblast combo
         self.heavy = NO;
     }
     return self;
@@ -33,8 +33,18 @@
     
     else if ([spell isType:[SpellWindblast class]]) {
         // TODO make it bigger
-        self.damage += 1;
-        return [SpellInteraction modify];
+        
+        // if going the same direction, then make it bigger and faster?
+        // if not, then dissipate it
+        if (self.direction == spell.direction) {
+            self.damage += 1;
+            self.speed += 20;
+            return [SpellInteraction modify];
+        }
+        
+        else {
+            return [SpellInteraction cancel];
+        }
     }
     
     else if ([spell isType:[SpellIcewall class]]) {

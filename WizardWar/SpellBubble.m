@@ -26,12 +26,12 @@
 -(SpellInteraction *)interactSpell:(Spell *)spell {
     
     if ([spell isType:[SpellWindblast class]]) {
-        [self reflectFromSpell:spell];
+        self.direction = spell.direction;
         return [SpellInteraction modify];
     }
     
     else if ([spell isType:[SpellIcewall class]]) {
-        [self reflectFromSpell:spell];
+        self.direction *= -1;
         return [SpellInteraction modify];
     }
     

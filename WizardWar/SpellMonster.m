@@ -38,7 +38,7 @@
     }
     
     else if ([spell isType:[SpellBubble class]]) {
-        [self reflectFromSpell:spell];
+        self.direction = spell.direction;
         return [SpellInteraction modify];
     }
     

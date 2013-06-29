@@ -116,6 +116,10 @@
             [self renderWallStrength];
         }];
         
+        [[RACAble(self.spell.damage) distinctUntilChanged] subscribeNext:^(id x) {
+            [self renderSpellDamage];
+        }];
+        
         
         [[RACAble(self.spell.status) distinctUntilChanged] subscribeNext:^(id x) {
             [self renderStatus];
@@ -195,6 +199,12 @@
         else if (self.spell.altitude == 1) {
             [self runAction:[CCMoveTo actionWithDuration:1.0 position:ccp(self.spellX, self.units.zeroY + 120)]];
         }        
+    }
+}
+
+- (void)renderSpellDamage {
+    if (self.spell.damage > 1) {
+        self.skin.scale = self.spell.damage;
     }
 }
 

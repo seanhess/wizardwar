@@ -30,7 +30,7 @@
     
     else if ([spell isType:[SpellFireball class]]) {
         // TODO wear down!
-        self.strength -= 1;
+        self.strength -= spell.damage;
         
         if (self.strength == 0)
             return [SpellInteraction cancel];

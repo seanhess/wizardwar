@@ -42,7 +42,7 @@
     }
     
     else if ([spell isType:[SpellIcewall class]]) {
-        [self reflectFromSpell:spell];
+        self.direction *= -1;
         return [SpellInteraction modify];
     }
     
