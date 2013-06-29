@@ -8,6 +8,7 @@
 
 #import "UserService.h"
 #import <Firebase/Firebase.h>
+#import "IdService.h"
 
 @interface UserService ()
 @property (nonatomic, strong) Firebase * node;
@@ -53,6 +54,7 @@
 - (Wizard*)currentWizard {
     Wizard * wizard = [Wizard new];
     wizard.name = self.currentUser.name;
+    if (!wizard.name) wizard.name = [NSString stringWithFormat:@"Guest%@", [IdService randomId:4]];
     wizard.wizardType = WIZARD_TYPE_ONE;
     return wizard;
 }

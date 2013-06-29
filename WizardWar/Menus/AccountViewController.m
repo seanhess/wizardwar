@@ -49,7 +49,11 @@
 }
 
 - (IBAction)didTapSetName:(id)sender {
-    [self.delegate didSubmitAccountForm:self.nameField.text];
+    NSString * name = self.nameField.text;
+    User * user = [UserService.shared newUserWithName:name];
+    [UserService.shared saveCurrentUser:user];
+    
+    [self.delegate didSubmitAccountForm:name];
 }
 
 - (IBAction)didTapCancel:(id)sender {

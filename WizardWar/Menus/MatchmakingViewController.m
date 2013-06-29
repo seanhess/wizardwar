@@ -135,8 +135,6 @@
     
 }
 -(void)didSubmitAccountForm:(NSString *)name {
-    User * user = [UserService.shared newUserWithName:name];
-    [UserService.shared saveCurrentUser:user];
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     [self connect];
 }
