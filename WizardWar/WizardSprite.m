@@ -151,16 +151,14 @@
     }
     
     [self.skin stopAllActions];
+    self.skin.opacity = 255;
     
     // set opactiy based on invisible
     if ([self.wizard.effect class] == [EffectInvisible class]) {
-        [self.skin runAction:[CCFadeTo actionWithDuration:self.wizard.effect.delay opacity:40]];
-    }
-    else {
-        [self.skin runAction:[CCFadeTo actionWithDuration:0.2 opacity:255]];
+        [self.skin runAction:[CCFadeTo actionWithDuration:self.wizard.effect.delay opacity:20]];
     }
     
-    if ([self.wizard.effect class] == [EffectHelmet class]) {
+    else if ([self.wizard.effect class] == [EffectHelmet class]) {
         self.effect = [CCSprite spriteWithFile:@"helmet.png"];
         self.effect.flipX = self.wizard.position == UNITS_MAX;
         self.effect.position = ccp(-4*self.wizard.direction, 80);
