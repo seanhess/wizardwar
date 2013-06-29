@@ -57,12 +57,12 @@
     self.foregroundLabel.text = text;
 }
 
-+(UIView*)titleViewWithViewController:(UIViewController*)viewController {
-    CGFloat height = viewController.navigationController.navigationBar.frame.size.height;
-    CGFloat width = viewController.view.frame.size.width;
++(UIView*)titleView:(NSString*)title navigationBar:(UINavigationBar*)navigationBar {
+    CGFloat height = navigationBar.frame.size.height;
+    CGFloat width = navigationBar.frame.size.width;
     
     ComicZineDoubleLabel * label = [[ComicZineDoubleLabel alloc] initWithFrame:CGRectMake(0, 0, width, height)];
-    label.text = viewController.title;
+    label.text = title;
     return label;
 }
 

@@ -11,5 +11,5 @@
 @interface ComicZineDoubleLabel : UIView
 @property (nonatomic, strong) NSString * text;
 
-+(UIView*)titleViewWithViewController:(UIViewController*)viewController;
++(UIView*)titleView:(NSString*)title navigationBar:(UINavigationBar*)navigationBar;
 @end

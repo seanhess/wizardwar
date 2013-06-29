@@ -49,7 +49,7 @@
 
     self.title = @"Matchmaking";
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.navigationItem.titleView = [ComicZineDoubleLabel titleViewWithViewController:self];
+    self.navigationItem.titleView = [ComicZineDoubleLabel titleView:self.title navigationBar:self.navigationController.navigationBar];
     
     // CHECK AUTHENTICATED
     if ([UserService shared].isAuthenticated) {

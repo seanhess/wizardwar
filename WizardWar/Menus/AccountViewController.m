@@ -11,10 +11,13 @@
 #import "UserService.h"
 #import "MatchmakingViewController.h"
 #import <ReactiveCocoa.h>
+#import "ComicZineDoubleLabel.h"
 
 @interface AccountViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
+@property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
+@property (weak, nonatomic) IBOutlet UINavigationItem *navItem;
 
 @end
 
@@ -27,6 +30,8 @@
 
     self.title = @"Account";
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
+    self.navItem.titleView = [ComicZineDoubleLabel titleView:self.title navigationBar:self.navigationBar];
     
 //    UIBarButtonItem * cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(didTapCancel:)];
 //    self.navigationItem.rightBarButtonItem = cancel;
