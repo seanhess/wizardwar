@@ -52,6 +52,9 @@
     }
     
     else if ([spell isType:[SpellBubble class]]) {
+        if (self.position == spell.position && self.speed == spell.speed && self.direction == spell.direction)
+            return [SpellInteraction nothing];
+        
         self.position = spell.position;
         self.speed = spell.speed;
         self.direction = spell.direction;

@@ -447,7 +447,7 @@
 }
 
 -(void)modifySpell:(Spell*)spell {
-//    NSLog(@" - modifySpell %@ close=%i", spell, [self isSpellClose:spell]);
+    NSLog(@" - modifySpell %@ close=%i", spell, [self isSpellClose:spell]);
     spell.status = SpellStatusUpdated;
     spell.updatedTick = self.timer.nextTick;
     spell.referencePosition = spell.position;
