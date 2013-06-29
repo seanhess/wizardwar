@@ -59,7 +59,7 @@
 
 -(void)setState:(WizardStatus)state animated:(BOOL)animated {
     // can't change if dead!
-    if (self.state == WizardStatusDead) return;
+    if (self.state == WizardStatusDead || self.state == WizardStatusWon) return;
     self.state = state;
     if (animated) {
         if (state == WizardStatusHit)
@@ -76,12 +76,13 @@
 -(void)update:(NSTimeInterval)dt {
 
     // destroy the timer if set to dead
-    if (self.state == WizardStatusDead)
+    if (self.state == WizardStatusDead || self.state == WizardStatusWon)
         self.stateAnimationTime = 0;
     
     if (self.stateAnimationTime > 0) {
         self.stateAnimationTime -= dt;
         if (self.stateAnimationTime <= 0) {
+            if (self.state == WizardStatusDead || self.state == WizardStatusWon) return;
             self.state = WizardStatusReady;
         }
     }
