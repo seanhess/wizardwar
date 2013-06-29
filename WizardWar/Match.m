@@ -377,12 +377,13 @@
     // only YOU can say you died
     if (player == self.currentWizard || player == self.aiWizard) {
         if (player.health == 0) {
+            player.effect = nil;
             [player setState:WizardStatusDead animated:NO];
             // need to set the OTHER wizard to something else
             Wizard * otherWizard = [self.players.allValues find:^BOOL(Wizard* aWizard) {
                 return (aWizard != player);
             }];
-            
+            otherWizard.effect = nil;
             [otherWizard setState:WizardStatusWon animated:NO];
             
             [self checkWin];
