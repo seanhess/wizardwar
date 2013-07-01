@@ -133,19 +133,19 @@
     [self.spells addChild:sprite];
     
     if([spell isMemberOfClass: [SpellFireball class]]){
-        [[SimpleAudioEngine sharedEngine] playEffect:@"fireball.wav"];//play a sound
+        [[SimpleAudioEngine sharedEngine] playEffect:@"fireball.mp3"];
     } else if([spell isMemberOfClass: [SpellEarthwall class]]){
-        [[SimpleAudioEngine sharedEngine] playEffect:@"earthwall.wav"];//play a sound
+        [[SimpleAudioEngine sharedEngine] playEffect:@"earthwall.mp3"];
     } else if([spell isMemberOfClass: [SpellVine class]]){
-        [[SimpleAudioEngine sharedEngine] playEffect:@"vine.wav"];//play a sound
+        [[SimpleAudioEngine sharedEngine] playEffect:@"vine.mp3"];
     } else if([spell isMemberOfClass: [SpellBubble class]]){
-        [[SimpleAudioEngine sharedEngine] playEffect:@"bubble.wav"];//play a sound
+        [[SimpleAudioEngine sharedEngine] playEffect:@"bubble.mp3"];
     } else if([spell isMemberOfClass: [SpellIcewall class]]){
-        [[SimpleAudioEngine sharedEngine] playEffect:@"icewall.wav"];//play a sound
+        [[SimpleAudioEngine sharedEngine] playEffect:@"icewall.mp3"];
     } else if([spell isMemberOfClass: [SpellMonster class]]){
-        [[SimpleAudioEngine sharedEngine] playEffect:@"monster.wav"];//play a sound
+        [[SimpleAudioEngine sharedEngine] playEffect:@"monster.mp3"];
     } else if([spell isMemberOfClass: [SpellWindblast class]]){
-        [[SimpleAudioEngine sharedEngine] playEffect:@"windblast.wav"];//play a sound
+        [[SimpleAudioEngine sharedEngine] playEffect:@"windblast.mp3"];
     }
 }
 
