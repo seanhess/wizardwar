@@ -148,6 +148,7 @@
         if (self.match.currentWizard.state == WizardStatusWon) {
             self.message.textColor = UIColorFromRGB(0x18AB34);
             self.message.text = @"YOU WON!";
+            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"YouWon.mp3" loop:NO];
         }
         else {
             self.message.textColor = UIColorFromRGB(0xB02410);
@@ -155,6 +156,7 @@
             self.subMessage.hidden = NO;
             self.subMessage.textColor = UIColorFromRGB(0xCACACA);
             self.subMessage.text = @"(YOU LOSE)";
+            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"YouLose2.mp3" loop:NO];      
         }
     }
 }
@@ -163,6 +165,8 @@
     SimpleAudioEngine *sae = [SimpleAudioEngine sharedEngine];
     if (sae != nil) {
         [sae preloadBackgroundMusic:@"theme.wav"];
+        [sae preloadBackgroundMusic:@"YouWon.mp3"];
+        [sae preloadBackgroundMusic:@"YouLose2.mp3"];
         if (sae.willPlayBackgroundMusic) {
             sae.backgroundMusicVolume = 0.4f;
         }
