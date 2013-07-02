@@ -1,0 +1,47 @@
+
+JS Bindings authors
+-------------------
+
+Lead Developer
+    Ricardo Quesada (http://zynga.com)
+
+Contributors (alphabetically ordered):
+
+* Mario Adrian (http://ma-source.de/):
+    Fixed rounding error in JSB_jsval_from_NSNumber
+    JSB_jsval_to_NSSet uses a real NSSet
+    In JSB_jsval_to_NSDictionary the key can be a number or a string
+    JSB_jsval_to_unknown: if a jsvalue is null, it returns [NSNull null]
+
+* Rolando Abarca (https://github.com/funkaster):
+    Original author of remote debugging code
+
+* Sam Gross (https://github.com/colesbury):
+    Fixed error when class has callbacks but no manual methods
+	jsval to NSArray converts objects to the correct type
+	Added JSB_jsval_to_unknown()
+	Added JSB_jsval_to_struct()
+	Added JSB_jsval_to_NSDictionary
+	Simplified generate_jsb code by calling JSB_jsval_to directly
+	Added error checking when callbacks returns a value
+	Generator generates bindings from_Dictionary
+	Generator does not crash if informal_protocols are not present
+	"this" and "function" are rooted when calling an scheduled funciton, and unrooted when the block dies
+    Unified conversions between callbacks retvals and retvals
+    Simplified code when parsing structs
+    Fixed JSB_jsval_from_NSString: works with Latin chars, not UTF8 chars
+
+* Sean Lin (http://www.cocos2d-html5.org):
+    Added cc.Loader compatibility with cocos2d-html5
+
+* Sergej Tatarincev (https://github.com/SevInf)
+    Added conversion for NSNull
+
+* Surith Thekkiam (https://github.com/folecr)
+	Added JSON responses to debugger
+	Fixed crashes on the debugger
+	Added 'clean' command on the debugger
+
+* Wu-Hao (https://github.com/Wu-Hao)
+    Added missing properties for the Chipmunk JS Bindings
+

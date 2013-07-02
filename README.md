@@ -3,6 +3,9 @@
 * http://refactr.com/blog/2012/09/ios-tips-custom-fonts/
 * http://creativitygames.net/random-word-generator/randomwords/2
 
+Multi-resolution support
+* http://www.cocos2d-x.org/projects/cocos2d-x/wiki/Multi_resolution_support
+
 [ ] Lobby: get local lobby working
     [ ] Local Lobby: initial indicator of how many people are in it. 
     [ ] Local Lobby: chat

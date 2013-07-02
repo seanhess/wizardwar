@@ -1,0 +1,99 @@
+version 0.8 - 17-Jun-2013
+- [FIX] JSB native code:
+		common: JSB_jsval_from_NSString expects Latin chars, not UTF8 chars
+		cocos2d: "flipped" transitions support 3 arguments as expected
+
+version 0.7 - 1-May-2013
+- [NEW] Added support for encoded JS files (.jsc):
+		You can bundle .jsc files (instead of .js) in your application in order to project your IP.
+		Added option to autogenerate .jsc files on the fly (disabled by default)
+- [NEW] JSB Generator: generates "ctor" methods for Obj-C classes.
+- [FIX] JSB native code:
+		cocos2d: CCLabel#string -> CCLabel#getString
+		common: Fixed rounding error in JSB_jsval_from_NSNumber
+		common: JSB_jsval_to_NSSet uses a real NSSet
+		common: In JSB_jsval_to_NSDictionary the key can be a number or a string
+		common: JSB_jsval_to_unknown: if a jsvalue is null, it returns [NSNull null]
+		dbg: Debugger works with SpiderMonkey v20
+		dbg: Debugger supports JSON responses
+- [FIX] JSB cocos2d:
+		CCReuseGrid and CCStopGrid are bound
+
+version 0.6 - 20-Mar-2013
+- [NEW] Files: renamed js_bindigns_ to jsb_
+- [NEW] JSB JS code:
+		Added cocos2d and OpenGL constants (automatically created)
+		Added cc.Loader. Compatible with cocos2d-html5
+- [NEW] JSB native code:
+		common: New Naming Convention:
+			XXX_to_jsval -> JSB_jsval_from_XXX
+			jsval_to_XXX -> JSB_jsval_to_XXX
+			All JSB functions start with "JSB_"
+		common: jsval_to_NSDictionary is supported
+- [NEW] JSB Generator: Added support for plugins. Very easy to customize parsing of 3rd party library
+- [NEW] SpiderMonkey 19 Compatibility
+		JS_PROP_SHAREABLE: it no longer used
+		Since JS_CompileUTF8File() is no longer available, the scripts are executed using the JS C++ API
+		Since JS_SetCStringsAreUTF8() is no longer available, the strings are converted using unichars
+		TypedArray Functions no longer uses a context as parameter
+- [NEW] WebGL / OpenGL ES 2.0: basic functionality added
+- [FIX] JSB JS code:
+		cc.base no longer used. Not compatible with SpiderMonkey 19
+- [FIX] JSB native code: 
+		chipmunk:  addCollitionHandler: space is used as hash key too, preventing possible crashes with the GC
+		cocos2d: RGBAProtocol: color/opacity -> getColor/getOpacity
+		cocos2d:CCRotate(.*) XY is bound
+		coocos2d: "this" and "function" are rooted when calling an scheduled funciton, and unrooted when the block dies
+		common: jsval to NSArray converts inner objects too
+		common: Checks return error in callbacks (only bool for the moment)
+		common: jsval_from_NSDictionary works as expected
+- [FIX] JSB Generator: Fixed error when class has callbacks but no manual methods
+		Simplified code. JSB_jsval_to is called directly. No need to add functions for that
+		Generator generates bindings for jsval_from_nsdictionary
+		Generator does not crash if informal_protocols are not present
+		Unified conversions between callbacks retvals and retvals
+		Simplified code when parsing structs
+
+version 0.5 - 29-Jan-2013
+- [FIX] JSB: Errors inside require() are reported correctly
+		Improved errors in Chipmunk and cocos2d manual functions
+		Removed JSB_PRECONDITION3(). Merged in JSB_PRECONDITION2()
+		ParticleBatchNode is bound with the official API, like SpriteBatchNode
+		cc.DrawNode.drawPoly works.
+	   JSB_jsval_to_NSObject returns NSNull if jsval is null
+
+version 0.4 - 4-Dec-2012
+- [FIX] JSB Chipmunk: Added missing properties
+		The collision callback handlers are rooted/unrooted. Prevents posible crash
+		body.setUserData()/getUserData() were removed. Instead use body.userData
+- [FIX] JSB CocosBuilder: Uses new API
+- [FIX] JSBCore: Added conversion for NSNull to JS
+
+version 0.3 - 7-Nov-2012
+- [NEW] Chipmunk bindings: Added Object Oriented JS API
+	- JSB Chipmunk API is compatible with Chipmunk-JS API
+	- Added missing functions to bindings:
+		- cpAreaForPoly, cpCentroidForPoly, cpMomentForPoly, cpPolysShapeNew
+- [NEW] JSBCore: registration code for chipmunk/cocos2d moved to its own files
+		Better macros to report errors: JSB_PRECONDITION2() & JSB_PRECONDITION2()
+		Possibility to generate files compatible with cpp
+		Added support for NSDictionary to jsval
+		Converts recusive data-structures to jsval
+- [NEW] Script: jsb generates Object Oriented JS code for C-like API
+- [NEW] SpiderMonkey: Supports SpiderMonkey v16.0 API
+- [FIX] Callbacks: (Native-to-JS) if callback returns value, it is returned to native, as long it is a BOOL.
+- [FIX] Callbacks: (JS-Native-JS): 'this' is an optional parameter, and comes after the callback function
+- [FIX] Conversions: longlong and 64-bit long are represented by strings (and not an array of two elements)
+- [FIX] Xcode: Fixed all compiler warnings
+
+version 0.2 - XX-Sept-2012
+- [FIX] config file: only include cocos2d ios on iOS and cocos2d osx on OS X
+
+version 0.1 - 21-Ago-2012
+ - [NEW] Initial public release
+ - [NEW] bindings:
+	- Added bindings for cocos2d-iphone v2.1
+	- Added bindings for Chipmunk v6.1.1
+	- Added bindings for CocosBuilder Reader
+	- Added bindings for CocosDenshion
+
