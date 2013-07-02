@@ -12,6 +12,7 @@
 
 -(id)initWithZeroY:(CGFloat)zeroY min:(CGFloat)min max:(CGFloat)max {
     if ((self=[super init])) {
+        NSLog(@"UNITS %f %f", min, max);
         self.min = min;
         self.max = max;
         self.width = max - min;

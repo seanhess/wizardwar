@@ -57,6 +57,10 @@
 //    hitCombos[@"__F_W"] = nil;
 //    hitCombos[@"___HW"] = nil;
     
+    // Walls: spells initially go through it
+    // Ice Walls: hurting monsters and stuff.
+    // Fist break helmet? Could pick where horizontally it comes down. 
+    
     // 3 combos
     hitCombos[@"AEF__"] = [SpellFirewall class];
     hitCombos[@"AE_H_"] = [SpellHeal class];
@@ -66,7 +70,7 @@
     hitCombos[@"A__HW"] = [SpellLevitate class];
     hitCombos[@"_EFH_"] = [SpellHelmet class];
     hitCombos[@"_EF_W"] = [SpellEarthwall class];
-    hitCombos[@"_E_HW"] = [SpellIcewall class];
+    hitCombos[@"_E_HW"] = [SpellIcewall class]; // hurts monsters. goes down. 
     hitCombos[@"__FHW"] = [SpellBubble class];
     
     // 4 combos

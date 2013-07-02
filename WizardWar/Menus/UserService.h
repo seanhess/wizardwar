@@ -9,11 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "User.h"
 #import "Wizard.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface UserService : NSObject
 
 @property (nonatomic, strong) User * currentUser;
 @property (nonatomic, readonly) Wizard * currentWizard;
+@property (nonatomic, strong) NSMutableDictionary * allUsers;
+@property (nonatomic, strong) RACSubject * updated;
 
 + (UserService *)shared;
 

@@ -79,7 +79,7 @@
     else {
         self.allUsers[snapshot.name] = user;
         
-        if ([self isLocal:user]) {
+        if ([self userIsLocal:user]) {
             NSLog(@" - close");
             self.closeUsers[snapshot.name] = user;
         }
@@ -106,7 +106,7 @@
 //    }
 }
 
--(BOOL)isLocal:(User*)user {
+-(BOOL)userIsLocal:(User*)user {
     CLLocationDistance distance = [user.location distanceFromLocation:self.currentLocation];
     NSLog(@"OTHER USER %@ %f", user.name, distance);
     return (distance < MAX_SAME_LOCATION_DISTANCE);

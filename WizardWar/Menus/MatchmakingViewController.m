@@ -79,9 +79,13 @@
 //    }];
     
     [LobbyService.shared.updated subscribeNext:^(id x) {
-        NSLog(@"UPDATED USERS");
         [wself.tableView reloadData];
     }];
+    
+    [UserService.shared.updated subscribeNext:^(id x) {
+        [wself.tableView reloadData];
+    }];
+    
     
     [RACAble(LocationService.shared, location) subscribeNext:^(id x) {
         [wself didUpdateLocation];
@@ -151,7 +155,7 @@
     return ChallengeService.shared.myChallenges.allValues;
 }
 
-- (NSArray*)users {
+- (NSArray*)localUsers {
     return LobbyService.shared.localUsers.allValues;
 }
 
@@ -160,14 +164,26 @@
 }
 
 - (NSArray*)friends {
-    // Or filter it the other direction :)
-    return [[UserFriendService.shared.friends.allValues filter:^BOOL(User * user) {
-        return (LobbyService.shared.localUsers[user.userId] == nil);
-    }] sortedArrayUsingComparator:^NSComparisonResult(User * user, User * buser) {
+    
+    // TODO switch to be a set or dictionary instead of an array
+    // that way they CAN'T be in both lists
+    
+    // We don't want to show anyone who is already in the local list!
+    NSArray * unsortedFriends = [UserFriendService.shared.friends.allValues filter:^BOOL(User * user) {
+        return (![LobbyService.shared userIsLocal:user]);
+    }];
+    
+    return [unsortedFriends sortedArrayUsingComparator:^NSComparisonResult(User * user, User * buser) {
         if (user.friendCount > buser.friendCount) return NSOrderedAscending;
         else if (user.friendCount < buser.friendCount) return NSOrderedDescending;
         else return NSOrderedSame;
     }];
+}
+
+- (NSArray*)strangers {
+    // for now, show every user in the system
+    // wait, this isn't a solution
+    return UserService.shared.allUsers.allValues;
 }
 
 
@@ -186,7 +202,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -194,11 +210,12 @@
     if (section == 0) {
         return [self.challenges count];
     } else if (section == 1){
-        return [self.users count];
-    } else {
+        return [self.localUsers count];
+    } else if (section == 2) {
         return [self.friends count];
+    } else {
+        return [self.strangers count];
     }
-    
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -217,29 +234,39 @@
     return 0;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 44;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
         return [self tableView:tableView challengeCellForRowAtIndexPath:indexPath];
-    } else if (indexPath.section == 1) {
-        return [self tableView:tableView userCellForRowAtIndexPath:indexPath];
-    } else if (indexPath.section == 2) {
-        return [self tableView:tableView friendCellForRowAtIndexPath:indexPath];
     } else {
-        return nil;
+        User * user = nil;
+
+        if (indexPath.section == 1) {
+            user = self.localUsers[indexPath.row];
+        } else if (indexPath.section == 2) {
+            user = self.friends[indexPath.row];
+        } else {
+            user = self.strangers[indexPath.row];
+        }
+        return [self tableView:tableView userCellForUser:user];
     }
 }
 
--(UITableViewCell*)tableView:(UITableView *)tableView userCellForRowAtIndexPath:(NSIndexPath *)indexPath {
+-(UITableViewCell*)tableView:(UITableView *)tableView userCellForUser:(User*)user {
     static NSString *CellIdentifier = @"UserCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UIColor * backgroundColor = [UIColor colorWithWhite:0.784 alpha:1.000];
+    
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-        cell.contentView.backgroundColor = [UIColor colorWithWhite:0.784 alpha:1.000];
+        cell.contentView.backgroundColor = backgroundColor;
         cell.textLabel.textColor = [UIColor colorWithWhite:0.149 alpha:1.000];
     }
     
-    User* user = self.users[indexPath.row];
     cell.textLabel.text = user.name;
     
     if ([LobbyService.shared userIsOnline:user])
@@ -247,29 +274,19 @@
     else
         cell.textLabel.textColor = [UIColor darkTextColor];
     
-    CLLocationDistance distance = [LocationService.shared distanceFrom:user.location];
-    cell.detailTextLabel.text = [LocationService.shared distanceString:distance];
-    return cell;
-}
-
--(UITableViewCell*)tableView:(UITableView *)tableView friendCellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"FriendCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-        cell.contentView.backgroundColor = [UIColor colorWithWhite:0.784 alpha:1.000];
-        cell.textLabel.textColor = [UIColor colorWithWhite:0.149 alpha:1.000];
-    }
+    cell.imageView.image = [UIImage imageNamed:@"user.jpg"];
+    UILabel * accessory = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 43)];
+    accessory.text = @"FRIEND";
+    accessory.font = [UIFont boldSystemFontOfSize:14];
+    accessory.backgroundColor = backgroundColor;
+    accessory.textAlignment = NSTextAlignmentRight;
+    cell.accessoryView = accessory;
     
-    User* user = self.friends[indexPath.row];
-   
-    if ([LobbyService.shared userIsOnline:user])
-        cell.textLabel.textColor = [UIColor greenColor];
-    else
-        cell.textLabel.textColor = [UIColor darkTextColor];
+    NSString * games = [NSString stringWithFormat:@"%i Games", user.friendCount];
     
-    cell.textLabel.text = user.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%i games played", user.friendCount];
+    CLLocationDistance dl = [LocationService.shared distanceFrom:user.location];
+    NSString * distance = (dl > 0) ? [NSString stringWithFormat:@"%@, ", [LocationService.shared distanceString:dl]] : @"";
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@%@", distance, games];
     return cell;
 }
 
@@ -301,9 +318,11 @@
     if (indexPath.section == 0)
         [self didSelectChallenge:self.challenges[indexPath.row]];
     else if (indexPath.section == 1)
-        [self didSelectUser:self.users[indexPath.row]];
+        [self didSelectUser:self.localUsers[indexPath.row]];
+    else if (indexPath.section == 2)
+        [self didSelectUser:self.friends[indexPath.row]];
     else
-        [self didSelectFriend:self.friends[indexPath.row]];
+        [self didSelectUser:self.strangers[indexPath.row]];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -321,10 +340,6 @@
     else {
         NSLog(@"PUSH NOTIFICATION BABY");
     }
-}
-
-- (void)didSelectFriend:(User*)user {
-    [self didSelectUser:user];
 }
 
 - (void)didSelectChallenge:(Challenge*)challenge {

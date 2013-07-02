@@ -138,6 +138,7 @@
 		78E22CB41782427500146D49 /* theme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CAC1782427500146D49 /* theme.mp3 */; };
 		78E22CB51782427500146D49 /* vine.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CAD1782427500146D49 /* vine.mp3 */; };
 		78E22CB61782427500146D49 /* windblast.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CAE1782427500146D49 /* windblast.mp3 */; };
+		78E22CBA178255B700146D49 /* user.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CB9178255B700146D49 /* user.jpg */; };
 		78E8EA6A1759427E00017747 /* Combos.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E8EA691759427E00017747 /* Combos.m */; };
 		78F09BA5175AE32600BA775E /* earthwall-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78F09BA2175AE32600BA775E /* earthwall-animation.plist */; };
 		78F09BA6175AE32600BA775E /* earthwall.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78F09BA3175AE32600BA775E /* earthwall.plist */; };
@@ -525,6 +526,7 @@
 		78E22CAC1782427500146D49 /* theme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = theme.mp3; sourceTree = "<group>"; };
 		78E22CAD1782427500146D49 /* vine.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = vine.mp3; sourceTree = "<group>"; };
 		78E22CAE1782427500146D49 /* windblast.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = windblast.mp3; sourceTree = "<group>"; };
+		78E22CB9178255B700146D49 /* user.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = user.jpg; sourceTree = "<group>"; };
 		78E8EA681759427E00017747 /* Combos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Combos.h; sourceTree = "<group>"; };
 		78E8EA691759427E00017747 /* Combos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Combos.m; sourceTree = "<group>"; };
 		78F09BA2175AE32600BA775E /* earthwall-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "earthwall-animation.plist"; path = "earthwall/earthwall-animation.plist"; sourceTree = "<group>"; };
@@ -1149,37 +1151,9 @@
 			name = Style;
 			sourceTree = "<group>";
 		};
-		78F193E717471A0E00BB8587 /* images */ = {
+		78E22CB71782540B00146D49 /* spells */ = {
 			isa = PBXGroup;
 			children = (
-				784D3BE51775102A009945F8 /* lobby */,
-				781372E4177E33F600486899 /* wizards */,
-				785FBEA017725A780021AEE5 /* pillow-hd.png */,
-				785FBEA117725A780021AEE5 /* pillow.png */,
-				786246551767D885001904AC /* helmet-hd.png */,
-				786246561767D885001904AC /* helmet.png */,
-				7862464E1767D05C001904AC /* fist-hd.png */,
-				7862464F1767D05C001904AC /* fist.png */,
-				782602781773D8F700059981 /* firewall-animation.plist */,
-				782602791773D8F700059981 /* firewall-hd.plist */,
-				7826027A1773D8F700059981 /* firewall-hd.png */,
-				7826027B1773D8F700059981 /* firewall.plist */,
-				7826027C1773D8F700059981 /* firewall.png */,
-				F283A92717480F5E0068EEB2 /* heart-damage-hd.png */,
-				F283A92817480F5E0068EEB2 /* heart-damage.png */,
-				F283A92917480F5E0068EEB2 /* heart-empty-hd.png */,
-				F283A92A17480F5E0068EEB2 /* heart-empty.png */,
-				F283A92B17480F5E0068EEB2 /* heart-full-hd.png */,
-				F283A92C17480F5E0068EEB2 /* heart-full.png */,
-				F283A92317480F4F0068EEB2 /* mana-container-hd.png */,
-				F283A92417480F4F0068EEB2 /* mana-container.png */,
-				789BAB8F1756AA65003C0116 /* explode-animation.plist */,
-				789BAB861756A95A003C0116 /* explode-hd.plist */,
-				789BAB871756A95A003C0116 /* explode-hd.png */,
-				789BAB881756A95A003C0116 /* explode.plist */,
-				789BAB891756A95A003C0116 /* explode.png */,
-				78F195031747FBFA00BB8587 /* exit.png */,
-				78F195041747FBFA00BB8587 /* exit@2x.png */,
 				78F09BCA175AE45200BA775E /* vine-animation.plist */,
 				78F09BCB175AE45200BA775E /* vine.plist */,
 				78F09BCC175AE45200BA775E /* vine.png */,
@@ -1215,8 +1189,30 @@
 				78ABA895175A6F28003D2F23 /* fireball.png */,
 				78ABA899175A6F2D003D2F23 /* fireball-hd.plist */,
 				78ABA89A175A6F2E003D2F23 /* fireball-hd.png */,
-				78F193E817471A0E00BB8587 /* background-cave.png */,
-				78F193E917471A0E00BB8587 /* background-cave@2x.png */,
+				785FBEA017725A780021AEE5 /* pillow-hd.png */,
+				785FBEA117725A780021AEE5 /* pillow.png */,
+				786246551767D885001904AC /* helmet-hd.png */,
+				786246561767D885001904AC /* helmet.png */,
+				7862464E1767D05C001904AC /* fist-hd.png */,
+				7862464F1767D05C001904AC /* fist.png */,
+				782602781773D8F700059981 /* firewall-animation.plist */,
+				782602791773D8F700059981 /* firewall-hd.plist */,
+				7826027A1773D8F700059981 /* firewall-hd.png */,
+				7826027B1773D8F700059981 /* firewall.plist */,
+				7826027C1773D8F700059981 /* firewall.png */,
+				F283A92717480F5E0068EEB2 /* heart-damage-hd.png */,
+				F283A92817480F5E0068EEB2 /* heart-damage.png */,
+				F283A92917480F5E0068EEB2 /* heart-empty-hd.png */,
+				F283A92A17480F5E0068EEB2 /* heart-empty.png */,
+				F283A92B17480F5E0068EEB2 /* heart-full-hd.png */,
+				F283A92C17480F5E0068EEB2 /* heart-full.png */,
+			);
+			name = spells;
+			sourceTree = "<group>";
+		};
+		78E22CB81782556100146D49 /* Pentagram */ = {
+			isa = PBXGroup;
+			children = (
 				78F1942617471A0E00BB8587 /* pentagram-bg.png */,
 				78F1942717471A0E00BB8587 /* pentagram-bg@2x.png */,
 				78F1942817471A0E00BB8587 /* pentagram-earth.png */,
@@ -1229,6 +1225,29 @@
 				78F1942F17471A0E00BB8587 /* pentagram-water@2x.png */,
 				78F1943017471A0E00BB8587 /* pentagram-wind.png */,
 				78F1943117471A0E00BB8587 /* pentagram-wind@2x.png */,
+			);
+			name = Pentagram;
+			sourceTree = "<group>";
+		};
+		78F193E717471A0E00BB8587 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				784D3BE51775102A009945F8 /* lobby */,
+				781372E4177E33F600486899 /* wizards */,
+				78E22CB81782556100146D49 /* Pentagram */,
+				78E22CB71782540B00146D49 /* spells */,
+				F283A92317480F4F0068EEB2 /* mana-container-hd.png */,
+				F283A92417480F4F0068EEB2 /* mana-container.png */,
+				78E22CB9178255B700146D49 /* user.jpg */,
+				789BAB8F1756AA65003C0116 /* explode-animation.plist */,
+				789BAB861756A95A003C0116 /* explode-hd.plist */,
+				789BAB871756A95A003C0116 /* explode-hd.png */,
+				789BAB881756A95A003C0116 /* explode.plist */,
+				789BAB891756A95A003C0116 /* explode.png */,
+				78F195031747FBFA00BB8587 /* exit.png */,
+				78F195041747FBFA00BB8587 /* exit@2x.png */,
+				78F193E817471A0E00BB8587 /* background-cave.png */,
+				78F193E917471A0E00BB8587 /* background-cave@2x.png */,
 				6F0FEF5D1747FA720028FE71 /* wizard-lobby.png */,
 				6F0FEF5E1747FA720028FE71 /* wizard-lobby@2x.png */,
 				7837F1691749B9CF00D29445 /* navbar-logo.png */,
@@ -1954,6 +1973,7 @@
 				78E22CB41782427500146D49 /* theme.mp3 in Resources */,
 				78E22CB51782427500146D49 /* vine.mp3 in Resources */,
 				78E22CB61782427500146D49 /* windblast.mp3 in Resources */,
+				78E22CBA178255B700146D49 /* user.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

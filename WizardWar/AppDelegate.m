@@ -44,6 +44,7 @@
     [self.window makeKeyAndVisible];
     
     // INITIALIZE DIRECTOR
+    NSLog(@"INITILIZE WITH BOUNDS %@", NSStringFromCGRect(self.window.bounds));
     [WizardDirector initializeWithBounds:self.window.bounds];
     
     // PARSE

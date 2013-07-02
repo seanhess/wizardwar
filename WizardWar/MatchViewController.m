@@ -84,7 +84,8 @@
     self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 
     CCDirectorIOS * director = [WizardDirector shared];
-    director.view.frame = self.cocosView.bounds;
+    NSLog(@"TESTING cososView=%@ self.view=%@", NSStringFromCGRect(self.cocosView.bounds), NSStringFromCGRect(self.view.bounds));
+    director.view.frame = self.view.bounds;
     MatchLayer * matchLayer = [[MatchLayer alloc] initWithMatch:self.match size:self.view.bounds.size];
     [WizardDirector runLayer:matchLayer];
     

@@ -21,13 +21,41 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance = [[UserService alloc] init];
+        instance.updated = [RACSubject subject];        
     });
     return instance;
 }
 
 - (void)connect {
     self.currentUser = [self loadCurrentUser];
+    self.allUsers = [NSMutableDictionary dictionary];
     self.node = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/users"];
+    
+    __weak UserService * wself = self;
+    
+    [self.node observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
+        [wself onAdded:snapshot];
+    }];
+    
+    [self.node observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
+        [wself onRemoved:snapshot];
+    }];
+
+}
+
+-(void)onAdded:(FDataSnapshot *)snapshot {
+    User * user = [User new];
+    [user setValuesForKeysWithDictionary:snapshot.value];
+    self.allUsers[snapshot.name] = user;
+    [self.updated sendNext:user];
+}
+
+-(void)onRemoved:(FDataSnapshot*)snapshot {
+    User * removed = self.allUsers[snapshot.name];
+    if (removed) {
+        [self.allUsers removeObjectForKey:snapshot.name];
+        [self.updated sendNext:removed];
+    }
 }
 
 - (User*)loadCurrentUser {
