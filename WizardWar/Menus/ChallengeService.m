@@ -63,14 +63,15 @@
         challenge.opponent = [UserService.shared userWithId:challenge.opponent.userId];
         
         self.myChallenges[challenge.matchId] = challenge;
-        [self.updated sendNext:self.myChallenges];
+        [self.updated sendNext:challenge];
     }
 }
 
 -(void)onRemoved:(FDataSnapshot*)snapshot {
-    if (self.myChallenges[snapshot.name]) {
+    Challenge * challenge = self.myChallenges[snapshot.name];
+    if (challenge) {
         [self.myChallenges removeObjectForKey:snapshot.name];
-        [self.updated sendNext:self.myChallenges];
+        [self.updated sendNext:challenge];
     }
 }
 
@@ -84,13 +85,13 @@
     [child setValue:challenge.toObject];
     
     if (isRemote) {
-        [self notifyChallenge:challenge];
+        [self notifyOpponent:challenge];
     }
     
     return challenge;
 }
 
-- (void)notifyChallenge:(Challenge*)challenge {
+- (void)notifyOpponent:(Challenge*)challenge {
     
     if (!challenge.opponent.deviceToken) {
         NSLog(@"CANNOT PUSH! no device token");
@@ -103,7 +104,10 @@
     [pushQuery whereKey:@"deviceToken" equalTo:challenge.opponent.deviceToken];
     
     // Send push notification to query
-    [PFPush sendPushMessageToQueryInBackground:pushQuery withMessage:@"Hello World!"];
+    [PFPush sendPushDataToQueryInBackground:pushQuery withData:@{
+        @"alert":[NSString stringWithFormat:@"%@ challenges you to WAR", challenge.main.name],
+        @"matchId":challenge.matchId
+    }];
 }
 
 

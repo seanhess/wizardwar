@@ -17,6 +17,8 @@
 @property (nonatomic, strong) NSString* nickname;
 @property (nonatomic, strong) NSString* matchID;
 
+@property (nonatomic, strong) NSString* autoconnectToMatchId;
+
 -(void)disconnect;
 -(void)reconnect;
 

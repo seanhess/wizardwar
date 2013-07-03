@@ -14,6 +14,7 @@ Multi-resolution support
 
 Push Notifications
 * https://www.parse.com/docs/push_guide#top/iOS
+* https://www.parse.com/apps/wizard-war/push_notifications
 
 
 

@@ -16,6 +16,7 @@
 #import "AppStyle.h"
 #import "UserService.h"
 #import <Parse/Parse.h>
+#import "MatchmakingViewController.h"
 
 // The director should belong to the app delegate or a singleton
 // and you should manually unload or reload it
@@ -23,12 +24,15 @@
 @interface AppDelegate ()
 @property (nonatomic, strong) MatchmakingViewController * matches;
 @property (nonatomic, strong) CCDirectorIOS * director;
+@property (nonatomic, strong) UINavigationController * rootNavigationController;
 @end
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    NSLog(@"applicationDidFinishLaunchingWithOptions");
     [application setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     
     [AppStyle customizeUIKitStyles];
@@ -43,6 +47,7 @@
     MainNavViewController * navigationController = [[MainNavViewController alloc] initWithRootViewController:landing];
     [self.window setRootViewController:navigationController];
     [self.window makeKeyAndVisible];
+    self.rootNavigationController = navigationController;
     
     // INITIALIZE DIRECTOR
     NSLog(@"INITILIZE WITH BOUNDS %@", NSStringFromCGRect(self.window.bounds));
@@ -58,6 +63,12 @@
     //    NSLog(@"FONT: %@",[UIFont fontNamesForFamilyName:@"Comic Zine OT"]);
     //    NSLog(@"FAMLIES %@", [UIFont familyNames]);
     
+    
+    // No idea why it doesn't call didReceiveRemoteNotification on its own
+    // This is only needed if they open a notification from a cold boot
+    NSDictionary * remoteNotification = [launchOptions valueForKey:@"UIApplicationLaunchOptionsRemoteNotificationKey"];
+    if (remoteNotification) [self application:application didReceiveRemoteNotification:remoteNotification];
+    
     return YES;
 }
 
@@ -67,12 +78,11 @@
     NSString *deviceToken = [[newDeviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
     deviceToken = [deviceToken stringByReplacingOccurrencesOfString:@" " withString:@""];
     
-    NSLog(@"MY VERY SPECIAL deviceToken=%@", deviceToken);    
+    NSLog(@"didRegisterForRemoteNotificationsWithDeviceToken: %@", deviceToken);    
     
     // Store the deviceToken in the current installation and save it to Parse.
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];    
-    [currentInstallation setDeviceToken:deviceToken];
-    [[PFInstallation currentInstallation] saveInBackground];
+    [currentInstallation setDeviceTokenFromData:newDeviceToken];
     [currentInstallation saveInBackground];
     
     // If they allow it here, and current user exists
@@ -80,12 +90,20 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    NSLog(@"!!!! PUSH PUSH PUSH!");
+    NSLog(@"***************** PUSHY TIME: %@", userInfo);
     [PFPush handlePush:userInfo];
+    [self launchMatchmaking:userInfo[@"matchId"]];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     NSLog(@"ERROR REGISTER %@", error);
+}
+
+- (void)launchMatchmaking:(NSString*)matchId {
+    if ([[self.rootNavigationController.viewControllers lastObject] class] == [MatchmakingViewController class]) return;
+    MatchmakingViewController * matchmaking = [MatchmakingViewController new];
+    matchmaking.autoconnectToMatchId = matchId;
+    [self.rootNavigationController pushViewController:matchmaking animated:YES];
 }
 
 // getting a call, pause the game

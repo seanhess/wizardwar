@@ -93,9 +93,9 @@
     [self didUpdateLocation];
     
     // CHALLENGES
-    [ChallengeService.shared.updated subscribeNext:^(id x) {
-        NSLog(@"UPDATED CHALLENGES");
+    [ChallengeService.shared.updated subscribeNext:^(Challenge *challenge) {
         [wself.tableView reloadData];
+        [wself checkAutoconnectChallenge:challenge];
     }];
 }
 
@@ -184,6 +184,14 @@
     // for now, show every user in the system
     // wait, this isn't a solution
     return UserService.shared.allUsers.allValues;
+}
+
+
+#pragma mark - Challenges
+-(void)checkAutoconnectChallenge:(Challenge*)challenge {
+    if ([challenge.matchId isEqualToString:self.autoconnectToMatchId]) {
+        [self joinMatch:challenge];
+    }
 }
 
 
