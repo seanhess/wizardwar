@@ -45,7 +45,7 @@
                                     sharegroup:nil
                                  multiSampling:NO
                                numberOfSamples:0];
-
+    
     // Multiple Touches enabled
     [glView setMultipleTouchEnabled:YES];
 
@@ -82,8 +82,13 @@
     CCFileUtils *sharedFileUtils = [CCFileUtils sharedFileUtils];
     [sharedFileUtils setEnableFallbackSuffixes:NO];				// Default: NO. No fallback suffixes are going to be used
     [sharedFileUtils setiPhoneRetinaDisplaySuffix:@"-hd"];		// Default on iPhone RetinaDisplay is "-hd"
-    [sharedFileUtils setiPadSuffix:@"-ipad"];					// Default on iPad is "ipad"
-    [sharedFileUtils setiPadRetinaDisplaySuffix:@"-ipadhd"];	// Default on iPad RetinaDisplay is "-ipadhd"
+    [sharedFileUtils setiPadSuffix:@""];                        // Default on iPad is "ipad"
+    [sharedFileUtils setiPadRetinaDisplaySuffix:@"-hd"];        // Default on iPad RetinaDisplay is "-ipadhd"
+    
+    // the ipads are TALLER than the iphones
+    // so we need to fit it in    
+    if (bounds.size.width > 700) // ipad-like
+        director.view.contentScaleFactor = director.view.contentScaleFactor / 2.1;
     
     // Assume that PVR images have premultiplied alpha
     [CCTexture2D PVRImagesHavePremultipliedAlpha:YES];

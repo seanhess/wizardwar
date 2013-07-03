@@ -7,16 +7,28 @@
 //
 
 #import "Units.h"
+#import "cocos2d.h"
 
 @implementation Units
 
--(id)initWithZeroY:(CGFloat)zeroY min:(CGFloat)min max:(CGFloat)max {
+// NOOOTEE! size is not correct, because of the content scale!
+-(id)init {
     if ((self=[super init])) {
-        NSLog(@"UNITS %f %f", min, max);
-        self.min = min;
-        self.max = max;
-        self.width = max - min;
-        self.zeroY = zeroY;
+        
+        CGFloat w;
+        CGSize size = [CCDirector sharedDirector].winSize;
+        if (size.height < 700)
+            w = size.height;
+        else
+            w = 480;
+        CGFloat h = 320;
+        
+        self.min = 75;
+        self.max = w-75;
+        // this should be centered instead!!!
+        self.zeroY = h/2 - 40;
+        self.width = self.max - self.min;
+        self.maxY = 320;
     }
     return self;
 }

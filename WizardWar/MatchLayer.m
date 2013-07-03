@@ -31,8 +31,7 @@
 
 #import <ReactiveCocoa.h>
 
-#define INDICATOR_PADDING_X 150
-#define INDICATOR_PADDING_Y 20
+#define INDICATOR_PADDING_Y 40
 
 @interface MatchLayer () <CCTouchOneByOneDelegate, MatchDelegate>
 @property (nonatomic, strong) Match * match;
@@ -56,6 +55,9 @@
 -(id)initWithMatch:(Match*)match size:(CGSize)size {
     if ((self = [super init])) {
         // background
+        
+        [self addChild:[CCLayerColor layerWithColor:ccc4(66, 66, 66, 255)]];
+        
         self.background = [CCSprite spriteWithFile:@"background-cave.png"];
         self.background.anchorPoint = ccp(0,0);
         [self addChild:self.background];
@@ -76,9 +78,7 @@
         self.indicators = [CCLayer node];
         [self addChild:self.indicators];
         
-        CGFloat zeroY = 100;
-        CGFloat wizardOffset = 75;
-        self.units = [[Units alloc] initWithZeroY:zeroY min:wizardOffset max:size.width-wizardOffset];
+        self.units = [[Units alloc] init];
         
         // LIFE MANA INDICATORS add two of them to the right spot
         LifeIndicatorNode * player1Indicator = [LifeIndicatorNode node];
@@ -87,8 +87,8 @@
         player1Indicator.match = self.match;
         player2Indicator.match = self.match;
         
-        player1Indicator.position = ccp(INDICATOR_PADDING_X, size.height - INDICATOR_PADDING_Y);
-        player2Indicator.position = ccp(size.width - INDICATOR_PADDING_X, size.height - INDICATOR_PADDING_Y);
+        player1Indicator.position = ccp(self.units.min, self.units.maxY - INDICATOR_PADDING_Y);
+        player2Indicator.position = ccp(self.units.max, self.units.maxY - INDICATOR_PADDING_Y);
         
         [self.indicators addChild:player1Indicator];
         [self.indicators addChild:player2Indicator];

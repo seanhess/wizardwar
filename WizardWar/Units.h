@@ -14,10 +14,10 @@
 #define UNITS_MID (UNITS_DISTANCE/2.0)
 
 @interface Units : NSObject
--(id)initWithZeroY:(CGFloat)zeroY min:(CGFloat)min max:(CGFloat)max;
 @property (nonatomic) CGFloat min;
 @property (nonatomic) CGFloat max;
 @property (nonatomic) CGFloat width;
 @property (nonatomic) CGFloat zeroY;
+@property (nonatomic) CGFloat maxY;
 -(CGFloat)toX:(CGFloat)units;
 @end
