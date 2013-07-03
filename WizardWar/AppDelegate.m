@@ -14,6 +14,7 @@
 #import "LandingViewController.h"
 #import "MainNavViewController.h"
 #import "AppStyle.h"
+#import "UserService.h"
 #import <Parse/Parse.h>
 
 // The director should belong to the app delegate or a singleton
@@ -50,6 +51,7 @@
     // PARSE
     [Parse setApplicationId:@"3hsi88WR19iXGN11miDSH8B031uqyoBYBXHQe9bo" clientKey:@"CjkxlkZw0YOMdzdjJzhHfQm4vkPrA2ZWhY9n2Nfo"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeSound];
     
     
     //    NSLog(@"FONT: %@",[UIFont fontNamesForFamilyName:@"ComicZineOT"]);
@@ -57,6 +59,33 @@
     //    NSLog(@"FAMLIES %@", [UIFont familyNames]);
     
     return YES;
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken
+{
+    
+    NSString *deviceToken = [[newDeviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    deviceToken = [deviceToken stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    NSLog(@"MY VERY SPECIAL deviceToken=%@", deviceToken);    
+    
+    // Store the deviceToken in the current installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];    
+    [currentInstallation setDeviceToken:deviceToken];
+    [[PFInstallation currentInstallation] saveInBackground];
+    [currentInstallation saveInBackground];
+    
+    // If they allow it here, and current user exists
+    [[UserService shared] saveDeviceToken:deviceToken];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    NSLog(@"!!!! PUSH PUSH PUSH!");
+    [PFPush handlePush:userInfo];
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"ERROR REGISTER %@", error);
 }
 
 // getting a call, pause the game

@@ -14,6 +14,7 @@
     [encoder encodeObject:self.name forKey:@"name"];
     [encoder encodeObject:self.userId forKey:@"userId"];
     [encoder encodeObject:@(self.friendCount) forKey:@"friendCount"];
+    [encoder encodeObject:self.deviceToken forKey:@"deviceToken"];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder {
@@ -21,16 +22,19 @@
         self.name = [decoder decodeObjectForKey:@"name"];
         self.userId = [decoder decodeObjectForKey:@"userId"];
         self.friendCount = [[decoder decodeObjectForKey:@"friendCount"] intValue];
+        self.deviceToken = [decoder decodeObjectForKey:@"deviceToken"];
     }
     return self;
 }
 
 -(NSDictionary*)toObject {
-    NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:[self dictionaryWithValuesForKeys:@[@"name", @"userId"]]];
-    dict[@"location"] = @{
-        @"latitude": @(self.location.coordinate.latitude),
-        @"longitude": @(self.location.coordinate.longitude)
-    };
+    NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:[self dictionaryWithValuesForKeys:@[@"name", @"userId", @"deviceToken"]]];
+    if (self.location.coordinate.latitude && self.location.coordinate.longitude) {
+        dict[@"location"] = @{
+            @"latitude": @(self.location.coordinate.latitude),
+            @"longitude": @(self.location.coordinate.longitude)
+        };
+    }
     return dict;
 };
 

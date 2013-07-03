@@ -24,5 +24,8 @@
 - (BOOL)isAuthenticated;
 - (User*)newUserWithName:(NSString*)name;
 - (void)saveCurrentUser:(User*)user;
+- (NSString*)userId; // my eventual user id
+- (User*)userWithId:(NSString*)userId;
+- (void)saveDeviceToken:(NSString*)deviceToken;
 
 @end

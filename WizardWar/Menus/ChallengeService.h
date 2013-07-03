@@ -18,6 +18,6 @@
 
 + (ChallengeService *)shared;
 - (void)connect;
-- (Challenge*)user:(User*)user challengeOpponent:(User*)opponent;
+- (Challenge*)user:(User*)user challengeOpponent:(User*)opponent isRemote:(BOOL)isRemote;
 
 @end

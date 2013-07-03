@@ -11,6 +11,7 @@
 #import "Challenge.h"
 #import "UserService.h"
 #import "LobbyService.h"
+#import <Parse/Parse.h>
 
 @interface ChallengeService ()
 @property (nonatomic) BOOL connected;
@@ -55,14 +56,11 @@
     Challenge * challenge = [Challenge new];
     [challenge setValuesForKeysWithDictionary:snapshot.value];
     
-    NSLog(@"*** NEW CHALLENGE");
-    
     if ([challenge.main.userId isEqualToString:UserService.shared.currentUser.userId] || [challenge.opponent.userId isEqualToString:UserService.shared.currentUser.userId]) {
-        NSLog(@" ok ok ok");        
         
         // Uh oh.. If the challenge comes in before
-        challenge.main = [LobbyService.shared userWithId:challenge.main.userId];
-        challenge.opponent = [LobbyService.shared userWithId:challenge.opponent.userId];        
+        challenge.main = [UserService.shared userWithId:challenge.main.userId];
+        challenge.opponent = [UserService.shared userWithId:challenge.opponent.userId];
         
         self.myChallenges[challenge.matchId] = challenge;
         [self.updated sendNext:self.myChallenges];
@@ -76,7 +74,7 @@
     }
 }
 
-- (Challenge*)user:(User*)user challengeOpponent:(User*)opponent {
+- (Challenge*)user:(User*)user challengeOpponent:(User*)opponent isRemote:(BOOL)isRemote {
     Challenge * challenge = [Challenge new];
     challenge.main = user;
     challenge.opponent = opponent;
@@ -85,7 +83,27 @@
     [child onDisconnectRemoveValue];
     [child setValue:challenge.toObject];
     
+    if (isRemote) {
+        [self notifyChallenge:challenge];
+    }
+    
     return challenge;
+}
+
+- (void)notifyChallenge:(Challenge*)challenge {
+    
+    if (!challenge.opponent.deviceToken) {
+        NSLog(@"CANNOT PUSH! no device token");
+        return;
+    }
+    
+    // Create our Installation query
+    PFQuery *pushQuery = [PFInstallation query];
+    [pushQuery whereKey:@"deviceType" equalTo:@"ios"];
+    [pushQuery whereKey:@"deviceToken" equalTo:challenge.opponent.deviceToken];
+    
+    // Send push notification to query
+    [PFPush sendPushMessageToQueryInBackground:pushQuery withMessage:@"Hello World!"];
 }
 
 

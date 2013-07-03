@@ -13,6 +13,7 @@
 @interface User : NSObject <Objectable>
 @property (strong, nonatomic) NSString * name;
 @property (strong, nonatomic) NSString * userId;
+@property (strong, nonatomic) NSString * deviceToken;
 
 // Lobby propertyes
 @property (nonatomic) CLLocation * location;

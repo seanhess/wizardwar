@@ -328,18 +328,13 @@
 }
 
 - (void)didSelectUser:(User*)user {
+    
+    BOOL isOnline = [LobbyService.shared userIsOnline:user];
 
     // Issue the challenge
-    if ([LobbyService.shared userIsOnline:user]) {
-        Challenge * challenge = [ChallengeService.shared user:self.currentUser challengeOpponent:user];
-        [self joinMatch:challenge];
-        [UserFriendService.shared user:UserService.shared.currentUser addChallenge:challenge];
-    }
-    
-    // Or send a push notification
-    else {
-        NSLog(@"PUSH NOTIFICATION BABY");
-    }
+    Challenge * challenge = [ChallengeService.shared user:self.currentUser challengeOpponent:user isRemote:!isOnline];
+    [self joinMatch:challenge];
+    [UserFriendService.shared user:UserService.shared.currentUser addChallenge:challenge];
 }
 
 - (void)didSelectChallenge:(Challenge*)challenge {

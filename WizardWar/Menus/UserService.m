@@ -12,6 +12,7 @@
 
 @interface UserService ()
 @property (nonatomic, strong) Firebase * node;
+@property (nonatomic, strong) NSString * deviceToken;
 @end
 
 @implementation UserService
@@ -94,11 +95,26 @@
 - (User*)newUserWithName:(NSString*)name {
     User * user = [User new];
     user.name = name;
-    user.userId = [UIDevice currentDevice].identifierForVendor.UUIDString;
+    user.userId = self.userId;
+    user.deviceToken = self.deviceToken;
     return user;
-    
 }
 
+- (NSString*)userId {
+    return [UIDevice currentDevice].identifierForVendor.UUIDString;
+}
+
+- (User*)userWithId:(NSString*)userId {
+    return [self.allUsers objectForKey:userId];
+}
+
+- (void)saveDeviceToken:(NSString*)deviceToken {
+    self.deviceToken = deviceToken;
+    if (self.currentUser) {
+        self.currentUser.deviceToken = self.deviceToken;
+        [self saveCurrentUser:self.currentUser];
+    }
+}
 
 
 @end
