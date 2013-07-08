@@ -55,8 +55,9 @@
 
 - (IBAction)didTapSetName:(id)sender {
     NSString * name = self.nameField.text;
-    User * user = [UserService.shared newUserWithName:name];
-    [UserService.shared saveCurrentUser:user];
+    User * user = UserService.shared.currentUser;
+    user.name = name;
+    [UserService.shared saveCurrentUser];
     
     [self.delegate didSubmitAccountForm:name];
 }

@@ -13,19 +13,23 @@
 
 @interface UserService : NSObject
 
+// currentUser ALWAYS exists with at least the userId
 @property (nonatomic, strong) User * currentUser;
 @property (nonatomic, readonly) Wizard * currentWizard;
-@property (nonatomic, strong) NSMutableDictionary * allUsers;
-@property (nonatomic, strong) RACSubject * updated;
+@property (nonatomic, readonly) NSString * userId;
 
 + (UserService *)shared;
 
+- (void)saveCurrentUser;
 - (void)connect;
+
 - (BOOL)isAuthenticated;
-- (User*)newUserWithName:(NSString*)name;
-- (void)saveCurrentUser:(User*)user;
-- (NSString*)userId; // my eventual user id
+
 - (User*)userWithId:(NSString*)userId;
-- (void)saveDeviceToken:(NSString*)deviceToken;
+
+- (NSPredicate*)predicateIsUser:(NSString*)userId;
+- (NSFetchRequest*)requestAllUsers;
+- (NSFetchRequest*)requestAllUsersButMe;
+- (NSFetchRequest*)requestFriends;
 
 @end

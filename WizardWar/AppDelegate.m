@@ -17,6 +17,7 @@
 #import "UserService.h"
 #import <Parse/Parse.h>
 #import "MatchmakingViewController.h"
+#import "ObjectStore.h"
 
 // The director should belong to the app delegate or a singleton
 // and you should manually unload or reload it
@@ -86,7 +87,8 @@
     [currentInstallation saveInBackground];
     
     // If they allow it here, and current user exists
-    [[UserService shared] saveDeviceToken:deviceToken];
+    [UserService.shared.currentUser setDeviceToken:deviceToken];
+    [UserService.shared saveCurrentUser];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
@@ -129,6 +131,7 @@
 -(void) applicationDidEnterBackground:(UIApplication*)application
 {
     NSLog(@"applicationDidEnterBackground");
+    [ObjectStore.shared saveContext];
     //	if( [navController_ visibleViewController] == director_ )
     //		[director_ stopAnimation];
 }
@@ -145,6 +148,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     //	CC_DIRECTOR_END();
+    [ObjectStore.shared saveContext];
     NSLog(@"applicationWillTerminate");
 }
 

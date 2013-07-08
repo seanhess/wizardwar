@@ -29,8 +29,9 @@
 #import "UserFriendService.h"
 #import <ReactiveCocoa.h>
 #import "ComicZineDoubleLabel.h"
+#import "ObjectStore.h"
 
-@interface MatchmakingViewController () <AccountFormDelegate>
+@interface MatchmakingViewController () <AccountFormDelegate, NSFetchedResultsControllerDelegate>
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
 @property (weak, nonatomic) IBOutlet UIView *accountView;
 
@@ -44,6 +45,8 @@
 
 @property (nonatomic, readonly) User * currentUser;
 @property (strong, nonatomic) MatchLayer * match;
+
+@property (strong, nonatomic) NSFetchedResultsController * friendResults;
 
 @end
 
@@ -69,39 +72,39 @@
 }
 
 - (void)connect {
-    [LocationService.shared connect];
-    [ChallengeService.shared connect];
-
-    __weak MatchmakingViewController * wself = self;
+    self.friendResults = [ObjectStore.shared fetchedResultsForRequest:[UserService.shared requestFriends]];
+    self.friendResults.delegate = self;
     
+    NSError *error = nil;
+    [self.friendResults performFetch:&error];
+    [self.tableView reloadData];
+    
+//    [LocationService.shared connect];
+//    [ChallengeService.shared connect];
+//
+//    __weak MatchmakingViewController * wself = self;
+//    
     // LOBBY
     self.accountView.hidden = YES;
-//    self.activityView.hidesWhenStopped = YES;
-//    if (!LobbyService.shared.joined)
-//        [self.activityView startAnimating];
-//    self.userLoginLabel.text = self.currentUser.name;
-//    [RACAble(LobbyService.shared, joined) subscribeNext:^(id x) {
-//        [self.activityView stopAnimating];
+//
+//    [LobbyService.shared.updated subscribeNext:^(id x) {
+//        [wself.tableView reloadData];
 //    }];
-    
-    [LobbyService.shared.updated subscribeNext:^(id x) {
-        [wself.tableView reloadData];
-    }];
-    
-    [UserService.shared.updated subscribeNext:^(id x) {
-        [wself.tableView reloadData];
-    }];
-    
-    [RACAble(LocationService.shared, location) subscribeNext:^(id x) {
-        [wself didUpdateLocation];
-    }];
-    [self didUpdateLocation];
-    
-    // CHALLENGES
-    [ChallengeService.shared.updated subscribeNext:^(Challenge *challenge) {
-        [wself.tableView reloadData];
-        [wself checkAutoconnectChallenge:challenge];
-    }];
+//    
+//    [UserService.shared.updated subscribeNext:^(id x) {
+//        [wself.tableView reloadData];
+//    }];
+//    
+//    [RACAble(LocationService.shared, location) subscribeNext:^(id x) {
+//        [wself didUpdateLocation];
+//    }];
+//    [self didUpdateLocation];
+//    
+//    // CHALLENGES
+//    [ChallengeService.shared.updated subscribeNext:^(Challenge *challenge) {
+//        [wself.tableView reloadData];
+//        [wself checkAutoconnectChallenge:challenge];
+//    }];
 }
 
 
@@ -125,12 +128,22 @@
     [self joinLobby];
 }
 
+#pragma mark NSFetchedResultsControllerDelegate methods
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView reloadData];
+}
+
+
 
 #pragma mark - Location
 -(void)didUpdateLocation {
     
     if (LocationService.shared.hasLocation) {
-        self.currentUser.location = LocationService.shared.location;
+        CLLocation * location = LocationService.shared.location;
+        self.currentUser.locationLongitude = location.coordinate.longitude;
+        self.currentUser.locationLatitude = location.coordinate.latitude;
     }
     
     if (LocationService.shared.hasLocation || LocationService.shared.denied) {
@@ -179,17 +192,18 @@
     }];
     
     return [unsortedFriends sortedArrayUsingComparator:^NSComparisonResult(User * user, User * buser) {
-        if (user.friendCount > buser.friendCount) return NSOrderedAscending;
-        else if (user.friendCount < buser.friendCount) return NSOrderedDescending;
+        if (user.friendPoints > buser.friendPoints) return NSOrderedAscending;
+        else if (user.friendPoints < buser.friendPoints) return NSOrderedDescending;
         else return NSOrderedSame;
     }];
 }
 
 - (NSArray*)strangers {
-    return [UserService.shared.allUsers.allValues filter:^BOOL(User*user) {
-        NSLog(@"USER SERVICE USER: %@ local=%i dt=%i", user.name, [LobbyService.shared userIsLocal:user], (user.deviceToken.length > 0));
-        return (![LobbyService.shared userIsLocal:user] && (user.deviceToken.length > 0));
-    }];
+    return nil;
+//    return [UserService.shared.allUsers.allValues filter:^BOOL(User*user) {
+//        NSLog(@"USER SERVICE USER: %@ local=%i dt=%i", user.name, [LobbyService.shared userIsLocal:user], (user.deviceToken.length > 0));
+//        return (![LobbyService.shared userIsLocal:user] && (user.deviceToken.length > 0));
+//    }];
 }
 
 
@@ -216,20 +230,21 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return [self.challenges count];
-    } else if (section == 1){
-        return [self.localUsers count];
-    } else if (section == 2) {
-        return [self.friends count];
-    } else {
-        return [self.strangers count];
-    }
+    return [[self.friendResults.sections objectAtIndex:0] numberOfObjects];
+//    if (section == 0) {
+//        return [self.challenges count];
+//    } else if (section == 1){
+//        return [self.localUsers count];
+//    } else if (section == 2) {
+//        return [self.friends count];
+//    } else {
+//        return [self.strangers count];
+//    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -238,10 +253,11 @@
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (section == 0) return @"Challenges";
-    else if (section == 1) return @"Local Users";
-    else if (section == 2) return @"Friends";
-    else if (section == 3) return @"Strangers";
+    return @"Friends";
+//    if (section == 0) return @"Challenges";
+//    else if (section == 1) return @"Local Users";
+//    else if (section == 2) return @"Friends";
+//    else if (section == 3) return @"Strangers";
     return nil;
 }
 
@@ -255,6 +271,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    User * user = [self.friendResults objectAtIndexPath:[NSIndexPath indexPathForItem:indexPath.row inSection:0]];
+    return [self tableView:tableView userCellForUser:user];
+    
+    return nil;
+    
+    
     if (indexPath.section == 0) {
         return [self tableView:tableView challengeCellForRowAtIndexPath:indexPath];
     } else {
@@ -297,7 +319,7 @@
     accessory.textAlignment = NSTextAlignmentRight;
     cell.accessoryView = accessory;
     
-    NSString * games = [NSString stringWithFormat:@"%i Games", user.friendCount];
+    NSString * games = [NSString stringWithFormat:@"%i Games", user.friendPoints];
     
     CLLocationDistance dl = [LocationService.shared distanceFrom:user.location];
     NSString * distance = (dl > 0) ? [NSString stringWithFormat:@"%@, ", [LocationService.shared distanceString:dl]] : @"";

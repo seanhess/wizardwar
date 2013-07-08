@@ -164,7 +164,6 @@
 		785FBED2177261BD0021AEE5 /* PartyInviteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEBE177261BD0021AEE5 /* PartyInviteViewController.xib */; };
 		785FBED3177261BD0021AEE5 /* PartyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEC0177261BD0021AEE5 /* PartyViewController.m */; };
 		785FBED4177261BD0021AEE5 /* PartyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEC1177261BD0021AEE5 /* PartyViewController.xib */; };
-		785FBED5177261BD0021AEE5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEC3177261BD0021AEE5 /* User.m */; };
 		785FBEDC1772628C0021AEE5 /* LoveYaLikeASister.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 785FBED91772628C0021AEE5 /* LoveYaLikeASister.ttf */; };
 		785FBEDD1772628C0021AEE5 /* LoveYaLikeASisterSolid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEDA1772628C0021AEE5 /* LoveYaLikeASisterSolid.ttf */; };
 		785FBEE3177263850021AEE5 /* AppStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEE2177263850021AEE5 /* AppStyle.m */; };
@@ -211,6 +210,10 @@
 		78ABA8B9175A74A4003D2F23 /* windblast-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78ABA8B7175A74A2003D2F23 /* windblast-hd.plist */; };
 		78ABA8BA175A74A4003D2F23 /* windblast-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 78ABA8B8175A74A3003D2F23 /* windblast-hd.png */; };
 		78C46B5A17562CAC0077EE98 /* MultiplayerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C46B5917562CAC0077EE98 /* MultiplayerService.m */; };
+		78C5CD9F178AFDC400CDCC76 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C5CD9E178AFDC400CDCC76 /* CoreData.framework */; };
+		78C5CDA2178AFDF100CDCC76 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78C5CDA0178AFDF100CDCC76 /* DataModel.xcdatamodeld */; };
+		78C5CDA6178AFFA000CDCC76 /* ObjectStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C5CDA5178AFFA000CDCC76 /* ObjectStore.m */; };
+		78C5CDDD178B034C00CDCC76 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C5CDDC178B034C00CDCC76 /* User.m */; };
 		78D08558176A4AC500EDC405 /* SpellHeal.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D08557176A4AC400EDC405 /* SpellHeal.m */; };
 		78D0855B176A4B2800EDC405 /* EffectHeal.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D0855A176A4B2800EDC405 /* EffectHeal.m */; };
 		78D0855E176A4C7C00EDC405 /* EffectSleep.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D0855D176A4C7C00EDC405 /* EffectSleep.m */; };
@@ -639,8 +642,6 @@
 		785FBEBF177261BD0021AEE5 /* PartyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartyViewController.h; sourceTree = "<group>"; };
 		785FBEC0177261BD0021AEE5 /* PartyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartyViewController.m; sourceTree = "<group>"; };
 		785FBEC1177261BD0021AEE5 /* PartyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PartyViewController.xib; sourceTree = "<group>"; };
-		785FBEC2177261BD0021AEE5 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		785FBEC3177261BD0021AEE5 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		785FBED8177262320021AEE5 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
 		785FBED91772628C0021AEE5 /* LoveYaLikeASister.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LoveYaLikeASister.ttf; sourceTree = "<group>"; };
 		785FBEDA1772628C0021AEE5 /* LoveYaLikeASisterSolid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LoveYaLikeASisterSolid.ttf; sourceTree = "<group>"; };
@@ -710,6 +711,12 @@
 		78ABA8B8175A74A3003D2F23 /* windblast-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "windblast-hd.png"; path = "windblast-hd/windblast-hd.png"; sourceTree = "<group>"; };
 		78C46B5817562CAC0077EE98 /* MultiplayerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiplayerService.h; sourceTree = "<group>"; };
 		78C46B5917562CAC0077EE98 /* MultiplayerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiplayerService.m; sourceTree = "<group>"; };
+		78C5CD9E178AFDC400CDCC76 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		78C5CDA1178AFDF100CDCC76 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		78C5CDA4178AFFA000CDCC76 /* ObjectStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectStore.h; sourceTree = "<group>"; };
+		78C5CDA5178AFFA000CDCC76 /* ObjectStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectStore.m; sourceTree = "<group>"; };
+		78C5CDDB178B034C00CDCC76 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		78C5CDDC178B034C00CDCC76 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		78D08556176A4AC400EDC405 /* SpellHeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellHeal.h; sourceTree = "<group>"; };
 		78D08557176A4AC400EDC405 /* SpellHeal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellHeal.m; sourceTree = "<group>"; };
 		78D08559176A4B2800EDC405 /* EffectHeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectHeal.h; sourceTree = "<group>"; };
@@ -903,6 +910,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78C5CD9F178AFDC400CDCC76 /* CoreData.framework in Frameworks */,
 				781372E1177E32D400486899 /* Social.framework in Frameworks */,
 				781372DF177E32CD00486899 /* libsqlite3.dylib in Frameworks */,
 				781372DD177E32C600486899 /* AdSupport.framework in Frameworks */,
@@ -1316,8 +1324,6 @@
 				785FBEAD177261BD0021AEE5 /* LocalParty.m */,
 				785FBEBA177261BD0021AEE5 /* Party.h */,
 				785FBEBB177261BD0021AEE5 /* Party.m */,
-				785FBEC2177261BD0021AEE5 /* User.h */,
-				785FBEC3177261BD0021AEE5 /* User.m */,
 				785FBEA5177261BD0021AEE5 /* InstagramEnemy.h */,
 				785FBEA6177261BD0021AEE5 /* InstagramEnemy.m */,
 				785FBEA7177261BD0021AEE5 /* Interaction.h */,
@@ -1385,6 +1391,18 @@
 				781234DF174AE4C0008EDE88 /* Objectable.h */,
 			);
 			name = Service;
+			sourceTree = "<group>";
+		};
+		78C5CDA3178AFF6C00CDCC76 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				78C5CDA0178AFDF100CDCC76 /* DataModel.xcdatamodeld */,
+				78C5CDDB178B034C00CDCC76 /* User.h */,
+				78C5CDDC178B034C00CDCC76 /* User.m */,
+				78C5CDA4178AFFA000CDCC76 /* ObjectStore.h */,
+				78C5CDA5178AFFA000CDCC76 /* ObjectStore.m */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		78D28BEB177F70D000FF5D6E /* Style */ = {
@@ -1536,6 +1554,7 @@
 				78F6B39E1746B04600AA070D /* libicucore.dylib */,
 				78F6B3821746AF2000AA070D /* libz.dylib */,
 				781372E3177E331C00486899 /* Parse */,
+				78C5CD9E178AFDC400CDCC76 /* CoreData.framework */,
 				784D3BF51777C832009945F8 /* CoreLocation.framework */,
 				78F6B3961746AFDE00AA070D /* Firebase.framework */,
 				78F6B3941746AFAC00AA070D /* GameKit.framework */,
@@ -1567,6 +1586,7 @@
 				785FBED8177262320021AEE5 /* Color.h */,
 				78F6B3C21746B29C00AA070D /* WizardDirector.h */,
 				78F6B3C31746B29C00AA070D /* WizardDirector.m */,
+				78C5CDA3178AFF6C00CDCC76 /* Data */,
 				785FBEA4177261BD0021AEE5 /* Menus */,
 				787A2A82174E81AC004C4FDB /* Service */,
 				78F6B3BD1746B27B00AA070D /* Match */,
@@ -2104,7 +2124,6 @@
 				785FBED0177261BD0021AEE5 /* Party.m in Sources */,
 				785FBED1177261BD0021AEE5 /* PartyInviteViewController.m in Sources */,
 				785FBED3177261BD0021AEE5 /* PartyViewController.m in Sources */,
-				785FBED5177261BD0021AEE5 /* User.m in Sources */,
 				785FBEE3177263850021AEE5 /* AppStyle.m in Sources */,
 				784D3BDE1774F753009945F8 /* LobbyService.m in Sources */,
 				784D3BE1177501E9009945F8 /* UserService.m in Sources */,
@@ -2203,6 +2222,9 @@
 				781B4CA017839C00002551CA /* TGAlib.m in Sources */,
 				781B4CA117839C00002551CA /* TransformUtils.m in Sources */,
 				781B4CA217839C00002551CA /* ZipUtils.m in Sources */,
+				78C5CDA2178AFDF100CDCC76 /* DataModel.xcdatamodeld in Sources */,
+				78C5CDA6178AFFA000CDCC76 /* ObjectStore.m in Sources */,
+				78C5CDDD178B034C00CDCC76 /* User.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2358,6 +2380,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		78C5CDA0178AFDF100CDCC76 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				78C5CDA1178AFDF100CDCC76 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 78C5CDA1178AFDF100CDCC76 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 78F6B1DB1746AD8900AA070D /* Project object */;
 }

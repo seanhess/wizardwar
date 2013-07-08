@@ -1,0 +1,57 @@
+//
+//  User.m
+//  WizardWar
+//
+//  Created by Sean Hess on 7/8/13.
+//  Copyright (c) 2013 The LAB. All rights reserved.
+//
+
+#import "User.h"
+
+
+@implementation User
+
+@dynamic deviceToken;
+@dynamic isOnline;
+@dynamic locationLatitude;
+@dynamic locationLongitude;
+@dynamic name;
+@dynamic updated;
+@dynamic userId;
+@dynamic friendPoints;
+
+-(NSDictionary*)toObject {
+    return [self dictionaryWithValuesForKeys:@[@"name", @"userId", @"deviceToken", @"locationLongitude", @"locationLatitude"]];
+};
+
+- (void)setValuesForKeysWithDictionary:(NSDictionary *)keyedValues {
+    NSMutableDictionary * values = [NSMutableDictionary dictionaryWithDictionary:keyedValues];
+    [super setValuesForKeysWithDictionary:values];
+}
+
+- (NSString*)description {
+    return [NSString stringWithFormat:@"%@ name:%@ count:%i", super.description, self.name, self.friendPoints];
+}
+
+- (CLLocation *)location {
+    return [[CLLocation alloc] initWithLatitude:self.locationLatitude longitude:self.locationLongitude];
+}
+
+//- (void)encodeWithCoder:(NSCoder *)encoder {
+//    [encoder encodeObject:self.name forKey:@"name"];
+//    [encoder encodeObject:self.userId forKey:@"userId"];
+//    [encoder encodeObject:@(self.friendCount) forKey:@"friendCount"];
+//    [encoder encodeObject:self.deviceToken forKey:@"deviceToken"];
+//}
+//
+//- (id)initWithCoder:(NSCoder *)decoder {
+//    if((self = [super init])) {
+//        self.name = [decoder decodeObjectForKey:@"name"];
+//        self.userId = [decoder decodeObjectForKey:@"userId"];
+//        self.friendCount = [[decoder decodeObjectForKey:@"friendCount"] intValue];
+//        self.deviceToken = [decoder decodeObjectForKey:@"deviceToken"];
+//    }
+//    return self;
+//}
+
+@end

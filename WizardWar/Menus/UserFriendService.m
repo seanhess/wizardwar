@@ -28,7 +28,7 @@
 }
 
 -(void)user:(User *)user addFriend:(User *)friend {
-    friend.friendCount++;
+    friend.friendPoints++;
     NSLog(@"Add Friend: %@", friend);
     [self.friends setObject:friend forKey:user.userId];
     [self saveFriends:self.friends];
