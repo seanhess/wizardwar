@@ -151,7 +151,7 @@
     // valid users include:
     NSFetchRequest * request = [NSFetchRequest fetchRequestWithEntityName:self.entityName];
     request.predicate = [NSPredicate predicateWithFormat:@"name != nil"];
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:NO]];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
     return request;
 }
 
@@ -164,12 +164,14 @@
 
 - (NSFetchRequest*)requestFriends {
     
-    return [self requestAllUsers];
-    
     NSFetchRequest * request = [self requestAllUsersButMe];
 //    NSPredicate * hasDeviceToken = [NSPredicate predicateWithFormat:@"deviceToken != nil"];    
     request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[[self predicateIsFriend], request.predicate]];
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"friendPoints" ascending:NO]];
+    
+    NSSortDescriptor * sortFriendPoints = [NSSortDescriptor sortDescriptorWithKey:@"friendPoints" ascending:NO];
+    NSSortDescriptor * sortIsOnline = [NSSortDescriptor sortDescriptorWithKey:@"isOnline" ascending:NO];
+    request.sortDescriptors = @[sortIsOnline, sortFriendPoints];
+    
     return request;
 }
 

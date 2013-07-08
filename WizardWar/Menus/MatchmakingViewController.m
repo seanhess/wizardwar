@@ -32,6 +32,7 @@
 #import <ReactiveCocoa.h>
 #import "ComicZineDoubleLabel.h"
 #import "ObjectStore.h"
+#import "UserCell.h"
 
 @interface MatchmakingViewController () <AccountFormDelegate, NSFetchedResultsControllerDelegate>
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
@@ -50,6 +51,7 @@
 
 @property (strong, nonatomic) NSFetchedResultsController * friendResults;
 @property (strong, nonatomic) NSFetchedResultsController * localResults;
+@property (strong, nonatomic) NSFetchedResultsController * allResults;
 
 @end
 
@@ -58,6 +60,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Custom Table Cells!
+    [self.tableView registerNib:[UINib nibWithNibName:@"UserCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"UserCell"];
 
     self.title = @"Matchmaking";
     [self.navigationController setNavigationBarHidden:NO animated:YES];
@@ -84,6 +89,12 @@
     self.localResults = [ObjectStore.shared fetchedResultsForRequest:[LobbyService.shared requestCloseUsers]];
     self.localResults.delegate = self;
     [self.localResults performFetch:&error];
+    
+    // DEBUG ONLY: show all users. Uncomment and change # of sections to 4
+    self.allResults = [ObjectStore.shared fetchedResultsForRequest:[UserService.shared requestAllUsersButMe]];
+    self.allResults.delegate = self;
+    [self.allResults performFetch:&error];
+    
 
     // I think friends should be showing up faster, no?
     [self.tableView reloadData];
@@ -95,16 +106,12 @@
 
     // LOBBY
     self.accountView.hidden = YES;
-
-//    [UserService.shared.updated subscribeNext:^(id x) {
-//        [wself.tableView reloadData];
-//    }];
     
     [RACAble(LocationService.shared, location) subscribeNext:^(id x) {
         [wself didUpdateLocation];
     }];
     [self didUpdateLocation];
-//
+    
 //    // CHALLENGES
 //    [ChallengeService.shared.updated subscribeNext:^(Challenge *challenge) {
 //        [wself.tableView reloadData];
@@ -135,10 +142,46 @@
 
 #pragma mark NSFetchedResultsControllerDelegate methods
 
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView beginUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+    
+    NSInteger sectionGlobal = 1;
+    if (controller == self.localResults) sectionGlobal = 1;
+    else if (controller == self.friendResults) sectionGlobal = 2;
+    else if (controller == self.allResults) sectionGlobal = 3;
+    
+    NSIndexPath * indexPathGlobal = [NSIndexPath indexPathForItem:indexPath.row inSection:sectionGlobal];
+    NSIndexPath * newIndexPathGlobal = [NSIndexPath indexPathForItem:newIndexPath.row inSection:sectionGlobal];
+    
+    if (type == NSFetchedResultsChangeInsert) {
+        [self.tableView insertRowsAtIndexPaths:@[newIndexPathGlobal] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+    else if (type == NSFetchedResultsChangeDelete) {
+        [self.tableView deleteRowsAtIndexPaths:@[indexPathGlobal] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+    else if (type == NSFetchedResultsChangeMove) {
+        // it already knows its user, just reload it
+        UserCell * cell = (UserCell*)[self.tableView cellForRowAtIndexPath:indexPathGlobal];
+        [cell reloadFromUser];
+        NSLog(@"MOVE %@ from=%@ to=%@", cell.user.name, indexPathGlobal, newIndexPathGlobal);
+        [self.tableView moveRowAtIndexPath:indexPathGlobal toIndexPath:newIndexPathGlobal];
+    }
+    else if (type == NSFetchedResultsChangeUpdate) {
+        UserCell * cell = (UserCell*)[self.tableView cellForRowAtIndexPath:indexPathGlobal];
+        NSLog(@"UPDATE %@", cell.user.name);
+        [cell reloadFromUser];
+    }
+}
+
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     NSLog(@"controllerDidChangeContent");
-    [self.tableView reloadData];
+//    [self.tableView reloadData];
+    [self.tableView endUpdates];
 }
 
 
@@ -206,7 +249,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -217,6 +260,8 @@
         return [[self.localResults.sections objectAtIndex:0] numberOfObjects];
     } else if (section == 2) {
         return [[self.friendResults.sections objectAtIndex:0] numberOfObjects];
+    } else if (section == 3) {
+        return [[self.allResults.sections objectAtIndex:0] numberOfObjects];
     } else {
         return 0;
     }
@@ -231,78 +276,54 @@
     if (section == 0) return @"Challenges";
     else if (section == 1) return @"Local Users (Online)";
     else if (section == 2) return @"Friends";
+    else if (section == 3) return @"All Users (Debug)";
     return nil;
 }
 
-//- (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section {
-//    return 0;
-//}
+- (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 0) return 0;
+    else if (section == 1) return 0;
+    else if (section == 2) return 0;
+    else if (section == 3) return 26;
+    return 0;
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 44;
+    return 54;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     if (indexPath.section == 0) {
         return [self tableView:tableView challengeCellForRowAtIndexPath:indexPath];
     } else {
-        NSIndexPath * localIndexPath = [NSIndexPath indexPathForItem:indexPath.row inSection:0];        
-        User * user = nil;
-
-        if (indexPath.section == 1) {
-            user = [self.localResults objectAtIndexPath:localIndexPath];
-        } else if (indexPath.section == 2) {
-            user = [self.friendResults objectAtIndexPath:localIndexPath];
-        } else {
-            return nil;
-        }
+        User * user = [self userForIndexPath:indexPath];
         return [self tableView:tableView userCellForUser:user];
     }
 }
 
+-(User*)userForIndexPath:(NSIndexPath*)indexPath {
+    NSIndexPath * localIndexPath = [NSIndexPath indexPathForItem:indexPath.row inSection:0];
+    User * user = nil;
+    if (indexPath.section == 1) {
+        user = [self.localResults objectAtIndexPath:localIndexPath];
+    } else if (indexPath.section == 2) {
+        user = [self.friendResults objectAtIndexPath:localIndexPath];
+    } else if (indexPath.section == 3) {
+        user = [self.allResults objectAtIndexPath:localIndexPath];
+    } 
+    return user;
+}
+
 -(UITableViewCell*)tableView:(UITableView *)tableView userCellForUser:(User*)user {
-    static NSString *CellIdentifier = @"UserCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    UIColor * backgroundColor = [UIColor colorWithWhite:0.784 alpha:1.000];
+    UserCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserCell"];
     
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-        cell.contentView.backgroundColor = backgroundColor;
-        cell.textLabel.textColor = [UIColor colorWithWhite:0.149 alpha:1.000];
+        cell = [[UserCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UserCell"];
     }
     
-    cell.textLabel.text = user.name;
-    
-    if (user.isOnline)
-        cell.textLabel.textColor = [UIColor greenColor];
-    else
-        cell.textLabel.textColor = [UIColor darkTextColor];
-    
-    cell.imageView.image = [UIImage imageNamed:@"user.jpg"];
-    UILabel * accessory = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 43)];
+    [cell setUser:user];
 
-    if (user.isFriend)
-        accessory.text = @"FRIEND";
-    else
-        accessory.text = @"LOCAL";
-    
-    accessory.font = [UIFont boldSystemFontOfSize:14];
-    accessory.backgroundColor = backgroundColor;
-    accessory.textAlignment = NSTextAlignmentRight;
-    cell.accessoryView = accessory;
-    
-    NSString * games = [NSString stringWithFormat:@"%i Games", user.friendPoints];
-
-    NSString * distance = @"";
-    
-    if (user.isOnline) {
-        CLLocationDistance dl = [LocationService.shared distanceFrom:user.location];
-        distance = [NSString stringWithFormat:@"%@, ", [LocationService.shared distanceString:dl]];
-    }
-    
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@%@", distance, games];
     return cell;
 }
 
@@ -338,6 +359,9 @@
         [self didSelectUser:[self.localResults objectAtIndexPath:localIndexPath]];
     else if (indexPath.section == 2)
         [self didSelectUser:[self.friendResults objectAtIndexPath:localIndexPath]];
+    else if (indexPath.section == 3)
+        [self didSelectUser:[self.allResults objectAtIndexPath:localIndexPath]];
+    
     else {}
         
     

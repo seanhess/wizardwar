@@ -16,7 +16,6 @@
 @dynamic locationLatitude;
 @dynamic locationLongitude;
 @dynamic name;
-@dynamic updated;
 @dynamic userId;
 @dynamic friendPoints;
 @dynamic distance;
@@ -24,7 +23,7 @@
 @synthesize isClose;
 
 -(NSDictionary*)toObject {
-    return [self dictionaryWithValuesForKeys:@[@"name", @"userId", @"deviceToken", @"updated"]];
+    return [self dictionaryWithValuesForKeys:@[@"name", @"userId", @"deviceToken"]];
 };
 
 -(NSDictionary*)toLobbyObject {

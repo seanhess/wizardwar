@@ -165,7 +165,7 @@
 - (void)playMusic {
     SimpleAudioEngine *sae = [SimpleAudioEngine sharedEngine];
     if (sae != nil) {
-        [sae preloadBackgroundMusic:@"theme.wav"];
+        [sae preloadBackgroundMusic:@"theme.mp3"];
         [sae preloadBackgroundMusic:@"YouWon.mp3"];
         [sae preloadBackgroundMusic:@"YouLose2.mp3"];
         if (sae.willPlayBackgroundMusic) {
@@ -173,7 +173,7 @@
         }
     }
     
-    [sae playBackgroundMusic:@"theme.wav"];
+    [sae playBackgroundMusic:@"theme.mp3"];
 }
 
 - (IBAction)didTapBack:(id)sender {

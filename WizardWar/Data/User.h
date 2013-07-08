@@ -18,7 +18,6 @@
 @property (nonatomic) double locationLatitude;
 @property (nonatomic) double locationLongitude;
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic) NSTimeInterval updated;
 @property (nonatomic, retain) NSString * userId;
 @property (nonatomic) int16_t friendPoints;
 @property (nonatomic) CLLocationDistance distance;

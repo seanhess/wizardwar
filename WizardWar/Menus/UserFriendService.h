@@ -12,13 +12,10 @@
 
 @interface UserFriendService : NSObject
 
-@property (nonatomic, strong) NSMutableDictionary * friends;
-
 + (UserFriendService *)shared;
 
 -(void)user:(User*)user addFriend:(User*)friend;
 -(void)user:(User*)user addChallenge:(Challenge*)challenge;
--(void)clearFriends;
 
 
 @end

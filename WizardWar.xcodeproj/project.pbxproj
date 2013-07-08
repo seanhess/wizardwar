@@ -215,6 +215,8 @@
 		78C5CDDD178B034C00CDCC76 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C5CDDC178B034C00CDCC76 /* User.m */; };
 		78C5CDDF178B64B400CDCC76 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C5CDDE178B64B400CDCC76 /* Firebase.framework */; };
 		78C5CDE2178B656500CDCC76 /* FirebaseCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C5CDE1178B656500CDCC76 /* FirebaseCollection.m */; };
+		78C5CDE5178B74D700CDCC76 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C5CDE4178B74D700CDCC76 /* UserCell.m */; };
+		78C5CDE7178B74F900CDCC76 /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78C5CDE6178B74F900CDCC76 /* UserCell.xib */; };
 		78D08558176A4AC500EDC405 /* SpellHeal.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D08557176A4AC400EDC405 /* SpellHeal.m */; };
 		78D0855B176A4B2800EDC405 /* EffectHeal.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D0855A176A4B2800EDC405 /* EffectHeal.m */; };
 		78D0855E176A4C7C00EDC405 /* EffectSleep.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D0855D176A4C7C00EDC405 /* EffectSleep.m */; };
@@ -718,6 +720,9 @@
 		78C5CDDE178B64B400CDCC76 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
 		78C5CDE0178B656500CDCC76 /* FirebaseCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseCollection.h; sourceTree = "<group>"; };
 		78C5CDE1178B656500CDCC76 /* FirebaseCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseCollection.m; sourceTree = "<group>"; };
+		78C5CDE3178B74D600CDCC76 /* UserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCell.h; sourceTree = "<group>"; };
+		78C5CDE4178B74D700CDCC76 /* UserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCell.m; sourceTree = "<group>"; };
+		78C5CDE6178B74F900CDCC76 /* UserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
 		78D08556176A4AC400EDC405 /* SpellHeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellHeal.h; sourceTree = "<group>"; };
 		78D08557176A4AC400EDC405 /* SpellHeal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellHeal.m; sourceTree = "<group>"; };
 		78D08559176A4B2800EDC405 /* EffectHeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectHeal.h; sourceTree = "<group>"; };
@@ -1288,6 +1293,9 @@
 				785FBEB2177261BD0021AEE5 /* MatchmakingViewController.h */,
 				785FBEB3177261BD0021AEE5 /* MatchmakingViewController.m */,
 				785FBEB4177261BD0021AEE5 /* MatchmakingViewController.xib */,
+				78C5CDE3178B74D600CDCC76 /* UserCell.h */,
+				78C5CDE4178B74D700CDCC76 /* UserCell.m */,
+				78C5CDE6178B74F900CDCC76 /* UserCell.xib */,
 				785FBEB5177261BD0021AEE5 /* MenuButton.h */,
 				785FBEB6177261BD0021AEE5 /* MenuButton.m */,
 				785FBED6177261D00021AEE5 /* Service */,
@@ -2000,6 +2008,7 @@
 				78E22CB51782427500146D49 /* vine.mp3 in Resources */,
 				78E22CB61782427500146D49 /* windblast.mp3 in Resources */,
 				78E22CBA178255B700146D49 /* user.jpg in Resources */,
+				78C5CDE7178B74F900CDCC76 /* UserCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2225,6 +2234,7 @@
 				78C5CDA6178AFFA000CDCC76 /* ObjectStore.m in Sources */,
 				78C5CDDD178B034C00CDCC76 /* User.m in Sources */,
 				78C5CDE2178B656500CDCC76 /* FirebaseCollection.m in Sources */,
+				78C5CDE5178B74D700CDCC76 /* UserCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

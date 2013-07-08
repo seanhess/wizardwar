@@ -22,20 +22,13 @@
 -(id)init {
     self = [super init];
     if (self) {
-        self.friends = [self loadFriends];
     }
     return self;
 }
 
 -(void)user:(User *)user addFriend:(User *)friend {
     friend.friendPoints++;
-    NSLog(@"Add Friend: %@", friend);
-    [self.friends setObject:friend forKey:user.userId];
-    [self saveFriends:self.friends];
-    
-    // TESTING
-    NSMutableDictionary * friends = [self loadFriends];
-    NSLog(@"FRIENDS! %@", friends);
+    NSLog(@"Add Friend: %@=%i", friend.name, friend.friendPoints);
 }
 
 -(void)user:(User *)user addChallenge:(Challenge *)challenge {
@@ -44,28 +37,6 @@
         [self user:user addFriend:challenge.main];
     else
         [self user:user addFriend:challenge.opponent];
-}
-
--(NSString*)friendsFilePath {
-    NSString * directory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    return [directory stringByAppendingPathComponent:@"friends.plist"];
-}
-
--(void)saveFriends:(NSDictionary*)friends {
-    NSLog(@"SAVE FRIENDS");
-    BOOL success = [NSKeyedArchiver archiveRootObject:friends toFile:self.friendsFilePath];
-    if (!success) NSLog(@"ERROR! UserFriendService.saveFriends - did not save");
-}
-
--(NSMutableDictionary*)loadFriends {
-    NSMutableDictionary * friends = [NSKeyedUnarchiver unarchiveObjectWithFile:self.friendsFilePath];
-    if (!friends) friends = [NSMutableDictionary dictionary];
-    return friends;
-}
-
--(void)clearFriends {
-    self.friends = [NSMutableDictionary dictionary];
-    [self saveFriends:self.friends];
 }
 
 
