@@ -23,7 +23,7 @@
 // and you should manually unload or reload it
 
 @interface AppDelegate ()
-@property (nonatomic, strong) MatchmakingViewController * matches;
+//@property (nonatomic, strong) MatchmakingViewController * matches;
 @property (nonatomic, strong) CCDirectorIOS * director;
 @property (nonatomic, strong) UINavigationController * rootNavigationController;
 @end
@@ -112,7 +112,7 @@
 -(void) applicationWillResignActive:(UIApplication *)application
 {
     NSLog(@"applicationWillResignActive");
-    [self.matches disconnect];
+//    [self.matches disconnect];
     // disconnect here!
     //	if( [navController_ visibleViewController] == director_ )
     //		[director_ pause];
@@ -139,7 +139,7 @@
 -(void) applicationWillEnterForeground:(UIApplication*)application
 {
     NSLog(@"applicationWillEnterForeground");
-    [self.matches reconnect];
+//    [self.matches reconnect];
     //	if( [navController_ visibleViewController] == director_ )
     //		[director_ startAnimation];
 }

@@ -12,14 +12,13 @@
 #import "IdService.h"
 #import "NSArray+Functional.h"
 #import "LocationService.h"
+#import "UserService.h"
 
 // Just implement global people for this yo
 @interface LobbyService ()
 @property (nonatomic, strong) Firebase * lobby;
 @property (nonatomic, strong) User * currentUser;
 @property (nonatomic, strong) CLLocation * currentLocation;
-@property (nonatomic, strong) NSMutableDictionary * allUsers;
-@property (nonatomic, strong) NSMutableDictionary * closeUsers;
 @end
 
 // Use location is central to LOBBY
@@ -31,7 +30,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance = [[LobbyService alloc] init];
-        instance.updated = [RACSubject subject];
+//        instance.updated = [RACSubject subject];
         instance.joined = NO;
         
     });
@@ -42,16 +41,13 @@
 // so I don't get the updates too early
 - (void)connect {
     
-    if (!self.currentUser) {
-        NSLog(@"LobbyService: SKIP - wait until join lobby");
-        return;
-    }
+//    if (!self.currentUser) {
+//        NSLog(@"LobbyService: SKIP - wait until join lobby");
+//        return;
+//    }
     
     NSLog(@"CONNECT LobbyService");
     
-    // The LOBBY contains a list of users currently active in the game
-    self.closeUsers = [NSMutableDictionary dictionary];
-    self.allUsers = [NSMutableDictionary dictionary];
     self.lobby = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/lobby"];
     
     __weak LobbyService * wself = self;
@@ -70,47 +66,30 @@
 }
 
 -(void)onAdded:(FDataSnapshot *)snapshot {
-    User * user = [User new];
+    User * user = [UserService.shared userWithId:snapshot.name create:YES];
     [user setValuesForKeysWithDictionary:snapshot.value];
-    if ([user.name isEqualToString:self.currentUser.name]) {
-        self.joined = YES;
-    }
-    
-    else {
-        self.allUsers[snapshot.name] = user;
-        
-        if ([self userIsLocal:user]) {
-            NSLog(@" - close");
-            self.closeUsers[snapshot.name] = user;
-        }
-        else {
-            NSLog(@" - far");
-        }
-    
-        [self.updated sendNext:user];
-    }
+    user.isOnline = YES;
+    NSLog(@"LOBBY (+) name=%@ location=%@", user.name, user.location);
 }
 
 -(void)onRemoved:(FDataSnapshot*)snapshot {
-    User * removed = self.allUsers[snapshot.name];
+    User * removed = [UserService.shared userWithId:snapshot.name];
     if (removed) {
-        [self.allUsers removeObjectForKey:snapshot.name];
-        [self.closeUsers removeObjectForKey:snapshot.name];
-        [self.updated sendNext:removed];
+        NSLog(@"LOBBY (-) %@", removed.name);
+        removed.isOnline = NO;
+        removed.locationLatitude = 0;
+        removed.locationLongitude = 0;
     }
 }
 
 -(void)onChanged:(FDataSnapshot*)snapshot {
-//    if (self.closeUsers[snapshot.name]) {
-//        
-//    }
 }
 
--(BOOL)userIsLocal:(User*)user {
-    CLLocationDistance distance = [user.location distanceFromLocation:self.currentLocation];
-    NSLog(@"OTHER USER %@ %f", user.name, distance);
-    return (distance < MAX_SAME_LOCATION_DISTANCE);
-}
+//-(BOOL)userIsLocal:(User*)user {
+//    CLLocationDistance distance = [user.location distanceFromLocation:self.currentLocation];
+//    NSLog(@"OTHER USER %@ %f", user.name, distance);
+//    return (distance < MAX_SAME_LOCATION_DISTANCE);
+//}
 
 
 // Joins us to the lobby, por favor!
@@ -125,8 +104,9 @@
     
     Firebase * node = [self.lobby childByAppendingPath:user.userId];
     [node onDisconnectRemoveValue];
-    [node setValue:user.toObject];
-    
+    [node setValue:user.toLobbyObject withCompletionBlock:^(NSError*error) {
+        self.joined = YES;
+    }];
 }
 
 - (void)leaveLobby:(User*)user {
@@ -135,26 +115,15 @@
     [node removeValue];
 }
 
-- (User*)userWithId:(NSString*)userId {
-    if ([userId isEqualToString:self.currentUser.userId])
-         return self.currentUser;
-    
-    return [self.allUsers objectForKey:userId];
-}
-
-- (BOOL)userIsOnline:(User*)user {
-    return ([self.allUsers objectForKey:user.userId] != nil);
-}
-
 // Gives you local users or 3 random all users
-- (NSDictionary*)localUsers {
-    // Just take the first couple
-    if (self.closeUsers.count == 0) {
-        NSArray * keys = self.allUsers.allKeys;
-        NSInteger end = MIN(3, keys.count);
-        return [self.allUsers dictionaryWithValuesForKeys:[self.allUsers.allKeys subarrayWithRange:NSMakeRange(0, end)]];
-    }
-    return self.closeUsers;
-}
+//- (NSDictionary*)localUsers {
+//    // Just take the first couple
+//    if (self.closeUsers.count == 0) {
+//        NSArray * keys = self.allUsers.allKeys;
+//        NSInteger end = MIN(3, keys.count);
+//        return [self.allUsers dictionaryWithValuesForKeys:[self.allUsers.allKeys subarrayWithRange:NSMakeRange(0, end)]];
+//    }
+//    return self.closeUsers;
+//}
 
 @end

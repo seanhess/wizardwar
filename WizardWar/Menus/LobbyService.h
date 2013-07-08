@@ -17,8 +17,7 @@
 
 @interface LobbyService : NSObject
 
-@property (nonatomic, readonly) NSDictionary * localUsers;
-@property (nonatomic, strong) RACSubject * updated;
+//@property (nonatomic, strong) RACSubject * updated;
 @property (nonatomic) BOOL joined;
 
 + (LobbyService *)shared;
@@ -27,10 +26,7 @@
 - (void)joinLobby:(User*)user location:(CLLocation*)location;
 - (void)leaveLobby:(User*)user;
 
-// any lobby user with the given id
-- (User*)userWithId:(NSString*)userId;
-- (BOOL)userIsOnline:(User*)user;
--(BOOL)userIsLocal:(User*)user;
+//-(BOOL)userIsLocal:(User*)user;
 
 // AppID 3hsi88WR19iXGN11miDSH8B031uqyoBYBXHQe9bo
 // ClientKey CjkxlkZw0YOMdzdjJzhHfQm4vkPrA2ZWhY9n2Nfo

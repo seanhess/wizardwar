@@ -54,8 +54,7 @@
 
 -(void)onAdded:(FDataSnapshot *)snapshot {
     NSString * userId = snapshot.name;
-    User * user = [self userWithId:userId];
-    if (!user) user = [ObjectStore.shared insertNewObjectForEntityForName:self.entityName];
+    User * user = [self userWithId:userId create:YES];
     [user setValuesForKeysWithDictionary:snapshot.value];
 }
 
@@ -68,21 +67,7 @@
 
 - (User*)currentUser {
     if (!_currentUser) {
-        User * user = [self userWithId:self.userId];
-        if (!user) {
-            // no user information has been set. To make things easy, return an empty user object
-            // but with only the userId field set
-            // NOT synced
-            
-            // aww, crap, this is no good!
-            // you could end up with 2 of them
-            
-            // because I haven't synced yet, right?
-            // wait, no, that doesn't matter. There's no way it doesn't exist locally
-            user = [ObjectStore.shared insertNewObjectForEntityForName:self.entityName];
-            user.userId = self.userId;
-        }
-        
+        User * user = [self userWithId:self.userId create:YES];
         self.currentUser = user;
     }
         
@@ -108,6 +93,23 @@
 }
 
 
+
+# pragma mark - Users
+
+- (User*)userWithId:(NSString*)userId {
+    return [self userWithId:userId create:NO];
+}
+
+- (User*)userWithId:(NSString*)userId create:(BOOL)create {
+    NSFetchRequest * request = [self requestAllUsers];
+    request.predicate = [self predicateIsUser:userId];
+    User * user = [ObjectStore.shared requestLastObject:request];
+    if (!user) {
+        user = [ObjectStore.shared insertNewObjectForEntityForName:self.entityName];
+        user.userId = userId;
+    }
+    return user;
+}
 
 # pragma mark - Core Data
 
@@ -138,11 +140,14 @@
     return request;
 }
 
-- (User*)userWithId:(NSString*)userId {
-    NSFetchRequest * request = [self requestAllUsers];
-    request.predicate = [self predicateIsUser:userId];
-    return [ObjectStore.shared requestLastObject:request];
+- (NSFetchRequest*)requestOnline {
+    NSFetchRequest * request = [self requestAllUsersButMe];
+    NSPredicate * isOnline = [NSPredicate predicateWithFormat:@"isOnline = YES"];
+    request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[isOnline, request.predicate]];
+    return request;
 }
+
+
 
 
 @end

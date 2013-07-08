@@ -47,6 +47,7 @@
 @property (strong, nonatomic) MatchLayer * match;
 
 @property (strong, nonatomic) NSFetchedResultsController * friendResults;
+@property (strong, nonatomic) NSFetchedResultsController * localResults;
 
 @end
 
@@ -79,27 +80,27 @@
     [self.friendResults performFetch:&error];
     [self.tableView reloadData];
     
-//    [LocationService.shared connect];
+    [LocationService.shared connect];
 //    [ChallengeService.shared connect];
-//
-//    __weak MatchmakingViewController * wself = self;
-//    
+
+    __weak MatchmakingViewController * wself = self;
+
     // LOBBY
     self.accountView.hidden = YES;
-//
+
 //    [LobbyService.shared.updated subscribeNext:^(id x) {
 //        [wself.tableView reloadData];
 //    }];
-//    
+
 //    [UserService.shared.updated subscribeNext:^(id x) {
 //        [wself.tableView reloadData];
 //    }];
-//    
-//    [RACAble(LocationService.shared, location) subscribeNext:^(id x) {
-//        [wself didUpdateLocation];
-//    }];
-//    [self didUpdateLocation];
-//    
+    
+    [RACAble(LocationService.shared, location) subscribeNext:^(id x) {
+        [wself didUpdateLocation];
+    }];
+    [self didUpdateLocation];
+//
 //    // CHALLENGES
 //    [ChallengeService.shared.updated subscribeNext:^(Challenge *challenge) {
 //        [wself.tableView reloadData];
@@ -120,18 +121,19 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)disconnect {
-    [self leaveLobby];
-}
-
-- (void)reconnect {
-    [self joinLobby];
-}
+//- (void)disconnect {
+//    [self leaveLobby];
+//}
+//
+//- (void)reconnect {
+//    [self joinLobby];
+//}
 
 #pragma mark NSFetchedResultsControllerDelegate methods
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
+    NSLog(@"controllerDidChangeContent");
     [self.tableView reloadData];
 }
 
@@ -139,7 +141,6 @@
 
 #pragma mark - Location
 -(void)didUpdateLocation {
-    
     if (LocationService.shared.hasLocation) {
         CLLocation * location = LocationService.shared.location;
         self.currentUser.locationLongitude = location.coordinate.longitude;
@@ -170,42 +171,13 @@
 }
 
 - (NSArray*)challenges {
-    return ChallengeService.shared.myChallenges.allValues;
-}
-
-- (NSArray*)localUsers {
-    return LobbyService.shared.localUsers.allValues;
+//    return ChallengeService.shared.myChallenges.allValues;
+    return @[];
 }
 
 - (User*)currentUser {
     return UserService.shared.currentUser;
 }
-
-- (NSArray*)friends {
-    
-    // TODO switch to be a set or dictionary instead of an array
-    // that way they CAN'T be in both lists
-    
-    // We don't want to show anyone who is already in the local list!
-    NSArray * unsortedFriends = [UserFriendService.shared.friends.allValues filter:^BOOL(User * user) {
-        return (![LobbyService.shared userIsLocal:user]);
-    }];
-    
-    return [unsortedFriends sortedArrayUsingComparator:^NSComparisonResult(User * user, User * buser) {
-        if (user.friendPoints > buser.friendPoints) return NSOrderedAscending;
-        else if (user.friendPoints < buser.friendPoints) return NSOrderedDescending;
-        else return NSOrderedSame;
-    }];
-}
-
-- (NSArray*)strangers {
-    return nil;
-//    return [UserService.shared.allUsers.allValues filter:^BOOL(User*user) {
-//        NSLog(@"USER SERVICE USER: %@ local=%i dt=%i", user.name, [LobbyService.shared userIsLocal:user], (user.deviceToken.length > 0));
-//        return (![LobbyService.shared userIsLocal:user] && (user.deviceToken.length > 0));
-//    }];
-}
-
 
 #pragma mark - Challenges
 -(void)checkAutoconnectChallenge:(Challenge*)challenge {
@@ -230,21 +202,20 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[self.friendResults.sections objectAtIndex:0] numberOfObjects];
-//    if (section == 0) {
-//        return [self.challenges count];
-//    } else if (section == 1){
-//        return [self.localUsers count];
-//    } else if (section == 2) {
-//        return [self.friends count];
-//    } else {
-//        return [self.strangers count];
-//    }
+    if (section == 0) {
+        return [self.challenges count];
+    } else if (section == 1){
+        return [[self.localResults.sections objectAtIndex:0] numberOfObjects];
+    } else if (section == 2) {
+        return [[self.friendResults.sections objectAtIndex:0] numberOfObjects];
+    } else {
+        return 0;
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -253,11 +224,9 @@
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return @"Friends";
-//    if (section == 0) return @"Challenges";
-//    else if (section == 1) return @"Local Users";
-//    else if (section == 2) return @"Friends";
-//    else if (section == 3) return @"Strangers";
+    if (section == 0) return @"Challenges";
+    else if (section == 1) return @"Local Users (Online)";
+    else if (section == 2) return @"Friends";
     return nil;
 }
 
@@ -271,23 +240,19 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    User * user = [self.friendResults objectAtIndexPath:[NSIndexPath indexPathForItem:indexPath.row inSection:0]];
-    return [self tableView:tableView userCellForUser:user];
-    
-    return nil;
-    
     
     if (indexPath.section == 0) {
         return [self tableView:tableView challengeCellForRowAtIndexPath:indexPath];
     } else {
+        NSIndexPath * localIndexPath = [NSIndexPath indexPathForItem:indexPath.row inSection:0];        
         User * user = nil;
 
         if (indexPath.section == 1) {
-            user = self.localUsers[indexPath.row];
+            user = [self.localResults objectAtIndexPath:localIndexPath];
         } else if (indexPath.section == 2) {
-            user = self.friends[indexPath.row];
+            user = [self.friendResults objectAtIndexPath:localIndexPath];
         } else {
-            user = self.strangers[indexPath.row];
+            return nil;
         }
         return [self tableView:tableView userCellForUser:user];
     }
@@ -306,14 +271,19 @@
     
     cell.textLabel.text = user.name;
     
-    if ([LobbyService.shared userIsOnline:user])
+    if (user.isOnline)
         cell.textLabel.textColor = [UIColor greenColor];
     else
         cell.textLabel.textColor = [UIColor darkTextColor];
     
     cell.imageView.image = [UIImage imageNamed:@"user.jpg"];
     UILabel * accessory = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 43)];
-    accessory.text = @"FRIEND";
+
+    if (user.isFriend)
+        accessory.text = @"FRIEND";
+    else
+        accessory.text = @"LOCAL";
+    
     accessory.font = [UIFont boldSystemFontOfSize:14];
     accessory.backgroundColor = backgroundColor;
     accessory.textAlignment = NSTextAlignmentRight;
@@ -322,7 +292,8 @@
     NSString * games = [NSString stringWithFormat:@"%i Games", user.friendPoints];
     
     CLLocationDistance dl = [LocationService.shared distanceFrom:user.location];
-    NSString * distance = (dl > 0) ? [NSString stringWithFormat:@"%@, ", [LocationService.shared distanceString:dl]] : @"";
+    NSString * distance = [NSString stringWithFormat:@"%@, ", [LocationService.shared distanceString:dl]];
+//    NSString * distance = (dl > 0) ? [NSString stringWithFormat:@"%@, ", [LocationService.shared distanceString:dl]] : @"";
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@%@", distance, games];
     return cell;
 }
@@ -352,24 +323,23 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSIndexPath * localIndexPath = [NSIndexPath indexPathForItem:indexPath.row inSection:0];
     if (indexPath.section == 0)
         [self didSelectChallenge:self.challenges[indexPath.row]];
     else if (indexPath.section == 1)
-        [self didSelectUser:self.localUsers[indexPath.row]];
+        [self didSelectUser:[self.localResults objectAtIndexPath:localIndexPath]];
     else if (indexPath.section == 2)
-        [self didSelectUser:self.friends[indexPath.row]];
-    else
-        [self didSelectUser:self.strangers[indexPath.row]];
+        [self didSelectUser:[self.friendResults objectAtIndexPath:localIndexPath]];
+    else {}
+        
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)didSelectUser:(User*)user {
     
-    BOOL isOnline = [LobbyService.shared userIsOnline:user];
-
     // Issue the challenge
-    Challenge * challenge = [ChallengeService.shared user:self.currentUser challengeOpponent:user isRemote:!isOnline];
+    Challenge * challenge = [ChallengeService.shared user:self.currentUser challengeOpponent:user isRemote:!user.isOnline];
     [self joinMatch:challenge];
     [UserFriendService.shared user:UserService.shared.currentUser addChallenge:challenge];
 }

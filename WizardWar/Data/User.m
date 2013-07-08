@@ -21,8 +21,12 @@
 @dynamic friendPoints;
 
 -(NSDictionary*)toObject {
-    return [self dictionaryWithValuesForKeys:@[@"name", @"userId", @"deviceToken", @"locationLongitude", @"locationLatitude"]];
+    return [self dictionaryWithValuesForKeys:@[@"name", @"userId", @"deviceToken"]];
 };
+
+-(NSDictionary*)toLobbyObject {
+    return [self dictionaryWithValuesForKeys:@[@"locationLatitude", @"locationLongitude"]];
+}
 
 - (void)setValuesForKeysWithDictionary:(NSDictionary *)keyedValues {
     NSMutableDictionary * values = [NSMutableDictionary dictionaryWithDictionary:keyedValues];
@@ -34,7 +38,12 @@
 }
 
 - (CLLocation *)location {
+    if (!self.locationLatitude || !self.locationLongitude) return nil;
     return [[CLLocation alloc] initWithLatitude:self.locationLatitude longitude:self.locationLongitude];
+}
+
+- (BOOL)isFriend {
+    return self.friendPoints > 0;
 }
 
 //- (void)encodeWithCoder:(NSCoder *)encoder {

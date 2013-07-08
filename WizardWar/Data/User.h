@@ -23,5 +23,8 @@
 @property (nonatomic) int16_t friendPoints;
 
 @property (nonatomic, readonly) CLLocation * location;
+@property (nonatomic, readonly) BOOL isFriend;
+
+-(NSDictionary*)toLobbyObject;
 
 @end

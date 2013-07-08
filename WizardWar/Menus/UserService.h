@@ -26,10 +26,12 @@
 - (BOOL)isAuthenticated;
 
 - (User*)userWithId:(NSString*)userId;
+- (User*)userWithId:(NSString*)userId create:(BOOL)create;
 
 - (NSPredicate*)predicateIsUser:(NSString*)userId;
 - (NSFetchRequest*)requestAllUsers;
 - (NSFetchRequest*)requestAllUsersButMe;
 - (NSFetchRequest*)requestFriends;
+- (NSFetchRequest*)requestOnline;
 
 @end

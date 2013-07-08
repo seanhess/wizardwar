@@ -19,7 +19,7 @@
 
 @property (nonatomic, strong) NSString* autoconnectToMatchId;
 
--(void)disconnect;
--(void)reconnect;
+//-(void)disconnect;
+//-(void)reconnect;
 
 @end
