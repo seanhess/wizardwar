@@ -13,5 +13,9 @@
 @interface Challenge : NSObject <Objectable>
 @property (nonatomic, strong) User * main;
 @property (nonatomic, strong) User * opponent;
+
+@property (nonatomic, strong) NSString * mainId;
+@property (nonatomic, strong) NSString * opponentId;
+
 -(NSString*)matchId;
 @end

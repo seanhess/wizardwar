@@ -56,11 +56,10 @@
     Challenge * challenge = [Challenge new];
     [challenge setValuesForKeysWithDictionary:snapshot.value];
     
-    if ([challenge.main.userId isEqualToString:UserService.shared.currentUser.userId] || [challenge.opponent.userId isEqualToString:UserService.shared.currentUser.userId]) {
+    if ([challenge.mainId isEqualToString:UserService.shared.currentUser.userId] || [challenge.opponentId isEqualToString:UserService.shared.currentUser.userId]) {
         
-        // Uh oh.. If the challenge comes in before
-        challenge.main = [UserService.shared userWithId:challenge.main.userId];
-        challenge.opponent = [UserService.shared userWithId:challenge.opponent.userId];
+        challenge.main = [UserService.shared userWithId:challenge.mainId];
+        challenge.opponent = [UserService.shared userWithId:challenge.opponentId];
         
         self.myChallenges[challenge.matchId] = challenge;
         [self.updated sendNext:challenge];

@@ -100,7 +100,7 @@
     [self.tableView reloadData];
     
     [LocationService.shared connect];
-//    [ChallengeService.shared connect];
+    [ChallengeService.shared connect];
 
     __weak MatchmakingViewController * wself = self;
 
@@ -112,11 +112,11 @@
     }];
     [self didUpdateLocation];
     
-//    // CHALLENGES
-//    [ChallengeService.shared.updated subscribeNext:^(Challenge *challenge) {
-//        [wself.tableView reloadData];
-//        [wself checkAutoconnectChallenge:challenge];
-//    }];
+    // CHALLENGES
+    [ChallengeService.shared.updated subscribeNext:^(Challenge *challenge) {
+        [wself.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [wself checkAutoconnectChallenge:challenge];
+    }];
 }
 
 
@@ -218,8 +218,7 @@
 }
 
 - (NSArray*)challenges {
-//    return ChallengeService.shared.myChallenges.allValues;
-    return @[];
+    return ChallengeService.shared.myChallenges.allValues;
 }
 
 - (User*)currentUser {

@@ -13,13 +13,16 @@
 
 -(NSDictionary*)toObject {
     return @{@"mainId": self.main.userId, @"opponentId": self.opponent.userId};
+//    return [self dictionaryWithValuesForKeys:@[@"mainId", @"opponentId"]];
 }
 
 -(void)setValuesForKeysWithDictionary:(NSDictionary *)values {
-    self.main = [User new];
-    self.main.userId = values[@"mainId"];
-    self.opponent = [User new];
-    self.opponent.userId = values[@"opponentId"];
+    [super setValuesForKeysWithDictionary:values];
+    
+//    self.main = [User new];
+//    self.main.userId = values[@"mainId"];
+//    self.opponent = [User new];
+//    self.opponent.userId = values[@"opponentId"];
 }
 
 -(NSString*)matchId {
