@@ -30,7 +30,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance = [[LobbyService alloc] init];
-//        instance.updated = [RACSubject subject];
+        instance.updated = [RACSubject subject];
         instance.joined = NO;
         
     });
@@ -60,16 +60,19 @@
         [wself onRemoved:snapshot];
     }];
     
-//    [self.lobby observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
-//        [wself onChanged:snapshot];
-//    }];
+    [self.lobby observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
+        [wself onChanged:snapshot];
+    }];
 }
 
+
+// Guaranteed: that we have currentLocation at this point
 -(void)onAdded:(FDataSnapshot *)snapshot {
     User * user = [UserService.shared userWithId:snapshot.name create:YES];
     [user setValuesForKeysWithDictionary:snapshot.value];
     user.isOnline = YES;
-    NSLog(@"LOBBY (+) name=%@ location=%@", user.name, user.location);
+    user.distance = [LocationService.shared distanceFrom:user.location];    
+    NSLog(@"LOBBY (+) name=%@ distance=%f", user.name, user.distance);
 }
 
 -(void)onRemoved:(FDataSnapshot*)snapshot {
@@ -83,6 +86,7 @@
 }
 
 -(void)onChanged:(FDataSnapshot*)snapshot {
+    [self onAdded:snapshot];
 }
 
 //-(BOOL)userIsLocal:(User*)user {
@@ -125,5 +129,16 @@
 //    }
 //    return self.closeUsers;
 //}
+
+
+#pragma mark - Core Data Requests
+
+- (NSFetchRequest*)requestCloseUsers {
+    NSFetchRequest * request = [UserService.shared requestOtherOnline];
+    NSPredicate * notFriend = [NSCompoundPredicate notPredicateWithSubpredicate:[UserService.shared predicateIsFriend]];
+    NSPredicate * isClose = [NSPredicate predicateWithFormat:@"distance < %f", MAX_SAME_LOCATION_DISTANCE];
+    request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[isClose, notFriend, request.predicate]];
+    return request;
+}
 
 @end

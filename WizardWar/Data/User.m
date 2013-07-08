@@ -19,6 +19,9 @@
 @dynamic updated;
 @dynamic userId;
 @dynamic friendPoints;
+@dynamic distance;
+
+@synthesize isClose;
 
 -(NSDictionary*)toObject {
     return [self dictionaryWithValuesForKeys:@[@"name", @"userId", @"deviceToken"]];

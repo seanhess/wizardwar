@@ -6,11 +6,13 @@
 //  Copyright (c) 2013 The LAB. All rights reserved.
 //
 
-
-
 // This is such a crappy way of doing all of this
 // I need another approach.
 // CoreData? -- would be a good idea
+
+// How to do distance?
+// Hmm..... Well, I have the location and userId of each one
+// I just have to evaluate distance and keep track of ones that are close!
 
 #import "MatchmakingViewController.h"
 #import "WizardDirector.h"
@@ -73,11 +75,17 @@
 }
 
 - (void)connect {
+    NSError *error = nil;
+    
     self.friendResults = [ObjectStore.shared fetchedResultsForRequest:[UserService.shared requestFriends]];
     self.friendResults.delegate = self;
-    
-    NSError *error = nil;
     [self.friendResults performFetch:&error];
+    
+    self.localResults = [ObjectStore.shared fetchedResultsForRequest:[LobbyService.shared requestCloseUsers]];
+    self.localResults.delegate = self;
+    [self.localResults performFetch:&error];
+
+    // I think friends should be showing up faster, no?
     [self.tableView reloadData];
     
     [LocationService.shared connect];
@@ -87,10 +95,6 @@
 
     // LOBBY
     self.accountView.hidden = YES;
-
-//    [LobbyService.shared.updated subscribeNext:^(id x) {
-//        [wself.tableView reloadData];
-//    }];
 
 //    [UserService.shared.updated subscribeNext:^(id x) {
 //        [wself.tableView reloadData];
@@ -290,10 +294,14 @@
     cell.accessoryView = accessory;
     
     NSString * games = [NSString stringWithFormat:@"%i Games", user.friendPoints];
+
+    NSString * distance = @"";
     
-    CLLocationDistance dl = [LocationService.shared distanceFrom:user.location];
-    NSString * distance = [NSString stringWithFormat:@"%@, ", [LocationService.shared distanceString:dl]];
-//    NSString * distance = (dl > 0) ? [NSString stringWithFormat:@"%@, ", [LocationService.shared distanceString:dl]] : @"";
+    if (user.isOnline) {
+        CLLocationDistance dl = [LocationService.shared distanceFrom:user.location];
+        distance = [NSString stringWithFormat:@"%@, ", [LocationService.shared distanceString:dl]];
+    }
+    
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@%@", distance, games];
     return cell;
 }

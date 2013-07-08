@@ -29,9 +29,10 @@
 - (User*)userWithId:(NSString*)userId create:(BOOL)create;
 
 - (NSPredicate*)predicateIsUser:(NSString*)userId;
+- (NSPredicate*)predicateIsFriend;
 - (NSFetchRequest*)requestAllUsers;
 - (NSFetchRequest*)requestAllUsersButMe;
 - (NSFetchRequest*)requestFriends;
-- (NSFetchRequest*)requestOnline;
+- (NSFetchRequest*)requestOtherOnline;
 
 @end

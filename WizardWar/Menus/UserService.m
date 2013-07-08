@@ -42,6 +42,10 @@
     [self.node observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
         [wself onRemoved:snapshot];
     }];
+    
+    [self.node observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
+        [wself onChanged:snapshot];
+    }];
 }
 
 - (void)saveCurrentUser {
@@ -63,6 +67,10 @@
     User * user = [self userWithId:userId];
     if (user)
         [ObjectStore.shared.context deleteObject:user];
+}
+
+-(void)onChanged:(FDataSnapshot*)snapshot {
+    [self onAdded:snapshot];
 }
 
 - (User*)currentUser {
@@ -117,6 +125,10 @@
     return [NSPredicate predicateWithFormat:@"userId = %@", userId];
 }
 
+-(NSPredicate*)predicateIsFriend {
+    return [NSPredicate predicateWithFormat:@"friendPoints > 0"];
+}
+
 - (NSFetchRequest*)requestAllUsers {
     // valid users include:
     NSFetchRequest * request = [NSFetchRequest fetchRequestWithEntityName:self.entityName];
@@ -134,13 +146,12 @@
 
 - (NSFetchRequest*)requestFriends {
     NSFetchRequest * request = [self requestAllUsersButMe];
-    NSPredicate * isFriend = [NSPredicate predicateWithFormat:@"friendPoints > 0"];
-    request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[isFriend, request.predicate]];
+    request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[[self predicateIsFriend], request.predicate]];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"friendPoints" ascending:NO]];
     return request;
 }
 
-- (NSFetchRequest*)requestOnline {
+- (NSFetchRequest*)requestOtherOnline {
     NSFetchRequest * request = [self requestAllUsersButMe];
     NSPredicate * isOnline = [NSPredicate predicateWithFormat:@"isOnline = YES"];
     request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[isOnline, request.predicate]];

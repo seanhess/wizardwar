@@ -21,9 +21,15 @@
 @property (nonatomic) NSTimeInterval updated;
 @property (nonatomic, retain) NSString * userId;
 @property (nonatomic) int16_t friendPoints;
+@property (nonatomic) CLLocationDistance distance;
 
+
+
+// Transient Properties and methods
+// some are relative to the current user
 @property (nonatomic, readonly) CLLocation * location;
 @property (nonatomic, readonly) BOOL isFriend;
+@property (nonatomic) BOOL isClose;
 
 -(NSDictionary*)toLobbyObject;
 

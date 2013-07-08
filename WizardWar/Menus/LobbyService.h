@@ -17,14 +17,16 @@
 
 @interface LobbyService : NSObject
 
-//@property (nonatomic, strong) RACSubject * updated;
+@property (nonatomic, strong) RACSubject * updated;
 @property (nonatomic) BOOL joined;
 
 + (LobbyService *)shared;
-- (void)connect;
 
+// You can't call connect on this. Call joinLobby when you have the user and the location
 - (void)joinLobby:(User*)user location:(CLLocation*)location;
 - (void)leaveLobby:(User*)user;
+
+- (NSFetchRequest*)requestCloseUsers;
 
 //-(BOOL)userIsLocal:(User*)user;
 
