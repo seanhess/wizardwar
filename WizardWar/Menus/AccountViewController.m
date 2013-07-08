@@ -15,9 +15,9 @@
 
 @interface AccountViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
-@property (weak, nonatomic) IBOutlet UIButton *submitButton;
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (weak, nonatomic) IBOutlet UINavigationItem *navItem;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 
 @end
 
@@ -33,17 +33,16 @@
     
     self.navItem.titleView = [ComicZineDoubleLabel titleView:self.title navigationBar:self.navigationBar];
     
-//    UIBarButtonItem * cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(didTapCancel:)];
-//    self.navigationItem.rightBarButtonItem = cancel;
+    self.nameField.text = UserService.shared.currentUser.name;
     
     RACSignal * isValid = [self.nameField.rac_textSignal map:^(NSString*text) {
         return @(text.length > 0);
     }];
     
-    RAC(self.submitButton.enabled) = isValid;
-    RAC(self.submitButton.alpha) = [isValid map:^(NSNumber * isValid) {
-        return (isValid.boolValue) ? @(1.0) : @(0.5);
-    }];
+    RAC(self.doneButton.enabled) = isValid;
+//    RAC(self.doneButton.alpha) = [isValid map:^(NSNumber * isValid) {
+//        return (isValid.boolValue) ? @(1.0) : @(0.5);
+//    }];
     
 }
 
@@ -53,7 +52,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)didTapSetName:(id)sender {
+- (IBAction)didTapDone:(id)sender {
     NSString * name = self.nameField.text;
     User * user = UserService.shared.currentUser;
     user.name = name;
@@ -62,8 +61,5 @@
     [self.delegate didSubmitAccountForm:name];
 }
 
-- (IBAction)didTapCancel:(id)sender {
-    [self.delegate didCancelAccountForm];
-}
 
 @end

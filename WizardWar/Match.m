@@ -19,7 +19,6 @@
 #import "SpellVine.h"
 #import "SpellWindblast.h"
 #import "SimpleAudioEngine.h"
-#import "FirebaseCollection.h"
 #import <ReactiveCocoa.h>
 #import "GameTimerService.h"
 #import "TimerSyncService.h"

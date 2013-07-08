@@ -33,6 +33,7 @@
 #import "FMutableData.h"
 #import "FTransactionResult.h"
 
+
 /**
  * A Firebase reference represents a particular location in your Firebase
  * and can be used for reading or writing data to that Firebase location.
@@ -102,10 +103,20 @@ all data at this location or any child location will be deleted.
 
 Note that setValue: will remove any priority stored at this location, so if priority
 is meant to be preserved, you should use setValue:andPriority: instead.
+
+
+**Server Values** - Placeholder values you may write into Firebase as a value or priority
+that will automatically be populated by the Firebase Server.
+
+- kFirebaseServerValueTimestamp - The number of milliseconds since the Unix epoch
+
  
 @param value The value to be written.
  */
 - (void) setValue:(id)value;
+
+
+#define kFirebaseServerValueTimestamp @{ @".sv": @"timestamp" }
 
 
 /**
@@ -115,7 +126,7 @@ is meant to be preserved, you should use setValue:andPriority: instead.
  * @param value The value to be written.
  * @param block The block to be called after the write has been committed to the Firebase servers.
  */
-- (void) setValue:(id)value withCompletionBlock:(void (^)(NSError* error))block;
+- (void) setValue:(id)value withCompletionBlock:(void (^)(NSError* error, Firebase* ref))block;
 
 
 /**
@@ -136,7 +147,7 @@ is meant to be preserved, you should use setValue:andPriority: instead.
  * @param priority The priority to be attached to that data.
  * @param block The block to be called after the write has been committed to the Firebase servers.
  */
-- (void) setValue:(id)value andPriority:(id)priority withCompletionBlock:(void (^)(NSError* error))block;
+- (void) setValue:(id)value andPriority:(id)priority withCompletionBlock:(void (^)(NSError* error, Firebase* ref))block;
 
 
 /**
@@ -157,7 +168,7 @@ is meant to be preserved, you should use setValue:andPriority: instead.
  *
  * @param block The block to be called after the remove has been committed to the Firebase servers.
  */
-- (void) removeValueWithCompletionBlock:(void (^)(NSError* error))block;
+- (void) removeValueWithCompletionBlock:(void (^)(NSError* error, Firebase* ref))block;
 
 /**
  * Set a priority for the data at this Firebase location.
@@ -190,7 +201,7 @@ is meant to be preserved, you should use setValue:andPriority: instead.
  * @param priority The priority to set at the specified location.
  * @param block The block that is triggered after the priority has been written on the servers.
  */
-- (void) setPriority:(id)priority withCompletionBlock:(void (^)(NSError* error))block;
+- (void) setPriority:(id)priority withCompletionBlock:(void (^)(NSError* error, Firebase* ref))block;
 
 /**
  * Update changes the values of the keys specified in the dictionary without overwriting other
@@ -207,7 +218,7 @@ is meant to be preserved, you should use setValue:andPriority: instead.
  * @param values A dictionary of the keys to change and their new values
  * @param block The block that is triggered after the update has been written on the Firebase servers
  */
-- (void) updateChildValues:(NSDictionary *)values withCompletionBlock:(void (^)(NSError* error))block;
+- (void) updateChildValues:(NSDictionary *)values withCompletionBlock:(void (^)(NSError* error, Firebase* ref))block;
 
 
 /** @name Attaching observers to read data */
@@ -428,7 +439,7 @@ Supported events types for all realtime observers are specified in FEventType as
  * @param value The value to be set after the connection is lost.
  * @param block Block to be triggered when the operation has been queued up on the Firebase servers
  */
-- (void) onDisconnectSetValue:(id)value withCompletionBlock:(void (^)(NSError* error))block;
+- (void) onDisconnectSetValue:(id)value withCompletionBlock:(void (^)(NSError* error, Firebase* ref))block;
 
 
 /**
@@ -453,7 +464,7 @@ Supported events types for all realtime observers are specified in FEventType as
  * @param priority The priority to be set after the connection is lost.
  * @param block Block to be triggered when the operation has been queued up on the Firebase servers
  */
-- (void) onDisconnectSetValue:(id)value andPriority:(id)priority withCompletionBlock:(void (^)(NSError* error))block;
+- (void) onDisconnectSetValue:(id)value andPriority:(id)priority withCompletionBlock:(void (^)(NSError* error, Firebase* ref))block;
 
 
 /**
@@ -475,7 +486,7 @@ Supported events types for all realtime observers are specified in FEventType as
  *
  * @param block Block to be triggered when the operation has been queued up on the Firebase servers
  */
-- (void) onDisconnectRemoveValueWithCompletionBlock:(void (^)(NSError* error))block;
+- (void) onDisconnectRemoveValueWithCompletionBlock:(void (^)(NSError* error, Firebase* ref))block;
 
 
 
@@ -499,7 +510,7 @@ Supported events types for all realtime observers are specified in FEventType as
  * @param values A dictionary of child node names and the values to set them to after the connection is lost.
  * @param block A block that will be called once the operation has been queued up on the Firebase servers
  */
-- (void) onDisconnectUpdateChildValues:(NSDictionary *)values withCompletionBlock:(void (^)(NSError* error))block;
+- (void) onDisconnectUpdateChildValues:(NSDictionary *)values withCompletionBlock:(void (^)(NSError* error, Firebase* ref))block;
 
 
 /**
@@ -517,7 +528,7 @@ Supported events types for all realtime observers are specified in FEventType as
  *
  * @param block A block that will be triggered once the Firebase servers have acknowledged the cancel request.
  */
-- (void) cancelDisconnectOperationsWithCompletionBlock:(void (^)(NSError* error))block;
+- (void) cancelDisconnectOperationsWithCompletionBlock:(void (^)(NSError* error, Firebase* ref))block;
 
 
 /** @name Authenticating */

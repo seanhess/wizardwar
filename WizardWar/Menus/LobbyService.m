@@ -7,17 +7,17 @@
 //
 
 #import "LobbyService.h"
-#import "FirebaseCollection.h"
 #import "User.h"
 #import "IdService.h"
 #import "NSArray+Functional.h"
 #import "LocationService.h"
 #import "UserService.h"
+#import "ObjectStore.h"
+#import <Firebase/Firebase.h>
 
 // Just implement global people for this yo
 @interface LobbyService ()
 @property (nonatomic, strong) Firebase * lobby;
-@property (nonatomic, strong) User * currentUser;
 @property (nonatomic, strong) CLLocation * currentLocation;
 @end
 
@@ -41,12 +41,9 @@
 // so I don't get the updates too early
 - (void)connect {
     
-//    if (!self.currentUser) {
-//        NSLog(@"LobbyService: SKIP - wait until join lobby");
-//        return;
-//    }
-    
     NSLog(@"CONNECT LobbyService");
+    
+    [self setAllOffline];
     
     self.lobby = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/lobby"];
     
@@ -62,6 +59,17 @@
     
     [self.lobby observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
         [wself onChanged:snapshot];
+    }];
+}
+
+// change all users to be offline so we can accurately sync with the server
+// ALTERNATIVE: put the field on user itself and have the user change it? naww...
+-(void)setAllOffline {
+    NSFetchRequest * request = [UserService.shared requestOtherOnline];
+    NSArray * users = [ObjectStore.shared requestToArray:request];
+    
+    [users forEach:^(User * user) {
+        user.isOnline = NO;
     }];
 }
 
@@ -89,50 +97,33 @@
     [self onAdded:snapshot];
 }
 
-//-(BOOL)userIsLocal:(User*)user {
-//    CLLocationDistance distance = [user.location distanceFromLocation:self.currentLocation];
-//    NSLog(@"OTHER USER %@ %f", user.name, distance);
-//    return (distance < MAX_SAME_LOCATION_DISTANCE);
-//}
-
-
 // Joins us to the lobby, por favor!
 // MAKE SURE that the location is set before doing this!
 - (void)joinLobby:(User *)user location:(CLLocation *)location {
     NSLog(@"JOIN LOBBY LocationService %@", user);
-    
-    self.currentUser = user;
+
+    self.joined = NO;
     self.currentLocation = location;
     
-    if (!self.lobby) [self connect];
+    [self connect];
     
     Firebase * node = [self.lobby childByAppendingPath:user.userId];
     [node onDisconnectRemoveValue];
-    [node setValue:user.toLobbyObject withCompletionBlock:^(NSError*error) {
+    [node setValue:user.toLobbyObject withCompletionBlock:^(NSError *error, Firebase *ref) {
         self.joined = YES;
     }];
 }
 
 - (void)leaveLobby:(User*)user {
-    self.currentUser = nil;
+    self.joined = NO;
     Firebase * node = [self.lobby childByAppendingPath:user.userId];
     [node removeValue];
 }
 
-// Gives you local users or 3 random all users
-//- (NSDictionary*)localUsers {
-//    // Just take the first couple
-//    if (self.closeUsers.count == 0) {
-//        NSArray * keys = self.allUsers.allKeys;
-//        NSInteger end = MIN(3, keys.count);
-//        return [self.allUsers dictionaryWithValuesForKeys:[self.allUsers.allKeys subarrayWithRange:NSMakeRange(0, end)]];
-//    }
-//    return self.closeUsers;
-//}
-
-
 #pragma mark - Core Data Requests
 
+// Local users can come even without a device token
+// If they have no device token
 - (NSFetchRequest*)requestCloseUsers {
     NSFetchRequest * request = [UserService.shared requestOtherOnline];
     NSPredicate * notFriend = [NSCompoundPredicate notPredicateWithSubpredicate:[UserService.shared predicateIsFriend]];

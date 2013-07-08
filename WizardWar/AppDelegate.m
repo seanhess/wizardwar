@@ -59,7 +59,6 @@
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeSound];
     
-    
     //    NSLog(@"FONT: %@",[UIFont fontNamesForFamilyName:@"ComicZineOT"]);
     //    NSLog(@"FONT: %@",[UIFont fontNamesForFamilyName:@"Comic Zine OT"]);
     //    NSLog(@"FAMLIES %@", [UIFont familyNames]);

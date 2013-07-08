@@ -7,7 +7,6 @@
 //
 
 #import "MultiplayerService.h"
-#import "FirebaseCollection.h"
 #import <Firebase/Firebase.h>
 #import "Spell.h"
 #import "Wizard.h"
@@ -19,7 +18,6 @@
 @property (nonatomic, strong) Firebase * playersNode;
 @property (nonatomic, strong) Firebase * opponentNode;
 
-@property (nonatomic, strong) FirebaseCollection * playersCollection;
 @end
 
 @implementation MultiplayerService

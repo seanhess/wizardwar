@@ -17,7 +17,7 @@
 #import "LocationService.h"
 #import "ChallengeService.h"
 
-@interface LandingViewController ()
+@interface LandingViewController () <AccountFormDelegate>
 
 @end
 
@@ -73,6 +73,16 @@
 - (IBAction)didTapMultiplayer:(id)sender {
     MatchmakingViewController * matchmaking = [MatchmakingViewController new];
     [self.navigationController pushViewController:matchmaking animated:YES];
+}
+
+- (IBAction)didTapSettings:(id)sender {
+    AccountViewController * accounts = [AccountViewController new];
+    accounts.delegate = self;
+    [self.navigationController presentViewController:accounts animated:YES completion:nil];
+}
+
+- (void)didSubmitAccountForm:(NSString *)name {
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

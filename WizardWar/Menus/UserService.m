@@ -16,6 +16,7 @@
 @property (nonatomic, strong) Firebase * node;
 @property (nonatomic, strong) NSString * deviceToken;
 @property (nonatomic, strong) NSString * entityName;
+@property (nonatomic) NSTimeInterval lastFirebaseConnect;
 @end
 
 @implementation UserService
@@ -33,17 +34,23 @@
     self.node = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/users"];
     self.entityName = @"User";
     
+    self.lastFirebaseConnect = [[[NSUserDefaults standardUserDefaults] objectForKey:@"lastFirebaseConnect"] doubleValue];
+    
+    FQuery * query = [self.node queryStartingAtPriority:@(self.lastFirebaseConnect)];
+    
+    NSLog(@"UserService lastFirebaseConnect=%f", self.lastFirebaseConnect);
+    
     __weak UserService * wself = self;
 
-    [self.node observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
+    [query observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
         [wself onAdded:snapshot];
     }];
     
-    [self.node observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
+    [query observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
         [wself onRemoved:snapshot];
     }];
     
-    [self.node observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
+    [query observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
         [wself onChanged:snapshot];
     }];
 }
@@ -53,16 +60,18 @@
     User * user = self.currentUser;
     if (!user) return;
     Firebase * child = [self.node childByAppendingPath:user.userId];
-    [child setValue:user.toObject];
+    [child setValue:user.toObject andPriority:kFirebaseServerValueTimestamp];
 }
 
 -(void)onAdded:(FDataSnapshot *)snapshot {
+    [self updateLastFirebaseConnect:snapshot];
     NSString * userId = snapshot.name;
     User * user = [self userWithId:userId create:YES];
     [user setValuesForKeysWithDictionary:snapshot.value];
 }
 
 -(void)onRemoved:(FDataSnapshot*)snapshot {
+    [self updateLastFirebaseConnect:snapshot];
     NSString * userId = snapshot.name;
     User * user = [self userWithId:userId];
     if (user)
@@ -71,6 +80,15 @@
 
 -(void)onChanged:(FDataSnapshot*)snapshot {
     [self onAdded:snapshot];
+}
+
+-(void)updateLastFirebaseConnect:(FDataSnapshot*)snapshot {
+    NSTimeInterval updated = [snapshot.priority doubleValue];
+    if (updated > self.lastFirebaseConnect) {
+        self.lastFirebaseConnect = updated;
+        NSLog(@"UserService UPDATED lastFirebaseConnect %f obj=%@", self.lastFirebaseConnect, snapshot.value);
+        [[NSUserDefaults standardUserDefaults] setObject:@(self.lastFirebaseConnect) forKey:@"lastFirebaseConnect"];
+    }
 }
 
 - (User*)currentUser {
@@ -132,7 +150,7 @@
 - (NSFetchRequest*)requestAllUsers {
     // valid users include:
     NSFetchRequest * request = [NSFetchRequest fetchRequestWithEntityName:self.entityName];
-    request.predicate = [NSPredicate predicateWithFormat:@"name != nil"]; // AND deviceToken != nil"];
+    request.predicate = [NSPredicate predicateWithFormat:@"name != nil"];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:NO]];
     return request;
 }
@@ -145,7 +163,11 @@
 }
 
 - (NSFetchRequest*)requestFriends {
+    
+    return [self requestAllUsers];
+    
     NSFetchRequest * request = [self requestAllUsersButMe];
+//    NSPredicate * hasDeviceToken = [NSPredicate predicateWithFormat:@"deviceToken != nil"];    
     request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[[self predicateIsFriend], request.predicate]];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"friendPoints" ascending:NO]];
     return request;

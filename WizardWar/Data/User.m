@@ -24,7 +24,7 @@
 @synthesize isClose;
 
 -(NSDictionary*)toObject {
-    return [self dictionaryWithValuesForKeys:@[@"name", @"userId", @"deviceToken"]];
+    return [self dictionaryWithValuesForKeys:@[@"name", @"userId", @"deviceToken", @"updated"]];
 };
 
 -(NSDictionary*)toLobbyObject {

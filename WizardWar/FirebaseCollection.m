@@ -104,7 +104,9 @@
 - (void)addObject:(id<Objectable>)obj withNode:(Firebase*)objnode onComplete:(void(^)(NSError*))cb {
 //    if (!cb) cb = ^(NSError*error) {};
     [objnode onDisconnectRemoveValue];
-    [objnode setValue:obj.toObject withCompletionBlock:cb];
+    [objnode setValue:obj.toObject withCompletionBlock:^(NSError *error, Firebase *ref) {
+        if (cb) cb(error);
+    }];
     [self addObjectLocally:obj name:objnode.name];
 }
 

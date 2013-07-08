@@ -9,10 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @protocol AccountFormDelegate <NSObject>
-
--(void)didCancelAccountForm;
 -(void)didSubmitAccountForm:(NSString*)name;
-
 @end
 
 @interface AccountViewController : UIViewController

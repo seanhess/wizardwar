@@ -16,7 +16,6 @@
 		6F0B2FB01747511800CFC092 /* DrawingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0B2FAE1747511800CFC092 /* DrawingLayer.m */; };
 		6F0FEF5F1747FA720028FE71 /* wizard-lobby.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F0FEF5D1747FA720028FE71 /* wizard-lobby.png */; };
 		6F0FEF601747FA720028FE71 /* wizard-lobby@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F0FEF5E1747FA720028FE71 /* wizard-lobby@2x.png */; };
-		781234DD174ADC19008EDE88 /* FirebaseCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 781234DC174ADC19008EDE88 /* FirebaseCollection.m */; };
 		781372D1177E30EF00486899 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781372D0177E30EF00486899 /* Parse.framework */; };
 		781372D3177E311A00486899 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781372D2177E311A00486899 /* MobileCoreServices.framework */; };
 		781372D5177E313000486899 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781372D4177E313000486899 /* StoreKit.framework */; };
@@ -214,6 +213,8 @@
 		78C5CDA2178AFDF100CDCC76 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78C5CDA0178AFDF100CDCC76 /* DataModel.xcdatamodeld */; };
 		78C5CDA6178AFFA000CDCC76 /* ObjectStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C5CDA5178AFFA000CDCC76 /* ObjectStore.m */; };
 		78C5CDDD178B034C00CDCC76 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C5CDDC178B034C00CDCC76 /* User.m */; };
+		78C5CDDF178B64B400CDCC76 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C5CDDE178B64B400CDCC76 /* Firebase.framework */; };
+		78C5CDE2178B656500CDCC76 /* FirebaseCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C5CDE1178B656500CDCC76 /* FirebaseCollection.m */; };
 		78D08558176A4AC500EDC405 /* SpellHeal.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D08557176A4AC400EDC405 /* SpellHeal.m */; };
 		78D0855B176A4B2800EDC405 /* EffectHeal.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D0855A176A4B2800EDC405 /* EffectHeal.m */; };
 		78D0855E176A4C7C00EDC405 /* EffectSleep.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D0855D176A4C7C00EDC405 /* EffectSleep.m */; };
@@ -316,7 +317,6 @@
 		78F6B38F1746AF9100AA070D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F6B38E1746AF9100AA070D /* Security.framework */; };
 		78F6B3911746AF9600AA070D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F6B3901746AF9600AA070D /* CFNetwork.framework */; };
 		78F6B3931746AFA000AA070D /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F6B3921746AFA000AA070D /* OpenAL.framework */; };
-		78F6B3971746AFDE00AA070D /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F6B3961746AFDE00AA070D /* Firebase.framework */; };
 		78F6B39F1746B04600AA070D /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F6B39E1746B04600AA070D /* libicucore.dylib */; };
 		78F6B3A71746B26000AA070D /* Spell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3A11746B25F00AA070D /* Spell.m */; };
 		78F6B3A81746B26000AA070D /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3A31746B25F00AA070D /* Match.m */; };
@@ -357,8 +357,6 @@
 		6F0B2FAE1747511800CFC092 /* DrawingLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingLayer.m; sourceTree = "<group>"; };
 		6F0FEF5D1747FA720028FE71 /* wizard-lobby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard-lobby.png"; sourceTree = "<group>"; };
 		6F0FEF5E1747FA720028FE71 /* wizard-lobby@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard-lobby@2x.png"; sourceTree = "<group>"; };
-		781234DB174ADC19008EDE88 /* FirebaseCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseCollection.h; sourceTree = "<group>"; };
-		781234DC174ADC19008EDE88 /* FirebaseCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseCollection.m; sourceTree = "<group>"; };
 		781234DF174AE4C0008EDE88 /* Objectable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Objectable.h; sourceTree = "<group>"; };
 		781372D0177E30EF00486899 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		781372D2177E311A00486899 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -717,6 +715,9 @@
 		78C5CDA5178AFFA000CDCC76 /* ObjectStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectStore.m; sourceTree = "<group>"; };
 		78C5CDDB178B034C00CDCC76 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		78C5CDDC178B034C00CDCC76 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		78C5CDDE178B64B400CDCC76 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
+		78C5CDE0178B656500CDCC76 /* FirebaseCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseCollection.h; sourceTree = "<group>"; };
+		78C5CDE1178B656500CDCC76 /* FirebaseCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseCollection.m; sourceTree = "<group>"; };
 		78D08556176A4AC400EDC405 /* SpellHeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellHeal.h; sourceTree = "<group>"; };
 		78D08557176A4AC400EDC405 /* SpellHeal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellHeal.m; sourceTree = "<group>"; };
 		78D08559176A4B2800EDC405 /* EffectHeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectHeal.h; sourceTree = "<group>"; };
@@ -859,7 +860,6 @@
 		78F6B3901746AF9600AA070D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		78F6B3921746AFA000AA070D /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		78F6B3941746AFAC00AA070D /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
-		78F6B3961746AFDE00AA070D /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
 		78F6B39E1746B04600AA070D /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		78F6B3A01746B25F00AA070D /* Spell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Spell.h; path = WizardWar/Spell.h; sourceTree = SOURCE_ROOT; };
 		78F6B3A11746B25F00AA070D /* Spell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Spell.m; path = WizardWar/Spell.m; sourceTree = SOURCE_ROOT; };
@@ -931,10 +931,10 @@
 				78F6B3851746AF2500AA070D /* OpenGLES.framework in Frameworks */,
 				78F6B3831746AF2000AA070D /* libz.dylib in Frameworks */,
 				78F6B1E71746AD8900AA070D /* UIKit.framework in Frameworks */,
-				78F6B3971746AFDE00AA070D /* Firebase.framework in Frameworks */,
 				17B4123C5AF94AFB977F565E /* libPods.a in Frameworks */,
 				781372D1177E30EF00486899 /* Parse.framework in Frameworks */,
 				781372D9177E324B00486899 /* FacebookSDK.framework in Frameworks */,
+				78C5CDDF178B64B400CDCC76 /* Firebase.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1384,10 +1384,10 @@
 		787A2A82174E81AC004C4FDB /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				781234DB174ADC19008EDE88 /* FirebaseCollection.h */,
-				781234DC174ADC19008EDE88 /* FirebaseCollection.m */,
 				787A2A83174E85E3004C4FDB /* FirebaseConnection.h */,
 				787A2A84174E85E3004C4FDB /* FirebaseConnection.m */,
+				78C5CDE0178B656500CDCC76 /* FirebaseCollection.h */,
+				78C5CDE1178B656500CDCC76 /* FirebaseCollection.m */,
 				781234DF174AE4C0008EDE88 /* Objectable.h */,
 			);
 			name = Service;
@@ -1554,9 +1554,9 @@
 				78F6B39E1746B04600AA070D /* libicucore.dylib */,
 				78F6B3821746AF2000AA070D /* libz.dylib */,
 				781372E3177E331C00486899 /* Parse */,
+				78C5CDDE178B64B400CDCC76 /* Firebase.framework */,
 				78C5CD9E178AFDC400CDCC76 /* CoreData.framework */,
 				784D3BF51777C832009945F8 /* CoreLocation.framework */,
-				78F6B3961746AFDE00AA070D /* Firebase.framework */,
 				78F6B3941746AFAC00AA070D /* GameKit.framework */,
 				78F6B3921746AFA000AA070D /* OpenAL.framework */,
 				78F6B3901746AF9600AA070D /* CFNetwork.framework */,
@@ -2088,7 +2088,6 @@
 				78F195151747FEB500BB8587 /* SpellWindblast.m in Sources */,
 				78F195181748024D00BB8587 /* Elements.m in Sources */,
 				F283A922174807A40068EEB2 /* LifeIndicatorNode.m in Sources */,
-				781234DD174ADC19008EDE88 /* FirebaseCollection.m in Sources */,
 				787A2A85174E85E3004C4FDB /* FirebaseConnection.m in Sources */,
 				787A2A91174E9FA3004C4FDB /* TestLayer.m in Sources */,
 				787A2A99174EA43D004C4FDB /* MatchViewController.m in Sources */,
@@ -2225,6 +2224,7 @@
 				78C5CDA2178AFDF100CDCC76 /* DataModel.xcdatamodeld in Sources */,
 				78C5CDA6178AFFA000CDCC76 /* ObjectStore.m in Sources */,
 				78C5CDDD178B034C00CDCC76 /* User.m in Sources */,
+				78C5CDE2178B656500CDCC76 /* FirebaseCollection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

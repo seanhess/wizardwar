@@ -7,9 +7,9 @@
 //
 
 #import "TimerSyncService.h"
-#import "FirebaseCollection.h"
 #import <Firebase/Firebase.h>
 #import "PlayerTime.h"
+#import "FirebaseCollection.h"
 
 #define DELAY_START 1
 #define MAX_TOLERANCE 0.01

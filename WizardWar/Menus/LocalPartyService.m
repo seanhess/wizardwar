@@ -7,13 +7,13 @@
 //
 
 #import "LocalPartyService.h"
-#import "FirebaseCollection.h"
 #import "User.h"
+#import <Firebase/Firebase.h>
 
 // Just implement global people for this yo
 @interface LocalPartyService ()
 @property (nonatomic, strong) NSMutableDictionary* users;
-@property (nonatomic, strong) FirebaseCollection* usersCollection;
+//@property (nonatomic, strong) FirebaseCollection* usersCollection;
 @property (nonatomic, strong) Firebase * lobby;
 @end
 
@@ -35,7 +35,7 @@
     self.lobby = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/lobby"];
     
     // LOBBY
-    self.usersCollection = [[FirebaseCollection alloc] initWithNode:self.lobby dictionary:self.users type:[User class]];
+//    self.usersCollection = [[FirebaseCollection alloc] initWithNode:self.lobby dictionary:self.users type:[User class]];
 //    [self.usersCollection didAddChild:reloadTable];
 //    [self.usersCollection didRemoveChild:reloadTable];
 //    [self.usersCollection didUpdateChild:reloadTable];
