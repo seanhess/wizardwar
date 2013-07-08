@@ -6,6 +6,12 @@
 //  Copyright (c) 2013 The LAB. All rights reserved.
 //
 
+
+
+// This is such a crappy way of doing all of this
+// I need another approach.
+// CoreData? -- would be a good idea
+
 #import "MatchmakingViewController.h"
 #import "WizardDirector.h"
 #import "MatchLayer.h"
@@ -85,7 +91,6 @@
     [UserService.shared.updated subscribeNext:^(id x) {
         [wself.tableView reloadData];
     }];
-    
     
     [RACAble(LocationService.shared, location) subscribeNext:^(id x) {
         [wself didUpdateLocation];
@@ -181,9 +186,10 @@
 }
 
 - (NSArray*)strangers {
-    // for now, show every user in the system
-    // wait, this isn't a solution
-    return UserService.shared.allUsers.allValues;
+    return [UserService.shared.allUsers.allValues filter:^BOOL(User*user) {
+        NSLog(@"USER SERVICE USER: %@ local=%i dt=%i", user.name, [LobbyService.shared userIsLocal:user], (user.deviceToken.length > 0));
+        return (![LobbyService.shared userIsLocal:user] && (user.deviceToken.length > 0));
+    }];
 }
 
 
@@ -232,15 +238,16 @@
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-//    if (section == 0) return @"Challenges";
-//    else if (section == 1) return @"Local Users";
-//    else return @"Friends";
+    if (section == 0) return @"Challenges";
+    else if (section == 1) return @"Local Users";
+    else if (section == 2) return @"Friends";
+    else if (section == 3) return @"Strangers";
     return nil;
 }
 
-- (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section {
-    return 0;
-}
+//- (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section {
+//    return 0;
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 44;
