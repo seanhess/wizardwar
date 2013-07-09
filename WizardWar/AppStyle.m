@@ -33,6 +33,10 @@
     return [self imageWithColor:self.blueNavColor];
 }
 
++(UIColor*)yellowButtonTextColor {
+    return UIColorFromRGB(0x151616);
+}
+
 +(UIColor*)greenGrassColor {
     return UIColorFromRGB(0x6CA24A);
 }
