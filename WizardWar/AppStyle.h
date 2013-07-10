@@ -19,6 +19,7 @@
 +(UIColor*)blueNavColor;
 +(UIImage*)blueNavColorImage;
 +(UIColor*)greenGrassColor;
++(UIColor*)yellowButtonTextColor;
 +(UIImage *)imageWithColor:(UIColor *)color;
 
 @end
