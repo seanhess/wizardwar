@@ -33,7 +33,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
-//    [super setSelected:selected animated:animated];
+    [super setSelected:selected animated:animated];
     // Configure the view for the selected state
 }
 
@@ -47,41 +47,46 @@
 
 -(void)setChallenge:(Challenge *)challenge currentUser:(User *)user {
     self.challenge = challenge;
+    BOOL isCreatedByUser = [self.challenge.main.userId isEqualToString:user.userId];
     
+    // Who are you fighting against?
     User * opponent = nil;
+    if (isCreatedByUser)
+        opponent = self.challenge.opponent;
+    else
+        opponent = self.challenge.main;
+    self.mainLabel.text = [NSString stringWithFormat:@"WAR vs %@", opponent.name];    
+    
     
     // default state is stopped
     [self.activityView stopAnimating];
     
+    if (challenge.status == ChallengeStatusDeclined) {
+        self.otherLabel.text = @"Declined!";
+        self.backgroundView.backgroundColor = UIColorFromRGB(0xE75759);
+        // TODO show declined state. Change background to red?
+    }
     
-    // I am main
-    if ([self.challenge.main.userId isEqualToString:user.userId]) {
-        opponent = self.challenge.opponent;
-        
-        // waiting!
-        if (challenge.status == ChallengeStatusPending) {
+    else if (challenge.status == ChallengeStatusAccepted) {
+        self.otherLabel.text = @"Accepted!";
+        self.backgroundView.backgroundColor = UIColorFromRGB(0xA4E88F);
+    }
+    
+    else {
+        // I am main
+        if (isCreatedByUser) {
             [self.activityView startAnimating];
             self.otherLabel.text = [NSString stringWithFormat:@"Waiting for them to accept..."];
             self.backgroundView.backgroundColor = UIColorFromRGB(0xE6F1FE);
         }
         
-        // Declined!
-        else if (challenge.status == ChallengeStatusDeclined) {
-            self.otherLabel.text = @"Declined!";
-            self.backgroundView.backgroundColor = UIColorFromRGB(0xE75759);
-            // TODO show declined state. Change background to red?
-        }
+        // Ready to play!
+        else {
+            self.otherLabel.text = [NSString stringWithFormat:@"Tap to play!"];
+            self.backgroundView.backgroundColor = UIColorFromRGB(0xA4E88F);
+        }        
     }
     
-    // Ready to play!
-    else {
-        opponent = self.challenge.main;
-        self.otherLabel.text = [NSString stringWithFormat:@"Tap to play!"];
-        self.backgroundView.backgroundColor = UIColorFromRGB(0xA4E88F);
-    }
-    
-    
-    self.mainLabel.text = [NSString stringWithFormat:@"WAR vs %@", opponent.name];
 }
 
 @end

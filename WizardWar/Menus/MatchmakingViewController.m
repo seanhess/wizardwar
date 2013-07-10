@@ -39,9 +39,6 @@
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
 @property (weak, nonatomic) IBOutlet UIView *accountView;
 
-@property (nonatomic, readonly) NSArray * challenges;
-@property (nonatomic, readonly) NSArray * users;
-
 @property (nonatomic, strong) FirebaseConnection* connection;
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityView;
@@ -400,7 +397,7 @@
 {
     NSIndexPath * localIndexPath = [NSIndexPath indexPathForItem:indexPath.row inSection:0];
     if (indexPath.section == 0)
-        [self didSelectChallenge:self.challenges[indexPath.row]];
+        [self didSelectChallenge:[self.challengeResults objectAtIndexPath:localIndexPath]];
     else if (indexPath.section == 1)
         [self didSelectUser:[self.localResults objectAtIndexPath:localIndexPath]];
     else if (indexPath.section == 2)
@@ -427,7 +424,6 @@
     // If I have been challenged
     if ([challenge.opponent.userId isEqualToString:UserService.shared.currentUser.userId]) {
         [ChallengeService.shared acceptChallenge:challenge];
-        // [self joinMatch:challenge];
     }
 }
 
