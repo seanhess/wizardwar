@@ -9,6 +9,7 @@
 #import "ChallengeCell.h"
 #import "UserService.h"
 #import "Color.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface ChallengeCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *mainImageView;
@@ -36,6 +37,10 @@
     // Configure the view for the selected state
 }
 
+//- (void)awakeFromNib {
+//    [super awakeFromNib];
+//}
+
 //- (void)layoutSubviews {
 //    [super layoutSubviews];
 //}
@@ -47,26 +52,32 @@
     
     // default state is stopped
     [self.activityView stopAnimating];
-    self.backgroundView.backgroundColor = UIColorFromRGB(0xA4E88F);
+    
     
     // I am main
     if ([self.challenge.main.userId isEqualToString:user.userId]) {
         opponent = self.challenge.opponent;
         
-
+        // waiting!
         if (challenge.status == ChallengeStatusPending) {
             [self.activityView startAnimating];
             self.otherLabel.text = [NSString stringWithFormat:@"Waiting for them to accept..."];
+            self.backgroundView.backgroundColor = UIColorFromRGB(0xE6F1FE);
         }
+        
+        // Declined!
         else if (challenge.status == ChallengeStatusDeclined) {
             self.otherLabel.text = @"Declined!";
             self.backgroundView.backgroundColor = UIColorFromRGB(0xE75759);
             // TODO show declined state. Change background to red?
         }
     }
+    
+    // Ready to play!
     else {
         opponent = self.challenge.main;
         self.otherLabel.text = [NSString stringWithFormat:@"Tap to play!"];
+        self.backgroundView.backgroundColor = UIColorFromRGB(0xA4E88F);
     }
     
     
