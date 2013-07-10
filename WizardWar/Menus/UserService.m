@@ -68,14 +68,17 @@
     NSString * userId = snapshot.name;
     User * user = [self userWithId:userId create:YES];
     [user setValuesForKeysWithDictionary:snapshot.value];
+    NSLog(@"UserService: (+) %@", user.name);     
 }
 
 -(void)onRemoved:(FDataSnapshot*)snapshot {
     [self updateLastFirebaseConnect:snapshot];
     NSString * userId = snapshot.name;
     User * user = [self userWithId:userId];
-    if (user)
+    if (user) {
+        NSLog(@"UserService: (-) %@", user.name);            
         [ObjectStore.shared.context deleteObject:user];
+    }
 }
 
 -(void)onChanged:(FDataSnapshot*)snapshot {

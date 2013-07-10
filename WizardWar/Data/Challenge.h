@@ -13,6 +13,8 @@
 
 @interface Challenge : NSManagedObject <Objectable>
 
+@property (nonatomic) BOOL accepted;
+
 @property (nonatomic, retain) User *main;
 @property (nonatomic, retain) User *opponent;
 

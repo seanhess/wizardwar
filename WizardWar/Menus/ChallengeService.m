@@ -18,6 +18,7 @@
 @property (nonatomic) BOOL connected;
 @property (nonatomic, strong) Firebase * node;
 @property (nonatomic, strong) NSString * entityName;
+@property (nonatomic, strong) Challenge * currentChallenge;
 @end
 
 @implementation ChallengeService
@@ -46,6 +47,10 @@
     [self.node observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
         [wself onRemoved:snapshot];
     }];
+    
+    [self.node observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
+        [wself onChanged:snapshot];
+    }];
 }
 
 -(void)removeAll {
@@ -57,18 +62,25 @@
 -(void)onAdded:(FDataSnapshot *)snapshot {
     Challenge * challenge = [self challengeForName:snapshot.name];
     [challenge setValuesForKeysWithDictionary:snapshot.value];
-
+    
     // performance bottleneck?
     // what if the user doesn't exist yet?
     
-    challenge.main = [UserService.shared userWithId:challenge.mainId];
-    challenge.opponent = [UserService.shared userWithId:challenge.opponentId];
+    if (!challenge.main)
+        challenge.main = [UserService.shared userWithId:challenge.mainId];
+    
+    if (!challenge.opponent)
+        challenge.opponent = [UserService.shared userWithId:challenge.opponentId];
+    
+    NSLog(@"ChallengeService (+) %@ vs %@", challenge.main.name, challenge.opponent.name);
 }
 
 -(void)onRemoved:(FDataSnapshot*)snapshot {
     Challenge * challenge = [self challengeForName:snapshot.name];
-    if (challenge)
-        [ObjectStore.shared.context deleteObject:challenge];    
+    if (challenge) {
+        NSLog(@"ChallengeService (-) %@ vs %@", challenge.main.name, challenge.opponent.name);        
+        [ObjectStore.shared.context deleteObject:challenge];
+    }
 }
 
 - (Challenge*)challengeForName:(NSString*)firebaseNodeName {
@@ -76,11 +88,31 @@
     return [ObjectStore.shared objectWithId:objectId create:YES];
 }
 
+-(void)onChanged:(FDataSnapshot*)snapshot {
+    [self onAdded:snapshot];
+}
+
+- (void)acceptChallenge:(Challenge*)challenge {
+    challenge.accepted = YES;
+    
+    NSString * name = [self firebaseNameFromObjectId:challenge.objectID];
+    Firebase * child = [self.node childByAppendingPath:name];
+    [child onDisconnectRemoveValue];
+    [child setValue:challenge.toObject];    
+}
+
+// this is only called from the perspective of the current user
 - (Challenge*)user:(User*)user challengeOpponent:(User*)opponent isRemote:(BOOL)isRemote {
+    
+    if (self.currentChallenge) {
+        [self removeChallenge:self.currentChallenge];
+    }
     
     Challenge * challenge = [ObjectStore.shared insertNewObjectForEntityForName:self.entityName];
     challenge.main = user;
     challenge.opponent = opponent;
+    
+    self.currentChallenge = challenge;
     
     NSString * name = [self firebaseNameFromObjectId:challenge.objectID];
     Firebase * child = [self.node childByAppendingPath:name];
@@ -94,6 +126,12 @@
     return challenge;
 }
 
+- (void)removeChallenge:(Challenge*)challenge {
+    NSString * name = [self firebaseNameFromObjectId:challenge.objectID];
+    Firebase * child = [self.node childByAppendingPath:name];
+    [child removeValue];
+}
+
 -(NSString*)firebaseNameFromObjectId:(NSManagedObjectID*)objectId {
     return [objectId.URIRepresentation.description stringByReplacingOccurrencesOfString:@"x-coredata:///Challenge/t" withString:@""];
 }
@@ -105,8 +143,8 @@
 - (NSFetchRequest*)requestChallengesForUser:(User*)user {
     // valid users include:
     NSFetchRequest * request = [NSFetchRequest fetchRequestWithEntityName:self.entityName];
-    request.predicate = [NSPredicate predicateWithFormat:@"main = %@", user];
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"main.name" ascending:YES]];
+    request.predicate = [NSPredicate predicateWithFormat:@"main.userId = %@", user.userId];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"main" ascending:YES]];
     return request;
 }
 

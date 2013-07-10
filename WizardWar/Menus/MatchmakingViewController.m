@@ -33,6 +33,7 @@
 #import "ComicZineDoubleLabel.h"
 #import "ObjectStore.h"
 #import "UserCell.h"
+#import "ChallengeCell.h"
 
 @interface MatchmakingViewController () <AccountFormDelegate, NSFetchedResultsControllerDelegate>
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
@@ -64,6 +65,9 @@
     
     // Custom Table Cells!
     [self.tableView registerNib:[UINib nibWithNibName:@"UserCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"UserCell"];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"ChallengeCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"ChallengeCell"];
+
 
     self.title = @"Matchmaking";
     [self.navigationController setNavigationBarHidden:NO animated:YES];
@@ -118,10 +122,7 @@
     [self didUpdateLocation];
     
     // CHALLENGES
-//    [ChallengeService.shared.updated subscribeNext:^(Challenge *challenge) {
-//        [wself.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
-//        [wself checkAutoconnectChallenge:challenge];
-//    }];
+
 }
 
 
@@ -155,7 +156,9 @@
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
     
     NSInteger sectionGlobal = 0;
-    if (controller == self.challengeResults) sectionGlobal = 0;
+    if (controller == self.challengeResults)
+        sectionGlobal = 0;
+    
     else if (controller == self.localResults) sectionGlobal = 1;
     else if (controller == self.friendResults) sectionGlobal = 2;
     else if (controller == self.allResults) sectionGlobal = 3;
@@ -164,13 +167,18 @@
     NSIndexPath * newIndexPathGlobal = [NSIndexPath indexPathForItem:newIndexPath.row inSection:sectionGlobal];
     
     if (type == NSFetchedResultsChangeInsert) {
+        if (sectionGlobal == 0) NSLog(@"CHALLENGE INSERT");
         [self.tableView insertRowsAtIndexPaths:@[newIndexPathGlobal] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
     else if (type == NSFetchedResultsChangeDelete) {
+        if (sectionGlobal == 0) NSLog(@"CHALLENGE DELETE");        
         [self.tableView deleteRowsAtIndexPaths:@[indexPathGlobal] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
     else if (type == NSFetchedResultsChangeMove) {
-        if (sectionGlobal == 0) return;
+        if (sectionGlobal == 0) {
+            NSLog(@"CHALLENGE MOVE");
+            return;
+        }
         
         // it already knows its user, just reload it
         UserCell * cell = (UserCell*)[self.tableView cellForRowAtIndexPath:indexPathGlobal];
@@ -178,10 +186,15 @@
         [self.tableView moveRowAtIndexPath:indexPathGlobal toIndexPath:newIndexPathGlobal];
     }
     else if (type == NSFetchedResultsChangeUpdate) {
-        if (sectionGlobal == 0) return;
-        
-        UserCell * cell = (UserCell*)[self.tableView cellForRowAtIndexPath:indexPathGlobal];
-        [cell reloadFromUser];
+        if (sectionGlobal == 0) {
+            NSLog(@"CHALLENGE UPDATE");
+            ChallengeCell * challengeCell = (ChallengeCell*)[self.tableView cellForRowAtIndexPath:indexPathGlobal];
+            [challengeCell setChallenge:challengeCell.challenge currentUser:UserService.shared.currentUser];
+        }
+        else {
+            UserCell * cell = (UserCell*)[self.tableView cellForRowAtIndexPath:indexPathGlobal];
+            [cell reloadFromUser];
+        }
     }
 }
 
@@ -291,7 +304,8 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 54;
+    if (indexPath.section == 0) return 65;
+    else return 54;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -330,21 +344,18 @@
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView challengeCellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"InviteCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    ChallengeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChallengeCell"];
     
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-        cell.contentView.backgroundColor = [UIColor colorWithRed:0.490 green:0.706 blue:0.275 alpha:1.000];
-        cell.textLabel.textColor = [UIColor colorWithWhite:0.149 alpha:1.000];        
+        cell = [[ChallengeCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"ChallengeCell"];
     }
     
     NSIndexPath * localIndexPath = [NSIndexPath indexPathForItem:indexPath.row inSection:0];
     Challenge * challenge = [self.challengeResults objectAtIndexPath:localIndexPath];
+    [cell setChallenge:challenge currentUser:UserService.shared.currentUser];
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ vs %@", [self nameOrYou:challenge.main.name], [self nameOrYou:challenge.opponent.name]];
-    
-    return cell;
+    return cell;    
 }
 
 - (NSString*)nameOrYou:(NSString*)name {
@@ -381,7 +392,12 @@
 }
 
 - (void)didSelectChallenge:(Challenge*)challenge {
-    [self joinMatch:challenge];
+    
+    // If I have been challenged
+    if ([challenge.opponent.userId isEqualToString:UserService.shared.currentUser.userId]) {
+        [ChallengeService.shared acceptChallenge:challenge];
+        // [self joinMatch:challenge];
+    }
 }
 
 - (void)joinMatch:(Challenge*)challenge {

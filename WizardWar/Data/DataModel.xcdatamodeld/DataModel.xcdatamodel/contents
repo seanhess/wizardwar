@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="3" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Challenge" representedClassName="Challenge" syncable="YES">
+        <attribute name="accepted" optional="YES" attributeType="Boolean" syncable="YES"/>
         <relationship name="main" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="challenge" inverseEntity="User" syncable="YES"/>
         <relationship name="opponent" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="challenges" inverseEntity="User" syncable="YES"/>
     </entity>
@@ -18,6 +19,6 @@
     </entity>
     <elements>
         <element name="User" positionX="160" positionY="192" width="128" height="195"/>
-        <element name="Challenge" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="Challenge" positionX="160" positionY="192" width="128" height="90"/>
     </elements>
 </model>

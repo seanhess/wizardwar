@@ -41,6 +41,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    // Connect to user service right away!
     [UserService.shared connect];
 }
 

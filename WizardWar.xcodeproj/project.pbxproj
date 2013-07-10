@@ -230,6 +230,8 @@
 		78C5CDE5178B74D700CDCC76 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C5CDE4178B74D700CDCC76 /* UserCell.m */; };
 		78C5CDE7178B74F900CDCC76 /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78C5CDE6178B74F900CDCC76 /* UserCell.xib */; };
 		78C98629178DE0C800B545F9 /* Challenge.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C98628178DE0C800B545F9 /* Challenge.m */; };
+		78C9862B178DFFE300B545F9 /* ChallengeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78C9862A178DFFE300B545F9 /* ChallengeCell.xib */; };
+		78C9862E178DFFF000B545F9 /* ChallengeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C9862D178DFFF000B545F9 /* ChallengeCell.m */; };
 		78D08558176A4AC500EDC405 /* SpellHeal.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D08557176A4AC400EDC405 /* SpellHeal.m */; };
 		78D0855B176A4B2800EDC405 /* EffectHeal.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D0855A176A4B2800EDC405 /* EffectHeal.m */; };
 		78D0855E176A4C7C00EDC405 /* EffectSleep.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D0855D176A4C7C00EDC405 /* EffectSleep.m */; };
@@ -749,6 +751,9 @@
 		78C5CDE6178B74F900CDCC76 /* UserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
 		78C98627178DE0C800B545F9 /* Challenge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Challenge.h; sourceTree = "<group>"; };
 		78C98628178DE0C800B545F9 /* Challenge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Challenge.m; sourceTree = "<group>"; };
+		78C9862A178DFFE300B545F9 /* ChallengeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChallengeCell.xib; sourceTree = "<group>"; };
+		78C9862C178DFFF000B545F9 /* ChallengeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeCell.h; sourceTree = "<group>"; };
+		78C9862D178DFFF000B545F9 /* ChallengeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeCell.m; sourceTree = "<group>"; };
 		78D08556176A4AC400EDC405 /* SpellHeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellHeal.h; sourceTree = "<group>"; };
 		78D08557176A4AC400EDC405 /* SpellHeal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellHeal.m; sourceTree = "<group>"; };
 		78D08559176A4B2800EDC405 /* EffectHeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectHeal.h; sourceTree = "<group>"; };
@@ -1320,6 +1325,9 @@
 				78C5CDE3178B74D600CDCC76 /* UserCell.h */,
 				78C5CDE4178B74D700CDCC76 /* UserCell.m */,
 				78C5CDE6178B74F900CDCC76 /* UserCell.xib */,
+				78C9862C178DFFF000B545F9 /* ChallengeCell.h */,
+				78C9862D178DFFF000B545F9 /* ChallengeCell.m */,
+				78C9862A178DFFE300B545F9 /* ChallengeCell.xib */,
 				785FBEB5177261BD0021AEE5 /* MenuButton.h */,
 				785FBEB6177261BD0021AEE5 /* MenuButton.m */,
 				785FBED6177261D00021AEE5 /* Service */,
@@ -2057,6 +2065,7 @@
 				674926B0178CD017005B75D0 /* icon-settings@2x.png in Resources */,
 				674926B1178CD017005B75D0 /* icon-share.png in Resources */,
 				674926B2178CD017005B75D0 /* icon-share@2x.png in Resources */,
+				78C9862B178DFFE300B545F9 /* ChallengeCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2283,6 +2292,7 @@
 				78C5CDE2178B656500CDCC76 /* FirebaseCollection.m in Sources */,
 				78C5CDE5178B74D700CDCC76 /* UserCell.m in Sources */,
 				78C98629178DE0C800B545F9 /* Challenge.m in Sources */,
+				78C9862E178DFFF000B545F9 /* ChallengeCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
