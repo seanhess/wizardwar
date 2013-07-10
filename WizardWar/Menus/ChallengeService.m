@@ -28,6 +28,7 @@
     dispatch_once(&onceToken, ^{
         instance = [[ChallengeService alloc] init];
         instance.entityName = @"Challenge";
+        instance.acceptedSignal = [RACSubject subject];
     });
     return instance;
 }
@@ -67,6 +68,11 @@
     challenge.opponent = [UserService.shared userWithId:challenge.opponentId];
     
     NSLog(@"ChallengeService (+) %@ vs %@", challenge.main.name, challenge.opponent.name);
+    
+    // we have a new accepted match!
+    if (challenge.status == ChallengeStatusAccepted) {
+        [self.acceptedSignal sendNext:challenge];
+    }
 }
 
 -(void)onRemoved:(FDataSnapshot*)snapshot {

@@ -16,6 +16,8 @@
 //@property (nonatomic, strong) NSMutableDictionary * myChallenges;
 //@property (nonatomic, strong) RACSubject * updated;
 
+@property (nonatomic, strong) RACSubject * acceptedSignal;
+
 + (ChallengeService *)shared;
 - (Challenge*)user:(User*)user challengeOpponent:(User*)opponent isRemote:(BOOL)isRemote;
 - (void)acceptChallenge:(Challenge*)challenge;

@@ -118,7 +118,11 @@
     }];
     [self didUpdateLocation];
     
-    // CHALLENGES
+    // CHALLENGES. join right away 
+    [ChallengeService.shared.acceptedSignal subscribeNext:^(Challenge * challenge) {
+        [wself joinMatch:challenge];
+    }];
+    
 
 }
 
@@ -428,6 +432,12 @@
 }
 
 - (void)joinMatch:(Challenge*)challenge {
+    
+    // remove any challenge that I created. I can't be challenging anyone now
+    if (UserService.shared.currentUser.challenge) {
+        [ChallengeService.shared removeChallenge:UserService.shared.currentUser.challenge];
+    }
+    
     MatchViewController * match = [MatchViewController new];
     [match startChallenge:challenge currentWizard:UserService.shared.currentWizard];
     [self.navigationController presentViewController:match animated:YES completion:nil];
