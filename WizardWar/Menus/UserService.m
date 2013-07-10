@@ -104,7 +104,6 @@
 
 - (Wizard*)currentWizard {
     // TODO, actually save this information, yo?
-    // NSUserDefaults ftw
     Wizard * wizard = [Wizard new];
     wizard.name = self.currentUser.name;
     if (!wizard.name) wizard.name = [NSString stringWithFormat:@"Guest%@", [IdService randomId:4]];

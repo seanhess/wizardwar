@@ -82,12 +82,33 @@
     [self onAdded:snapshot];
 }
 
+
+- (BOOL)challenge:(Challenge*)challenge isCreatedByUser:(User*)user {
+    return [challenge.main.userId isEqualToString:user.userId];
+}
+
+
+
+
 - (void)acceptChallenge:(Challenge*)challenge {
-    challenge.status = ChallengeStatusAccepted;
-    
+    [self setChallenge:challenge status:ChallengeStatusAccepted];
+}
+
+- (void)declineChallenge:(Challenge*)challenge {
+    [self setChallenge:challenge status:ChallengeStatusDeclined];
+}
+
+
+
+
+
+
+
+- (void)setChallenge:(Challenge*)challenge status:(ChallengeStatus)status {
+    challenge.status = status;
     Firebase * child = [self challengeNode:challenge];
     [child onDisconnectRemoveValue];
-    [child setValue:challenge.toObject];    
+    [child setValue:challenge.toObject];
 }
 
 - (Firebase*)challengeNode:(Challenge*)challenge {
@@ -130,7 +151,18 @@
 - (NSFetchRequest*)requestChallengesForUser:(User*)user {
     // valid users include:
     NSFetchRequest * request = [NSFetchRequest fetchRequestWithEntityName:self.entityName];
-    request.predicate = [NSPredicate predicateWithFormat:@"main.userId = %@ OR opponent.userId = %@", user.userId, user.userId];
+    NSPredicate * notDeclined = [NSPredicate predicateWithFormat:@"status != %i", ChallengeStatusDeclined];
+    NSPredicate * userIsMain = [NSPredicate predicateWithFormat:@"main.userId = %@", user.userId];
+    NSPredicate * userIsOpponent = [NSPredicate predicateWithFormat:@"opponent.userId = %@", user.userId];
+//    NSPredicate * userIsEither = [NSCompoundPredicate orPredicateWithSubpredicates:@[userIsMain, userIsOpponent]];
+    NSPredicate * showOpponent = [NSCompoundPredicate andPredicateWithSubpredicates:@[userIsOpponent, notDeclined]];
+    
+    // HIDE: declined challenges when I am the opponent
+    // SHOW: when main: always
+    // SHOW: when oppponent: when not declied
+    
+//    request.predicate = [NSPredicate predicateWithFormat:@"status != %i AND main.userId = %@ OR opponent.userId = %@", ChallengeStatusDeclined, user.userId, user.userId];
+    request.predicate = [NSCompoundPredicate orPredicateWithSubpredicates:@[userIsMain, showOpponent]];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"main.userId" ascending:YES]];
     return request;
 }

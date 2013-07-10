@@ -271,13 +271,25 @@
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //add code here for when you hit delete
-        NSLog(@"DELET!");
+        NSIndexPath * localIndexPath = [NSIndexPath indexPathForItem:indexPath.row inSection:0];
+        Challenge * challenge = [self.challengeResults objectAtIndexPath:localIndexPath];
+        
+        // If I created it, then delete it
+        if ([ChallengeService.shared challenge:challenge isCreatedByUser:UserService.shared.currentUser]) {
+            [ChallengeService.shared removeChallenge:challenge];
+        }
+        
+        // otherwise decline it
+        else {
+            [ChallengeService.shared declineChallenge:challenge];
+        }
+        
+
     }
 }
 
 -(NSString*)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return @"Decline Match";
+    return @"Run Away!";
 }
 
 

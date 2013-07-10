@@ -8,10 +8,12 @@
 
 #import "ChallengeCell.h"
 #import "UserService.h"
+#import "Color.h"
 
 @interface ChallengeCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *mainImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *opponentImageView;
+@property (weak, nonatomic) IBOutlet UIView *backgroundView;
 
 @property (weak, nonatomic) IBOutlet UILabel *mainLabel;
 @property (weak, nonatomic) IBOutlet UILabel *otherLabel;
@@ -23,7 +25,7 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {        
+    if (self) {
     }
     return self;
 }
@@ -31,9 +33,12 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
 //    [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
 }
+
+//- (void)layoutSubviews {
+//    [super layoutSubviews];
+//}
 
 -(void)setChallenge:(Challenge *)challenge currentUser:(User *)user {
     self.challenge = challenge;
@@ -42,6 +47,7 @@
     
     // default state is stopped
     [self.activityView stopAnimating];
+    self.backgroundView.backgroundColor = UIColorFromRGB(0xA4E88F);
     
     // I am main
     if ([self.challenge.main.userId isEqualToString:user.userId]) {
@@ -54,6 +60,7 @@
         }
         else if (challenge.status == ChallengeStatusDeclined) {
             self.otherLabel.text = @"Declined!";
+            self.backgroundView.backgroundColor = UIColorFromRGB(0xE75759);
             // TODO show declined state. Change background to red?
         }
     }
@@ -64,9 +71,6 @@
     
     
     self.mainLabel.text = [NSString stringWithFormat:@"WAR vs %@", opponent.name];
-    
-
-
 }
 
 @end
