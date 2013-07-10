@@ -19,6 +19,8 @@
 @dynamic userId;
 @dynamic friendPoints;
 @dynamic distance;
+@dynamic challenge;
+@dynamic updated;
 
 @synthesize isClose;
 

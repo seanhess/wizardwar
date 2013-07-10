@@ -188,8 +188,9 @@
     else if (type == NSFetchedResultsChangeUpdate) {
         if (sectionGlobal == 0) {
             NSLog(@"CHALLENGE UPDATE");
-            ChallengeCell * challengeCell = (ChallengeCell*)[self.tableView cellForRowAtIndexPath:indexPathGlobal];
-            [challengeCell setChallenge:challengeCell.challenge currentUser:UserService.shared.currentUser];
+            // do a remove/insert instead. it's kewl looking
+            [self.tableView deleteRowsAtIndexPaths:@[indexPathGlobal] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView insertRowsAtIndexPaths:@[newIndexPathGlobal] withRowAnimation:UITableViewRowAnimationAutomatic];
         }
         else {
             UserCell * cell = (UserCell*)[self.tableView cellForRowAtIndexPath:indexPathGlobal];
@@ -261,6 +262,24 @@
 }
 
 #pragma mark - Table view data source
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) return YES;
+    return NO;
+}
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //add code here for when you hit delete
+        NSLog(@"DELET!");
+    }
+}
+
+-(NSString*)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return @"Decline Match";
+}
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

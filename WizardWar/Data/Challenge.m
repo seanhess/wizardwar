@@ -14,13 +14,13 @@
 
 @dynamic main;
 @dynamic opponent;
-@dynamic accepted;
+@dynamic status;
 
 @synthesize mainId;
 @synthesize opponentId;
 
 -(NSDictionary*)toObject {
-    return @{@"mainId": self.main.userId, @"opponentId": self.opponent.userId, @"accepted": @(self.accepted)};
+    return @{@"mainId": self.main.userId, @"opponentId": self.opponent.userId, @"status": @(self.status)};
 }
 
 -(void)setValuesForKeysWithDictionary:(NSDictionary *)values {

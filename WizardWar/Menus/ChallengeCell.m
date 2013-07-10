@@ -40,20 +40,28 @@
     
     User * opponent = nil;
     
+    // default state is stopped
+    [self.activityView stopAnimating];
+    
     // I am main
     if ([self.challenge.main.userId isEqualToString:user.userId]) {
         opponent = self.challenge.opponent;
-        self.otherLabel.text = [NSString stringWithFormat:@"Waiting for them to accept..."];
+        
+
+        if (challenge.status == ChallengeStatusPending) {
+            [self.activityView startAnimating];
+            self.otherLabel.text = [NSString stringWithFormat:@"Waiting for them to accept..."];
+        }
+        else if (challenge.status == ChallengeStatusDeclined) {
+            self.otherLabel.text = @"Declined!";
+            // TODO show declined state. Change background to red?
+        }
     }
     else {
         opponent = self.challenge.main;
         self.otherLabel.text = [NSString stringWithFormat:@"Tap to play!"];
     }
     
-    if (challenge.accepted)
-        [self.activityView stopAnimating];
-    else
-        [self.activityView startAnimating];
     
     self.mainLabel.text = [NSString stringWithFormat:@"WAR vs %@", opponent.name];
     

@@ -11,9 +11,16 @@
 #import "Objectable.h"
 #import "User.h"
 
+typedef enum ChallengeStatus {
+    ChallengeStatusPending,
+    ChallengeStatusAccepted,
+    ChallengeStatusDeclined,
+} ChallengeStatus;
+
+
 @interface Challenge : NSManagedObject <Objectable>
 
-@property (nonatomic) BOOL accepted;
+@property (nonatomic) int16_t status;
 
 @property (nonatomic, retain) User *main;
 @property (nonatomic, retain) User *opponent;

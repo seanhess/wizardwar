@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 #import <CoreLocation/CoreLocation.h>
 #import "Objectable.h"
+@class Challenge;
 
 @interface User : NSManagedObject <Objectable>
 
@@ -21,7 +22,9 @@
 @property (nonatomic, retain) NSString * userId;
 @property (nonatomic) int16_t friendPoints;
 @property (nonatomic) CLLocationDistance distance;
+@property (nonatomic) NSTimeInterval updated;
 
+@property (nonatomic, retain) Challenge *challenge;
 
 // Transient Properties and methods
 // some are relative to the current user

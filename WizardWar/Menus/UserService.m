@@ -34,7 +34,8 @@
     self.node = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/users"];
     self.entityName = @"User";
     
-    self.lastFirebaseConnect = [[[NSUserDefaults standardUserDefaults] objectForKey:@"lastFirebaseConnect"] doubleValue];
+    self.lastFirebaseConnect = [self loadLastFirebaseConnect];
+    NSLog(@"UserService: lastFirebaseConnect:%f", self.lastFirebaseConnect);
     
     FQuery * query = [self.node queryStartingAtPriority:@(self.lastFirebaseConnect)];
     
@@ -64,15 +65,14 @@
 }
 
 -(void)onAdded:(FDataSnapshot *)snapshot {
-    [self updateLastFirebaseConnect:snapshot];
     NSString * userId = snapshot.name;
     User * user = [self userWithId:userId create:YES];
     [user setValuesForKeysWithDictionary:snapshot.value];
-    NSLog(@"UserService: (+) %@", user.name);     
+    user.updated = ([snapshot.priority doubleValue] / 1000.0); // comes down in milliseconds
+    NSLog(@"UserService: (+) %f %@ ", user.updated, user.name);
 }
 
 -(void)onRemoved:(FDataSnapshot*)snapshot {
-    [self updateLastFirebaseConnect:snapshot];
     NSString * userId = snapshot.name;
     User * user = [self userWithId:userId];
     if (user) {
@@ -85,13 +85,12 @@
     [self onAdded:snapshot];
 }
 
--(void)updateLastFirebaseConnect:(FDataSnapshot*)snapshot {
-    NSTimeInterval updated = [snapshot.priority doubleValue];
-    if (updated > self.lastFirebaseConnect) {
-        self.lastFirebaseConnect = updated;
-//        NSLog(@"UserService UPDATED lastFirebaseConnect %f obj=%@", self.lastFirebaseConnect, snapshot.value);
-        [[NSUserDefaults standardUserDefaults] setObject:@(self.lastFirebaseConnect) forKey:@"lastFirebaseConnect"];
-    }
+-(NSTimeInterval)loadLastFirebaseConnect {
+    NSFetchRequest * request = [NSFetchRequest fetchRequestWithEntityName:self.entityName];
+    NSSortDescriptor * sortByLastUpdated = [NSSortDescriptor sortDescriptorWithKey:@"updated" ascending:NO];
+    request.sortDescriptors = @[sortByLastUpdated];
+    User * user = [ObjectStore.shared requestLastObject:request];
+    return user.updated;
 }
 
 - (User*)currentUser {
@@ -133,7 +132,7 @@
     NSFetchRequest * request = [self requestAllUsers];
     request.predicate = [self predicateIsUser:userId];
     User * user = [ObjectStore.shared requestLastObject:request];
-    if (!user) {
+    if (!user && create) {
         user = [ObjectStore.shared insertNewObjectForEntityForName:self.entityName];
         user.userId = userId;
     }
