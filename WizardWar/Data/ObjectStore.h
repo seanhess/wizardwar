@@ -23,4 +23,7 @@
 -(id)insertNewObjectForEntityForName:(NSString*)name;
 -(NSFetchedResultsController*)fetchedResultsForRequest:(NSFetchRequest*)request; // section name key path, cacheName
 
+-(NSManagedObjectID*)objectIdForURI:(NSString*)uri;
+-(id)objectWithId:(NSManagedObjectID*)objectId create:(BOOL)create;
+
 @end

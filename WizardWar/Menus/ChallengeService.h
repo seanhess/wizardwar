@@ -13,11 +13,12 @@
 
 @interface ChallengeService : NSObject
 
-@property (nonatomic, strong) NSMutableDictionary * myChallenges;
-@property (nonatomic, strong) RACSubject * updated;
+//@property (nonatomic, strong) NSMutableDictionary * myChallenges;
+//@property (nonatomic, strong) RACSubject * updated;
 
 + (ChallengeService *)shared;
-- (void)connect;
 - (Challenge*)user:(User*)user challengeOpponent:(User*)opponent isRemote:(BOOL)isRemote;
+
+- (NSFetchRequest*)requestChallengesForUser:(User*)user;
 
 @end

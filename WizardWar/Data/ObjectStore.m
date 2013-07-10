@@ -66,6 +66,28 @@
 }
 
 
+-(NSManagedObjectID*)objectIdForURI:(NSString*)uri {
+    NSURL * url = [NSURL URLWithString:uri];
+    return [self.persistentStoreCoordinator managedObjectIDForURIRepresentation:url];
+}
+
+-(id)objectWithId:(NSManagedObjectID*)objectId create:(BOOL)create {
+    // Load the object, or a "fault" object if it doesn't exist
+    NSManagedObject * object = [self.context objectWithID:objectId];
+    
+    // If it doesn't exist, then if create=YES, insert, otherwise return nil
+    if (!object.isInserted) {
+        if (create) {
+            [self.context insertObject:object];
+        }
+        else {
+            object = nil;
+        }
+        
+    }
+    return object;
+}
+
 
 #pragma mark - Core Data stack
 

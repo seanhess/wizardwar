@@ -23,7 +23,6 @@
 @property (nonatomic) CLLocationDistance distance;
 
 
-
 // Transient Properties and methods
 // some are relative to the current user
 @property (nonatomic, readonly) CLLocation * location;

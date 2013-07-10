@@ -49,6 +49,7 @@
 @property (nonatomic, readonly) User * currentUser;
 @property (strong, nonatomic) MatchLayer * match;
 
+@property (strong, nonatomic) NSFetchedResultsController * challengeResults;
 @property (strong, nonatomic) NSFetchedResultsController * friendResults;
 @property (strong, nonatomic) NSFetchedResultsController * localResults;
 @property (strong, nonatomic) NSFetchedResultsController * allResults;
@@ -82,6 +83,10 @@
 - (void)connect {
     NSError *error = nil;
     
+    self.challengeResults = [ObjectStore.shared fetchedResultsForRequest:[ChallengeService.shared requestChallengesForUser:UserService.shared.currentUser]];
+    self.challengeResults.delegate = self;
+    [self.challengeResults performFetch:&error];
+    
     self.friendResults = [ObjectStore.shared fetchedResultsForRequest:[UserService.shared requestFriends]];
     self.friendResults.delegate = self;
     [self.friendResults performFetch:&error];
@@ -100,7 +105,6 @@
     [self.tableView reloadData];
     
     [LocationService.shared connect];
-    [ChallengeService.shared connect];
 
     __weak MatchmakingViewController * wself = self;
 
@@ -113,10 +117,10 @@
     [self didUpdateLocation];
     
     // CHALLENGES
-    [ChallengeService.shared.updated subscribeNext:^(Challenge *challenge) {
-        [wself.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
-        [wself checkAutoconnectChallenge:challenge];
-    }];
+//    [ChallengeService.shared.updated subscribeNext:^(Challenge *challenge) {
+//        [wself.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+//        [wself checkAutoconnectChallenge:challenge];
+//    }];
 }
 
 
@@ -149,8 +153,9 @@
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
     
-    NSInteger sectionGlobal = 1;
-    if (controller == self.localResults) sectionGlobal = 1;
+    NSInteger sectionGlobal = 0;
+    if (controller == self.challengeResults) sectionGlobal = 0;
+    else if (controller == self.localResults) sectionGlobal = 1;
     else if (controller == self.friendResults) sectionGlobal = 2;
     else if (controller == self.allResults) sectionGlobal = 3;
     
@@ -164,12 +169,16 @@
         [self.tableView deleteRowsAtIndexPaths:@[indexPathGlobal] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
     else if (type == NSFetchedResultsChangeMove) {
+        if (sectionGlobal == 0) return;
+        
         // it already knows its user, just reload it
         UserCell * cell = (UserCell*)[self.tableView cellForRowAtIndexPath:indexPathGlobal];
         [cell reloadFromUser];
         [self.tableView moveRowAtIndexPath:indexPathGlobal toIndexPath:newIndexPathGlobal];
     }
     else if (type == NSFetchedResultsChangeUpdate) {
+        if (sectionGlobal == 0) return;
+        
         UserCell * cell = (UserCell*)[self.tableView cellForRowAtIndexPath:indexPathGlobal];
         [cell reloadFromUser];
     }
@@ -214,10 +223,6 @@
     
 }
 
-- (NSArray*)challenges {
-    return ChallengeService.shared.myChallenges.allValues;
-}
-
 - (User*)currentUser {
     return UserService.shared.currentUser;
 }
@@ -251,7 +256,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
-        return [self.challenges count];
+        return [[self.challengeResults.sections objectAtIndex:0] numberOfObjects];
     } else if (section == 1){
         return [[self.localResults.sections objectAtIndex:0] numberOfObjects];
     } else if (section == 2) {
@@ -333,7 +338,9 @@
         cell.textLabel.textColor = [UIColor colorWithWhite:0.149 alpha:1.000];        
     }
     
-    Challenge * challenge = self.challenges[indexPath.row];
+    NSIndexPath * localIndexPath = [NSIndexPath indexPathForItem:indexPath.row inSection:0];
+    Challenge * challenge = [self.challengeResults objectAtIndexPath:localIndexPath];
+    
     cell.textLabel.text = [NSString stringWithFormat:@"%@ vs %@", [self nameOrYou:challenge.main.name], [self nameOrYou:challenge.opponent.name]];
     
     return cell;
@@ -368,7 +375,7 @@
     
     // Issue the challenge
     Challenge * challenge = [ChallengeService.shared user:self.currentUser challengeOpponent:user isRemote:!user.isOnline];
-    [self joinMatch:challenge];
+//    [self joinMatch:challenge];
     [UserFriendService.shared user:UserService.shared.currentUser addChallenge:challenge];
 }
 
