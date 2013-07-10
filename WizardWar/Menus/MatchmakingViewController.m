@@ -105,6 +105,7 @@
     [self.tableView reloadData];
     
     [LocationService.shared connect];
+    [ChallengeService.shared connectAndReset];
 
     __weak MatchmakingViewController * wself = self;
 

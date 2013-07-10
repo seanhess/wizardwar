@@ -18,6 +18,7 @@
 +(ObjectStore*)shared;
 -(void)saveContext;
 
+-(void)requestRemove:(NSFetchRequest*)request;
 -(NSArray*)requestToArray:(NSFetchRequest*)request;
 -(id)requestLastObject:(NSFetchRequest*)request;
 -(id)insertNewObjectForEntityForName:(NSString*)name;

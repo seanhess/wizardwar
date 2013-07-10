@@ -19,6 +19,7 @@
 + (ChallengeService *)shared;
 - (Challenge*)user:(User*)user challengeOpponent:(User*)opponent isRemote:(BOOL)isRemote;
 
+- (void)connectAndReset;
 - (NSFetchRequest*)requestChallengesForUser:(User*)user;
 
 @end

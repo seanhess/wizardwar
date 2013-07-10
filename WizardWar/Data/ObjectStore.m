@@ -10,6 +10,7 @@
 // so a singleton with some initialization
 
 #import "ObjectStore.h"
+#import "NSArray+Functional.h"
 
 @interface ObjectStore()
 
@@ -41,6 +42,14 @@
 
 
 #pragma mark - Helpers
+
+-(void)requestRemove:(NSFetchRequest*)request {
+    NSArray * results = [self requestToArray:request];
+    [results forEach:^(NSManagedObject*object) {
+        [self.context deleteObject:object];
+    }];
+}
+
 -(NSArray*)requestToArray:(NSFetchRequest *)request {
     NSError * error = nil;
     NSArray * results = [ObjectStore.shared.context executeFetchRequest:request error:&error];

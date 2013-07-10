@@ -27,14 +27,14 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance = [[ChallengeService alloc] init];
-//        instance.updated = [RACSubject subject];
-        [instance connect];
+        instance.entityName = @"Challenge";
     });
     return instance;
 }
 
-- (void)connect {
-    self.entityName = @"Challenge";
+- (void)connectAndReset {
+
+    [self removeAll];
 
     self.node = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/challenges2"];
 
@@ -48,12 +48,19 @@
     }];
 }
 
+-(void)removeAll {
+    NSFetchRequest * request = [NSFetchRequest fetchRequestWithEntityName:self.entityName];
+    [ObjectStore.shared requestRemove:request];
+}
+
 // I only care about challenges involving ME
 -(void)onAdded:(FDataSnapshot *)snapshot {
     Challenge * challenge = [self challengeForName:snapshot.name];
     [challenge setValuesForKeysWithDictionary:snapshot.value];
 
     // performance bottleneck?
+    // what if the user doesn't exist yet?
+    
     challenge.main = [UserService.shared userWithId:challenge.mainId];
     challenge.opponent = [UserService.shared userWithId:challenge.opponentId];
 }
