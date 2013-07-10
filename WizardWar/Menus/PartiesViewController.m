@@ -54,11 +54,10 @@
 }
 
 - (IBAction)didTapMatchmaking:(id)sender {
-    NSLog(@"MATCH MAKING");
+
 }
 
 - (IBAction)didTapStartParty:(id)sender {
-    NSLog(@"START PARTY");
     // goes to invite people and stuff
     PartyInviteViewController * invites = [PartyInviteViewController new];
     [self.navigationController pushViewController:invites animated:YES];

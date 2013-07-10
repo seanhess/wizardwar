@@ -38,7 +38,7 @@
     
     FQuery * query = [self.node queryStartingAtPriority:@(self.lastFirebaseConnect)];
     
-    NSLog(@"UserService lastFirebaseConnect=%f", self.lastFirebaseConnect);
+//    NSLog(@"UserService lastFirebaseConnect=%f", self.lastFirebaseConnect);
     
     __weak UserService * wself = self;
 
@@ -86,7 +86,7 @@
     NSTimeInterval updated = [snapshot.priority doubleValue];
     if (updated > self.lastFirebaseConnect) {
         self.lastFirebaseConnect = updated;
-        NSLog(@"UserService UPDATED lastFirebaseConnect %f obj=%@", self.lastFirebaseConnect, snapshot.value);
+//        NSLog(@"UserService UPDATED lastFirebaseConnect %f obj=%@", self.lastFirebaseConnect, snapshot.value);
         [[NSUserDefaults standardUserDefaults] setObject:@(self.lastFirebaseConnect) forKey:@"lastFirebaseConnect"];
     }
 }

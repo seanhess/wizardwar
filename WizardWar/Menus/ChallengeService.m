@@ -34,8 +34,6 @@
     if (self.connected) return;
     self.connected = YES;
     
-    NSLog(@"CONNECT ChallengeService");
-    
     self.node = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/challenges"];
     self.myChallenges = [NSMutableDictionary dictionary];
     

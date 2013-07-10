@@ -64,7 +64,7 @@
     
     [self playMusic];
     
-    CCDirectorIOS * director = [WizardDirector shared];
+    CCDirector * director = [CCDirector sharedDirector];
     [self.cocosView addSubview:director.view];
     
     
@@ -83,7 +83,7 @@
     
     self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 
-    CCDirectorIOS * director = [WizardDirector shared];
+    CCDirector * director = [CCDirector sharedDirector];
     NSLog(@"TESTING cososView=%@ self.view=%@", NSStringFromCGRect(self.cocosView.bounds), NSStringFromCGRect(self.view.bounds));
     director.view.frame = self.view.bounds;
     MatchLayer * matchLayer = [[MatchLayer alloc] initWithMatch:self.match size:self.view.bounds.size];

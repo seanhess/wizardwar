@@ -15,13 +15,6 @@
 
 @implementation WizardDirector
 
-+ (CCDirectorIOS *)shared
-{
-    // make sure to call initialize right away!
-    CCDirectorIOS * director = (CCDirectorIOS*) [CCDirector sharedDirector];
-    return director;
-}
-
 +(CCDirectorIOS*)initializeWithBounds:(CGRect)bounds {
     // Custom initialization
     
@@ -103,7 +96,7 @@
 }
 
 +(void)runLayer:(CCLayer*)layer {
-    CCDirectorIOS * director = [self shared];
+    CCDirector * director = [CCDirector sharedDirector];
 	CCScene *scene = [CCScene node];
 	[scene addChild:layer];
     [director replaceScene:scene];
@@ -111,20 +104,20 @@
 }
 
 +(void)unload {
-    CCDirectorIOS * director = [self shared];
+    CCDirector * director = [CCDirector sharedDirector];
     [[director runningScene] removeAllChildrenWithCleanup:YES];
     [self stop];
 }
 
 +(void)stop {
     NSLog(@"STOP");
-    CCDirectorIOS * director = [self shared];
+    CCDirector * director = [CCDirector sharedDirector];
     [director stopAnimation];
     [director pause];
  }
 
 +(void)start {
-    CCDirectorIOS * director = [self shared];
+    CCDirector * director = [CCDirector sharedDirector];
     [director stopAnimation];
     [director resume];
     [director startAnimation];

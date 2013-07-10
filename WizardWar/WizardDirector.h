@@ -12,7 +12,6 @@
 
 @interface WizardDirector : CCDirectorIOS;
 
-+(CCDirectorIOS*)shared;
 +(CCDirectorIOS*)initializeWithBounds:(CGRect)bounds;
 +(void)runLayer:(CCLayer*)layer;
 +(void)stop;

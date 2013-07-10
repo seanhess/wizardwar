@@ -15,20 +15,28 @@
 -(id)init {
     if ((self=[super init])) {
         
-        CGFloat w;
-        CGSize size = [CCDirector sharedDirector].winSize;
-        if (size.height < 700)
-            w = size.height;
-        else
-            w = 480;
-        CGFloat h = 320;
+        CGSize size = CCDirector.sharedDirector.winSize;
+        
+        // Make sure it is in landscape
+        CGFloat w = size.width;
+        CGFloat h = size.height;
+        size.width = MAX(w, h);
+        size.height = MIN(w, h);
+        
+        // iPhone 5 aspect ratio
+        CGFloat gameWidth, gameHeight;
+        if (size.width == 568)
+            gameWidth = size.width;
+        else gameWidth = 480;
+            
+        gameHeight = 320;
         
         self.min = 75;
-        self.max = w-75;
+        self.max = gameWidth-75;
         // this should be centered instead!!!
-        self.zeroY = h/2 - 40;
+        self.zeroY = gameHeight/2 - 40;
         self.width = self.max - self.min;
-        self.maxY = 320;
+        self.maxY = gameHeight;
     }
     return self;
 }

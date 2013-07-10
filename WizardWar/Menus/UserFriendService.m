@@ -28,7 +28,6 @@
 
 -(void)user:(User *)user addFriend:(User *)friend {
     friend.friendPoints++;
-    NSLog(@"Add Friend: %@=%i", friend.name, friend.friendPoints);
 }
 
 -(void)user:(User *)user addChallenge:(Challenge *)challenge {

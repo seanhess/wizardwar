@@ -34,7 +34,6 @@
 }
 
 - (void)start {
-    NSLog(@"START");
     NSAssert(self.tickInterval, @"Must set tick interval > 0");
     self.currentTick = 0;
 }

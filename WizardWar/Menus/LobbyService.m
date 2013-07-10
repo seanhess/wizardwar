@@ -41,8 +41,6 @@
 // so I don't get the updates too early
 - (void)connect {
     
-    NSLog(@"CONNECT LobbyService");
-    
     [self setAllOffline];
     
     self.lobby = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/lobby"];
@@ -80,13 +78,13 @@
     [user setValuesForKeysWithDictionary:snapshot.value];
     user.isOnline = YES;
     user.distance = [LocationService.shared distanceFrom:user.location];    
-    NSLog(@"LOBBY (+) name=%@ distance=%f", user.name, user.distance);
+//    NSLog(@"LOBBY (+) name=%@ distance=%f", user.name, user.distance);
 }
 
 -(void)onRemoved:(FDataSnapshot*)snapshot {
     User * removed = [UserService.shared userWithId:snapshot.name];
     if (removed) {
-        NSLog(@"LOBBY (-) %@", removed.name);
+//        NSLog(@"LOBBY (-) %@", removed.name);
         removed.isOnline = NO;
         removed.locationLatitude = 0;
         removed.locationLongitude = 0;
@@ -100,7 +98,7 @@
 // Joins us to the lobby, por favor!
 // MAKE SURE that the location is set before doing this!
 - (void)joinLobby:(User *)user location:(CLLocation *)location {
-    NSLog(@"JOIN LOBBY LocationService %@", user);
+//    NSLog(@"JOIN LOBBY LocationService %@", user);
 
     self.joined = NO;
     self.currentLocation = location;

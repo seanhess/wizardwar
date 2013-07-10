@@ -36,10 +36,10 @@
     // you'll get the other guy here, not in update
     __weak TimerSyncService * wself = self;
     [self.timesCollection didAddChild:^(PlayerTime * time) {
-        NSLog(@"Timer added %@ %i", time, isHost);
+//        NSLog(@"Timer added %@ %i", time, isHost);
         NSTimeInterval currentTime = CACurrentMediaTime();
         if (isHost && time != wself.myTime) {
-            NSLog(@"ICH BIN HOST");
+//            NSLog(@"ICH BIN HOST");
             [wself sendEstimate:time currentTime:currentTime];
         }
     }];
@@ -47,12 +47,12 @@
     [self.timesCollection didUpdateChild:^(PlayerTime * time) {
         NSTimeInterval currentTime = CACurrentMediaTime();
         if (time == wself.myTime && time.accepted) {
-            NSLog(@"(OTHER) ACCEPTED my time! %f", time.currentTime);
+//            NSLog(@"(OTHER) ACCEPTED my time! %f", time.currentTime);
             [wself startWithPlayerTime:time];
         }
         else if (time != wself.myTime && !time.accepted) {
             if ([wself checkEstimate:time currentTime:currentTime]) {
-                NSLog(@"(ME) ACCEPTING their time! %f", time.currentTime);
+//                NSLog(@"(ME) ACCEPTING their time! %f", time.currentTime);
                 [wself acceptTime:time];
                 [wself startWithPlayerTime:time];
             }
@@ -81,14 +81,14 @@
     if (other.dTimeTo)
         self.myTime.dTimeFrom = other.dTimeTo;
     
-    NSLog(@" - sending");
+//    NSLog(@" - sending");
     
     [self.timesCollection updateObject:self.myTime];
 }
 
 - (BOOL)checkEstimate:(PlayerTime*)other currentTime:(NSTimeInterval)currentTime {
     NSTimeInterval localTimeOfOther = other.currentTime + other.dTimeFrom;
-    NSLog(@"EEE me=%f them=%f local=%f diff=%f", currentTime, other.currentTime, localTimeOfOther, currentTime - localTimeOfOther);
+//    NSLog(@"EEE me=%f them=%f local=%f diff=%f", currentTime, other.currentTime, localTimeOfOther, currentTime - localTimeOfOther);
     return (fabs(currentTime - localTimeOfOther) < MAX_TOLERANCE);
 }
 

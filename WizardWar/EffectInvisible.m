@@ -40,7 +40,6 @@
     NSInteger elapsedTicks = (currentTick - self.startTick);
     
     if (elapsedTicks == ticksPerInvis) {
-        NSLog(@"OK OK OK DAWG");        
         self.active = YES;
     }
 }

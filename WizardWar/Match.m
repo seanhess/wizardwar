@@ -91,7 +91,6 @@
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MIN_READY_STATE * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         wself.enoughTimeAsReady = YES;
-        NSLog(@"TIME TO GO");
     });
 }
 
@@ -185,8 +184,6 @@
 -(void)startIfReady {
     if (self.players.count < 2) return;
     
-    NSLog(@"*** Starting Sync");
-
     BOOL isHost = (self.currentWizard == self.host);
     self.timer = [GameTimerService new];
     self.timer.tickInterval = TICK_INTERVAL;
@@ -249,7 +246,6 @@
     
     // HACK: sync the player every second
     if ((currentTick % (int)round(TICKS_PER_SECOND)) == 0) {
-        //NSLog(@"SYNC PLAYER health=%i mana=%i", self.currentWizard.health, self.currentWizard.mana);
         [self.multiplayer updatePlayer:self.currentWizard];
     }
     
@@ -446,7 +442,7 @@
 }
 
 -(void)modifySpell:(Spell*)spell {
-    NSLog(@" - modifySpell %@ close=%i", spell, [self isSpellClose:spell]);
+//    NSLog(@" - modifySpell %@ close=%i", spell, [self isSpellClose:spell]);
     spell.status = SpellStatusUpdated;
     spell.updatedTick = self.timer.nextTick;
     spell.referencePosition = spell.position;

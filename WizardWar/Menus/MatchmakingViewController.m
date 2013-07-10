@@ -167,19 +167,16 @@
         // it already knows its user, just reload it
         UserCell * cell = (UserCell*)[self.tableView cellForRowAtIndexPath:indexPathGlobal];
         [cell reloadFromUser];
-        NSLog(@"MOVE %@ from=%@ to=%@", cell.user.name, indexPathGlobal, newIndexPathGlobal);
         [self.tableView moveRowAtIndexPath:indexPathGlobal toIndexPath:newIndexPathGlobal];
     }
     else if (type == NSFetchedResultsChangeUpdate) {
         UserCell * cell = (UserCell*)[self.tableView cellForRowAtIndexPath:indexPathGlobal];
-        NSLog(@"UPDATE %@", cell.user.name);
         [cell reloadFromUser];
     }
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    NSLog(@"controllerDidChangeContent");
 //    [self.tableView reloadData];
     [self.tableView endUpdates];
 }
@@ -380,7 +377,6 @@
 }
 
 - (void)joinMatch:(Challenge*)challenge {
-    NSLog(@"JOIN THE READY SCREEN %@", challenge.matchId);    
     MatchViewController * match = [MatchViewController new];
     [match startChallenge:challenge currentWizard:UserService.shared.currentWizard];
     [self.navigationController presentViewController:match animated:YES completion:nil];

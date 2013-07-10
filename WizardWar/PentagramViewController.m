@@ -47,11 +47,9 @@
     [self setUpPentagram];
 }
 
-- (void)viewDidLayoutSubviews
-{
-    NSLog(@"pentagram layed out subviews");
-    NSLog(@"width: %f", self.view.bounds.size.width);
-}
+//- (void)viewDidLayoutSubviews
+//{
+//}
 
 - (void)setUpPentagram
 {
@@ -84,12 +82,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    NSLog(@"orientation changed %d", fromInterfaceOrientation);
-    if (UIInterfaceOrientationIsPortrait(fromInterfaceOrientation)) {
-        NSLog(@"layout here!");
-    }
-}
+//- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+//    if (UIInterfaceOrientationIsPortrait(fromInterfaceOrientation)) {
+//    }
+//}
 
 - (void)onTimer {
     return;
@@ -141,20 +137,16 @@
             if(CGRectContainsPoint(emblem.frame, point) && (![[self.moves lastObject] isEqualToString:emblem.elementId]))
             {
                 
-//                NSLog(@"%f, %f", emblem.frame.origin.x, emblem.frame.origin.y);
-                
                 [self.drawingLayer.points replaceObjectAtIndex: ([self.drawingLayer.points count] - 1) withObject:[NSValue valueWithCGPoint:CGPointMake((emblem.frame.origin.x + (emblem.frame.size.width / 2)), (emblem.frame.origin.y + (emblem.frame.size.height / 2)))]];
                 
                 [self.drawingLayer.points addObject:[NSValue valueWithCGPoint:point]];
                 
-//                NSLog(@"%@", self.drawingLayer.points);
                 self.currentEmblem = emblem;
                 emblem.status = EmblemStatusHighlight;
                 
                 [self.selectedEmblems addObject:emblem];
                 [self.moves addObject:emblem.elementId];
                 [self.delegate didSelectElement:self.moves];
-//                NSLog(@"%@", self.moves);
             }
         }
     }

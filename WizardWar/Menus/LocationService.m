@@ -37,23 +37,20 @@
 }
 
 - (void)updateLocation:(CLLocation*)location {
-    NSLog(@"LOCATION: (BOOM) %@", location);
     self.location = location;
 }
 
 - (void)locationManager:(CLLocationManager *)manager
-       didFailWithError:(NSError *)error {
-    NSLog(@"LOCATION: (error) %@", error);
-    
+       didFailWithError:(NSError *)error {    
     self.denied = YES;
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
-    NSLog(@"LOCATION: (status) %i", status);
+//    NSLog(@"LOCATION: (status) %i", status);
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    NSLog(@"LOCATION: (update)");
+//    NSLog(@"LOCATION: (update)");
     [self updateLocation:locations.lastObject];
 }
 
