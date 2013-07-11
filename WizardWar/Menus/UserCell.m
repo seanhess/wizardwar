@@ -8,6 +8,7 @@
 
 #import "UserCell.h"
 #import "LocationService.h"
+#import "ChallengeService.h"
 #import "Color.h"
 
 @interface UserCell ()
@@ -60,6 +61,16 @@
     }
     
     self.otherLabel.text = [NSString stringWithFormat:@"%@%@", distance, games];
+    
+    if (user.activeMatchId) {
+        Challenge * challenge = [ChallengeService.shared challengeWithId:user.activeMatchId create:NO];
+        if (!challenge) {
+            NSLog(@"****NO CHALLENGE %@", user.activeMatchId);
+            return;
+        }
+        User * opponent = [challenge findOpponent:user];
+        self.otherLabel.text = [NSString stringWithFormat:@"FIGHTING %@!", opponent.name];
+    }
 }
 
 -(void)reloadFromUser {

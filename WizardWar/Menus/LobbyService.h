@@ -26,6 +26,8 @@
 - (void)setLocation:(CLLocation*)location;
 - (void)joinLobby:(User*)user;
 - (void)leaveLobby:(User*)user;
+- (void)user:(User*)user joinedMatch:(NSString*)matchId;
+- (void)userLeftMatch:(User*)user;
 
 - (NSFetchRequest*)requestCloseUsers;
 

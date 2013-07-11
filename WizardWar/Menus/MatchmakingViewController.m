@@ -133,17 +133,16 @@
 
     __weak MatchmakingViewController * wself = self;
 
-    // CHALLENGES. join right away
-    [ChallengeService.shared.acceptedSignal subscribeNext:^(Challenge * challenge) {
-        [wself joinMatch:challenge];
-    }];
-    
     
     // Join the lobby!
     [LobbyService.shared joinLobby:self.currentUser];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    if (ChallengeService.shared.connected) {
+        [ChallengeService.shared removeUserChallenge:self.currentUser];
+        [ChallengeService.shared declineAllChallenges:self.currentUser];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -207,9 +206,16 @@
     else if (type == NSFetchedResultsChangeUpdate) {
         if (sectionGlobal == 0) {
             NSLog(@"CHALLENGE UPDATE");
+
             // do a remove/insert instead. it's kewl looking
             [self.tableView deleteRowsAtIndexPaths:@[indexPathGlobal] withRowAnimation:UITableViewRowAnimationAutomatic];
             [self.tableView insertRowsAtIndexPaths:@[newIndexPathGlobal] withRowAnimation:UITableViewRowAnimationAutomatic];
+            
+            Challenge * challenge = [self.challengeResults objectAtIndexPath:indexPathGlobal];
+            if (challenge.status == ChallengeStatusAccepted) {
+                [self joinMatch:challenge];
+            }
+
         }
         else {
             UserCell * cell = (UserCell*)[self.tableView cellForRowAtIndexPath:indexPathGlobal];
@@ -475,11 +481,11 @@
 
 - (void)joinMatch:(Challenge*)challenge {
 
-    [ChallengeService.shared removeUserChallenge:self.currentUser];
-    [ChallengeService.shared declineAllChallenges:self.currentUser];
-    
     // Add as a friend
     [UserFriendService.shared user:self.currentUser addChallenge:challenge];
+    
+    // Only the active user broadcasts what he is doing
+    [LobbyService.shared user:self.currentUser joinedMatch:challenge.matchId];
     
     MatchViewController * match = [MatchViewController new];
     [match startChallenge:challenge currentWizard:UserService.shared.currentWizard];

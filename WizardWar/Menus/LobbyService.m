@@ -194,6 +194,16 @@
     [node removeValue];
 }
 
+- (void)user:(User *)user joinedMatch:(NSString *)matchId {
+    user.activeMatchId = matchId;
+    [self saveUserToLobby:user];
+}
+
+- (void)userLeftMatch:(User*)user {
+    user.activeMatchId = nil;
+    [self saveUserToLobby:user];
+}
+
 #pragma mark - Core Data Requests
 
 // Local users can come even without a device token

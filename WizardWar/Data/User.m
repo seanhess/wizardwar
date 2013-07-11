@@ -21,6 +21,7 @@
 @dynamic distance;
 @dynamic challenge;
 @dynamic updated;
+@dynamic activeMatchId;
 
 @synthesize isClose;
 
@@ -29,13 +30,13 @@
 };
 
 -(NSDictionary*)toLobbyObject {
-    return [self dictionaryWithValuesForKeys:@[@"locationLatitude", @"locationLongitude"]];
+    return [self dictionaryWithValuesForKeys:@[@"locationLatitude", @"locationLongitude", @"activeMatchId"]];
 }
 
-- (void)setValuesForKeysWithDictionary:(NSDictionary *)keyedValues {
-    NSMutableDictionary * values = [NSMutableDictionary dictionaryWithDictionary:keyedValues];
-    [super setValuesForKeysWithDictionary:values];
-}
+//- (void)setValuesForKeysWithDictionary:(NSDictionary *)keyedValues {
+//    NSMutableDictionary * values = [NSMutableDictionary dictionaryWithDictionary:keyedValues];
+//    [super setValuesForKeysWithDictionary:values];
+//}
 
 - (NSString*)description {
     return [NSString stringWithFormat:@"%@ name:%@ count:%i", super.description, self.name, self.friendPoints];

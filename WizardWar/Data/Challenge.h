@@ -29,4 +29,6 @@ typedef enum ChallengeStatus {
 @property (nonatomic, strong) NSString * mainId;
 @property (nonatomic, strong) NSString * opponentId;
 
+-(User*)findOpponent:(User*)user;
+
 @end

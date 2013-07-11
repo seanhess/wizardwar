@@ -25,6 +25,7 @@
 @property (nonatomic) NSTimeInterval updated;
 
 @property (nonatomic, retain) Challenge *challenge;
+@property (nonatomic, retain) NSString *activeMatchId;
 
 // Transient Properties and methods
 // some are relative to the current user

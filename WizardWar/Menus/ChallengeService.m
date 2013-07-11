@@ -17,7 +17,6 @@
 #import "IdService.h"
 
 @interface ChallengeService ()
-@property (nonatomic) BOOL connected;
 @property (nonatomic, strong) Firebase * node;
 @property (nonatomic, strong) NSString * entityName;
 @end
@@ -30,14 +29,16 @@
     dispatch_once(&onceToken, ^{
         instance = [[ChallengeService alloc] init];
         instance.entityName = @"Challenge";
-        instance.acceptedSignal = [RACSubject subject];
+        instance.connected = NO;
     });
     return instance;
 }
 
 - (void)connectAndReset {
+    self.connected = YES;    
 
     [self removeAll];
+
 
     self.node = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/challenges2"];
 
@@ -71,12 +72,7 @@
     challenge.main = [UserService.shared userWithId:challenge.mainId];
     challenge.opponent = [UserService.shared userWithId:challenge.opponentId];
     
-    NSLog(@"ChallengeService (+) %@ vs %@", challenge.main.name, challenge.opponent.name);
-    
-    // we have a new accepted match!
-    if (challenge.status == ChallengeStatusAccepted) {
-        [self.acceptedSignal sendNext:challenge];
-    }
+    NSLog(@"ChallengeService (+) %@ vs %@", challenge.main.name, challenge.opponent.name);    
 }
 
 -(void)onRemoved:(FDataSnapshot*)snapshot {

@@ -13,10 +13,7 @@
 
 @interface ChallengeService : NSObject
 
-//@property (nonatomic, strong) NSMutableDictionary * myChallenges;
-//@property (nonatomic, strong) RACSubject * updated;
-
-@property (nonatomic, strong) RACSubject * acceptedSignal;
+@property (nonatomic) BOOL connected;
 
 + (ChallengeService *)shared;
 - (Challenge*)user:(User*)user challengeOpponent:(User*)opponent isRemote:(BOOL)isRemote;
@@ -26,6 +23,8 @@
 - (void)setChallenge:(Challenge*)challenge status:(ChallengeStatus)status;
 
 - (void)connectAndReset;
+
+- (Challenge*)challengeWithId:(NSString*)matchId create:(BOOL)create;
 
 - (NSPredicate*)predicateUserIsMain:(User*)user;
 - (NSPredicate*)predicateUserIsTargeted:(User*)user;

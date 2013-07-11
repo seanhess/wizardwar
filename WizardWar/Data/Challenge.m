@@ -40,5 +40,14 @@
 //    return [NSString stringWithFormat:@"%@_vs_%@", sorted[0], sorted[1]];
 //}
 
+-(User *)findOpponent:(User *)user {
+    BOOL isCreatedByUser = [self.main.userId isEqualToString:user.userId];
+    User * opponent = nil;
+    if (isCreatedByUser)
+        opponent = self.opponent;
+    else
+        opponent = self.main;
+    return opponent;
+}
 
 @end

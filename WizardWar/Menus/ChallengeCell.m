@@ -50,13 +50,8 @@
     BOOL isCreatedByUser = [self.challenge.main.userId isEqualToString:user.userId];
     
     // Who are you fighting against?
-    User * opponent = nil;
-    if (isCreatedByUser)
-        opponent = self.challenge.opponent;
-    else
-        opponent = self.challenge.main;
-    self.mainLabel.text = [NSString stringWithFormat:@"WAR vs %@", opponent.name];    
-    
+    User * opponent = [self.challenge findOpponent:user];
+    self.mainLabel.text = [NSString stringWithFormat:@"WAR vs %@", opponent.name];
     
     // default state is stopped
     [self.activityView stopAnimating];
