@@ -13,6 +13,7 @@
 #import "LobbyService.h"
 #import <Parse/Parse.h>
 #import "ObjectStore.h"
+#import "NSArray+Functional.h"
 
 @interface ChallengeService ()
 @property (nonatomic) BOOL connected;
@@ -160,17 +161,19 @@
     NSPredicate * notDeclined = [NSPredicate predicateWithFormat:@"status != %i", ChallengeStatusDeclined];
     NSPredicate * userIsMain = [NSPredicate predicateWithFormat:@"main.userId = %@", user.userId];
     NSPredicate * userIsOpponent = [NSPredicate predicateWithFormat:@"opponent.userId = %@", user.userId];
-//    NSPredicate * userIsEither = [NSCompoundPredicate orPredicateWithSubpredicates:@[userIsMain, userIsOpponent]];
     NSPredicate * showOpponent = [NSCompoundPredicate andPredicateWithSubpredicates:@[userIsOpponent, notDeclined]];
-    
-    // HIDE: declined challenges when I am the opponent
-    // SHOW: when main: always
-    // SHOW: when oppponent: when not declied
-    
-//    request.predicate = [NSPredicate predicateWithFormat:@"status != %i AND main.userId = %@ OR opponent.userId = %@", ChallengeStatusDeclined, user.userId, user.userId];
     request.predicate = [NSCompoundPredicate orPredicateWithSubpredicates:@[userIsMain, showOpponent]];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"main.userId" ascending:YES]];
     return request;
+}
+
+- (Challenge*)user:(User *)user challengedByOpponent:(User *)opponent {
+    NSArray * challenges = [ObjectStore.shared requestToArray:[self requestChallengesForUser:user]];
+    return [challenges find:^BOOL(Challenge*challenge) {
+        BOOL userIsOpponent = [challenge.opponent.userId isEqualToString:user.userId];
+        BOOL opponentMatches = [challenge.main.userId isEqualToString:opponent.userId];
+        return userIsOpponent && opponentMatches;
+    }];
 }
 
 

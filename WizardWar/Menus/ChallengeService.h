@@ -27,6 +27,7 @@
 
 - (void)connectAndReset;
 - (NSFetchRequest*)requestChallengesForUser:(User*)user;
+- (Challenge*)user:(User*)user challengedByOpponent:(User*)opponent;
 
 - (BOOL)challenge:(Challenge*)challenge isCreatedByUser:(User*)user;
 

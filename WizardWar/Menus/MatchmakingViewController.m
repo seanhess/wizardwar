@@ -417,10 +417,18 @@
 
 - (void)didSelectUser:(User*)user {
     
-    // Issue the challenge
-    Challenge * challenge = [ChallengeService.shared user:self.currentUser challengeOpponent:user isRemote:!user.isOnline];
-//    [self joinMatch:challenge];
-    [UserFriendService.shared user:UserService.shared.currentUser addChallenge:challenge];
+    Challenge * existingChallenge = [ChallengeService.shared user:UserService.shared.currentUser challengedByOpponent:user];
+    if (existingChallenge) {
+        // accept their challenge instead
+        [ChallengeService.shared acceptChallenge:existingChallenge];
+    }
+    
+    else {
+        // Issue the challenge
+        [ChallengeService.shared user:self.currentUser challengeOpponent:user isRemote:!user.isOnline];
+        
+        // Do NOT join yet (wait until accepted)
+    }
 }
 
 - (void)didSelectChallenge:(Challenge*)challenge {
@@ -437,6 +445,9 @@
     if (UserService.shared.currentUser.challenge) {
         [ChallengeService.shared removeChallenge:UserService.shared.currentUser.challenge];
     }
+    
+    // Add as a friend
+    [UserFriendService.shared user:UserService.shared.currentUser addChallenge:challenge];    
     
     MatchViewController * match = [MatchViewController new];
     [match startChallenge:challenge currentWizard:UserService.shared.currentWizard];
