@@ -26,8 +26,8 @@
 
 -(void)start:(NSInteger)tick player:(Wizard*)player;
 -(void)cancel:(Wizard*)player;
--(SpellInteraction*)interactPlayer:(Wizard*)player spell:(Spell*)spell currentTick:(NSInteger)currentTick;
--(SpellInteraction*)interactSpell:(Spell*)spell;
+-(SpellInteraction*)applySpell:(Spell*)spell onWizard:(Wizard*)wizard currentTick:(NSInteger)currentTick;
+-(SpellInteraction*)interceptSpell:(Spell*)spell onWizard:(Wizard*)wizard;
 -(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval player:(Wizard*)player;
 
 @end

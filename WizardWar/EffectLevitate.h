@@ -7,7 +7,8 @@
 //
 
 #import "Effect.h"
+#import "EffectApply.h"
 
-@interface EffectLevitate : Effect
+@interface EffectLevitate : EffectApply
 
 @end

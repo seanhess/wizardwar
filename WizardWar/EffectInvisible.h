@@ -7,6 +7,8 @@
 //
 
 #import "Effect.h"
+#import "EffectApply.h"
 
-@interface EffectInvisible : Effect
+@interface EffectInvisible : EffectApply
+
 @end

@@ -276,9 +276,12 @@
         if (creator.effect.cancelsOnCast)
             creator.effect = nil;
         
-        Effect * effect = spell.effect;
-        if (spell.targetSelf && effect) [self createSpell:spell effect:effect];
-        else [self positionSpell:spell referenceTick:spell.createdTick currentTick:currentTick];
+        if (spell.targetSelf) {
+            [self hitPlayer:creator withSpell:spell atTick:currentTick];
+        }
+        else {
+            [self positionSpell:spell referenceTick:spell.createdTick currentTick:currentTick];
+        }
     }];
 }
 
@@ -290,19 +293,19 @@
 }
 
 // does a spell automatically change the effect?
--(void)createSpell:(Spell*)spell effect:(Effect*)effect {
-    Wizard * player = [self.players.allValues min:^float(Wizard*player) {
-        return fabsf(spell.position - player.position);
-    }];
-    
-    // destroy the effect spell
-    spell.updatedTick = self.timer.nextTick;
-    spell.status = SpellStatusDestroyed;
-    
-    // apply the effect
-    player.effect = effect;
-    [effect start:spell.createdTick player:player];
-}
+//-(void)createSpell:(Spell*)spell effect:(Effect*)effect {
+//    Wizard * player = [self.players.allValues min:^float(Wizard*player) {
+//        return fabsf(spell.position - player.position);
+//    }];
+//    
+//    // destroy the effect spell
+//    spell.updatedTick = self.timer.nextTick;
+//    spell.status = SpellStatusDestroyed;
+//    
+//    // apply the effect
+//    player.effect = effect;
+//    [effect start:spell.createdTick player:player];
+//}
 
 -(void)checkHitsWithCurrentTick:(NSInteger)currentTick interval:(NSTimeInterval)tickInterval {
     // HITS ARE CALLED MORE THAN ONCE!
@@ -361,20 +364,20 @@
     }
 }
 
--(void)hitPlayer:(Wizard*)player withSpell:(Spell*)spell atTick:(NSInteger)currentTick {
-
-    SpellInteraction * interaction = [spell interactPlayer:player currentTick:currentTick];
+-(void)hitPlayer:(Wizard*)wizard withSpell:(Spell*)spell atTick:(NSInteger)currentTick {
+    
+    SpellInteraction * interaction = [spell interactWizard:wizard currentTick:currentTick];
     [self handleInteraction:interaction forSpell:spell];
     
     // handle player sync / update / death check
     // only YOU can say you died
-    if (player == self.currentWizard || player == self.aiWizard) {
-        if (player.health == 0) {
-            player.effect = nil;
-            [player setState:WizardStatusDead animated:NO];
+    if (wizard == self.currentWizard || wizard == self.aiWizard) {
+        if (wizard.health == 0) {
+            wizard.effect = nil;
+            [wizard setState:WizardStatusDead animated:NO];
             // need to set the OTHER wizard to something else
             Wizard * otherWizard = [self.players.allValues find:^BOOL(Wizard* aWizard) {
-                return (aWizard != player);
+                return (aWizard != wizard);
             }];
             otherWizard.effect = nil;
             [otherWizard setState:WizardStatusWon animated:NO];
@@ -383,7 +386,7 @@
             [self checkWin];
         }
 
-        [self.multiplayer updatePlayer:player];
+        [self.multiplayer updatePlayer:wizard];
     }
 }
 

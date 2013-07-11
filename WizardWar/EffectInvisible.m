@@ -22,16 +22,15 @@
     return self;
 }
 
--(void)start {
-    self.active = NO;
-}
-
--(SpellInteraction*)interactPlayer:(Wizard*)player spell:(Spell*)spell currentTick:(NSInteger)currentTick {
+// Hmm, intercept needs to be able to allow it to pass through!
+-(SpellInteraction *)interceptSpell:(Spell *)spell onWizard:(Wizard *)wizard {
+    // make everything pass through me except for fist
+    // Umm, this doesn't make it pass through, it makes it hit me :(
     if (self.active && ![spell isType:[SpellFist class]]) {
         return [SpellInteraction nothing];
     }
     else {
-        return [super interactPlayer:player spell:spell currentTick:currentTick];
+        return nil;
     }
 }
 

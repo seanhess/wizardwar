@@ -30,28 +30,22 @@
     player.effect = nil;
 }
 
-// the default effect is to damage the player and cancel the spell
--(SpellInteraction*)interactPlayer:(Wizard*)player spell:(Spell*)spell currentTick:(NSInteger)currentTick {
-    
-    // if the spell has an effect, have that run instead of the default
-    if (spell.effect) {
-        return [spell.effect interactPlayer:player spell:spell currentTick:currentTick];
-    }
-    
-    player.health -= spell.damage;
+// Default effect applied to player, is to deal damage
+-(SpellInteraction*)applySpell:(Spell*)spell onWizard:(Wizard*)wizard currentTick:(NSInteger)currentTick {
+    wizard.health -= spell.damage;
     
     if (spell.damage > 0)
-        [player setState:WizardStatusHit animated:YES];
+        [wizard setState:WizardStatusHit animated:YES];
     
-    if (player.effect.cancelsOnHit)
-        [player.effect cancel:player];
-    
+    if (wizard.effect.cancelsOnHit)
+        [wizard.effect cancel:wizard];
     
     return [SpellInteraction cancel];
 }
 
--(SpellInteraction*)interactSpell:(Spell*)spell {
-    return [SpellInteraction nothing];
+// means did not intercept, go ahead with default behavior
+-(SpellInteraction*)interceptSpell:(Spell*)spell onWizard:(Wizard*)wizard {
+    return nil;
 }
 
 -(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval player:(Wizard*)player {

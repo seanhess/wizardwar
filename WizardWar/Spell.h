@@ -26,7 +26,7 @@ typedef enum SpellStatus {
 
 
 @interface Spell : NSObject <Objectable, Simulated>
-@property (nonatomic) NSString * spellId;
+@property (nonatomic, strong) NSString * spellId;
 @property (nonatomic) float speed; // units per second
 @property (nonatomic) float position;  // in units
 @property (nonatomic) float referencePosition; // where it started, or last sync
@@ -34,14 +34,14 @@ typedef enum SpellStatus {
 @property (nonatomic) NSInteger strength;
 @property (nonatomic) NSInteger damage;
 @property (nonatomic) NSTimeInterval created;
-@property (nonatomic) NSString * type; // tells me which class to instantiate. Use the string representation
+@property (nonatomic, strong) NSString * type; // tells me which class to instantiate. Use the string representation
 @property (nonatomic) NSInteger createdTick;
 @property (nonatomic) NSInteger updatedTick;
 @property (nonatomic) SpellStatus status;
-@property (nonatomic) NSString * creator;
+@property (nonatomic, strong) NSString * creator;
 @property (nonatomic) NSInteger altitude; // how high it is. normal = 0;
 @property (nonatomic) BOOL heavy; // if it falls
-@property (nonatomic) Effect * effect; // if the spell creates an effect
+@property (nonatomic, strong) Effect * effect; // if the spell creates an effect
 @property (nonatomic) BOOL targetSelf;
 
 // how far away from the wizard should it start
@@ -50,9 +50,10 @@ typedef enum SpellStatus {
 -(void)update:(NSTimeInterval)dt;
 -(void)initCaster:(Wizard*)player tick:(NSInteger)tick;
 -(BOOL)isType:(Class)class;
+
 -(SpellInteraction*)interactSpell:(Spell*)spell;
--(SpellInteraction*)interactPlayer:(Wizard*)player currentTick:(NSInteger)currentTick;
--(SpellInteraction*)interactEffect:(Effect*)player;
+-(SpellInteraction*)interactWizard:(Wizard*)wizard currentTick:(NSInteger)currentTick;
+
 -(BOOL)hitsPlayer:(Wizard*)player duringInterval:(NSTimeInterval)dt;
 -(BOOL)hitsSpell:(Spell*)spell duringInterval:(NSTimeInterval)dt;
 +(Spell*)fromType:(NSString*)type;

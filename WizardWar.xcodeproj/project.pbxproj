@@ -198,6 +198,8 @@
 		78915284176A72DE001694B1 /* EffectLevitate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78915282176A72A8001694B1 /* EffectLevitate.m */; };
 		789787A61778F11C00094AF9 /* menu-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 789787A51778F11C00094AF9 /* menu-bg@2x.png */; };
 		789787A91778F27300094AF9 /* UserFriendService.m in Sources */ = {isa = PBXBuildFile; fileRef = 789787A81778F27300094AF9 /* UserFriendService.m */; };
+		789B47C5178F1AEE00611CA5 /* EffectApply.m in Sources */ = {isa = PBXBuildFile; fileRef = 789B47C4178F1AED00611CA5 /* EffectApply.m */; };
+		789B47C8178F1C2D00611CA5 /* EffectBasicDamage.m in Sources */ = {isa = PBXBuildFile; fileRef = 789B47C7178F1C2D00611CA5 /* EffectBasicDamage.m */; };
 		789BAB8417566CFE003C0116 /* TimerSyncService.m in Sources */ = {isa = PBXBuildFile; fileRef = 789BAB8317566CFE003C0116 /* TimerSyncService.m */; };
 		789BAB8B1756A95A003C0116 /* explode-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 789BAB861756A95A003C0116 /* explode-hd.plist */; };
 		789BAB8C1756A95A003C0116 /* explode-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 789BAB871756A95A003C0116 /* explode-hd.png */; };
@@ -710,6 +712,10 @@
 		789787A51778F11C00094AF9 /* menu-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-bg@2x.png"; sourceTree = "<group>"; };
 		789787A71778F27300094AF9 /* UserFriendService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserFriendService.h; sourceTree = "<group>"; };
 		789787A81778F27300094AF9 /* UserFriendService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserFriendService.m; sourceTree = "<group>"; };
+		789B47C3178F1AED00611CA5 /* EffectApply.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectApply.h; sourceTree = "<group>"; };
+		789B47C4178F1AED00611CA5 /* EffectApply.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectApply.m; sourceTree = "<group>"; };
+		789B47C6178F1C2D00611CA5 /* EffectBasicDamage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectBasicDamage.h; sourceTree = "<group>"; };
+		789B47C7178F1C2D00611CA5 /* EffectBasicDamage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectBasicDamage.m; sourceTree = "<group>"; };
 		789BAB8117566ABF003C0116 /* Multiplayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Multiplayer.h; sourceTree = "<group>"; };
 		789BAB8217566CFE003C0116 /* TimerSyncService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerSyncService.h; sourceTree = "<group>"; };
 		789BAB8317566CFE003C0116 /* TimerSyncService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerSyncService.m; sourceTree = "<group>"; };
@@ -1405,6 +1411,10 @@
 			children = (
 				786246331767BE47001904AC /* Effect.h */,
 				786246341767BE47001904AC /* Effect.m */,
+				789B47C6178F1C2D00611CA5 /* EffectBasicDamage.h */,
+				789B47C7178F1C2D00611CA5 /* EffectBasicDamage.m */,
+				789B47C3178F1AED00611CA5 /* EffectApply.h */,
+				789B47C4178F1AED00611CA5 /* EffectApply.m */,
 				786246371767BF19001904AC /* EffectInvisible.h */,
 				786246381767BF19001904AC /* EffectInvisible.m */,
 				786246591767EAE2001904AC /* EffectHelmet.h */,
@@ -2293,6 +2303,8 @@
 				78C5CDE5178B74D700CDCC76 /* UserCell.m in Sources */,
 				78C98629178DE0C800B545F9 /* Challenge.m in Sources */,
 				78C9862E178DFFF000B545F9 /* ChallengeCell.m in Sources */,
+				789B47C5178F1AEE00611CA5 /* EffectApply.m in Sources */,
+				789B47C8178F1C2D00611CA5 /* EffectBasicDamage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,6 +19,7 @@
 #import "SpellInvisibility.h"
 #import "SpellFist.h"
 #import "SpellHelmet.h"
+#import "SpellSleep.h"
 
 @interface PracticeModeAIService ()
 @property (nonatomic) NSInteger lastSpellTick;
@@ -33,7 +34,7 @@
         
         self.allSpells = @[[SpellFireball class], [SpellEarthwall class], [SpellWindblast class], [SpellMonster class], [SpellBubble class], [SpellVine class], [SpellFist class], [SpellHelmet class], [SpellFireball class]];
         
-//        self.allSpells = @[[SpellBubble class]];
+//        self.allSpells = @[[SpellHelmet class]];
     }
     return self;
 }

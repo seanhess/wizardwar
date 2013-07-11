@@ -8,6 +8,7 @@
 
 #import "Spell.h"
 #import "Tick.h"
+#import "EffectBasicDamage.h"
 
 @interface Spell ()
 @end
@@ -26,6 +27,7 @@
         self.altitude = 0;
         self.targetSelf = NO;
         self.heavy = YES;
+        self.effect = [EffectBasicDamage new];
         
         self.spellId = [Spell generateSpellId];
     }
@@ -94,19 +96,25 @@
     return [SpellInteraction nothing];
 }
 
--(SpellInteraction*)interactPlayer:(Wizard*)player currentTick:(NSInteger)currentTick {
-    // if the player has an effect applied, let it control the interaction
-    if (player.effect) {
-        return [player.effect interactPlayer:player spell:self currentTick:currentTick];
-    }
-    // otherwise run the default code on effect base class
-    else {
-        return [[Effect new] interactPlayer:player spell:self currentTick:currentTick];
-    }
-}
 
--(SpellInteraction*)interactEffect:(Effect*)player {
-    return [SpellInteraction nothing];
+// Effect spell when effect is on: Sleep vs Helmet
+
+// EVERY spell has an effect. It just doesn't alway apply itself to the player
+// sometimes it does damage instead!
+
+// If an effect is applied to a player, it gets a chance to block the other effect from occuring
+
+-(SpellInteraction*)interactWizard:(Wizard *)wizard currentTick:(NSInteger)currentTick {
+
+    // If the wizard has an effect, give it the chance to override the default behavior
+    if (wizard.effect) {
+        SpellInteraction * interaction = [wizard.effect interceptSpell:self onWizard:wizard];
+        if (interaction)
+            return interaction;
+    }
+    
+    // otherwise apply the effect full force
+    return [self.effect applySpell:self onWizard:wizard currentTick:currentTick];
 }
 
 -(BOOL)hitsPlayer:(Wizard*)player duringInterval:(NSTimeInterval)dt {

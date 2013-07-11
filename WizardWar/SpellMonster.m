@@ -47,7 +47,9 @@
     }
     
     else if ([spell isType:[SpellSleep class]]) {
-        return [spell.effect interactSpell:self];
+        self.speed = 0;
+        self.effect = spell.effect;
+        return [SpellInteraction modify];
     }
     
     else if ([spell isType:[SpellWindblast class]]) {

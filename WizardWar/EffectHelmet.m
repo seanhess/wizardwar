@@ -11,13 +11,15 @@
 
 @implementation EffectHelmet
 
-// effects need to be able to cancel the spells themselves!
--(SpellInteraction*)interactPlayer:(Wizard*)player spell:(Spell*)spell currentTick:(NSInteger)currentTick {
+// Hmm, intercept needs to be able to allow it to pass through!
+-(SpellInteraction *)interceptSpell:(Spell *)spell onWizard:(Wizard *)wizard {
+    // make everything pass through me except for fist
     if ([spell isType:[SpellFist class]]) {
+        wizard.effect = nil;                // the helmet is broken!
         return [SpellInteraction cancel];
     }
     else {
-        return [super interactPlayer:player spell:spell currentTick:currentTick];
+        return nil;
     }
 }
 

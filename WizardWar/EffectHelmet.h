@@ -7,7 +7,8 @@
 //
 
 #import "Effect.h"
+#import "EffectApply.h"
 
-@interface EffectHelmet : Effect
+@interface EffectHelmet : EffectApply
 
 @end
