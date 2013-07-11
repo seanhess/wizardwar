@@ -26,7 +26,7 @@
 
 - (void)connect {
     self.locationManager = [[CLLocationManager alloc] init];
-    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];    
     self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
     self.locationManager.distanceFilter = 100; // before being notified again
     self.locationManager.activityType = CLActivityTypeFitness;
@@ -53,10 +53,11 @@
 
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error {    
-    self.denied = YES;
+    self.accepted = NO;
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+    self.accepted = (status == kCLAuthorizationStatusAuthorized);
 //    NSLog(@"LOCATION: (status) %i", status);
 }
 

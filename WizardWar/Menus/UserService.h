@@ -18,6 +18,8 @@
 @property (nonatomic, readonly) Wizard * currentWizard;
 @property (nonatomic, readonly) NSString * userId;
 
+@property (nonatomic) BOOL pushAccepted;
+
 + (UserService *)shared;
 
 - (void)saveCurrentUser;

@@ -87,6 +87,7 @@
     [currentInstallation saveInBackground];
     
     // If they allow it here, and current user exists
+    [UserService.shared setPushAccepted:YES];
     [UserService.shared.currentUser setDeviceToken:deviceToken];
     [UserService.shared saveCurrentUser];
 }
@@ -99,6 +100,7 @@
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     NSLog(@"ERROR REGISTER %@", error);
+    [UserService.shared setPushAccepted:NO];
 }
 
 - (void)launchMatchmaking:(NSString*)matchId {

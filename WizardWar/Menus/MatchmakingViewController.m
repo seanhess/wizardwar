@@ -48,6 +48,8 @@
 @property (strong, nonatomic) NSFetchedResultsController * localResults;
 @property (strong, nonatomic) NSFetchedResultsController * allResults;
 
+@property (strong, nonatomic) IBOutlet UITextView *warningsView;
+
 @property (weak, nonatomic) IBOutlet UIView *loadingOverlayView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityView;
 
@@ -63,16 +65,12 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"UserCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"UserCell"];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"ChallengeCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"ChallengeCell"];
-
-
+    
     self.title = @"Matchmaking";
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationItem.titleView = [ComicZineDoubleLabel titleView:self.title navigationBar:self.navigationController.navigationBar];
 
     __weak MatchmakingViewController * wself = self;
-    
-    
-    
     
     // LOBBY
     [RACAble(LobbyService.shared, joined) subscribeNext:^(id x) {
@@ -81,6 +79,16 @@
         });
     }];
     [wself didUpdateJoinedLobby:LobbyService.shared.joined];
+    
+    
+    [RACAble(LocationService.shared, accepted) subscribeNext:^(id x) {
+        [self.tableView reloadData];
+    }];
+    
+    [RACAble(UserService.shared, pushAccepted) subscribeNext:^(id x) {
+        [self.tableView reloadData];
+    }];
+
     
     
     // CHECK AUTHENTICATED
@@ -320,9 +328,28 @@
     }
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+-
+(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    return nil;
+    if (section == 0 && (!LocationService.shared.accepted || !UserService.shared.pushAccepted)) {
+        
+        NSMutableString * message = [NSMutableString string];
+        
+        if (!LocationService.shared.accepted) {
+            [message appendString:@"Enable Location Services to see players near you\n"];
+        }
+        
+        if (!UserService.shared.pushAccepted) {
+            [message appendString:@"Enable Push Notifications so friends can invite you to play\n"];
+        }
+        
+        self.warningsView.text = message;
+        
+        return self.warningsView;
+    }
+    else {
+        return nil;
+    }
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -334,7 +361,8 @@
 }
 
 - (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == 0) return 0;
+    if (section == 0 && (!LocationService.shared.accepted || !UserService.shared.pushAccepted))
+        return self.warningsView.frame.size.height;
     else if (section == 1) return 0;
     else if (section == 2) return 0;
     else if (section == 3) return 26;

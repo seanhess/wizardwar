@@ -16,7 +16,7 @@
 @interface LocationService : NSObject
 
 @property (nonatomic, strong) CLLocation * location;
-@property (nonatomic) BOOL denied;
+@property (nonatomic) BOOL accepted;
 @property (nonatomic, readonly) BOOL hasLocation;
 
 + (LocationService *)shared;
