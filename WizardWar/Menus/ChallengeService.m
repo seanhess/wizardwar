@@ -143,9 +143,9 @@
     [child onDisconnectRemoveValue];
     [child setValue:challenge.toObject];
     
-//    if (isRemote) {
-//        [self notifyOpponent:challenge];
-//    }
+    if (isRemote) {
+        [self notifyOpponent:challenge];
+    }
     
     return challenge;
 }
