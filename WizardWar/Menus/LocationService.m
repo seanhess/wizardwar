@@ -25,15 +25,23 @@
 }
 
 - (void)connect {
-    // locationManager update as location
     self.locationManager = [[CLLocationManager alloc] init];
-
+    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
     self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
     self.locationManager.distanceFilter = 100; // before being notified again
     self.locationManager.activityType = CLActivityTypeFitness;
     self.locationManager.delegate = self;
+
+    NSLog(@"LocationService: connect");
+    if (status == kCLAuthorizationStatusAuthorized) {
+        [self startMonitoring];
+    }
+}
+
+- (void)startMonitoring {
+    if (self.hasLocation) return;
+    NSLog(@"LocationService: monitor");
     [self.locationManager startUpdatingLocation];
-//    [self.locationManager startMonitoringSignificantLocationChanges];
 }
 
 - (void)updateLocation:(CLLocation*)location {
@@ -50,7 +58,7 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-//    NSLog(@"LOCATION: (update)");
+    NSLog(@"LocationService: (+)");
     [self updateLocation:locations.lastObject];
 }
 

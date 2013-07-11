@@ -107,8 +107,8 @@
     // I think friends should be showing up faster, no?
     [self.tableView reloadData];
     
-    [LocationService.shared connect];
     [ChallengeService.shared connectAndReset];
+    [LocationService.shared startMonitoring];
 
     __weak MatchmakingViewController * wself = self;
 

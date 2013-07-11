@@ -43,6 +43,7 @@
 
     [UserService.shared connect];
     [LobbyService.shared connect];
+    [LocationService.shared connect];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

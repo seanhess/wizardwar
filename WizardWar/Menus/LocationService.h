@@ -18,7 +18,9 @@
 @property (nonatomic, readonly) BOOL hasLocation;
 
 + (LocationService *)shared;
+
 - (void)connect;
+- (void)startMonitoring;
 
 - (CLLocationDistance)distanceFrom:(CLLocation*)location;
 - (NSString*)distanceString:(CLLocationDistance)distance;
