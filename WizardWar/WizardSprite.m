@@ -15,6 +15,7 @@
 #import "EffectHelmet.h"
 #import "EffectHeal.h"
 #import "EffectSleep.h"
+#import "AppStyle.h"
 
 #define WIZARD_PADDING 20
 #define PIXELS_HIGH_PER_ALTITUDE 100
@@ -70,7 +71,7 @@
         [self addChild:self.skin];
         
         // I need to only show this if the game hasn't started!
-        self.label = [CCLabelTTF labelWithString:self.wizardName fontName:@"Marker Felt" fontSize:36];
+        self.label = [CCLabelTTF labelWithString:self.wizardName fontName:FONT_COMIC_ZINE fontSize:36];
         self.label.position = ccp(0, 130);
         [self addChild:self.label];
         
