@@ -127,19 +127,32 @@
 
 - (void)renderMatchStatus {
     self.pentagram.view.hidden = (self.match.status != MatchStatusPlaying);
-    self.subMessage.hidden = YES;
+    self.subMessage.textColor = UIColorFromRGB(0xCACACA);
+    self.subMessage.hidden = NO;
     
     if (self.match.status == MatchStatusReady) {
         self.message.alpha = 1.0;
         self.message.textColor = UIColorFromRGB(0xF9A843);
+        self.message.text = @"WAITING";
+        self.subMessage.alpha = 1.0;
+        self.subMessage.text = @"can't war yo-self";
+    }
+    
+    else if (self.match.status == MatchStatusSyncing) {
+        self.message.alpha = 1.0;
+        self.message.textColor = UIColorFromRGB(0xF9A843);
         self.message.text = @"READY?";
+        self.subMessage.alpha = 1.0;
+        self.subMessage.text = @"";        
     }
     
     else if (self.match.status == MatchStatusPlaying) {
         self.message.textColor = UIColorFromRGB(0xF9A843);
         self.message.text = @"WAR!";
+        self.subMessage.text = @"";                
         
         [UIView animateWithDuration:1.0 animations:^{
+            self.subMessage.alpha = 0;            
             self.message.alpha = 0;
         }];
     }
@@ -155,7 +168,6 @@
             self.message.textColor = UIColorFromRGB(0xB02410);
             self.message.text = @"DEATH!";
             self.subMessage.hidden = NO;
-            self.subMessage.textColor = UIColorFromRGB(0xCACACA);
             self.subMessage.text = @"(YOU LOSE)";
             [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"YouLose2.mp3" loop:NO];      
         }

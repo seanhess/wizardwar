@@ -62,7 +62,7 @@
     [self.activityView stopAnimating];
     
     if (challenge.status == ChallengeStatusDeclined) {
-        self.otherLabel.text = @"Declined!";
+        self.otherLabel.text = [NSString stringWithFormat:@"%@ Ran Away!", opponent.name];
         self.backgroundView.backgroundColor = UIColorFromRGB(0xE75759);
         // TODO show declined state. Change background to red?
     }

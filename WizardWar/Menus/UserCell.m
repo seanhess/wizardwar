@@ -48,7 +48,7 @@
 //    self.avatarImageView.image = [UIImage imageNamed:@"user.jpg"];
 
     if (user.isFriend)
-        self.typeLabel.text = @"FRIEND";
+        self.typeLabel.text = @"FRENEMY";
     else
         self.typeLabel.text = @"LOCAL";
     
