@@ -440,11 +440,9 @@
 }
 
 - (void)joinMatch:(Challenge*)challenge {
-    
-    // remove any challenge that I created. I can't be challenging anyone now
-    if (UserService.shared.currentUser.challenge) {
-        [ChallengeService.shared removeChallenge:UserService.shared.currentUser.challenge];
-    }
+
+    [ChallengeService.shared removeUserChallenge:UserService.shared.currentUser];
+    [ChallengeService.shared declineAllChallenges:UserService.shared.currentUser];
     
     // Add as a friend
     [UserFriendService.shared user:UserService.shared.currentUser addChallenge:challenge];    

@@ -14,6 +14,7 @@
 #import <Parse/Parse.h>
 #import "ObjectStore.h"
 #import "NSArray+Functional.h"
+#import "IdService.h"
 
 @interface ChallengeService ()
 @property (nonatomic) BOOL connected;
@@ -61,11 +62,13 @@
 
 -(void)onAdded:(FDataSnapshot *)snapshot {
     // Assumes the users have already been loaded
-    User * main = [UserService.shared userWithId:snapshot.name];
-    Challenge * challenge = [self createOrFindChallengeForUser:main];
+    Challenge * challenge = [self challengeWithId:snapshot.name create:YES];
     [challenge setValuesForKeysWithDictionary:snapshot.value];
     
-    challenge.main = main;
+//    User * main = [UserService.shared userWithId:snapshot.name];
+//    Challenge * challenge = [self createOrFindChallengeForUser:main];
+
+    challenge.main = [UserService.shared userWithId:challenge.mainId];
     challenge.opponent = [UserService.shared userWithId:challenge.opponentId];
     
     NSLog(@"ChallengeService (+) %@ vs %@", challenge.main.name, challenge.opponent.name);
@@ -77,8 +80,7 @@
 }
 
 -(void)onRemoved:(FDataSnapshot*)snapshot {
-    User * main = [UserService.shared userWithId:snapshot.name];
-    Challenge * challenge = main.challenge;
+    Challenge * challenge = [self challengeWithId:snapshot.name create:NO];
     if (challenge) {
         NSLog(@"ChallengeService (-) %@ vs %@", challenge.main.name, challenge.opponent.name);        
         [ObjectStore.shared.context deleteObject:challenge];
@@ -108,6 +110,9 @@
 
 
 
+- (Firebase*)challengeNode:(Challenge*)challenge {
+    return [self.node childByAppendingPath:challenge.matchId];
+}
 
 
 
@@ -118,22 +123,32 @@
     [child setValue:challenge.toObject];
 }
 
-- (Firebase*)challengeNode:(Challenge*)challenge {
-    Firebase * child = [self.node childByAppendingPath:challenge.main.userId];
-    return child;
-}
 
-- (Challenge*)createOrFindChallengeForUser:(User*)user {
-    Challenge * challenge = user.challenge;
-    if (!challenge) {
+- (Challenge*)challengeWithId:(NSString*)matchId create:(BOOL)create {
+    NSFetchRequest * request = [NSFetchRequest fetchRequestWithEntityName:self.entityName];
+    request.predicate = [NSPredicate predicateWithFormat:@"matchId = %@", matchId];
+    Challenge * challenge = [ObjectStore.shared requestLastObject:request];
+    if (!challenge && create) {
         challenge = [ObjectStore.shared insertNewObjectForEntityForName:self.entityName];
+        challenge.matchId = matchId;
     }
     return challenge;
 }
 
+- (Challenge*)createOrFindChallengeForUser:(User*)user {
+    if (user.challenge) {
+        return user.challenge;
+    }
+    else {
+        Challenge * challenge = [ObjectStore.shared insertNewObjectForEntityForName:self.entityName];
+        challenge.matchId = [IdService randomId:5];
+        return challenge;
+    }
+}
+
 // this is only called from the perspective of the current user
+// Need to get the same one for the given user
 - (Challenge*)user:(User*)user challengeOpponent:(User*)opponent isRemote:(BOOL)isRemote {
-    
     Challenge * challenge = [self createOrFindChallengeForUser:user];
     challenge.main = user;
     challenge.opponent = opponent;
@@ -155,20 +170,56 @@
     [child removeValue];
 }
 
+- (void)removeUserChallenge:(User *)user {
+    // if I have a challenge, remove it!
+    if (user.challenge) {
+        [ChallengeService.shared removeChallenge:user.challenge];
+    }
+}
+
+- (void)declineAllChallenges:(User *)user {
+    // set all targeted ones to declined
+    NSArray * challenges = [ObjectStore.shared requestToArray:[self requestChallengesTargetingUser:user]];
+    [challenges forEach:^(Challenge*challenge) {
+        [self declineChallenge:challenge];
+    }];
+}
+
+
+
+#pragma mark - CoreData
+
+- (NSPredicate*)predicateUserIsMain:(User *)user {
+    return [NSPredicate predicateWithFormat:@"main.userId = %@", user.userId];
+}
+
+- (NSPredicate*)predicateUserIsTargeted:(User *)user {
+    NSPredicate * notDeclined = [NSPredicate predicateWithFormat:@"status != %i", ChallengeStatusDeclined];
+    NSPredicate * userIsOpponent = [NSPredicate predicateWithFormat:@"opponent.userId = %@", user.userId];
+    NSPredicate * showOpponent = [NSCompoundPredicate andPredicateWithSubpredicates:@[userIsOpponent, notDeclined]];
+    return showOpponent;
+}
+
+
 - (NSFetchRequest*)requestChallengesForUser:(User*)user {
     // valid users include:
     NSFetchRequest * request = [NSFetchRequest fetchRequestWithEntityName:self.entityName];
-    NSPredicate * notDeclined = [NSPredicate predicateWithFormat:@"status != %i", ChallengeStatusDeclined];
-    NSPredicate * userIsMain = [NSPredicate predicateWithFormat:@"main.userId = %@", user.userId];
-    NSPredicate * userIsOpponent = [NSPredicate predicateWithFormat:@"opponent.userId = %@", user.userId];
-    NSPredicate * showOpponent = [NSCompoundPredicate andPredicateWithSubpredicates:@[userIsOpponent, notDeclined]];
-    request.predicate = [NSCompoundPredicate orPredicateWithSubpredicates:@[userIsMain, showOpponent]];
+    NSPredicate * userIsMain = [self predicateUserIsMain:user];
+    NSPredicate * userTargeted = [self predicateUserIsTargeted:user];
+    request.predicate = [NSCompoundPredicate orPredicateWithSubpredicates:@[userIsMain, userTargeted]];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"main.userId" ascending:YES]];
     return request;
 }
 
+- (NSFetchRequest*)requestChallengesTargetingUser:(User*)user {
+    NSFetchRequest * request = [NSFetchRequest fetchRequestWithEntityName:self.entityName];
+    request.predicate = [self predicateUserIsTargeted:user];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"main.userId" ascending:YES]];
+    return request;    
+}
+
 - (Challenge*)user:(User *)user challengedByOpponent:(User *)opponent {
-    NSArray * challenges = [ObjectStore.shared requestToArray:[self requestChallengesForUser:user]];
+    NSArray * challenges = [ObjectStore.shared requestToArray:[self requestChallengesTargetingUser:user]];
     return [challenges find:^BOOL(Challenge*challenge) {
         BOOL userIsOpponent = [challenge.opponent.userId isEqualToString:user.userId];
         BOOL opponentMatches = [challenge.main.userId isEqualToString:opponent.userId];
@@ -176,6 +227,9 @@
     }];
 }
 
+
+
+# pragma mark - Push Notifications
 
 - (void)notifyOpponent:(Challenge*)challenge {
     

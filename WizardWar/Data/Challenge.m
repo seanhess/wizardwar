@@ -15,12 +15,13 @@
 @dynamic main;
 @dynamic opponent;
 @dynamic status;
+@dynamic matchId;
 
 @synthesize mainId;
 @synthesize opponentId;
 
 -(NSDictionary*)toObject {
-    return @{@"mainId": self.main.userId, @"opponentId": self.opponent.userId, @"status": @(self.status)};
+    return @{@"mainId": self.main.userId, @"opponentId": self.opponent.userId, @"status": @(self.status), @"matchId": self.matchId};
 }
 
 -(void)setValuesForKeysWithDictionary:(NSDictionary *)values {
@@ -31,13 +32,13 @@
     //    self.opponent.userId = values[@"opponentId"];
 }
 
--(NSString*)matchId {
-    NSArray * ids = [@[self.main, self.opponent] map:^(User*user) {
-        return user.userId;
-    }];
-    NSArray * sorted = [ids sortedArrayUsingSelector:@selector(compare:)];
-    return [NSString stringWithFormat:@"%@_vs_%@", sorted[0], sorted[1]];
-}
+//-(NSString*)matchId {
+//    NSArray * ids = [@[self.main, self.opponent] map:^(User*user) {
+//        return user.userId;
+//    }];
+//    NSArray * sorted = [ids sortedArrayUsingSelector:@selector(compare:)];
+//    return [NSString stringWithFormat:@"%@_vs_%@", sorted[0], sorted[1]];
+//}
 
 
 @end

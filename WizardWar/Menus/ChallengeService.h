@@ -26,9 +26,17 @@
 - (void)setChallenge:(Challenge*)challenge status:(ChallengeStatus)status;
 
 - (void)connectAndReset;
-- (NSFetchRequest*)requestChallengesForUser:(User*)user;
-- (Challenge*)user:(User*)user challengedByOpponent:(User*)opponent;
 
+- (NSPredicate*)predicateUserIsMain:(User*)user;
+- (NSPredicate*)predicateUserIsTargeted:(User*)user;
+
+- (NSFetchRequest*)requestChallengesForUser:(User*)user;
+- (NSFetchRequest*)requestChallengesTargetingUser:(User*)user;
+
+- (Challenge*)user:(User*)user challengedByOpponent:(User*)opponent;
 - (BOOL)challenge:(Challenge*)challenge isCreatedByUser:(User*)user;
+
+- (void)declineAllChallenges:(User*)user;
+- (void)removeUserChallenge:(User*)user;
 
 @end

@@ -21,13 +21,12 @@ typedef enum ChallengeStatus {
 @interface Challenge : NSManagedObject <Objectable>
 
 @property (nonatomic) int16_t status;
+@property (nonatomic, retain) NSString * matchId;
 
 @property (nonatomic, retain) User *main;
 @property (nonatomic, retain) User *opponent;
 
 @property (nonatomic, strong) NSString * mainId;
 @property (nonatomic, strong) NSString * opponentId;
-
--(NSString*)matchId;
 
 @end
