@@ -99,7 +99,7 @@
     
     NSLog(@"MatchmakingViewController: connect");
     
-    self.challengeResults = [ObjectStore.shared fetchedResultsForRequest:[ChallengeService.shared requestChallengesForUser:UserService.shared.currentUser]];
+    self.challengeResults = [ObjectStore.shared fetchedResultsForRequest:[ChallengeService.shared requestChallengesForUser:self.currentUser]];
     self.challengeResults.delegate = self;
     [self.challengeResults performFetch:&error];
     
@@ -125,17 +125,14 @@
 
     __weak MatchmakingViewController * wself = self;
 
-    [RACAble(LocationService.shared, location) subscribeNext:^(id x) {
-        [wself didUpdateLocation];
-    }];
-    [self didUpdateLocation];
-    
-    // CHALLENGES. join right away 
+    // CHALLENGES. join right away
     [ChallengeService.shared.acceptedSignal subscribeNext:^(Challenge * challenge) {
         [wself joinMatch:challenge];
     }];
     
-
+    
+    // Join the lobby!
+    [LobbyService.shared joinLobby:self.currentUser];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -159,13 +156,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-//- (void)disconnect {
-//    [self leaveLobby];
-//}
-//
-//- (void)reconnect {
-//    [self joinLobby];
-//}
 
 #pragma mark NSFetchedResultsControllerDelegate methods
 
@@ -227,27 +217,6 @@
 }
 
 
-
-#pragma mark - Location
--(void)didUpdateLocation {
-    
-    if (LocationService.shared.hasLocation) {
-        NSLog(@"MatchmakingViewController: hasLocation");
-        CLLocation * location = LocationService.shared.location;
-        self.currentUser.locationLongitude = location.coordinate.longitude;
-        self.currentUser.locationLatitude = location.coordinate.latitude;
-    }
-    
-    else {
-        NSLog(@"MatchmakingViewController: NO LOCATION!");
-    }
-    
-    if (LocationService.shared.hasLocation || LocationService.shared.denied) {
-        [self joinLobby];
-    }
-}
-
-
 #pragma mark - Lobby {
 -(void)didUpdateJoinedLobby:(BOOL)joined {
     
@@ -259,8 +228,8 @@
     }
 
     else {
-        [ChallengeService.shared removeUserChallenge:UserService.shared.currentUser];
-        [ChallengeService.shared declineAllChallenges:UserService.shared.currentUser];
+        [ChallengeService.shared removeUserChallenge:self.currentUser];
+        [ChallengeService.shared declineAllChallenges:self.currentUser];
         
         [self.activityView startAnimating];
         [UIView animateWithDuration:0.2 animations:^{
@@ -298,16 +267,6 @@
 }
 
 
-#pragma mark - Firebase stuff
-
-- (void)joinLobby
-{
-    [LobbyService.shared joinLobby:self.currentUser location:LocationService.shared.location];
-}
-
-- (void)leaveLobby {
-    [LobbyService.shared leaveLobby:self.currentUser];
-}
 
 #pragma mark - Table view data source
 
@@ -323,7 +282,7 @@
         Challenge * challenge = [self.challengeResults objectAtIndexPath:localIndexPath];
         
         // If I created it, then delete it
-        if ([ChallengeService.shared challenge:challenge isCreatedByUser:UserService.shared.currentUser]) {
+        if ([ChallengeService.shared challenge:challenge isCreatedByUser:self.currentUser]) {
             [ChallengeService.shared removeChallenge:challenge];
         }
         
@@ -432,7 +391,7 @@
     
     NSIndexPath * localIndexPath = [NSIndexPath indexPathForItem:indexPath.row inSection:0];
     Challenge * challenge = [self.challengeResults objectAtIndexPath:localIndexPath];
-    [cell setChallenge:challenge currentUser:UserService.shared.currentUser];
+    [cell setChallenge:challenge currentUser:self.currentUser];
     
     return cell;    
 }
@@ -464,7 +423,7 @@
 
 - (void)didSelectUser:(User*)user {
     
-    Challenge * existingChallenge = [ChallengeService.shared user:UserService.shared.currentUser challengedByOpponent:user];
+    Challenge * existingChallenge = [ChallengeService.shared user:self.currentUser challengedByOpponent:user];
     if (existingChallenge) {
         // accept their challenge instead
         [ChallengeService.shared acceptChallenge:existingChallenge];
@@ -481,18 +440,18 @@
 - (void)didSelectChallenge:(Challenge*)challenge {
     
     // If I have been challenged
-    if ([challenge.opponent.userId isEqualToString:UserService.shared.currentUser.userId]) {
+    if ([challenge.opponent.userId isEqualToString:self.currentUser.userId]) {
         [ChallengeService.shared acceptChallenge:challenge];
     }
 }
 
 - (void)joinMatch:(Challenge*)challenge {
 
-    [ChallengeService.shared removeUserChallenge:UserService.shared.currentUser];
-    [ChallengeService.shared declineAllChallenges:UserService.shared.currentUser];
+    [ChallengeService.shared removeUserChallenge:self.currentUser];
+    [ChallengeService.shared declineAllChallenges:self.currentUser];
     
     // Add as a friend
-    [UserFriendService.shared user:UserService.shared.currentUser addChallenge:challenge];    
+    [UserFriendService.shared user:self.currentUser addChallenge:challenge];
     
     MatchViewController * match = [MatchViewController new];
     [match startChallenge:challenge currentWizard:UserService.shared.currentWizard];

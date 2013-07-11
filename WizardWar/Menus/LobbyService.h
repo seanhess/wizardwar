@@ -23,7 +23,8 @@
 
 - (void)connect;
 
-- (void)joinLobby:(User*)user location:(CLLocation*)location;
+- (void)setLocation:(CLLocation*)location;
+- (void)joinLobby:(User*)user;
 - (void)leaveLobby:(User*)user;
 
 - (NSFetchRequest*)requestCloseUsers;

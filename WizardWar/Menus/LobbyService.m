@@ -67,6 +67,10 @@
     [RACAble(ConnectionService.shared, isUserActive) subscribeNext:^(id x) {
         [wself onChangedIsUserActive:ConnectionService.shared.isUserActive];
     }];
+    
+    [RACAble(LocationService.shared, location) subscribeNext:^(id x) {
+        [self setLocation:LocationService.shared.location];
+    }];
 }
 
 // change all users to be offline so we can accurately sync with the server
@@ -94,6 +98,8 @@
     // Come through later and add distance!
     if (self.currentLocation)
         user.distance = [self.currentLocation distanceFromLocation:user.location];
+    else
+        user.distance = kLocationDistanceInvalid;
     
     NSLog(@"LobbyService: (+) name=%@ distance=%f", user.name, user.distance);
 }
@@ -121,33 +127,64 @@
     if (!self.joinedUser) return;
     
     if (active && !self.joined) {
-        [self joinLobby:self.joinedUser location:self.currentLocation];
+        [self joinLobby:self.joinedUser];
     } else if (!active && self.joined) {
         [self leaveLobby:self.joinedUser];
     }
 }
 
+// Maybe we should have this OBSERVE the location service for the location?
+- (void)setLocation:(CLLocation *)location {
+    self.currentLocation = location;
+    
+    if (!self.currentLocation) return;
+    
+    NSLog(@"LobbyService: Location!");
+    
+    // Update the location if already joined
+    if ((self.joined || self.joining) && self.joinedUser) {
+        self.joinedUser.locationLongitude = self.currentLocation.coordinate.longitude;
+        self.joinedUser.locationLatitude = self.currentLocation.coordinate.latitude;
+        [self saveUserToLobby:self.joinedUser];
+    }
+    
+    // Also update the distance to anyone else already in the system
+    NSArray * usersWithLocations = [ObjectStore.shared requestToArray:[self requestUsersWithLocations]];
+    [usersWithLocations forEach:^(User*user) {
+        user.distance = [self.currentLocation distanceFromLocation:user.location];
+    }];
+}
+
+
 // Joins us to the lobby, por favor!
 // MAKE SURE that the location is set before doing this!
-- (void)joinLobby:(User *)user location:(CLLocation *)location {
+- (void)joinLobby:(User *)user {
     if (self.joined || self.joining) return;
     NSLog(@"LobbyService: (JOIN)");
 
     self.joined = NO;
     self.joining = YES;
-    self.currentLocation = location;
     self.joinedUser = user;
-    user.locationLongitude = location.coordinate.longitude;
-    user.locationLatitude = location.coordinate.latitude;
     
+    // If we have a location, save that too
+    if (self.currentLocation) {
+        user.locationLongitude = self.currentLocation.coordinate.longitude;
+        user.locationLatitude = self.currentLocation.coordinate.latitude;
+    }
+    
+    [self saveUserToLobby:user];
+}
+
+- (void)saveUserToLobby:(User*)user {
     Firebase * node = [self.lobby childByAppendingPath:user.userId];
     [node onDisconnectRemoveValue];
     [node setValue:user.toLobbyObject withCompletionBlock:^(NSError *error, Firebase *ref) {
         self.joined = YES;
         self.joining = NO;
-        NSLog(@"LobbyService: (joined)");        
-    }];
+        NSLog(@"LobbyService: (joined)");
+    }];    
 }
+
 
 - (void)leaveLobby:(User*)user {
     if (!self.joined) return;
@@ -164,9 +201,16 @@
 - (NSFetchRequest*)requestCloseUsers {
     NSFetchRequest * request = [UserService.shared requestOtherOnline];
     NSPredicate * notFriend = [NSCompoundPredicate notPredicateWithSubpredicate:[UserService.shared predicateIsFriend]];
-    NSPredicate * isClose = [NSPredicate predicateWithFormat:@"distance < %f", MAX_SAME_LOCATION_DISTANCE];
+    NSPredicate * isClose = [NSPredicate predicateWithFormat:@"distance >= 0 AND distance < %f", MAX_SAME_LOCATION_DISTANCE];
     request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[isClose, notFriend, request.predicate]];
     return request;
+}
+
+- (NSFetchRequest*)requestUsersWithLocations {
+    NSFetchRequest * request = [UserService.shared requestOtherOnline];
+    NSPredicate * hasLocation = [NSPredicate predicateWithFormat:@"locationLatitude > 0"];
+    request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[hasLocation, request.predicate]];
+    return request;    
 }
 
 @end

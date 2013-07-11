@@ -44,8 +44,11 @@
     [self.locationManager startUpdatingLocation];
 }
 
+// We only need one reading
 - (void)updateLocation:(CLLocation*)location {
     self.location = location;
+    if (location)
+        [self.locationManager stopUpdatingLocation];
 }
 
 - (void)locationManager:(CLLocationManager *)manager

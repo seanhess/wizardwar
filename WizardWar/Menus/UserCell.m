@@ -55,7 +55,7 @@
     NSString * games = [NSString stringWithFormat:@"%i Games", user.friendPoints];
     NSString * distance = @"";
     
-    if (user.isOnline) {
+    if (user.isOnline && user.distance >= 0) {
         distance = [NSString stringWithFormat:@"%@, ", [LocationService.shared distanceString:user.distance]];
     }
     

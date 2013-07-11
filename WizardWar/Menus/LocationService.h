@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 The LAB. All rights reserved.
 //
 
+#define kLocationDistanceInvalid -1
+
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
