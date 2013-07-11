@@ -18,6 +18,7 @@
 #import <Parse/Parse.h>
 #import "MatchmakingViewController.h"
 #import "ObjectStore.h"
+#import "ConnectionService.h"
 
 // The director should belong to the app delegate or a singleton
 // and you should manually unload or reload it
@@ -46,6 +47,9 @@
     [self.window setRootViewController:navigationController];
     [self.window makeKeyAndVisible];
     self.rootNavigationController = navigationController;
+    
+    // SERVICES
+    [ConnectionService.shared monitorDomain:[NSURL URLWithString:@"https://wizardwar.firebaseio.com"]];
     
     // INITIALIZE DIRECTOR
     NSLog(@"INITILIZE WITH BOUNDS %@", NSStringFromCGRect(self.window.bounds));
@@ -108,8 +112,11 @@
 -(void) applicationWillResignActive:(UIApplication *)application
 {
     NSLog(@"applicationWillResignActive");
-//    [self.matches disconnect];
-    // disconnect here!
+
+    // I think this gives us a little more time to save stuff
+    [ObjectStore.shared saveContext];
+    [ConnectionService.shared setIsUserActive:NO];
+    
     //	if( [navController_ visibleViewController] == director_ )
     //		[director_ pause];
 }
@@ -126,8 +133,7 @@
 
 -(void) applicationDidEnterBackground:(UIApplication*)application
 {
-    NSLog(@"applicationDidEnterBackground");
-    [ObjectStore.shared saveContext];
+     NSLog(@"applicationDidEnterBackground");   
     //	if( [navController_ visibleViewController] == director_ )
     //		[director_ stopAnimation];
 }
@@ -135,6 +141,7 @@
 -(void) applicationWillEnterForeground:(UIApplication*)application
 {
     NSLog(@"applicationWillEnterForeground");
+    [ConnectionService.shared setIsUserActive:YES];
 //    [self.matches reconnect];
     //	if( [navController_ visibleViewController] == director_ )
     //		[director_ startAnimation];

@@ -16,6 +16,8 @@
 #import "AccountViewController.h"
 #import "LocationService.h"
 #import "ChallengeService.h"
+#import "LobbyService.h"
+
 
 @interface LandingViewController () <AccountFormDelegate>
 
@@ -32,17 +34,20 @@
     return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
     // Connect to user service right away!
+
     [UserService.shared connect];
+    [LobbyService.shared connect];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [LobbyService.shared leaveLobby:UserService.shared.currentUser];
 }
 
 - (void)didReceiveMemoryWarning

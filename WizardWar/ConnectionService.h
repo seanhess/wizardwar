@@ -10,7 +10,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface FirebaseConnection : NSObject
-@property (nonatomic) BOOL connected;
--(id)initWithFirebaseName:(NSString*)name onConnect:(void(^)(void))onConnect onDisconnect:(void(^)(void))onDisconnect;
+@interface ConnectionService : NSObject
+@property (nonatomic) BOOL isConnected;
+@property (nonatomic) BOOL isUserActive;
+
++(ConnectionService *)shared;
+-(void)monitorDomain:(NSURL*)domain;
+
 @end

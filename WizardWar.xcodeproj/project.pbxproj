@@ -190,7 +190,7 @@
 		786246571767D885001904AC /* helmet-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 786246551767D885001904AC /* helmet-hd.png */; };
 		786246581767D885001904AC /* helmet.png in Resources */ = {isa = PBXBuildFile; fileRef = 786246561767D885001904AC /* helmet.png */; };
 		7862465B1767EAE2001904AC /* EffectHelmet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7862465A1767EAE2001904AC /* EffectHelmet.m */; };
-		787A2A85174E85E3004C4FDB /* FirebaseConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A2A84174E85E3004C4FDB /* FirebaseConnection.m */; };
+		787A2A85174E85E3004C4FDB /* ConnectionService.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A2A84174E85E3004C4FDB /* ConnectionService.m */; };
 		787A2A91174E9FA3004C4FDB /* TestLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A2A90174E9FA3004C4FDB /* TestLayer.m */; };
 		787A2A99174EA43D004C4FDB /* MatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A2A97174EA43D004C4FDB /* MatchViewController.m */; };
 		787A2A9A174EA43D004C4FDB /* MatchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787A2A98174EA43D004C4FDB /* MatchViewController.xib */; };
@@ -696,8 +696,8 @@
 		786246561767D885001904AC /* helmet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helmet.png; sourceTree = "<group>"; };
 		786246591767EAE2001904AC /* EffectHelmet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectHelmet.h; sourceTree = "<group>"; };
 		7862465A1767EAE2001904AC /* EffectHelmet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectHelmet.m; sourceTree = "<group>"; };
-		787A2A83174E85E3004C4FDB /* FirebaseConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseConnection.h; sourceTree = "<group>"; };
-		787A2A84174E85E3004C4FDB /* FirebaseConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseConnection.m; sourceTree = "<group>"; };
+		787A2A83174E85E3004C4FDB /* ConnectionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionService.h; sourceTree = "<group>"; };
+		787A2A84174E85E3004C4FDB /* ConnectionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionService.m; sourceTree = "<group>"; };
 		787A2A8F174E9FA3004C4FDB /* TestLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestLayer.h; sourceTree = "<group>"; };
 		787A2A90174E9FA3004C4FDB /* TestLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestLayer.m; sourceTree = "<group>"; };
 		787A2A96174EA43D004C4FDB /* MatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchViewController.h; sourceTree = "<group>"; };
@@ -1432,8 +1432,8 @@
 		787A2A82174E81AC004C4FDB /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				787A2A83174E85E3004C4FDB /* FirebaseConnection.h */,
-				787A2A84174E85E3004C4FDB /* FirebaseConnection.m */,
+				787A2A83174E85E3004C4FDB /* ConnectionService.h */,
+				787A2A84174E85E3004C4FDB /* ConnectionService.m */,
 				78C5CDE0178B656500CDCC76 /* FirebaseCollection.h */,
 				78C5CDE1178B656500CDCC76 /* FirebaseCollection.m */,
 				781234DF174AE4C0008EDE88 /* Objectable.h */,
@@ -2163,7 +2163,7 @@
 				78F195151747FEB500BB8587 /* SpellWindblast.m in Sources */,
 				78F195181748024D00BB8587 /* Elements.m in Sources */,
 				F283A922174807A40068EEB2 /* LifeIndicatorNode.m in Sources */,
-				787A2A85174E85E3004C4FDB /* FirebaseConnection.m in Sources */,
+				787A2A85174E85E3004C4FDB /* ConnectionService.m in Sources */,
 				787A2A91174E9FA3004C4FDB /* TestLayer.m in Sources */,
 				787A2A99174EA43D004C4FDB /* MatchViewController.m in Sources */,
 				7837D6AD17540836001D820E /* GameTimerService.m in Sources */,

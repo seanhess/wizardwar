@@ -14,11 +14,15 @@
 #import "UserService.h"
 #import "ObjectStore.h"
 #import <Firebase/Firebase.h>
+#import "ConnectionService.h"
+#import <ReactiveCocoa.h>
 
 // Just implement global people for this yo
 @interface LobbyService ()
 @property (nonatomic, strong) Firebase * lobby;
 @property (nonatomic, strong) CLLocation * currentLocation;
+@property (nonatomic, strong) User * joinedUser;
+@property (nonatomic) BOOL joining;
 @end
 
 // Use location is central to LOBBY
@@ -32,15 +36,16 @@
         instance = [[LobbyService alloc] init];
         instance.updated = [RACSubject subject];
         instance.joined = NO;
+        instance.joining = NO;
         
     });
     return instance;
 }
 
-// I don't really want to connect until I have MY location
-// so I don't get the updates too early
 - (void)connect {
     
+    
+    NSLog(@"LobbyService: connect");
     [self setAllOffline];
     
     self.lobby = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/lobby"];
@@ -58,6 +63,11 @@
     [self.lobby observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
         [wself onChanged:snapshot];
     }];
+    
+    // Monitor Connection so we can disconnect and reconnect
+    [RACAble(ConnectionService.shared, isUserActive) subscribeNext:^(id x) {
+        [wself onChangedIsUserActive:ConnectionService.shared.isUserActive];
+    }];
 }
 
 // change all users to be offline so we can accurately sync with the server
@@ -67,52 +77,81 @@
     NSArray * users = [ObjectStore.shared requestToArray:request];
     
     [users forEach:^(User * user) {
-        user.isOnline = NO;
+        [self setUserOffline:user];
     }];
 }
 
 
 // Guaranteed: that we have currentLocation at this point
 -(void)onAdded:(FDataSnapshot *)snapshot {
+    
+    // It doesn't matter if this arrives before the user object
+    // it will just add the isOnline, locationLatitude, locationLongitude
+    
     User * user = [UserService.shared userWithId:snapshot.name create:YES];
     [user setValuesForKeysWithDictionary:snapshot.value];
     user.isOnline = YES;
-    user.distance = [LocationService.shared distanceFrom:user.location];    
-//    NSLog(@"LOBBY (+) name=%@ distance=%f", user.name, user.distance);
+
+    // Come through later and add distance!
+    if (self.currentLocation)
+        user.distance = [self.currentLocation distanceFromLocation:user.location];
+    
+    NSLog(@"LobbyService: (+) name=%@ distance=%f", user.name, user.distance);
 }
 
 -(void)onRemoved:(FDataSnapshot*)snapshot {
     User * removed = [UserService.shared userWithId:snapshot.name];
     if (removed) {
-//        NSLog(@"LOBBY (-) %@", removed.name);
-        removed.isOnline = NO;
-        removed.locationLatitude = 0;
-        removed.locationLongitude = 0;
+        NSLog(@"LobbyService: (-) %@", removed.name);
+        [self setUserOffline:removed];
     }
+}
+
+-(void)setUserOffline:(User*)user {
+    user.isOnline = NO;
+    user.locationLatitude = 0;
+    user.locationLongitude = 0;
 }
 
 -(void)onChanged:(FDataSnapshot*)snapshot {
     [self onAdded:snapshot];
 }
 
+-(void)onChangedIsUserActive:(BOOL)active {
+    // ignore unless we've already joined once
+    if (!self.joinedUser) return;
+    
+    if (active && !self.joined) {
+        [self joinLobby:self.joinedUser location:self.currentLocation];
+    } else if (!active && self.joined) {
+        [self leaveLobby:self.joinedUser];
+    }
+}
+
 // Joins us to the lobby, por favor!
 // MAKE SURE that the location is set before doing this!
 - (void)joinLobby:(User *)user location:(CLLocation *)location {
-//    NSLog(@"JOIN LOBBY LocationService %@", user);
+    if (self.joined || self.joining) return;
+    NSLog(@"LobbyService: (JOIN)");
 
     self.joined = NO;
+    self.joining = YES;
     self.currentLocation = location;
-    
-    [self connect];
+    self.joinedUser = user;
+    user.locationLongitude = location.coordinate.longitude;
+    user.locationLatitude = location.coordinate.latitude;
     
     Firebase * node = [self.lobby childByAppendingPath:user.userId];
     [node onDisconnectRemoveValue];
     [node setValue:user.toLobbyObject withCompletionBlock:^(NSError *error, Firebase *ref) {
         self.joined = YES;
+        self.joining = NO;
     }];
 }
 
 - (void)leaveLobby:(User*)user {
+    if (!self.joined) return;
+    NSLog(@"LobbyService: (LEAVE)");
     self.joined = NO;
     Firebase * node = [self.lobby childByAppendingPath:user.userId];
     [node removeValue];

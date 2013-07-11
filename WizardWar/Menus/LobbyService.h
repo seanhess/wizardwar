@@ -22,7 +22,8 @@
 
 + (LobbyService *)shared;
 
-// You can't call connect on this. Call joinLobby when you have the user and the location
+- (void)connect;
+
 - (void)joinLobby:(User*)user location:(CLLocation*)location;
 - (void)leaveLobby:(User*)user;
 

@@ -24,6 +24,7 @@
 #import "Combos.h"
 #import "AppStyle.h"
 #import "Color.h"
+#import "ConnectionService.h"
 
 @interface MatchViewController () <PentagramDelegate>
 @property (strong, nonatomic) PentagramViewController * pentagram;
@@ -73,8 +74,13 @@
     self.combos = [Combos new];
     
     
-    //  causes retain cycle with the view controller
     __weak MatchViewController * wself = self;
+    
+    // Monitor Connection so we can disconnect and reconnect
+    [RACAble(ConnectionService.shared, isUserActive) subscribeNext:^(id x) {
+        [wself onChangedIsUserActive:ConnectionService.shared.isUserActive];
+    }];
+    
     [[RACAble(self.match.status) distinctUntilChanged] subscribeNext:^(id x) {
         [wself renderMatchStatus];
     }];
@@ -101,6 +107,12 @@
 
 -(NSUInteger)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskLandscape;
+}
+
+-(void)onChangedIsUserActive:(BOOL)active {
+    if (!active) {
+        [self leaveMatch];
+    }
 }
 
 - (void)createMatch:(Challenge*)challenge currentWizard:(Wizard*)wizard withAI:(Wizard*)ai multiplayer:(id<Multiplayer>)multiplayer sync:(TimerSyncService*)sync {
@@ -193,12 +205,16 @@
 }
 
 - (IBAction)didTapBack:(id)sender {
+    [self leaveMatch];
+}
+
+- (void)leaveMatch {
     [self.match disconnect];
     [WizardDirector unload];
     [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
     [self dismissViewControllerAnimated:YES completion:nil];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];        
-//    [self.navigationController popViewControllerAnimated:YES];
+    //    [self.navigationController popViewControllerAnimated:YES];    
 }
 
 

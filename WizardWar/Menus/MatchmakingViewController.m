@@ -20,7 +20,7 @@
 #import "Challenge.h"
 #import "NSArray+Functional.h"
 #import "FirebaseCollection.h"
-#import "FirebaseConnection.h"
+#import "ConnectionService.h"
 #import "MatchViewController.h"
 #import "User.h"
 #import "LobbyService.h"
@@ -39,7 +39,7 @@
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
 @property (weak, nonatomic) IBOutlet UIView *accountView;
 
-@property (nonatomic, strong) FirebaseConnection* connection;
+@property (nonatomic, strong) ConnectionService* connection;
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityView;
 @property (weak, nonatomic) IBOutlet UILabel *userLoginLabel;
@@ -83,6 +83,8 @@
 
 - (void)connect {
     NSError *error = nil;
+    
+    NSLog(@"MatchmakingViewController: connect");
     
     self.challengeResults = [ObjectStore.shared fetchedResultsForRequest:[ChallengeService.shared requestChallengesForUser:UserService.shared.currentUser]];
     self.challengeResults.delegate = self;
@@ -130,6 +132,11 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    
 }
 
 - (NSUInteger)supportedInterfaceOrientations {
@@ -213,10 +220,16 @@
 
 #pragma mark - Location
 -(void)didUpdateLocation {
+    
     if (LocationService.shared.hasLocation) {
+        NSLog(@"MatchmakingViewController: hasLocation");
         CLLocation * location = LocationService.shared.location;
         self.currentUser.locationLongitude = location.coordinate.longitude;
         self.currentUser.locationLatitude = location.coordinate.latitude;
+    }
+    
+    else {
+        NSLog(@"MatchmakingViewController: NO LOCATION!");
     }
     
     if (LocationService.shared.hasLocation || LocationService.shared.denied) {

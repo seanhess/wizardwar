@@ -16,7 +16,7 @@
 @property (nonatomic, strong) Firebase * node;
 @property (nonatomic, strong) NSString * deviceToken;
 @property (nonatomic, strong) NSString * entityName;
-@property (nonatomic) NSTimeInterval lastFirebaseConnect;
+@property (nonatomic) NSTimeInterval lastUpdatedTime;
 @end
 
 @implementation UserService
@@ -34,10 +34,10 @@
     self.node = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/users"];
     self.entityName = @"User";
     
-    self.lastFirebaseConnect = [self loadLastFirebaseConnect];
-    NSLog(@"UserService: lastFirebaseConnect:%f", self.lastFirebaseConnect);
+    self.lastUpdatedTime = [self loadLastUpdatedTime];
+    NSLog(@"UserService: lastUpdatedTime:%f", self.lastUpdatedTime);
     
-    FQuery * query = [self.node queryStartingAtPriority:@(self.lastFirebaseConnect)];
+    FQuery * query = [self.node queryStartingAtPriority:@(self.lastUpdatedTime)];
     
 //    NSLog(@"UserService lastFirebaseConnect=%f", self.lastFirebaseConnect);
     
@@ -85,7 +85,7 @@
     [self onAdded:snapshot];
 }
 
--(NSTimeInterval)loadLastFirebaseConnect {
+-(NSTimeInterval)loadLastUpdatedTime {
     NSFetchRequest * request = [NSFetchRequest fetchRequestWithEntityName:self.entityName];
     NSSortDescriptor * sortByLastUpdated = [NSSortDescriptor sortDescriptorWithKey:@"updated" ascending:NO];
     request.sortDescriptors = @[sortByLastUpdated];
