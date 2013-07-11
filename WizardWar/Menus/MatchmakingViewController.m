@@ -126,8 +126,11 @@
 
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+}
 
-- (void)viewDidAppear:(BOOL)animated {}
+- (void)viewDidAppear:(BOOL)animated {
+}
 
 - (NSUInteger)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskPortrait;

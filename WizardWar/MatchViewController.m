@@ -50,6 +50,8 @@
 {
     [super viewDidLoad];
     
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];    
+    
     self.message.font = [UIFont fontWithName:FONT_COMIC_ZINE size:100];
     self.message.textColor = UIColorFromRGB(0xF9A843);
     
@@ -80,6 +82,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     // Add the director's view to us
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     
     self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 
@@ -194,6 +197,7 @@
     [WizardDirector unload];
     [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
     [self dismissViewControllerAnimated:YES completion:nil];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];        
 //    [self.navigationController popViewControllerAnimated:YES];
 }
 

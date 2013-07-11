@@ -34,11 +34,8 @@
 {
     
     NSLog(@"applicationDidFinishLaunchingWithOptions");
-    [application setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     
     [AppStyle customizeUIKitStyles];
-    
-    
     
     /// LOAD //////////////////
     
