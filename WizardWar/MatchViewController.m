@@ -143,7 +143,7 @@
         self.message.textColor = UIColorFromRGB(0xF9A843);
         self.message.text = @"READY?";
         self.subMessage.alpha = 1.0;
-        self.subMessage.text = @"";        
+        self.subMessage.text = @"tuning essences";        
     }
     
     else if (self.match.status == MatchStatusPlaying) {
@@ -159,17 +159,18 @@
     
     else if (self.match.status == MatchStatusEnded) {
         self.message.alpha = 1.0;
-        if (self.match.currentWizard.state == WizardStatusWon) {
-            self.message.textColor = UIColorFromRGB(0x18AB34);
-            self.message.text = @"YOU WON!";
-            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"YouWon.mp3" loop:NO];
-        }
-        else {
+        if (self.match.currentWizard.state == WizardStatusDead) {
             self.message.textColor = UIColorFromRGB(0xB02410);
             self.message.text = @"DEATH!";
             self.subMessage.hidden = NO;
             self.subMessage.text = @"(YOU LOSE)";
-            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"YouLose2.mp3" loop:NO];      
+            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"YouLose2.mp3" loop:NO];
+        }
+        
+        else {
+            self.message.textColor = UIColorFromRGB(0x18AB34);
+            self.message.text = @"YOU WON!";
+            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"YouWon.mp3" loop:NO];
         }
     }
 }

@@ -378,10 +378,11 @@
             }];
             otherWizard.effect = nil;
             [otherWizard setState:WizardStatusWon animated:NO];
-            
+
+            [self.multiplayer updatePlayer:otherWizard];
             [self checkWin];
         }
-        
+
         [self.multiplayer updatePlayer:player];
     }
 }
