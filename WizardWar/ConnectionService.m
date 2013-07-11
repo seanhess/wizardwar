@@ -34,6 +34,7 @@
     
     [self.connectionNode observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
         self.isConnected = [snapshot.value boolValue];
+        self.isUserActive = self.isConnected;
         NSLog(@"Connection.isConnected: %i", self.isConnected);
     }];
 }

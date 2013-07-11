@@ -17,7 +17,6 @@
 
 @interface LobbyService : NSObject
 
-@property (nonatomic, strong) RACSubject * updated;
 @property (nonatomic) BOOL joined;
 
 + (LobbyService *)shared;

@@ -34,7 +34,6 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance = [[LobbyService alloc] init];
-        instance.updated = [RACSubject subject];
         instance.joined = NO;
         instance.joining = NO;
         
@@ -146,6 +145,7 @@
     [node setValue:user.toLobbyObject withCompletionBlock:^(NSError *error, Firebase *ref) {
         self.joined = YES;
         self.joining = NO;
+        NSLog(@"LobbyService: (joined)");        
     }];
 }
 

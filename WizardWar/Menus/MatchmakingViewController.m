@@ -37,12 +37,8 @@
 
 @interface MatchmakingViewController () <AccountFormDelegate, NSFetchedResultsControllerDelegate>
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
-@property (weak, nonatomic) IBOutlet UIView *accountView;
 
 @property (nonatomic, strong) ConnectionService* connection;
-
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityView;
-@property (weak, nonatomic) IBOutlet UILabel *userLoginLabel;
 
 @property (nonatomic, readonly) User * currentUser;
 @property (strong, nonatomic) MatchLayer * match;
@@ -51,6 +47,9 @@
 @property (strong, nonatomic) NSFetchedResultsController * friendResults;
 @property (strong, nonatomic) NSFetchedResultsController * localResults;
 @property (strong, nonatomic) NSFetchedResultsController * allResults;
+
+@property (weak, nonatomic) IBOutlet UIView *loadingOverlayView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityView;
 
 @end
 
@@ -69,6 +68,20 @@
     self.title = @"Matchmaking";
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationItem.titleView = [ComicZineDoubleLabel titleView:self.title navigationBar:self.navigationController.navigationBar];
+
+    __weak MatchmakingViewController * wself = self;
+    
+    
+    
+    
+    // LOBBY
+    [RACAble(LobbyService.shared, joined) subscribeNext:^(id x) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [wself didUpdateJoinedLobby:LobbyService.shared.joined];
+        });
+    }];
+    [wself didUpdateJoinedLobby:LobbyService.shared.joined];
+    
     
     // CHECK AUTHENTICATED
     if ([UserService shared].isAuthenticated) {
@@ -112,9 +125,6 @@
 
     __weak MatchmakingViewController * wself = self;
 
-    // LOBBY
-    self.accountView.hidden = YES;
-    
     [RACAble(LocationService.shared, location) subscribeNext:^(id x) {
         [wself didUpdateLocation];
     }];
@@ -237,6 +247,27 @@
     }
 }
 
+
+#pragma mark - Lobby {
+-(void)didUpdateJoinedLobby:(BOOL)joined {
+    
+    if (joined) {
+        [self.activityView stopAnimating];
+        [UIView animateWithDuration:0.2 animations:^{
+            self.loadingOverlayView.alpha = 0.0;
+        }];
+    }
+
+    else {
+        [ChallengeService.shared removeUserChallenge:UserService.shared.currentUser];
+        [ChallengeService.shared declineAllChallenges:UserService.shared.currentUser];
+        
+        [self.activityView startAnimating];
+        [UIView animateWithDuration:0.2 animations:^{
+            self.loadingOverlayView.alpha = 1.0;
+        }];
+    }
+}
 
 #pragma mark - AccountFormDelegate
 -(void)didCancelAccountForm {
@@ -470,6 +501,7 @@
 
 - (void)dealloc {
     // don't worry about disconnecting. If you aren't THERE, it's ok
+    NSLog(@"MatchmakingViewController: dealloc");
 }
 
 @end
