@@ -7,7 +7,8 @@
 //
 
 #import "CCLayer.h"
+#import "Combos.h"
 
 @interface FeedbackLayer : CCLayer
-
+@property (nonatomic, strong) Combos * combos;
 @end

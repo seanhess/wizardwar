@@ -19,6 +19,7 @@
     if ((self=[super init])) {
         self.damage = 0;
         self.heavy = NO;
+        self.name = @"Bubble";
     }
     return self;
 }

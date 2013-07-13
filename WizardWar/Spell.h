@@ -43,6 +43,7 @@ typedef enum SpellStatus {
 @property (nonatomic) BOOL heavy; // if it falls
 @property (nonatomic, strong) Effect * effect; // if the spell creates an effect
 @property (nonatomic) BOOL targetSelf;
+@property (nonatomic, strong) NSString * name;
 
 // how far away from the wizard should it start
 @property (nonatomic) float startOffsetPosition;

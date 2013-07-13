@@ -16,6 +16,7 @@
     if ((self=[super init])) {
         self.damage = 0;
         self.heavy = NO;
+        self.name = @"Sleep";        
     }
     return self;
 }

@@ -37,7 +37,6 @@ typedef enum MatchStatus {
 @property (nonatomic, strong) Wizard * currentWizard;
 
 @property (nonatomic, strong) NSMutableArray * sortedPlayers;
-
 @property (nonatomic) MatchStatus status;
 
 -(id)initWithMatchId:(NSString*)matchId hostName:(NSString*)hostName currentWizard:(Wizard*)wizard withAI:(Wizard*)ai multiplayer:(id<Multiplayer>)multiplayer sync:(TimerSyncService*)sync;

@@ -19,6 +19,7 @@
     if ((self=[super init])) {
 //        self.speed = 40; // make it slower so you can do the windblast combo
         self.heavy = NO;
+        self.name = @"Fireball";
     }
     return self;
 }

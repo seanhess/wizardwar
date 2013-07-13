@@ -17,6 +17,13 @@
 
 @implementation SpellIcewall
 
+-(id)init {
+    if ((self=[super init])) {
+        self.name = @"Wall of Ice";
+    }
+    return self;
+}
+
 -(SpellInteraction *)interactSpell:(Spell *)spell {
     if ([spell isType:[SpellMonster class]]) {
         return [SpellInteraction cancel];

@@ -17,6 +17,7 @@
         self.damage = 0;
         self.effect = [EffectHeal new];
         self.targetSelf = YES;
+        self.name = @"Heal";                
     }
     return self;
 }

@@ -53,7 +53,7 @@
 
 @implementation MatchLayer
 
--(id)initWithMatch:(Match*)match size:(CGSize)size {
+-(id)initWithMatch:(Match*)match size:(CGSize)size combos:(Combos *)combos {
     if ((self = [super init])) {
         // background
         
@@ -82,6 +82,7 @@
         self.units = [[Units alloc] init];
         
         self.feedback = [FeedbackLayer node];
+        self.feedback.combos = combos;
         self.feedback.position = ccp(size.width/2, size.height/2);
         [self addChild:self.feedback];        
         

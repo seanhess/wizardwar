@@ -16,6 +16,7 @@
         self.speed = 0;
         self.strength = 1;
         self.altitude = 2; // it's up high!
+        self.name = @"Fist of Grom";
         
         double delayInSeconds = 2.0;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));

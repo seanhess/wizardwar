@@ -50,6 +50,8 @@
 {
     [super viewDidLoad];
     
+    NSLog(@"MatchVC.viewDidLoad");
+    
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];    
     
     self.message.font = [UIFont fontWithName:FONT_COMIC_ZINE size:100];
@@ -59,7 +61,7 @@
     self.subMessage.textColor = UIColorFromRGB(0xCACACA);
     self.subMessage.hidden = YES;
     
-    self.combos = [Combos new];    
+    self.combos = [Combos new];
     
     self.pentagram = [PentagramViewController new];
     self.pentagram.combos = self.combos;
@@ -96,9 +98,9 @@
     self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 
     CCDirector * director = [CCDirector sharedDirector];
-    NSLog(@"TESTING cososView=%@ self.view=%@", NSStringFromCGRect(self.cocosView.bounds), NSStringFromCGRect(self.view.bounds));
+    NSLog(@"MatchVC.viewWillAppear");
     director.view.frame = self.view.bounds;
-    MatchLayer * matchLayer = [[MatchLayer alloc] initWithMatch:self.match size:self.view.bounds.size];
+    MatchLayer * matchLayer = [[MatchLayer alloc] initWithMatch:self.match size:self.view.bounds.size combos:self.combos];
     [WizardDirector runLayer:matchLayer];
     
     // CONNECT / START!

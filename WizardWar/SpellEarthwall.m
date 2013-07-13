@@ -17,6 +17,7 @@
 -(id)init {
     if ((self=[super init])) {
         self.strength = 3;
+        self.name = @"Wall of Earth";
     }
     return self;
 }

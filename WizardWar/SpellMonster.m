@@ -24,6 +24,7 @@
 -(id)init {
     if ((self=[super init])) {
         self.speed = MONSTER_SPEED;
+        self.name = @"Summon Ogre";
     }
     return self;
 }

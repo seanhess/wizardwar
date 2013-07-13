@@ -15,6 +15,7 @@
 -(id)init {
     if ((self = [super init])) {
         self.strength = 1;
+        self.name = @"Vortex";        
     }
     return self;
 }

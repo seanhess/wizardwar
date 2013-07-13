@@ -15,6 +15,8 @@
 #import "SpellBubble.h"
 #import "SpellIcewall.h"
 #import "SpellWindblast.h"
+#import "SpellHeal.h"
+#import "SpellLevitate.h"
 #import "SpellInvisibility.h"
 #import "SpellFirewall.h"
 #import "SpellFist.h"
@@ -81,8 +83,8 @@
         [SpellSprite loadSprites];
         
         // STATIC sprites
-        if ([spell isType:[SpellFist class]] || [spell isType:[SpellHelmet class]] || [spell isType:[SpellSleep class]] ) {
-            self.skin = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", self.sheetName]];
+        if ([SpellSprite isSingleImage:self.spell]) {
+            self.skin = [SpellSprite singleImage:spell];
             [self addChild:self.skin];
             
             if ([spell class] == [SpellSleep class]) {
@@ -245,49 +247,74 @@
     }
 }
 
--(NSString*)sheetName {
-    if ([self.spell isType:[SpellEarthwall class]]) {
++(BOOL)isSingleImage:(Spell*)spell {
+    return ([spell isType:[SpellFist class]] || [spell isType:[SpellHelmet class]] || [spell isType:[SpellSleep class]]);
+}
+
++(BOOL)isNoRender:(Spell*)spell {
+    return (spell.class == SpellInvisibility.class || spell.class == SpellHeal.class || spell.class == SpellLevitate.class);
+}
+
++(CCSprite*)singleImage:(Spell*)spell {
+    return [CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", [self sheetName:spell]]];
+}
+
++(NSString*)sheetName:(Spell*)spell {
+    if ([spell isType:[SpellEarthwall class]]) {
         return @"earthwall";
     }
     
-    else if ([self.spell isType:[SpellVine class]]) {
+    else if ([spell isType:[SpellVine class]]) {
         return @"vine";
     }
     
-    else if ([self.spell isType:[SpellMonster class]]) {
+    else if ([spell isType:[SpellMonster class]]) {
         return @"ogre";
     }
     
-    else if ([self.spell isType:[SpellBubble class]]) {
+    else if ([spell isType:[SpellBubble class]]) {
         return @"bubble";
     }
     
-    else if ([self.spell isType:[SpellIcewall class]]) {
+    else if ([spell isType:[SpellIcewall class]]) {
         return @"icewall";
     }
     
-    else if ([self.spell isType:[SpellWindblast class]]) {
+    else if ([spell isType:[SpellWindblast class]]) {
         return @"windblast";
     }
     
-    else if ([self.spell isType:[SpellFirewall class]]) {
+    else if ([spell isType:[SpellFirewall class]]) {
         return @"firewall";
     }
 
-    else if ([self.spell isType:[SpellFist class]]) {
+    else if ([spell isType:[SpellFist class]]) {
         return @"fist";
     }
     
-    else if ([self.spell isType:[SpellHelmet class]]) {
+    else if ([spell isType:[SpellHelmet class]]) {
         return @"helmet";
     }
     
-    else if ([self.spell isType:[SpellSleep class]]) {
+    else if ([spell isType:[SpellSleep class]]) {
         return @"pillow";
     }
     
     return @"fireball";
 }
+
+-(NSString*)sheetName {
+    return [SpellSprite sheetName:self.spell];
+}
+
++(NSString*)castAnimationName:(Spell*)spell {
+    return [NSString stringWithFormat:@"%@-cast", [self sheetName:spell]];
+}
+
+-(NSString*)castAnimationName {
+    return [SpellSprite castAnimationName:self.spell];
+}
+
 
 -(CCAction*)spellAction {
     CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:self.castAnimationName];
@@ -315,10 +342,6 @@
     }
     
     return action;
-}
-
--(NSString*)castAnimationName {
-    return [NSString stringWithFormat:@"%@-cast", self.sheetName];
 }
 
 -(CCAction*)explodeAction {

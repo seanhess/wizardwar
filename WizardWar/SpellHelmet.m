@@ -17,6 +17,7 @@
         self.damage = 0;
         self.effect = [EffectHelmet new];
         self.targetSelf = YES;
+        self.name = @"Mighty Helmet";
     }
     return self;
 }

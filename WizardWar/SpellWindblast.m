@@ -24,6 +24,7 @@
         self.speed = 100;
         self.damage = 0;
         self.heavy = NO;
+        self.name = @"Wind Blast";
     }
     return self;
 }

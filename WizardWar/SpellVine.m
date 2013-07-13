@@ -22,6 +22,7 @@
     if ((self=[super init])) {
         // TODO mana cost higher!
         // TODO harder to cast!
+        self.name = @"Summon Vine";        
     }
     return self;
 }

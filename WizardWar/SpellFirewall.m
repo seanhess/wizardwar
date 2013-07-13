@@ -15,6 +15,15 @@
 
 @implementation SpellFirewall
 
+-(id)init {
+    if ((self=[super init])) {
+        self.strength = 3;
+        self.name = @"Wall of Fire";
+    }
+    return self;
+}
+
+
 -(SpellInteraction *)interactSpell:(Spell *)spell {
     
     // replace older walls

@@ -10,7 +10,8 @@
 #import "PentagramViewController.h"
 #import "Wizard.h"
 #import "Match.h"
+#import "Combos.h"
 
 @interface MatchLayer : CCLayer
--(id)initWithMatch:(Match*)match size:(CGSize)size;
+-(id)initWithMatch:(Match*)match size:(CGSize)size combos:(Combos*)combos;
 @end

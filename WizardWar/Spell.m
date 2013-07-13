@@ -38,6 +38,12 @@
     return NSStringFromClass(self);
 }
 
+-(NSString*)name {
+    if (!_name)
+        return self.type;
+    return _name;
+}
+
 -(void)initCaster:(Wizard*)player tick:(NSInteger)tick {
     self.creator = player.name;
     self.createdTick = tick;

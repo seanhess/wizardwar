@@ -17,6 +17,7 @@
         self.damage = 0;
         self.effect = [EffectLevitate new];
         self.targetSelf = YES;
+        self.name = @"Levitate";
     }
     return self;
 }
