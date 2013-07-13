@@ -25,6 +25,7 @@
 
 @property (nonatomic, strong) CCLabelTTF * label;
 @property (nonatomic, strong) CCSprite * skin;
+//@property (nonatomic, strong) CCSprite * clothes;
 @property (nonatomic, strong) CCSprite * effect;
 
 @property (nonatomic, strong) CCAction * hoverAction;
@@ -41,11 +42,16 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         NSLog(@"LOAD WIZARD SPRITES");
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard1-set2.plist"];
-        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"wizard1-set2-animations.plist"];
-        
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard1-set1.plist"];
         [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"wizard1-set1-animations.plist"];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard1-set2.plist"];
+        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"wizard1-set2-animations.plist"];
+
+//        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard1-set1-clothes.plist"];
+//        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"wizard1-set1-clothes-animations.plist"];
+//        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard1-set2-clothes.plist"];
+//        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"wizard1-set2-clothes-animations.plist"];
+
     });
 }
 
@@ -68,7 +74,9 @@
         __weak WizardSprite * wself = self;
         
         self.skin = [CCSprite node];
+//        self.clothes = [CCSprite node];
         [self addChild:self.skin];
+//        [self addChild:self.clothes];
         
         // I need to only show this if the game hasn't started!
         self.label = [CCLabelTTF labelWithString:self.wizardName fontName:FONT_COMIC_ZINE fontSize:36];
@@ -110,6 +118,7 @@
 -(void)renderPosition {
     self.position = self.calculatedPosition;
     self.skin.flipX = (self.wizard.position == UNITS_MAX);
+//    self.clothes.flipX = self.skin.flipX;
 }
 
 -(void)renderStatus {

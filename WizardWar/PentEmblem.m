@@ -28,7 +28,7 @@
     
     
     [UIView animateWithDuration:0.3 animations:^{
-        if (status == EmblemStatusHighlight)
+        if (status == EmblemStatusSelected)
             self.alpha = 1.0;
         else
             self.alpha = 0.5;

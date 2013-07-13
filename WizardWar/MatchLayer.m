@@ -8,7 +8,6 @@
 
 #import "MatchLayer.h"
 #import "cocos2d.h"
-#import "MatchGroundSprite.h"
 #import "WizardSprite.h"
 #import "Match.h"
 #import "Spell.h"
@@ -28,6 +27,7 @@
 #import "NSArray+Functional.h"
 #import "LifeIndicatorNode.h"
 #import "Tick.h"
+#import "FeedbackLayer.h"
 
 #import <ReactiveCocoa.h>
 
@@ -39,6 +39,7 @@
 @property (nonatomic, strong) CCLayer * spells;
 @property (nonatomic, strong) CCLayer * players;
 @property (nonatomic, strong) CCLayer * indicators;
+@property (nonatomic, strong) FeedbackLayer * feedback;
 
 @property (nonatomic, strong) NSString * matchId;
 
@@ -79,6 +80,10 @@
         [self addChild:self.indicators];
         
         self.units = [[Units alloc] init];
+        
+        self.feedback = [FeedbackLayer node];
+        self.feedback.position = ccp(size.width/2, size.height/2);
+        [self addChild:self.feedback];        
         
         // LIFE MANA INDICATORS add two of them to the right spot
         LifeIndicatorNode * player1Indicator = [LifeIndicatorNode node];

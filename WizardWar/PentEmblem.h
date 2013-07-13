@@ -13,13 +13,13 @@
 
 typedef enum EmblemStatus {
     EmblemStatusNormal,
-    EmblemStatusHighlight,
+    EmblemStatusSelected,
     EmblemStatusDisabled
 } EmblemStatus;
 
 @interface PentEmblem : UIImageView
 
-@property (strong, nonatomic) NSString* elementId;
+@property (nonatomic) ElementType element;
 @property (nonatomic) EmblemStatus status;
 @property (nonatomic) NSInteger mana;
 

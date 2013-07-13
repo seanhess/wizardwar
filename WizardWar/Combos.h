@@ -12,6 +12,16 @@
 
 @interface Combos : NSObject
 
+// an array of all moves, in order
+@property (nonatomic) ElementType lastElement;
+@property (nonatomic, strong) NSMutableArray * allElements;
+
+@property (nonatomic, strong) Spell * hintedSpell;
+@property (nonatomic, strong) Spell * castSpell;
+
+-(void)moveToElement:(ElementType)element;
+-(void)releaseElements;
+
 -(Spell*)spellForElements:(NSArray*)elements;
 
 @end

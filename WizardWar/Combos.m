@@ -21,6 +21,7 @@
 #import "SpellHeal.h"
 #import "SpellLevitate.h"
 #import "SpellSleep.h"
+#import "NSArray+Functional.h"
 
 @interface Combos ()
 @property (strong, nonatomic) NSDictionary * hitCombos;
@@ -33,8 +34,21 @@
     self = [super init];
     if (self) {
         self.hitCombos = [Combos createHitCombos];
+        self.allElements = [NSMutableArray array];
     }
     return self;
+}
+
+-(void)moveToElement:(ElementType)element {
+    self.lastElement = element;
+    [self.allElements addObject:@(element)];
+    self.hintedSpell = [self spellForElements:self.allElements];
+}
+
+-(void)releaseElements {
+    self.castSpell = self.hintedSpell;
+    self.hintedSpell = nil;
+    self.allElements = [NSMutableArray array];
 }
 
 +(NSDictionary*)createHitCombos {
@@ -62,6 +76,7 @@
     // Fist break helmet? Could pick where horizontally it comes down. 
     
     // 3 combos
+    
     hitCombos[@"AEF__"] = [SpellFirewall class];
     hitCombos[@"AE_H_"] = [SpellHeal class];
     hitCombos[@"AE__W"] = [SpellSleep class]; // Tornado, Geyser, Sleep,
@@ -106,13 +121,15 @@
 //    return (elements.count == hits.count && [self hits:hits containsElements:elements]);
 //}
 
-// Hit key: sort them, then put them out
+
+// Produces a string key that represents whether or not each one is held down
 +(NSString*)hitKey:(NSArray*)elements {
     NSMutableString * key = [NSMutableString stringWithString:@"_____"];
-    for (NSString * elementId in elements) {
-        ElementType element = [Elements elementWithId:elementId];
+    [elements forEach:^(NSNumber * elementNumber) {
+        ElementType element = elementNumber.intValue;
+        NSString * elementId = [Elements elementId:element];
         [key replaceCharactersInRange:NSMakeRange(element, 1) withString:elementId];
-    }
+    }];
     return key;
 }
 

@@ -153,11 +153,11 @@
 			<key>format</key>
 			<integer>2</integer>
 			<key>realTextureFileName</key>
-			<string>wizard1-set1-hd.png</string>
+			<string>wizard1-set1-hd-clothes.png</string>
 			<key>size</key>
 			<string>{ 2048, 2048 }</string>
 			<key>textureFileName</key>
-			<string>wizard1-set1-hd.png</string>
+			<string>wizard1-set1-hd-clothes.png</string>
 		</dict>
 	</dict>
 </plist>

@@ -14,15 +14,19 @@
 #define RECHARGE_INTERVAL 2.5
 
 @interface PentagramViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *pentagram;
+
 @property (weak, nonatomic) IBOutlet PentEmblem *windEmblem;
 @property (weak, nonatomic) IBOutlet PentEmblem *fireEmblem;
 @property (weak, nonatomic) IBOutlet PentEmblem *earthEmblem;
 @property (weak, nonatomic) IBOutlet PentEmblem *waterEmblem;
 @property (weak, nonatomic) IBOutlet PentEmblem *heartEmblem;
 
-@property (strong, nonatomic) NSMutableArray * selectedEmblems;
+@property (weak, nonatomic) DrawingLayer *drawingLayer;
 
-@property (strong, nonatomic) NSTimer * timer;
+@property (weak, nonatomic) PentEmblem *currentEmblem;
+@property (copy, nonatomic) NSArray *emblems;
+
 
 @end
 
@@ -31,11 +35,10 @@
 
 - (void)viewDidLoad
 {
+    NSAssert(self.combos, @"PentagramViewController requires combos");
+    
     [super viewDidLoad];
     [self.view setMultipleTouchEnabled:YES];
-    self.moves = [[NSMutableArray alloc] init];
-    
-    self.selectedEmblems = [NSMutableArray array];
     
     self.view.opaque = NO;
     DrawingLayer *drawLayer = [[DrawingLayer alloc] initWithFrame:self.view.bounds];
@@ -47,29 +50,25 @@
     [self setUpPentagram];
 }
 
-//- (void)viewDidLayoutSubviews
-//{
-//}
-
 - (void)setUpPentagram
 {
-    self.fireEmblem.elementId = FireId;
+    self.fireEmblem.element = Fire;
     self.fireEmblem.status = EmblemStatusNormal;
     self.fireEmblem.mana = MAX_MANA;
     
-    self.heartEmblem.elementId = HeartId;
+    self.heartEmblem.element = Heart;
     self.heartEmblem.status = EmblemStatusNormal;
     self.heartEmblem.mana = MAX_MANA;
     
-    self.waterEmblem.elementId = WaterId;
+    self.waterEmblem.element = Water;
     self.waterEmblem.status = EmblemStatusNormal;
     self.waterEmblem.mana = MAX_MANA;
     
-    self.earthEmblem.elementId = EarthId;
+    self.earthEmblem.element = Earth;
     self.earthEmblem.status = EmblemStatusNormal;
     self.earthEmblem.mana = MAX_MANA;
     
-    self.windEmblem.elementId = AirId;
+    self.windEmblem.element = Air;
     self.windEmblem.status = EmblemStatusNormal;
     self.windEmblem.mana = MAX_MANA;
     
@@ -82,84 +81,31 @@
     // Dispose of any resources that can be recreated.
 }
 
-//- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-//    if (UIInterfaceOrientationIsPortrait(fromInterfaceOrientation)) {
-//    }
-//}
-
-- (void)onTimer {
-    return;
-//    NSArray * disabledEmblems = [self.emblems filter:^BOOL(PentEmblem*emblem) {
-//        return emblem.status == EmblemStatusDisabled;
-//    }];
-    
-    [self.emblems forEach:^(PentEmblem * emblem) {
-        emblem.mana += 1;
-    }];
-    
-    [self startRecharge];
-    
-//    NSUInteger numDisabled = disabledEmblems.count;
-//    
-//    if (numDisabled) {
-//        NSUInteger randomIndex = arc4random() % disabledEmblems.count;
-//        PentEmblem * emblem = disabledEmblems[randomIndex];
-//        emblem.status = EmblemStatusNormal;
-//        
-//        if (numDisabled > 1) {
-//            [self startRecharge];
-//        }
-//    }
-}
-
-- (void)startRecharge {
-    return;
-    // resets the timer if running
-    [self.timer invalidate];
-    
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:RECHARGE_INTERVAL target:self selector:@selector(onTimer) userInfo:nil repeats:NO];
-}
 
 - (void)checkSelectedEmblems:(CGPoint)point {
     
-    if(self.currentEmblem != nil)
-    {
-        if(!CGRectContainsPoint(self.currentEmblem.frame, point)){
-            self.currentEmblem = nil;
-        }
-    }
+    PentEmblem * emblem = [self.emblems find:^BOOL(PentEmblem*emblem) {
+        return CGRectContainsPoint(emblem.frame, point);
+    }];
     
-    if(self.currentEmblem == nil)
-    {
-        for(PentEmblem *emblem in self.emblems)
-        {
-//            if(CGRectContainsPoint(emblem.frame, point) && ([self.moves indexOfObject:emblem.type] == NSNotFound))
-            if(CGRectContainsPoint(emblem.frame, point) && (![[self.moves lastObject] isEqualToString:emblem.elementId]))
-            {
-                
-                [self.drawingLayer.points replaceObjectAtIndex: ([self.drawingLayer.points count] - 1) withObject:[NSValue valueWithCGPoint:CGPointMake((emblem.frame.origin.x + (emblem.frame.size.width / 2)), (emblem.frame.origin.y + (emblem.frame.size.height / 2)))]];
-                
-                [self.drawingLayer.points addObject:[NSValue valueWithCGPoint:point]];
-                
-                self.currentEmblem = emblem;
-                emblem.status = EmblemStatusHighlight;
-                
-                [self.selectedEmblems addObject:emblem];
-                [self.moves addObject:emblem.elementId];
-                [self.delegate didSelectElement:self.moves];
-            }
-        }
+    if (emblem && emblem != self.currentEmblem) {
+        [self.drawingLayer.points replaceObjectAtIndex: ([self.drawingLayer.points count] - 1) withObject:[NSValue valueWithCGPoint:CGPointMake((emblem.frame.origin.x + (emblem.frame.size.width / 2)), (emblem.frame.origin.y + (emblem.frame.size.height / 2)))]];
+        
+        [self.drawingLayer.points addObject:[NSValue valueWithCGPoint:point]];
+        
+        self.currentEmblem = emblem;
+        emblem.status = EmblemStatusSelected;
+        
+        [self.combos moveToElement:emblem.element];
     }
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [touches enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
-        
         UITouch *touch = obj;
         CGPoint touchPoint = [touch locationInView:self.view];
         [self.drawingLayer.points addObject: [NSValue valueWithCGPoint:touchPoint]];
         [self checkSelectedEmblems:touchPoint];
-        
     }];
     
 }
@@ -180,31 +126,21 @@
         [self.drawingLayer setNeedsDisplay];
         
         [self checkSelectedEmblems:touchPoint];
-     
     }];
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     
-    for(PentEmblem *emblem in self.selectedEmblems)
+    for(PentEmblem *emblem in self.emblems)
     {
         emblem.status = EmblemStatusNormal;
-//        emblem.mana -= 1;
     }
     
-    self.selectedEmblems = [NSMutableArray array];
-    
-    [self startRecharge];
-    
-//    NSLog(@"%@", self.moves);
-    [self.delegate didCastSpell:self.moves];
-    
+    [self.combos releaseElements];
     
     self.drawingLayer.points = [[NSMutableArray alloc] init];
     [self.drawingLayer setNeedsDisplay];
     
-    //send out complete set of moves
-    self.moves = [[NSMutableArray alloc] init];
     self.currentEmblem = nil;
 }
 

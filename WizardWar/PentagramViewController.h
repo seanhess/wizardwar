@@ -9,21 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "PentEmblem.h"
 #import "DrawingLayer.h"
-
-@protocol PentagramDelegate
--(void)didSelectElement:(NSArray *)elements;
--(void)didCastSpell:(NSArray *)elements;
-@end
+#import "Combos.h"
 
 @interface PentagramViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIImageView *pentagram;
-@property (weak, nonatomic) id<PentagramDelegate> delegate;
-
-@property (strong, nonatomic) NSMutableArray *moves;
-@property (copy, nonatomic) NSArray *emblems;
-
-@property (weak, nonatomic) DrawingLayer *drawingLayer;
-
-@property (weak, nonatomic) PentEmblem *currentEmblem;
-
+@property (strong, nonatomic) Combos * combos;
 @end

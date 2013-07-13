@@ -12,7 +12,6 @@
 #import "MatchViewController.h"
 #import "PentagramViewController.h"
 #import "WizardDirector.h"
-#import "TestLayer.h"
 #import "MatchLayer.h"
 #import "SimpleAudioEngine.h"
 #import "Elements.h"
@@ -26,7 +25,7 @@
 #import "Color.h"
 #import "ConnectionService.h"
 
-@interface MatchViewController () <PentagramDelegate>
+@interface MatchViewController ()
 @property (strong, nonatomic) PentagramViewController * pentagram;
 @property (weak, nonatomic) IBOutlet UIView *pentagramView;
 @property (weak, nonatomic) IBOutlet UIView *cocosView;
@@ -60,8 +59,10 @@
     self.subMessage.textColor = UIColorFromRGB(0xCACACA);
     self.subMessage.hidden = YES;
     
+    self.combos = [Combos new];    
+    
     self.pentagram = [PentagramViewController new];
-    self.pentagram.delegate = self;
+    self.pentagram.combos = self.combos;
     [self.pentagramView addSubview:self.pentagram.view];
     [self.pentagram viewDidLoad];
     
@@ -70,8 +71,6 @@
     CCDirector * director = [CCDirector sharedDirector];
     [self.cocosView addSubview:director.view];
     
-    
-    self.combos = [Combos new];
     
     
     __weak MatchViewController * wself = self;
@@ -83,6 +82,10 @@
     
     [[RACAble(self.match.status) distinctUntilChanged] subscribeNext:^(id x) {
         [wself renderMatchStatus];
+    }];
+    
+    [[RACAble(self.combos.castSpell) distinctUntilChanged] subscribeNext:^(Spell * spell) {
+        [wself didCastSpell:spell];
     }];
 }
 
@@ -231,17 +234,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-
 # pragma mark Pentagram Delegate
 
--(void)didSelectElement:(NSArray *)elements
+-(void)didCastSpell:(Spell *)spell;
 {
-    //    NSLog(@"selected element %@", elements);
-}
-
--(void)didCastSpell:(NSArray *)elements
-{
-    Spell * spell = [self.combos spellForElements:elements];
     if (spell) {
         [self.match castSpell:spell];
     }

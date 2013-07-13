@@ -26,8 +26,6 @@
 		6F0B2FAA174750FF00CFC092 /* PentEmblem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0B2FA8174750FF00CFC092 /* PentEmblem.m */; };
 		6F0B2FAF1747511800CFC092 /* DotsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0B2FAC1747511800CFC092 /* DotsView.m */; };
 		6F0B2FB01747511800CFC092 /* DrawingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0B2FAE1747511800CFC092 /* DrawingLayer.m */; };
-		6F0FEF5F1747FA720028FE71 /* wizard-lobby.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F0FEF5D1747FA720028FE71 /* wizard-lobby.png */; };
-		6F0FEF601747FA720028FE71 /* wizard-lobby@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F0FEF5E1747FA720028FE71 /* wizard-lobby@2x.png */; };
 		781372D1177E30EF00486899 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781372D0177E30EF00486899 /* Parse.framework */; };
 		781372D3177E311A00486899 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781372D2177E311A00486899 /* MobileCoreServices.framework */; };
 		781372D5177E313000486899 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781372D4177E313000486899 /* StoreKit.framework */; };
@@ -191,7 +189,6 @@
 		786246581767D885001904AC /* helmet.png in Resources */ = {isa = PBXBuildFile; fileRef = 786246561767D885001904AC /* helmet.png */; };
 		7862465B1767EAE2001904AC /* EffectHelmet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7862465A1767EAE2001904AC /* EffectHelmet.m */; };
 		787A2A85174E85E3004C4FDB /* ConnectionService.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A2A84174E85E3004C4FDB /* ConnectionService.m */; };
-		787A2A91174E9FA3004C4FDB /* TestLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A2A90174E9FA3004C4FDB /* TestLayer.m */; };
 		787A2A99174EA43D004C4FDB /* MatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A2A97174EA43D004C4FDB /* MatchViewController.m */; };
 		787A2A9A174EA43D004C4FDB /* MatchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787A2A98174EA43D004C4FDB /* MatchViewController.xib */; };
 		78915283176A72DB001694B1 /* SpellLevitate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78915280176A7136001694B1 /* SpellLevitate.m */; };
@@ -234,6 +231,17 @@
 		78C98629178DE0C800B545F9 /* Challenge.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C98628178DE0C800B545F9 /* Challenge.m */; };
 		78C9862B178DFFE300B545F9 /* ChallengeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78C9862A178DFFE300B545F9 /* ChallengeCell.xib */; };
 		78C9862E178DFFF000B545F9 /* ChallengeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C9862D178DFFF000B545F9 /* ChallengeCell.m */; };
+		78CF31831791E0B000BC8C29 /* wizard1-set1-clothes-animations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78CF31791791E0B000BC8C29 /* wizard1-set1-clothes-animations.plist */; };
+		78CF31841791E0B000BC8C29 /* wizard1-set1-clothes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78CF317A1791E0B000BC8C29 /* wizard1-set1-clothes.plist */; };
+		78CF31851791E0B000BC8C29 /* wizard1-set1-clothes.png in Resources */ = {isa = PBXBuildFile; fileRef = 78CF317B1791E0B000BC8C29 /* wizard1-set1-clothes.png */; };
+		78CF31861791E0B000BC8C29 /* wizard1-set1-clothes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78CF317C1791E0B000BC8C29 /* wizard1-set1-clothes-hd.plist */; };
+		78CF31871791E0B000BC8C29 /* wizard1-set1-clothes-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 78CF317D1791E0B000BC8C29 /* wizard1-set1-clothes-hd.png */; };
+		78CF31881791E0B000BC8C29 /* wizard1-set2-clothes-animations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78CF317E1791E0B000BC8C29 /* wizard1-set2-clothes-animations.plist */; };
+		78CF31891791E0B000BC8C29 /* wizard1-set2-clothes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78CF317F1791E0B000BC8C29 /* wizard1-set2-clothes.plist */; };
+		78CF318A1791E0B000BC8C29 /* wizard1-set2-clothes.png in Resources */ = {isa = PBXBuildFile; fileRef = 78CF31801791E0B000BC8C29 /* wizard1-set2-clothes.png */; };
+		78CF318B1791E0B000BC8C29 /* wizard1-set2-clothes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78CF31811791E0B000BC8C29 /* wizard1-set2-clothes-hd.plist */; };
+		78CF318C1791E0B000BC8C29 /* wizard1-set2-clothes-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 78CF31821791E0B000BC8C29 /* wizard1-set2-clothes-hd.png */; };
+		78CF318F1791E49D00BC8C29 /* FeedbackLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CF318E1791E49D00BC8C29 /* FeedbackLayer.m */; };
 		78D08558176A4AC500EDC405 /* SpellHeal.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D08557176A4AC400EDC405 /* SpellHeal.m */; };
 		78D0855B176A4B2800EDC405 /* EffectHeal.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D0855A176A4B2800EDC405 /* EffectHeal.m */; };
 		78D0855E176A4C7C00EDC405 /* EffectSleep.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D0855D176A4C7C00EDC405 /* EffectSleep.m */; };
@@ -341,7 +349,6 @@
 		78F6B3A81746B26000AA070D /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3A31746B25F00AA070D /* Match.m */; };
 		78F6B3A91746B26000AA070D /* Wizard.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3A51746B26000AA070D /* Wizard.m */; };
 		78F6B3B71746B27800AA070D /* MatchLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3AC1746B27600AA070D /* MatchLayer.m */; };
-		78F6B3B81746B27800AA070D /* MatchGroundSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3AE1746B27600AA070D /* MatchGroundSprite.m */; };
 		78F6B3B91746B27800AA070D /* WizardSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3B01746B27600AA070D /* WizardSprite.m */; };
 		78F6B3BA1746B27800AA070D /* SpellSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3B21746B27700AA070D /* SpellSprite.m */; };
 		78F6B3C41746B29C00AA070D /* WizardDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3C31746B29C00AA070D /* WizardDirector.m */; };
@@ -385,8 +392,6 @@
 		6F0B2FAC1747511800CFC092 /* DotsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DotsView.m; sourceTree = "<group>"; };
 		6F0B2FAD1747511800CFC092 /* DrawingLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingLayer.h; sourceTree = "<group>"; };
 		6F0B2FAE1747511800CFC092 /* DrawingLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingLayer.m; sourceTree = "<group>"; };
-		6F0FEF5D1747FA720028FE71 /* wizard-lobby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard-lobby.png"; sourceTree = "<group>"; };
-		6F0FEF5E1747FA720028FE71 /* wizard-lobby@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard-lobby@2x.png"; sourceTree = "<group>"; };
 		781234DF174AE4C0008EDE88 /* Objectable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Objectable.h; sourceTree = "<group>"; };
 		781372D0177E30EF00486899 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		781372D2177E311A00486899 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -698,8 +703,6 @@
 		7862465A1767EAE2001904AC /* EffectHelmet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectHelmet.m; sourceTree = "<group>"; };
 		787A2A83174E85E3004C4FDB /* ConnectionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionService.h; sourceTree = "<group>"; };
 		787A2A84174E85E3004C4FDB /* ConnectionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionService.m; sourceTree = "<group>"; };
-		787A2A8F174E9FA3004C4FDB /* TestLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestLayer.h; sourceTree = "<group>"; };
-		787A2A90174E9FA3004C4FDB /* TestLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestLayer.m; sourceTree = "<group>"; };
 		787A2A96174EA43D004C4FDB /* MatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchViewController.h; sourceTree = "<group>"; };
 		787A2A97174EA43D004C4FDB /* MatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchViewController.m; sourceTree = "<group>"; };
 		787A2A98174EA43D004C4FDB /* MatchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchViewController.xib; sourceTree = "<group>"; };
@@ -760,6 +763,18 @@
 		78C9862A178DFFE300B545F9 /* ChallengeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChallengeCell.xib; sourceTree = "<group>"; };
 		78C9862C178DFFF000B545F9 /* ChallengeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeCell.h; sourceTree = "<group>"; };
 		78C9862D178DFFF000B545F9 /* ChallengeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeCell.m; sourceTree = "<group>"; };
+		78CF31791791E0B000BC8C29 /* wizard1-set1-clothes-animations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set1-clothes-animations.plist"; sourceTree = "<group>"; };
+		78CF317A1791E0B000BC8C29 /* wizard1-set1-clothes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set1-clothes.plist"; sourceTree = "<group>"; };
+		78CF317B1791E0B000BC8C29 /* wizard1-set1-clothes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard1-set1-clothes.png"; sourceTree = "<group>"; };
+		78CF317C1791E0B000BC8C29 /* wizard1-set1-clothes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set1-clothes-hd.plist"; sourceTree = "<group>"; };
+		78CF317D1791E0B000BC8C29 /* wizard1-set1-clothes-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard1-set1-clothes-hd.png"; sourceTree = "<group>"; };
+		78CF317E1791E0B000BC8C29 /* wizard1-set2-clothes-animations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set2-clothes-animations.plist"; sourceTree = "<group>"; };
+		78CF317F1791E0B000BC8C29 /* wizard1-set2-clothes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set2-clothes.plist"; sourceTree = "<group>"; };
+		78CF31801791E0B000BC8C29 /* wizard1-set2-clothes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard1-set2-clothes.png"; sourceTree = "<group>"; };
+		78CF31811791E0B000BC8C29 /* wizard1-set2-clothes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set2-clothes-hd.plist"; sourceTree = "<group>"; };
+		78CF31821791E0B000BC8C29 /* wizard1-set2-clothes-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard1-set2-clothes-hd.png"; sourceTree = "<group>"; };
+		78CF318D1791E49D00BC8C29 /* FeedbackLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackLayer.h; sourceTree = "<group>"; };
+		78CF318E1791E49D00BC8C29 /* FeedbackLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackLayer.m; sourceTree = "<group>"; };
 		78D08556176A4AC400EDC405 /* SpellHeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellHeal.h; sourceTree = "<group>"; };
 		78D08557176A4AC400EDC405 /* SpellHeal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellHeal.m; sourceTree = "<group>"; };
 		78D08559176A4B2800EDC405 /* EffectHeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectHeal.h; sourceTree = "<group>"; };
@@ -911,8 +926,6 @@
 		78F6B3A51746B26000AA070D /* Wizard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Wizard.m; path = WizardWar/Wizard.m; sourceTree = SOURCE_ROOT; };
 		78F6B3AB1746B27600AA070D /* MatchLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MatchLayer.h; path = WizardWar/MatchLayer.h; sourceTree = SOURCE_ROOT; };
 		78F6B3AC1746B27600AA070D /* MatchLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MatchLayer.m; path = WizardWar/MatchLayer.m; sourceTree = SOURCE_ROOT; };
-		78F6B3AD1746B27600AA070D /* MatchGroundSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MatchGroundSprite.h; path = WizardWar/MatchGroundSprite.h; sourceTree = SOURCE_ROOT; };
-		78F6B3AE1746B27600AA070D /* MatchGroundSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MatchGroundSprite.m; path = WizardWar/MatchGroundSprite.m; sourceTree = SOURCE_ROOT; };
 		78F6B3AF1746B27600AA070D /* WizardSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WizardSprite.h; path = WizardWar/WizardSprite.h; sourceTree = SOURCE_ROOT; };
 		78F6B3B01746B27600AA070D /* WizardSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WizardSprite.m; path = WizardWar/WizardSprite.m; sourceTree = SOURCE_ROOT; };
 		78F6B3B11746B27700AA070D /* SpellSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpellSprite.h; path = WizardWar/SpellSprite.h; sourceTree = SOURCE_ROOT; };
@@ -1034,8 +1047,19 @@
 				7829934717710C5D00881DA8 /* wizard1-set2-animations.plist */,
 				7829934817710C5D00881DA8 /* wizard1-set2.plist */,
 				7829934917710C5D00881DA8 /* wizard1-set2.png */,
+				78CF31791791E0B000BC8C29 /* wizard1-set1-clothes-animations.plist */,
+				78CF317A1791E0B000BC8C29 /* wizard1-set1-clothes.plist */,
+				78CF317B1791E0B000BC8C29 /* wizard1-set1-clothes.png */,
+				78CF317C1791E0B000BC8C29 /* wizard1-set1-clothes-hd.plist */,
+				78CF317D1791E0B000BC8C29 /* wizard1-set1-clothes-hd.png */,
+				78CF317E1791E0B000BC8C29 /* wizard1-set2-clothes-animations.plist */,
+				78CF317F1791E0B000BC8C29 /* wizard1-set2-clothes.plist */,
+				78CF31801791E0B000BC8C29 /* wizard1-set2-clothes.png */,
+				78CF31811791E0B000BC8C29 /* wizard1-set2-clothes-hd.plist */,
+				78CF31821791E0B000BC8C29 /* wizard1-set2-clothes-hd.png */,
 			);
 			name = wizards;
+			path = wizard;
 			sourceTree = "<group>";
 		};
 		781B4B7917839C00002551CA /* cocos2d */ = {
@@ -1575,8 +1599,6 @@
 				78F195041747FBFA00BB8587 /* exit@2x.png */,
 				78F193E817471A0E00BB8587 /* background-cave.png */,
 				78F193E917471A0E00BB8587 /* background-cave@2x.png */,
-				6F0FEF5D1747FA720028FE71 /* wizard-lobby.png */,
-				6F0FEF5E1747FA720028FE71 /* wizard-lobby@2x.png */,
 				7837F1691749B9CF00D29445 /* navbar-logo.png */,
 				7837F16A1749B9CF00D29445 /* navbar-logo@2x.png */,
 				784D3BDA17748BF1009945F8 /* menu-bg.png */,
@@ -1818,14 +1840,12 @@
 				F283A921174807A40068EEB2 /* LifeIndicatorNode.m */,
 				78F6B3AB1746B27600AA070D /* MatchLayer.h */,
 				78F6B3AC1746B27600AA070D /* MatchLayer.m */,
-				78F6B3AD1746B27600AA070D /* MatchGroundSprite.h */,
-				78F6B3AE1746B27600AA070D /* MatchGroundSprite.m */,
+				78CF318D1791E49D00BC8C29 /* FeedbackLayer.h */,
+				78CF318E1791E49D00BC8C29 /* FeedbackLayer.m */,
 				78F6B3AF1746B27600AA070D /* WizardSprite.h */,
 				78F6B3B01746B27600AA070D /* WizardSprite.m */,
 				78F6B3B11746B27700AA070D /* SpellSprite.h */,
 				78F6B3B21746B27700AA070D /* SpellSprite.m */,
-				787A2A8F174E9FA3004C4FDB /* TestLayer.h */,
-				787A2A90174E9FA3004C4FDB /* TestLayer.m */,
 				78D0855F176A4D7900EDC405 /* Simulated.h */,
 			);
 			name = Match;
@@ -1964,8 +1984,6 @@
 				6F0367311747EB3C00971B61 /* Icon-57@2x.png in Resources */,
 				78F195051747FBFA00BB8587 /* exit.png in Resources */,
 				78F195061747FBFA00BB8587 /* exit@2x.png in Resources */,
-				6F0FEF5F1747FA720028FE71 /* wizard-lobby.png in Resources */,
-				6F0FEF601747FA720028FE71 /* wizard-lobby@2x.png in Resources */,
 				F283A92517480F4F0068EEB2 /* mana-container-hd.png in Resources */,
 				F283A92617480F4F0068EEB2 /* mana-container.png in Resources */,
 				F283A92D17480F5E0068EEB2 /* heart-damage-hd.png in Resources */,
@@ -2076,6 +2094,16 @@
 				674926B1178CD017005B75D0 /* icon-share.png in Resources */,
 				674926B2178CD017005B75D0 /* icon-share@2x.png in Resources */,
 				78C9862B178DFFE300B545F9 /* ChallengeCell.xib in Resources */,
+				78CF31831791E0B000BC8C29 /* wizard1-set1-clothes-animations.plist in Resources */,
+				78CF31841791E0B000BC8C29 /* wizard1-set1-clothes.plist in Resources */,
+				78CF31851791E0B000BC8C29 /* wizard1-set1-clothes.png in Resources */,
+				78CF31861791E0B000BC8C29 /* wizard1-set1-clothes-hd.plist in Resources */,
+				78CF31871791E0B000BC8C29 /* wizard1-set1-clothes-hd.png in Resources */,
+				78CF31881791E0B000BC8C29 /* wizard1-set2-clothes-animations.plist in Resources */,
+				78CF31891791E0B000BC8C29 /* wizard1-set2-clothes.plist in Resources */,
+				78CF318A1791E0B000BC8C29 /* wizard1-set2-clothes.png in Resources */,
+				78CF318B1791E0B000BC8C29 /* wizard1-set2-clothes-hd.plist in Resources */,
+				78CF318C1791E0B000BC8C29 /* wizard1-set2-clothes-hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2142,7 +2170,6 @@
 				78F6B3A81746B26000AA070D /* Match.m in Sources */,
 				78F6B3A91746B26000AA070D /* Wizard.m in Sources */,
 				78F6B3B71746B27800AA070D /* MatchLayer.m in Sources */,
-				78F6B3B81746B27800AA070D /* MatchGroundSprite.m in Sources */,
 				78F6B3B91746B27800AA070D /* WizardSprite.m in Sources */,
 				78F6B3BA1746B27800AA070D /* SpellSprite.m in Sources */,
 				78F6B3C41746B29C00AA070D /* WizardDirector.m in Sources */,
@@ -2164,7 +2191,6 @@
 				78F195181748024D00BB8587 /* Elements.m in Sources */,
 				F283A922174807A40068EEB2 /* LifeIndicatorNode.m in Sources */,
 				787A2A85174E85E3004C4FDB /* ConnectionService.m in Sources */,
-				787A2A91174E9FA3004C4FDB /* TestLayer.m in Sources */,
 				787A2A99174EA43D004C4FDB /* MatchViewController.m in Sources */,
 				7837D6AD17540836001D820E /* GameTimerService.m in Sources */,
 				7837D6B017540893001D820E /* PlayerTime.m in Sources */,
@@ -2305,6 +2331,7 @@
 				78C9862E178DFFF000B545F9 /* ChallengeCell.m in Sources */,
 				789B47C5178F1AEE00611CA5 /* EffectApply.m in Sources */,
 				789B47C8178F1C2D00611CA5 /* EffectBasicDamage.m in Sources */,
+				78CF318F1791E49D00BC8C29 /* FeedbackLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
