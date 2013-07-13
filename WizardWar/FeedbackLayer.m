@@ -35,7 +35,10 @@
         
         self.font = [[CCFontDefinition alloc] initWithFontName:FONT_COMIC_ZINE_SOLID fontSize:24];
         self.spellNameLabel = [CCLabelTTF labelWithString:@"" fontDefinition:self.font];
-        self.spellNameLabel.position = ccp(0, -40);
+        self.spellNameLabel.horizontalAlignment = kCCTextAlignmentCenter;
+        self.spellNameLabel.verticalAlignment = kCCVerticalTextAlignmentCenter;
+        self.spellNameLabel.dimensions = CGSizeMake(140, 300);
+
         [self addChild:self.spellNameLabel];
         
         __weak FeedbackLayer * wself = self;
@@ -76,15 +79,19 @@
         [self.spellSprite runAction:[CCFadeTo actionWithDuration:0.2 opacity:255]];
         
         labelText = spell.name;
+        
+        self.spellNameLabel.position = ccp(0, -40);
+        
     } else {
         [self.spellSprite runAction:[CCFadeTo actionWithDuration:0.2 opacity:0]];
         
-
         if (self.combos.allElements.count == 1)
             labelText = @"Drag to connect elements";
         
         else if (self.combos.allElements.count == 2)
             labelText = @"Keep going!";
+        
+        self.spellNameLabel.position = ccp(0, 0);
     }
 
     [self.spellNameLabel setString:labelText];
@@ -93,6 +100,8 @@
     } else {
         [self.spellNameLabel runAction:[CCFadeTo actionWithDuration:0.2 opacity:0]];
     }
+    
+    
 }
 
 @end
