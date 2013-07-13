@@ -25,6 +25,7 @@
 
 @interface Combos ()
 @property (strong, nonatomic) NSDictionary * hitCombos;
+@property (nonatomic, strong) Spell * lastSuccessfulSpell;
 
 @end
 
@@ -46,9 +47,23 @@
 }
 
 -(void)releaseElements {
+    
+    // Can't cast the same spell twice!
+    if (self.sameSpellTwice) {
+        self.hintedSpell = nil;
+    }
+    
     self.castSpell = self.hintedSpell;
     self.hintedSpell = nil;
     self.allElements = [NSMutableArray array];
+    
+    if (self.castSpell) {
+        self.lastSuccessfulSpell = self.castSpell;
+    }
+}
+
+-(BOOL)sameSpellTwice {
+    return (self.hintedSpell && self.lastSuccessfulSpell.class == self.hintedSpell.class);
 }
 
 +(NSDictionary*)createHitCombos {

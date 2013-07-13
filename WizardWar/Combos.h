@@ -19,6 +19,9 @@
 @property (nonatomic, strong) Spell * hintedSpell;
 @property (nonatomic, strong) Spell * castSpell;
 
+
+@property (nonatomic, readonly) BOOL sameSpellTwice;
+
 -(void)moveToElement:(ElementType)element;
 -(void)releaseElements;
 

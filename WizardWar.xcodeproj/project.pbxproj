@@ -242,6 +242,8 @@
 		78CF318B1791E0B000BC8C29 /* wizard1-set2-clothes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78CF31811791E0B000BC8C29 /* wizard1-set2-clothes-hd.plist */; };
 		78CF318C1791E0B000BC8C29 /* wizard1-set2-clothes-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 78CF31821791E0B000BC8C29 /* wizard1-set2-clothes-hd.png */; };
 		78CF318F1791E49D00BC8C29 /* FeedbackLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CF318E1791E49D00BC8C29 /* FeedbackLayer.m */; };
+		78CF31911792056100BC8C29 /* bigx.png in Resources */ = {isa = PBXBuildFile; fileRef = 78CF31901792055F00BC8C29 /* bigx.png */; };
+		78CF31931792058800BC8C29 /* bigx-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 78CF31921792058700BC8C29 /* bigx-hd.png */; };
 		78D08558176A4AC500EDC405 /* SpellHeal.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D08557176A4AC400EDC405 /* SpellHeal.m */; };
 		78D0855B176A4B2800EDC405 /* EffectHeal.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D0855A176A4B2800EDC405 /* EffectHeal.m */; };
 		78D0855E176A4C7C00EDC405 /* EffectSleep.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D0855D176A4C7C00EDC405 /* EffectSleep.m */; };
@@ -775,6 +777,8 @@
 		78CF31821791E0B000BC8C29 /* wizard1-set2-clothes-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard1-set2-clothes-hd.png"; sourceTree = "<group>"; };
 		78CF318D1791E49D00BC8C29 /* FeedbackLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackLayer.h; sourceTree = "<group>"; };
 		78CF318E1791E49D00BC8C29 /* FeedbackLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackLayer.m; sourceTree = "<group>"; };
+		78CF31901792055F00BC8C29 /* bigx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigx.png; sourceTree = "<group>"; };
+		78CF31921792058700BC8C29 /* bigx-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bigx-hd.png"; sourceTree = "<group>"; };
 		78D08556176A4AC400EDC405 /* SpellHeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellHeal.h; sourceTree = "<group>"; };
 		78D08557176A4AC400EDC405 /* SpellHeal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellHeal.m; sourceTree = "<group>"; };
 		78D08559176A4B2800EDC405 /* EffectHeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectHeal.h; sourceTree = "<group>"; };
@@ -1603,6 +1607,8 @@
 				7837F16A1749B9CF00D29445 /* navbar-logo@2x.png */,
 				784D3BDA17748BF1009945F8 /* menu-bg.png */,
 				789787A51778F11C00094AF9 /* menu-bg@2x.png */,
+				78CF31901792055F00BC8C29 /* bigx.png */,
+				78CF31921792058700BC8C29 /* bigx-hd.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -2104,6 +2110,8 @@
 				78CF318A1791E0B000BC8C29 /* wizard1-set2-clothes.png in Resources */,
 				78CF318B1791E0B000BC8C29 /* wizard1-set2-clothes-hd.plist in Resources */,
 				78CF318C1791E0B000BC8C29 /* wizard1-set2-clothes-hd.png in Resources */,
+				78CF31911792056100BC8C29 /* bigx.png in Resources */,
+				78CF31931792058800BC8C29 /* bigx-hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
