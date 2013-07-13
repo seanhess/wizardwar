@@ -140,7 +140,12 @@
     self.match = [[Match alloc] initWithMatchId:@"Practice" hostName:wizard.name currentWizard:wizard withAI:ai multiplayer:nil sync:nil];
 }
 
+// I want to unsubscribe from this when the match ends.
 - (void)renderMatchStatus {
+    
+    if (!self.match) return;
+
+    NSLog(@"MatchVC.renderMatchStatus %i", self.match.status);
     self.pentagram.view.hidden = (self.match.status != MatchStatusPlaying);
     self.subMessage.textColor = UIColorFromRGB(0xCACACA);
     self.subMessage.hidden = NO;
@@ -209,10 +214,12 @@
 }
 
 - (void)leaveMatch {
+    NSLog(@"MatchVC.leaveMatch");
     [self.match disconnect];
     [WizardDirector unload];
     [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+    self.match = nil;
     [self dismissViewControllerAnimated:YES completion:nil];
     //    [self.navigationController popViewControllerAnimated:YES];    
 }

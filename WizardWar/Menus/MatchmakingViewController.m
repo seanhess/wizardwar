@@ -48,6 +48,8 @@
 @property (strong, nonatomic) NSFetchedResultsController * localResults;
 @property (strong, nonatomic) NSFetchedResultsController * allResults;
 
+@property (strong, nonatomic) RACDisposable * matchStatusSignal;
+
 @property (strong, nonatomic) IBOutlet UITextView *warningsView;
 
 @property (weak, nonatomic) IBOutlet UIView *loadingOverlayView;
@@ -88,7 +90,7 @@
     [RACAble(UserService.shared, pushAccepted) subscribeNext:^(id x) {
         [self.tableView reloadData];
     }];
-
+    
     
     
     // CHECK AUTHENTICATED
@@ -131,7 +133,7 @@
     [ChallengeService.shared connectAndReset];
     [LocationService.shared startMonitoring];
 
-    __weak MatchmakingViewController * wself = self;
+//    __weak MatchmakingViewController * wself = self;
 
     
     // Join the lobby!
