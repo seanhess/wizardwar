@@ -223,9 +223,9 @@
 		78AF75691792D720008499DB /* wizard1-set2-clothes-animations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78AF75671792D720008499DB /* wizard1-set2-clothes-animations.plist */; };
 		78AF756C1792E162008499DB /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AF756B1792E162008499DB /* UIColor+Hex.m */; };
 		78AF756F1792ECB9008499DB /* AccountColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AF756E1792ECB9008499DB /* AccountColorViewController.m */; };
+		78AF75731793018C008499DB /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78AF75711793018C008499DB /* DataModel.xcdatamodeld */; };
 		78C46B5A17562CAC0077EE98 /* MultiplayerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C46B5917562CAC0077EE98 /* MultiplayerService.m */; };
 		78C5CD9F178AFDC400CDCC76 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C5CD9E178AFDC400CDCC76 /* CoreData.framework */; };
-		78C5CDA2178AFDF100CDCC76 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78C5CDA0178AFDF100CDCC76 /* DataModel.xcdatamodeld */; };
 		78C5CDA6178AFFA000CDCC76 /* ObjectStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C5CDA5178AFFA000CDCC76 /* ObjectStore.m */; };
 		78C5CDDD178B034C00CDCC76 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C5CDDC178B034C00CDCC76 /* User.m */; };
 		78C5CDDF178B64B400CDCC76 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C5CDDE178B64B400CDCC76 /* Firebase.framework */; };
@@ -754,10 +754,10 @@
 		78AF756B1792E162008499DB /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		78AF756D1792ECB9008499DB /* AccountColorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountColorViewController.h; sourceTree = "<group>"; };
 		78AF756E1792ECB9008499DB /* AccountColorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountColorViewController.m; sourceTree = "<group>"; };
+		78AF75721793018C008499DB /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		78C46B5817562CAC0077EE98 /* MultiplayerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiplayerService.h; sourceTree = "<group>"; };
 		78C46B5917562CAC0077EE98 /* MultiplayerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiplayerService.m; sourceTree = "<group>"; };
 		78C5CD9E178AFDC400CDCC76 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		78C5CDA1178AFDF100CDCC76 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		78C5CDA4178AFFA000CDCC76 /* ObjectStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectStore.h; sourceTree = "<group>"; };
 		78C5CDA5178AFFA000CDCC76 /* ObjectStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectStore.m; sourceTree = "<group>"; };
 		78C5CDDB178B034C00CDCC76 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -1484,7 +1484,7 @@
 		78C5CDA3178AFF6C00CDCC76 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				78C5CDA0178AFDF100CDCC76 /* DataModel.xcdatamodeld */,
+				78AF75711793018C008499DB /* DataModel.xcdatamodeld */,
 				78C98627178DE0C800B545F9 /* Challenge.h */,
 				78C98628178DE0C800B545F9 /* Challenge.m */,
 				78C5CDDB178B034C00CDCC76 /* User.h */,
@@ -2343,7 +2343,6 @@
 				781B4CA017839C00002551CA /* TGAlib.m in Sources */,
 				781B4CA117839C00002551CA /* TransformUtils.m in Sources */,
 				781B4CA217839C00002551CA /* ZipUtils.m in Sources */,
-				78C5CDA2178AFDF100CDCC76 /* DataModel.xcdatamodeld in Sources */,
 				78C5CDA6178AFFA000CDCC76 /* ObjectStore.m in Sources */,
 				78C5CDDD178B034C00CDCC76 /* User.m in Sources */,
 				78C5CDE2178B656500CDCC76 /* FirebaseCollection.m in Sources */,
@@ -2356,6 +2355,7 @@
 				78CF319617920C4800BC8C29 /* InfoService.m in Sources */,
 				78AF756C1792E162008499DB /* UIColor+Hex.m in Sources */,
 				78AF756F1792ECB9008499DB /* AccountColorViewController.m in Sources */,
+				78AF75731793018C008499DB /* DataModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2513,12 +2513,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		78C5CDA0178AFDF100CDCC76 /* DataModel.xcdatamodeld */ = {
+		78AF75711793018C008499DB /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				78C5CDA1178AFDF100CDCC76 /* DataModel.xcdatamodel */,
+				78AF75721793018C008499DB /* DataModel.xcdatamodel */,
 			);
-			currentVersion = 78C5CDA1178AFDF100CDCC76 /* DataModel.xcdatamodel */;
+			currentVersion = 78AF75721793018C008499DB /* DataModel.xcdatamodel */;
 			path = DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

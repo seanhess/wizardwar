@@ -19,11 +19,12 @@
 #import "MatchmakingViewController.h"
 #import "ObjectStore.h"
 #import "ConnectionService.h"
+#import <ReactiveCocoa.h>
 
 // The director should belong to the app delegate or a singleton
 // and you should manually unload or reload it
 
-@interface AppDelegate ()
+@interface AppDelegate () <UIAlertViewDelegate>
 //@property (nonatomic, strong) MatchmakingViewController * matches;
 @property (nonatomic, strong) CCDirectorIOS * director;
 @property (nonatomic, strong) UINavigationController * rootNavigationController;
@@ -33,10 +34,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
     NSLog(@"applicationDidFinishLaunchingWithOptions");
     
     [AppStyle customizeUIKitStyles];
+    
+    // OBJECT STORE ERRORS
+    [RACAble(ObjectStore.shared, lastError) subscribeNext:^(NSError*error) {
+        [self handleDataError:error];
+    }];
+    
     
     /// LOAD //////////////////
     
@@ -69,6 +75,9 @@
     // This is only needed if they open a notification from a cold boot
     NSDictionary * remoteNotification = [launchOptions valueForKey:@"UIApplicationLaunchOptionsRemoteNotificationKey"];
     if (remoteNotification) [self application:application didReceiveRemoteNotification:remoteNotification];
+    
+    
+
     
     return YES;
 }
@@ -161,6 +170,17 @@
 -(void) applicationSignificantTimeChange:(UIApplication *)application
 {
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
+}
+
+
+
+-(void)handleDataError:(NSError*)error {
+    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"Reinstall" message:@"Data Model out of date. Please delete the app and reinstall" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alertView show];
+}
+
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    abort();
 }
 
 
