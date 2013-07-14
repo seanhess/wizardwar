@@ -12,12 +12,14 @@
 #import "MatchmakingViewController.h"
 #import <ReactiveCocoa.h>
 #import "ComicZineDoubleLabel.h"
+#import "InfoService.h"
 
 @interface AccountViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (weak, nonatomic) IBOutlet UINavigationItem *navItem;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
+@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 
 @end
 
@@ -27,6 +29,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    self.versionLabel.text = [NSString stringWithFormat:@"Version: %@", [InfoService version]];
 
     self.title = @"Account";
     [self.navigationController setNavigationBarHidden:NO animated:YES];

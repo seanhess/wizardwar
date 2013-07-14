@@ -244,6 +244,7 @@
 		78CF318F1791E49D00BC8C29 /* FeedbackLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CF318E1791E49D00BC8C29 /* FeedbackLayer.m */; };
 		78CF31911792056100BC8C29 /* bigx.png in Resources */ = {isa = PBXBuildFile; fileRef = 78CF31901792055F00BC8C29 /* bigx.png */; };
 		78CF31931792058800BC8C29 /* bigx-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 78CF31921792058700BC8C29 /* bigx-hd.png */; };
+		78CF319617920C4800BC8C29 /* InfoService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CF319517920C4800BC8C29 /* InfoService.m */; };
 		78D08558176A4AC500EDC405 /* SpellHeal.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D08557176A4AC400EDC405 /* SpellHeal.m */; };
 		78D0855B176A4B2800EDC405 /* EffectHeal.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D0855A176A4B2800EDC405 /* EffectHeal.m */; };
 		78D0855E176A4C7C00EDC405 /* EffectSleep.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D0855D176A4C7C00EDC405 /* EffectSleep.m */; };
@@ -779,6 +780,8 @@
 		78CF318E1791E49D00BC8C29 /* FeedbackLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackLayer.m; sourceTree = "<group>"; };
 		78CF31901792055F00BC8C29 /* bigx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigx.png; sourceTree = "<group>"; };
 		78CF31921792058700BC8C29 /* bigx-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bigx-hd.png"; sourceTree = "<group>"; };
+		78CF319417920C4800BC8C29 /* InfoService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoService.h; sourceTree = "<group>"; };
+		78CF319517920C4800BC8C29 /* InfoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoService.m; sourceTree = "<group>"; };
 		78D08556176A4AC400EDC405 /* SpellHeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellHeal.h; sourceTree = "<group>"; };
 		78D08557176A4AC400EDC405 /* SpellHeal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellHeal.m; sourceTree = "<group>"; };
 		78D08559176A4B2800EDC405 /* EffectHeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectHeal.h; sourceTree = "<group>"; };
@@ -1464,6 +1467,8 @@
 				787A2A84174E85E3004C4FDB /* ConnectionService.m */,
 				78C5CDE0178B656500CDCC76 /* FirebaseCollection.h */,
 				78C5CDE1178B656500CDCC76 /* FirebaseCollection.m */,
+				78CF319417920C4800BC8C29 /* InfoService.h */,
+				78CF319517920C4800BC8C29 /* InfoService.m */,
 				781234DF174AE4C0008EDE88 /* Objectable.h */,
 			);
 			name = Service;
@@ -2340,6 +2345,7 @@
 				789B47C5178F1AEE00611CA5 /* EffectApply.m in Sources */,
 				789B47C8178F1C2D00611CA5 /* EffectBasicDamage.m in Sources */,
 				78CF318F1791E49D00BC8C29 /* FeedbackLayer.m in Sources */,
+				78CF319617920C4800BC8C29 /* InfoService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

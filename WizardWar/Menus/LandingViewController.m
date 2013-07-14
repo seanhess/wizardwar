@@ -18,9 +18,7 @@
 #import "ChallengeService.h"
 #import "LobbyService.h"
 
-
 @interface LandingViewController () <AccountFormDelegate>
-
 @end
 
 @implementation LandingViewController
@@ -39,8 +37,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    // Connect to user service right away!
-
     [UserService.shared connect];
     [LobbyService.shared connect];
     [LocationService.shared connect];
