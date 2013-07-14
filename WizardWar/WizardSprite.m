@@ -75,7 +75,9 @@
         
         self.skin = [CCSprite node];
         self.clothes = [CCSprite node];
-        self.clothes.color = ccc3(0, 0, 255);
+        ccColor3B color = [self colorWithColor:wizard.color];
+        NSLog(@"WIZARD COLOR %i %i %i", color.r, color.g, color.b);
+        self.clothes.color = color;
         [self addChild:self.skin];
         [self addChild:self.clothes];
         
@@ -110,6 +112,12 @@
         }];
     }
     return self;
+}
+
+-(ccColor3B)colorWithColor:(UIColor*)color {
+    CGFloat red = 0.0, green = 0.0, blue = 0.0, alpha =0.0;
+    [color getRed:&red green:&green blue:&blue alpha:&alpha];
+    return ccc3((int)(red * 255), (int)(green * 255), (int)(blue * 255));
 }
 
 -(CGPoint)calculatedPosition {

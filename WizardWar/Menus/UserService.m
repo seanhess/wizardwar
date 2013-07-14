@@ -96,6 +96,11 @@
 - (User*)currentUser {
     if (!_currentUser) {
         User * user = [self userWithId:self.userId create:YES];
+        if (!user.name) {
+            user.name = [NSString stringWithFormat:@"Guest%@", [IdService randomId:4]];
+            user.color = [UIColor whiteColor];
+        }
+
         self.currentUser = user;
     }
         
@@ -106,7 +111,7 @@
     // TODO, actually save this information, yo?
     Wizard * wizard = [Wizard new];
     wizard.name = self.currentUser.name;
-    if (!wizard.name) wizard.name = [NSString stringWithFormat:@"Guest%@", [IdService randomId:4]];
+    wizard.color = self.currentUser.color;
     wizard.wizardType = WIZARD_TYPE_ONE;
     return wizard;
 }

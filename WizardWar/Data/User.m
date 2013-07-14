@@ -7,7 +7,7 @@
 //
 
 #import "User.h"
-
+#import "UIColor+Hex.h"
 
 @implementation User
 
@@ -22,11 +22,12 @@
 @dynamic challenge;
 @dynamic updated;
 @dynamic activeMatchId;
+@dynamic colorRGB;
 
 @synthesize isClose;
 
 -(NSDictionary*)toObject {
-    return [self dictionaryWithValuesForKeys:@[@"name", @"userId", @"deviceToken"]];
+    return [self dictionaryWithValuesForKeys:@[@"name", @"userId", @"deviceToken", @"colorRGB"]];
 };
 
 -(NSDictionary*)toLobbyObject {
@@ -49,6 +50,16 @@
 
 - (BOOL)isFriend {
     return self.friendPoints > 0;
+}
+
+- (UIColor*)color {
+    return [UIColor colorFromRGB:self.colorRGB];
+}
+
+- (void)setColor:(UIColor *)color {
+    NSUInteger rgb = color.RGB;
+    self.colorRGB = (int)rgb;
+    NSLog(@"SET COLOR color=%@ self=%i ret=%i", color, self.colorRGB, rgb);
 }
 
 //- (void)encodeWithCoder:(NSCoder *)encoder {

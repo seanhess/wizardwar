@@ -138,10 +138,7 @@
     
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"DataModel.sqlite"];
     
-    NSDictionary *options = @{
-        NSMigratePersistentStoresAutomaticallyOption : @YES,
-        NSInferMappingModelAutomaticallyOption : @YES
-    };
+    NSDictionary *options = @{NSMigratePersistentStoresAutomaticallyOption:@YES, NSInferMappingModelAutomaticallyOption:@YES};
     
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];

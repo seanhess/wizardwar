@@ -9,7 +9,7 @@
 #import "UserCell.h"
 #import "LocationService.h"
 #import "ChallengeService.h"
-#import "Color.h"
+#import "UIColor+Hex.h"
 
 @interface UserCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
@@ -42,7 +42,7 @@
     self.nameLabel.text = user.name;
     
     if (user.isOnline)
-        self.nameLabel.textColor = UIColorFromRGB(0x81B23C);
+        self.nameLabel.textColor = [UIColor colorFromRGB:0x81B23C];
     else
         self.nameLabel.textColor = [UIColor darkTextColor];
     

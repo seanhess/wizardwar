@@ -9,7 +9,6 @@
 #import "MenuButton.h"
 #import <QuartzCore/QuartzCore.h>
 #import "AppStyle.h"
-#import "Color.h"
 
 @implementation MenuButton
 

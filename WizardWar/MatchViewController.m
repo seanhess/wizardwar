@@ -22,8 +22,8 @@
 #import "TimerSyncService.h"
 #import "Combos.h"
 #import "AppStyle.h"
-#import "Color.h"
 #import "ConnectionService.h"
+#import "UIColor+Hex.h"
 
 @interface MatchViewController ()
 @property (strong, nonatomic) PentagramViewController * pentagram;
@@ -55,10 +55,10 @@
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];    
     
     self.message.font = [UIFont fontWithName:FONT_COMIC_ZINE size:100];
-    self.message.textColor = UIColorFromRGB(0xF9A843);
+    self.message.textColor = [UIColor colorFromRGB:0xF9A843];
     
     self.subMessage.font = [UIFont fontWithName:FONT_COMIC_ZINE size:40];
-    self.subMessage.textColor = UIColorFromRGB(0xCACACA);
+    self.subMessage.textColor = [UIColor colorFromRGB:0xCACACA];
     self.subMessage.hidden = YES;
     
     self.combos = [Combos new];
@@ -152,12 +152,12 @@
 
     NSLog(@"MatchVC.renderMatchStatus %i", self.match.status);
     self.pentagram.view.hidden = (self.match.status != MatchStatusPlaying);
-    self.subMessage.textColor = UIColorFromRGB(0xCACACA);
+    self.subMessage.textColor = [UIColor colorFromRGB:0xCACACA];
     self.subMessage.hidden = NO;
     
     if (self.match.status == MatchStatusReady) {
         self.message.alpha = 1.0;
-        self.message.textColor = UIColorFromRGB(0xF9A843);
+        self.message.textColor = [UIColor colorFromRGB:0xF9A843];
         self.message.text = @"WAITING";
         self.subMessage.alpha = 1.0;
         self.subMessage.text = @"can't war yo-self";
@@ -165,14 +165,14 @@
     
     else if (self.match.status == MatchStatusSyncing) {
         self.message.alpha = 1.0;
-        self.message.textColor = UIColorFromRGB(0xF9A843);
+        self.message.textColor = [UIColor colorFromRGB:0xF9A843];
         self.message.text = @"READY?";
         self.subMessage.alpha = 1.0;
         self.subMessage.text = @"tuning essences";        
     }
     
     else if (self.match.status == MatchStatusPlaying) {
-        self.message.textColor = UIColorFromRGB(0xF9A843);
+        self.message.textColor = [UIColor colorFromRGB:0xF9A843];
         self.message.text = @"WAR!";
         self.subMessage.text = @"";                
         
@@ -185,7 +185,7 @@
     else if (self.match.status == MatchStatusEnded) {
         self.message.alpha = 1.0;
         if (self.match.currentWizard.state == WizardStatusDead) {
-            self.message.textColor = UIColorFromRGB(0xB02410);
+            self.message.textColor = [UIColor colorFromRGB:0xB02410];
             self.message.text = @"DEATH!";
             self.subMessage.hidden = NO;
             self.subMessage.text = @"(YOU LOSE)";
@@ -193,7 +193,7 @@
         }
         
         else {
-            self.message.textColor = UIColorFromRGB(0x18AB34);
+            self.message.textColor = [UIColor colorFromRGB:0x18AB34];
             self.message.text = @"YOU WON!";
             [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"YouWon.mp3" loop:NO];
         }

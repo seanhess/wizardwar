@@ -23,6 +23,7 @@
 @property (nonatomic) int16_t friendPoints;
 @property (nonatomic) CLLocationDistance distance;
 @property (nonatomic) NSTimeInterval updated;
+@property (nonatomic) int32_t colorRGB; // hex rgb value
 
 @property (nonatomic, retain) Challenge *challenge;
 @property (nonatomic, retain) NSString *activeMatchId;
@@ -32,6 +33,7 @@
 @property (nonatomic, readonly) CLLocation * location;
 @property (nonatomic, readonly) BOOL isFriend;
 @property (nonatomic) BOOL isClose;
+@property (nonatomic, strong) UIColor * color;
 
 -(NSDictionary*)toLobbyObject;
 

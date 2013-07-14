@@ -8,7 +8,7 @@
 
 #import "ChallengeCell.h"
 #import "UserService.h"
-#import "Color.h"
+#import "UIColor+Hex.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface ChallengeCell ()
@@ -58,13 +58,13 @@
     
     if (challenge.status == ChallengeStatusDeclined) {
         self.otherLabel.text = [NSString stringWithFormat:@"%@ Ran Away!", opponent.name];
-        self.backgroundView.backgroundColor = UIColorFromRGB(0xE75759);
+        self.backgroundView.backgroundColor = [UIColor colorFromRGB:0xE75759];
         // TODO show declined state. Change background to red?
     }
     
     else if (challenge.status == ChallengeStatusAccepted) {
         self.otherLabel.text = @"Accepted!";
-        self.backgroundView.backgroundColor = UIColorFromRGB(0xA4E88F);
+        self.backgroundView.backgroundColor = [UIColor colorFromRGB:0xA4E88F];
     }
     
     else {
@@ -72,13 +72,13 @@
         if (isCreatedByUser) {
             [self.activityView startAnimating];
             self.otherLabel.text = [NSString stringWithFormat:@"Waiting for them to accept..."];
-            self.backgroundView.backgroundColor = UIColorFromRGB(0xE6F1FE);
+            self.backgroundView.backgroundColor = [UIColor colorFromRGB:0xE6F1FE];
         }
         
         // Ready to play!
         else {
             self.otherLabel.text = [NSString stringWithFormat:@"Tap to play!"];
-            self.backgroundView.backgroundColor = UIColorFromRGB(0xA4E88F);
+            self.backgroundView.backgroundColor = [UIColor colorFromRGB:0xA4E88F];
         }        
     }
     

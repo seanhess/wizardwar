@@ -221,6 +221,8 @@
 		78ABA8BA175A74A4003D2F23 /* windblast-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 78ABA8B8175A74A3003D2F23 /* windblast-hd.png */; };
 		78AF75681792D720008499DB /* wizard1-set1-clothes-animations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78AF75661792D720008499DB /* wizard1-set1-clothes-animations.plist */; };
 		78AF75691792D720008499DB /* wizard1-set2-clothes-animations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78AF75671792D720008499DB /* wizard1-set2-clothes-animations.plist */; };
+		78AF756C1792E162008499DB /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AF756B1792E162008499DB /* UIColor+Hex.m */; };
+		78AF756F1792ECB9008499DB /* AccountColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AF756E1792ECB9008499DB /* AccountColorViewController.m */; };
 		78C46B5A17562CAC0077EE98 /* MultiplayerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C46B5917562CAC0077EE98 /* MultiplayerService.m */; };
 		78C5CD9F178AFDC400CDCC76 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C5CD9E178AFDC400CDCC76 /* CoreData.framework */; };
 		78C5CDA2178AFDF100CDCC76 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78C5CDA0178AFDF100CDCC76 /* DataModel.xcdatamodeld */; };
@@ -678,7 +680,6 @@
 		785FBEBF177261BD0021AEE5 /* PartyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartyViewController.h; sourceTree = "<group>"; };
 		785FBEC0177261BD0021AEE5 /* PartyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartyViewController.m; sourceTree = "<group>"; };
 		785FBEC1177261BD0021AEE5 /* PartyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PartyViewController.xib; sourceTree = "<group>"; };
-		785FBED8177262320021AEE5 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
 		785FBED91772628C0021AEE5 /* LoveYaLikeASister.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LoveYaLikeASister.ttf; sourceTree = "<group>"; };
 		785FBEDA1772628C0021AEE5 /* LoveYaLikeASisterSolid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LoveYaLikeASisterSolid.ttf; sourceTree = "<group>"; };
 		785FBEE1177263840021AEE5 /* AppStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppStyle.h; sourceTree = "<group>"; };
@@ -749,6 +750,10 @@
 		78ABA8B8175A74A3003D2F23 /* windblast-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "windblast-hd.png"; path = "windblast-hd/windblast-hd.png"; sourceTree = "<group>"; };
 		78AF75661792D720008499DB /* wizard1-set1-clothes-animations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set1-clothes-animations.plist"; sourceTree = "<group>"; };
 		78AF75671792D720008499DB /* wizard1-set2-clothes-animations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set2-clothes-animations.plist"; sourceTree = "<group>"; };
+		78AF756A1792E162008499DB /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		78AF756B1792E162008499DB /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
+		78AF756D1792ECB9008499DB /* AccountColorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountColorViewController.h; sourceTree = "<group>"; };
+		78AF756E1792ECB9008499DB /* AccountColorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountColorViewController.m; sourceTree = "<group>"; };
 		78C46B5817562CAC0077EE98 /* MultiplayerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiplayerService.h; sourceTree = "<group>"; };
 		78C46B5917562CAC0077EE98 /* MultiplayerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiplayerService.m; sourceTree = "<group>"; };
 		78C5CD9E178AFDC400CDCC76 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -1347,6 +1352,8 @@
 				784D3BED1777AFFD009945F8 /* AccountViewController.h */,
 				784D3BEE1777AFFD009945F8 /* AccountViewController.m */,
 				784D3BEF1777AFFD009945F8 /* AccountViewController.xib */,
+				78AF756D1792ECB9008499DB /* AccountColorViewController.h */,
+				78AF756E1792ECB9008499DB /* AccountColorViewController.m */,
 				785FBEBC177261BD0021AEE5 /* PartyInviteViewController.h */,
 				785FBEBD177261BD0021AEE5 /* PartyInviteViewController.m */,
 				785FBEBE177261BD0021AEE5 /* PartyInviteViewController.xib */,
@@ -1678,7 +1685,8 @@
 				78F6B1F51746AD8900AA070D /* AppDelegate.h */,
 				78F6B1F61746AD8900AA070D /* AppDelegate.m */,
 				78D28BEB177F70D000FF5D6E /* Style */,
-				785FBED8177262320021AEE5 /* Color.h */,
+				78AF756A1792E162008499DB /* UIColor+Hex.h */,
+				78AF756B1792E162008499DB /* UIColor+Hex.m */,
 				78F6B3C21746B29C00AA070D /* WizardDirector.h */,
 				78F6B3C31746B29C00AA070D /* WizardDirector.m */,
 				78C5CDA3178AFF6C00CDCC76 /* Data */,
@@ -2346,6 +2354,8 @@
 				789B47C8178F1C2D00611CA5 /* EffectBasicDamage.m in Sources */,
 				78CF318F1791E49D00BC8C29 /* FeedbackLayer.m in Sources */,
 				78CF319617920C4800BC8C29 /* InfoService.m in Sources */,
+				78AF756C1792E162008499DB /* UIColor+Hex.m in Sources */,
+				78AF756F1792ECB9008499DB /* AccountColorViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

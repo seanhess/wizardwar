@@ -8,6 +8,7 @@
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="activeMatchId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="colorRGB" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="deviceToken" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="distance" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="friendPoints" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -22,6 +23,6 @@
     </entity>
     <elements>
         <element name="Challenge" positionX="160" positionY="192" width="128" height="105"/>
-        <element name="User" positionX="160" positionY="192" width="128" height="225"/>
+        <element name="User" positionX="160" positionY="192" width="128" height="240"/>
     </elements>
 </model>

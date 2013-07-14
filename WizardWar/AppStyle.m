@@ -7,8 +7,8 @@
 //
 
 #import "AppStyle.h"
-#import "Color.h"
 #import "MenuButton.h"
+#import "UIColor+Hex.h"
 
 @implementation AppStyle
 
@@ -26,7 +26,7 @@
 }
 
 +(UIColor*)blueNavColor {
-    return UIColorFromRGB(0x67B0DF);
+    return [UIColor colorFromRGB:0x67B0DF];
 }
 
 +(UIImage*)blueNavColorImage {
@@ -34,17 +34,17 @@
 }
 
 +(UIColor*)yellowButtonTextColor {
-    return UIColorFromRGB(0x151616);
+    return [UIColor colorFromRGB:0x151616];
 }
 
 +(UIColor*)yellowButtonTextShadowColor {
-    return UIColorFromRGB(0xFDF06A);
+    return [UIColor colorFromRGB:0xFDF06A];
 }
 
 
 
 +(UIColor*)greenGrassColor {
-    return UIColorFromRGB(0x6CA24A);
+    return [UIColor colorFromRGB:0x6CA24A];
 }
 
 +(UIImage *)imageWithColor:(UIColor *)color {
