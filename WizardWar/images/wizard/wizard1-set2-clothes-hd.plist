@@ -1,241 +1,241 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
+<dict>
+	<key>frames</key>
 	<dict>
-		<key>frames</key>
+		<key>wizard1-damage2-clothes.png</key>
 		<dict>
-			<key>wizard1-damage2.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{ { 1536, 1536 }, { 512, 512 } }</string>
-				<key>offset</key>
-				<string>{ 0, 0 }</string>
-				<key>rotated</key>
-				<false/>
-				<key>sourceColorRect</key>
-				<string>{ { 0, 0 }, { 512, 512 } }</string>
-				<key>sourceSize</key>
-				<string>{ 512, 512 }</string>
-			</dict> 
-			<key>wizard1-dead6.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{ { 1024, 1536 }, { 512, 512 } }</string>
-				<key>offset</key>
-				<string>{ 0, 0 }</string>
-				<key>rotated</key>
-				<false/>
-				<key>sourceColorRect</key>
-				<string>{ { 0, 0 }, { 512, 512 } }</string>
-				<key>sourceSize</key>
-				<string>{ 512, 512 }</string>
-			</dict> 
-			<key>wizard1-dead5.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{ { 1536, 1024 }, { 512, 512 } }</string>
-				<key>offset</key>
-				<string>{ 0, 0 }</string>
-				<key>rotated</key>
-				<false/>
-				<key>sourceColorRect</key>
-				<string>{ { 0, 0 }, { 512, 512 } }</string>
-				<key>sourceSize</key>
-				<string>{ 512, 512 }</string>
-			</dict> 
-			<key>wizard1-dead.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{ { 1024, 1024 }, { 512, 512 } }</string>
-				<key>offset</key>
-				<string>{ 0, 0 }</string>
-				<key>rotated</key>
-				<false/>
-				<key>sourceColorRect</key>
-				<string>{ { 0, 0 }, { 512, 512 } }</string>
-				<key>sourceSize</key>
-				<string>{ 512, 512 }</string>
-			</dict> 
-			<key>wizard1-dead4.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{ { 512, 1536 }, { 512, 512 } }</string>
-				<key>offset</key>
-				<string>{ 0, 0 }</string>
-				<key>rotated</key>
-				<false/>
-				<key>sourceColorRect</key>
-				<string>{ { 0, 0 }, { 512, 512 } }</string>
-				<key>sourceSize</key>
-				<string>{ 512, 512 }</string>
-			</dict> 
-			<key>wizard1-dead9.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{ { 512, 1024 }, { 512, 512 } }</string>
-				<key>offset</key>
-				<string>{ 0, 0 }</string>
-				<key>rotated</key>
-				<false/>
-				<key>sourceColorRect</key>
-				<string>{ { 0, 0 }, { 512, 512 } }</string>
-				<key>sourceSize</key>
-				<string>{ 512, 512 }</string>
-			</dict> 
-			<key>wizard1-dead3.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{ { 1536, 512 }, { 512, 512 } }</string>
-				<key>offset</key>
-				<string>{ 0, 0 }</string>
-				<key>rotated</key>
-				<false/>
-				<key>sourceColorRect</key>
-				<string>{ { 0, 0 }, { 512, 512 } }</string>
-				<key>sourceSize</key>
-				<string>{ 512, 512 }</string>
-			</dict> 
-			<key>wizard1-damage.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{ { 1024, 1024 }, { 512, 512 } }</string>
-				<key>offset</key>
-				<string>{ 0, 0 }</string>
-				<key>rotated</key>
-				<false/>
-				<key>sourceColorRect</key>
-				<string>{ { 0, 0 }, { 512, 512 } }</string>
-				<key>sourceSize</key>
-				<string>{ 512, 512 }</string>
-			</dict> 
-			<key>wizard1-damage6.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{ { 1024, 512 }, { 512, 512 } }</string>
-				<key>offset</key>
-				<string>{ 0, 0 }</string>
-				<key>rotated</key>
-				<false/>
-				<key>sourceColorRect</key>
-				<string>{ { 0, 0 }, { 512, 512 } }</string>
-				<key>sourceSize</key>
-				<string>{ 512, 512 }</string>
-			</dict> 
-			<key>wizard1-dead8.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{ { 512, 512 }, { 512, 512 } }</string>
-				<key>offset</key>
-				<string>{ 0, 0 }</string>
-				<key>rotated</key>
-				<false/>
-				<key>sourceColorRect</key>
-				<string>{ { 0, 0 }, { 512, 512 } }</string>
-				<key>sourceSize</key>
-				<string>{ 512, 512 }</string>
-			</dict> 
-			<key>wizard1-damage5.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{ { 0, 1536 }, { 512, 512 } }</string>
-				<key>offset</key>
-				<string>{ 0, 0 }</string>
-				<key>rotated</key>
-				<false/>
-				<key>sourceColorRect</key>
-				<string>{ { 0, 0 }, { 512, 512 } }</string>
-				<key>sourceSize</key>
-				<string>{ 512, 512 }</string>
-			</dict> 
-			<key>wizard1-sleep1.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{ { 0, 1024 }, { 512, 512 } }</string>
-				<key>offset</key>
-				<string>{ 0, 0 }</string>
-				<key>rotated</key>
-				<false/>
-				<key>sourceColorRect</key>
-				<string>{ { 0, 0 }, { 512, 512 } }</string>
-				<key>sourceSize</key>
-				<string>{ 512, 512 }</string>
-			</dict> 
-			<key>wizard1-sleep3.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{ { 0, 512 }, { 512, 512 } }</string>
-				<key>offset</key>
-				<string>{ 0, 0 }</string>
-				<key>rotated</key>
-				<false/>
-				<key>sourceColorRect</key>
-				<string>{ { 0, 0 }, { 512, 512 } }</string>
-				<key>sourceSize</key>
-				<string>{ 512, 512 }</string>
-			</dict> 
-			<key>wizard1-sleep5.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{ { 1536, 0 }, { 512, 512 } }</string>
-				<key>offset</key>
-				<string>{ 0, 0 }</string>
-				<key>rotated</key>
-				<false/>
-				<key>sourceColorRect</key>
-				<string>{ { 0, 0 }, { 512, 512 } }</string>
-				<key>sourceSize</key>
-				<string>{ 512, 512 }</string>
-			</dict> 
-			<key>wizard1-sleep2.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{ { 1024, 0 }, { 512, 512 } }</string>
-				<key>offset</key>
-				<string>{ 0, 0 }</string>
-				<key>rotated</key>
-				<false/>
-				<key>sourceColorRect</key>
-				<string>{ { 0, 0 }, { 512, 512 } }</string>
-				<key>sourceSize</key>
-				<string>{ 512, 512 }</string>
-			</dict> 
-			<key>wizard1-sleep4.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{ { 512, 0 }, { 512, 512 } }</string>
-				<key>offset</key>
-				<string>{ 0, 0 }</string>
-				<key>rotated</key>
-				<false/>
-				<key>sourceColorRect</key>
-				<string>{ { 0, 0 }, { 512, 512 } }</string>
-				<key>sourceSize</key>
-				<string>{ 512, 512 }</string>
-			</dict> 
-			<key>wizard1-sleep6.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{ { 0, 0 }, { 512, 512 } }</string>
-				<key>offset</key>
-				<string>{ 0, 0 }</string>
-				<key>rotated</key>
-				<false/>
-				<key>sourceColorRect</key>
-				<string>{ { 0, 0 }, { 512, 512 } }</string>
-				<key>sourceSize</key>
-				<string>{ 512, 512 }</string>
-			</dict> 
+			<key>frame</key>
+			<string>{ { 1536, 1536 }, { 512, 512 } }</string>
+			<key>offset</key>
+			<string>{ 0, 0 }</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{ { 0, 0 }, { 512, 512 } }</string>
+			<key>sourceSize</key>
+			<string>{ 512, 512 }</string>
 		</dict>
-		<key>metadata</key>
+		<key>wizard1-dead6-clothes.png</key>
 		<dict>
-			<key>format</key>
-			<integer>2</integer>
-			<key>realTextureFileName</key>
-			<string>wizard1-set2-hd-clothes.png</string>
-			<key>size</key>
-			<string>{ 2048, 2048 }</string>
-			<key>textureFileName</key>
-			<string>wizard1-set2-hd-clothes.png</string>
+			<key>frame</key>
+			<string>{ { 1024, 1536 }, { 512, 512 } }</string>
+			<key>offset</key>
+			<string>{ 0, 0 }</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{ { 0, 0 }, { 512, 512 } }</string>
+			<key>sourceSize</key>
+			<string>{ 512, 512 }</string>
+		</dict>
+		<key>wizard1-dead5-clothes.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{ { 1536, 1024 }, { 512, 512 } }</string>
+			<key>offset</key>
+			<string>{ 0, 0 }</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{ { 0, 0 }, { 512, 512 } }</string>
+			<key>sourceSize</key>
+			<string>{ 512, 512 }</string>
+		</dict>
+		<key>wizard1-dead-clothes.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{ { 1024, 1024 }, { 512, 512 } }</string>
+			<key>offset</key>
+			<string>{ 0, 0 }</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{ { 0, 0 }, { 512, 512 } }</string>
+			<key>sourceSize</key>
+			<string>{ 512, 512 }</string>
+		</dict>
+		<key>wizard1-dead4-clothes.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{ { 512, 1536 }, { 512, 512 } }</string>
+			<key>offset</key>
+			<string>{ 0, 0 }</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{ { 0, 0 }, { 512, 512 } }</string>
+			<key>sourceSize</key>
+			<string>{ 512, 512 }</string>
+		</dict>
+		<key>wizard1-dead9-clothes.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{ { 512, 1024 }, { 512, 512 } }</string>
+			<key>offset</key>
+			<string>{ 0, 0 }</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{ { 0, 0 }, { 512, 512 } }</string>
+			<key>sourceSize</key>
+			<string>{ 512, 512 }</string>
+		</dict>
+		<key>wizard1-dead3-clothes.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{ { 1536, 512 }, { 512, 512 } }</string>
+			<key>offset</key>
+			<string>{ 0, 0 }</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{ { 0, 0 }, { 512, 512 } }</string>
+			<key>sourceSize</key>
+			<string>{ 512, 512 }</string>
+		</dict>
+		<key>wizard1-damage-clothes.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{ { 1024, 1024 }, { 512, 512 } }</string>
+			<key>offset</key>
+			<string>{ 0, 0 }</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{ { 0, 0 }, { 512, 512 } }</string>
+			<key>sourceSize</key>
+			<string>{ 512, 512 }</string>
+		</dict>
+		<key>wizard1-damage6-clothes.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{ { 1024, 512 }, { 512, 512 } }</string>
+			<key>offset</key>
+			<string>{ 0, 0 }</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{ { 0, 0 }, { 512, 512 } }</string>
+			<key>sourceSize</key>
+			<string>{ 512, 512 }</string>
+		</dict>
+		<key>wizard1-dead8-clothes.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{ { 512, 512 }, { 512, 512 } }</string>
+			<key>offset</key>
+			<string>{ 0, 0 }</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{ { 0, 0 }, { 512, 512 } }</string>
+			<key>sourceSize</key>
+			<string>{ 512, 512 }</string>
+		</dict>
+		<key>wizard1-damage5-clothes.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{ { 0, 1536 }, { 512, 512 } }</string>
+			<key>offset</key>
+			<string>{ 0, 0 }</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{ { 0, 0 }, { 512, 512 } }</string>
+			<key>sourceSize</key>
+			<string>{ 512, 512 }</string>
+		</dict>
+		<key>wizard1-sleep1-clothes.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{ { 0, 1024 }, { 512, 512 } }</string>
+			<key>offset</key>
+			<string>{ 0, 0 }</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{ { 0, 0 }, { 512, 512 } }</string>
+			<key>sourceSize</key>
+			<string>{ 512, 512 }</string>
+		</dict>
+		<key>wizard1-sleep3-clothes.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{ { 0, 512 }, { 512, 512 } }</string>
+			<key>offset</key>
+			<string>{ 0, 0 }</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{ { 0, 0 }, { 512, 512 } }</string>
+			<key>sourceSize</key>
+			<string>{ 512, 512 }</string>
+		</dict>
+		<key>wizard1-sleep5-clothes.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{ { 1536, 0 }, { 512, 512 } }</string>
+			<key>offset</key>
+			<string>{ 0, 0 }</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{ { 0, 0 }, { 512, 512 } }</string>
+			<key>sourceSize</key>
+			<string>{ 512, 512 }</string>
+		</dict>
+		<key>wizard1-sleep2-clothes.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{ { 1024, 0 }, { 512, 512 } }</string>
+			<key>offset</key>
+			<string>{ 0, 0 }</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{ { 0, 0 }, { 512, 512 } }</string>
+			<key>sourceSize</key>
+			<string>{ 512, 512 }</string>
+		</dict>
+		<key>wizard1-sleep4-clothes.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{ { 512, 0 }, { 512, 512 } }</string>
+			<key>offset</key>
+			<string>{ 0, 0 }</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{ { 0, 0 }, { 512, 512 } }</string>
+			<key>sourceSize</key>
+			<string>{ 512, 512 }</string>
+		</dict>
+		<key>wizard1-sleep6-clothes.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{ { 0, 0 }, { 512, 512 } }</string>
+			<key>offset</key>
+			<string>{ 0, 0 }</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{ { 0, 0 }, { 512, 512 } }</string>
+			<key>sourceSize</key>
+			<string>{ 512, 512 }</string>
 		</dict>
 	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>realTextureFileName</key>
+		<string>wizard1-set2-hd-clothes.png</string>
+		<key>size</key>
+		<string>{ 2048, 2048 }</string>
+		<key>textureFileName</key>
+		<string>wizard1-set2-hd-clothes.png</string>
+	</dict>
+</dict>
 </plist>

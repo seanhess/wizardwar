@@ -219,6 +219,8 @@
 		78ABA8B6175A749D003D2F23 /* windblast.png in Resources */ = {isa = PBXBuildFile; fileRef = 78ABA8B3175A749C003D2F23 /* windblast.png */; };
 		78ABA8B9175A74A4003D2F23 /* windblast-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78ABA8B7175A74A2003D2F23 /* windblast-hd.plist */; };
 		78ABA8BA175A74A4003D2F23 /* windblast-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 78ABA8B8175A74A3003D2F23 /* windblast-hd.png */; };
+		78AF75681792D720008499DB /* wizard1-set1-clothes-animations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78AF75661792D720008499DB /* wizard1-set1-clothes-animations.plist */; };
+		78AF75691792D720008499DB /* wizard1-set2-clothes-animations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78AF75671792D720008499DB /* wizard1-set2-clothes-animations.plist */; };
 		78C46B5A17562CAC0077EE98 /* MultiplayerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C46B5917562CAC0077EE98 /* MultiplayerService.m */; };
 		78C5CD9F178AFDC400CDCC76 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C5CD9E178AFDC400CDCC76 /* CoreData.framework */; };
 		78C5CDA2178AFDF100CDCC76 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78C5CDA0178AFDF100CDCC76 /* DataModel.xcdatamodeld */; };
@@ -231,12 +233,10 @@
 		78C98629178DE0C800B545F9 /* Challenge.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C98628178DE0C800B545F9 /* Challenge.m */; };
 		78C9862B178DFFE300B545F9 /* ChallengeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78C9862A178DFFE300B545F9 /* ChallengeCell.xib */; };
 		78C9862E178DFFF000B545F9 /* ChallengeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C9862D178DFFF000B545F9 /* ChallengeCell.m */; };
-		78CF31831791E0B000BC8C29 /* wizard1-set1-clothes-animations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78CF31791791E0B000BC8C29 /* wizard1-set1-clothes-animations.plist */; };
 		78CF31841791E0B000BC8C29 /* wizard1-set1-clothes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78CF317A1791E0B000BC8C29 /* wizard1-set1-clothes.plist */; };
 		78CF31851791E0B000BC8C29 /* wizard1-set1-clothes.png in Resources */ = {isa = PBXBuildFile; fileRef = 78CF317B1791E0B000BC8C29 /* wizard1-set1-clothes.png */; };
 		78CF31861791E0B000BC8C29 /* wizard1-set1-clothes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78CF317C1791E0B000BC8C29 /* wizard1-set1-clothes-hd.plist */; };
 		78CF31871791E0B000BC8C29 /* wizard1-set1-clothes-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 78CF317D1791E0B000BC8C29 /* wizard1-set1-clothes-hd.png */; };
-		78CF31881791E0B000BC8C29 /* wizard1-set2-clothes-animations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78CF317E1791E0B000BC8C29 /* wizard1-set2-clothes-animations.plist */; };
 		78CF31891791E0B000BC8C29 /* wizard1-set2-clothes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78CF317F1791E0B000BC8C29 /* wizard1-set2-clothes.plist */; };
 		78CF318A1791E0B000BC8C29 /* wizard1-set2-clothes.png in Resources */ = {isa = PBXBuildFile; fileRef = 78CF31801791E0B000BC8C29 /* wizard1-set2-clothes.png */; };
 		78CF318B1791E0B000BC8C29 /* wizard1-set2-clothes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78CF31811791E0B000BC8C29 /* wizard1-set2-clothes-hd.plist */; };
@@ -747,6 +747,8 @@
 		78ABA8B3175A749C003D2F23 /* windblast.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = windblast.png; path = windblast/windblast.png; sourceTree = "<group>"; };
 		78ABA8B7175A74A2003D2F23 /* windblast-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "windblast-hd.plist"; path = "windblast-hd/windblast-hd.plist"; sourceTree = "<group>"; };
 		78ABA8B8175A74A3003D2F23 /* windblast-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "windblast-hd.png"; path = "windblast-hd/windblast-hd.png"; sourceTree = "<group>"; };
+		78AF75661792D720008499DB /* wizard1-set1-clothes-animations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set1-clothes-animations.plist"; sourceTree = "<group>"; };
+		78AF75671792D720008499DB /* wizard1-set2-clothes-animations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set2-clothes-animations.plist"; sourceTree = "<group>"; };
 		78C46B5817562CAC0077EE98 /* MultiplayerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiplayerService.h; sourceTree = "<group>"; };
 		78C46B5917562CAC0077EE98 /* MultiplayerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiplayerService.m; sourceTree = "<group>"; };
 		78C5CD9E178AFDC400CDCC76 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -766,12 +768,10 @@
 		78C9862A178DFFE300B545F9 /* ChallengeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChallengeCell.xib; sourceTree = "<group>"; };
 		78C9862C178DFFF000B545F9 /* ChallengeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeCell.h; sourceTree = "<group>"; };
 		78C9862D178DFFF000B545F9 /* ChallengeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeCell.m; sourceTree = "<group>"; };
-		78CF31791791E0B000BC8C29 /* wizard1-set1-clothes-animations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set1-clothes-animations.plist"; sourceTree = "<group>"; };
 		78CF317A1791E0B000BC8C29 /* wizard1-set1-clothes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set1-clothes.plist"; sourceTree = "<group>"; };
 		78CF317B1791E0B000BC8C29 /* wizard1-set1-clothes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard1-set1-clothes.png"; sourceTree = "<group>"; };
 		78CF317C1791E0B000BC8C29 /* wizard1-set1-clothes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set1-clothes-hd.plist"; sourceTree = "<group>"; };
 		78CF317D1791E0B000BC8C29 /* wizard1-set1-clothes-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard1-set1-clothes-hd.png"; sourceTree = "<group>"; };
-		78CF317E1791E0B000BC8C29 /* wizard1-set2-clothes-animations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set2-clothes-animations.plist"; sourceTree = "<group>"; };
 		78CF317F1791E0B000BC8C29 /* wizard1-set2-clothes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set2-clothes.plist"; sourceTree = "<group>"; };
 		78CF31801791E0B000BC8C29 /* wizard1-set2-clothes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard1-set2-clothes.png"; sourceTree = "<group>"; };
 		78CF31811791E0B000BC8C29 /* wizard1-set2-clothes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set2-clothes-hd.plist"; sourceTree = "<group>"; };
@@ -1054,12 +1054,12 @@
 				7829934717710C5D00881DA8 /* wizard1-set2-animations.plist */,
 				7829934817710C5D00881DA8 /* wizard1-set2.plist */,
 				7829934917710C5D00881DA8 /* wizard1-set2.png */,
-				78CF31791791E0B000BC8C29 /* wizard1-set1-clothes-animations.plist */,
+				78AF75661792D720008499DB /* wizard1-set1-clothes-animations.plist */,
+				78AF75671792D720008499DB /* wizard1-set2-clothes-animations.plist */,
 				78CF317A1791E0B000BC8C29 /* wizard1-set1-clothes.plist */,
 				78CF317B1791E0B000BC8C29 /* wizard1-set1-clothes.png */,
 				78CF317C1791E0B000BC8C29 /* wizard1-set1-clothes-hd.plist */,
 				78CF317D1791E0B000BC8C29 /* wizard1-set1-clothes-hd.png */,
-				78CF317E1791E0B000BC8C29 /* wizard1-set2-clothes-animations.plist */,
 				78CF317F1791E0B000BC8C29 /* wizard1-set2-clothes.plist */,
 				78CF31801791E0B000BC8C29 /* wizard1-set2-clothes.png */,
 				78CF31811791E0B000BC8C29 /* wizard1-set2-clothes-hd.plist */,
@@ -2105,18 +2105,18 @@
 				674926B1178CD017005B75D0 /* icon-share.png in Resources */,
 				674926B2178CD017005B75D0 /* icon-share@2x.png in Resources */,
 				78C9862B178DFFE300B545F9 /* ChallengeCell.xib in Resources */,
-				78CF31831791E0B000BC8C29 /* wizard1-set1-clothes-animations.plist in Resources */,
 				78CF31841791E0B000BC8C29 /* wizard1-set1-clothes.plist in Resources */,
 				78CF31851791E0B000BC8C29 /* wizard1-set1-clothes.png in Resources */,
 				78CF31861791E0B000BC8C29 /* wizard1-set1-clothes-hd.plist in Resources */,
 				78CF31871791E0B000BC8C29 /* wizard1-set1-clothes-hd.png in Resources */,
-				78CF31881791E0B000BC8C29 /* wizard1-set2-clothes-animations.plist in Resources */,
 				78CF31891791E0B000BC8C29 /* wizard1-set2-clothes.plist in Resources */,
 				78CF318A1791E0B000BC8C29 /* wizard1-set2-clothes.png in Resources */,
 				78CF318B1791E0B000BC8C29 /* wizard1-set2-clothes-hd.plist in Resources */,
 				78CF318C1791E0B000BC8C29 /* wizard1-set2-clothes-hd.png in Resources */,
 				78CF31911792056100BC8C29 /* bigx.png in Resources */,
 				78CF31931792058800BC8C29 /* bigx-hd.png in Resources */,
+				78AF75681792D720008499DB /* wizard1-set1-clothes-animations.plist in Resources */,
+				78AF75691792D720008499DB /* wizard1-set2-clothes-animations.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

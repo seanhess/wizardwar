@@ -1,67 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-	<dict>
+<dict>
 	<key>animations</key>
 	<dict>
-		<key>wizard1-damage</key>
+		<key>wizard1-damage-clothes</key>
 		<dict>
 			<key>delay</key>
 			<real>0.076</real>
 			<key>frames</key>
 			<array>
-				<string>wizard1-damage.png</string>
-				<string>wizard1-damage2.png</string>
-				<string>wizard1-damage3.png</string>
-				<string>wizard1-damage4.png</string>
-				<string>wizard1-damage5.png</string>
-				<string>wizard1-damage6.png</string>
-				<string>wizard1-damage6.png</string>
-				<string>wizard1-damage6.png</string>
-				<string>wizard1-damage6.png</string>
-				<string>wizard1-damage5.png</string>
-				<string>wizard1-damage4.png</string>
-				<string>wizard1-damage3.png</string>
-				<string>wizard1-damage2.png</string>
+				<string>wizard1-damage-clothes.png</string>
+				<string>wizard1-damage2-clothes.png</string>
+				<string>wizard1-damage3-clothes.png</string>
+				<string>wizard1-damage4-clothes.png</string>
+				<string>wizard1-damage5-clothes.png</string>
+				<string>wizard1-damage6-clothes.png</string>
+				<string>wizard1-damage6-clothes.png</string>
+				<string>wizard1-damage6-clothes.png</string>
+				<string>wizard1-damage6-clothes.png</string>
+				<string>wizard1-damage5-clothes.png</string>
+				<string>wizard1-damage4-clothes.png</string>
+				<string>wizard1-damage3-clothes.png</string>
+				<string>wizard1-damage2-clothes.png</string>
 			</array>
 		</dict>
-		<key>wizard1-sleep</key>
+		<key>wizard1-sleep-clothes</key>
 		<dict>
 			<key>delay</key>
 			<real>0.2</real>
 			<key>frames</key>
 			<array>
-				<string>wizard1-sleep1.png</string>
-				<string>wizard1-sleep2.png</string>
-				<string>wizard1-sleep3.png</string>
-				<string>wizard1-sleep4.png</string>
-				<string>wizard1-sleep5.png</string>
-				<string>wizard1-sleep6.png</string>
+				<string>wizard1-sleep1-clothes.png</string>
+				<string>wizard1-sleep2-clothes.png</string>
+				<string>wizard1-sleep3-clothes.png</string>
+				<string>wizard1-sleep4-clothes.png</string>
+				<string>wizard1-sleep5-clothes.png</string>
+				<string>wizard1-sleep6-clothes.png</string>
 			</array>
 		</dict>
-		<key>wizard1-dead</key>
+		<key>wizard1-dead-clothes</key>
 		<dict>
 			<key>delay</key>
 			<real>0.083</real>
 			<key>frames</key>
 			<array>
-				<string>wizard1-dead.png</string>
-				<string>wizard1-dead2.png</string>
-				<string>wizard1-dead3.png</string>
-				<string>wizard1-dead4.png</string>
-				<string>wizard1-dead5.png</string>
-				<string>wizard1-dead6.png</string>
-				<string>wizard1-dead6.png</string>
-				<string>wizard1-dead6.png</string>
-				<string>wizard1-dead6.png</string>
-				<string>wizard1-dead7.png</string>
-				<string>wizard1-dead8.png</string>
-				<string>wizard1-dead9.png</string>
-				<string>wizard1-dead9.png</string>
-				<string>wizard1-dead9.png</string>
-				<string>wizard1-dead9.png</string>
+				<string>wizard1-dead-clothes.png</string>
+				<string>wizard1-dead2-clothes.png</string>
+				<string>wizard1-dead3-clothes.png</string>
+				<string>wizard1-dead4-clothes.png</string>
+				<string>wizard1-dead5-clothes.png</string>
+				<string>wizard1-dead6-clothes.png</string>
+				<string>wizard1-dead6-clothes.png</string>
+				<string>wizard1-dead6-clothes.png</string>
+				<string>wizard1-dead6-clothes.png</string>
+				<string>wizard1-dead7-clothes.png</string>
+				<string>wizard1-dead8-clothes.png</string>
+				<string>wizard1-dead9-clothes.png</string>
+				<string>wizard1-dead9-clothes.png</string>
+				<string>wizard1-dead9-clothes.png</string>
+				<string>wizard1-dead9-clothes.png</string>
 			</array>
 		</dict>
 	</dict>
-	</dict>
+</dict>
 </plist>

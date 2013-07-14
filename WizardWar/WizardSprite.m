@@ -25,7 +25,7 @@
 
 @property (nonatomic, strong) CCLabelTTF * label;
 @property (nonatomic, strong) CCSprite * skin;
-//@property (nonatomic, strong) CCSprite * clothes;
+@property (nonatomic, strong) CCSprite * clothes;
 @property (nonatomic, strong) CCSprite * effect;
 
 @property (nonatomic, strong) CCAction * hoverAction;
@@ -47,10 +47,10 @@
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard1-set2.plist"];
         [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"wizard1-set2-animations.plist"];
 
-//        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard1-set1-clothes.plist"];
-//        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"wizard1-set1-clothes-animations.plist"];
-//        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard1-set2-clothes.plist"];
-//        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"wizard1-set2-clothes-animations.plist"];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard1-set1-clothes.plist"];
+        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"wizard1-set1-clothes-animations.plist"];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard1-set2-clothes.plist"];
+        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"wizard1-set2-clothes-animations.plist"];
 
     });
 }
@@ -74,9 +74,10 @@
         __weak WizardSprite * wself = self;
         
         self.skin = [CCSprite node];
-//        self.clothes = [CCSprite node];
+        self.clothes = [CCSprite node];
+        self.clothes.color = ccc3(0, 0, 255);
         [self addChild:self.skin];
-//        [self addChild:self.clothes];
+        [self addChild:self.clothes];
         
         // I need to only show this if the game hasn't started!
         self.label = [CCLabelTTF labelWithString:self.wizardName fontName:FONT_COMIC_ZINE fontSize:36];
@@ -118,7 +119,7 @@
 -(void)renderPosition {
     self.position = self.calculatedPosition;
     self.skin.flipX = (self.wizard.position == UNITS_MAX);
-//    self.clothes.flipX = self.skin.flipX;
+    self.clothes.flipX = self.skin.flipX;
 }
 
 -(void)renderStatus {
@@ -127,8 +128,18 @@
         return;
     
     [self.skin stopAllActions];
+    [self.clothes stopAllActions];
     
-    NSString * animationName = [NSString stringWithFormat:@"%@", self.stateAnimationName];
+    [self.skin runAction:[self animationForStatus:self.wizard.state clothes:NO]];
+    [self.clothes runAction:[self animationForStatus:self.wizard.state clothes:YES]];    
+    
+//    NSString * imageName = [NSString stringWithFormat:@"%@.png", @"wizard1-sleep1"];
+//    [self.skin setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:imageName]];
+}
+
+-(CCAction*)animationForStatus:(WizardStatus)status clothes:(BOOL)isClothes {
+    NSString * clothesSuffix = (isClothes) ? @"-clothes" : @"";
+    NSString * animationName = [NSString stringWithFormat:@"%@%@", [self animationNameForStatus:status], clothesSuffix];
     CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:animationName];
     NSAssert(animation, @"DID NOT LOAD ANIMATION");
     CCActionInterval * actionInterval = [CCAnimate actionWithAnimation:animation];
@@ -137,10 +148,7 @@
     if (self.wizard.state == WizardStatusReady || self.wizard.state == WizardStatusWon)
         action = [CCRepeatForever actionWithAction:actionInterval];
     
-    [self.skin runAction:action];
-    
-//    NSString * imageName = [NSString stringWithFormat:@"%@.png", @"wizard1-sleep1"];
-//    [self.skin setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:imageName]];
+    return action;
 }
 
 - (void)renderMatchStatus {
@@ -164,11 +172,14 @@
     }
     
     [self.skin stopAllActions];
+    [self.clothes stopAllActions];
     self.skin.opacity = 255;
+    self.clothes.opacity = 255;
     
     // set opactiy based on invisible
     if ([self.wizard.effect class] == [EffectInvisible class]) {
         [self.skin runAction:[CCFadeTo actionWithDuration:self.wizard.effect.delay opacity:20]];
+        [self.clothes runAction:[CCFadeTo actionWithDuration:self.wizard.effect.delay opacity:20]];
     }
     
     else if ([self.wizard.effect class] == [EffectHelmet class]) {
@@ -188,16 +199,12 @@
         CCFiniteTimeAction * toNormal = [CCTintTo actionWithDuration:1 red:255 green:255 blue:255];
         CCAction * glowRed = [CCRepeatForever actionWithAction:[CCSequence actions:toRed, toNormal, nil]];
         [self.skin runAction:glowRed];
+        [self.clothes runAction:glowRed];
     }
     
     else if ([self.wizard.effect class] == [EffectSleep class]) {
-        CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:@"wizard1-sleep"];
-        NSAssert(animation, @"DID NOT LOAD ANIMATION");
-        CCFiniteTimeAction * wait = [CCFadeTo actionWithDuration:0.2 opacity:255];
-        CCActionInterval * actionInterval = [CCAnimate actionWithAnimation:animation];
-        CCActionInterval * sleep = [CCRepeat actionWithAction:actionInterval times:10000];
-        CCSequence * sequence = [CCSequence actions:wait, sleep, nil];
-        [self.skin runAction:sequence];
+        [self.skin runAction:[self actionForSleepEffectForClothes:NO]];
+        [self.clothes runAction:[self actionForSleepEffectForClothes:YES]];
         
         // then when the effect wears off, we need to re-render status
         CGPoint pos = self.calculatedPosition;
@@ -215,7 +222,18 @@
         [self renderStatus];
         
     }
+}
 
+-(CCAction*)actionForSleepEffectForClothes:(BOOL)isClothes {
+    NSString * clothesSuffix = (isClothes) ? @"-clothes" : @"";
+    NSString * animationName = [NSString stringWithFormat:@"wizard1-sleep%@", clothesSuffix];
+    CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:animationName];
+    NSAssert(animation, @"DID NOT LOAD ANIMATION");
+    CCFiniteTimeAction * wait = [CCFadeTo actionWithDuration:0.2 opacity:255];
+    CCActionInterval * actionInterval = [CCAnimate actionWithAnimation:animation];
+    CCActionInterval * sleep = [CCRepeat actionWithAction:actionInterval times:10000];
+    CCSequence * sequence = [CCSequence actions:wait, sleep, nil];
+    return sequence;
 }
 
 -(void)renderAltitude {
@@ -233,7 +251,7 @@
 }
 
 
--(NSString*)stateAnimationName {
+-(NSString*)animationNameForStatus:(WizardStatus)status {
     NSString * stateName = @"prepare";
     
     if (self.wizard.state == WizardStatusCast)
