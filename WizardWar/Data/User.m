@@ -57,9 +57,7 @@
 }
 
 - (void)setColor:(UIColor *)color {
-    NSUInteger rgb = color.RGB;
-    self.colorRGB = (int)rgb;
-    NSLog(@"SET COLOR color=%@ self=%i ret=%i", color, self.colorRGB, rgb);
+    self.colorRGB = color.RGB;
 }
 
 //- (void)encodeWithCoder:(NSCoder *)encoder {

@@ -9,6 +9,7 @@
 #import "Wizard.h"
 #import "Spell.h"
 #import "SpellFireball.h"
+#import "UIColor+Hex.h"
 
 #define SECONDS_PER_MANA 1.5
 
@@ -27,7 +28,7 @@
 }
 
 -(NSDictionary*)toObject {
-    return [self dictionaryWithValuesForKeys:@[@"name", @"position", @"health", @"state"]];
+    return [self dictionaryWithValuesForKeys:@[@"name", @"position", @"health", @"state", @"colorRGB"]];
 }
 
 -(void)setValuesForKeysWithDictionary:(NSDictionary *)keyedValues {
@@ -91,6 +92,15 @@
 - (void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
     [self.effect simulateTick:currentTick interval:interval player:self];
 }
+
+- (UIColor*)color {
+    return [UIColor colorFromRGB:self.colorRGB];
+}
+
+- (void)setColor:(UIColor *)color {
+    self.colorRGB = color.RGB;
+}
+
 
 +(NSString*)randomWizardType {
     NSArray * types = @[WIZARD_TYPE_ONE, WIZARD_TYPE_TWO];

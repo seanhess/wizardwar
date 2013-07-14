@@ -33,7 +33,8 @@ typedef enum WizardStatus {
 @property (nonatomic, strong) Effect * effect; // current effect applied
 @property (nonatomic) NSInteger altitude; // how high you are. 0 = normal
 @property (readonly) NSInteger direction;
-@property (nonatomic) UIColor * color;
+@property (nonatomic) NSUInteger colorRGB; // hex rgb value
+@property (nonatomic, strong) UIColor * color;
 
 -(BOOL)isFirstPlayer;
 -(void)setState:(WizardStatus)state animated:(BOOL)animated;
