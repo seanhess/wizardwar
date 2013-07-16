@@ -255,6 +255,9 @@
 		78D28BF1177F71D500FF5D6E /* ComicZineDoubleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D28BF0177F71D500FF5D6E /* ComicZineDoubleLabel.m */; };
 		78DAB807179597A50093A701 /* AnalyticsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB806179597A50093A701 /* AnalyticsService.m */; };
 		78DAB8181795A2BF0093A701 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DAB8141795A2BF0093A701 /* libTestFlight.a */; };
+		78DAB81E1795AAE40093A701 /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB81C1795AAE40093A701 /* FriendsViewController.m */; };
+		78DAB81F1795AAE40093A701 /* FriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DAB81D1795AAE40093A701 /* FriendsViewController.xib */; };
+		78DAB8211795B0D00093A701 /* FirebaseSimpleLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DAB8201795B0D00093A701 /* FirebaseSimpleLogin.framework */; };
 		78E22CA41782400900146D49 /* YouWon.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CA31782400900146D49 /* YouWon.mp3 */; };
 		78E22CA61782400E00146D49 /* YouLose2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CA51782400E00146D49 /* YouLose2.mp3 */; };
 		78E22CAF1782427500146D49 /* bubble.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CA71782427400146D49 /* bubble.mp3 */; };
@@ -805,6 +808,10 @@
 		78DAB8151795A2BF0093A701 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		78DAB8161795A2BF0093A701 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
 		78DAB8171795A2BF0093A701 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		78DAB81B1795AAE40093A701 /* FriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
+		78DAB81C1795AAE40093A701 /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
+		78DAB81D1795AAE40093A701 /* FriendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsViewController.xib; sourceTree = "<group>"; };
+		78DAB8201795B0D00093A701 /* FirebaseSimpleLogin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseSimpleLogin.framework; sourceTree = "<group>"; };
 		78E22CA31782400900146D49 /* YouWon.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = YouWon.mp3; sourceTree = "<group>"; };
 		78E22CA51782400E00146D49 /* YouLose2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = YouLose2.mp3; sourceTree = "<group>"; };
 		78E22CA71782427400146D49 /* bubble.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bubble.mp3; sourceTree = "<group>"; };
@@ -1008,6 +1015,7 @@
 				781372D9177E324B00486899 /* FacebookSDK.framework in Frameworks */,
 				78C5CDDF178B64B400CDCC76 /* Firebase.framework in Frameworks */,
 				78DAB8181795A2BF0093A701 /* libTestFlight.a in Frameworks */,
+				78DAB8211795B0D00093A701 /* FirebaseSimpleLogin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1374,6 +1382,9 @@
 				785FBEB2177261BD0021AEE5 /* MatchmakingViewController.h */,
 				785FBEB3177261BD0021AEE5 /* MatchmakingViewController.m */,
 				785FBEB4177261BD0021AEE5 /* MatchmakingViewController.xib */,
+				78DAB81B1795AAE40093A701 /* FriendsViewController.h */,
+				78DAB81C1795AAE40093A701 /* FriendsViewController.m */,
+				78DAB81D1795AAE40093A701 /* FriendsViewController.xib */,
 				78C5CDE3178B74D600CDCC76 /* UserCell.h */,
 				78C5CDE4178B74D700CDCC76 /* UserCell.m */,
 				78C5CDE6178B74F900CDCC76 /* UserCell.xib */,
@@ -1679,6 +1690,7 @@
 				78F6B3821746AF2000AA070D /* libz.dylib */,
 				781372E3177E331C00486899 /* Parse */,
 				78C5CDDE178B64B400CDCC76 /* Firebase.framework */,
+				78DAB8201795B0D00093A701 /* FirebaseSimpleLogin.framework */,
 				78C5CD9E178AFDC400CDCC76 /* CoreData.framework */,
 				784D3BF51777C832009945F8 /* CoreLocation.framework */,
 				78F6B3941746AFAC00AA070D /* GameKit.framework */,
@@ -2147,6 +2159,7 @@
 				78CF31931792058800BC8C29 /* bigx-hd.png in Resources */,
 				78AF75681792D720008499DB /* wizard1-set1-clothes-animations.plist in Resources */,
 				78AF75691792D720008499DB /* wizard1-set2-clothes-animations.plist in Resources */,
+				78DAB81F1795AAE40093A701 /* FriendsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2392,6 +2405,7 @@
 				78AF756F1792ECB9008499DB /* AccountColorViewController.m in Sources */,
 				78AF75731793018C008499DB /* DataModel.xcdatamodeld in Sources */,
 				78DAB807179597A50093A701 /* AnalyticsService.m in Sources */,
+				78DAB81E1795AAE40093A701 /* FriendsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

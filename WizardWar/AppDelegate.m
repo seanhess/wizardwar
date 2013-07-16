@@ -22,6 +22,7 @@
 #import <ReactiveCocoa.h>
 #import "AnalyticsService.h"
 #import <TestFlight.h>
+#import <FacebookSDK/FacebookSDK.h>
 
 // The director should belong to the app delegate or a singleton
 // and you should manually unload or reload it
@@ -173,6 +174,11 @@
 -(void) applicationSignificantTimeChange:(UIApplication *)application
 {
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [PFFacebookUtils handleOpenURL:url];
 }
 
 

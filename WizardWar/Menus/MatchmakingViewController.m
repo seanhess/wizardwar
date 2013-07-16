@@ -34,6 +34,7 @@
 #import "ObjectStore.h"
 #import "UserCell.h"
 #import "ChallengeCell.h"
+#import "FriendsViewController.h"
 
 @interface MatchmakingViewController () <AccountFormDelegate, NSFetchedResultsControllerDelegate>
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
@@ -497,6 +498,13 @@
 - (void)dealloc {
     // don't worry about disconnecting. If you aren't THERE, it's ok
     NSLog(@"MatchmakingViewController: dealloc");
+}
+
+
+# pragma mark - Buttons n stuff
+- (IBAction)didTapInviteFriends:(id)sender {
+    FriendsViewController * friends = [FriendsViewController new];
+    [self.navigationController pushViewController:friends animated:YES];
 }
 
 @end
