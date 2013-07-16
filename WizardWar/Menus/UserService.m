@@ -35,11 +35,10 @@
     self.entityName = @"User";
     
     self.lastUpdatedTime = [self loadLastUpdatedTime];
-    NSLog(@"UserService: lastUpdatedTime:%f", self.lastUpdatedTime);
+    NSNumber * timeInMilliseconds = @(self.lastUpdatedTime*1000);
+    NSLog(@"UserService: lastUpdatedTime:%@", timeInMilliseconds);
     
-    FQuery * query = [self.node queryStartingAtPriority:@(self.lastUpdatedTime)];
-    
-//    NSLog(@"UserService lastFirebaseConnect=%f", self.lastFirebaseConnect);
+    FQuery * query = [self.node queryStartingAtPriority:timeInMilliseconds]; // in milliseconds
     
     __weak UserService * wself = self;
 
@@ -62,7 +61,7 @@
     User * user = [self userWithId:userId create:YES];
     [user setValuesForKeysWithDictionary:snapshot.value];
     user.updated = ([snapshot.priority doubleValue] / 1000.0); // comes down in milliseconds
-    NSLog(@"UserService: (+) %f %@ ", user.updated, user.name);
+    NSLog(@"UserService: (+) %i %@ ", (int)(user.updated - self.lastUpdatedTime), user.name);
     
     if ([user.deviceToken isEqualToString:self.currentUser.deviceToken] && ![user.userId isEqualToString:self.currentUser.userId]) {
         [self mergeCurrentUserWith:user];
