@@ -503,8 +503,12 @@
 
 # pragma mark - Buttons n stuff
 - (IBAction)didTapInviteFriends:(id)sender {
-    FriendsViewController * friends = [FriendsViewController new];
-    [self.navigationController pushViewController:friends animated:YES];
+    [UserFriendService.shared authenticateFacebook:^(BOOL success) {
+        if (success) {
+            FriendsViewController * friends = [FriendsViewController new];
+            [self.navigationController pushViewController:friends animated:YES];
+        }
+    }];
 }
 
 @end

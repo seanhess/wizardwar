@@ -10,10 +10,13 @@
 #import <Firebase/Firebase.h>
 #import <FirebaseSimpleLogin/FirebaseSimpleLogin.h>
 #import <FacebookSDK/FacebookSDK.h>
+#import "UserFriendService.h"
+#import "ObjectStore.h"
+#import "FacebookUser.h"
 
-@interface FriendsViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface FriendsViewController () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray * friends;
+@property (strong, nonatomic) NSFetchedResultsController * friends;
 
 @end
 
@@ -32,6 +35,19 @@
 {
     [super viewDidLoad];
     
+    // Load them from the server
+    [UserFriendService.shared loadFacebookFriends];
+    
+    // Display cached friends
+    NSError * error = nil;
+    NSFetchRequest * request = [UserFriendService.shared requestFacebookFriends];
+    self.friends = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:ObjectStore.shared.context sectionNameKeyPath:@"lastName" cacheName:nil];
+    self.friends.delegate = self;
+    [self.friends performFetch:&error];
+
+    
+    
+    
 //    FBLoginView *loginView = [[FBLoginView alloc] init];
 //    loginView.frame = CGRectMake(0, 0, 100, 100);
 //    [self.view addSubview:loginView];
@@ -44,15 +60,12 @@
 //    [self.view addSubview:loginView];
 //    [loginView sizeToFit];
 
-    [FBSession openActiveSessionWithPublishPermissions:@[] defaultAudience:FBSessionDefaultAudienceOnlyMe allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
-        NSLog(@"WAHOO FATTY %@ %i %@", session, status, error);
-    }];
     
     return;
     
-    NSLog(@"WOOT");
-    Firebase * firebase = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseio.com/"];
-    FirebaseSimpleLogin* authClient = [[FirebaseSimpleLogin alloc] initWithRef:firebase];
+//    NSLog(@"WOOT");
+//    Firebase * firebase = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseio.com/"];
+//    FirebaseSimpleLogin* authClient = [[FirebaseSimpleLogin alloc] initWithRef:firebase];
 
 //    [authClient checkAuthStatusWithBlock:^(NSError* error, FAUser* user) {
 //        if (error != nil) {
@@ -67,25 +80,24 @@
 //        }
 //    }];
     
-    [authClient loginToFacebookAppWithId:@"150922078436714" permissions:@[@"email"] audience:ACFacebookAudienceOnlyMe withCompletionBlock:^(NSError *error, FAUser *user) {
-         if (error != nil) {
-             // There was an error logging in
-             NSLog(@"ERROR %@", error);
-         } else {
-             // We have a logged in facebook user
-             NSLog(@"LOGGED IN %@", user);
-         }
-     }];
+//    [authClient loginToFacebookAppWithId:@"150922078436714" permissions:@[@"email"] audience:ACFacebookAudienceOnlyMe withCompletionBlock:^(NSError *error, FAUser *user) {
+//         if (error != nil) {
+//             // There was an error logging in
+//             NSLog(@"ERROR %@", error);
+//         } else {
+//             // We have a logged in facebook user
+//             NSLog(@"LOGGED IN %@", user);
+//         }
+//     }];
+//    
+//    Firebase* authRef = [firebase.root childByAppendingPath:@".info/authenticated"];
+//    
+//    [authRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot* snap) {
+////        BOOL isAuthenticated = [snap.value boolValue];
+//    }];
+//    
+//    [authClient logout];
     
-    Firebase* authRef = [firebase.root childByAppendingPath:@".info/authenticated"];
-    
-    [authRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot* snap) {
-//        BOOL isAuthenticated = [snap.value boolValue];
-    }];
-    
-    [authClient logout];
-    
-    self.friends = @[@{}];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -95,6 +107,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    //    [self.tableView reloadData];
+    [self.tableView reloadData];
+}
+
+
 
 
 #pragma mark tableview
@@ -102,32 +121,46 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return self.friends.sections.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.friends.count;
+    return [self.friends.sections[section] numberOfObjects];
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    return nil;
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    return nil;
+//}
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    return [self.friends sectionIndexTitles];
 }
 
-- (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section {
-    return 0;
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
+    return [self.friends sectionForSectionIndexTitle:title atIndex:index];
 }
+
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+//    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.friends sections] objectAtIndex:section];
+//    return [sectionInfo name];
+//}
+
+//- (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section {
+//    return 0;
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"LobbyCell";
+    static NSString *CellIdentifier = @"FacebookFriendCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    cell.textLabel.text = @"Friend";
+    FacebookUser * user = [self.friends objectAtIndexPath:indexPath];
+    cell.textLabel.text = user.name;
     return cell;
 }
 

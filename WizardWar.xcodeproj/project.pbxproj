@@ -258,6 +258,7 @@
 		78DAB81E1795AAE40093A701 /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB81C1795AAE40093A701 /* FriendsViewController.m */; };
 		78DAB81F1795AAE40093A701 /* FriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DAB81D1795AAE40093A701 /* FriendsViewController.xib */; };
 		78DAB8211795B0D00093A701 /* FirebaseSimpleLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DAB8201795B0D00093A701 /* FirebaseSimpleLogin.framework */; };
+		78DAB8241795C3A10093A701 /* FacebookUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB8231795C3A10093A701 /* FacebookUser.m */; };
 		78E22CA41782400900146D49 /* YouWon.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CA31782400900146D49 /* YouWon.mp3 */; };
 		78E22CA61782400E00146D49 /* YouLose2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CA51782400E00146D49 /* YouLose2.mp3 */; };
 		78E22CAF1782427500146D49 /* bubble.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CA71782427400146D49 /* bubble.mp3 */; };
@@ -812,6 +813,8 @@
 		78DAB81C1795AAE40093A701 /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
 		78DAB81D1795AAE40093A701 /* FriendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsViewController.xib; sourceTree = "<group>"; };
 		78DAB8201795B0D00093A701 /* FirebaseSimpleLogin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseSimpleLogin.framework; sourceTree = "<group>"; };
+		78DAB8221795C3A10093A701 /* FacebookUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookUser.h; sourceTree = "<group>"; };
+		78DAB8231795C3A10093A701 /* FacebookUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookUser.m; sourceTree = "<group>"; };
 		78E22CA31782400900146D49 /* YouWon.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = YouWon.mp3; sourceTree = "<group>"; };
 		78E22CA51782400E00146D49 /* YouLose2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = YouLose2.mp3; sourceTree = "<group>"; };
 		78E22CA71782427400146D49 /* bubble.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bubble.mp3; sourceTree = "<group>"; };
@@ -1510,6 +1513,8 @@
 				78C98628178DE0C800B545F9 /* Challenge.m */,
 				78C5CDDB178B034C00CDCC76 /* User.h */,
 				78C5CDDC178B034C00CDCC76 /* User.m */,
+				78DAB8221795C3A10093A701 /* FacebookUser.h */,
+				78DAB8231795C3A10093A701 /* FacebookUser.m */,
 				78C5CDA4178AFFA000CDCC76 /* ObjectStore.h */,
 				78C5CDA5178AFFA000CDCC76 /* ObjectStore.m */,
 			);
@@ -2406,6 +2411,7 @@
 				78AF75731793018C008499DB /* DataModel.xcdatamodeld in Sources */,
 				78DAB807179597A50093A701 /* AnalyticsService.m in Sources */,
 				78DAB81E1795AAE40093A701 /* FriendsViewController.m in Sources */,
+				78DAB8241795C3A10093A701 /* FacebookUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
