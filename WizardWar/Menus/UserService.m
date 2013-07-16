@@ -93,8 +93,11 @@
         [self mergeCurrentUserWith:otherUserWithToken];
 
     self.pushAccepted = YES;
-    self.currentUser.deviceToken = deviceToken;
-    [self saveCurrentUser];    
+    
+    if (![self.currentUser.deviceToken isEqualToString:deviceToken]) {
+        self.currentUser.deviceToken = deviceToken;
+        [self saveCurrentUser];
+    }
 }
 
 
@@ -143,6 +146,9 @@
             user.isMain = YES;
             // user.name = [NSString stringWithFormat:@"Guest%@", [IdService randomId:4]];
             user.color = [UIColor blackColor];
+            NSLog(@"UserService.currentUser: GENERATED %@", user.userId);
+        } else {
+            NSLog(@"UserService.currentUser: EXISTS %@", user.userId);
         }
         
         self.currentUser = user;
@@ -239,8 +245,9 @@
 }
 
 - (NSFetchRequest*)requestDeviceToken:(NSString*)deviceToken {
-    NSFetchRequest * request = [NSFetchRequest fetchRequestWithEntityName:self.entityName];
-    request.predicate = [NSPredicate predicateWithFormat:@"deviceToken = %@", deviceToken];
+    NSFetchRequest * request = [self requestAllUsersButMe];
+    NSPredicate * matchDeviceToken = [NSPredicate predicateWithFormat:@"deviceToken = %@", deviceToken];
+    request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[matchDeviceToken, request.predicate]];
     return request;    
 }
 
