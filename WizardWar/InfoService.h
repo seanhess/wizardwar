@@ -11,5 +11,6 @@
 @interface InfoService : NSObject
 
 +(NSString*)version;
++(NSString*)buildDate;
 
 @end

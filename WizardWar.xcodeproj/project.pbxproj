@@ -253,6 +253,8 @@
 		78D28BE9177F6F8A00FF5D6E /* ComicZineOT.otf in Resources */ = {isa = PBXBuildFile; fileRef = 78D28BE7177F6F8A00FF5D6E /* ComicZineOT.otf */; };
 		78D28BEA177F6F8A00FF5D6E /* ComicZineSolid.otf in Resources */ = {isa = PBXBuildFile; fileRef = 78D28BE8177F6F8A00FF5D6E /* ComicZineSolid.otf */; };
 		78D28BF1177F71D500FF5D6E /* ComicZineDoubleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D28BF0177F71D500FF5D6E /* ComicZineDoubleLabel.m */; };
+		78DAB807179597A50093A701 /* AnalyticsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB806179597A50093A701 /* AnalyticsService.m */; };
+		78DAB80F17959C230093A701 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DAB80917959C230093A701 /* libTestFlight.a */; };
 		78E22CA41782400900146D49 /* YouWon.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CA31782400900146D49 /* YouWon.mp3 */; };
 		78E22CA61782400E00146D49 /* YouLose2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CA51782400E00146D49 /* YouLose2.mp3 */; };
 		78E22CAF1782427500146D49 /* bubble.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CA71782427400146D49 /* bubble.mp3 */; };
@@ -320,7 +322,6 @@
 		78F6B36B1746AE5900AA070D /* CDXMacOSXSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B2E31746AE5900AA070D /* CDXMacOSXSupport.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		78F6B36C1746AE5900AA070D /* CDXPropertyModifierAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B2E51746AE5900AA070D /* CDXPropertyModifierAction.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		78F6B36D1746AE5900AA070D /* CocosDenshion.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B2E71746AE5900AA070D /* CocosDenshion.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		78F6B36E1746AE5900AA070D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 78F6B2E81746AE5900AA070D /* README.md */; };
 		78F6B36F1746AE5900AA070D /* SimpleAudioEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B2EA1746AE5900AA070D /* SimpleAudioEngine.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		78F6B3701746AE5900AA070D /* aabb.c in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B2FE1746AE5900AA070D /* aabb.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		78F6B3711746AE5900AA070D /* ChangeLog in Resources */ = {isa = PBXBuildFile; fileRef = 78F6B2FF1746AE5900AA070D /* ChangeLog */; };
@@ -798,6 +799,14 @@
 		78D28BE8177F6F8A00FF5D6E /* ComicZineSolid.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ComicZineSolid.otf; sourceTree = "<group>"; };
 		78D28BEF177F71D500FF5D6E /* ComicZineDoubleLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComicZineDoubleLabel.h; sourceTree = "<group>"; };
 		78D28BF0177F71D500FF5D6E /* ComicZineDoubleLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComicZineDoubleLabel.m; sourceTree = "<group>"; };
+		78DAB805179597A50093A701 /* AnalyticsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsService.h; sourceTree = "<group>"; };
+		78DAB806179597A50093A701 /* AnalyticsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsService.m; sourceTree = "<group>"; };
+		78DAB80917959C230093A701 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		78DAB80A17959C230093A701 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		78DAB80B17959C230093A701 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
+		78DAB80C17959C230093A701 /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
+		78DAB80D17959C230093A701 /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
+		78DAB80E17959C230093A701 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		78E22CA31782400900146D49 /* YouWon.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = YouWon.mp3; sourceTree = "<group>"; };
 		78E22CA51782400E00146D49 /* YouLose2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = YouLose2.mp3; sourceTree = "<group>"; };
 		78E22CA71782427400146D49 /* bubble.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bubble.mp3; sourceTree = "<group>"; };
@@ -1000,6 +1009,7 @@
 				781372D1177E30EF00486899 /* Parse.framework in Frameworks */,
 				781372D9177E324B00486899 /* FacebookSDK.framework in Frameworks */,
 				78C5CDDF178B64B400CDCC76 /* Firebase.framework in Frameworks */,
+				78DAB80F17959C230093A701 /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1472,6 +1482,8 @@
 			children = (
 				787A2A83174E85E3004C4FDB /* ConnectionService.h */,
 				787A2A84174E85E3004C4FDB /* ConnectionService.m */,
+				78DAB805179597A50093A701 /* AnalyticsService.h */,
+				78DAB806179597A50093A701 /* AnalyticsService.m */,
 				78C5CDE0178B656500CDCC76 /* FirebaseCollection.h */,
 				78C5CDE1178B656500CDCC76 /* FirebaseCollection.m */,
 				78CF319417920C4800BC8C29 /* InfoService.h */,
@@ -1504,6 +1516,19 @@
 				78D28BF0177F71D500FF5D6E /* ComicZineDoubleLabel.m */,
 			);
 			name = Style;
+			sourceTree = "<group>";
+		};
+		78DAB80817959C230093A701 /* TestFlightSDK1.3.0-beta.7 */ = {
+			isa = PBXGroup;
+			children = (
+				78DAB80917959C230093A701 /* libTestFlight.a */,
+				78DAB80A17959C230093A701 /* README.md */,
+				78DAB80B17959C230093A701 /* release_notes.md */,
+				78DAB80C17959C230093A701 /* TestFlight+AsyncLogging.h */,
+				78DAB80D17959C230093A701 /* TestFlight+ManualSessions.h */,
+				78DAB80E17959C230093A701 /* TestFlight.h */,
+			);
+			path = "TestFlightSDK1.3.0-beta.7";
 			sourceTree = "<group>";
 		};
 		78E22CB71782540B00146D49 /* spells */ = {
@@ -1652,6 +1677,7 @@
 		78F6B1E51746AD8900AA070D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				78DAB80817959C230093A701 /* TestFlightSDK1.3.0-beta.7 */,
 				781372E2177E330A00486899 /* Facebook */,
 				78F6B39E1746B04600AA070D /* libicucore.dylib */,
 				78F6B3821746AF2000AA070D /* libz.dylib */,
@@ -1932,6 +1958,7 @@
 				9DC65F6DED6A42038C00142C /* Check Pods Manifest.lock */,
 				78F6B1DF1746AD8900AA070D /* Sources */,
 				78F6B1E01746AD8900AA070D /* Frameworks */,
+				78DAB81217959E540093A701 /* ShellScript */,
 				78F6B1E11746AD8900AA070D /* Resources */,
 				E10B0176894D41BBBBE6B073 /* Copy Pods Resources */,
 			);
@@ -1976,7 +2003,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				78F6B1F11746AD8900AA070D /* InfoPlist.strings in Resources */,
-				78F6B36E1746AE5900AA070D /* README.md in Resources */,
 				78F6B3711746AE5900AA070D /* ChangeLog in Resources */,
 				78F6B3721746AE5900AA070D /* CMakeLists.txt in Resources */,
 				78F6B37F1746AE5900AA070D /* LICENSE_cocos2d.txt in Resources */,
@@ -2131,6 +2157,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		78DAB81217959E540093A701 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"";
+		};
 		9DC65F6DED6A42038C00142C /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2356,6 +2395,7 @@
 				78AF756C1792E162008499DB /* UIColor+Hex.m in Sources */,
 				78AF756F1792ECB9008499DB /* AccountColorViewController.m in Sources */,
 				78AF75731793018C008499DB /* DataModel.xcdatamodeld in Sources */,
+				78DAB807179597A50093A701 /* AnalyticsService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2447,6 +2487,10 @@
 					"\"Cocos2d/Cocos2d/kazmath/include\"",
 				);
 				INFOPLIST_FILE = "WizardWar/WizardWar-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/TestFlightSDK1.3.0-beta.7\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lsqlite3",
@@ -2476,6 +2520,10 @@
 					"\"Cocos2d/Cocos2d/kazmath/include\"",
 				);
 				INFOPLIST_FILE = "WizardWar/WizardWar-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/TestFlightSDK1.3.0-beta.7\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lsqlite3",

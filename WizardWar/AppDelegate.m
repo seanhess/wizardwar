@@ -20,6 +20,8 @@
 #import "ObjectStore.h"
 #import "ConnectionService.h"
 #import <ReactiveCocoa.h>
+#import "AnalyticsService.h"
+#import <TestFlight.h>
 
 // The director should belong to the app delegate or a singleton
 // and you should manually unload or reload it
@@ -78,6 +80,9 @@
     
     
 
+    // ANALYTICS
+    [AnalyticsService didFinishLaunching:launchOptions];
+    [TestFlight takeOff:@"0b4e12af-c3aa-459a-891b-aa357a97e171"];
     
     return YES;
 }

@@ -43,7 +43,7 @@
     
 
     
-    self.versionLabel.text = [NSString stringWithFormat:@"Version: %@", [InfoService version]];
+    self.versionLabel.text = [NSString stringWithFormat:@"Version: %@ %@", [InfoService version], [InfoService buildDate]];
     
 
     self.title = @"Account";
