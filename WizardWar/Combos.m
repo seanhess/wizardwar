@@ -49,9 +49,9 @@
 -(void)releaseElements {
     
     // Can't cast the same spell twice!
-    if (self.sameSpellTwice) {
-        self.hintedSpell = nil;
-    }
+//    if (self.sameSpellTwice) {
+//        self.hintedSpell = nil;
+//    }
     
     self.castSpell = self.hintedSpell;
     self.hintedSpell = nil;
@@ -63,7 +63,8 @@
 }
 
 -(BOOL)sameSpellTwice {
-    return (self.hintedSpell && self.lastSuccessfulSpell.class == self.hintedSpell.class);
+    return NO;
+//    return (self.hintedSpell && self.lastSuccessfulSpell.class == self.hintedSpell.class);
 }
 
 +(NSDictionary*)createHitCombos {

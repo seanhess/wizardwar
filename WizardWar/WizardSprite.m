@@ -203,11 +203,11 @@
 //        [self.skin runAction: [CCRepeatForever actionWithAction:[CCSequence actions:[CCScaleTo actionWithDuration:0.9f scaleX:size.width scaleY:size.height], [CCScaleTo actionWithDuration:0.9f scaleX:size.width*0.75f scaleY:size. height*0.75f], nil] ]];
         
 //        [self.skin runAction: [CCRepeatForever actionWithAction:[CCSequence actions:[CCFadeTo actionWithDuration:0.9f opacity:150], [CCFadeTo actionWithDuration:0.9f opacity:255], nil]]];
-        CCFiniteTimeAction * toRed = [CCTintTo actionWithDuration:1 red:230 green:130 blue:190];
+        CCFiniteTimeAction * toRed = [CCTintTo actionWithDuration:1 red:255 green:100 blue:100];
         CCFiniteTimeAction * toNormal = [CCTintTo actionWithDuration:1 red:255 green:255 blue:255];
         CCAction * glowRed = [CCRepeatForever actionWithAction:[CCSequence actions:toRed, toNormal, nil]];
         [self.skin runAction:glowRed];
-        [self.clothes runAction:glowRed];
+//        [self.clothes runAction:glowRed];
     }
     
     else if ([self.wizard.effect class] == [EffectSleep class]) {
@@ -225,6 +225,7 @@
     
     else {
         self.skin.color = ccc3(255, 255, 255);
+//        self.clothes.color = [self colorWithColor:self.wizard.color];
 //        [self runAction:[CCMoveTo actionWithDuration:0.2 position:self.calculatedPosition]];
 //        [self runAction:[CCRotateTo actionWithDuration:0.2 angle:0]];
         [self renderStatus];

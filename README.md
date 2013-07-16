@@ -16,16 +16,6 @@ Push Notifications
 * https://www.parse.com/docs/push_guide#top/iOS
 * https://www.parse.com/apps/wizard-war/push_notifications
 
-
-
-[ ] Lobby: get local lobby working
-    [ ] Local Lobby: initial indicator of how many people are in it. 
-    [ ] Local Lobby: chat
-    [ ] Local Lobby: show ALL the people under the indicator.
-    [ ] Local Lobby: issue a challenge
-    
-
-[ ] Ready screen so you can see who you are
 [ ] Fix wind blast
 [ ] Add random "fail" spells (with two elements) any 2 elements triggers a random fail spell
 [ ] Add feedback! 
@@ -33,7 +23,6 @@ Push Notifications
   [ ] "Try dragging between elements"
   [ ] Spell cast graphic
 [x] Merge and finish lobby code
-
 
 IDEA: we can have some spells take "more mana", meaning they reduce the size of the indicators used MORE
 
