@@ -19,7 +19,7 @@
 #import <WEPopoverController.h>
 #import "UIColor+Hex.h"
 #import "AccountColorViewController.h"
-
+#import <TestFlight.h>
 
 
 @interface AccountViewController () <AccountColorDelegate>
@@ -100,4 +100,7 @@
     self.colorButton.color = color;
 }
 
+- (IBAction)didTapFeedback:(id)sender {
+    [TestFlight openFeedbackView];
+}
 @end
