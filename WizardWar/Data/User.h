@@ -24,6 +24,7 @@
 @property (nonatomic) CLLocationDistance distance;
 @property (nonatomic) NSTimeInterval updated;
 @property (nonatomic) int32_t colorRGB; // hex rgb value
+@property (nonatomic) BOOL isMain;
 
 @property (nonatomic, retain) Challenge *challenge;
 @property (nonatomic, retain) NSString *activeMatchId;

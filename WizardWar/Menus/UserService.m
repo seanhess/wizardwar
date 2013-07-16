@@ -56,13 +56,6 @@
     }];
 }
 
-- (void)saveCurrentUser {
-    // Save to firebase
-    User * user = self.currentUser;
-    if (!user) return;
-    Firebase * child = [self.node childByAppendingPath:user.userId];
-    [child setValue:user.toObject andPriority:kFirebaseServerValueTimestamp];
-}
 
 -(void)onAdded:(FDataSnapshot *)snapshot {
     NSString * userId = snapshot.name;
@@ -70,19 +63,66 @@
     [user setValuesForKeysWithDictionary:snapshot.value];
     user.updated = ([snapshot.priority doubleValue] / 1000.0); // comes down in milliseconds
     NSLog(@"UserService: (+) %f %@ ", user.updated, user.name);
+    
+    if ([user.deviceToken isEqualToString:self.currentUser.deviceToken] && ![user.userId isEqualToString:self.currentUser.userId]) {
+        [self mergeCurrentUserWith:user];
+    }
 }
 
 -(void)onRemoved:(FDataSnapshot*)snapshot {
     NSString * userId = snapshot.name;
     User * user = [self userWithId:userId];
     if (user) {
-        NSLog(@"UserService: (-) %@", user.name);            
+        NSLog(@"UserService: (-) %@", user.name);
         [ObjectStore.shared.context deleteObject:user];
     }
 }
 
 -(void)onChanged:(FDataSnapshot*)snapshot {
     [self onAdded:snapshot];
+}
+
+
+# pragma mark - DeviceToken
+
+- (void)saveDeviceToken:(NSString *)deviceToken {
+    
+    // this must be before you set the device token on yours
+    User * otherUserWithToken = [ObjectStore.shared requestLastObject:[self requestDeviceToken:deviceToken]];
+    if (otherUserWithToken)
+        [self mergeCurrentUserWith:otherUserWithToken];
+
+    self.pushAccepted = YES;
+    self.currentUser.deviceToken = deviceToken;
+    [self saveCurrentUser];    
+}
+
+
+- (void)mergeCurrentUserWith:(User*)user {
+    
+    // Remove old current user
+    User * oldCurrentUser = self.currentUser;
+
+    Firebase * child = [self.node childByAppendingPath:oldCurrentUser.userId];
+    [child removeValue];
+    [child setPriority:kFirebaseServerValueTimestamp];
+    
+    // save the new one!
+    self.currentUser = user;
+    self.currentUser.isMain = YES;
+    NSLog(@"UserService.merged %@ to %@", oldCurrentUser.userId, self.currentUser.userId);
+    
+    [ObjectStore.shared objectRemove:oldCurrentUser];
+    
+    return;
+}
+
+- (void)saveCurrentUser {
+    // Save to firebase
+    User * user = self.currentUser;
+    if (!user) return;
+    Firebase * child = [self.node childByAppendingPath:user.userId];
+    [child setValue:user.toObject andPriority:kFirebaseServerValueTimestamp];
 }
 
 -(NSTimeInterval)loadLastUpdatedTime {
@@ -95,12 +135,16 @@
 
 - (User*)currentUser {
     if (!_currentUser) {
-        User * user = [self userWithId:self.userId create:YES];
-        if (!user.name) {
-            user.name = [NSString stringWithFormat:@"Guest%@", [IdService randomId:4]];
-            user.color = [UIColor whiteColor];
-        }
+        User * user = [ObjectStore.shared requestLastObject:self.requestIsMain];
 
+        if (!user) {
+            user = [ObjectStore.shared insertNewObjectForEntityForName:self.entityName];
+            user.userId = [self generateUserId];
+            user.isMain = YES;
+            // user.name = [NSString stringWithFormat:@"Guest%@", [IdService randomId:4]];
+            user.color = [UIColor blackColor];
+        }
+        
         self.currentUser = user;
     }
         
@@ -112,6 +156,7 @@
     Wizard * wizard = [Wizard new];
     wizard.name = self.currentUser.name;
     wizard.color = self.currentUser.color;
+    if (!wizard.name) wizard.name = [NSString stringWithFormat:@"Guest%@", [IdService randomId:4]];
     wizard.wizardType = WIZARD_TYPE_ONE;
     return wizard;
 }
@@ -120,10 +165,9 @@
     return self.currentUser.name != nil;
 }
 
-- (NSString*)userId {
+- (NSString*)generateUserId {
     return [UIDevice currentDevice].identifierForVendor.UUIDString;
 }
-
 
 
 # pragma mark - Users
@@ -186,6 +230,18 @@
     NSPredicate * isOnline = [NSPredicate predicateWithFormat:@"isOnline = YES"];
     request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[isOnline, request.predicate]];
     return request;
+}
+
+- (NSFetchRequest*)requestIsMain {
+    NSFetchRequest * request = [NSFetchRequest fetchRequestWithEntityName:self.entityName];
+    request.predicate = [NSPredicate predicateWithFormat:@"isMain = YES"];
+    return request;
+}
+
+- (NSFetchRequest*)requestDeviceToken:(NSString*)deviceToken {
+    NSFetchRequest * request = [NSFetchRequest fetchRequestWithEntityName:self.entityName];
+    request.predicate = [NSPredicate predicateWithFormat:@"deviceToken = %@", deviceToken];
+    return request;    
 }
 
 

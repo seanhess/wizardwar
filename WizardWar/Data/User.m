@@ -23,6 +23,7 @@
 @dynamic updated;
 @dynamic activeMatchId;
 @dynamic colorRGB;
+@dynamic isMain;
 
 @synthesize isClose;
 

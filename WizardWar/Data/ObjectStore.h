@@ -18,6 +18,10 @@
 +(ObjectStore*)shared;
 -(void)saveContext;
 
+// Objects
+-(void)objectRemove:(NSManagedObject*)remove;
+
+// Requests
 -(void)requestRemove:(NSFetchRequest*)request;
 -(NSArray*)requestToArray:(NSFetchRequest*)request;
 -(id)requestLastObject:(NSFetchRequest*)request;

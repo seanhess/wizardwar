@@ -16,12 +16,12 @@
 // currentUser ALWAYS exists with at least the userId
 @property (nonatomic, strong) User * currentUser;
 @property (nonatomic, readonly) Wizard * currentWizard;
-@property (nonatomic, readonly) NSString * userId;
 
 @property (nonatomic) BOOL pushAccepted;
 
 + (UserService *)shared;
 
+- (void)saveDeviceToken:(NSString*)deviceToken;
 - (void)saveCurrentUser;
 - (void)connect;
 

@@ -96,9 +96,7 @@
     [currentInstallation saveInBackground];
     
     // If they allow it here, and current user exists
-    [UserService.shared setPushAccepted:YES];
-    [UserService.shared.currentUser setDeviceToken:deviceToken];
-    [UserService.shared saveCurrentUser];
+    [UserService.shared saveDeviceToken:deviceToken];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {

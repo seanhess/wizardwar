@@ -41,6 +41,11 @@
 
 
 
+#pragma mark - Objects
+-(void)objectRemove:(NSManagedObject*)remove {
+    [self.context deleteObject:remove];
+}
+
 #pragma mark - Helpers
 
 -(void)requestRemove:(NSFetchRequest*)request {
