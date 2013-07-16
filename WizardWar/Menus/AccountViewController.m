@@ -67,7 +67,7 @@
 //        return (isValid.boolValue) ? @(1.0) : @(0.5);
 //    }];
     
-    [self.nameField becomeFirstResponder];
+//    [self.nameField becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning
