@@ -35,6 +35,8 @@
 {
     [super viewDidLoad];
     
+    self.title = @"Facebook Friends";
+    
     // Load them from the server
     [UserFriendService.shared loadFacebookFriends];
     

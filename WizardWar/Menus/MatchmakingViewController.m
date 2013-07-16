@@ -35,6 +35,7 @@
 #import "UserCell.h"
 #import "ChallengeCell.h"
 #import "FriendsViewController.h"
+#import <BButton.h>
 
 @interface MatchmakingViewController () <AccountFormDelegate, NSFetchedResultsControllerDelegate>
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
@@ -54,7 +55,10 @@
 @property (strong, nonatomic) IBOutlet UITextView *warningsView;
 
 @property (weak, nonatomic) IBOutlet UIView *loadingOverlayView;
+
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityView;
+
+@property (weak, nonatomic) IBOutlet BButton *inviteFriendsButton;
 
 @end
 
@@ -63,6 +67,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    [self.inviteFriendsButton addAwesomeIcon:FAIconFacebookSign beforeTitle:YES];
+    [self.inviteFriendsButton setType:BButtonTypeFacebook];
+//    [self.inviteFriendsButton.titleLabel.font = [UIFont fontWithName:@"FontAwesome" size:26];
+    
     
     // Custom Table Cells!
     [self.tableView registerNib:[UINib nibWithNibName:@"UserCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"UserCell"];

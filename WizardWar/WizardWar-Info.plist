@@ -47,7 +47,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>116</string>
+	<string>124</string>
 	<key>FacebookAppID</key>
 	<string>150922078436714</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -58,6 +58,7 @@
 		<string>ComicZineSolid.otf</string>
 		<string>LoveYaLikeASisterSolid.ttf</string>
 		<string>LoveYaLikeASister.ttf</string>
+		<string>FontAwesome.ttf</string>
 	</array>
 	<key>UIPrerenderedIcon</key>
 	<true/>
