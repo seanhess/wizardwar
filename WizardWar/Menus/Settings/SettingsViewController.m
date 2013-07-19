@@ -10,12 +10,10 @@
 #import "ComicZineDoubleLabel.h"
 #import <TestFlight.h>
 #import <BButton.h>
-#import "AccountViewController.h"
 #import "InfoService.h"
 #import "UserService.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ProfileCell.h"
-#import "ProfileItemViewController.h"
 #import "AccountColorViewController.h"
 #import <WEPopoverController.h>
 #import "UserFriendService.h"
@@ -43,6 +41,11 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationItem.titleView = [ComicZineDoubleLabel titleView:self.title navigationBar:self.navigationController.navigationBar];
     
+    if (self.onDone) {
+        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(didTapDone:)];
+        self.navigationItem.rightBarButtonItem = doneButton;
+    }
+    
     [super viewDidLoad];
 
     // Uncomment the following line to preserve selection between presentations.
@@ -69,9 +72,13 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    if (section == 0 || section == 2)
+    if (section == 0)
         return 1;
-    else if (section == 1 || section == 3)
+    else if (section == 1)
+        return 2;
+    else if (section == 2 && self.showFeedback)
+        return 1;
+    else if (section == 3 && self.showBuildInfo)
         return 2;
     else 
         return 0;
@@ -267,7 +274,8 @@
 // YO YO
 - (void)textFieldDidEndEditing:(UITextField *)textField {    
     if (textField.text.length && ![textField.text isEqualToString:UserService.shared.currentUser.name]) {
-        UserService.shared.currentUser.name = textField.text;
+        User * user = UserService.shared.currentUser;
+        user.name = textField.text;
         [UserService.shared saveCurrentUser];
     }
 }
@@ -275,6 +283,17 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
+}
+
+#pragma mark - nextViewController
+-(void)didTapDone:(id)sender {
+    User * user = UserService.shared.currentUser;
+    user.isGuestAccount = NO;
+    
+    if (self.onDone) {
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        self.onDone();
+    }
 }
 
 @end

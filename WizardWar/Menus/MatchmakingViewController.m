@@ -26,7 +26,6 @@
 #import "LobbyService.h"
 #import "UserService.h"
 #import "ChallengeService.h"
-#import "AccountViewController.h"
 #import "LocationService.h"
 #import "UserFriendService.h"
 #import <ReactiveCocoa.h>
@@ -36,8 +35,9 @@
 #import "ChallengeCell.h"
 #import "FriendsViewController.h"
 #import <BButton.h>
+#import "SettingsViewController.h"
 
-@interface MatchmakingViewController () <AccountFormDelegate, NSFetchedResultsControllerDelegate>
+@interface MatchmakingViewController () <NSFetchedResultsControllerDelegate>
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
 
 @property (nonatomic, strong) ConnectionService* connection;
@@ -72,6 +72,10 @@
     [self.inviteFriendsButton setType:BButtonTypeFacebook];
 //    [self.inviteFriendsButton.titleLabel.font = [UIFont fontWithName:@"FontAwesome" size:26];
     
+    UIImage * userIcon = [UIImage imageNamed:@"111-user.png"];
+    UIBarButtonItem *accountButton = [[UIBarButtonItem alloc] initWithImage:userIcon style:UIBarButtonItemStylePlain target:self action:@selector(didTapAccount)];
+    self.navigationItem.rightBarButtonItem = accountButton;
+    
     
     // Custom Table Cells!
     [self.tableView registerNib:[UINib nibWithNibName:@"UserCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"UserCell"];
@@ -104,14 +108,14 @@
     
     
     // CHECK AUTHENTICATED
-    if ([UserService shared].isAuthenticated) {
+//    if ([UserService shared].isAuthenticated) {
         [self connect];
-    }
-    else {
-        AccountViewController * accounts = [AccountViewController new];
-        accounts.delegate = self;
-        [self.navigationController presentViewController:accounts animated:YES completion:nil];
-    }
+//    }
+//    else {
+//        AccountViewController * accounts = [AccountViewController new];
+//        accounts.delegate = self;
+//        [self.navigationController presentViewController:accounts animated:YES completion:nil];
+//    }
 }
 
 - (void)connect {
@@ -262,17 +266,6 @@
             self.loadingOverlayView.alpha = 1.0;
         }];
     }
-}
-
-#pragma mark - AccountFormDelegate
--(void)didCancelAccountForm {
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-    [self.navigationController popViewControllerAnimated:YES];
-    
-}
--(void)didSubmitAccountForm:(NSString *)name {
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-    [self connect];
 }
 
 #pragma mark - Login
@@ -520,6 +513,14 @@
             [self.navigationController pushViewController:friends animated:YES];
         }
     }];
+}
+
+- (IBAction)didTapAccount {
+    SettingsViewController * settings = [SettingsViewController new];
+    UINavigationController * navigation = [[UINavigationController alloc] initWithRootViewController:settings];
+    settings.onDone = ^{
+    };
+    [self.navigationController presentViewController:navigation animated:YES completion:nil];
 }
 
 @end

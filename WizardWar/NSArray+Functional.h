@@ -17,6 +17,7 @@
 -(id)find:(BOOL(^)(id))block;
 -(id)max:(float(^)(id))block;
 -(id)min:(float(^)(id))block;
+-(id)randomItem;
 
 +(NSMutableArray*)array:(id<NSFastEnumeration>)array filter:(BOOL(^)(id))block;
 +(id)array:(id<NSFastEnumeration>)array find:(BOOL(^)(id))block;

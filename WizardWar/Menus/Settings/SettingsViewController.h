@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface SettingsViewController : UITableViewController
-
+@property (nonatomic) BOOL showBuildInfo;
+@property (nonatomic) BOOL showFeedback;
+@property (nonatomic, strong) void(^onDone)(void);
 @end

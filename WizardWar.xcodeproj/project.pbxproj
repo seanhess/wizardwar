@@ -149,8 +149,6 @@
 		784D3BE1177501E9009945F8 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BE0177501E9009945F8 /* UserService.m */; };
 		784D3BE417750441009945F8 /* IdService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BE317750441009945F8 /* IdService.m */; };
 		784D3BEC17751411009945F8 /* ChallengeService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BEB17751411009945F8 /* ChallengeService.m */; };
-		784D3BF01777AFFD009945F8 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BEE1777AFFD009945F8 /* AccountViewController.m */; };
-		784D3BF11777AFFD009945F8 /* AccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 784D3BEF1777AFFD009945F8 /* AccountViewController.xib */; };
 		784D3BF41777C622009945F8 /* LocationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BF31777C622009945F8 /* LocationService.m */; };
 		784D3BF61777C832009945F8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 784D3BF51777C832009945F8 /* CoreLocation.framework */; };
 		785FBE9F17724FA20021AEE5 /* wizard1-set1-animations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 785FBE9E17724FA20021AEE5 /* wizard1-set1-animations.plist */; };
@@ -256,8 +254,8 @@
 		78DAB8291795E2B00093A701 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB8271795E2B00093A701 /* SettingsViewController.m */; };
 		78DAB82A1795E2B00093A701 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DAB8281795E2B00093A701 /* SettingsViewController.xib */; };
 		78DAB82D1799BCFF0093A701 /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB82C1799BCFF0093A701 /* ProfileCell.m */; };
-		78DAB8311799C0B80093A701 /* ProfileItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB82F1799C0B70093A701 /* ProfileItemViewController.m */; };
-		78DAB8321799C0B80093A701 /* ProfileItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DAB8301799C0B80093A701 /* ProfileItemViewController.xib */; };
+		78DAB8351799D86B0093A701 /* 111-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DAB8331799D86B0093A701 /* 111-user.png */; };
+		78DAB8361799D86B0093A701 /* 111-user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DAB8341799D86B0093A701 /* 111-user@2x.png */; };
 		78E22CA41782400900146D49 /* YouWon.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CA31782400900146D49 /* YouWon.mp3 */; };
 		78E22CA61782400E00146D49 /* YouLose2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CA51782400E00146D49 /* YouLose2.mp3 */; };
 		78E22CAF1782427500146D49 /* bubble.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CA71782427400146D49 /* bubble.mp3 */; };
@@ -646,9 +644,6 @@
 		784D3BE317750441009945F8 /* IdService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdService.m; sourceTree = "<group>"; };
 		784D3BEA17751411009945F8 /* ChallengeService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeService.h; sourceTree = "<group>"; };
 		784D3BEB17751411009945F8 /* ChallengeService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeService.m; sourceTree = "<group>"; };
-		784D3BED1777AFFD009945F8 /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
-		784D3BEE1777AFFD009945F8 /* AccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountViewController.m; sourceTree = "<group>"; };
-		784D3BEF1777AFFD009945F8 /* AccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountViewController.xib; sourceTree = "<group>"; };
 		784D3BF21777C622009945F8 /* LocationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationService.h; sourceTree = "<group>"; };
 		784D3BF31777C622009945F8 /* LocationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationService.m; sourceTree = "<group>"; };
 		784D3BF51777C832009945F8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -810,9 +805,8 @@
 		78DAB8281795E2B00093A701 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		78DAB82B1799BCFF0093A701 /* ProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileCell.h; sourceTree = "<group>"; };
 		78DAB82C1799BCFF0093A701 /* ProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
-		78DAB82E1799C0B70093A701 /* ProfileItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileItemViewController.h; sourceTree = "<group>"; };
-		78DAB82F1799C0B70093A701 /* ProfileItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileItemViewController.m; sourceTree = "<group>"; };
-		78DAB8301799C0B80093A701 /* ProfileItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileItemViewController.xib; sourceTree = "<group>"; };
+		78DAB8331799D86B0093A701 /* 111-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "111-user.png"; sourceTree = "<group>"; };
+		78DAB8341799D86B0093A701 /* 111-user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "111-user@2x.png"; sourceTree = "<group>"; };
 		78E22CA31782400900146D49 /* YouWon.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = YouWon.mp3; sourceTree = "<group>"; };
 		78E22CA51782400E00146D49 /* YouLose2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = YouLose2.mp3; sourceTree = "<group>"; };
 		78E22CA71782427400146D49 /* bubble.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bubble.mp3; sourceTree = "<group>"; };
@@ -1534,16 +1528,10 @@
 				78DAB8261795E2B00093A701 /* SettingsViewController.h */,
 				78DAB8271795E2B00093A701 /* SettingsViewController.m */,
 				78DAB8281795E2B00093A701 /* SettingsViewController.xib */,
-				784D3BED1777AFFD009945F8 /* AccountViewController.h */,
-				784D3BEE1777AFFD009945F8 /* AccountViewController.m */,
-				784D3BEF1777AFFD009945F8 /* AccountViewController.xib */,
 				78AF756D1792ECB9008499DB /* AccountColorViewController.h */,
 				78AF756E1792ECB9008499DB /* AccountColorViewController.m */,
 				78DAB82B1799BCFF0093A701 /* ProfileCell.h */,
 				78DAB82C1799BCFF0093A701 /* ProfileCell.m */,
-				78DAB82E1799C0B70093A701 /* ProfileItemViewController.h */,
-				78DAB82F1799C0B70093A701 /* ProfileItemViewController.m */,
-				78DAB8301799C0B80093A701 /* ProfileItemViewController.xib */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1648,6 +1636,8 @@
 				F283A92317480F4F0068EEB2 /* mana-container-hd.png */,
 				F283A92417480F4F0068EEB2 /* mana-container.png */,
 				78E22CB9178255B700146D49 /* user.jpg */,
+				78DAB8331799D86B0093A701 /* 111-user.png */,
+				78DAB8341799D86B0093A701 /* 111-user@2x.png */,
 				789BAB8F1756AA65003C0116 /* explode-animation.plist */,
 				789BAB861756A95A003C0116 /* explode-hd.plist */,
 				789BAB871756A95A003C0116 /* explode-hd.png */,
@@ -2125,7 +2115,6 @@
 				782602801773D8F700059981 /* firewall.plist in Resources */,
 				782602811773D8F700059981 /* firewall.png in Resources */,
 				784D3BDB17748BF1009945F8 /* menu-bg.png in Resources */,
-				784D3BF11777AFFD009945F8 /* AccountViewController.xib in Resources */,
 				789787A61778F11C00094AF9 /* menu-bg@2x.png in Resources */,
 				78D28BE9177F6F8A00FF5D6E /* ComicZineOT.otf in Resources */,
 				78D28BEA177F6F8A00FF5D6E /* ComicZineSolid.otf in Resources */,
@@ -2168,7 +2157,8 @@
 				78AF75691792D720008499DB /* wizard1-set2-clothes-animations.plist in Resources */,
 				78DAB81F1795AAE40093A701 /* FriendsViewController.xib in Resources */,
 				78DAB82A1795E2B00093A701 /* SettingsViewController.xib in Resources */,
-				78DAB8321799C0B80093A701 /* ProfileItemViewController.xib in Resources */,
+				78DAB8351799D86B0093A701 /* 111-user.png in Resources */,
+				78DAB8361799D86B0093A701 /* 111-user@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2304,7 +2294,6 @@
 				784D3BE1177501E9009945F8 /* UserService.m in Sources */,
 				784D3BE417750441009945F8 /* IdService.m in Sources */,
 				784D3BEC17751411009945F8 /* ChallengeService.m in Sources */,
-				784D3BF01777AFFD009945F8 /* AccountViewController.m in Sources */,
 				784D3BF41777C622009945F8 /* LocationService.m in Sources */,
 				789787A91778F27300094AF9 /* UserFriendService.m in Sources */,
 				78D28BF1177F71D500FF5D6E /* ComicZineDoubleLabel.m in Sources */,
@@ -2415,7 +2404,6 @@
 				78DAB8241795C3A10093A701 /* FacebookUser.m in Sources */,
 				78DAB8291795E2B00093A701 /* SettingsViewController.m in Sources */,
 				78DAB82D1799BCFF0093A701 /* ProfileCell.m in Sources */,
-				78DAB8311799C0B80093A701 /* ProfileItemViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

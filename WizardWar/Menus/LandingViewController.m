@@ -12,7 +12,6 @@
 #import "MatchmakingViewController.h"
 #import "UserService.h"
 #import "LobbyService.h"
-#import "AccountViewController.h"
 #import "LocationService.h"
 #import "ChallengeService.h"
 #import "LobbyService.h"
@@ -74,18 +73,28 @@
 //}
 
 - (IBAction)didTapMultiplayer:(id)sender {
+    __weak LandingViewController * wself = self;
     MatchmakingViewController * matchmaking = [MatchmakingViewController new];
-    [self.navigationController pushViewController:matchmaking animated:YES];
+    
+    if ([UserService shared].isAuthenticated) {
+        [self.navigationController pushViewController:matchmaking animated:YES];
+    } else {
+        SettingsViewController * settings = [SettingsViewController new];
+        settings.onDone = ^{
+            [wself.navigationController pushViewController:matchmaking animated:YES];
+        };
+        UINavigationController * navigation = [[UINavigationController alloc] initWithRootViewController:settings];
+        [self.navigationController presentViewController:navigation animated:YES completion:nil];
+    }
 }
 
 - (IBAction)didTapSettings:(id)sender {
     SettingsViewController * settings = [SettingsViewController new];
-//    accounts.delegate = self;
-    [self.navigationController pushViewController:settings animated:YES];
+    UINavigationController * navigation = [[UINavigationController alloc] initWithRootViewController:settings];
+    settings.showBuildInfo = YES;
+    settings.showFeedback = YES;
+    settings.onDone = ^{};
+    [self.navigationController presentViewController:navigation animated:YES completion:nil];
 }
-
-//- (void)didSubmitAccountForm:(NSString *)name {
-//    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-//}
 
 @end

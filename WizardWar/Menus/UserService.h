@@ -27,6 +27,8 @@
 
 - (BOOL)isAuthenticated;
 
+- (NSString*)randomWizardName;
+
 - (User*)userWithId:(NSString*)userId;
 - (User*)userWithId:(NSString*)userId create:(BOOL)create;
 

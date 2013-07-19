@@ -64,6 +64,11 @@
     return maxObj;
 }
 
+-(id)randomItem {
+    NSUInteger randomIndex = arc4random() % [self count];
+    return [self objectAtIndex:randomIndex];
+}
+
 +(NSMutableArray*)array:(id<NSFastEnumeration>)array filter:(BOOL(^)(id))match {
     NSMutableArray * found = [NSMutableArray array];
     for (id obj in array) {

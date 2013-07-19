@@ -27,6 +27,8 @@
 @property (nonatomic) BOOL isMain;
 @property (nonatomic) int64_t facebookId;
 
+@property (nonatomic) BOOL isGuestAccount;
+
 @property (nonatomic, retain) Challenge *challenge;
 @property (nonatomic, retain) NSString *activeMatchId;
 

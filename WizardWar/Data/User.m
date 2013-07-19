@@ -27,6 +27,7 @@
 @dynamic facebookId;
 
 @synthesize isClose;
+@synthesize isGuestAccount;
 
 -(NSDictionary*)toObject {
     return [self dictionaryWithValuesForKeys:@[@"name", @"userId", @"deviceToken", @"colorRGB"]];
