@@ -15,6 +15,7 @@
 #import "UserService.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ProfileCell.h"
+#import "ProfileItemViewController.h"
 
 @interface SettingsViewController ()
 
@@ -208,8 +209,14 @@
     }
     
     else if (indexPath.section == 1) {
-        AccountViewController * profile = [AccountViewController new];
-        [self.navigationController pushViewController:profile animated:YES];
+//        ProfileItemViewController * profileItem = [ProfileItemViewController new];
+//        if (indexPath.row == 0) {
+//            profileItem.title = @"Wizard Name";
+//        } else if (indexPath.row == 1) {
+//            profileItem.title = @"Wizard Color";
+//        }
+//        
+//        [self.navigationController pushViewController:profileItem animated:YES];
     }
     
     else if (indexPath.section == 2) {

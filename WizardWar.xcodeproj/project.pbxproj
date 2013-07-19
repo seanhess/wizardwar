@@ -256,6 +256,8 @@
 		78DAB8291795E2B00093A701 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB8271795E2B00093A701 /* SettingsViewController.m */; };
 		78DAB82A1795E2B00093A701 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DAB8281795E2B00093A701 /* SettingsViewController.xib */; };
 		78DAB82D1799BCFF0093A701 /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB82C1799BCFF0093A701 /* ProfileCell.m */; };
+		78DAB8311799C0B80093A701 /* ProfileItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB82F1799C0B70093A701 /* ProfileItemViewController.m */; };
+		78DAB8321799C0B80093A701 /* ProfileItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DAB8301799C0B80093A701 /* ProfileItemViewController.xib */; };
 		78E22CA41782400900146D49 /* YouWon.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CA31782400900146D49 /* YouWon.mp3 */; };
 		78E22CA61782400E00146D49 /* YouLose2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CA51782400E00146D49 /* YouLose2.mp3 */; };
 		78E22CAF1782427500146D49 /* bubble.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CA71782427400146D49 /* bubble.mp3 */; };
@@ -808,6 +810,9 @@
 		78DAB8281795E2B00093A701 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		78DAB82B1799BCFF0093A701 /* ProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileCell.h; sourceTree = "<group>"; };
 		78DAB82C1799BCFF0093A701 /* ProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
+		78DAB82E1799C0B70093A701 /* ProfileItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileItemViewController.h; sourceTree = "<group>"; };
+		78DAB82F1799C0B70093A701 /* ProfileItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileItemViewController.m; sourceTree = "<group>"; };
+		78DAB8301799C0B80093A701 /* ProfileItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileItemViewController.xib; sourceTree = "<group>"; };
 		78E22CA31782400900146D49 /* YouWon.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = YouWon.mp3; sourceTree = "<group>"; };
 		78E22CA51782400E00146D49 /* YouLose2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = YouLose2.mp3; sourceTree = "<group>"; };
 		78E22CA71782427400146D49 /* bubble.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bubble.mp3; sourceTree = "<group>"; };
@@ -1536,6 +1541,9 @@
 				78AF756E1792ECB9008499DB /* AccountColorViewController.m */,
 				78DAB82B1799BCFF0093A701 /* ProfileCell.h */,
 				78DAB82C1799BCFF0093A701 /* ProfileCell.m */,
+				78DAB82E1799C0B70093A701 /* ProfileItemViewController.h */,
+				78DAB82F1799C0B70093A701 /* ProfileItemViewController.m */,
+				78DAB8301799C0B80093A701 /* ProfileItemViewController.xib */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -2160,6 +2168,7 @@
 				78AF75691792D720008499DB /* wizard1-set2-clothes-animations.plist in Resources */,
 				78DAB81F1795AAE40093A701 /* FriendsViewController.xib in Resources */,
 				78DAB82A1795E2B00093A701 /* SettingsViewController.xib in Resources */,
+				78DAB8321799C0B80093A701 /* ProfileItemViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2406,6 +2415,7 @@
 				78DAB8241795C3A10093A701 /* FacebookUser.m in Sources */,
 				78DAB8291795E2B00093A701 /* SettingsViewController.m in Sources */,
 				78DAB82D1799BCFF0093A701 /* ProfileCell.m in Sources */,
+				78DAB8311799C0B80093A701 /* ProfileItemViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
