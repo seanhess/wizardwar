@@ -16,8 +16,13 @@
 #import <QuartzCore/QuartzCore.h>
 #import "ProfileCell.h"
 #import "ProfileItemViewController.h"
+#import "AccountColorViewController.h"
+#import <WEPopoverController.h>
+#import "UserFriendService.h"
 
-@interface SettingsViewController ()
+
+@interface SettingsViewController () <AccountColorDelegate, UITextFieldDelegate>
+@property (strong, nonatomic) WEPopoverController * popover;
 
 @end
 
@@ -106,7 +111,13 @@
         
         BButton * button = [[BButton alloc] initWithFrame:cell.contentView.bounds type:BButtonTypeFacebook];
         button.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        [button setTitle:@"Connect Account" forState:UIControlStateNormal];
+        
+        if ([UserFriendService.shared hasConnectedFacebook:UserService.shared.currentUser]) {
+            [button setTitle:@"Account Connected!" forState:UIControlStateNormal];
+        } else {
+            [button setTitle:@"Connect Account" forState:UIControlStateNormal];
+        }
+
         [button addAwesomeIcon:FAIconFacebookSign beforeTitle:YES];        
         [cell.contentView addSubview:button];
     }
@@ -151,14 +162,24 @@
     }
     
     if (indexPath.row == 0) {
-        [cell setUserName:UserService.shared.currentUser];
+        cell.textLabel.text = @"Name";
+        cell.inputField.delegate = self;
+        [cell setFieldText:UserService.shared.currentUser.name];
     }
     
     else if (indexPath.row == 1) {
-        [cell setUserColor:UserService.shared.currentUser];
+        cell.textLabel.text = @"Color";
+        [cell setColor:UserService.shared.currentUser.color];
     }
     
     return cell;
+}
+
+-(NSString*)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    if (section == 0 && ![UserFriendService.shared hasConnectedFacebook:UserService.shared.currentUser]) {
+        return @"Connect to play with your friends and set your avatar. Will not post anything unless you explitly share something.";
+    }
+    return nil;
 }
 
 /*
@@ -209,14 +230,17 @@
     }
     
     else if (indexPath.section == 1) {
-//        ProfileItemViewController * profileItem = [ProfileItemViewController new];
-//        if (indexPath.row == 0) {
-//            profileItem.title = @"Wizard Name";
-//        } else if (indexPath.row == 1) {
-//            profileItem.title = @"Wizard Color";
-//        }
-//        
-//        [self.navigationController pushViewController:profileItem animated:YES];
+        ProfileCell * cell = (ProfileCell*)[tableView cellForRowAtIndexPath:indexPath];
+        
+        if (indexPath.row == 0) {
+            [cell.inputField becomeFirstResponder];
+        } else if (indexPath.row == 1) {
+            AccountColorViewController * color = [AccountColorViewController new];
+            color.delegate = self;
+            WEPopoverController * popover = [[WEPopoverController alloc] initWithContentViewController:color];
+            [popover presentPopoverFromRect:cell.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+            self.popover = popover;
+        }
     }
     
     else if (indexPath.section == 2) {
@@ -224,6 +248,33 @@
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+-(void)didSelectColor:(UIColor *)color {
+    [self.popover dismissPopoverAnimated:YES];
+    User * user = UserService.shared.currentUser;
+    user.color = color;
+    [UserService.shared saveCurrentUser];
+    [self.tableView reloadData];
+}
+
+
+#pragma mark - textField Delegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    
+}
+
+// YO YO
+- (void)textFieldDidEndEditing:(UITextField *)textField {    
+    if (textField.text.length && ![textField.text isEqualToString:UserService.shared.currentUser.name]) {
+        UserService.shared.currentUser.name = textField.text;
+        [UserService.shared saveCurrentUser];
+    }
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 @end

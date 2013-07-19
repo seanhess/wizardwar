@@ -14,6 +14,8 @@
 
 + (UserFriendService *)shared;
 
+-(BOOL)hasConnectedFacebook:(User*)user;
+
 -(void)user:(User*)user addFriend:(User*)friend;
 -(void)user:(User*)user addChallenge:(Challenge*)challenge;
 -(void)authenticateFacebook:(void(^)(BOOL))cb;

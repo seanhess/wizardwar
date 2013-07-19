@@ -24,6 +24,7 @@
 @dynamic activeMatchId;
 @dynamic colorRGB;
 @dynamic isMain;
+@dynamic facebookId;
 
 @synthesize isClose;
 

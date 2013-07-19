@@ -11,8 +11,12 @@
 
 @interface ProfileCell : UITableViewCell
 
-- (id)initWithReuseIdentifier:(NSString*)cellIdentifier;
--(void)setUserName:(User*)user;
--(void)setUserColor:(User*)user;
+@property (nonatomic, weak) UIView * colorView;
+@property (nonatomic, weak) UITextField * inputField;
+
+-(id)initWithReuseIdentifier:(NSString*)cellIdentifier;
+
+-(void)setFieldText:(NSString*)text;
+-(void)setColor:(UIColor*)color;
 
 @end

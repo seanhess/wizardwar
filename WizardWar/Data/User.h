@@ -25,6 +25,7 @@
 @property (nonatomic) NSTimeInterval updated;
 @property (nonatomic) int32_t colorRGB; // hex rgb value
 @property (nonatomic) BOOL isMain;
+@property (nonatomic) int64_t facebookId;
 
 @property (nonatomic, retain) Challenge *challenge;
 @property (nonatomic, retain) NSString *activeMatchId;

@@ -45,6 +45,10 @@
         [self user:user addFriend:challenge.opponent];
 }
 
+-(BOOL)hasConnectedFacebook:(User*)user {
+    return (user.facebookId > 0);
+}
+
 +(BOOL)isAuthenticated {
     BOOL isOpen = [FBSession.activeSession isOpen];
     NSString *accessToken = [[FBSession.activeSession accessTokenData] accessToken];

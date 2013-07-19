@@ -10,8 +10,6 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface ProfileCell ()
-@property (nonatomic, weak) UIView * colorView;
-@property (nonatomic, weak) UITextField * inputField;
 
 @end
 
@@ -48,7 +46,6 @@
         NSLog(@"inputfield 000 %@", NSStringFromCGRect(self.inputField.frame));
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        
 //        self.accessoryType = UITableViewCellAccessoryNone;
 
     }
@@ -70,27 +67,18 @@
     // Configure the view for the selected state
 }
 
--(void)setUserName:(User*)user {
-    self.inputField.placeholder = user.name;
-    self.inputField.text = user.name;
-    self.textLabel.text = @"Name";
+-(void)setFieldText:(NSString*)text {
+    self.inputField.placeholder = text;
+    self.inputField.text = text;
     self.colorView.hidden = YES;
     self.inputField.hidden = NO;
-    NSLog(@"inputfield 111 %@", NSStringFromCGRect(self.inputField.frame));
-    
-//    self.accessoryView = self.inputField;
-//    self.detailTextLabel.text = user.name;
-//    self.colorView.hidden = YES;
-//    self.inputField.hidden = NO;
 }
 
--(void)setUserColor:(User*)user {
-    self.textLabel.text = @"Color";
-    self.detailTextLabel.text = @"";
-    self.colorView.backgroundColor = user.color;
+-(void)setColor:(UIColor*)color {
+    self.colorView.backgroundColor = color;
     self.colorView.hidden = NO;
     self.inputField.hidden = YES;
-//    self.accessoryView = self.colorView;
 }
+
 
 @end
