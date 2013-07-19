@@ -166,13 +166,7 @@
 		785FBECB177261BD0021AEE5 /* MatchmakingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEB3177261BD0021AEE5 /* MatchmakingViewController.m */; };
 		785FBECC177261BD0021AEE5 /* MatchmakingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEB4177261BD0021AEE5 /* MatchmakingViewController.xib */; };
 		785FBECD177261BD0021AEE5 /* MenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEB6177261BD0021AEE5 /* MenuButton.m */; };
-		785FBECE177261BD0021AEE5 /* PartiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEB8177261BD0021AEE5 /* PartiesViewController.m */; };
-		785FBECF177261BD0021AEE5 /* PartiesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEB9177261BD0021AEE5 /* PartiesViewController.xib */; };
 		785FBED0177261BD0021AEE5 /* Party.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEBB177261BD0021AEE5 /* Party.m */; };
-		785FBED1177261BD0021AEE5 /* PartyInviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEBD177261BD0021AEE5 /* PartyInviteViewController.m */; };
-		785FBED2177261BD0021AEE5 /* PartyInviteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEBE177261BD0021AEE5 /* PartyInviteViewController.xib */; };
-		785FBED3177261BD0021AEE5 /* PartyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEC0177261BD0021AEE5 /* PartyViewController.m */; };
-		785FBED4177261BD0021AEE5 /* PartyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEC1177261BD0021AEE5 /* PartyViewController.xib */; };
 		785FBEDC1772628C0021AEE5 /* LoveYaLikeASister.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 785FBED91772628C0021AEE5 /* LoveYaLikeASister.ttf */; };
 		785FBEDD1772628C0021AEE5 /* LoveYaLikeASisterSolid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEDA1772628C0021AEE5 /* LoveYaLikeASisterSolid.ttf */; };
 		785FBEE3177263850021AEE5 /* AppStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEE2177263850021AEE5 /* AppStyle.m */; };
@@ -259,6 +253,9 @@
 		78DAB81F1795AAE40093A701 /* FriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DAB81D1795AAE40093A701 /* FriendsViewController.xib */; };
 		78DAB8211795B0D00093A701 /* FirebaseSimpleLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DAB8201795B0D00093A701 /* FirebaseSimpleLogin.framework */; };
 		78DAB8241795C3A10093A701 /* FacebookUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB8231795C3A10093A701 /* FacebookUser.m */; };
+		78DAB8291795E2B00093A701 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB8271795E2B00093A701 /* SettingsViewController.m */; };
+		78DAB82A1795E2B00093A701 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DAB8281795E2B00093A701 /* SettingsViewController.xib */; };
+		78DAB82D1799BCFF0093A701 /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB82C1799BCFF0093A701 /* ProfileCell.m */; };
 		78E22CA41782400900146D49 /* YouWon.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CA31782400900146D49 /* YouWon.mp3 */; };
 		78E22CA61782400E00146D49 /* YouLose2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CA51782400E00146D49 /* YouLose2.mp3 */; };
 		78E22CAF1782427500146D49 /* bubble.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CA71782427400146D49 /* bubble.mp3 */; };
@@ -674,17 +671,8 @@
 		785FBEB4177261BD0021AEE5 /* MatchmakingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchmakingViewController.xib; sourceTree = "<group>"; };
 		785FBEB5177261BD0021AEE5 /* MenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuButton.h; sourceTree = "<group>"; };
 		785FBEB6177261BD0021AEE5 /* MenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuButton.m; sourceTree = "<group>"; };
-		785FBEB7177261BD0021AEE5 /* PartiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartiesViewController.h; sourceTree = "<group>"; };
-		785FBEB8177261BD0021AEE5 /* PartiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartiesViewController.m; sourceTree = "<group>"; };
-		785FBEB9177261BD0021AEE5 /* PartiesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PartiesViewController.xib; sourceTree = "<group>"; };
 		785FBEBA177261BD0021AEE5 /* Party.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Party.h; sourceTree = "<group>"; };
 		785FBEBB177261BD0021AEE5 /* Party.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Party.m; sourceTree = "<group>"; };
-		785FBEBC177261BD0021AEE5 /* PartyInviteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartyInviteViewController.h; sourceTree = "<group>"; };
-		785FBEBD177261BD0021AEE5 /* PartyInviteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartyInviteViewController.m; sourceTree = "<group>"; };
-		785FBEBE177261BD0021AEE5 /* PartyInviteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PartyInviteViewController.xib; sourceTree = "<group>"; };
-		785FBEBF177261BD0021AEE5 /* PartyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartyViewController.h; sourceTree = "<group>"; };
-		785FBEC0177261BD0021AEE5 /* PartyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartyViewController.m; sourceTree = "<group>"; };
-		785FBEC1177261BD0021AEE5 /* PartyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PartyViewController.xib; sourceTree = "<group>"; };
 		785FBED91772628C0021AEE5 /* LoveYaLikeASister.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LoveYaLikeASister.ttf; sourceTree = "<group>"; };
 		785FBEDA1772628C0021AEE5 /* LoveYaLikeASisterSolid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LoveYaLikeASisterSolid.ttf; sourceTree = "<group>"; };
 		785FBEE1177263840021AEE5 /* AppStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppStyle.h; sourceTree = "<group>"; };
@@ -815,6 +803,11 @@
 		78DAB8201795B0D00093A701 /* FirebaseSimpleLogin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseSimpleLogin.framework; sourceTree = "<group>"; };
 		78DAB8221795C3A10093A701 /* FacebookUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookUser.h; sourceTree = "<group>"; };
 		78DAB8231795C3A10093A701 /* FacebookUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookUser.m; sourceTree = "<group>"; };
+		78DAB8261795E2B00093A701 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		78DAB8271795E2B00093A701 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		78DAB8281795E2B00093A701 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		78DAB82B1799BCFF0093A701 /* ProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileCell.h; sourceTree = "<group>"; };
+		78DAB82C1799BCFF0093A701 /* ProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
 		78E22CA31782400900146D49 /* YouWon.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = YouWon.mp3; sourceTree = "<group>"; };
 		78E22CA51782400E00146D49 /* YouLose2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = YouLose2.mp3; sourceTree = "<group>"; };
 		78E22CA71782427400146D49 /* bubble.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bubble.mp3; sourceTree = "<group>"; };
@@ -1368,32 +1361,19 @@
 				785FBEA9177261BD0021AEE5 /* LandingViewController.h */,
 				785FBEAA177261BD0021AEE5 /* LandingViewController.m */,
 				785FBEAB177261BD0021AEE5 /* LandingViewController.xib */,
-				784D3BED1777AFFD009945F8 /* AccountViewController.h */,
-				784D3BEE1777AFFD009945F8 /* AccountViewController.m */,
-				784D3BEF1777AFFD009945F8 /* AccountViewController.xib */,
-				78AF756D1792ECB9008499DB /* AccountColorViewController.h */,
-				78AF756E1792ECB9008499DB /* AccountColorViewController.m */,
-				785FBEBC177261BD0021AEE5 /* PartyInviteViewController.h */,
-				785FBEBD177261BD0021AEE5 /* PartyInviteViewController.m */,
-				785FBEBE177261BD0021AEE5 /* PartyInviteViewController.xib */,
-				785FBEBF177261BD0021AEE5 /* PartyViewController.h */,
-				785FBEC0177261BD0021AEE5 /* PartyViewController.m */,
-				785FBEC1177261BD0021AEE5 /* PartyViewController.xib */,
-				785FBEB7177261BD0021AEE5 /* PartiesViewController.h */,
-				785FBEB8177261BD0021AEE5 /* PartiesViewController.m */,
-				785FBEB9177261BD0021AEE5 /* PartiesViewController.xib */,
 				785FBEB2177261BD0021AEE5 /* MatchmakingViewController.h */,
 				785FBEB3177261BD0021AEE5 /* MatchmakingViewController.m */,
 				785FBEB4177261BD0021AEE5 /* MatchmakingViewController.xib */,
-				78DAB81B1795AAE40093A701 /* FriendsViewController.h */,
-				78DAB81C1795AAE40093A701 /* FriendsViewController.m */,
-				78DAB81D1795AAE40093A701 /* FriendsViewController.xib */,
 				78C5CDE3178B74D600CDCC76 /* UserCell.h */,
 				78C5CDE4178B74D700CDCC76 /* UserCell.m */,
 				78C5CDE6178B74F900CDCC76 /* UserCell.xib */,
 				78C9862C178DFFF000B545F9 /* ChallengeCell.h */,
 				78C9862D178DFFF000B545F9 /* ChallengeCell.m */,
 				78C9862A178DFFE300B545F9 /* ChallengeCell.xib */,
+				78DAB8251795E24F0093A701 /* Settings */,
+				78DAB81B1795AAE40093A701 /* FriendsViewController.h */,
+				78DAB81C1795AAE40093A701 /* FriendsViewController.m */,
+				78DAB81D1795AAE40093A701 /* FriendsViewController.xib */,
 				785FBEB5177261BD0021AEE5 /* MenuButton.h */,
 				785FBEB6177261BD0021AEE5 /* MenuButton.m */,
 				785FBED6177261D00021AEE5 /* Service */,
@@ -1541,6 +1521,23 @@
 				78DAB8171795A2BF0093A701 /* TestFlight.h */,
 			);
 			path = TestFlightSDK1.2.6;
+			sourceTree = "<group>";
+		};
+		78DAB8251795E24F0093A701 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				78DAB8261795E2B00093A701 /* SettingsViewController.h */,
+				78DAB8271795E2B00093A701 /* SettingsViewController.m */,
+				78DAB8281795E2B00093A701 /* SettingsViewController.xib */,
+				784D3BED1777AFFD009945F8 /* AccountViewController.h */,
+				784D3BEE1777AFFD009945F8 /* AccountViewController.m */,
+				784D3BEF1777AFFD009945F8 /* AccountViewController.xib */,
+				78AF756D1792ECB9008499DB /* AccountColorViewController.h */,
+				78AF756E1792ECB9008499DB /* AccountColorViewController.m */,
+				78DAB82B1799BCFF0093A701 /* ProfileCell.h */,
+				78DAB82C1799BCFF0093A701 /* ProfileCell.m */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		78E22CB71782540B00146D49 /* spells */ = {
@@ -2112,9 +2109,6 @@
 				785FBEA317725A780021AEE5 /* pillow.png in Resources */,
 				785FBEC7177261BD0021AEE5 /* LandingViewController.xib in Resources */,
 				785FBECC177261BD0021AEE5 /* MatchmakingViewController.xib in Resources */,
-				785FBECF177261BD0021AEE5 /* PartiesViewController.xib in Resources */,
-				785FBED2177261BD0021AEE5 /* PartyInviteViewController.xib in Resources */,
-				785FBED4177261BD0021AEE5 /* PartyViewController.xib in Resources */,
 				785FBEDC1772628C0021AEE5 /* LoveYaLikeASister.ttf in Resources */,
 				785FBEDD1772628C0021AEE5 /* LoveYaLikeASisterSolid.ttf in Resources */,
 				7826027D1773D8F700059981 /* firewall-animation.plist in Resources */,
@@ -2165,6 +2159,7 @@
 				78AF75681792D720008499DB /* wizard1-set1-clothes-animations.plist in Resources */,
 				78AF75691792D720008499DB /* wizard1-set2-clothes-animations.plist in Resources */,
 				78DAB81F1795AAE40093A701 /* FriendsViewController.xib in Resources */,
+				78DAB82A1795E2B00093A701 /* SettingsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2294,10 +2289,7 @@
 				785FBECA177261BD0021AEE5 /* MainNavViewController.m in Sources */,
 				785FBECB177261BD0021AEE5 /* MatchmakingViewController.m in Sources */,
 				785FBECD177261BD0021AEE5 /* MenuButton.m in Sources */,
-				785FBECE177261BD0021AEE5 /* PartiesViewController.m in Sources */,
 				785FBED0177261BD0021AEE5 /* Party.m in Sources */,
-				785FBED1177261BD0021AEE5 /* PartyInviteViewController.m in Sources */,
-				785FBED3177261BD0021AEE5 /* PartyViewController.m in Sources */,
 				785FBEE3177263850021AEE5 /* AppStyle.m in Sources */,
 				784D3BDE1774F753009945F8 /* LobbyService.m in Sources */,
 				784D3BE1177501E9009945F8 /* UserService.m in Sources */,
@@ -2412,6 +2404,8 @@
 				78DAB807179597A50093A701 /* AnalyticsService.m in Sources */,
 				78DAB81E1795AAE40093A701 /* FriendsViewController.m in Sources */,
 				78DAB8241795C3A10093A701 /* FacebookUser.m in Sources */,
+				78DAB8291795E2B00093A701 /* SettingsViewController.m in Sources */,
+				78DAB82D1799BCFF0093A701 /* ProfileCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

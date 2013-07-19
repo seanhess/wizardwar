@@ -9,7 +9,6 @@
 #import "LandingViewController.h"
 #import "Wizard.h"
 #import "MatchViewController.h"
-#import "PartiesViewController.h"
 #import "MatchmakingViewController.h"
 #import "UserService.h"
 #import "LobbyService.h"
@@ -17,8 +16,9 @@
 #import "LocationService.h"
 #import "ChallengeService.h"
 #import "LobbyService.h"
+#import "SettingsViewController.h"
 
-@interface LandingViewController () <AccountFormDelegate>
+@interface LandingViewController ()
 @end
 
 @implementation LandingViewController
@@ -79,13 +79,13 @@
 }
 
 - (IBAction)didTapSettings:(id)sender {
-    AccountViewController * accounts = [AccountViewController new];
-    accounts.delegate = self;
-    [self.navigationController presentViewController:accounts animated:YES completion:nil];
+    SettingsViewController * settings = [SettingsViewController new];
+//    accounts.delegate = self;
+    [self.navigationController pushViewController:settings animated:YES];
 }
 
-- (void)didSubmitAccountForm:(NSString *)name {
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-}
+//- (void)didSubmitAccountForm:(NSString *)name {
+//    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+//}
 
 @end

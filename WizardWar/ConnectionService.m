@@ -11,6 +11,7 @@
 
 @interface ConnectionService ()
 @property (strong, nonatomic) Firebase * connectionNode;
+@property (strong, nonatomic) void(^deepLinkSubscriber)(NSURL*);
 @end
 
 // observe whether we disconnect on our own or not
@@ -42,6 +43,22 @@
 -(void)setIsUserActive:(BOOL)isUserActive {
     _isUserActive = isUserActive;
     NSLog(@"Connection.isUserActive: %i", self.isUserActive);
+}
+
+-(void)subscribeOnceDeepLinkURL:(void(^)(NSURL*url))cb {
+    self.deepLinkSubscriber = cb;
+}
+
+-(void)unsubscribeDeepLinkURL {
+    self.deepLinkSubscriber = nil;
+}
+
+-(void)setDeepLinkUrl:(NSURL *)deepLinkUrl {
+    _deepLinkUrl = deepLinkUrl;
+    if (self.deepLinkSubscriber) {
+        self.deepLinkSubscriber(deepLinkUrl);
+        self.deepLinkSubscriber = nil;
+    }
 }
 
 @end

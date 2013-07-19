@@ -13,8 +13,11 @@
 @interface ConnectionService : NSObject
 @property (nonatomic) BOOL isConnected;
 @property (nonatomic) BOOL isUserActive;
+@property (nonatomic, strong) NSURL * deepLinkUrl;
 
 +(ConnectionService *)shared;
 -(void)monitorDomain:(NSURL*)domain;
+-(void)subscribeOnceDeepLinkURL:(void(^)(NSURL*url))cb;
+-(void)unsubscribeDeepLinkURL;
 
 @end

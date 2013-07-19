@@ -140,6 +140,7 @@
 -(void) applicationDidBecomeActive:(UIApplication *)application
 {
     NSLog(@"applicationDidBecomeActive");
+    [ConnectionService.shared setIsUserActive:YES];
     //    NSLog(@"applicationDidBEcom");
     //	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
     //	if( [navController_ visibleViewController] == director_ )
@@ -148,7 +149,8 @@
 
 -(void) applicationDidEnterBackground:(UIApplication*)application
 {
-     NSLog(@"applicationDidEnterBackground");   
+     NSLog(@"applicationDidEnterBackground");
+    [ConnectionService.shared setIsUserActive:NO];
     //	if( [navController_ visibleViewController] == director_ )
     //		[director_ stopAnimation];
 }
@@ -178,6 +180,7 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+//    [ConnectionService.shared setDeepLinkUrl:url];
     return [PFFacebookUtils handleOpenURL:url];
 }
 
