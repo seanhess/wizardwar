@@ -13,6 +13,7 @@
 #import "ConnectionService.h"
 #import <ReactiveCocoa.h>
 #import <Parse/Parse.h>
+#import "UserService.h"
 
 @implementation UserFriendService
 
@@ -29,6 +30,12 @@
     self = [super init];
     if (self) {
         [PFFacebookUtils initializeFacebook];
+        [RACAble(UserService.shared, lastUpdatedUser) subscribeNext:^(User*user) {
+            if (user.facebookId) {
+                FacebookUser * fbuser = [self facebookUserWithId:user.facebookId];
+                user.facebookUser = fbuser;
+            }
+        }];
     }
     return self;
 }
@@ -40,6 +47,12 @@
         self.facebookStatus = FBStatusNotConnected;
     }
 }
+
+
+-(FacebookUser*)facebookUserWithId:(NSString *)facebookId {
+    return [ObjectStore.shared requestLastObject:[self requestFacebookUserWithId:facebookId]];
+}
+
 
 -(void)user:(User *)user addFriend:(User *)friend {
     friend.friendPoints++;
@@ -123,34 +136,75 @@
         
         for (NSDictionary<FBGraphUser>* friend in friends) {
             NSString * facebookId = friend.id;
-            FacebookUser * user = [ObjectStore.shared requestLastObject:[self requestFacebookUserWithId:facebookId]];
-            if (!user) {
-                user = [ObjectStore.shared insertNewObjectForEntityForName:@"FacebookUser"];
+            FacebookUser * fbuser = [self facebookUserWithId:facebookId];
+            if (!fbuser) {
+                fbuser = [ObjectStore.shared insertNewObjectForEntityForName:@"FacebookUser"];
             }
-            user.facebookId = facebookId;
-            user.name = friend.name;
-            user.firstName = friend.first_name;
-            user.lastName = friend.last_name;
-            user.username = friend.username;
+            fbuser.facebookId = facebookId;
+            fbuser.name = friend.name;
+            fbuser.firstName = friend.first_name;
+            fbuser.lastName = friend.last_name;
+            fbuser.username = friend.username;
+            User * user = [UserService.shared userWithPredicate:[self predicateIsUserFacebookId:facebookId]];
+            NSLog(@"FacebookUser name=%@ user=%@", fbuser.name, user.name);
+            if (user) {
+                user.facebookUser = fbuser;
+            }
         }
         cb();
     }];
-
     // Don't worry about deleting ones that no longer exist
 }
 
--(NSFetchRequest*)requestFacebookFriends {
+
+#pragma mark - Core Data stuff
+
+-(NSPredicate*)predicateIsFrenemy:(User *)user {
+    return [NSPredicate predicateWithFormat:@"friendPoints > 0"];
+}
+
+-(NSPredicate*)predicateIsFacebookFriend:(User *)user {
+    return [NSPredicate predicateWithFormat:@"facebookUser != nil"];
+}
+
+-(NSPredicate*)predicateIsUserFacebookId:(NSString *)facebookId {
+    return [NSPredicate predicateWithFormat:@"facebookId = %@", facebookId];
+}
+
+-(NSPredicate*)predicateIsFBFriendOrFrenemy:(User*)user {
+    return [NSCompoundPredicate orPredicateWithSubpredicates:@[[self predicateIsFacebookFriend:user], [self predicateIsFrenemy:user]]];
+}
+
+-(NSFetchRequest*)requestAllFacebookUsers {
     NSFetchRequest * request = [NSFetchRequest fetchRequestWithEntityName:@"FacebookUser"];
     NSSortDescriptor * firstNameSort = [NSSortDescriptor sortDescriptorWithKey:@"firstName" ascending:YES];
     NSSortDescriptor * lastNameSort = [NSSortDescriptor sortDescriptorWithKey:@"lastName" ascending:YES];
     request.sortDescriptors = @[lastNameSort, firstNameSort];
     return request;
 }
+
+-(NSFetchRequest*)requestFacebookUserFriends:(User *)user {
+    return  [self requestAllFacebookUsers];
+}
         
 -(NSFetchRequest*)requestFacebookUserWithId:(NSString*)facebookId {
-    NSFetchRequest * request = [self requestFacebookFriends];
+    NSFetchRequest * request = [self requestAllFacebookUsers];
     request.predicate = [NSPredicate predicateWithFormat:@"facebookId = %@", facebookId];
     return request;
 }
+
+// Frenemies, and facebook friends, all in the same list
+// online first, then by whether they are a facebook friend or not
+// finally, by games played
+- (NSFetchRequest*)requestFriends:(User *)user {
+    NSFetchRequest * request = [UserService.shared requestAllUsersExcept:user];
+    request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[[self predicateIsFBFriendOrFrenemy:user], request.predicate]];
+    NSSortDescriptor * sortFriendPoints = [NSSortDescriptor sortDescriptorWithKey:@"friendPoints" ascending:NO];
+    request.sortDescriptors = @[[UserService.shared sortIsOnline], sortFriendPoints];
+    
+    return request;
+}
+
+
 
 @end

@@ -25,12 +25,13 @@
 @dynamic colorRGB;
 @dynamic isMain;
 @dynamic facebookId;
+@dynamic facebookUser;
 
 @synthesize isClose;
 @synthesize isGuestAccount;
 
 -(NSDictionary*)toObject {
-    return [self dictionaryWithValuesForKeys:@[@"name", @"userId", @"deviceToken", @"colorRGB"]];
+    return [self dictionaryWithValuesForKeys:@[@"name", @"userId", @"deviceToken", @"colorRGB", @"facebookId"]];
 };
 
 -(NSDictionary*)toLobbyObject {
@@ -51,8 +52,12 @@
     return [[CLLocation alloc] initWithLatitude:self.locationLatitude longitude:self.locationLongitude];
 }
 
-- (BOOL)isFriend {
+- (BOOL)isFrenemy {
     return self.friendPoints > 0;
+}
+
+-(BOOL)isFacebookFriend {
+    return (self.facebookUser != nil);
 }
 
 - (UIColor*)color {

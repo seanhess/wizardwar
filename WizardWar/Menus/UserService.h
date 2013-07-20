@@ -15,6 +15,7 @@
 
 // currentUser ALWAYS exists with at least the userId
 @property (nonatomic, strong) User * currentUser;
+@property (nonatomic, strong) User * lastUpdatedUser;
 @property (nonatomic, readonly) Wizard * currentWizard;
 
 @property (nonatomic) BOOL pushAccepted;
@@ -29,14 +30,16 @@
 
 - (NSString*)randomWizardName;
 
+- (User*)userWithPredicate:(NSPredicate*)predicate;
 - (User*)userWithId:(NSString*)userId;
 - (User*)userWithId:(NSString*)userId create:(BOOL)create;
 
+- (NSSortDescriptor*)sortIsOnline;
 - (NSPredicate*)predicateIsUser:(NSString*)userId;
-- (NSPredicate*)predicateIsFriend;
 - (NSFetchRequest*)requestAllUsers;
-- (NSFetchRequest*)requestAllUsersButMe;
-- (NSFetchRequest*)requestFriends;
-- (NSFetchRequest*)requestOtherOnline;
+- (NSFetchRequest*)requestAllUsersExcept:(User*)user;
+- (NSFetchRequest*)requestOtherOnline:(User*)user;
+
+
 
 @end

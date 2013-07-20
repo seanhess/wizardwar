@@ -44,7 +44,7 @@
     
     // Display cached friends
     NSError * error = nil;
-    NSFetchRequest * request = [UserFriendService.shared requestFacebookFriends];
+    NSFetchRequest * request = [UserFriendService.shared requestFacebookUserFriends:user];
     self.friends = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:ObjectStore.shared.context sectionNameKeyPath:@"lastName" cacheName:nil];
     self.friends.delegate = self;
     [self.friends performFetch:&error];

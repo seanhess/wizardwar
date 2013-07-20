@@ -16,6 +16,7 @@
 #import <Firebase/Firebase.h>
 #import "ConnectionService.h"
 #import <ReactiveCocoa.h>
+#import "UserFriendService.h"
 
 // Just implement global people for this yo
 @interface LobbyService ()
@@ -76,7 +77,7 @@
 // change all users to be offline so we can accurately sync with the server
 // ALTERNATIVE: put the field on user itself and have the user change it? naww...
 -(void)setAllOffline {
-    NSFetchRequest * request = [UserService.shared requestOtherOnline];
+    NSFetchRequest * request = [UserService.shared requestOtherOnline:UserService.shared.currentUser];
     NSArray * users = [ObjectStore.shared requestToArray:request];
     
     [users forEach:^(User * user) {
@@ -209,15 +210,17 @@
 // Local users can come even without a device token
 // If they have no device token
 - (NSFetchRequest*)requestCloseUsers {
-    NSFetchRequest * request = [UserService.shared requestOtherOnline];
-    NSPredicate * notFriend = [NSCompoundPredicate notPredicateWithSubpredicate:[UserService.shared predicateIsFriend]];
+    User * user = UserService.shared.currentUser;
+    NSFetchRequest * request = [UserService.shared requestOtherOnline:user];
+    NSPredicate * notFriend = [NSCompoundPredicate notPredicateWithSubpredicate:[UserFriendService.shared predicateIsFBFriendOrFrenemy:user]];
     NSPredicate * isClose = [NSPredicate predicateWithFormat:@"distance >= 0 AND distance < %f", MAX_SAME_LOCATION_DISTANCE];
     request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[isClose, notFriend, request.predicate]];
     return request;
 }
 
 - (NSFetchRequest*)requestUsersWithLocations {
-    NSFetchRequest * request = [UserService.shared requestOtherOnline];
+    User * user = UserService.shared.currentUser;
+    NSFetchRequest * request = [UserService.shared requestOtherOnline:user];
     NSPredicate * hasLocation = [NSPredicate predicateWithFormat:@"locationLatitude > 0"];
     request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[hasLocation, request.predicate]];
     return request;    

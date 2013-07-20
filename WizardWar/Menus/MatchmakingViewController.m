@@ -36,6 +36,7 @@
 #import "FriendsViewController.h"
 #import <BButton.h>
 #import "SettingsViewController.h"
+#import <NSString+FontAwesome.h>
 
 @interface MatchmakingViewController () <NSFetchedResultsControllerDelegate>
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
@@ -71,11 +72,11 @@
     [self.inviteFriendsButton addAwesomeIcon:FAIconFacebookSign beforeTitle:YES];
     [self.inviteFriendsButton setType:BButtonTypeFacebook];
 //    [self.inviteFriendsButton.titleLabel.font = [UIFont fontWithName:@"FontAwesome" size:26];
+
+    UIBarButtonItem *accountButton = [[UIBarButtonItem alloc] initWithTitle:[NSString stringFromAwesomeIcon:FAIconUser] style:UIBarButtonItemStylePlain target:self action:@selector(didTapAccount)];
     
-    UIImage * userIcon = [UIImage imageNamed:@"111-user.png"];
-    UIBarButtonItem *accountButton = [[UIBarButtonItem alloc] initWithImage:userIcon style:UIBarButtonItemStylePlain target:self action:@selector(didTapAccount)];
+    [accountButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"FontAwesome" size:20.0], UITextAttributeFont, nil] forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem = accountButton;
-    
     
     // Custom Table Cells!
     [self.tableView registerNib:[UINib nibWithNibName:@"UserCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"UserCell"];
@@ -121,13 +122,14 @@
 - (void)connect {
     NSError *error = nil;
     
+    User * user = [UserService.shared currentUser];
     NSLog(@"MatchmakingViewController: connect");
     
     self.challengeResults = [ObjectStore.shared fetchedResultsForRequest:[ChallengeService.shared requestChallengesForUser:self.currentUser]];
     self.challengeResults.delegate = self;
     [self.challengeResults performFetch:&error];
     
-    self.friendResults = [ObjectStore.shared fetchedResultsForRequest:[UserService.shared requestFriends]];
+    self.friendResults = [ObjectStore.shared fetchedResultsForRequest:[UserFriendService.shared requestFriends:user]];
     self.friendResults.delegate = self;
     [self.friendResults performFetch:&error];
     
@@ -136,7 +138,7 @@
     [self.localResults performFetch:&error];
     
     // DEBUG ONLY: show all users. Uncomment and change # of sections to 4
-    self.allResults = [ObjectStore.shared fetchedResultsForRequest:[UserService.shared requestAllUsersButMe]];
+    self.allResults = [ObjectStore.shared fetchedResultsForRequest:[UserService.shared requestAllUsersExcept:user]];
     self.allResults.delegate = self;
     [self.allResults performFetch:&error];
     

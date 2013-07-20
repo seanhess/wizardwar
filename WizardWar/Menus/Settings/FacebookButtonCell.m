@@ -21,12 +21,12 @@
 -(id)initWithReuseIdentifier:(NSString*)reuseIdentifier {
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     if (self) {
-        BButton * button = [[BButton alloc] initWithFrame:self.contentView.bounds type:BButtonTypeFacebook];
+        
+        BButton * button = [[BButton alloc] initWithFrame:self.contentView.bounds type:BButtonTypeFacebook icon:FAIconEyeOpen fontSize:18.0];
         button.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         [button addTarget:self action:@selector(didTapFacebook) forControlEvents:UIControlEventTouchUpInside];
         button.userInteractionEnabled = NO;
         
-        [button addAwesomeIcon:FAIconFacebookSign beforeTitle:YES];
         [self.contentView addSubview:button];
         self.button = button;
         
@@ -57,6 +57,7 @@
 -(void)setTitle:(NSString *)title {
     _title = title;
     [self.button setTitle:title forState:UIControlStateNormal];
+    [self.button addAwesomeIcon:FAIconFacebookSign beforeTitle:YES];
 }
 
 -(void)setWaiting:(BOOL)waiting {

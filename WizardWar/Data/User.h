@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 #import <CoreLocation/CoreLocation.h>
 #import "Objectable.h"
-@class Challenge;
+@class Challenge, FacebookUser;
 
 @interface User : NSManagedObject <Objectable>
 
@@ -29,13 +29,15 @@
 
 @property (nonatomic) BOOL isGuestAccount;
 
+@property (nonatomic, retain) FacebookUser *facebookUser;
 @property (nonatomic, retain) Challenge *challenge;
 @property (nonatomic, retain) NSString *activeMatchId;
 
 // Transient Properties and methods
 // some are relative to the current user
 @property (nonatomic, readonly) CLLocation * location;
-@property (nonatomic, readonly) BOOL isFriend;
+@property (nonatomic, readonly) BOOL isFrenemy;
+@property (nonatomic, readonly) BOOL isFacebookFriend;
 @property (nonatomic) BOOL isClose;
 @property (nonatomic, strong) UIColor * color;
 

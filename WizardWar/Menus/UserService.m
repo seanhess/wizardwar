@@ -59,7 +59,6 @@
     self.randomNames = @[@"Actrise",@"Adwen",@"Aeres",@"Aethwy",@"Aigneis",@"Ailios",@"Aine",@"Aiwendil",@"Akashik",@"Akthuri",@"Alasdair",@"Alatar",@"Alcwyn",@"Aled",@"Allanon",@"Alwena",@"Alwyn",@"Animagus",@"Aradia ",@"Arddun",@"Arfonia",@"Ariannell",@"Artro",@"Arwyn",@"Ashley",@"Asquith",@"Aulë",@"Aurddolen",@"Aylith",@"Baba Yaga ",@"Ballimore",@"Banwen",@"Barabel",@"Basilisk",@"Beathag",@"Bechan",@"Belgarath",@"Berwyn",@"Bethan",@"Betrys",@"Betsan",@"Bigby",@"Blodwen",@"Blodeuwedd",@"Bloodwynd",@"Bochanan",@"Boggart ",@"Braint",@"Branwen",@"Briallen",@"Brighde",@"Bronmai",@"Brychan",@"Brynach",@"Cackletta",@"Cadell",@"Cairistiona",@"Calum",@"Caoilfhionn",@"Carwen",@"Caswallon",@"Cathal",@"Caxton",@"Ceidio",@"Ceindeg",@"Ceinlys",@"Ceiriog",@"Ceit",@"Celynen",@"Cerian",@"Ceridwen",@"Chrestomanci ",@"Chun",@"Ciaran",@"Circe ",@"Cormac",@"Crispinophur",@"Crisdean",@"Crisiant",@"Curumo",@"Daibhidh",@"Dakin",@"Dalamar",@"Dervla",@"Dewi",@"Doileag",@"Doilidh",@"Donaidh",@"Dormammu",@"Drawmij",@"Dughall",@"Dulais",@"Dyfi",@"Dyfynnog",@"Dyfyr",@"Eachann",@"Eanraig",@"Edern",@"Eidin",@"Eifiona",@"Eira",@"Elenid",@"Elfryn",@"Elric",@"Endora",@"Eruiona",@"Esmeralda",@"Eurfron",@"Eulfwyn",@"Euthanatos",@"Evard",@"Fachtna",@"Fearchar",@"Ffagan",@"Ffiniam",@"Fflur",@"Fionnghal",@"Fistandantilus ",@"Fizban",@"Floraidh",@"Freyja",@"Galadriel",@"Gandalf",@"Gandolf",@"Garmon",@"Gearroid",@"Ged",@"Gilfaethwy",@"Glinda",@"Goewyn",@"Greum",@"Griffri",@"Gruntilda",@"Gwalia",@"Gwaun",@"Gwener",@"Gwenddydd",@"Gwenfrewi",@"Gwenllian",@"Gwenogfryn",@"Gwentor",@"Gwladys",@"Gytha",@"Hecate ",@"Hefeydd",@"Hermione",@"Hexuba",@"Hirael",@"Hiraethog",@"Hiral",@"Hirwen",@"Huwcyn",@"Ionor",@"Ionwen",@"Iorwen",@"Iseabail",@"Jadis",@"Jervis",@"Karavelia",@"Keredwel",@"Kirfenia",@"Lachlann",@"Leitis",@"Leomund",@"Leri",@"Lilith ",@"Llyr",@"Llywela",@"Loki",@"Lynfa",@"Lynwen",@"Mabli",@"Maedbh",@"Maelor",@"Magaidh",@"Magius",@"Mairead",@"Mairwen",@"Majella",@"Maldue",@"Malvina",@"Mandrake",@"Manwë",@"Maoilios",@"Mararad",@"Mared",@"Mata",@"Mazara",@"Meduwen",@"Medwen",@"Mefin",@"Meic",@"Meinir",@"Meinwen",@"Melf",@"Menw ",@"Merlin ",@"Merlyn",@"Milamber",@"Mondain",@"Mor",@"Morag",@"Mordenkainen",@"Mordo",@"Morgon",@"Morinohtar",@"Morwen",@"Murchadh",@"Myfanwy",@"Nantlais",@"Nefydd",@"Neifion",@"Nerys",@"Niall",@"Nidian",@"Ningauble",@"Nisien",@"Noirin",@"Nystul",@"Ogion",@"Ogun",@"Oighrig",@"Olórin",@"Onllwyn",@"Oromë ",@"Oschwy",@"Otiluke",@"Padraig",@"Palin Majere",@"Pallando",@"Par-Salian",@"Peigi ",@"Pennar",@"Peredur",@"Powys",@"Radagast",@"Rainillt",@"Raonaid",@"Rary",@"Ravenclaw",@"Rhiain",@"Rhialto",@"Rhianedd",@"Rhianwen",@"Rhianydd",@"Rhoslyn",@"Rincewind ",@"Roisin",@"Romestamo",@"Ruairidh",@"Sagwora",@"Saoirse",@"Sargon",@"Saruman",@"Searlait",@"Seasaidh",@"Seisyllt",@"Seonag",@"Serafina",@"Seren",@"Shazam",@"Sheelba",@"Siencyn",@"Sileas",@"Siusaidh",@"Siwan",@"Slytherin",@"Sorcha",@"Sparrowhawk",@"Squib",@"Stiubhart",@"Sulwen",@"Talfan",@"Tangwystl",@"Tasha",@"Tearlach",@"Tegeirian",@"Tenser",@"Thothamon",@"Torcuil",@"Tormod",@"Tsotha-lanti ",@"Uilleam",@"Varda",@"Wanda",@"Wetzel",@"Xanadu",@"Yara",@"Yavanna",@"Yaztromo",@"Zatanna",@"Zatara",@"Zeddicus",@"Zorander ",@"Zu'l"];
 }
 
-
 -(void)onAdded:(FDataSnapshot *)snapshot {
     NSString * userId = snapshot.name;
     User * user = [self userWithId:userId create:YES];
@@ -70,6 +69,8 @@
     if ([user.deviceToken isEqualToString:self.currentUser.deviceToken] && ![user.userId isEqualToString:self.currentUser.userId]) {
         [self mergeCurrentUserWith:user];
     }
+    
+    self.lastUpdatedUser = user;
 }
 
 -(void)onRemoved:(FDataSnapshot*)snapshot {
@@ -86,12 +87,18 @@
 }
 
 
+
+# pragma mark - Friends
+
+
+
+
 # pragma mark - DeviceToken
 
 - (void)saveDeviceToken:(NSString *)deviceToken {
     
     // this must be before you set the device token on yours
-    User * otherUserWithToken = [ObjectStore.shared requestLastObject:[self requestDeviceToken:deviceToken]];
+    User * otherUserWithToken = [ObjectStore.shared requestLastObject:[self requestDeviceToken:deviceToken user:self.currentUser]];
     if (otherUserWithToken)
         [self mergeCurrentUserWith:otherUserWithToken];
 
@@ -203,14 +210,21 @@
     return user;
 }
 
+- (User*)userWithPredicate:(NSPredicate*)predicate {
+    NSFetchRequest * request = [self requestAllUsers];
+    request.predicate = predicate;
+    User * user = [ObjectStore.shared requestLastObject:request];
+    return user;
+}
+
 # pragma mark - Core Data
+
+- (NSSortDescriptor*)sortIsOnline {
+    return [NSSortDescriptor sortDescriptorWithKey:@"isOnline" ascending:NO];
+}
 
 - (NSPredicate*)predicateIsUser:(NSString*)userId {
     return [NSPredicate predicateWithFormat:@"userId = %@", userId];
-}
-
--(NSPredicate*)predicateIsFriend {
-    return [NSPredicate predicateWithFormat:@"friendPoints > 0"];
 }
 
 - (NSFetchRequest*)requestAllUsers {
@@ -221,28 +235,15 @@
     return request;
 }
 
-- (NSFetchRequest*)requestAllUsersButMe {
+- (NSFetchRequest*)requestAllUsersExcept:(User *)user {
     NSFetchRequest * request = [self requestAllUsers];
-    NSPredicate * notMe = [NSCompoundPredicate notPredicateWithSubpredicate:[self predicateIsUser:self.currentUser.userId]];
-    request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[notMe, request.predicate]];
+    NSPredicate * notUser = [NSCompoundPredicate notPredicateWithSubpredicate:[self predicateIsUser:user.userId]];
+    request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[notUser, request.predicate]];
     return request;
 }
 
-- (NSFetchRequest*)requestFriends {
-    
-    NSFetchRequest * request = [self requestAllUsersButMe];
-//    NSPredicate * hasDeviceToken = [NSPredicate predicateWithFormat:@"deviceToken != nil"];    
-    request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[[self predicateIsFriend], request.predicate]];
-    
-    NSSortDescriptor * sortFriendPoints = [NSSortDescriptor sortDescriptorWithKey:@"friendPoints" ascending:NO];
-    NSSortDescriptor * sortIsOnline = [NSSortDescriptor sortDescriptorWithKey:@"isOnline" ascending:NO];
-    request.sortDescriptors = @[sortIsOnline, sortFriendPoints];
-    
-    return request;
-}
-
-- (NSFetchRequest*)requestOtherOnline {
-    NSFetchRequest * request = [self requestAllUsersButMe];
+- (NSFetchRequest*)requestOtherOnline:(User *)user {
+    NSFetchRequest * request = [self requestAllUsersExcept:user];
     NSPredicate * isOnline = [NSPredicate predicateWithFormat:@"isOnline = YES"];
     request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[isOnline, request.predicate]];
     return request;
@@ -254,8 +255,8 @@
     return request;
 }
 
-- (NSFetchRequest*)requestDeviceToken:(NSString*)deviceToken {
-    NSFetchRequest * request = [self requestAllUsersButMe];
+- (NSFetchRequest*)requestDeviceToken:(NSString*)deviceToken user:(User*)user {
+    NSFetchRequest * request = [self requestAllUsersExcept:user];
     NSPredicate * matchDeviceToken = [NSPredicate predicateWithFormat:@"deviceToken = %@", deviceToken];
     request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[matchDeviceToken, request.predicate]];
     return request;    

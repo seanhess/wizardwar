@@ -44,8 +44,6 @@
         [self.contentView addSubview:tf];
         self.inputField = tf;
 
-        NSLog(@"inputfield 000 %@", NSStringFromCGRect(self.inputField.frame));
-        
         self.selectionStyle = UITableViewCellSelectionStyleNone;
 //        self.accessoryType = UITableViewCellAccessoryNone;
 

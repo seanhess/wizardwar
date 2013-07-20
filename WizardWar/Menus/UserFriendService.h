@@ -27,11 +27,20 @@ typedef enum FBStatus {
 -(BOOL)hasConnectedFacebook:(User*)user;
 -(BOOL)isAuthenticatedFacebook;
 
+-(FacebookUser*)facebookUserWithId:(NSString*)facebookId;
+
 -(void)user:(User*)user addFriend:(User*)friend;
 -(void)user:(User*)user addChallenge:(Challenge*)challenge;
 -(void)user:(User*)user authenticateFacebook:(void(^)(BOOL, User*))cb;
 -(void)user:(User*)user disconnectFacebook:(void(^)(void))cb;
 -(void)user:(User*)user loadFacebookFriends:(void(^)(void))cb;
--(NSFetchRequest*)requestFacebookFriends;
+
+-(NSPredicate*)predicateIsFrenemy:(User*)user; // if you've played games together
+-(NSPredicate*)predicateIsFacebookFriend:(User*)user; // if you're facebook friends
+-(NSPredicate*)predicateIsFBFriendOrFrenemy:(User*)user;
+
+-(NSFetchRequest*)requestAllFacebookUsers;
+-(NSFetchRequest*)requestFacebookUserFriends:(User*)user;
+-(NSFetchRequest*)requestFriends:(User *)user;
 
 @end

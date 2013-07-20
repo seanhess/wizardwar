@@ -10,6 +10,7 @@
 #import "LocationService.h"
 #import "ChallengeService.h"
 #import "UIColor+Hex.h"
+#import "NSString+FontAwesome.h"
 
 @interface UserCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
@@ -20,6 +21,14 @@
 
 @implementation UserCell
 
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        
+    }
+    return self;
+}
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -27,6 +36,10 @@
         // Initialization code
     }
     return self;
+}
+
+- (void)awakeFromNib {
+    self.typeLabel.font = [UIFont fontWithName:@"FontAwesome" size:20.0];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -48,10 +61,12 @@
     
 //    self.avatarImageView.image = [UIImage imageNamed:@"user.jpg"];
 
-    if (user.isFriend)
-        self.typeLabel.text = @"FRENEMY";
+    if (user.isFacebookFriend)
+        self.typeLabel.text = [NSString stringFromAwesomeIcon:FAIconFacebookSign];
+    else if (user.isFrenemy)
+        self.typeLabel.text = [NSString stringFromAwesomeIcon:FAIconUser];
     else
-        self.typeLabel.text = @"LOCAL";
+        self.typeLabel.text = [NSString stringFromAwesomeIcon:FAIconGlobe];
     
     NSString * games = [NSString stringWithFormat:@"%i Games", user.friendPoints];
     NSString * distance = @"";
