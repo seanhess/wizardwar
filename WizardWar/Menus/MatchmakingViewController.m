@@ -251,21 +251,28 @@
 -(void)didUpdateJoinedLobby:(BOOL)joined {
     
     if (joined) {
-        [self.activityView stopAnimating];
-        [UIView animateWithDuration:0.2 animations:^{
-            self.loadingOverlayView.alpha = 0.0;
-        }];
+        [self hideLoading];
     }
 
     else {
         [ChallengeService.shared removeUserChallenge:self.currentUser];
         [ChallengeService.shared declineAllChallenges:self.currentUser];
-        
-        [self.activityView startAnimating];
-        [UIView animateWithDuration:0.2 animations:^{
-            self.loadingOverlayView.alpha = 1.0;
-        }];
+        [self showLoading];
     }
+}
+
+-(void)showLoading {
+    [self.activityView startAnimating];
+    [UIView animateWithDuration:0.2 animations:^{
+        self.loadingOverlayView.alpha = 1.0;
+    }];    
+}
+
+-(void)hideLoading {
+    [self.activityView stopAnimating];
+    [UIView animateWithDuration:0.2 animations:^{
+        self.loadingOverlayView.alpha = 0.0;
+    }];
 }
 
 #pragma mark - Login
@@ -505,10 +512,10 @@
 
 # pragma mark - Buttons n stuff
 - (IBAction)didTapInviteFriends:(id)sender {
-//    [self didUpdateJoinedLobby:NO];
     User * user = [UserService.shared currentUser];
+    [self showLoading];
     [UserFriendService.shared user:user authenticateFacebook:^(BOOL success, User * updated) {
-//        [self didUpdateJoinedLobby:YES];
+        [self hideLoading];
         if (updated) {
             [UserService.shared saveCurrentUser];
         }
