@@ -91,7 +91,7 @@
     NSArray *permissionsArray = @[@"user_relationships"];
     
     [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *parseFacebookUser, NSError *error) {
-        NSLog(@"UserFriendService.facebook error=%@ user=%@", error, user);
+        NSLog(@"UserFriendService.facebook error=%@ user=%@", error, parseFacebookUser);
         
         if (!user) {
             if (!error) {
@@ -110,9 +110,16 @@
             }
             
             [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-                NSString * facebookId = [result objectForKey:@"id"];
+                NSString * facebookId = result[@"id"];
                 user.facebookId = facebookId;
-                self.facebookStatus = FBStatusConnected;                
+                self.facebookStatus = FBStatusConnected;
+                
+                if (user.isGuestAccount) {
+                    NSString * firstName = result[@"first_name"];
+                    NSString * lastName = result[@"last_name"];
+                    user.name = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
+                }
+                
                 cb(YES, user);
             }];
         }

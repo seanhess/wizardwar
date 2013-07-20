@@ -11,12 +11,15 @@
 
 @interface ProfileCell : UITableViewCell
 
-@property (nonatomic, weak) UIView * colorView;
-@property (nonatomic, weak) UITextField * inputField;
+@property (nonatomic, strong) UIView * colorView;
+@property (nonatomic, strong) UITextField * inputField;
+@property (nonatomic, strong) UIImageView * avatarImageView;
+@property (nonatomic, readonly) CGSize avatarSize;
 
 -(id)initWithReuseIdentifier:(NSString*)cellIdentifier;
 
 -(void)setFieldText:(NSString*)text;
 -(void)setColor:(UIColor*)color;
+-(void)setAvatarURL:(NSURL*)url;
 
 @end

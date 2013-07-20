@@ -76,7 +76,7 @@
     if (section == 0)
         return 1;
     else if (section == 1)
-        return 2;
+        return 3;
     else if (section == 2 && self.showFeedback)
         return 1;
     else if (section == 3 && self.showBuildInfo)
@@ -171,15 +171,22 @@
         cell = [[ProfileCell alloc] initWithReuseIdentifier:CellIdentifier];
     }
     
+    User * user = [UserService.shared currentUser];
+    
     if (indexPath.row == 0) {
         cell.textLabel.text = @"Name";
         cell.inputField.delegate = self;
-        [cell setFieldText:UserService.shared.currentUser.name];
+        [cell setFieldText:user.name];
     }
     
     else if (indexPath.row == 1) {
         cell.textLabel.text = @"Color";
-        [cell setColor:UserService.shared.currentUser.color];
+        [cell setColor:user.color];
+    }
+    
+    else if (indexPath.row == 2) {
+        cell.textLabel.text = @"Avatar";
+        [cell setAvatarURL:[UserFriendService.shared user:user facebookAvatarURLWithSize:cell.avatarSize]];
     }
     
     return cell;
@@ -190,6 +197,11 @@
         return @"Connect to play with your friends and set your avatar. Will not post anything unless you explitly share something.";
     }
     return nil;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 1 && indexPath.row == 2) return 108;
+    return 44;
 }
 
 /*
@@ -250,6 +262,9 @@
             WEPopoverController * popover = [[WEPopoverController alloc] initWithContentViewController:color];
             [popover presentPopoverFromRect:cell.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
             self.popover = popover;
+        } else if (indexPath.row == 2) {
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Facebook Avatar" message:@"Your avatar is set by your facebook account." delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
+            [alert show];
         }
     }
     
@@ -283,7 +298,7 @@
             // load friends now in the background
             [UserFriendService.shared user:user loadFacebookFriends:nil];
         }
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:UITableViewRowAnimationAutomatic];
     }];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
 }

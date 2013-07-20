@@ -8,6 +8,7 @@
 
 #import "ProfileCell.h"
 #import <QuartzCore/QuartzCore.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface ProfileCell ()
 
@@ -24,7 +25,7 @@
         CGFloat PADDING = 4;
         CGRect inputFrame = CGRectMake(PADDING_LEFT, PADDING, size.width - PADDING_LEFT - PADDING, size.height - (2*PADDING+1));
 
-        // Initialization code
+        // Color Display
         UIView * colorView = [[UIView alloc] initWithFrame:inputFrame];
         colorView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         colorView.backgroundColor = [UIColor redColor];
@@ -32,6 +33,7 @@
         [self.contentView addSubview:colorView];
         self.colorView = colorView;
         
+        // Text Input
         UITextField * tf = [[UITextField alloc] initWithFrame:inputFrame];
         tf.textColor = [UIColor darkGrayColor];
         tf.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -43,10 +45,14 @@
         tf.returnKeyType = UIReturnKeyNext;
         [self.contentView addSubview:tf];
         self.inputField = tf;
+        
+        // Avatar Display
+        CGRect avatarFrame = CGRectMake(PADDING_LEFT, PADDING, self.avatarSize.width, self.avatarSize.height);
+        UIImageView * avatarImageView = [[UIImageView alloc] initWithFrame:avatarFrame];
+        self.avatarImageView = avatarImageView;
+        [self.contentView addSubview:self.avatarImageView];        
 
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-//        self.accessoryType = UITableViewCellAccessoryNone;
-
     }
     return self;
 }
@@ -66,10 +72,15 @@
     // Configure the view for the selected state
 }
 
+-(CGSize)avatarSize {
+    return CGSizeMake(100, 100);
+}
+
 -(void)setFieldText:(NSString*)text {
     self.inputField.placeholder = text;
     self.inputField.text = text;
     self.colorView.hidden = YES;
+    self.avatarImageView.hidden = YES;
     self.inputField.hidden = NO;
 }
 
@@ -77,6 +88,14 @@
     self.colorView.backgroundColor = color;
     self.colorView.hidden = NO;
     self.inputField.hidden = YES;
+    self.avatarImageView.hidden = YES;    
+}
+
+-(void)setAvatarURL:(NSURL*)url {
+    self.colorView.hidden = YES;
+    self.inputField.hidden = YES;
+    self.avatarImageView.hidden = NO;
+    [self.avatarImageView setImageWithURL:url];    
 }
 
 
