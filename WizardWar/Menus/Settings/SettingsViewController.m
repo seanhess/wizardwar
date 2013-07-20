@@ -17,6 +17,7 @@
 #import "AccountColorViewController.h"
 #import <WEPopoverController.h>
 #import "UserFriendService.h"
+#import "FacebookButtonCell.h"
 
 
 @interface SettingsViewController () <AccountColorDelegate, UITextFieldDelegate>
@@ -112,22 +113,24 @@
 - (UITableViewCell *)tableView:(UITableView*)tableView facebookCellForIndexPath:(NSIndexPath*)indexPath
 {
     static NSString *CellIdentifier = @"FacebookSettingsCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    FacebookButtonCell *cell = (FacebookButtonCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        
-        BButton * button = [[BButton alloc] initWithFrame:cell.contentView.bounds type:BButtonTypeFacebook];
-        button.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        
-        if ([UserFriendService.shared hasConnectedFacebook:UserService.shared.currentUser]) {
-            [button setTitle:@"Account Connected!" forState:UIControlStateNormal];
-        } else {
-            [button setTitle:@"Connect Account" forState:UIControlStateNormal];
-        }
-
-        [button addAwesomeIcon:FAIconFacebookSign beforeTitle:YES];        
-        [cell.contentView addSubview:button];
+        cell = [[FacebookButtonCell alloc] initWithReuseIdentifier:CellIdentifier];
     }
+    
+//    User * user = UserService.shared.currentUser;
+    BOOL waiting = (UserFriendService.shared.facebookStatus == FBStatusConnecting);
+    [cell setWaiting:waiting];
+    
+    if (waiting) {
+        [cell setTitle:@"Connecting..."];
+    } else if ([UserFriendService.shared isAuthenticatedFacebook]) {
+        [cell setTitle:@"Account Connected!"];
+    } else {
+        [cell setTitle:@"Connect Account"];
+    }
+    
+
     
     return cell;
 }
@@ -183,7 +186,7 @@
 }
 
 -(NSString*)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-    if (section == 0 && ![UserFriendService.shared hasConnectedFacebook:UserService.shared.currentUser]) {
+    if (section == 0 && ![UserFriendService.shared isAuthenticatedFacebook]) {
         return @"Connect to play with your friends and set your avatar. Will not post anything unless you explitly share something.";
     }
     return nil;
@@ -233,7 +236,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        
+        [self didTapFacebook];
     }
     
     else if (indexPath.section == 1) {
@@ -255,6 +258,34 @@
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+-(void)didTapFacebook {
+    if ([UserFriendService.shared isAuthenticatedFacebook]) {
+        User * user = [UserService.shared currentUser];
+        [UserFriendService.shared user:user disconnectFacebook:^{
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }];
+    }
+    else {
+        [self connectFacebook];
+    }
+}
+
+-(void)connectFacebook {
+    User * user = [UserService.shared currentUser];
+    [UserFriendService.shared user:user authenticateFacebook:^(BOOL success, User* updated) {
+        if (updated) {
+            [UserService.shared saveCurrentUser];
+        }
+        
+        if (success) {
+            // load friends now in the background
+            [UserFriendService.shared user:user loadFacebookFriends:nil];
+        }
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 -(void)didSelectColor:(UIColor *)color {

@@ -33,6 +33,14 @@
     return self;
 }
 
+-(void)checkFBStatus:(User *)user {
+    if ([self hasConnectedFacebook:user] && [self isAuthenticatedFacebook]) {
+        self.facebookStatus = FBStatusConnected;
+    } else {
+        self.facebookStatus = FBStatusNotConnected;
+    }
+}
+
 -(void)user:(User *)user addFriend:(User *)friend {
     friend.friendPoints++;
 }
@@ -46,25 +54,30 @@
 }
 
 -(BOOL)hasConnectedFacebook:(User*)user {
-    return (user.facebookId > 0);
+    return (user.facebookId != nil);
 }
 
-+(BOOL)isAuthenticated {
+-(BOOL)isAuthenticatedFacebook {
     BOOL isOpen = [FBSession.activeSession isOpen];
     NSString *accessToken = [[FBSession.activeSession accessTokenData] accessToken];
     return (isOpen && accessToken);
 }
 
--(void)authenticateFacebook:(void(^)(BOOL))cb {
+-(void)user:(User*)user authenticateFacebook:(void(^)(BOOL, User*))cb {
+    
+    // callback not required
+    if (!cb) cb = ^(BOOL success, User*updated) {};
 
-    if ([UserFriendService isAuthenticated]) {
-        cb(YES);
+    if ([self hasConnectedFacebook:user] && [self isAuthenticatedFacebook]) {
+        cb(YES, nil);
         return;
     }
     
+    self.facebookStatus = FBStatusConnecting;
+    
     NSArray *permissionsArray = @[@"user_relationships"];
     
-    [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
+    [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *parseFacebookUser, NSError *error) {
         NSLog(@"UserFriendService.facebook error=%@ user=%@", error, user);
         
         if (!user) {
@@ -73,51 +86,43 @@
             } else {
                 // error
             }
-            cb(NO);
-        } else if (user.isNew) {
-//            NSLog(@"User with facebook signed up and logged in!");
-            cb(YES);
+            self.facebookStatus = FBStatusNotConnected;
+            cb(NO, nil);
         } else {
-//            NSLog(@"User with facebook logged in!");
-            cb(YES);
+            // parseFacebookUser.isNew
+            if ([self hasConnectedFacebook:user]) {
+                self.facebookStatus = FBStatusConnected;
+                cb(YES, nil);
+                return;
+            }
+            
+            [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                NSString * facebookId = [result objectForKey:@"id"];
+                user.facebookId = facebookId;
+                self.facebookStatus = FBStatusConnected;                
+                cb(YES, user);
+            }];
         }
     }];
-    
-
-
-//    // no, a delegate would be more appropriate here, I think
-//    [ConnectionService.shared subscribeOnceDeepLinkURL:^(NSURL *url) {
-//        [ConnectionService.shared unsubscribeDeepLinkURL];
-//        BOOL success = [UserFriendService isAuthenticated];
-//        cb(success);
-//    }];
-//    
-//    // 
-//    [FBSession openActiveSessionWithReadPermissions:@[] allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
-//
-//        
-//        [ConnectionService.shared unsubscribeDeepLinkURL];
-//        BOOL success = [UserFriendService isAuthenticated];
-//        cb(success);
-//    }];
-    
-    
-    
-    
-//    [FBSession openActiveSessionWithPublishPermissions:@[] defaultAudience:FBSessionDefaultAudienceOnlyMe allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
-//        BOOL success = (session != nil);        
-//        NSLog(@"WAHOO FATTY %@ %i %@", session, status, error);
-//        cb(success);
-//    }];
 }
 
--(void)loadFacebookFriends {
+-(void)user:(User *)user disconnectFacebook:(void (^)(void))cb {
+    [[FBSession activeSession] closeAndClearTokenInformation];
+    [PFUser logOut];
+    self.facebookStatus = FBStatusNotConnected;
+    cb();
+    // keep the user facebook id so it doesn't disconnect their friends
+}
+
+-(void)user:(User*)user loadFacebookFriends:(void (^)(void))cb {
+    if (!cb) cb = ^{};
+    
     FBRequest* friendsRequest = [FBRequest requestForMyFriends];
     [friendsRequest startWithCompletionHandler: ^(FBRequestConnection *connection, NSDictionary* result, NSError *error) {
         NSArray* friends = [result objectForKey:@"data"];
         
         for (NSDictionary<FBGraphUser>* friend in friends) {
-            int64_t facebookId = friend.id.longLongValue;
+            NSString * facebookId = friend.id;
             FacebookUser * user = [ObjectStore.shared requestLastObject:[self requestFacebookUserWithId:facebookId]];
             if (!user) {
                 user = [ObjectStore.shared insertNewObjectForEntityForName:@"FacebookUser"];
@@ -128,9 +133,10 @@
             user.lastName = friend.last_name;
             user.username = friend.username;
         }
+        cb();
     }];
 
-    // Don't worry about deleting ones that no longer exist    
+    // Don't worry about deleting ones that no longer exist
 }
 
 -(NSFetchRequest*)requestFacebookFriends {
@@ -141,9 +147,9 @@
     return request;
 }
         
--(NSFetchRequest*)requestFacebookUserWithId:(int64_t)facebookId {
+-(NSFetchRequest*)requestFacebookUserWithId:(NSString*)facebookId {
     NSFetchRequest * request = [self requestFacebookFriends];
-    request.predicate = [NSPredicate predicateWithFormat:@"facebookId = %lld", facebookId];
+    request.predicate = [NSPredicate predicateWithFormat:@"facebookId = %@", facebookId];
     return request;
 }
 

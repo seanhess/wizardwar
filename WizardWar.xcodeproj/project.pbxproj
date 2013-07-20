@@ -256,6 +256,7 @@
 		78DAB82D1799BCFF0093A701 /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB82C1799BCFF0093A701 /* ProfileCell.m */; };
 		78DAB8351799D86B0093A701 /* 111-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DAB8331799D86B0093A701 /* 111-user.png */; };
 		78DAB8361799D86B0093A701 /* 111-user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DAB8341799D86B0093A701 /* 111-user@2x.png */; };
+		78DAB839179A0C680093A701 /* FacebookButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB838179A0C680093A701 /* FacebookButtonCell.m */; };
 		78E22CA41782400900146D49 /* YouWon.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CA31782400900146D49 /* YouWon.mp3 */; };
 		78E22CA61782400E00146D49 /* YouLose2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CA51782400E00146D49 /* YouLose2.mp3 */; };
 		78E22CAF1782427500146D49 /* bubble.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CA71782427400146D49 /* bubble.mp3 */; };
@@ -807,6 +808,8 @@
 		78DAB82C1799BCFF0093A701 /* ProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
 		78DAB8331799D86B0093A701 /* 111-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "111-user.png"; sourceTree = "<group>"; };
 		78DAB8341799D86B0093A701 /* 111-user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "111-user@2x.png"; sourceTree = "<group>"; };
+		78DAB837179A0C680093A701 /* FacebookButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookButtonCell.h; sourceTree = "<group>"; };
+		78DAB838179A0C680093A701 /* FacebookButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookButtonCell.m; sourceTree = "<group>"; };
 		78E22CA31782400900146D49 /* YouWon.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = YouWon.mp3; sourceTree = "<group>"; };
 		78E22CA51782400E00146D49 /* YouLose2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = YouLose2.mp3; sourceTree = "<group>"; };
 		78E22CA71782427400146D49 /* bubble.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bubble.mp3; sourceTree = "<group>"; };
@@ -1532,6 +1535,8 @@
 				78AF756E1792ECB9008499DB /* AccountColorViewController.m */,
 				78DAB82B1799BCFF0093A701 /* ProfileCell.h */,
 				78DAB82C1799BCFF0093A701 /* ProfileCell.m */,
+				78DAB837179A0C680093A701 /* FacebookButtonCell.h */,
+				78DAB838179A0C680093A701 /* FacebookButtonCell.m */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -2404,6 +2409,7 @@
 				78DAB8241795C3A10093A701 /* FacebookUser.m in Sources */,
 				78DAB8291795E2B00093A701 /* SettingsViewController.m in Sources */,
 				78DAB82D1799BCFF0093A701 /* ProfileCell.m in Sources */,
+				78DAB839179A0C680093A701 /* FacebookButtonCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

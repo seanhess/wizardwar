@@ -10,16 +10,28 @@
 #import "User.h"
 #import "Challenge.h"
 
+typedef enum FBStatus {
+    FBStatusNotConnected,
+    FBStatusConnecting,
+    FBStatusConnected
+} FBStatus;
+
 @interface UserFriendService : NSObject
+
+@property (nonatomic) FBStatus facebookStatus;
 
 + (UserFriendService *)shared;
 
+-(void)checkFBStatus:(User*)user;
+
 -(BOOL)hasConnectedFacebook:(User*)user;
+-(BOOL)isAuthenticatedFacebook;
 
 -(void)user:(User*)user addFriend:(User*)friend;
 -(void)user:(User*)user addChallenge:(Challenge*)challenge;
--(void)authenticateFacebook:(void(^)(BOOL))cb;
--(void)loadFacebookFriends;
+-(void)user:(User*)user authenticateFacebook:(void(^)(BOOL, User*))cb;
+-(void)user:(User*)user disconnectFacebook:(void(^)(void))cb;
+-(void)user:(User*)user loadFacebookFriends:(void(^)(void))cb;
 -(NSFetchRequest*)requestFacebookFriends;
 
 @end

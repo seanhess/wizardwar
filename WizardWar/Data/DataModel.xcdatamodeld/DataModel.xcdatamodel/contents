@@ -7,7 +7,7 @@
         <relationship name="opponent" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="challenges" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="FacebookUser" representedClassName="FacebookUser" syncable="YES">
-        <attribute name="facebookId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="facebookId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -18,7 +18,7 @@
         <attribute name="colorRGB" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="deviceToken" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="distance" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="facebookId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="facebookId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="friendPoints" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="isMain" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isOnline" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -32,7 +32,7 @@
     </entity>
     <elements>
         <element name="Challenge" positionX="160" positionY="192" width="128" height="105"/>
-        <element name="User" positionX="160" positionY="192" width="128" height="270"/>
         <element name="FacebookUser" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="User" positionX="160" positionY="192" width="128" height="270"/>
     </elements>
 </model>

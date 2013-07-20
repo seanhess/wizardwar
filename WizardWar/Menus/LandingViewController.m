@@ -16,6 +16,7 @@
 #import "ChallengeService.h"
 #import "LobbyService.h"
 #import "SettingsViewController.h"
+#import "UserFriendService.h"
 
 @interface LandingViewController ()
 @end
@@ -37,6 +38,7 @@
     // Do any additional setup after loading the view from its nib.
     
     [UserService.shared connect];
+    [UserFriendService.shared checkFBStatus:UserService.shared.currentUser];
     [LobbyService.shared connect];
     [LocationService.shared connect];
 }

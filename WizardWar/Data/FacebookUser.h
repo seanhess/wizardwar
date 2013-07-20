@@ -16,6 +16,6 @@
 @property (nonatomic, retain) NSString * lastName;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * username;
-@property (nonatomic) int64_t facebookId;
+@property (nonatomic, retain) NSString * facebookId;
 
 @end

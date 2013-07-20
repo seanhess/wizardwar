@@ -11,6 +11,7 @@
 #import <FirebaseSimpleLogin/FirebaseSimpleLogin.h>
 #import <FacebookSDK/FacebookSDK.h>
 #import "UserFriendService.h"
+#import "UserService.h"
 #import "ObjectStore.h"
 #import "FacebookUser.h"
 
@@ -38,7 +39,8 @@
     self.title = @"Facebook Friends";
     
     // Load them from the server
-    [UserFriendService.shared loadFacebookFriends];
+    User * user = [UserService.shared currentUser];
+    [UserFriendService.shared user:user loadFacebookFriends:nil];
     
     // Display cached friends
     NSError * error = nil;
