@@ -11,6 +11,12 @@
 #import "ChallengeService.h"
 #import "UIColor+Hex.h"
 #import "NSString+FontAwesome.h"
+#import "AppStyle.h"
+#import "FacebookUser.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+#import "UserFriendService.h"
+
+// https://graph.facebook.com/644505774/picture?width=640&height=640
 
 @interface UserCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
@@ -52,14 +58,30 @@
 - (void)setUser:(User *)user {
     _user = user;
     
-    self.nameLabel.text = user.name;
+    NSString * name = user.name;
+    if (user.facebookUser) {
+//        BOOL nameContainsFirstName = ([name.lowercaseString rangeOfString:user.facebookUser.firstName.lowercaseString].length > 0);
+//        BOOL nameContainsLastName = ([name.lowercaseString rangeOfString:user.facebookUser.lastName.lowercaseString].length > 0);
+//        
+//        if (!nameContainsFirstName || !nameContainsLastName) {
+//            NSString * firstName = (nameContainsFirstName) ? @"" : user.facebookUser.firstName;
+//            NSString * lastName = (nameContainsLastName) ? @"" : user.facebookUser.lastName;
+//        }
+        name = [NSString stringWithFormat:@"%@ (%@ %@)", name, user.facebookUser.firstName, user.facebookUser.lastName];
+    }
+    self.nameLabel.text = name;
     
     if (user.isOnline)
-        self.nameLabel.textColor = [UIColor colorFromRGB:0x81B23C];
+        self.nameLabel.textColor = [AppStyle greenOnlineColor];
     else
         self.nameLabel.textColor = [UIColor darkTextColor];
     
-//    self.avatarImageView.image = [UIImage imageNamed:@"user.jpg"];
+    NSURL * imageUrl = [UserFriendService.shared user:user facebookAvatarURLWithSize:self.avatarImageView.frame.size];
+    if (imageUrl) {
+        [self.avatarImageView setImageWithURL:imageUrl];
+    } else {
+        [self.avatarImageView setImage:[UIImage imageNamed:@"user.jpg"]];
+    }
 
     if (user.isFacebookFriend)
         self.typeLabel.text = [NSString stringFromAwesomeIcon:FAIconFacebookSign];

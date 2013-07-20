@@ -257,6 +257,8 @@
 		78DAB8351799D86B0093A701 /* 111-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DAB8331799D86B0093A701 /* 111-user.png */; };
 		78DAB8361799D86B0093A701 /* 111-user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DAB8341799D86B0093A701 /* 111-user@2x.png */; };
 		78DAB839179A0C680093A701 /* FacebookButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB838179A0C680093A701 /* FacebookButtonCell.m */; };
+		78DAB83B179B08530093A701 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DAB83A179B08530093A701 /* ImageIO.framework */; };
+		78DAB83D179B08BB0093A701 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DAB83C179B08BB0093A701 /* MapKit.framework */; };
 		78E22CA41782400900146D49 /* YouWon.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CA31782400900146D49 /* YouWon.mp3 */; };
 		78E22CA61782400E00146D49 /* YouLose2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CA51782400E00146D49 /* YouLose2.mp3 */; };
 		78E22CAF1782427500146D49 /* bubble.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CA71782427400146D49 /* bubble.mp3 */; };
@@ -810,6 +812,8 @@
 		78DAB8341799D86B0093A701 /* 111-user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "111-user@2x.png"; sourceTree = "<group>"; };
 		78DAB837179A0C680093A701 /* FacebookButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookButtonCell.h; sourceTree = "<group>"; };
 		78DAB838179A0C680093A701 /* FacebookButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookButtonCell.m; sourceTree = "<group>"; };
+		78DAB83A179B08530093A701 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		78DAB83C179B08BB0093A701 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		78E22CA31782400900146D49 /* YouWon.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = YouWon.mp3; sourceTree = "<group>"; };
 		78E22CA51782400E00146D49 /* YouLose2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = YouLose2.mp3; sourceTree = "<group>"; };
 		78E22CA71782427400146D49 /* bubble.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bubble.mp3; sourceTree = "<group>"; };
@@ -987,6 +991,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78DAB83D179B08BB0093A701 /* MapKit.framework in Frameworks */,
+				78DAB83B179B08530093A701 /* ImageIO.framework in Frameworks */,
 				78C5CD9F178AFDC400CDCC76 /* CoreData.framework in Frameworks */,
 				781372E1177E32D400486899 /* Social.framework in Frameworks */,
 				781372DF177E32CD00486899 /* libsqlite3.dylib in Frameworks */,
@@ -1665,6 +1671,7 @@
 		78F6B1DA1746AD8900AA070D = {
 			isa = PBXGroup;
 			children = (
+				78DAB83C179B08BB0093A701 /* MapKit.framework */,
 				7862463D1767C79F001904AC /* README.md */,
 				6F0367301747EB3C00971B61 /* Icon-57@2x.png */,
 				6F03672E1747EB3700971B61 /* Icon-57.png */,
@@ -1711,6 +1718,7 @@
 				78F6B1E81746AD8900AA070D /* Foundation.framework */,
 				78F6B1EA1746AD8900AA070D /* CoreGraphics.framework */,
 				97EFC7B8DBD643B88CEC6021 /* libPods.a */,
+				78DAB83A179B08530093A701 /* ImageIO.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

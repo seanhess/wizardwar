@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class User;
 
 @interface FacebookUser : NSManagedObject
 
@@ -17,5 +18,6 @@
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * username;
 @property (nonatomic, retain) NSString * facebookId;
+@property (nonatomic, retain) User *user;
 
 @end

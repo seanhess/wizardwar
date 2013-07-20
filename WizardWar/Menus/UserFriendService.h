@@ -35,6 +35,8 @@ typedef enum FBStatus {
 -(void)user:(User*)user disconnectFacebook:(void(^)(void))cb;
 -(void)user:(User*)user loadFacebookFriends:(void(^)(void))cb;
 
+-(NSURL*)user:(User*)user facebookAvatarURLWithSize:(CGSize)size;
+
 -(NSPredicate*)predicateIsFrenemy:(User*)user; // if you've played games together
 -(NSPredicate*)predicateIsFacebookFriend:(User*)user; // if you're facebook friends
 -(NSPredicate*)predicateIsFBFriendOrFrenemy:(User*)user;
@@ -42,5 +44,6 @@ typedef enum FBStatus {
 -(NSFetchRequest*)requestAllFacebookUsers;
 -(NSFetchRequest*)requestFacebookUserFriends:(User*)user;
 -(NSFetchRequest*)requestFriends:(User *)user;
+-(NSFetchRequest*)requestStrangers:(User*)user withLimit:(NSUInteger)limit;
 
 @end

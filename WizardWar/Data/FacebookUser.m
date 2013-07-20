@@ -16,5 +16,6 @@
 @dynamic name;
 @dynamic username;
 @dynamic facebookId;
+@dynamic user;
 
 @end

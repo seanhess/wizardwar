@@ -157,6 +157,12 @@
 }
 
 
+-(NSURL*)user:(User*)user facebookAvatarURLWithSize:(CGSize)size {
+    if (!user.facebookId) return nil;
+    NSString * url = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?width=%i&height=%i", user.facebookId, (int)size.width, (int)size.height];
+    return [NSURL URLWithString:url];
+}
+
 #pragma mark - Core Data stuff
 
 -(NSPredicate*)predicateIsFrenemy:(User *)user {
@@ -204,6 +210,19 @@
     
     return request;
 }
+
+
+- (NSFetchRequest*)requestStrangers:(User*)user withLimit:(NSUInteger)limit {
+    NSFetchRequest * request = [UserService.shared requestAllUsersExcept:user];
+    NSPredicate * notFriend = [NSCompoundPredicate notPredicateWithSubpredicate:[self predicateIsFBFriendOrFrenemy:user]];
+    NSSortDescriptor * sortUpdated = [NSSortDescriptor sortDescriptorWithKey:@"updated" ascending:NO];
+    request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[notFriend, request.predicate]];
+    request.fetchLimit = limit;
+    request.sortDescriptors = @[sortUpdated];
+    return request;
+}
+
+
 
 
 

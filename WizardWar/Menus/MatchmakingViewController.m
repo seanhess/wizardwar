@@ -138,7 +138,7 @@
     [self.localResults performFetch:&error];
     
     // DEBUG ONLY: show all users. Uncomment and change # of sections to 4
-    self.allResults = [ObjectStore.shared fetchedResultsForRequest:[UserService.shared requestAllUsersExcept:user]];
+    self.allResults = [ObjectStore.shared fetchedResultsForRequest:[UserFriendService.shared requestStrangers:user withLimit:5]];
     self.allResults.delegate = self;
     [self.allResults performFetch:&error];
     
@@ -348,8 +348,7 @@
     }
 }
 
--
-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     if (section == 0 && (!LocationService.shared.accepted || !UserService.shared.pushAccepted)) {
         
@@ -372,21 +371,35 @@
     }
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    if (section == 3) return 80;
+    return 0;
+}
+
+-(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    if (section == 3) {
+        UIView * blankView = [UIView new];
+        blankView.backgroundColor = [UIColor clearColor];
+        return blankView;
+    }
+    return nil;
+}
+
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 0) return @"Challenges";
-    else if (section == 1) return @"Local Users (Online)";
-    else if (section == 2) return @"Friends";
-    else if (section == 3) return @"All Users (Debug)";
+    else if (section == 1) return @"Near You";
+    else if (section == 2) return @"Frenemies";
+    else if (section == 3) return @"Strangers";
     return nil;
 }
 
 - (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section {
     if (section == 0 && (!LocationService.shared.accepted || !UserService.shared.pushAccepted))
         return self.warningsView.frame.size.height;
-    else if (section == 1) return 0;
-    else if (section == 2) return 0;
+    else if (section == 1) return 26;
+    else if (section == 2) return 26;
     else if (section == 3) return 26;
-    return 0;
+    return 26;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

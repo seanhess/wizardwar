@@ -14,6 +14,7 @@
 #import "UserService.h"
 #import "ObjectStore.h"
 #import "FacebookUser.h"
+#import "AppStyle.h"
 
 @interface FriendsViewController () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -163,8 +164,19 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    FacebookUser * user = [self.friends objectAtIndexPath:indexPath];
-    cell.textLabel.text = user.name;
+    FacebookUser * fbuser = [self.friends objectAtIndexPath:indexPath];
+    cell.textLabel.text = fbuser.name;
+    
+    if (fbuser.user) {
+        cell.textLabel.textColor = [AppStyle greenOnlineColor];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"Joined: %@", fbuser.user.name];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    } else {
+        cell.textLabel.textColor = [UIColor darkTextColor];
+        cell.detailTextLabel.text = @"";        
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+    }
+    
     return cell;
 }
 

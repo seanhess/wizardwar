@@ -21,5 +21,6 @@
 +(UIColor*)greenGrassColor;
 +(UIColor*)yellowButtonTextColor;
 +(UIImage *)imageWithColor:(UIColor *)color;
++(UIColor*)greenOnlineColor;
 
 @end

@@ -41,10 +41,12 @@
     return [UIColor colorFromRGB:0xFDF06A];
 }
 
-
-
 +(UIColor*)greenGrassColor {
     return [UIColor colorFromRGB:0x6CA24A];
+}
+
++(UIColor*)greenOnlineColor {
+    return [UIColor colorFromRGB:0x81B23C];
 }
 
 +(UIImage *)imageWithColor:(UIColor *)color {
