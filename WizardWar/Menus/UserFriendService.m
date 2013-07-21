@@ -174,7 +174,8 @@
 
 -(NSURL*)user:(User*)user facebookAvatarURLWithSize:(CGSize)size {
     if (!user.facebookId) return nil;
-    NSString * url = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?width=%i&height=%i", user.facebookId, (int)size.width, (int)size.height];
+    CGFloat scale = [[UIScreen mainScreen] scale];
+    NSString * url = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?width=%i&height=%i", user.facebookId, (int)(size.width*scale), (int)(size.height*scale)];
     return [NSURL URLWithString:url];
 }
 
@@ -206,11 +207,11 @@
 
 -(void)openFeedDialogTo:(NSArray *)facebookIds {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"name"] = @"Wizard War";
-//    params[@"caption"] = @"Caption";
+    params[@"name"] = @"Download Wizard War";
+    params[@"caption"] = @"App Store";
     params[@"description"] = @"Come play Wizard War with me! Download the free app for iPhone or iPad!";
     params[@"link"] = @"http://tflig.ht/10YUQCE";
-    params[@"picture"] = @"https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-ash4/247759_598164273541500_1862894664_n.png";
+    params[@"picture"] = @"http://wizardwarapp.com/logo.png";
     params[@"to"] = [facebookIds lastObject];
 //    params[@"tags"] = [facebookIds componentsJoinedByString:@","];
 //    params[@"place"] = @"109530785744253";
