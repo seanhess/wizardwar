@@ -6,6 +6,14 @@
 //  Copyright (c) 2013 The LAB. All rights reserved.
 //
 
+// http://tflig.ht/10YUQCE - recruitment thang
+
+// REQUESTS: they only show up in the APP center. It's a tiny thing two things down. Nobody is every going to check it. 
+// https://developers.facebook.com/docs/tutorials/ios-sdk-games/requests/
+// http://stackoverflow.com/questions/10493498/inviting-multiple-friends-using-facebook-sdk-in-native-ios-app
+
+/// 
+
 #import "UserFriendService.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "FacebookUser.h"
@@ -169,6 +177,117 @@
     NSString * url = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?width=%i&height=%i", user.facebookId, (int)size.width, (int)size.height];
     return [NSURL URLWithString:url];
 }
+
+
+-(void)openInviteFriendsDialog {
+    // APP REQUEST (only in app center = lame)
+//    NSMutableDictionary* params = [NSMutableDictionary dictionary];
+//    params[@"title"] = @"Invite Friends";
+//    params[@"message"] = @"Download Wizard War (Free) on iPhone and iPad so we can play!";
+////    params[@"to"] = @"SOME_FACEBOOK_ID";
+//    
+//    [FBWebDialogs presentRequestsDialogModallyWithSession:nil message:nil title:nil parameters:params handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
+//        
+//    }];
+    
+    
+    // SHARE DIALOGE (requires facebook app, must check first = lame)
+//    NSURL* url = [NSURL URLWithString:@"http://orbit.al/"];
+//    [FBDialogs presentShareDialogWithLink:url
+//                                  handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
+//                                      if(error) {
+//                                          NSLog(@"Error: %@", error.description);
+//                                      } else {
+//                                          NSLog(@"Success!");
+//                                      }
+//                                  }];
+
+}
+
+-(void)openFeedDialogTo:(NSArray *)facebookIds {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"name"] = @"Wizard War";
+//    params[@"caption"] = @"Caption";
+    params[@"description"] = @"Come play Wizard War with me! Download the free app for iPhone or iPad!";
+    params[@"link"] = @"http://tflig.ht/10YUQCE";
+    params[@"picture"] = @"https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-ash4/247759_598164273541500_1862894664_n.png";
+    params[@"to"] = [facebookIds lastObject];
+//    params[@"tags"] = [facebookIds componentsJoinedByString:@","];
+//    params[@"place"] = @"109530785744253";
+    
+    [FBWebDialogs presentFeedDialogModallyWithSession:nil
+                                           parameters:params
+                                              handler:
+     ^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
+         if (error) {
+             // Error launching the dialog or publishing a story.
+             NSLog(@"Error publishing story.");
+         } else {
+             if (result == FBWebDialogResultDialogNotCompleted) {
+                 // User clicked the "x" icon
+                 NSLog(@"User canceled story publishing.");
+             } else {
+                 // Handle the publish feed callback
+             }
+         }
+     }];
+    
+
+
+}
+
+
+-(void)inviteFriend:(NSString*)facebookId {
+    
+    // Super easy options:
+    // 1. Just display this but don't specify the to field, so they can choose
+    // 2. Present this will them filled out
+    
+//    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+//                                   @"My Title", @"title",
+//                                   @"Come check out my app.",  @"message",
+//                                   facebookId, @"to",
+//                                   nil];
+//    
+//    [FBWebDialogs presentRequestsDialogModallyWithSession:nil message:@"Come play Wizard War for iPhone and iPad!" title:@"Invite Friends" parameters:params handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
+//        NSLog(@"BACK");
+//    }];
+}
+//
+//
+//- (void)openGraphThing {
+//    id<FBGraphObject> object =
+//    [FBGraphObject openGraphObjectForPostWithType:@"object"
+//                                            title:@"Wizard War"
+//                                            image:@"http://orbit.al/rocket.png"
+//                                              url:@"http://orbit.al/"
+//                                      description:@"A Game of magic and wands, oh my!"];
+//    
+//    id<FBOpenGraphAction> action = (id<FBOpenGraphAction>)[FBGraphObject graphObject];
+//    //            [action setTags:@[@"100001102534350", @"100006402125833"]]; // I can specify friends here
+//    [action setObject:object forKey:@"app"]; // umm...
+//    
+//    [FBDialogs presentShareDialogWithOpenGraphAction:action
+//                                          actionType:@"og.posts"
+//                                 previewPropertyName:@"app"
+//                                             handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
+//                                                 if(error) {
+//                                                     NSLog(@"Error: %@", error.description);
+//                                                 } else {
+//                                                     NSLog(@"Success!");
+//                                                 }
+//                                             }];
+//}
+//
+//- (void)openSimpleLinkShare {
+//    NSURL * url = [NSURL URLWithString:@"http://orbit.al"];
+//    [FBDialogs presentShareDialogWithLink:url handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
+//        NSLog(@"SHARE %@", error);
+//    }];
+//}
+
+
+
 
 #pragma mark - Core Data stuff
 

@@ -37,6 +37,11 @@ typedef enum FBStatus {
 
 -(NSURL*)user:(User*)user facebookAvatarURLWithSize:(CGSize)size;
 
+-(void)openInviteFriendsDialog;
+-(void)openFeedDialogTo:(NSArray*)facebookIds;
+-(void)inviteFriend:(NSString*)facebookId;
+
+// CORE DATA
 -(NSPredicate*)predicateIsFrenemy:(User*)user; // if you've played games together
 -(NSPredicate*)predicateIsFacebookFriend:(User*)user; // if you're facebook friends
 -(NSPredicate*)predicateIsFBFriendOrFrenemy:(User*)user;

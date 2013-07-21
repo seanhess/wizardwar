@@ -37,8 +37,9 @@
 #import <BButton.h>
 #import "SettingsViewController.h"
 #import <NSString+FontAwesome.h>
+#import <FacebookSDK/FacebookSDK.h>
 
-@interface MatchmakingViewController () <NSFetchedResultsControllerDelegate>
+@interface MatchmakingViewController () <NSFetchedResultsControllerDelegate, FBFriendPickerDelegate>
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
 
 @property (nonatomic, strong) ConnectionService* connection;
@@ -527,6 +528,10 @@
 
 # pragma mark - Buttons n stuff
 - (IBAction)didTapInviteFriends:(id)sender {
+    
+    // Connect their facebook account first, then open the friend invite dialog
+    // it doesn't make sense to invite friends without having them connect facebook first
+    
     User * user = [UserService.shared currentUser];
     [self showLoading];
     [UserFriendService.shared user:user authenticateFacebook:^(BOOL success, User * updated) {
@@ -536,10 +541,46 @@
         }
         
         if (success) {
-            FriendsViewController * friends = [FriendsViewController new];
-            [self.navigationController pushViewController:friends animated:YES];
+            [self openFriendPickerThenInviteSingleFriend];
         }
     }];
+}
+
+- (void)openFriendPickerThenInviteSingleFriend {
+    FBFriendPickerViewController * friends = [[FBFriendPickerViewController alloc] init];
+    friends.title = @"Choose a Friend";
+    friends.delegate = self;
+    friends.allowsMultipleSelection = NO;
+    friends.doneButton = nil;
+    
+    [friends loadData];
+    [friends clearSelection];
+    
+    [self.navigationController presentViewController:friends animated:YES completion:nil];
+}
+
+- (void)friendPickerViewControllerSelectionDidChange:(FBFriendPickerViewController *)friendPicker {
+    [self facebookViewControllerDoneWasPressed:friendPicker];
+}
+
+- (void)facebookViewControllerDoneWasPressed:(id)sender {
+    FBFriendPickerViewController *friendPickerController = (FBFriendPickerViewController*)sender;
+    NSLog(@"Selected friends: %@", friendPickerController.selection);
+    // Dismiss the friend picker
+//    [[sender presentingViewController] dismissModalViewControllerAnimated:YES];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    
+    NSArray * friendIds = [friendPickerController.selection map:^(NSDictionary*info) {
+        return info[@"id"];
+    }];
+    
+    [UserFriendService.shared openFeedDialogTo:friendIds];
+}
+
+- (void)facebookViewControllerCancelWasPressed:(id)sender {
+    NSLog(@"Canceled");
+    // Dismiss the friend picker
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)didTapAccount {

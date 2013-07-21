@@ -189,7 +189,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    FacebookUser * user = [self.friends objectAtIndexPath:indexPath];
+    NSString * facebookId = user.facebookId;
+    [UserFriendService.shared inviteFriend:facebookId];
 }
 
 

@@ -76,7 +76,12 @@
     else
         self.nameLabel.textColor = [UIColor darkTextColor];
     
-    NSURL * imageUrl = [UserFriendService.shared user:user facebookAvatarURLWithSize:self.avatarImageView.frame.size];
+    CGSize size = self.avatarImageView.frame.size;
+    if ([[UIScreen mainScreen] scale] == 2.00) {
+        size.width *= 2;
+        size.height *= 2;
+    }
+    NSURL * imageUrl = [UserFriendService.shared user:user facebookAvatarURLWithSize:size];
     if (imageUrl) {
         [self.avatarImageView setImageWithURL:imageUrl];
     } else {
