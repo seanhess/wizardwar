@@ -26,7 +26,6 @@
 		6F0B2FAA174750FF00CFC092 /* PentEmblem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0B2FA8174750FF00CFC092 /* PentEmblem.m */; };
 		6F0B2FAF1747511800CFC092 /* DotsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0B2FAC1747511800CFC092 /* DotsView.m */; };
 		6F0B2FB01747511800CFC092 /* DrawingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0B2FAE1747511800CFC092 /* DrawingLayer.m */; };
-		781372D1177E30EF00486899 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781372D0177E30EF00486899 /* Parse.framework */; };
 		781372D3177E311A00486899 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781372D2177E311A00486899 /* MobileCoreServices.framework */; };
 		781372D5177E313000486899 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781372D4177E313000486899 /* StoreKit.framework */; };
 		781372D7177E313A00486899 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781372D6177E313A00486899 /* SystemConfiguration.framework */; };
@@ -151,6 +150,11 @@
 		784D3BEC17751411009945F8 /* ChallengeService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BEB17751411009945F8 /* ChallengeService.m */; };
 		784D3BF41777C622009945F8 /* LocationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BF31777C622009945F8 /* LocationService.m */; };
 		784D3BF61777C832009945F8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 784D3BF51777C832009945F8 /* CoreLocation.framework */; };
+		785168B417A40ED100A49257 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785168B317A40ED100A49257 /* Parse.framework */; };
+		785168B617A40ED700A49257 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785168B517A40ED700A49257 /* Firebase.framework */; };
+		785168BC17A40EDD00A49257 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 785168B817A40EDD00A49257 /* libTestFlight.a */; };
+		785168BD17A40EDE00A49257 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 785168B917A40EDD00A49257 /* README.md */; };
+		785168BE17A40EDE00A49257 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 785168BA17A40EDD00A49257 /* release_notes.md */; };
 		785FBE9F17724FA20021AEE5 /* wizard1-set1-animations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 785FBE9E17724FA20021AEE5 /* wizard1-set1-animations.plist */; };
 		785FBEA217725A780021AEE5 /* pillow-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEA017725A780021AEE5 /* pillow-hd.png */; };
 		785FBEA317725A780021AEE5 /* pillow.png in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEA117725A780021AEE5 /* pillow.png */; };
@@ -220,7 +224,6 @@
 		78C5CD9F178AFDC400CDCC76 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C5CD9E178AFDC400CDCC76 /* CoreData.framework */; };
 		78C5CDA6178AFFA000CDCC76 /* ObjectStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C5CDA5178AFFA000CDCC76 /* ObjectStore.m */; };
 		78C5CDDD178B034C00CDCC76 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C5CDDC178B034C00CDCC76 /* User.m */; };
-		78C5CDDF178B64B400CDCC76 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C5CDDE178B64B400CDCC76 /* Firebase.framework */; };
 		78C5CDE2178B656500CDCC76 /* FirebaseCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C5CDE1178B656500CDCC76 /* FirebaseCollection.m */; };
 		78C5CDE5178B74D700CDCC76 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C5CDE4178B74D700CDCC76 /* UserCell.m */; };
 		78C5CDE7178B74F900CDCC76 /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78C5CDE6178B74F900CDCC76 /* UserCell.xib */; };
@@ -246,10 +249,8 @@
 		78D28BEA177F6F8A00FF5D6E /* ComicZineSolid.otf in Resources */ = {isa = PBXBuildFile; fileRef = 78D28BE8177F6F8A00FF5D6E /* ComicZineSolid.otf */; };
 		78D28BF1177F71D500FF5D6E /* ComicZineDoubleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D28BF0177F71D500FF5D6E /* ComicZineDoubleLabel.m */; };
 		78DAB807179597A50093A701 /* AnalyticsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB806179597A50093A701 /* AnalyticsService.m */; };
-		78DAB8181795A2BF0093A701 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DAB8141795A2BF0093A701 /* libTestFlight.a */; };
 		78DAB81E1795AAE40093A701 /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB81C1795AAE40093A701 /* FriendsViewController.m */; };
 		78DAB81F1795AAE40093A701 /* FriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DAB81D1795AAE40093A701 /* FriendsViewController.xib */; };
-		78DAB8211795B0D00093A701 /* FirebaseSimpleLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DAB8201795B0D00093A701 /* FirebaseSimpleLogin.framework */; };
 		78DAB8241795C3A10093A701 /* FacebookUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB8231795C3A10093A701 /* FacebookUser.m */; };
 		78DAB8291795E2B00093A701 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB8271795E2B00093A701 /* SettingsViewController.m */; };
 		78DAB82A1795E2B00093A701 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DAB8281795E2B00093A701 /* SettingsViewController.xib */; };
@@ -403,7 +404,6 @@
 		6F0B2FAD1747511800CFC092 /* DrawingLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingLayer.h; sourceTree = "<group>"; };
 		6F0B2FAE1747511800CFC092 /* DrawingLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingLayer.m; sourceTree = "<group>"; };
 		781234DF174AE4C0008EDE88 /* Objectable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Objectable.h; sourceTree = "<group>"; };
-		781372D0177E30EF00486899 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		781372D2177E311A00486899 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		781372D4177E313000486899 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		781372D6177E313A00486899 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -650,6 +650,12 @@
 		784D3BF21777C622009945F8 /* LocationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationService.h; sourceTree = "<group>"; };
 		784D3BF31777C622009945F8 /* LocationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationService.m; sourceTree = "<group>"; };
 		784D3BF51777C832009945F8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		785168B317A40ED100A49257 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		785168B517A40ED700A49257 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
+		785168B817A40EDD00A49257 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		785168B917A40EDD00A49257 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		785168BA17A40EDD00A49257 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
+		785168BB17A40EDD00A49257 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		785FBE9E17724FA20021AEE5 /* wizard1-set1-animations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set1-animations.plist"; sourceTree = "<group>"; };
 		785FBEA017725A780021AEE5 /* pillow-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pillow-hd.png"; sourceTree = "<group>"; };
 		785FBEA117725A780021AEE5 /* pillow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pillow.png; sourceTree = "<group>"; };
@@ -755,7 +761,6 @@
 		78C5CDA5178AFFA000CDCC76 /* ObjectStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectStore.m; sourceTree = "<group>"; };
 		78C5CDDB178B034C00CDCC76 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		78C5CDDC178B034C00CDCC76 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		78C5CDDE178B64B400CDCC76 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
 		78C5CDE0178B656500CDCC76 /* FirebaseCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseCollection.h; sourceTree = "<group>"; };
 		78C5CDE1178B656500CDCC76 /* FirebaseCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseCollection.m; sourceTree = "<group>"; };
 		78C5CDE3178B74D600CDCC76 /* UserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCell.h; sourceTree = "<group>"; };
@@ -793,14 +798,9 @@
 		78D28BF0177F71D500FF5D6E /* ComicZineDoubleLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComicZineDoubleLabel.m; sourceTree = "<group>"; };
 		78DAB805179597A50093A701 /* AnalyticsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsService.h; sourceTree = "<group>"; };
 		78DAB806179597A50093A701 /* AnalyticsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsService.m; sourceTree = "<group>"; };
-		78DAB8141795A2BF0093A701 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		78DAB8151795A2BF0093A701 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		78DAB8161795A2BF0093A701 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
-		78DAB8171795A2BF0093A701 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		78DAB81B1795AAE40093A701 /* FriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
 		78DAB81C1795AAE40093A701 /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
 		78DAB81D1795AAE40093A701 /* FriendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsViewController.xib; sourceTree = "<group>"; };
-		78DAB8201795B0D00093A701 /* FirebaseSimpleLogin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseSimpleLogin.framework; sourceTree = "<group>"; };
 		78DAB8221795C3A10093A701 /* FacebookUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookUser.h; sourceTree = "<group>"; };
 		78DAB8231795C3A10093A701 /* FacebookUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookUser.m; sourceTree = "<group>"; };
 		78DAB8261795E2B00093A701 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
@@ -1015,11 +1015,10 @@
 				78F6B3831746AF2000AA070D /* libz.dylib in Frameworks */,
 				78F6B1E71746AD8900AA070D /* UIKit.framework in Frameworks */,
 				17B4123C5AF94AFB977F565E /* libPods.a in Frameworks */,
-				781372D1177E30EF00486899 /* Parse.framework in Frameworks */,
 				781372D9177E324B00486899 /* FacebookSDK.framework in Frameworks */,
-				78C5CDDF178B64B400CDCC76 /* Firebase.framework in Frameworks */,
-				78DAB8181795A2BF0093A701 /* libTestFlight.a in Frameworks */,
-				78DAB8211795B0D00093A701 /* FirebaseSimpleLogin.framework in Frameworks */,
+				785168B417A40ED100A49257 /* Parse.framework in Frameworks */,
+				785168B617A40ED700A49257 /* Firebase.framework in Frameworks */,
+				785168BC17A40EDD00A49257 /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1058,7 +1057,7 @@
 		781372E3177E331C00486899 /* Parse */ = {
 			isa = PBXGroup;
 			children = (
-				781372D0177E30EF00486899 /* Parse.framework */,
+				785168B317A40ED100A49257 /* Parse.framework */,
 				781372D6177E313A00486899 /* SystemConfiguration.framework */,
 				781372D4177E313000486899 /* StoreKit.framework */,
 				781372D2177E311A00486899 /* MobileCoreServices.framework */,
@@ -1361,6 +1360,26 @@
 			name = lobby;
 			sourceTree = "<group>";
 		};
+		785168B217A40E3200A49257 /* Big Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				78F6B20B1746AE4400AA070D /* Cocos2d */,
+				781372E2177E330A00486899 /* Facebook */,
+			);
+			name = "Big Frameworks";
+			sourceTree = "<group>";
+		};
+		785168B717A40EDD00A49257 /* TestFlightSDK1.2.6 */ = {
+			isa = PBXGroup;
+			children = (
+				785168B817A40EDD00A49257 /* libTestFlight.a */,
+				785168B917A40EDD00A49257 /* README.md */,
+				785168BA17A40EDD00A49257 /* release_notes.md */,
+				785168BB17A40EDD00A49257 /* TestFlight.h */,
+			);
+			path = TestFlightSDK1.2.6;
+			sourceTree = "<group>";
+		};
 		785FBEA4177261BD0021AEE5 /* Menus */ = {
 			isa = PBXGroup;
 			children = (
@@ -1520,17 +1539,6 @@
 			name = Style;
 			sourceTree = "<group>";
 		};
-		78DAB8131795A2BF0093A701 /* TestFlightSDK1.2.6 */ = {
-			isa = PBXGroup;
-			children = (
-				78DAB8141795A2BF0093A701 /* libTestFlight.a */,
-				78DAB8151795A2BF0093A701 /* README.md */,
-				78DAB8161795A2BF0093A701 /* release_notes.md */,
-				78DAB8171795A2BF0093A701 /* TestFlight.h */,
-			);
-			path = TestFlightSDK1.2.6;
-			sourceTree = "<group>";
-		};
 		78DAB8251795E24F0093A701 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -1679,6 +1687,7 @@
 				78F193E3174715B100BB8587 /* Default.png */,
 				78F193E1174715A700BB8587 /* Default-568h@2x.png */,
 				78F6B1EC1746AD8900AA070D /* WizardWar */,
+				785168B217A40E3200A49257 /* Big Frameworks */,
 				78F6B1E51746AD8900AA070D /* Frameworks */,
 				78F6B1E41746AD8900AA070D /* Products */,
 				DE8809F786384C2C96220236 /* Pods.xcconfig */,
@@ -1696,13 +1705,11 @@
 		78F6B1E51746AD8900AA070D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				78DAB8131795A2BF0093A701 /* TestFlightSDK1.2.6 */,
-				781372E2177E330A00486899 /* Facebook */,
+				785168B717A40EDD00A49257 /* TestFlightSDK1.2.6 */,
+				785168B517A40ED700A49257 /* Firebase.framework */,
 				78F6B39E1746B04600AA070D /* libicucore.dylib */,
 				78F6B3821746AF2000AA070D /* libz.dylib */,
 				781372E3177E331C00486899 /* Parse */,
-				78C5CDDE178B64B400CDCC76 /* Firebase.framework */,
-				78DAB8201795B0D00093A701 /* FirebaseSimpleLogin.framework */,
 				78C5CD9E178AFDC400CDCC76 /* CoreData.framework */,
 				784D3BF51777C832009945F8 /* CoreLocation.framework */,
 				78F6B3941746AFAC00AA070D /* GameKit.framework */,
@@ -1720,7 +1727,7 @@
 				97EFC7B8DBD643B88CEC6021 /* libPods.a */,
 				78DAB83A179B08530093A701 /* ImageIO.framework */,
 			);
-			name = Frameworks;
+			path = Frameworks;
 			sourceTree = "<group>";
 		};
 		78F6B1EC1746AD8900AA070D /* WizardWar */ = {
@@ -1749,7 +1756,6 @@
 			isa = PBXGroup;
 			children = (
 				78F6B3C11746B28B00AA070D /* Helpers */,
-				78F6B20B1746AE4400AA070D /* Cocos2d */,
 				78F6B1EE1746AD8900AA070D /* WizardWar-Info.plist */,
 				78F6B1EF1746AD8900AA070D /* InfoPlist.strings */,
 				78F6B1F21746AD8900AA070D /* main.m */,
@@ -1769,8 +1775,7 @@
 				78F6B30F1746AE5900AA070D /* LICENSE_CocosDenshion.txt */,
 				78F6B3101746AE5900AA070D /* LICENSE_Kazmath.txt */,
 			);
-			name = Cocos2d;
-			path = ../Cocos2d;
+			path = Cocos2d;
 			sourceTree = "<group>";
 		};
 		78F6B2DC1746AE5900AA070D /* CocosDenshion */ = {
@@ -2172,6 +2177,8 @@
 				78DAB82A1795E2B00093A701 /* SettingsViewController.xib in Resources */,
 				78DAB8351799D86B0093A701 /* 111-user.png in Resources */,
 				78DAB8361799D86B0093A701 /* 111-user@2x.png in Resources */,
+				785168BD17A40EDE00A49257 /* README.md in Resources */,
+				785168BE17A40EDE00A49257 /* release_notes.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2501,17 +2508,19 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WizardWar/WizardWar-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"Cocos2d/Cocos2d/kazmath/include\"",
+					"\"Frameworks\"",
 				);
 				INFOPLIST_FILE = "WizardWar/WizardWar-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/TestFlightSDK1.2.6\"",
+					"\"$(SRCROOT)/Frameworks/TestFlightSDK1.2.6\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -2534,17 +2543,19 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WizardWar/WizardWar-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"Cocos2d/Cocos2d/kazmath/include\"",
+					"\"Frameworks\"",
 				);
 				INFOPLIST_FILE = "WizardWar/WizardWar-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/TestFlightSDK1.2.6\"",
+					"\"$(SRCROOT)/Frameworks/TestFlightSDK1.2.6\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",

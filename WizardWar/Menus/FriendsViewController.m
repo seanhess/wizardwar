@@ -8,7 +8,6 @@
 
 #import "FriendsViewController.h"
 #import <Firebase/Firebase.h>
-#import <FirebaseSimpleLogin/FirebaseSimpleLogin.h>
 #import <FacebookSDK/FacebookSDK.h>
 #import "UserFriendService.h"
 #import "UserService.h"
