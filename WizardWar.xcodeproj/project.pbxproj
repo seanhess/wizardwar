@@ -888,7 +888,7 @@
 		78F6B1F41746AD8900AA070D /* WizardWar-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WizardWar-Prefix.pch"; sourceTree = "<group>"; };
 		78F6B1F51746AD8900AA070D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../WizardWar/AppDelegate.h; sourceTree = "<group>"; };
 		78F6B1F61746AD8900AA070D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ../WizardWar/AppDelegate.m; sourceTree = "<group>"; };
-		78F6B2DB1746AE5900AA070D /* Cocos2d-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Cocos2d-Prefix.pch"; path = "Cocos2d/Cocos2d/Cocos2d-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		78F6B2DB1746AE5900AA070D /* Cocos2d-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Cocos2d-Prefix.pch"; path = "Cocos2d/Cocos2d-Prefix.pch"; sourceTree = "<group>"; };
 		78F6B2DD1746AE5900AA070D /* CDAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDAudioManager.h; sourceTree = "<group>"; };
 		78F6B2DE1746AE5900AA070D /* CDAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDAudioManager.m; sourceTree = "<group>"; };
 		78F6B2DF1746AE5900AA070D /* CDConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDConfig.h; sourceTree = "<group>"; };
@@ -932,9 +932,9 @@
 		78F6B30B1746AE5900AA070D /* vec2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vec2.c; sourceTree = "<group>"; };
 		78F6B30C1746AE5900AA070D /* vec3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vec3.c; sourceTree = "<group>"; };
 		78F6B30D1746AE5900AA070D /* vec4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vec4.c; sourceTree = "<group>"; };
-		78F6B30E1746AE5900AA070D /* LICENSE_cocos2d.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE_cocos2d.txt; path = Cocos2d/Cocos2d/LICENSE_cocos2d.txt; sourceTree = SOURCE_ROOT; };
-		78F6B30F1746AE5900AA070D /* LICENSE_CocosDenshion.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE_CocosDenshion.txt; path = Cocos2d/Cocos2d/LICENSE_CocosDenshion.txt; sourceTree = SOURCE_ROOT; };
-		78F6B3101746AE5900AA070D /* LICENSE_Kazmath.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE_Kazmath.txt; path = Cocos2d/Cocos2d/LICENSE_Kazmath.txt; sourceTree = SOURCE_ROOT; };
+		78F6B30E1746AE5900AA070D /* LICENSE_cocos2d.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE_cocos2d.txt; path = ../Cocos2d/Cocos2d/LICENSE_cocos2d.txt; sourceTree = "<group>"; };
+		78F6B30F1746AE5900AA070D /* LICENSE_CocosDenshion.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE_CocosDenshion.txt; path = ../Cocos2d/Cocos2d/LICENSE_CocosDenshion.txt; sourceTree = "<group>"; };
+		78F6B3101746AE5900AA070D /* LICENSE_Kazmath.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE_Kazmath.txt; path = ../Cocos2d/Cocos2d/LICENSE_Kazmath.txt; sourceTree = "<group>"; };
 		78F6B3821746AF2000AA070D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		78F6B3841746AF2500AA070D /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		78F6B3861746AF2A00AA070D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -1363,7 +1363,6 @@
 		785168B217A40E3200A49257 /* Big Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				78F6B20B1746AE4400AA070D /* Cocos2d */,
 				781372E2177E330A00486899 /* Facebook */,
 			);
 			name = "Big Frameworks";
@@ -1705,6 +1704,7 @@
 		78F6B1E51746AD8900AA070D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				78F6B20B1746AE4400AA070D /* Cocos2d */,
 				785168B717A40EDD00A49257 /* TestFlightSDK1.2.6 */,
 				785168B517A40ED700A49257 /* Firebase.framework */,
 				78F6B39E1746B04600AA070D /* libicucore.dylib */,
@@ -1797,8 +1797,8 @@
 				78F6B2EA1746AE5900AA070D /* SimpleAudioEngine.m */,
 			);
 			name = CocosDenshion;
-			path = Cocos2d/Cocos2d/CocosDenshion;
-			sourceTree = SOURCE_ROOT;
+			path = Cocos2d/CocosDenshion;
+			sourceTree = "<group>";
 		};
 		78F6B2EB1746AE5900AA070D /* kazmath */ = {
 			isa = PBXGroup;
@@ -1807,8 +1807,8 @@
 				78F6B2FD1746AE5900AA070D /* src */,
 			);
 			name = kazmath;
-			path = Cocos2d/Cocos2d/kazmath;
-			sourceTree = SOURCE_ROOT;
+			path = Cocos2d/kazmath;
+			sourceTree = "<group>";
 		};
 		78F6B2EC1746AE5900AA070D /* include */ = {
 			isa = PBXGroup;
@@ -2514,7 +2514,7 @@
 				GCC_PREFIX_HEADER = "WizardWar/WizardWar-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"Cocos2d/Cocos2d/kazmath/include\"",
+					"\"Frameworks/Cocos2d/Cocos2d/kazmath/include\"",
 					"\"Frameworks\"",
 				);
 				INFOPLIST_FILE = "WizardWar/WizardWar-Info.plist";
@@ -2549,7 +2549,7 @@
 				GCC_PREFIX_HEADER = "WizardWar/WizardWar-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"Cocos2d/Cocos2d/kazmath/include\"",
+					"\"Frameworks/Cocos2d/Cocos2d/kazmath/include\"",
 					"\"Frameworks\"",
 				);
 				INFOPLIST_FILE = "WizardWar/WizardWar-Info.plist";
