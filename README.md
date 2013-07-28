@@ -23,8 +23,8 @@ Core Data
 STUFF TO DO
 ===========
 
-[ ] BUG: crash you experienced while playing
 [ ] Smooth animation: use updates to move them, instead of tween
+[ ] BUG: crash you experienced while playing
 [ ] New mana/spam
 [ ] Feedback: if they don't cast a spell within a certain time, tell them what to do
 [ ] Add random "fail" spells (with two elements) any 2 elements triggers a random fail spell

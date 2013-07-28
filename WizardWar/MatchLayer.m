@@ -119,10 +119,14 @@
 }
 
 -(void)update:(ccTime)delta {
-    //    NSLog(@"Updated %f", delta);
+//    NSLog(@"Updated %f", delta);
     
     // need to update each one
     [self.match update:delta];
+    
+    for (SpellSprite * spell in self.spells.children) {
+        [spell update:delta];
+    }
 }
 
 #pragma mark -  MATCH DELEGATE

@@ -42,8 +42,12 @@
 }
 
 -(CGFloat)toX:(CGFloat)units {
+    return self.min + [self toWidth:units];
+}
+
+-(CGFloat)toWidth:(CGFloat)units {
     float percent = units / UNITS_MAX;
-    return self.min + percent*self.width;
+    return percent*self.width;
 }
 
 @end

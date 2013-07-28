@@ -19,5 +19,6 @@
 @property (nonatomic) CGFloat width;
 @property (nonatomic) CGFloat zeroY;
 @property (nonatomic) CGFloat maxY;
--(CGFloat)toX:(CGFloat)units;
+-(CGFloat)toX:(CGFloat)units; // calculate absolute position
+-(CGFloat)toWidth:(CGFloat)units; // use this when you need only the width in pixels
 @end
