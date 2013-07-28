@@ -156,7 +156,6 @@
 		785168BD17A40EDE00A49257 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 785168B917A40EDD00A49257 /* README.md */; };
 		785168BE17A40EDE00A49257 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 785168BA17A40EDD00A49257 /* release_notes.md */; };
 		78516B8217A5905A00A49257 /* DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 78516B8117A5905A00A49257 /* DataModel.xcdatamodel */; };
-		78516B8517A590C700A49257 /* FirebaseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78516B8417A590C700A49257 /* FirebaseSerializer.m */; };
 		78516B8817A5925800A49257 /* NSObject+Reflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 78516B8717A5925700A49257 /* NSObject+Reflection.m */; };
 		785FBE9F17724FA20021AEE5 /* wizard1-set1-animations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 785FBE9E17724FA20021AEE5 /* wizard1-set1-animations.plist */; };
 		785FBEA217725A780021AEE5 /* pillow-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEA017725A780021AEE5 /* pillow-hd.png */; };
@@ -656,8 +655,6 @@
 		785168BA17A40EDD00A49257 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
 		785168BB17A40EDD00A49257 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		78516B8117A5905A00A49257 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
-		78516B8317A590C700A49257 /* FirebaseSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseSerializer.h; sourceTree = "<group>"; };
-		78516B8417A590C700A49257 /* FirebaseSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseSerializer.m; sourceTree = "<group>"; };
 		78516B8617A5925700A49257 /* NSObject+Reflection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Reflection.h"; sourceTree = "<group>"; };
 		78516B8717A5925700A49257 /* NSObject+Reflection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Reflection.m"; sourceTree = "<group>"; };
 		785FBE9E17724FA20021AEE5 /* wizard1-set1-animations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set1-animations.plist"; sourceTree = "<group>"; };
@@ -1421,8 +1418,6 @@
 				784D3BE317750441009945F8 /* IdService.m */,
 				784D3BF21777C622009945F8 /* LocationService.h */,
 				784D3BF31777C622009945F8 /* LocationService.m */,
-				78516B8317A590C700A49257 /* FirebaseSerializer.h */,
-				78516B8417A590C700A49257 /* FirebaseSerializer.m */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -2418,7 +2413,6 @@
 				78DAB82D1799BCFF0093A701 /* ProfileCell.m in Sources */,
 				78DAB839179A0C680093A701 /* FacebookButtonCell.m in Sources */,
 				78516B8217A5905A00A49257 /* DataModel.xcdatamodel in Sources */,
-				78516B8517A590C700A49257 /* FirebaseSerializer.m in Sources */,
 				78516B8817A5925800A49257 /* NSObject+Reflection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

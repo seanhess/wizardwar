@@ -15,7 +15,6 @@
 #import "ObjectStore.h"
 #import "NSArray+Functional.h"
 #import "IdService.h"
-#import "FirebaseSerializer.h"
 #import "AnalyticsService.h"
 
 @interface ChallengeService ()
@@ -66,7 +65,7 @@
 -(void)onAdded:(FDataSnapshot *)snapshot {
     // Assumes the users have already been loaded
     Challenge * challenge = [self challengeWithId:snapshot.name create:YES];
-    [FirebaseSerializer updateObject:challenge withDictionary:snapshot.value];
+    [challenge setValuesForKeysWithDictionary:snapshot.value];
     
 //    User * main = [UserService.shared userWithId:snapshot.name];
 //    Challenge * challenge = [self createOrFindChallengeForUser:main];

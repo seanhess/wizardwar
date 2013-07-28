@@ -23,7 +23,7 @@ Core Data
 STUFF TO DO
 ===========
 
-[ ] Smooth animation: use updates to move them, instead of tween
+[x] Smooth animation: use updates to move them, instead of tween
 [ ] BUG: crash you experienced while playing
 [ ] New mana/spam
 [ ] Feedback: if they don't cast a spell within a certain time, tell them what to do

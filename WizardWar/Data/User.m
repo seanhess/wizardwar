@@ -63,6 +63,14 @@
     self.colorRGB = color.RGB;
 }
 
+-(id)valueForUndefinedKey:(NSString *)key {
+    return nil;
+}
+
+-(void)setValue:(id)value forUndefinedKey:(NSString *)key {
+    return;
+}
+
 //- (void)encodeWithCoder:(NSCoder *)encoder {
 //    [encoder encodeObject:self.name forKey:@"name"];
 //    [encoder encodeObject:self.userId forKey:@"userId"];

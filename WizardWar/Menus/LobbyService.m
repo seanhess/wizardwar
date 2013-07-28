@@ -17,7 +17,6 @@
 #import "ConnectionService.h"
 #import <ReactiveCocoa.h>
 #import "UserFriendService.h"
-#import "FirebaseSerializer.h"
 
 // Just implement global people for this yo
 @interface LobbyService ()
@@ -94,7 +93,7 @@
     // it will just add the isOnline, locationLatitude, locationLongitude
     
     User * user = [UserService.shared userWithId:snapshot.name create:YES];
-    [FirebaseSerializer updateObject:user withDictionary:snapshot.value];
+    [user setValuesForKeysWithDictionary:snapshot.value];
     user.isOnline = YES;
 
     // Come through later and add distance!
