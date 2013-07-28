@@ -17,7 +17,7 @@
         self.damage = 0;
         self.effect = [EffectInvisible new];
         self.targetSelf = YES;
-        self.name = @"Invisibility";        
+        self.name = @"Invisibility";
     }
     return self;
 }

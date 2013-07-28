@@ -10,7 +10,9 @@
 #import "PentEmblem.h"
 #import "DrawingLayer.h"
 #import "Combos.h"
+#import <DACircularProgressView.h>
 
 @interface PentagramViewController : UIViewController
 @property (strong, nonatomic) Combos * combos;
+-(void)delayCast:(NSTimeInterval)delay;
 @end

@@ -25,6 +25,7 @@
     if ((self=[super init])) {
         self.speed = MONSTER_SPEED;
         self.name = @"Summon Ogre";
+        self.castDelay = 0.7;
     }
     return self;
 }

@@ -23,9 +23,15 @@ Core Data
 STUFF TO DO
 ===========
 
+[ ] Fist of grom doesn't use ticks!
+
 [x] Smooth animation: use updates to move them, instead of tween
-[ ] BUG: crash you experienced while playing
+[x] BUG: crash you experienced while playing??? Who knows?
 [ ] New mana/spam
+    [ ] delay on everything
+    [ ] disable the whole pentagram
+    [ ] Show a timer with the delay RIGHT IN FRONT. Says: "Recharging..."
+
 [ ] Feedback: if they don't cast a spell within a certain time, tell them what to do
 [ ] Add random "fail" spells (with two elements) any 2 elements triggers a random fail spell
 
@@ -33,7 +39,16 @@ STUFF TO DO
 [ ] TALK: Jesse: fail spells. Other 2 spells. 
 
 [ ] Improve Practice Mode AI?
-[ ] Improve Wind Blast interaction
+[ ] Improve Wind Blast interaction.
+
+[ ] Javascript Engine
+
+[ ] Add more spells!
+[ ] Particle effects or some other visual wizardry. Use physics engine to simulate unimportant particle stuff?
+    [ ] Fireball freaking catches you on fire, you have to put it out. ha.
+    
+    [ ] Earth wall: made up of earth particles that break apart. I need a little earth wall particle thing?
+        [ ] no, just have a particle, then animate a bunch of them.
 
 IDEA: we can have some spells take "more mana", meaning they reduce the size of the indicators used MORE
 

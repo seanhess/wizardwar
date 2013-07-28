@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "Elements.h"
 #import "NSArray+Functional.h"
+#import "UIColor+Hex.h"
 
 #define RECHARGE_INTERVAL 2.5
 
@@ -26,7 +27,11 @@
 
 @property (weak, nonatomic) PentEmblem *currentEmblem;
 @property (copy, nonatomic) NSArray *emblems;
+@property (weak, nonatomic) IBOutlet DACircularProgressView *waitProgress;
 
+@property (strong, nonatomic) NSTimer * castTimer;
+
+@property (nonatomic) BOOL castDisabled;
 
 @end
 
@@ -48,6 +53,12 @@
     self.drawingLayer.points = [[NSMutableArray alloc] init];
     [self.view insertSubview:self.drawingLayer atIndex:0];
     [self setUpPentagram];
+    
+    self.waitProgress.roundedCorners = YES;
+    self.waitProgress.trackTintColor = [UIColor colorWithRed:0 green:0.0 blue:0 alpha:0.4];
+    self.waitProgress.progressTintColor = [UIColor colorFromRGB:0xA3C7E7];
+    self.waitProgress.progress = 0.4;
+    self.waitProgress.alpha = 0.0;
 }
 
 - (void)setUpPentagram
@@ -101,6 +112,7 @@
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    if (self.castDisabled) return;
     [touches enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
         UITouch *touch = obj;
         CGPoint touchPoint = [touch locationInView:self.view];
@@ -111,12 +123,14 @@
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    if (self.castDisabled) return;    
     [touches enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
         
         UITouch *touch = obj;
         CGPoint touchPoint = [touch locationInView:self.view];
         
-        if ([self.drawingLayer.points count] == 1) {
+        // what if it is 0?
+        if ([self.drawingLayer.points count] <= 1) {
             // [self.drawingLayer.points replaceObjectAtIndex:1 withObject:[NSValue valueWithCGPoint:touchPoint]];
             [self.drawingLayer.points addObject: [NSValue valueWithCGPoint:touchPoint]];
         } else {
@@ -142,6 +156,45 @@
     [self.drawingLayer setNeedsDisplay];
     
     self.currentEmblem = nil;
+}
+
+
+
+-(void)delayCast:(NSTimeInterval)delay {
+    if (delay == 0) return;
+    NSLog(@"DELAY CAST %f", delay);    
+    NSTimeInterval tickTime = 0.05;
+    CGFloat percentIncreasePerTick = tickTime / delay;
+    self.castTimer = [NSTimer scheduledTimerWithTimeInterval:tickTime target:self selector:@selector(onCastTimer:) userInfo:@(percentIncreasePerTick) repeats:YES];
+    self.waitProgress.progress = 0.0;
+    self.waitProgress.alpha = 1.0;
+    
+    self.castDisabled = YES;
+    
+    for(PentEmblem *emblem in self.emblems)
+    {
+        emblem.status = EmblemStatusDisabled;
+    }    
+}
+
+-(void)onCastTimer:(NSTimer*)timer {
+    NSNumber * percentIncreasePerTick = timer.userInfo;
+    self.waitProgress.progress += percentIncreasePerTick.floatValue;
+    
+    if (self.waitProgress.progress >= 1.0) {
+        self.castDisabled = NO;
+        [self.castTimer invalidate];
+        self.castTimer = nil;
+        
+        for(PentEmblem *emblem in self.emblems)
+        {
+            emblem.status = EmblemStatusNormal;
+        }
+        
+        [UIView animateWithDuration:0.2 animations:^{
+            self.waitProgress.alpha = 0.0;
+        }];
+    }
 }
 
 @end

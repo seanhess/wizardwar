@@ -243,7 +243,9 @@
 -(void)didCastSpell:(Spell *)spell;
 {
     if (spell) {
+        // now, disable the basturd
         [self.match castSpell:spell];
+        [self.pentagram delayCast:spell.castDelay];
     }
 }
 

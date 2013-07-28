@@ -1994,8 +1994,9 @@
 		78F6B1DB1746AD8900AA070D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = OL;
 				LastUpgradeCheck = 0460;
-				ORGANIZATIONNAME = "The LAB";
+				ORGANIZATIONNAME = "Orbital Labs";
 			};
 			buildConfigurationList = 78F6B1DE1746AD8900AA070D /* Build configuration list for PBXProject "WizardWar" */;
 			compatibilityVersion = "Xcode 3.2";

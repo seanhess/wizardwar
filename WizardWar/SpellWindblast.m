@@ -25,6 +25,7 @@
         self.damage = 0;
         self.heavy = NO;
         self.name = @"Wind Blast";
+        self.castDelay = 0.0;
     }
     return self;
 }

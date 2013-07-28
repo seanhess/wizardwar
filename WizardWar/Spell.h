@@ -44,6 +44,7 @@ typedef enum SpellStatus {
 @property (nonatomic, strong) Effect * effect; // if the spell creates an effect
 @property (nonatomic) BOOL targetSelf;
 @property (nonatomic, strong) NSString * name;
+@property (nonatomic) CGFloat castDelay; // delay after cast
 
 // how far away from the wizard should it start
 @property (nonatomic) float startOffsetPosition;

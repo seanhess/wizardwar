@@ -162,9 +162,6 @@
     x += dxInPixels;
     
     self.position = ccp(x, y);
-    if (self.spell.class == SpellWindblast.class) {
-        NSLog(@"UP: %f", self.position.x);
-    }
 }
 
 -(BOOL)isWall:(Spell*)spell {
@@ -181,9 +178,6 @@
 //    self.positionAction = [CCMoveTo actionWithDuration:0.2 position:ccp(self.spellX, self.spellY)];
 //    [self runAction:self.positionAction];
     self.position = ccp(self.spellX, self.spellY);
-    if (self.spell.class == SpellWindblast.class) {
-        NSLog(@"POS: %f", self.position.x);
-    }
 }
 
 - (CGFloat)spellY {

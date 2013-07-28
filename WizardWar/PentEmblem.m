@@ -25,19 +25,24 @@
 
 -(void)setStatus:(EmblemStatus)status {
     _status = status;
-    
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        if (status == EmblemStatusSelected)
-            self.alpha = 1.0;
-        else
-            self.alpha = 0.5;
-        
-//        if (status == EmblemStatusDisabled)
-//            self.transform = CGAffineTransformMakeScale(0.1, 0.1);
+
+    if (status == EmblemStatusDisabled) {
+        self.alpha = 0.3;
+    } else {
+        self.alpha = 1.0;
+    }
+
+//    [UIView animateWithDuration:0.3 animations:^{
+//        if (status == EmblemStatusSelected)
+//            self.alpha = 1.0;
 //        else
-//            self.transform = CGAffineTransformIdentity;    
-    }];
+//            self.alpha = 0.8;
+//        
+////        if (status == EmblemStatusDisabled)
+////            self.transform = CGAffineTransformMakeScale(0.1, 0.1);
+////        else
+////            self.transform = CGAffineTransformIdentity;    
+//    }];
 }
 
 -(void)setMana:(NSInteger)mana {
