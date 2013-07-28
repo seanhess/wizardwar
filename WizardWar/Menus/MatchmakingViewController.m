@@ -38,6 +38,7 @@
 #import "SettingsViewController.h"
 #import <NSString+FontAwesome.h>
 #import <FacebookSDK/FacebookSDK.h>
+#import "AnalyticsService.h"
 
 @interface MatchmakingViewController () <NSFetchedResultsControllerDelegate, FBFriendPickerDelegate>
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
@@ -50,6 +51,7 @@
 @property (strong, nonatomic) NSFetchedResultsController * challengeResults;
 @property (strong, nonatomic) NSFetchedResultsController * friendResults;
 @property (strong, nonatomic) NSFetchedResultsController * localResults;
+@property (strong, nonatomic) NSFetchedResultsController * otherCloseResults;
 @property (strong, nonatomic) NSFetchedResultsController * allResults;
 
 @property (strong, nonatomic) RACDisposable * matchStatusSignal;
@@ -68,6 +70,8 @@
 
 - (void)viewDidLoad
 {
+    [AnalyticsService event:@"MatchmakingLoad"];
+    
     [super viewDidLoad];
 
     [self.inviteFriendsButton addAwesomeIcon:FAIconFacebookSign beforeTitle:YES];
@@ -134,9 +138,15 @@
     self.friendResults.delegate = self;
     [self.friendResults performFetch:&error];
     
-    self.localResults = [ObjectStore.shared fetchedResultsForRequest:[LobbyService.shared requestCloseUsers]];
+    // Show anyone right here, and 4 closest other users online
+    self.localResults = [ObjectStore.shared fetchedResultsForRequest:[LobbyService.shared requestCloseUsers:self.currentUser]];
     self.localResults.delegate = self;
     [self.localResults performFetch:&error];
+    
+    self.otherCloseResults = [ObjectStore.shared fetchedResultsForRequest:[LobbyService.shared requestClosestUsers:self.currentUser withLimit:4]];
+    self.otherCloseResults.delegate = self;
+    [self.otherCloseResults performFetch:&error];
+    
     
     // DEBUG ONLY: show all users. Uncomment and change # of sections to 4
     self.allResults = [ObjectStore.shared fetchedResultsForRequest:[UserFriendService.shared requestStrangers:user withLimit:5]];
@@ -197,8 +207,9 @@
         sectionGlobal = 0;
     
     else if (controller == self.localResults) sectionGlobal = 1;
-    else if (controller == self.friendResults) sectionGlobal = 2;
-    else if (controller == self.allResults) sectionGlobal = 3;
+    else if (controller == self.otherCloseResults) sectionGlobal = 2;
+    else if (controller == self.friendResults) sectionGlobal = 3;
+    else if (controller == self.allResults) sectionGlobal = 4;
     
     NSIndexPath * indexPathGlobal = [NSIndexPath indexPathForItem:indexPath.row inSection:sectionGlobal];
     NSIndexPath * newIndexPathGlobal = [NSIndexPath indexPathForItem:newIndexPath.row inSection:sectionGlobal];
@@ -331,7 +342,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return 5;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -340,9 +351,11 @@
         return [[self.challengeResults.sections objectAtIndex:0] numberOfObjects];
     } else if (section == 1){
         return [[self.localResults.sections objectAtIndex:0] numberOfObjects];
-    } else if (section == 2) {
-        return [[self.friendResults.sections objectAtIndex:0] numberOfObjects];
+    } else if (section == 2){
+        return [[self.otherCloseResults.sections objectAtIndex:0] numberOfObjects];
     } else if (section == 3) {
+        return [[self.friendResults.sections objectAtIndex:0] numberOfObjects];
+    } else if (section == 4) {
         return [[self.allResults.sections objectAtIndex:0] numberOfObjects];
     } else {
         return 0;
@@ -373,12 +386,12 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    if (section == 3) return 80;
+    if (section == 4) return 80;
     return 0;
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    if (section == 3) {
+    if (section == 4) {
         UIView * blankView = [UIView new];
         blankView.backgroundColor = [UIColor clearColor];
         return blankView;
@@ -389,8 +402,9 @@
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 0) return @"Challenges";
     else if (section == 1) return @"Near You";
-    else if (section == 2) return @"Frenemies";
-    else if (section == 3) return @"Strangers";
+    else if (section == 2) return nil;
+    else if (section == 3) return @"Frenemies";
+    else if (section == 4) return @"Strangers";
     return nil;
 }
 
@@ -398,8 +412,9 @@
     if (section == 0 && (!LocationService.shared.accepted || !UserService.shared.pushAccepted))
         return self.warningsView.frame.size.height;
     else if (section == 1) return 26;
-    else if (section == 2) return 26;
+    else if (section == 2) return 0;
     else if (section == 3) return 26;
+    else if (section == 4) return 26;
     return 26;
 }
 
@@ -424,8 +439,10 @@
     if (indexPath.section == 1) {
         user = [self.localResults objectAtIndexPath:localIndexPath];
     } else if (indexPath.section == 2) {
-        user = [self.friendResults objectAtIndexPath:localIndexPath];
+        user = [self.otherCloseResults objectAtIndexPath:localIndexPath];
     } else if (indexPath.section == 3) {
+        user = [self.friendResults objectAtIndexPath:localIndexPath];
+    } else if (indexPath.section == 4) {
         user = [self.allResults objectAtIndexPath:localIndexPath];
     } 
     return user;
@@ -473,8 +490,10 @@
     else if (indexPath.section == 1)
         [self didSelectUser:[self.localResults objectAtIndexPath:localIndexPath]];
     else if (indexPath.section == 2)
-        [self didSelectUser:[self.friendResults objectAtIndexPath:localIndexPath]];
+        [self didSelectUser:[self.otherCloseResults objectAtIndexPath:localIndexPath]];
     else if (indexPath.section == 3)
+        [self didSelectUser:[self.friendResults objectAtIndexPath:localIndexPath]];
+    else if (indexPath.section == 4)
         [self didSelectUser:[self.allResults objectAtIndexPath:localIndexPath]];
     
     else {}
@@ -487,12 +506,12 @@
     
     Challenge * existingChallenge = [ChallengeService.shared user:self.currentUser challengedByOpponent:user];
     if (existingChallenge) {
-        // accept their challenge instead
+        // accept their challenge instead         
         [ChallengeService.shared acceptChallenge:existingChallenge];
     }
     
     else {
-        // Issue the challenge
+        // Issue the challenge              
         [ChallengeService.shared user:self.currentUser challengeOpponent:user isRemote:!user.isOnline];
         
         // Do NOT join yet (wait until accepted)
@@ -529,6 +548,8 @@
 # pragma mark - Buttons n stuff
 - (IBAction)didTapInviteFriends:(id)sender {
     
+    [AnalyticsService event:@"FriendInviteTap"];          
+    
     // Connect their facebook account first, then open the friend invite dialog
     // it doesn't make sense to invite friends without having them connect facebook first
     
@@ -564,6 +585,8 @@
 }
 
 - (void)facebookViewControllerDoneWasPressed:(id)sender {
+    [AnalyticsService event:@"FriendSelected"];
+    
     FBFriendPickerViewController *friendPickerController = (FBFriendPickerViewController*)sender;
     NSLog(@"Selected friends: %@", friendPickerController.selection);
     // Dismiss the friend picker
@@ -584,6 +607,7 @@
 }
 
 - (IBAction)didTapAccount {
+    [AnalyticsService event:@"AccountTap"];    
     SettingsViewController * settings = [SettingsViewController new];
     UINavigationController * navigation = [[UINavigationController alloc] initWithRootViewController:settings];
     settings.onDone = ^{

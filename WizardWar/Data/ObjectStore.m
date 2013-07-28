@@ -143,6 +143,11 @@
     
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"DataModel.sqlite"];
     
+    // LIGHTWEIGHT MIGRATIONS
+    // 1. select DataModel.xcdatamodel
+    // 2. Add Model Version...
+    // 3. select & change to latest
+    // 4. make changes
     NSDictionary *options = @{NSMigratePersistentStoresAutomaticallyOption:@YES, NSInferMappingModelAutomaticallyOption:@YES};
     
     NSError *error = nil;

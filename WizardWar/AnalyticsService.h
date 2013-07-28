@@ -11,5 +11,6 @@
 @interface AnalyticsService : NSObject
 
 +(void)didFinishLaunching:(NSDictionary*)launchOptions;
++(void)event:(NSString*)name;
 
 @end

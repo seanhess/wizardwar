@@ -17,6 +17,7 @@
 #import "LobbyService.h"
 #import "SettingsViewController.h"
 #import "UserFriendService.h"
+#import "AnalyticsService.h"
 
 @interface LandingViewController ()
 @end
@@ -58,6 +59,8 @@
     Wizard * ai = [Wizard new];
     ai.name = @"Zorlak Bot";
     ai.wizardType = WIZARD_TYPE_ONE;
+    
+    [AnalyticsService event:@"PracticeGameTap"];
     
     MatchViewController * match = [MatchViewController new];
     [match startMatchAsWizard:UserService.shared.currentWizard withAI:ai];

@@ -24,6 +24,7 @@
 #import "AppStyle.h"
 #import "ConnectionService.h"
 #import "UIColor+Hex.h"
+#import "AnalyticsService.h"
 
 @interface MatchViewController ()
 @property (strong, nonatomic) PentagramViewController * pentagram;
@@ -49,6 +50,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [AnalyticsService event:@"MatchLoad"];    
     
     NSLog(@"MatchVC.viewDidLoad");
     

@@ -29,7 +29,8 @@
 - (void)user:(User*)user joinedMatch:(NSString*)matchId;
 - (void)userLeftMatch:(User*)user;
 
-- (NSFetchRequest*)requestCloseUsers;
+- (NSFetchRequest*)requestCloseUsers:(User*)user;
+- (NSFetchRequest*)requestClosestUsers:(User*)user withLimit:(NSInteger)limit;
 
 //-(BOOL)userIsLocal:(User*)user;
 

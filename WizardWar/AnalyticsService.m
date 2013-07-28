@@ -7,11 +7,16 @@
 //
 
 #import "AnalyticsService.h"
+#import "TestFlight.h"
 
 @implementation AnalyticsService
 
 +(void)didFinishLaunching:(NSDictionary *)launchOptions {
 
+}
+
++(void)event:(NSString *)name {
+    [TestFlight passCheckpoint:name];
 }
 
 @end

@@ -155,6 +155,9 @@
 		785168BC17A40EDD00A49257 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 785168B817A40EDD00A49257 /* libTestFlight.a */; };
 		785168BD17A40EDE00A49257 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 785168B917A40EDD00A49257 /* README.md */; };
 		785168BE17A40EDE00A49257 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 785168BA17A40EDD00A49257 /* release_notes.md */; };
+		78516B8217A5905A00A49257 /* DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 78516B8117A5905A00A49257 /* DataModel.xcdatamodel */; };
+		78516B8517A590C700A49257 /* FirebaseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78516B8417A590C700A49257 /* FirebaseSerializer.m */; };
+		78516B8817A5925800A49257 /* NSObject+Reflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 78516B8717A5925700A49257 /* NSObject+Reflection.m */; };
 		785FBE9F17724FA20021AEE5 /* wizard1-set1-animations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 785FBE9E17724FA20021AEE5 /* wizard1-set1-animations.plist */; };
 		785FBEA217725A780021AEE5 /* pillow-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEA017725A780021AEE5 /* pillow-hd.png */; };
 		785FBEA317725A780021AEE5 /* pillow.png in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEA117725A780021AEE5 /* pillow.png */; };
@@ -219,7 +222,6 @@
 		78AF75691792D720008499DB /* wizard1-set2-clothes-animations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78AF75671792D720008499DB /* wizard1-set2-clothes-animations.plist */; };
 		78AF756C1792E162008499DB /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AF756B1792E162008499DB /* UIColor+Hex.m */; };
 		78AF756F1792ECB9008499DB /* AccountColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AF756E1792ECB9008499DB /* AccountColorViewController.m */; };
-		78AF75731793018C008499DB /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78AF75711793018C008499DB /* DataModel.xcdatamodeld */; };
 		78C46B5A17562CAC0077EE98 /* MultiplayerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C46B5917562CAC0077EE98 /* MultiplayerService.m */; };
 		78C5CD9F178AFDC400CDCC76 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C5CD9E178AFDC400CDCC76 /* CoreData.framework */; };
 		78C5CDA6178AFFA000CDCC76 /* ObjectStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C5CDA5178AFFA000CDCC76 /* ObjectStore.m */; };
@@ -653,6 +655,11 @@
 		785168B917A40EDD00A49257 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		785168BA17A40EDD00A49257 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
 		785168BB17A40EDD00A49257 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		78516B8117A5905A00A49257 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		78516B8317A590C700A49257 /* FirebaseSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseSerializer.h; sourceTree = "<group>"; };
+		78516B8417A590C700A49257 /* FirebaseSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseSerializer.m; sourceTree = "<group>"; };
+		78516B8617A5925700A49257 /* NSObject+Reflection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Reflection.h"; sourceTree = "<group>"; };
+		78516B8717A5925700A49257 /* NSObject+Reflection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Reflection.m"; sourceTree = "<group>"; };
 		785FBE9E17724FA20021AEE5 /* wizard1-set1-animations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set1-animations.plist"; sourceTree = "<group>"; };
 		785FBEA017725A780021AEE5 /* pillow-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pillow-hd.png"; sourceTree = "<group>"; };
 		785FBEA117725A780021AEE5 /* pillow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pillow.png; sourceTree = "<group>"; };
@@ -750,7 +757,6 @@
 		78AF756B1792E162008499DB /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		78AF756D1792ECB9008499DB /* AccountColorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountColorViewController.h; sourceTree = "<group>"; };
 		78AF756E1792ECB9008499DB /* AccountColorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountColorViewController.m; sourceTree = "<group>"; };
-		78AF75721793018C008499DB /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		78C46B5817562CAC0077EE98 /* MultiplayerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiplayerService.h; sourceTree = "<group>"; };
 		78C46B5917562CAC0077EE98 /* MultiplayerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiplayerService.m; sourceTree = "<group>"; };
 		78C5CD9E178AFDC400CDCC76 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -1399,6 +1405,8 @@
 		785FBED6177261D00021AEE5 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				78516B8617A5925700A49257 /* NSObject+Reflection.h */,
+				78516B8717A5925700A49257 /* NSObject+Reflection.m */,
 				785FBEAE177261BD0021AEE5 /* LocalPartyService.h */,
 				785FBEAF177261BD0021AEE5 /* LocalPartyService.m */,
 				784D3BDC1774F753009945F8 /* LobbyService.h */,
@@ -1413,6 +1421,8 @@
 				784D3BE317750441009945F8 /* IdService.m */,
 				784D3BF21777C622009945F8 /* LocationService.h */,
 				784D3BF31777C622009945F8 /* LocationService.m */,
+				78516B8317A590C700A49257 /* FirebaseSerializer.h */,
+				78516B8417A590C700A49257 /* FirebaseSerializer.m */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -1502,7 +1512,7 @@
 		78C5CDA3178AFF6C00CDCC76 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				78AF75711793018C008499DB /* DataModel.xcdatamodeld */,
+				78516B8117A5905A00A49257 /* DataModel.xcdatamodel */,
 				78C98627178DE0C800B545F9 /* Challenge.h */,
 				78C98628178DE0C800B545F9 /* Challenge.m */,
 				78C5CDDB178B034C00CDCC76 /* User.h */,
@@ -2401,13 +2411,15 @@
 				78CF319617920C4800BC8C29 /* InfoService.m in Sources */,
 				78AF756C1792E162008499DB /* UIColor+Hex.m in Sources */,
 				78AF756F1792ECB9008499DB /* AccountColorViewController.m in Sources */,
-				78AF75731793018C008499DB /* DataModel.xcdatamodeld in Sources */,
 				78DAB807179597A50093A701 /* AnalyticsService.m in Sources */,
 				78DAB81E1795AAE40093A701 /* FriendsViewController.m in Sources */,
 				78DAB8241795C3A10093A701 /* FacebookUser.m in Sources */,
 				78DAB8291795E2B00093A701 /* SettingsViewController.m in Sources */,
 				78DAB82D1799BCFF0093A701 /* ProfileCell.m in Sources */,
 				78DAB839179A0C680093A701 /* FacebookButtonCell.m in Sources */,
+				78516B8217A5905A00A49257 /* DataModel.xcdatamodel in Sources */,
+				78516B8517A590C700A49257 /* FirebaseSerializer.m in Sources */,
+				78516B8817A5925800A49257 /* NSObject+Reflection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2504,8 +2516,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks/TestFlightSDK1.2.6\"",
-					"\"$(SRCROOT)/../../Downloads/Cocos2dJavaScriptExample/Cocos2dJavaScriptExample/libs/SpiderMonkey/ios/lib\"",
-					"\"$(SRCROOT)/Frameworks/Cocos2d/SpiderMonkey/ios/lib\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -2515,7 +2525,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "\"Cocos2dJavaScriptExample/libs/SpiderMonkey/ios/include\"";
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2525,7 +2535,6 @@
 			baseConfigurationReference = DE8809F786384C2C96220236 /* Pods.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -2542,8 +2551,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks/TestFlightSDK1.2.6\"",
-					"\"$(SRCROOT)/../../Downloads/Cocos2dJavaScriptExample/Cocos2dJavaScriptExample/libs/SpiderMonkey/ios/lib\"",
-					"\"$(SRCROOT)/Frameworks/Cocos2d/SpiderMonkey/ios/lib\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -2552,9 +2559,8 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "\"Cocos2dJavaScriptExample/libs/SpiderMonkey/ios/include\"";
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -2581,19 +2587,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		78AF75711793018C008499DB /* DataModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				78AF75721793018C008499DB /* DataModel.xcdatamodel */,
-			);
-			currentVersion = 78AF75721793018C008499DB /* DataModel.xcdatamodel */;
-			path = DataModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 78F6B1DB1746AD8900AA070D /* Project object */;
 }

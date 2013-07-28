@@ -17,6 +17,7 @@
 #import "ConnectionService.h"
 #import <ReactiveCocoa.h>
 #import "UserFriendService.h"
+#import "FirebaseSerializer.h"
 
 // Just implement global people for this yo
 @interface LobbyService ()
@@ -93,7 +94,7 @@
     // it will just add the isOnline, locationLatitude, locationLongitude
     
     User * user = [UserService.shared userWithId:snapshot.name create:YES];
-    [user setValuesForKeysWithDictionary:snapshot.value];
+    [FirebaseSerializer updateObject:user withDictionary:snapshot.value];
     user.isOnline = YES;
 
     // Come through later and add distance!
@@ -205,16 +206,32 @@
     [self saveUserToLobby:user];
 }
 
+-(NSPredicate*)predicateNotFriend:(User*)user {
+    return [NSCompoundPredicate notPredicateWithSubpredicate:[UserFriendService.shared predicateIsFBFriendOrFrenemy:user]];
+}
+
 #pragma mark - Core Data Requests
 
-// Local users can come even without a device token
-// If they have no device token
-- (NSFetchRequest*)requestCloseUsers {
-    User * user = UserService.shared.currentUser;
+- (NSFetchRequest*)requestCloseUsers:(User *)user {
     NSFetchRequest * request = [UserService.shared requestOtherOnline:user];
-    NSPredicate * notFriend = [NSCompoundPredicate notPredicateWithSubpredicate:[UserFriendService.shared predicateIsFBFriendOrFrenemy:user]];
     NSPredicate * isClose = [NSPredicate predicateWithFormat:@"distance >= 0 AND distance < %f", MAX_SAME_LOCATION_DISTANCE];
-    request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[isClose, notFriend, request.predicate]];
+    request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[isClose, [self predicateNotFriend:user], request.predicate]];
+    return request;
+}
+
+// not friends
+- (NSFetchRequest*)requestClosestUsers:(User *)user withLimit:(NSInteger)limit {
+    NSFetchRequest * request = [UserService.shared requestOtherOnline:user];
+
+    NSPredicate * notFriend = [self predicateNotFriend:user];
+    NSPredicate * isFar = [NSPredicate predicateWithFormat:@"distance > %f", MAX_SAME_LOCATION_DISTANCE];
+    request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[notFriend, isFar, request.predicate]];
+    
+    NSSortDescriptor * sortDistance = [NSSortDescriptor sortDescriptorWithKey:@"distance" ascending:YES];
+    request.sortDescriptors = @[sortDistance];
+    
+    request.fetchLimit = limit;
+    
     return request;
 }
 

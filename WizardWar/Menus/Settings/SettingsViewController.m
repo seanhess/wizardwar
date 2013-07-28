@@ -18,6 +18,7 @@
 #import <WEPopoverController.h>
 #import "UserFriendService.h"
 #import "FacebookButtonCell.h"
+#import "AnalyticsService.h"
 
 
 @interface SettingsViewController () <AccountColorDelegate, UITextFieldDelegate>
@@ -38,6 +39,7 @@
 
 - (void)viewDidLoad
 {
+    [AnalyticsService event:@"SettingsLoad"];    
     self.title = @"Settings";
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationItem.titleView = [ComicZineDoubleLabel titleView:self.title navigationBar:self.navigationController.navigationBar];
@@ -278,6 +280,7 @@
 -(void)didTapFacebook {
     if ([UserFriendService.shared isAuthenticatedFacebook]) {
         User * user = [UserService.shared currentUser];
+        [AnalyticsService event:@"FacebookDisconnectTap"];            
         [UserFriendService.shared user:user disconnectFacebook:^{
             [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
         }];
@@ -288,6 +291,7 @@
 }
 
 -(void)connectFacebook {
+    [AnalyticsService event:@"FacebookConnectTap"];        
     User * user = [UserService.shared currentUser];
     [UserFriendService.shared user:user authenticateFacebook:^(BOOL success, User* updated) {
         if (updated) {

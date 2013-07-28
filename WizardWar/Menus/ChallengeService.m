@@ -15,6 +15,8 @@
 #import "ObjectStore.h"
 #import "NSArray+Functional.h"
 #import "IdService.h"
+#import "FirebaseSerializer.h"
+#import "AnalyticsService.h"
 
 @interface ChallengeService ()
 @property (nonatomic, strong) Firebase * node;
@@ -64,7 +66,7 @@
 -(void)onAdded:(FDataSnapshot *)snapshot {
     // Assumes the users have already been loaded
     Challenge * challenge = [self challengeWithId:snapshot.name create:YES];
-    [challenge setValuesForKeysWithDictionary:snapshot.value];
+    [FirebaseSerializer updateObject:challenge withDictionary:snapshot.value];
     
 //    User * main = [UserService.shared userWithId:snapshot.name];
 //    Challenge * challenge = [self createOrFindChallengeForUser:main];
@@ -96,6 +98,7 @@
 
 
 - (void)acceptChallenge:(Challenge*)challenge {
+    [AnalyticsService event:@"ChallengeAccept"];       
     [self setChallenge:challenge status:ChallengeStatusAccepted];
 }
 
@@ -145,6 +148,7 @@
 // this is only called from the perspective of the current user
 // Need to get the same one for the given user
 - (Challenge*)user:(User*)user challengeOpponent:(User*)opponent isRemote:(BOOL)isRemote {
+    [AnalyticsService event:@"ChallengeIssue"];          
     Challenge * challenge = [self createOrFindChallengeForUser:user];
     challenge.main = user;
     challenge.opponent = opponent;

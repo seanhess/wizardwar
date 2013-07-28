@@ -16,6 +16,9 @@ Push Notifications
 * https://www.parse.com/docs/push_guide#top/iOS
 * https://www.parse.com/apps/wizard-war/push_notifications
 
+Core Data
+* http://www.raywenderlich.com/27657/how-to-perform-a-lightweight-core-data-migration
+
 [ ] Fix wind blast
 [ ] Add random "fail" spells (with two elements) any 2 elements triggers a random fail spell
 [ ] Add feedback! 

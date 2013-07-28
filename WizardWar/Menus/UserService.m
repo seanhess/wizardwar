@@ -12,6 +12,8 @@
 #import <CoreData/CoreData.h>
 #import "ObjectStore.h"
 #import "NSArray+Functional.h"
+#import "FirebaseSerializer.h"
+#import "AnalyticsService.h"
 
 @interface UserService ()
 @property (nonatomic, strong) Firebase * node;
@@ -62,9 +64,9 @@
 -(void)onAdded:(FDataSnapshot *)snapshot {
     NSString * userId = snapshot.name;
     User * user = [self userWithId:userId create:YES];
-    [user setValuesForKeysWithDictionary:snapshot.value];
+    [FirebaseSerializer updateObject:user withDictionary:snapshot.value];
     user.updated = ([snapshot.priority doubleValue] / 1000.0); // comes down in milliseconds
-    NSLog(@"UserService: (+) %i %@ ", (int)(user.updated - self.lastUpdatedTime), user.name);
+    NSLog(@"UserService: (+) %i %@", (int)(user.updated - self.lastUpdatedTime), user.name);
     
     if ([user.deviceToken isEqualToString:self.currentUser.deviceToken] && ![user.userId isEqualToString:self.currentUser.userId]) {
         [self mergeCurrentUserWith:user];
@@ -96,6 +98,8 @@
 # pragma mark - DeviceToken
 
 - (void)saveDeviceToken:(NSString *)deviceToken {
+    
+    [AnalyticsService event:@"DeviceToken"];
     
     // this must be before you set the device token on yours
     User * otherUserWithToken = [ObjectStore.shared requestLastObject:[self requestDeviceToken:deviceToken user:self.currentUser]];
