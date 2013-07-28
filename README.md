@@ -19,16 +19,23 @@ Push Notifications
 Core Data
 * http://www.raywenderlich.com/27657/how-to-perform-a-lightweight-core-data-migration
 
-[ ] Fix wind blast
+
+STUFF TO DO
+===========
+
+[ ] BUG: crash you experienced while playing
+[ ] Smooth animation: use updates to move them, instead of tween
+[ ] New mana/spam
+[ ] Feedback: if they don't cast a spell within a certain time, tell them what to do
 [ ] Add random "fail" spells (with two elements) any 2 elements triggers a random fail spell
-[ ] Add feedback! 
-  [ ] Fail sound
-  [ ] "Try dragging between elements"
-  [ ] Spell cast graphic
-[x] Merge and finish lobby code
+
+[ ] TALK: Trevor: plans for app? Moving forward plan? What do we do? Money?
+[ ] TALK: Jesse: fail spells. Other 2 spells. 
+
+[ ] Improve Practice Mode AI?
+[ ] Improve Wind Blast interaction
 
 IDEA: we can have some spells take "more mana", meaning they reduce the size of the indicators used MORE
-
 
 [x] Make walls and monsters fall
 [x] More spells. Fill it up!
@@ -36,6 +43,13 @@ IDEA: we can have some spells take "more mana", meaning they reduce the size of 
 BUGS
 - pulls you out of a game if you are in one already
 
+
+
+
+
+
+SPELL IDEAS
+===========
 
 
 SUMMON DEATH: 

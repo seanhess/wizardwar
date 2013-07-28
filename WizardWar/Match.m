@@ -141,7 +141,7 @@
 /// AI //
 
 - (void)aiDidCastSpell:(Spell *)spell {
-    [self player:self.aiWizard castSpell:spell];
+    [self player:self.aiWizard castSpell:spell currentTick:self.timer.nextTick];
 }
 
 
@@ -203,18 +203,7 @@
 }
 
 -(void)update:(NSTimeInterval)dt {
-    [self.timer update:dt];
-    
-    if (self.status == MatchStatusSyncing || self.status == MatchStatusReady) return;
-    
-    // move all the spells around and stuff, but don't simulate the game
-    [self.activeSpells forEach:^(Spell*spell) {
-        [spell update:dt];
-    }];
-    
-    [self.players.allValues forEach:^(Wizard*player) {
-        [player update:dt];
-    }];
+    [self.timer update:dt];    
 }
 
 - (void)gameDidTick:(NSInteger)currentTick {
@@ -374,13 +363,13 @@
     if (wizard == self.currentWizard || wizard == self.aiWizard) {
         if (wizard.health == 0) {
             wizard.effect = nil;
-            [wizard setState:WizardStatusDead animated:NO];
+            [wizard setState:WizardStatusDead];
             // need to set the OTHER wizard to something else
             Wizard * otherWizard = [self.players.allValues find:^BOOL(Wizard* aWizard) {
                 return (aWizard != wizard);
             }];
             otherWizard.effect = nil;
-            [otherWizard setState:WizardStatusWon animated:NO];
+            [otherWizard setState:WizardStatusWon];
 
             [self.multiplayer updatePlayer:otherWizard];
             [self checkWin];
@@ -456,11 +445,11 @@
     }
 }
 
--(void)player:(Wizard*)player castSpell:(Spell*)spell {
+-(void)player:(Wizard*)player castSpell:(Spell*)spell currentTick:(NSInteger)currentTick {
     
     if (player.effect.disablesPlayer) return;
     
-    [player setState:WizardStatusCast animated:YES];
+    [player setStatus:WizardStatusCast atTick:currentTick];
     
     // update spell
     [spell initCaster:player tick:self.timer.nextTick];
@@ -473,7 +462,7 @@
 
 
 -(void)castSpell:(Spell *)spell {
-    [self player:self.currentWizard castSpell:spell];
+    [self player:self.currentWizard castSpell:spell currentTick:self.timer.nextTick];
 }
 
 -(void)disconnect {

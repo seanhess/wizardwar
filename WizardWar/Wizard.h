@@ -27,6 +27,7 @@ typedef enum WizardStatus {
 @interface Wizard : NSObject <Objectable, Simulated>
 @property (nonatomic, strong) NSString * name;
 @property (nonatomic) WizardStatus state;
+@property (nonatomic) NSInteger updatedTick;
 @property (nonatomic) float position; // in units (not pixels)
 @property (nonatomic) NSInteger health;
 @property (nonatomic, strong) NSString * wizardType;
@@ -37,7 +38,6 @@ typedef enum WizardStatus {
 @property (nonatomic, strong) UIColor * color;
 
 -(BOOL)isFirstPlayer;
--(void)setState:(WizardStatus)state animated:(BOOL)animated;
--(void)update:(NSTimeInterval)dt;
+-(void)setStatus:(WizardStatus)status atTick:(NSInteger)tick;
 +(NSString*)randomWizardType;
 @end

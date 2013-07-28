@@ -12,6 +12,8 @@
 #import "UIColor+Hex.h"
 
 #define SECONDS_PER_MANA 1.5
+#define CAST_STATUS_DURATION 0.5
+#define HIT_STATUS_DURATION 1.0
 
 @interface Wizard ()
 @property (nonatomic) NSTimeInterval stateAnimationTime;
@@ -32,11 +34,7 @@
 }
 
 -(void)setValuesForKeysWithDictionary:(NSDictionary *)keyedValues {
-    WizardStatus currentState = self.state;
     [super setValuesForKeysWithDictionary:keyedValues];
-    if (currentState != self.state) {
-        [self setState:self.state animated:YES];
-    }
 }
 
 -(NSString*)description {
@@ -58,39 +56,25 @@
     return (self.isFirstPlayer) ? 1 : -1;
 }
 
--(void)setState:(WizardStatus)state animated:(BOOL)animated {
-    // can't change if dead!
+-(void)setStatus:(WizardStatus)status atTick:(NSInteger)tick {    
+    // can't change if dead or won! It is forever
     if (self.state == WizardStatusDead || self.state == WizardStatusWon) return;
-    self.state = state;
-    if (animated) {
-        if (state == WizardStatusHit)
-            self.stateAnimationTime = 0.5;
-        else if (state == WizardStatusCast)
-            self.stateAnimationTime = 1.0;
-        else
-            self.stateAnimationTime = 0.0;
-    }
-    else
-        self.stateAnimationTime = 0.0;
-}
-
--(void)update:(NSTimeInterval)dt {
-
-    // destroy the timer if set to dead
-    if (self.state == WizardStatusDead || self.state == WizardStatusWon)
-        self.stateAnimationTime = 0;
     
-    if (self.stateAnimationTime > 0) {
-        self.stateAnimationTime -= dt;
-        if (self.stateAnimationTime <= 0) {
-            if (self.state == WizardStatusDead || self.state == WizardStatusWon) return;
-            self.state = WizardStatusReady;
-        }
-    }
+    self.state = status;
+    self.updatedTick = tick;
 }
 
 - (void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
     [self.effect simulateTick:currentTick interval:interval player:self];
+    
+    if (self.state == WizardStatusCast || self.state == WizardStatusHit) {
+        NSInteger elapsedTicks = (currentTick - self.updatedTick);
+        NSTimeInterval elapsedTime = elapsedTicks * interval;
+        
+        if ((self.state == WizardStatusCast && elapsedTime >= CAST_STATUS_DURATION) || (self.state == WizardStatusHit && elapsedTime >= HIT_STATUS_DURATION)) {
+            self.state = WizardStatusReady;
+        }
+    }
 }
 
 - (UIColor*)color {
