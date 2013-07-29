@@ -24,13 +24,11 @@ STUFF TO DO
 ===========
 
 [ ] Fist of grom doesn't use ticks!
+[ ] Fist of grom breaks helmet? hmm...
 
 [x] Smooth animation: use updates to move them, instead of tween
 [x] BUG: crash you experienced while playing??? Who knows?
-[ ] New mana/spam
-    [ ] delay on everything
-    [ ] disable the whole pentagram
-    [ ] Show a timer with the delay RIGHT IN FRONT. Says: "Recharging..."
+[x] New mana/spam
 
 [ ] Feedback: if they don't cast a spell within a certain time, tell them what to do
 [ ] Add random "fail" spells (with two elements) any 2 elements triggers a random fail spell
@@ -41,7 +39,7 @@ STUFF TO DO
 [ ] Improve Practice Mode AI?
 [ ] Improve Wind Blast interaction.
 
-[ ] Javascript Engine
+[ ] Javascript Engine: just for ticks
 
 [ ] Add more spells!
 [ ] Particle effects or some other visual wizardry. Use physics engine to simulate unimportant particle stuff?

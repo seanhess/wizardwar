@@ -137,6 +137,7 @@
 		7829934D17710C5D00881DA8 /* wizard1-set2-animations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7829934717710C5D00881DA8 /* wizard1-set2-animations.plist */; };
 		7829934E17710C5D00881DA8 /* wizard1-set2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7829934817710C5D00881DA8 /* wizard1-set2.plist */; };
 		7829934F17710C5D00881DA8 /* wizard1-set2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7829934917710C5D00881DA8 /* wizard1-set2.png */; };
+		78306B9C17A7144300487B16 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78306B9A17A7144300487B16 /* DataModel.xcdatamodeld */; };
 		7837D6AD17540836001D820E /* GameTimerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7837D6AC17540836001D820E /* GameTimerService.m */; };
 		7837D6B017540893001D820E /* PlayerTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7837D6AF17540893001D820E /* PlayerTime.m */; };
 		7837F16B1749B9D000D29445 /* navbar-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7837F1691749B9CF00D29445 /* navbar-logo.png */; };
@@ -155,7 +156,6 @@
 		785168BC17A40EDD00A49257 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 785168B817A40EDD00A49257 /* libTestFlight.a */; };
 		785168BD17A40EDE00A49257 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 785168B917A40EDD00A49257 /* README.md */; };
 		785168BE17A40EDE00A49257 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 785168BA17A40EDD00A49257 /* release_notes.md */; };
-		78516B8217A5905A00A49257 /* DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 78516B8117A5905A00A49257 /* DataModel.xcdatamodel */; };
 		78516B8817A5925800A49257 /* NSObject+Reflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 78516B8717A5925700A49257 /* NSObject+Reflection.m */; };
 		785FBE9F17724FA20021AEE5 /* wizard1-set1-animations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 785FBE9E17724FA20021AEE5 /* wizard1-set1-animations.plist */; };
 		785FBEA217725A780021AEE5 /* pillow-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEA017725A780021AEE5 /* pillow-hd.png */; };
@@ -628,6 +628,7 @@
 		7829934717710C5D00881DA8 /* wizard1-set2-animations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set2-animations.plist"; sourceTree = "<group>"; };
 		7829934817710C5D00881DA8 /* wizard1-set2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set2.plist"; sourceTree = "<group>"; };
 		7829934917710C5D00881DA8 /* wizard1-set2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard1-set2.png"; sourceTree = "<group>"; };
+		78306B9B17A7144300487B16 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		7837D6AB17540836001D820E /* GameTimerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTimerService.h; sourceTree = "<group>"; };
 		7837D6AC17540836001D820E /* GameTimerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTimerService.m; sourceTree = "<group>"; };
 		7837D6AE17540893001D820E /* PlayerTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerTime.h; sourceTree = "<group>"; };
@@ -654,7 +655,6 @@
 		785168B917A40EDD00A49257 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		785168BA17A40EDD00A49257 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
 		785168BB17A40EDD00A49257 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
-		78516B8117A5905A00A49257 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		78516B8617A5925700A49257 /* NSObject+Reflection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Reflection.h"; sourceTree = "<group>"; };
 		78516B8717A5925700A49257 /* NSObject+Reflection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Reflection.m"; sourceTree = "<group>"; };
 		785FBE9E17724FA20021AEE5 /* wizard1-set1-animations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set1-animations.plist"; sourceTree = "<group>"; };
@@ -1507,7 +1507,7 @@
 		78C5CDA3178AFF6C00CDCC76 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				78516B8117A5905A00A49257 /* DataModel.xcdatamodel */,
+				78306B9A17A7144300487B16 /* DataModel.xcdatamodeld */,
 				78C98627178DE0C800B545F9 /* Challenge.h */,
 				78C98628178DE0C800B545F9 /* Challenge.m */,
 				78C5CDDB178B034C00CDCC76 /* User.h */,
@@ -2413,8 +2413,8 @@
 				78DAB8291795E2B00093A701 /* SettingsViewController.m in Sources */,
 				78DAB82D1799BCFF0093A701 /* ProfileCell.m in Sources */,
 				78DAB839179A0C680093A701 /* FacebookButtonCell.m in Sources */,
-				78516B8217A5905A00A49257 /* DataModel.xcdatamodel in Sources */,
 				78516B8817A5925800A49257 /* NSObject+Reflection.m in Sources */,
+				78306B9C17A7144300487B16 /* DataModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2530,6 +2530,7 @@
 			baseConfigurationReference = DE8809F786384C2C96220236 /* Pods.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -2554,6 +2555,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
@@ -2582,6 +2584,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		78306B9A17A7144300487B16 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				78306B9B17A7144300487B16 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 78306B9B17A7144300487B16 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 78F6B1DB1746AD8900AA070D /* Project object */;
 }
