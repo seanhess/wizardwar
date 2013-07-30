@@ -26,6 +26,12 @@ STUFF TO DO
 [ ] Fist of grom doesn't use ticks!
 [ ] Fist of grom breaks helmet? hmm...
 
+[ ] Experiment: Javascript Engine (timer only to start)
+[ ] Experiment: Particles
+[ ] Experiment: more game balance
+[ ] Improve Practice Mode AI?
+[ ] Improve Wind Blast interaction.
+
 [x] Smooth animation: use updates to move them, instead of tween
 [x] BUG: crash you experienced while playing??? Who knows?
 [x] New mana/spam
@@ -33,13 +39,8 @@ STUFF TO DO
 [ ] Feedback: if they don't cast a spell within a certain time, tell them what to do
 [ ] Add random "fail" spells (with two elements) any 2 elements triggers a random fail spell
 
-[ ] TALK: Trevor: plans for app? Moving forward plan? What do we do? Money?
-[ ] TALK: Jesse: fail spells. Other 2 spells. 
-
-[ ] Improve Practice Mode AI?
-[ ] Improve Wind Blast interaction.
-
-[ ] Javascript Engine: just for ticks
+[x] TALK: Trevor: plans for app? Moving forward plan? What do we do? Money?
+[x] TALK: Jesse: fail spells. Other 2 spells.
 
 [ ] Add more spells!
 [ ] Particle effects or some other visual wizardry. Use physics engine to simulate unimportant particle stuff?

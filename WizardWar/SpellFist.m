@@ -9,6 +9,9 @@
 #import "SpellFist.h"
 #import "SpellHelmet.h"
 
+#define FIST_TIME_DROP 2.0
+#define FIST_TIME_DROP_SECOND 3.0
+
 @implementation SpellFist
 
 -(id)init {
@@ -17,23 +20,23 @@
         self.strength = 1;
         self.altitude = 2; // it's up high!
         self.name = @"Fist of Grom";
-        
         self.castDelay = 1.0;
-        
-        double delayInSeconds = 2.0;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            self.altitude = 1;
-            
-            double delayInSeconds = 1.0;
-            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                self.altitude = 0;
-            });
-        });
     }
     return self;
 }
+
+-(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
+    [super simulateTick:currentTick interval:interval];
+    
+    NSInteger elapsedTicks = currentTick - self.createdTick;
+    if (self.altitude == 2 && elapsedTicks >= round(FIST_TIME_DROP/interval)) {
+        self.altitude = 1;
+    } else if (self.altitude == 1 && elapsedTicks >= round(FIST_TIME_DROP_SECOND/interval)) {
+        self.altitude = 0;
+    }
+    
+}
+
 
 -(void)setPositionFromPlayer:(Wizard*)player {
     self.direction = 1;
