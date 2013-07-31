@@ -121,7 +121,7 @@
 }
 
 -(CGPoint)calculatedPosition {
-    return ccp([self.units toX:self.wizard.position], self.units.zeroY + PIXELS_HIGH_PER_ALTITUDE*self.wizard.altitude);
+    return ccp([self.units toX:self.wizard.position], [self.units altitudeY:self.wizard.altitude]);
 }
 
 -(void)renderPosition {

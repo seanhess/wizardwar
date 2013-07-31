@@ -11,7 +11,8 @@
 #import "Wizard.h"
 #import "Match.h"
 #import "Combos.h"
+#import "Units.h"
 
 @interface MatchLayer : CCLayer
--(id)initWithMatch:(Match*)match size:(CGSize)size combos:(Combos*)combos;
+-(id)initWithMatch:(Match*)match size:(CGSize)size combos:(Combos*)combos units:(Units*)units;
 @end

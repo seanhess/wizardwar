@@ -14,6 +14,9 @@
 #define UNITS_MID (UNITS_DISTANCE/2.0)
 
 @interface Units : NSObject
+@property (nonatomic) CGSize realSize;
+@property (nonatomic) CGFloat scaleModifier;
+
 @property (nonatomic) CGFloat min;
 @property (nonatomic) CGFloat max;
 @property (nonatomic) CGFloat width;
@@ -21,4 +24,7 @@
 @property (nonatomic) CGFloat maxY;
 -(CGFloat)toX:(CGFloat)units; // calculate absolute position
 -(CGFloat)toWidth:(CGFloat)units; // use this when you need only the width in pixels
+-(CGFloat)altitudeY:(NSInteger)altitude;
+
+-(id)initWithRealSize:(CGSize)size;
 @end

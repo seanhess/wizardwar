@@ -9,13 +9,17 @@
 #import "WizardDirector.h"
 #import "cocos2d.h"
 
+//         CGSize size = CCDirector.sharedDirector.winSize;
+
+
+
 @interface WizardDirector ()
 
 @end
 
 @implementation WizardDirector
 
-+(CCDirectorIOS*)initializeWithBounds:(CGRect)bounds {
++(CCDirectorIOS*)initializeWithUnits:(Units *)units {
     // Custom initialization
     
     // CCGLView creation
@@ -31,7 +35,7 @@
     //  - Possible values: YES, NO
     // numberOfSamples: Only valid if multisampling is enabled
     //  - Possible values: 0 to glGetIntegerv(GL_MAX_SAMPLES_APPLE)
-    CCGLView *glView = [CCGLView viewWithFrame:bounds
+    CCGLView *glView = [CCGLView viewWithFrame:CGRectMake(0, 0, units.realSize.width, units.realSize.height)
                                    pixelFormat:kEAGLColorFormatRGB565
                                    depthFormat:0
                             preserveBackbuffer:NO
@@ -79,9 +83,9 @@
     [sharedFileUtils setiPadRetinaDisplaySuffix:@"-hd"];        // Default on iPad RetinaDisplay is "-ipadhd"
     
     // the ipads are TALLER than the iphones
-    // so we need to fit it in    
-    if (bounds.size.width > 700) // ipad-like
-        director.view.contentScaleFactor = director.view.contentScaleFactor / 2.1;
+    // so we need to fit it in
+    director.view.contentScaleFactor = director.view.contentScaleFactor / units.scaleModifier;
+        
     
     // Assume that PVR images have premultiplied alpha
     [CCTexture2D PVRImagesHavePremultipliedAlpha:YES];

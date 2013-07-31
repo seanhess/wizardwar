@@ -23,6 +23,7 @@
 #import "AnalyticsService.h"
 #import <TestFlight.h>
 #import <FacebookSDK/FacebookSDK.h>
+#import "OLUnitsService.h"
 
 // The director should belong to the app delegate or a singleton
 // and you should manually unload or reload it
@@ -68,8 +69,9 @@
     
     // INITIALIZE DIRECTOR
     NSLog(@"INITILIZE WITH BOUNDS %@", NSStringFromCGRect(self.window.bounds));
-    [WizardDirector initializeWithBounds:self.window.bounds];
-    
+    Units * units = [[Units alloc] initWithRealSize:self.window.bounds.size];
+    [OLUnitsService.shared setUnits:units];
+    [WizardDirector initializeWithUnits:units];
     
     //    NSLog(@"FONT: %@",[UIFont fontNamesForFamilyName:@"ComicZineOT"]);
     //    NSLog(@"FONT: %@",[UIFont fontNamesForFamilyName:@"Comic Zine OT"]);

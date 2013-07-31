@@ -9,8 +9,8 @@
 #import "SpellFist.h"
 #import "SpellHelmet.h"
 
-#define FIST_TIME_DROP 2.0
-#define FIST_TIME_DROP_SECOND 3.0
+#define FIST_TIME_DROP_WAIT 2.0
+#define FIST_TIME_DROP_DURATION 1.0
 
 @implementation SpellFist
 
@@ -21,6 +21,7 @@
         self.altitude = 2; // it's up high!
         self.name = @"Fist of Grom";
         self.castDelay = 1.0;
+        NSLog(@"FIST 2");        
     }
     return self;
 }
@@ -29,9 +30,11 @@
     [super simulateTick:currentTick interval:interval];
     
     NSInteger elapsedTicks = currentTick - self.createdTick;
-    if (self.altitude == 2 && elapsedTicks >= round(FIST_TIME_DROP/interval)) {
+    if (self.altitude == 2 && elapsedTicks >= round(FIST_TIME_DROP_WAIT/interval)) {
+        NSLog(@"FIST 1");
         self.altitude = 1;
-    } else if (self.altitude == 1 && elapsedTicks >= round(FIST_TIME_DROP_SECOND/interval)) {
+    } else if (self.altitude == 1 && elapsedTicks >= round((FIST_TIME_DROP_WAIT+FIST_TIME_DROP_DURATION)/interval)) {
+        NSLog(@"FIST 0");        
         self.altitude = 0;
     }
     

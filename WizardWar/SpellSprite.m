@@ -181,8 +181,12 @@
 }
 
 - (CGFloat)spellY {
-    CGFloat y = self.units.zeroY + 100*self.spell.altitude;
+    return [self spellYWithAltitude:self.spell.altitude];
+}
 
+-(CGFloat)spellYWithAltitude:(NSInteger)altitude {
+    CGFloat y = [self.units altitudeY:altitude];
+    
     if ([self isWall:self.spell] || [self.spell class] == [SpellFirewall class]) {
         // bump walls down
         y -= 25;
@@ -191,9 +195,14 @@
     else if ([self.spell isType:[SpellHelmet class]]) {
         y += 30;
     }
-
+    
+    else if ([self.spell isKindOfClass:[SpellFist class]]) {
+        y += 60;
+    }
+    
     return y;
 }
+
 
 - (CGFloat)spellX {
     
@@ -206,14 +215,22 @@
     return x;
 }
 
-- (void)renderAltitude { 
+- (void)renderAltitude {
     if ([self.spell isType:[SpellFist class]]) {
+        NSLog(@"ALTITUDE: %i height=%f", self.spell.altitude, self.spellY);
+        
         if (self.spell.altitude == 2) {
-
+//            self.position = ccp(self.spellX, self.spellY);
+            [self runAction:[CCMoveTo actionWithDuration:0.5 position:ccp(self.spellX, self.spellY)]];
         }
         else if (self.spell.altitude == 1) {
-            [self runAction:[CCMoveTo actionWithDuration:1.0 position:ccp(self.spellX, self.units.zeroY + 120)]];
-        }        
+//            self.position = ccp(self.spellX, self.spellY);
+            [self runAction:[CCMoveTo actionWithDuration:1.5 position:ccp(self.spellX, self.spellY - 100)]];
+            
+//            [self runAction:[CCMoveTo actionWithDuration:1.0 position:ccp(self.spellX, [self altitudeY:1])]];
+        } else {
+//            [self runAction:[CCMoveTo actionWithDuration:0.5 position:ccp(self.spellX, self.spellY)]];
+        }
     }
 }
 

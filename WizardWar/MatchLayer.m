@@ -53,9 +53,11 @@
 
 @implementation MatchLayer
 
--(id)initWithMatch:(Match*)match size:(CGSize)size combos:(Combos *)combos {
+-(id)initWithMatch:(Match*)match size:(CGSize)size combos:(Combos *)combos units:(Units *)units {
     if ((self = [super init])) {
         // background
+        
+        self.units = units;
         
         [self addChild:[CCLayerColor layerWithColor:ccc4(66, 66, 66, 255)]];
         
@@ -78,8 +80,6 @@
         
         self.indicators = [CCLayer node];
         [self addChild:self.indicators];
-        
-        self.units = [[Units alloc] init];
         
         self.feedback = [FeedbackLayer node];
         self.feedback.combos = combos;

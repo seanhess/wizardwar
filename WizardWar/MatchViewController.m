@@ -25,6 +25,7 @@
 #import "ConnectionService.h"
 #import "UIColor+Hex.h"
 #import "AnalyticsService.h"
+#import "OLUnitsService.h"
 
 @interface MatchViewController ()
 @property (strong, nonatomic) PentagramViewController * pentagram;
@@ -102,7 +103,7 @@
     CCDirector * director = [CCDirector sharedDirector];
     NSLog(@"MatchVC.viewWillAppear");
     director.view.frame = self.view.bounds;
-    MatchLayer * matchLayer = [[MatchLayer alloc] initWithMatch:self.match size:self.view.bounds.size combos:self.combos];
+    MatchLayer * matchLayer = [[MatchLayer alloc] initWithMatch:self.match size:self.view.bounds.size combos:self.combos units:[OLUnitsService.shared units]];
     [WizardDirector runLayer:matchLayer];
     
     // CONNECT / START!

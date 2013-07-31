@@ -138,6 +138,7 @@
 		7829934E17710C5D00881DA8 /* wizard1-set2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7829934817710C5D00881DA8 /* wizard1-set2.plist */; };
 		7829934F17710C5D00881DA8 /* wizard1-set2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7829934917710C5D00881DA8 /* wizard1-set2.png */; };
 		78306B9C17A7144300487B16 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78306B9A17A7144300487B16 /* DataModel.xcdatamodeld */; };
+		78306BB017A99AEC00487B16 /* OLUnitsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78306BAF17A99AEC00487B16 /* OLUnitsService.m */; };
 		7837D6AD17540836001D820E /* GameTimerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7837D6AC17540836001D820E /* GameTimerService.m */; };
 		7837D6B017540893001D820E /* PlayerTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7837D6AF17540893001D820E /* PlayerTime.m */; };
 		7837F16B1749B9D000D29445 /* navbar-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7837F1691749B9CF00D29445 /* navbar-logo.png */; };
@@ -297,7 +298,7 @@
 		78F193E4174715B100BB8587 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F193E3174715B100BB8587 /* Default.png */; };
 		78F193E6174715B500BB8587 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F193E5174715B500BB8587 /* Default@2x.png */; };
 		78F1946217471A0E00BB8587 /* background-cave.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F193E817471A0E00BB8587 /* background-cave.png */; };
-		78F1946317471A0E00BB8587 /* background-cave@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F193E917471A0E00BB8587 /* background-cave@2x.png */; };
+		78F1946317471A0E00BB8587 /* background-cave-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F193E917471A0E00BB8587 /* background-cave-hd.png */; };
 		78F194A017471A0E00BB8587 /* pentagram-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F1942617471A0E00BB8587 /* pentagram-bg.png */; };
 		78F194A117471A0E00BB8587 /* pentagram-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F1942717471A0E00BB8587 /* pentagram-bg@2x.png */; };
 		78F194A217471A0E00BB8587 /* pentagram-earth.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F1942817471A0E00BB8587 /* pentagram-earth.png */; };
@@ -629,6 +630,8 @@
 		7829934817710C5D00881DA8 /* wizard1-set2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set2.plist"; sourceTree = "<group>"; };
 		7829934917710C5D00881DA8 /* wizard1-set2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard1-set2.png"; sourceTree = "<group>"; };
 		78306B9B17A7144300487B16 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		78306BAE17A99AEC00487B16 /* OLUnitsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLUnitsService.h; sourceTree = "<group>"; };
+		78306BAF17A99AEC00487B16 /* OLUnitsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLUnitsService.m; sourceTree = "<group>"; };
 		7837D6AB17540836001D820E /* GameTimerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTimerService.h; sourceTree = "<group>"; };
 		7837D6AC17540836001D820E /* GameTimerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTimerService.m; sourceTree = "<group>"; };
 		7837D6AE17540893001D820E /* PlayerTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerTime.h; sourceTree = "<group>"; };
@@ -851,7 +854,7 @@
 		78F193E3174715B100BB8587 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		78F193E5174715B500BB8587 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		78F193E817471A0E00BB8587 /* background-cave.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-cave.png"; sourceTree = "<group>"; };
-		78F193E917471A0E00BB8587 /* background-cave@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-cave@2x.png"; sourceTree = "<group>"; };
+		78F193E917471A0E00BB8587 /* background-cave-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-cave-hd.png"; sourceTree = "<group>"; };
 		78F1942617471A0E00BB8587 /* pentagram-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pentagram-bg.png"; sourceTree = "<group>"; };
 		78F1942717471A0E00BB8587 /* pentagram-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pentagram-bg@2x.png"; sourceTree = "<group>"; };
 		78F1942817471A0E00BB8587 /* pentagram-earth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pentagram-earth.png"; sourceTree = "<group>"; };
@@ -1451,6 +1454,8 @@
 		785FBEE0177262E90021AEE5 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				78306BAE17A99AEC00487B16 /* OLUnitsService.h */,
+				78306BAF17A99AEC00487B16 /* OLUnitsService.m */,
 				7837D6AB17540836001D820E /* GameTimerService.h */,
 				7837D6AC17540836001D820E /* GameTimerService.m */,
 				789BAB8217566CFE003C0116 /* TimerSyncService.h */,
@@ -1657,7 +1662,7 @@
 				78F195031747FBFA00BB8587 /* exit.png */,
 				78F195041747FBFA00BB8587 /* exit@2x.png */,
 				78F193E817471A0E00BB8587 /* background-cave.png */,
-				78F193E917471A0E00BB8587 /* background-cave@2x.png */,
+				78F193E917471A0E00BB8587 /* background-cave-hd.png */,
 				7837F1691749B9CF00D29445 /* navbar-logo.png */,
 				7837F16A1749B9CF00D29445 /* navbar-logo@2x.png */,
 				784D3BDA17748BF1009945F8 /* menu-bg.png */,
@@ -2027,7 +2032,7 @@
 				78F193E4174715B100BB8587 /* Default.png in Resources */,
 				78F193E6174715B500BB8587 /* Default@2x.png in Resources */,
 				78F1946217471A0E00BB8587 /* background-cave.png in Resources */,
-				78F1946317471A0E00BB8587 /* background-cave@2x.png in Resources */,
+				78F1946317471A0E00BB8587 /* background-cave-hd.png in Resources */,
 				78F194A017471A0E00BB8587 /* pentagram-bg.png in Resources */,
 				78F194A117471A0E00BB8587 /* pentagram-bg@2x.png in Resources */,
 				78F194A217471A0E00BB8587 /* pentagram-earth.png in Resources */,
@@ -2415,6 +2420,7 @@
 				78DAB839179A0C680093A701 /* FacebookButtonCell.m in Sources */,
 				78516B8817A5925800A49257 /* NSObject+Reflection.m in Sources */,
 				78306B9C17A7144300487B16 /* DataModel.xcdatamodeld in Sources */,
+				78306BB017A99AEC00487B16 /* OLUnitsService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

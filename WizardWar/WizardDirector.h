@@ -9,10 +9,11 @@
 // Stupid name for class that manages
 
 #import "cocos2d.h"
+#import "Units.h"
 
 @interface WizardDirector : CCDirectorIOS;
 
-+(CCDirectorIOS*)initializeWithBounds:(CGRect)bounds;
++(CCDirectorIOS*)initializeWithUnits:(Units*)units;
 +(void)runLayer:(CCLayer*)layer;
 +(void)stop;
 +(void)start;
