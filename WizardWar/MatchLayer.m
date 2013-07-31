@@ -71,6 +71,9 @@
         // TODO: MatchLayer should create match if it is the delegate
         self.match = match;
         self.match.delegate = self;
+       
+        self.indicators = [CCLayer node];
+        [self addChild:self.indicators];        
         
         self.players = [CCLayer node];
         [self addChild:self.players];
@@ -78,8 +81,6 @@
         self.spells = [CCLayer node];
         [self addChild:self.spells];
         
-        self.indicators = [CCLayer node];
-        [self addChild:self.indicators];
         
         // thrown off because of scale!
         self.feedback = [FeedbackLayer node];

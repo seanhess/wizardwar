@@ -69,7 +69,7 @@
 
 - (CGFloat)altitudeY:(NSInteger)altitude {
     if (altitude == 2) {
-        return (self.zeroY + (self.maxY - self.zeroY)/2) + 100;
+        return (self.zeroY + (self.maxY - self.zeroY)/2) + 70;
     } else if (altitude == 1) {
         return (self.zeroY + (self.maxY - self.zeroY)/2);
     }
