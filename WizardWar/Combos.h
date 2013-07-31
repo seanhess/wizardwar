@@ -16,6 +16,7 @@
 @property (nonatomic) ElementType lastElement;
 @property (nonatomic, strong) NSMutableArray * allElements;
 
+@property (nonatomic) BOOL castDisabled;
 @property (nonatomic, strong) Spell * hintedSpell;
 @property (nonatomic, strong) Spell * castSpell;
 

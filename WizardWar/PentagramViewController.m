@@ -31,8 +31,6 @@
 
 @property (strong, nonatomic) NSTimer * castTimer;
 
-@property (nonatomic) BOOL castDisabled;
-
 @end
 
 @implementation PentagramViewController
@@ -112,7 +110,6 @@
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    if (self.castDisabled) return;
     [touches enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
         UITouch *touch = obj;
         CGPoint touchPoint = [touch locationInView:self.view];
@@ -123,7 +120,6 @@
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    if (self.castDisabled) return;    
     [touches enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
         
         UITouch *touch = obj;
@@ -150,12 +146,12 @@
         emblem.status = EmblemStatusNormal;
     }
     
-    [self.combos releaseElements];
-    
     self.drawingLayer.points = [[NSMutableArray alloc] init];
     [self.drawingLayer setNeedsDisplay];
     
     self.currentEmblem = nil;
+    
+    [self.combos releaseElements];
 }
 
 
@@ -169,12 +165,12 @@
     self.waitProgress.progress = 0.0;
     self.waitProgress.alpha = 1.0;
     
-    self.castDisabled = YES;
+    self.combos.castDisabled = YES;
     
-    for(PentEmblem *emblem in self.emblems)
-    {
-        emblem.status = EmblemStatusDisabled;
-    }    
+//    for(PentEmblem *emblem in self.emblems)
+//    {
+//        emblem.status = EmblemStatusDisabled;
+//    }    
 }
 
 -(void)onCastTimer:(NSTimer*)timer {
@@ -182,7 +178,7 @@
     self.waitProgress.progress += percentIncreasePerTick.floatValue;
     
     if (self.waitProgress.progress >= 1.0) {
-        self.castDisabled = NO;
+        self.combos.castDisabled = NO;
         [self.castTimer invalidate];
         self.castTimer = nil;
         

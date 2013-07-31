@@ -58,9 +58,12 @@
         
 
         __weak FeedbackLayer * wself = self;
-        [RACAble(self.combos.hintedSpell) subscribeNext:^(Spell*spell) {
-            [wself renderHintedSpell:spell];
+        [[RACSignal combineLatest:@[RACAble(self.combos.hintedSpell), RACAble(self.combos.castDisabled)]] subscribeNext:^(id x) {
+            [wself renderHintedSpell:wself.combos.hintedSpell];
         }];
+//        [RACAble(self.combos.hintedSpell) subscribeNext:^(Spell*spell) {
+//            
+//        }];
     }
     return self;
 }
@@ -77,7 +80,13 @@
 //    NSLog(@"STOPPING %i", self.spellNameLabel.opacity);
     
     if (hasHintedSpell) {
-        [self.spellNameLabel setString:spell.name];
+        if ((!self.combos.castSpell && self.combos.hintedSpell && self.combos.castDisabled)) {
+            [self.spellNameLabel setString:@"No Mana!"];
+        } else {
+            [self.spellNameLabel setString:spell.name];
+        }
+        
+        
         [self.spellNameLabel runAction:[CCFadeTo actionWithDuration:FADE_IN opacity:255]];
     } else {
         [self.spellNameLabel runAction:[CCFadeTo actionWithDuration:FADE_OUT opacity:0]];

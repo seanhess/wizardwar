@@ -41,6 +41,7 @@
 }
 
 -(void)moveToElement:(ElementType)element {
+    self.castSpell = nil;
     self.lastElement = element;
     [self.allElements addObject:@(element)];
     self.hintedSpell = [self spellForElements:self.allElements];
@@ -53,13 +54,23 @@
 //        self.hintedSpell = nil;
 //    }
     
-    self.castSpell = self.hintedSpell;
-    self.hintedSpell = nil;
-    self.allElements = [NSMutableArray array];
-    
-    if (self.castSpell) {
+    if (self.castDisabled == YES) {
+        [self reset];
+        return;
+    }
+
+    if (self.hintedSpell) {
+        self.castSpell = self.hintedSpell;
         self.lastSuccessfulSpell = self.castSpell;
     }
+    
+    [self reset];
+}
+
+-(void)reset {
+    self.hintedSpell = nil;
+    self.allElements = [NSMutableArray array];
+
 }
 
 -(BOOL)sameSpellTwice {
