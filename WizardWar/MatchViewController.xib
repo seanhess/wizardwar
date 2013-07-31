@@ -48,7 +48,7 @@
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MSAwLjA1NTk3Njg1NjM3IDAuMTgwNDM1MzQ4AA</bytes>
+							<bytes key="NSRGB">MC4xNjY2OTQ5NzI4IDAuMTY2Njk0OTcyOCAwLjE2NjY5NDk3MjgAA</bytes>
 						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
@@ -826,17 +826,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">MatchViewController</string>
 					<string key="superclassName">UIViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">didTapBack:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">didTapBack:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">didTapBack:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="cocosView">UIView</string>
 						<string key="message">UILabel</string>
