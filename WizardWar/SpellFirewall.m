@@ -19,7 +19,6 @@
     if ((self=[super init])) {
         self.strength = 3;
         self.name = @"Wall of Fire";
-        self.speed = 10;
     }
     return self;
 }
