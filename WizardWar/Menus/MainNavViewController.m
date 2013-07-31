@@ -41,14 +41,12 @@
 // Only valid for iOS 6+. NOT VALID for iOS 4 / 5.
 -(NSUInteger)supportedInterfaceOrientations {
     
-    return UIInterfaceOrientationMaskPortrait;
+	// iPhone only
+	if( [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone )
+		return UIInterfaceOrientationMaskPortrait;
 	
-//	// iPhone only
-//	if( [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone )
-//		return UIInterfaceOrientationMaskPortrait;
-//	
-//	// iPad only
-//	return UIInterfaceOrientationMaskLandscape;
+	// iPad only
+	return UIInterfaceOrientationMaskAll;
 }
 
 //// Supported orientations. Customize it for your own needs

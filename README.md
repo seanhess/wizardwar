@@ -23,14 +23,19 @@ Core Data
 STUFF TO DO
 ===========
 
-[ ] Fist of grom doesn't use ticks!
-[ ] Fist of grom breaks helmet? hmm...
+[x] Fist of grom doesn't use ticks!
+[x] Fist of grom breaks helmet? hmm...
 
-[ ] Experiment: Javascript Engine (timer only to start)
+[ ] Burn through bugs/features list
+[ ] Just use it over and over and test. Play with random people in town. Recruit recruit recruit & communicate. 
+
+[x] Experiment: Javascript Engine (timer only to start) (works, but why bother right now)
 [ ] Experiment: Particles
 [ ] Experiment: more game balance
 [ ] Improve Practice Mode AI?
 [ ] Improve Wind Blast interaction.
+
+
 
 [x] Smooth animation: use updates to move them, instead of tween
 [x] BUG: crash you experienced while playing??? Who knows?
