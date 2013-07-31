@@ -18,6 +18,7 @@
 -(id)init {
     if ((self=[super init])) {
 //        self.speed = 40; // make it slower so you can do the windblast combo
+//        self.speed = 25;
         self.heavy = NO;
         self.name = @"Fireball";
     }
@@ -29,6 +30,7 @@
     
     if ([spell isType:[SpellEarthwall class]]) {
         // TODO wear down!
+        // oh, yeah! wear it down for sure!
         return [SpellInteraction cancel];
     }
     
@@ -37,13 +39,17 @@
         
         // if going the same direction, then make it bigger and faster?
         // if not, then dissipate it
+        // only make it bigger!
         if (self.direction == spell.direction) {
             self.damage += 1;
-            self.speed += 20;
-            return [SpellInteraction modify];
+            self.speed += 5;
+        } else {
+            self.damage -= 1;
         }
         
-        else {
+        if (self.damage > 0) {
+            return [SpellInteraction modify];
+        } else {
             return [SpellInteraction cancel];
         }
     }
@@ -63,7 +69,13 @@
     }
     
     else if ([spell isType:[SpellMonster class]]) {
-        return [SpellInteraction cancel];
+        self.damage -= 1;
+        
+        if (self.damage > 0) {
+            return [SpellInteraction modify];
+        } else {
+            return [SpellInteraction cancel];
+        }
     }
     
     

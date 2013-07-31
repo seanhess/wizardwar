@@ -73,6 +73,10 @@
 
 }
 
+-(BOOL)hasElements {
+    return (self.allElements.count > 0);
+}
+
 -(BOOL)sameSpellTwice {
     return NO;
 //    return (self.hintedSpell && self.lastSuccessfulSpell.class == self.hintedSpell.class);

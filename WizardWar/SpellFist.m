@@ -20,7 +20,7 @@
         self.strength = 1;
         self.altitude = 2; // it's up high!
         self.name = @"Fist of Grom";
-        self.castDelay = 1.0;
+        self.castDelay *= 1.8;
         NSLog(@"FIST 2");        
     }
     return self;

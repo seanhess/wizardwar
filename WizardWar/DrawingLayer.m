@@ -15,10 +15,20 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        self.lineColor = [UIColor whiteColor];
     }
     return self;
 }
 
+
+-(void)setCastDisabled:(BOOL)castDisabled {
+    if (castDisabled)
+        self.lineColor = [UIColor redColor];
+    else
+        self.lineColor = [UIColor whiteColor];
+    
+    [self setNeedsDisplay];
+}
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -27,7 +37,7 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextClearRect(context, self.bounds);
     // Drawing lines with a white stroke color
-    CGContextSetRGBStrokeColor(context, 1.0, 1.0, 1.0, 1.0);
+    CGContextSetStrokeColorWithColor(context, self.lineColor.CGColor);
 	// Draw them with a 2.0 stroke width so they are a bit more visible.
 	CGContextSetLineWidth(context, 4.0);
 	// NSLog(@"%@", self.points);

@@ -11,5 +11,8 @@
 @interface DrawingLayer : UIView
 
 @property (strong, nonatomic) NSMutableArray *points;
+@property (strong, nonatomic) UIColor * lineColor;
+
+@property (nonatomic) BOOL castDisabled;
 
 @end

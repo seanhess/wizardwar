@@ -34,6 +34,8 @@
 @property (strong, nonatomic) NSTimer * castTimer;
 @property (weak, nonatomic) IBOutlet UILabel *feedbackLabel;
 
+@property (nonatomic) BOOL castDisabled;
+
 @end
 
 @implementation PentagramViewController
@@ -163,7 +165,6 @@
 }
 
 
-
 -(void)delayCast:(NSTimeInterval)delay {
     if (delay == 0) return;
     NSLog(@"DELAY CAST %f", delay);    
@@ -173,7 +174,7 @@
     self.waitProgress.progress = 0.0;
     self.waitProgress.alpha = 1.0;
     
-    self.combos.castDisabled = YES;
+    self.castDisabled = YES;
     
 //    for(PentEmblem *emblem in self.emblems)
 //    {
@@ -186,7 +187,7 @@
     self.waitProgress.progress += percentIncreasePerTick.floatValue;
     
     if (self.waitProgress.progress >= 1.0) {
-        self.combos.castDisabled = NO;
+        self.castDisabled = NO;
         [self.castTimer invalidate];
         self.castTimer = nil;
         
@@ -204,10 +205,14 @@
 }
 
 -(void)renderFeedback {
-    if (self.combos.hintedSpell) {
-        if ((!self.combos.castSpell && self.combos.hintedSpell && self.combos.castDisabled)) {
+    BOOL hasHintedSpell = (self.combos.hintedSpell != nil);
+    BOOL showNoMana = (!self.combos.castSpell && self.combos.hasElements && self.castDisabled);
+    if (hasHintedSpell || showNoMana) {
+        if (showNoMana) {
+            self.feedbackLabel.textColor = [UIColor redColor];
             [self.feedbackLabel setText:@"No Mana!"];
         } else {
+            self.feedbackLabel.textColor = [UIColor whiteColor];            
             [self.feedbackLabel setText:self.combos.hintedSpell.name];
         }
         
@@ -219,7 +224,12 @@
             self.feedbackLabel.alpha = 0.0;
         }];
     }
+}
 
+-(void)setCastDisabled:(BOOL)castDisabled {
+    _castDisabled = castDisabled;
+    self.combos.castDisabled = castDisabled;
+    self.drawingLayer.castDisabled = castDisabled;
 }
 
 @end

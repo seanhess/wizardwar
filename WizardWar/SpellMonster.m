@@ -17,7 +17,7 @@
 #import "SpellFirewall.h"
 #import "SpellSleep.h"
 
-#define MONSTER_SPEED 25
+#define MONSTER_SPEED 20
 
 @implementation SpellMonster
 
@@ -25,7 +25,7 @@
     if ((self=[super init])) {
         self.speed = MONSTER_SPEED;
         self.name = @"Summon Ogre";
-        self.castDelay = 0.7;
+        self.castDelay *= 1.5;
     }
     return self;
 }
