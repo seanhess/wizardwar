@@ -38,14 +38,15 @@
         
         // with the scale factor, it's wayyyy off the screen otherwise
         gameWidth = size.width / self.scaleModifier;
+        gameHeight = size.height / self.scaleModifier;        
         
         CGFloat horizontalPadding = 25 + (50 * self.scaleModifier);
         
         // it's too small on the ipad!
         // don't forget! I'm setting a scale factor too!
         // sort of by hand
-            
-        gameHeight = size.height / self.scaleModifier;
+        
+        self.center = CGPointMake(size.width/(2*self.scaleModifier), size.height/(2*self.scaleModifier));
         
         self.min = horizontalPadding;
         self.max = gameWidth-horizontalPadding;

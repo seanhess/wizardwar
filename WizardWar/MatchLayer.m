@@ -81,9 +81,10 @@
         self.indicators = [CCLayer node];
         [self addChild:self.indicators];
         
+        // thrown off because of scale!
         self.feedback = [FeedbackLayer node];
         self.feedback.combos = combos;
-        self.feedback.position = ccp(size.width/2, size.height/2);
+        self.feedback.position = ccp(self.units.center.x, self.units.center.y);
         [self addChild:self.feedback];        
         
         // LIFE MANA INDICATORS add two of them to the right spot
