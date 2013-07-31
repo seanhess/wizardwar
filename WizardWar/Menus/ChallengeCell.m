@@ -10,6 +10,8 @@
 #import "UserService.h"
 #import "UIColor+Hex.h"
 #import <QuartzCore/QuartzCore.h>
+#import <SDWebImage/UIImageView+WebCache.h>
+#import "UserFriendService.h"
 
 @interface ChallengeCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *mainImageView;
@@ -19,6 +21,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *mainLabel;
 @property (weak, nonatomic) IBOutlet UILabel *otherLabel;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityView;
+
+@property (strong, nonatomic) UIImage * placeholderImage;
 @end
 
 @implementation ChallengeCell
@@ -27,6 +31,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+
     }
     return self;
 }
@@ -52,6 +57,17 @@
     // Who are you fighting against?
     User * opponent = [self.challenge findOpponent:user];
     self.mainLabel.text = [NSString stringWithFormat:@"WAR vs %@", opponent.name];
+    
+    
+    if (!self.placeholderImage) {
+        self.placeholderImage = [UIImage imageNamed:@"user.jpg"];
+    }
+    CGSize size = self.mainImageView.frame.size;
+    NSURL * mainImageURL = [UserFriendService.shared user:challenge.main facebookAvatarURLWithSize:size];
+    [self.mainImageView setImageWithURL:mainImageURL placeholderImage:self.placeholderImage];
+    NSURL * opponentImageURL = [UserFriendService.shared user:challenge.opponent facebookAvatarURLWithSize:size];
+    [self.opponentImageView setImageWithURL:opponentImageURL placeholderImage:self.placeholderImage];
+    
     
     // default state is stopped
     [self.activityView stopAnimating];
