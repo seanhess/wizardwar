@@ -55,8 +55,6 @@
         
         [self addChild:self.spellNameLabel];
         
-        
-
         __weak FeedbackLayer * wself = self;
         [[RACSignal combineLatest:@[RACAble(self.combos.hintedSpell), RACAble(self.combos.castDisabled)]] subscribeNext:^(id x) {
             [wself renderHintedSpell:wself.combos.hintedSpell];

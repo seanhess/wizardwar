@@ -39,7 +39,7 @@
 @property (nonatomic, strong) CCLayer * spells;
 @property (nonatomic, strong) CCLayer * players;
 @property (nonatomic, strong) CCLayer * indicators;
-@property (nonatomic, strong) FeedbackLayer * feedback;
+//@property (nonatomic, strong) FeedbackLayer * feedback;
 
 @property (nonatomic, strong) NSString * matchId;
 
@@ -83,10 +83,10 @@
         
         
         // thrown off because of scale!
-        self.feedback = [FeedbackLayer node];
-        self.feedback.combos = combos;
-        self.feedback.position = ccp(self.units.center.x, self.units.center.y);
-        [self addChild:self.feedback];        
+//        self.feedback = [FeedbackLayer node];
+//        self.feedback.combos = combos;
+//        self.feedback.position = ccp(self.units.center.x, self.units.center.y);
+//        [self addChild:self.feedback];
         
         // LIFE MANA INDICATORS add two of them to the right spot
         LifeIndicatorNode * player1Indicator = [LifeIndicatorNode node];

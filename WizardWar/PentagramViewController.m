@@ -11,6 +11,8 @@
 #import "Elements.h"
 #import "NSArray+Functional.h"
 #import "UIColor+Hex.h"
+#import "AppStyle.h"
+#import <ReactiveCocoa.h>
 
 #define RECHARGE_INTERVAL 2.5
 
@@ -30,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet DACircularProgressView *waitProgress;
 
 @property (strong, nonatomic) NSTimer * castTimer;
+@property (weak, nonatomic) IBOutlet UILabel *feedbackLabel;
 
 @end
 
@@ -57,6 +60,9 @@
     self.waitProgress.progressTintColor = [UIColor colorFromRGB:0xA3C7E7];
     self.waitProgress.progress = 0.4;
     self.waitProgress.alpha = 0.0;
+    
+    self.feedbackLabel.font = [UIFont fontWithName:FONT_COMIC_ZINE_SOLID size:36];
+    self.feedbackLabel.alpha = 0.0;    
 }
 
 - (void)setUpPentagram
@@ -106,6 +112,7 @@
         emblem.status = EmblemStatusSelected;
         
         [self.combos moveToElement:emblem.element];
+        [self renderFeedback];
     }
 }
 
@@ -152,6 +159,7 @@
     self.currentEmblem = nil;
     
     [self.combos releaseElements];
+    [self renderFeedback];    
 }
 
 
@@ -190,7 +198,28 @@
         [UIView animateWithDuration:0.2 animations:^{
             self.waitProgress.alpha = 0.0;
         }];
+        
+        [self renderFeedback];
     }
+}
+
+-(void)renderFeedback {
+    if (self.combos.hintedSpell) {
+        if ((!self.combos.castSpell && self.combos.hintedSpell && self.combos.castDisabled)) {
+            [self.feedbackLabel setText:@"No Mana!"];
+        } else {
+            [self.feedbackLabel setText:self.combos.hintedSpell.name];
+        }
+        
+        [UIView animateWithDuration:0.2 animations:^{
+            self.feedbackLabel.alpha = 1.0;
+        }];
+    } else {
+        [UIView animateWithDuration:0.5 animations:^{
+            self.feedbackLabel.alpha = 0.0;
+        }];
+    }
+
 }
 
 @end
