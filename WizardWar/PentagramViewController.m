@@ -166,8 +166,7 @@
 
 
 -(void)delayCast:(NSTimeInterval)delay {
-    if (delay == 0) return;
-    NSLog(@"DELAY CAST %f", delay);    
+    if (delay == 0) return;  
     NSTimeInterval tickTime = 0.05;
     CGFloat percentIncreasePerTick = tickTime / delay;
     self.castTimer = [NSTimer scheduledTimerWithTimeInterval:tickTime target:self selector:@selector(onCastTimer:) userInfo:@(percentIncreasePerTick) repeats:YES];

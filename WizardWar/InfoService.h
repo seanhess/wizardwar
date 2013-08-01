@@ -12,5 +12,6 @@
 
 +(NSString*)version;
 +(NSString*)buildDate;
++(NSInteger)buildNumber;
 
 @end

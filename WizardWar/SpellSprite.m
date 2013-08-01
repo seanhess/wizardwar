@@ -217,19 +217,13 @@
 
 - (void)renderAltitude {
     if ([self.spell isType:[SpellFist class]]) {
-        NSLog(@"ALTITUDE: %i height=%f", self.spell.altitude, self.spellY);
         
         if (self.spell.altitude == 2) {
-//            self.position = ccp(self.spellX, self.spellY);
             [self runAction:[CCMoveTo actionWithDuration:0.5 position:ccp(self.spellX, self.spellY)]];
         }
         else if (self.spell.altitude == 1) {
-//            self.position = ccp(self.spellX, self.spellY);
             [self runAction:[CCMoveTo actionWithDuration:1.5 position:ccp(self.spellX, self.spellY - 100)]];
-            
-//            [self runAction:[CCMoveTo actionWithDuration:1.0 position:ccp(self.spellX, [self altitudeY:1])]];
         } else {
-//            [self runAction:[CCMoveTo actionWithDuration:0.5 position:ccp(self.spellX, self.spellY)]];
         }
     }
 }

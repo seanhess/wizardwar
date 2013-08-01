@@ -21,7 +21,6 @@
         self.altitude = 2; // it's up high!
         self.name = @"Fist of Grom";
         self.castDelay *= 1.8;
-        NSLog(@"FIST 2");        
     }
     return self;
 }
@@ -31,10 +30,8 @@
     
     NSInteger elapsedTicks = currentTick - self.createdTick;
     if (self.altitude == 2 && elapsedTicks >= round(FIST_TIME_DROP_WAIT/interval)) {
-        NSLog(@"FIST 1");
         self.altitude = 1;
     } else if (self.altitude == 1 && elapsedTicks >= round((FIST_TIME_DROP_WAIT+FIST_TIME_DROP_DURATION)/interval)) {
-        NSLog(@"FIST 0");        
         self.altitude = 0;
     }
     

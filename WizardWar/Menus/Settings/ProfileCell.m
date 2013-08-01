@@ -95,7 +95,7 @@
     self.colorView.hidden = YES;
     self.inputField.hidden = YES;
     self.avatarImageView.hidden = NO;
-    [self.avatarImageView setImageWithURL:url];    
+    [self.avatarImageView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"user.jpg"]];
 }
 
 

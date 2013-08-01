@@ -24,6 +24,7 @@
 #import <TestFlight.h>
 #import <FacebookSDK/FacebookSDK.h>
 #import "OLUnitsService.h"
+#import "InfoService.h"
 
 // The director should belong to the app delegate or a singleton
 // and you should manually unload or reload it
@@ -42,6 +43,7 @@
     
     // PARSE (must be before views)
     [Parse setApplicationId:@"3hsi88WR19iXGN11miDSH8B031uqyoBYBXHQe9bo" clientKey:@"CjkxlkZw0YOMdzdjJzhHfQm4vkPrA2ZWhY9n2Nfo"];
+    [Parse setVersion:InfoService.buildNumber];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeSound];
     

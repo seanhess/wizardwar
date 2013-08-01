@@ -34,6 +34,9 @@
 @property (nonatomic) BOOL isCurrentWizard;
 
 
+@property (nonatomic, strong) CCAction * skinStatusAction;
+@property (nonatomic, strong) CCAction * clothesStatusAction;
+
 @end
 
 @implementation WizardSprite
@@ -135,11 +138,18 @@
     if (self.wizard.effect.class == EffectSleep.class && (self.wizard.state == WizardStatusReady || self.wizard.state == WizardStatusHit || self.wizard.state == WizardStatusCast))
         return;
     
-    [self.skin stopAllActions];
-    [self.clothes stopAllActions];
+//    NSLog(@"RENDER STATUS %@ = %i", self.wizard.name, self.wizard.state);
+    // I should remove all status actions, not all actions
+//    [self.skin stopAllActions];
+//    [self.clothes stopAllActions];
     
-    [self.skin runAction:[self animationForStatus:self.wizard.state clothes:NO]];
-    [self.clothes runAction:[self animationForStatus:self.wizard.state clothes:YES]];    
+    [self.skin stopAction:self.skinStatusAction];
+    self.skinStatusAction = [self animationForStatus:self.wizard.state clothes:NO];
+    [self.skin runAction:self.skinStatusAction];
+
+    [self.clothes stopAction:self.clothesStatusAction];
+    self.clothesStatusAction = [self animationForStatus:self.wizard.state clothes:YES];
+    [self.clothes runAction:self.clothesStatusAction];
     
 //    NSString * imageName = [NSString stringWithFormat:@"%@.png", @"wizard1-sleep1"];
 //    [self.skin setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:imageName]];
@@ -178,6 +188,8 @@
     if (self.effect) {
         [self removeChild:self.effect];
     }
+    
+//    NSLog(@"RENDER EFFECT %@ = %@", self.wizard.name, self.wizard.effect);
     
     [self.skin stopAllActions];
     [self.clothes stopAllActions];

@@ -13,9 +13,13 @@
 +(NSString*)version {
     // return [NSString stringWithUTF8String:__DATE__];
     NSString * version = [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
-    NSString * build = [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"];
 //    NSString * date = self.buildDate;
-    return [NSString stringWithFormat:@"%@ (%@)", version, build];
+    return [NSString stringWithFormat:@"%@ (%i)", version, [self buildNumber]];
+}
+
++(NSInteger)buildNumber {
+    NSString * buildNumString = [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"];
+    return [buildNumString intValue];
 }
 
 +(NSString*)buildDate {
