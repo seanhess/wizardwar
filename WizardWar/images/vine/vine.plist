@@ -4,75 +4,10 @@
 	<dict>
 		<key>frames</key>
 		<dict>
-			<key>vine-1.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{ { 0, 0 }, { 568, 207 } }</string>
-				<key>offset</key>
-				<string>{ 0, 0 }</string>
-				<key>rotated</key>
-				<false/>
-				<key>sourceColorRect</key>
-				<string>{ { 0, 0 }, { 568, 207 } }</string>
-				<key>sourceSize</key>
-				<string>{ 568, 207 }</string>
-			</dict> 
-			<key>vine-6.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{ { 0, 207 }, { 568, 207 } }</string>
-				<key>offset</key>
-				<string>{ 0, 0 }</string>
-				<key>rotated</key>
-				<false/>
-				<key>sourceColorRect</key>
-				<string>{ { 0, 0 }, { 568, 207 } }</string>
-				<key>sourceSize</key>
-				<string>{ 568, 207 }</string>
-			</dict> 
-			<key>vine-7.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{ { 0, 414 }, { 568, 207 } }</string>
-				<key>offset</key>
-				<string>{ 0, 0 }</string>
-				<key>rotated</key>
-				<false/>
-				<key>sourceColorRect</key>
-				<string>{ { 0, 0 }, { 568, 207 } }</string>
-				<key>sourceSize</key>
-				<string>{ 568, 207 }</string>
-			</dict> 
-			<key>vine-9.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{ { 0, 621 }, { 568, 207 } }</string>
-				<key>offset</key>
-				<string>{ 0, 0 }</string>
-				<key>rotated</key>
-				<false/>
-				<key>sourceColorRect</key>
-				<string>{ { 0, 0 }, { 568, 207 } }</string>
-				<key>sourceSize</key>
-				<string>{ 568, 207 }</string>
-			</dict> 
-			<key>vine-8.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{ { 0, 828 }, { 568, 207 } }</string>
-				<key>offset</key>
-				<string>{ 0, 0 }</string>
-				<key>rotated</key>
-				<false/>
-				<key>sourceColorRect</key>
-				<string>{ { 0, 0 }, { 568, 207 } }</string>
-				<key>sourceSize</key>
-				<string>{ 568, 207 }</string>
-			</dict> 
 			<key>vine-3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{ { 0, 1035 }, { 568, 207 } }</string>
+				<string>{ { 0, 0 }, { 568, 207 } }</string>
 				<key>offset</key>
 				<string>{ 0, 0 }</string>
 				<key>rotated</key>
@@ -85,7 +20,7 @@
 			<key>vine-4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{ { 0, 1242 }, { 568, 207 } }</string>
+				<string>{ { 568, 0 }, { 568, 207 } }</string>
 				<key>offset</key>
 				<string>{ 0, 0 }</string>
 				<key>rotated</key>
@@ -98,7 +33,7 @@
 			<key>vine-5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{ { 0, 1449 }, { 568, 207 } }</string>
+				<string>{ { 1136, 0 }, { 568, 207 } }</string>
 				<key>offset</key>
 				<string>{ 0, 0 }</string>
 				<key>rotated</key>
@@ -108,10 +43,36 @@
 				<key>sourceSize</key>
 				<string>{ 568, 207 }</string>
 			</dict> 
-			<key>vine-2.png</key>
+			<key>vine-6.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{ { 0, 1656 }, { 568, 207 } }</string>
+				<string>{ { 1704, 0 }, { 568, 207 } }</string>
+				<key>offset</key>
+				<string>{ 0, 0 }</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{ { 0, 0 }, { 568, 207 } }</string>
+				<key>sourceSize</key>
+				<string>{ 568, 207 }</string>
+			</dict> 
+			<key>vine-7.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{ { 2272, 0 }, { 568, 207 } }</string>
+				<key>offset</key>
+				<string>{ 0, 0 }</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{ { 0, 0 }, { 568, 207 } }</string>
+				<key>sourceSize</key>
+				<string>{ 568, 207 }</string>
+			</dict> 
+			<key>vine-1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{ { 0, 207 }, { 568, 207 } }</string>
 				<key>offset</key>
 				<string>{ 0, 0 }</string>
 				<key>rotated</key>
@@ -124,7 +85,46 @@
 			<key>vine-10.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{ { 0, 1863 }, { 568, 207 } }</string>
+				<string>{ { 568, 207 }, { 568, 207 } }</string>
+				<key>offset</key>
+				<string>{ 0, 0 }</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{ { 0, 0 }, { 568, 207 } }</string>
+				<key>sourceSize</key>
+				<string>{ 568, 207 }</string>
+			</dict> 
+			<key>vine-8.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{ { 1136, 207 }, { 568, 207 } }</string>
+				<key>offset</key>
+				<string>{ 0, 0 }</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{ { 0, 0 }, { 568, 207 } }</string>
+				<key>sourceSize</key>
+				<string>{ 568, 207 }</string>
+			</dict> 
+			<key>vine-2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{ { 1704, 207 }, { 568, 207 } }</string>
+				<key>offset</key>
+				<string>{ 0, 0 }</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{ { 0, 0 }, { 568, 207 } }</string>
+				<key>sourceSize</key>
+				<string>{ 568, 207 }</string>
+			</dict> 
+			<key>vine-9.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{ { 2272, 207 }, { 568, 207 } }</string>
 				<key>offset</key>
 				<string>{ 0, 0 }</string>
 				<key>rotated</key>
@@ -142,7 +142,7 @@
 			<key>realTextureFileName</key>
 			<string>vine.png</string>
 			<key>size</key>
-			<string>{ 568, 2070 }</string>
+			<string>{ 3000, 3000 }</string>
 			<key>textureFileName</key>
 			<string>vine.png</string>
 		</dict>

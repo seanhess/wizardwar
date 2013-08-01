@@ -25,7 +25,7 @@ typedef enum SpellStatus {
 } SpellStatus;
 
 
-@interface Spell : NSObject <Objectable, Simulated>
+@interface Spell : NSObject <Objectable>
 @property (nonatomic, strong) NSString * spellId;
 @property (nonatomic) float speed; // units per second
 @property (nonatomic) float position;  // in units
@@ -52,6 +52,7 @@ typedef enum SpellStatus {
 -(void)initCaster:(Wizard*)player tick:(NSInteger)tick;
 -(BOOL)isType:(Class)class;
 
+-(SpellInteraction*)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval;
 -(SpellInteraction*)interactSpell:(Spell*)spell;
 -(SpellInteraction*)interactWizard:(Wizard*)wizard currentTick:(NSInteger)currentTick;
 

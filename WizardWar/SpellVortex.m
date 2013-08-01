@@ -27,7 +27,7 @@
 // vortex kills ALL spells
 // but you can't use it defensively or it hits YOU
 
--(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
+-(SpellInteraction*)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
     if ((currentTick - self.createdTick) % TICKS_PER_STRENGTH_LOSS == 0) {
         self.strength = 0;
         
@@ -35,6 +35,7 @@
         // needs to be able to interact
         // or send back an interaction or something
     }
+    return nil;
 }
 
 -(SpellInteraction*)interactSpell:(Spell*)spell {

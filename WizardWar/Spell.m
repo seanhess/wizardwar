@@ -9,6 +9,7 @@
 #import "Spell.h"
 #import "Tick.h"
 #import "EffectBasicDamage.h"
+#import "NSArray+Functional.h"
 
 @interface Spell ()
 @end
@@ -51,8 +52,9 @@
     [self setPositionFromPlayer:player];
 }
 
--(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
+-(SpellInteraction*)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
     self.position = [self move:interval];
+    return nil;
 }
 
 -(float)move:(NSTimeInterval)dt {

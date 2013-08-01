@@ -22,6 +22,13 @@
 #import "SpellFist.h"
 #import "SpellHelmet.h"
 #import "SpellSleep.h"
+
+#import "SpellFailChicken.h"
+#import "SpellFailHotdog.h"
+#import "SpellFailRainbow.h"
+#import "SpellFailTeddy.h"
+#import "SpellFailUndies.h"
+
 #import "EffectSleep.h"
 #import <ReactiveCocoa.h>
 
@@ -66,7 +73,10 @@
         [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"firewall-animation.plist"];
         
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"windblast.plist"];
-        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"windblast-animation.plist"];        
+        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"windblast-animation.plist"];
+        
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"chicken.plist"];
+        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"chicken-animation.plist"];
     });
 }
 
@@ -87,9 +97,12 @@
             self.skin = [SpellSprite singleImage:spell];
             [self addChild:self.skin];
             
-            if ([spell class] == [SpellSleep class]) {
+            if (spell.class == SpellSleep.class || spell.class == SpellFailUndies.class || spell.class == SpellFailTeddy.class || spell.class == SpellFailHotdog.class) {
                 CCActionInterval * rotate = [CCRotateBy actionWithDuration:1.4 angle:360.0];
                 [self.skin runAction:[CCRepeatForever actionWithAction:rotate]];
+            } else if (spell.class == SpellFailRainbow.class) {
+                CCActionInterval * fade = [CCFadeIn actionWithDuration:1.0];
+                [self.skin runAction:fade];
             }
         }
 
@@ -188,8 +201,12 @@
     CGFloat y = [self.units altitudeY:altitude];
     
     if ([self isWall:self.spell] || [self.spell class] == [SpellFirewall class]) {
-        // bump walls down
+        // stuff that needs to be on the ground
         y -= 25;
+    }
+    
+    else if (self.spell.class == SpellFailChicken.class) {
+        y -= 50;
     }
     
     else if ([self.spell isType:[SpellHelmet class]]) {
@@ -244,14 +261,23 @@
 - (void)renderStatus {
 //    self.skin.visible = (self.spell.status != SpellStatusDestroyed);
     self.skin.visible = (self.spell.status == SpellStatusActive || self.spell.status == SpellStatusPrepare || self.spell.status == SpellStatusUpdated);
-    
-    if (!self.explosion && self.spell.status == SpellStatusDestroyed) {
-        self.explosion = [CCSpriteBatchNode batchNodeWithFile:@"explode.png"];
-        [self addChild:self.explosion];
-        CCSprite * sprite = [CCSprite spriteWithSpriteFrameName:@"explode-1"];
-        [sprite runAction:self.explodeAction];
-        [self.explosion addChild:sprite];
+
+    if (self.spell.status == SpellStatusDestroyed) {
+        
+        if (self.spell.class == SpellFailRainbow.class) {
+            self.skin.visible = YES;
+            [self.skin runAction:[CCFadeOut actionWithDuration:1.0]];
+        }
+        
+        else if (!self.explosion) {
+            self.explosion = [CCSpriteBatchNode batchNodeWithFile:@"explode.png"];
+            [self addChild:self.explosion];
+            CCSprite * sprite = [CCSprite spriteWithSpriteFrameName:@"explode-1"];
+            [sprite runAction:self.explodeAction];
+            [self.explosion addChild:sprite];
+        }
     }
+
 }
 
 - (void)renderEffect {
@@ -272,7 +298,15 @@
 }
 
 +(BOOL)isSingleImage:(Spell*)spell {
-    return ([spell isType:[SpellFist class]] || [spell isType:[SpellHelmet class]] || [spell isType:[SpellSleep class]]);
+    return (spell.class == SpellFist.class ||
+            spell.class == SpellHelmet.class ||
+            spell.class == SpellSleep.class ||
+            spell.class == SpellFail.class ||
+            spell.class == SpellFailRainbow.class ||
+            spell.class == SpellFailHotdog.class ||
+            spell.class == SpellFailTeddy.class ||
+            spell.class == SpellFailUndies.class
+            );
 }
 
 +(BOOL)isNoRender:(Spell*)spell {
@@ -324,6 +358,26 @@
         return @"pillow";
     }
     
+    else if ([spell isType:[SpellFailChicken class]]) {
+        return @"chicken";
+    }
+    
+    else if ([spell isType:[SpellFailHotdog class]]) {
+        return @"hotdog";
+    }
+    
+    else if ([spell isType:[SpellFailRainbow class]]) {
+        return @"rainbow";
+    }
+    
+    else if ([spell isType:[SpellFailTeddy class]]) {
+        return @"teddybear";
+    }
+    
+    else if ([spell isType:[SpellFailUndies class]]) {
+        return @"wizard-undies";
+    }
+    
     return @"fireball";
 }
 
@@ -349,7 +403,7 @@
     CCActionInterval * actionInterval = [CCAnimate actionWithAnimation:animation];
     CCAction * action = actionInterval;
     
-    if ([self.spell isType:[SpellFireball class]] || [self.spell isType:[SpellBubble class]] || [self.spell isType:[SpellWindblast class]] || [self.spell isType:[SpellMonster class]]) {
+    if (self.spell.class == SpellFireball.class || self.spell.class == SpellBubble.class || self.spell.class == SpellWindblast.class || self.spell.class == SpellMonster.class || self.spell.class == SpellFailChicken.class) {
         action = [CCRepeatForever actionWithAction:actionInterval];
     }
     

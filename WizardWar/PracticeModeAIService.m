@@ -20,6 +20,7 @@
 #import "SpellFist.h"
 #import "SpellHelmet.h"
 #import "SpellSleep.h"
+#import "NSArray+Functional.h"
 
 @interface PracticeModeAIService ()
 @property (nonatomic) NSInteger lastSpellTick;
@@ -52,8 +53,7 @@
 }
 
 -(Spell*)randomSpell {
-    NSUInteger randomIndex = arc4random() % [self.allSpells count];
-    Class SpellType = [self.allSpells objectAtIndex:randomIndex];
+    Class SpellType = [self.allSpells randomItem];
     return [SpellType new];
 }
 

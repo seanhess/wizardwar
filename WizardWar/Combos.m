@@ -21,7 +21,15 @@
 #import "SpellHeal.h"
 #import "SpellLevitate.h"
 #import "SpellSleep.h"
+
+#import "SpellFailUndies.h"
+#import "SpellFailTeddy.h"
+#import "SpellFailRainbow.h"
+#import "SpellFailChicken.h"
+#import "SpellFailHotdog.h"
+
 #import "NSArray+Functional.h"
+#import "SpellFail.h"
 
 @interface Combos ()
 @property (strong, nonatomic) NSDictionary * hitCombos;
@@ -58,11 +66,15 @@
         [self reset];
         return;
     }
-
-    if (self.hintedSpell) {
-        self.castSpell = self.hintedSpell;
-        self.lastSuccessfulSpell = self.castSpell;
+    
+    Spell * spellToCast = self.hintedSpell;
+    
+    if (!spellToCast) {
+        spellToCast = [self randomFailSpell];
     }
+
+    self.castSpell = spellToCast;
+    self.lastSuccessfulSpell = self.castSpell;
     
     [self reset];
 }
@@ -164,11 +176,18 @@
     return key;
 }
 
+-(Spell*)randomFailSpell {
+    NSArray* spells = @[SpellFailChicken.class, SpellFailRainbow.class, SpellFailHotdog.class, SpellFailTeddy.class, SpellFailUndies.class];
+    
+    Class SpellFailType = [spells randomItem];
+    Spell * fail = [SpellFailType new];
+    return fail;
+}
+
 
 // COMBOS AEFHW
 
 -(Spell*)spellForElements:(NSArray*)elements {
-    
     NSString * key = [Combos hitKey:elements];
     Class SpellClass = self.hitCombos[key];
     if (SpellClass != [NSObject class])

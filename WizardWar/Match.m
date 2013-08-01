@@ -225,7 +225,8 @@
     
     // SIMULATE SPELLS
     [self.activeSpells forEach:^(Spell * spell) {
-        [spell simulateTick:currentTick interval:tickInterval];
+        SpellInteraction * interaction = [spell simulateTick:currentTick interval:tickInterval];
+        [self handleInteraction:interaction forSpell:spell];
     }];
     
     // run the simulation
@@ -394,6 +395,8 @@
 }
 
 -(void)handleInteraction:(SpellInteraction*)interaction forSpell:(Spell*)spell {
+    
+    if (!interaction) return;
     
     if (interaction.type == SpellInteractionTypeCancel) {
         [self destroySpell:spell];

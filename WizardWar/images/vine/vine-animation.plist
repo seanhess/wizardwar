@@ -7,7 +7,7 @@
 		<key>vine-cast</key>
 		<dict>
 			<key>delay</key>
-			<real>0.166</real>
+			<real>0.1</real>
 			<key>frames</key>
 			<array>
 				<string>vine-1.png</string>
@@ -18,10 +18,6 @@
 				<string>vine-6.png</string>
 				<string>vine-7.png</string>
 				<string>vine-8.png</string>
-				<string>vine-9.png</string>
-				<string>vine-10.png</string>
-				<string>vine-9.png</string>
-				<string>vine-10.png</string>
 				<string>vine-9.png</string>
 				<string>vine-10.png</string>
 				<string>vine-9.png</string>

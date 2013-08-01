@@ -65,8 +65,11 @@
 }
 
 -(id)randomItem {
-    NSUInteger randomIndex = arc4random() % [self count];
-    return [self objectAtIndex:randomIndex];
+    return [self objectAtIndex:self.randomIndex];
+}
+
+-(NSUInteger)randomIndex {
+    return arc4random() % [self count];
 }
 
 +(NSMutableArray*)array:(id<NSFastEnumeration>)array filter:(BOOL(^)(id))match {

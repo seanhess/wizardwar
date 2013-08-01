@@ -169,16 +169,16 @@
         self.message.alpha = 1.0;
         self.message.textColor = [UIColor colorFromRGB:0xF9A843];
         self.message.text = @"WAITING";
-        self.subMessage.alpha = 1.0;
-        self.subMessage.text = @"can't war yo-self";
+        self.subMessage.alpha = 0.0;
+//        self.subMessage.text = @"can't war yo-self";
     }
     
     else if (self.match.status == MatchStatusSyncing) {
         self.message.alpha = 1.0;
         self.message.textColor = [UIColor colorFromRGB:0xF9A843];
         self.message.text = @"READY?";
-        self.subMessage.alpha = 1.0;
-        self.subMessage.text = @"tuning essences";        
+        self.subMessage.alpha = 0.0;
+//        self.subMessage.text = @"tuning essences";        
     }
     
     else if (self.match.status == MatchStatusPlaying) {

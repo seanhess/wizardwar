@@ -10,6 +10,7 @@
 #import "Spell.h"
 #import "SpellFireball.h"
 #import "UIColor+Hex.h"
+#import "NSArray+Functional.h"
 
 #define SECONDS_PER_MANA 1.5
 #define CAST_STATUS_DURATION 0.5
@@ -88,8 +89,7 @@
 
 +(NSString*)randomWizardType {
     NSArray * types = @[WIZARD_TYPE_ONE, WIZARD_TYPE_TWO];
-    NSUInteger randomIndex = arc4random() % types.count;
-    return types[randomIndex];
+    return [types randomItem];
 }
 
 @end

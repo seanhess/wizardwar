@@ -24,6 +24,9 @@
 #import "SpellVine.h"
 #import "SpellWindblast.h"
 #import "SpellIcewall.h"
+#import "SpellFailRainbow.h"
+#import "SpellFailChicken.h"
+
 #import "NSArray+Functional.h"
 #import "LifeIndicatorNode.h"
 #import "Tick.h"
@@ -158,6 +161,10 @@
         [[SimpleAudioEngine sharedEngine] playEffect:@"monster.mp3"];
     } else if([spell isMemberOfClass: [SpellWindblast class]]){
         [[SimpleAudioEngine sharedEngine] playEffect:@"windblast.mp3"];
+    } else if (spell.class == SpellFailRainbow.class) {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"double-rainbow.mp3"];
+    } else if (spell.class == SpellFailChicken.class) {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"chicken.mp3"];
     }
 }
 

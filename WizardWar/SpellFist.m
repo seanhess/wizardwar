@@ -25,8 +25,7 @@
     return self;
 }
 
--(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
-    [super simulateTick:currentTick interval:interval];
+-(SpellInteraction *)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
     
     NSInteger elapsedTicks = currentTick - self.createdTick;
     if (self.altitude == 2 && elapsedTicks >= round(FIST_TIME_DROP_WAIT/interval)) {
@@ -35,6 +34,7 @@
         self.altitude = 0;
     }
     
+    return [super simulateTick:currentTick interval:interval];
 }
 
 
