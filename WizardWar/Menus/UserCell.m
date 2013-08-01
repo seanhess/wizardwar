@@ -78,11 +78,7 @@
     
     CGSize size = self.avatarImageView.frame.size;
     NSURL * imageUrl = [UserFriendService.shared user:user facebookAvatarURLWithSize:size];
-    if (imageUrl) {
-        [self.avatarImageView setImageWithURL:imageUrl];
-    } else {
-        [self.avatarImageView setImage:[UIImage imageNamed:@"user.jpg"]];
-    }
+    [self.avatarImageView setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@"user.jpg"]];
 
     if (user.isFacebookFriend)
         self.typeLabel.text = [NSString stringFromAwesomeIcon:FAIconFacebookSign];
