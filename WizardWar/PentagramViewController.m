@@ -12,6 +12,7 @@
 #import "NSArray+Functional.h"
 #import "UIColor+Hex.h"
 #import "AppStyle.h"
+#import "SpellFail.h"
 #import <ReactiveCocoa.h>
 
 #define RECHARGE_INTERVAL 2.5
@@ -206,6 +207,7 @@
 -(void)renderFeedback {
     BOOL hasHintedSpell = (self.combos.hintedSpell != nil);
     BOOL showNoMana = (!self.combos.castSpell && self.combos.hasElements && self.castDisabled);
+    BOOL showMisfire = (self.castDisabled && [self.combos.castSpell isKindOfClass:[SpellFail class]]);
     if (hasHintedSpell || showNoMana) {
         if (showNoMana) {
             self.feedbackLabel.textColor = [UIColor redColor];
@@ -215,6 +217,15 @@
             [self.feedbackLabel setText:self.combos.hintedSpell.name];
         }
         
+        [UIView animateWithDuration:0.2 animations:^{
+            self.feedbackLabel.alpha = 1.0;
+        }];
+    } else if(showMisfire) {
+        self.feedbackLabel.textColor = [UIColor redColor];
+        [self.feedbackLabel setText:@"Misfire!"];
+
+        // this is because there's no event that says it should STOP, I'm just making it up
+        // The cast delay finishes, and then what. 
         [UIView animateWithDuration:0.2 animations:^{
             self.feedbackLabel.alpha = 1.0;
         }];
