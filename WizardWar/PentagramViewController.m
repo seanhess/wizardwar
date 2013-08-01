@@ -58,11 +58,13 @@
     [self.view insertSubview:self.drawingLayer atIndex:0];
     [self setUpPentagram];
     
-    self.waitProgress.roundedCorners = YES;
-    self.waitProgress.trackTintColor = [UIColor colorWithRed:0 green:0.0 blue:0 alpha:0.4];
-    self.waitProgress.progressTintColor = [UIColor colorFromRGB:0xA3C7E7];
+    self.waitProgress.roundedCorners = NO;
+//    self.waitProgress.trackTintColor = [UIColor colorWithRed:0 green:0.0 blue:0 alpha:0.4];
+    self.waitProgress.trackTintColor = [UIColor colorWithRed:0 green:0.0 blue:0 alpha:0.0];
+    self.waitProgress.progressTintColor = [UIColor colorWithRed:0.5 green:0.7 blue:1.0 alpha:0.6]; // [UIColor colorFromRGB:0xA3C7E7];
     self.waitProgress.progress = 0.4;
     self.waitProgress.alpha = 0.0;
+    self.waitProgress.thicknessRatio = 1.0;
     
     self.feedbackLabel.font = [UIFont fontWithName:FONT_COMIC_ZINE_SOLID size:36];
     self.feedbackLabel.alpha = 0.0;    
