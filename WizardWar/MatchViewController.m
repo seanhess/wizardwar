@@ -65,12 +65,11 @@
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];    
     
-    self.message.font = [UIFont fontWithName:FONT_COMIC_ZINE size:100];
+    self.message.font = [UIFont fontWithName:FONT_COMIC_ZINE size:88];
     self.message.textColor = [UIColor colorFromRGB:0xF9A843];
     
     self.subMessage.font = [UIFont fontWithName:FONT_COMIC_ZINE size:40];
     self.subMessage.textColor = [UIColor colorFromRGB:0xCACACA];
-    self.subMessage.hidden = YES;
     
     self.combos = [Combos new];
     
@@ -164,7 +163,7 @@
     NSLog(@"MatchVC.renderMatchStatus %i", self.match.status);
     self.pentagram.view.hidden = (self.match.status != MatchStatusPlaying);
     self.subMessage.textColor = [UIColor colorFromRGB:0xCACACA];
-    self.subMessage.hidden = NO;
+    self.subMessage.alpha = 1.0;
     
     if (self.match.status == MatchStatusReady) {
         self.message.alpha = 1.0;
@@ -198,7 +197,7 @@
         if (self.match.currentWizard.state == WizardStatusDead) {
             self.message.textColor = [UIColor colorFromRGB:0xB02410];
             self.message.text = @"DEATH!";
-            self.subMessage.hidden = NO;
+            self.subMessage.alpha = 1.0;
             self.subMessage.text = @"(YOU LOSE)";
             [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"YouLose2.mp3" loop:NO];
         }

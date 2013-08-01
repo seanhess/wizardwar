@@ -23,7 +23,7 @@
 
 -(id)init {
     if ((self=[super init])) {
-        self.health = MAX_HEALTH;
+        self.health = 1;
         self.wizardType = WIZARD_TYPE_ONE;
     }
     return self;
