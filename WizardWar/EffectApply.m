@@ -12,6 +12,11 @@
 @implementation EffectApply
 
 -(SpellInteraction *)applySpell:(Spell *)spell onWizard:(Wizard *)wizard currentTick:(NSInteger)currentTick {
+    
+    if (wizard.effect) {
+        [wizard.effect cancel:wizard];
+    }
+    
     wizard.effect = self;
     [self start:currentTick player:wizard];
     return [SpellInteraction cancel];
