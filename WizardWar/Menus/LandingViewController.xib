@@ -45,7 +45,6 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="555355494"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<int key="IBUIContentMode">9</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -327,7 +326,7 @@
 								<float key="scoringTypeFloat">29</float>
 								<int key="contentType">3</int>
 							</object>
-							<object class="IBNSLayoutConstraint" id="736915408">
+							<object class="IBNSLayoutConstraint" id="236193736">
 								<reference key="firstItem" ref="191373211"/>
 								<int key="firstAttribute">9</int>
 								<int key="relation">0</int>
@@ -359,7 +358,7 @@
 								<float key="scoringTypeFloat">40</float>
 								<int key="contentType">3</int>
 							</object>
-							<object class="IBNSLayoutConstraint" id="971196751">
+							<object class="IBNSLayoutConstraint" id="98598446">
 								<reference key="firstItem" ref="191373211"/>
 								<int key="firstAttribute">9</int>
 								<int key="relation">0</int>
@@ -594,12 +593,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">315</int>
-						<reference key="object" ref="971196751"/>
+						<reference key="object" ref="98598446"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">316</int>
-						<reference key="object" ref="736915408"/>
+						<reference key="object" ref="236193736"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -620,9 +619,9 @@
 					<reference ref="29432923"/>
 					<reference ref="1066578979"/>
 					<reference ref="36234108"/>
-					<reference ref="971196751"/>
+					<reference ref="98598446"/>
 					<reference ref="699178935"/>
-					<reference ref="736915408"/>
+					<reference ref="236193736"/>
 					<reference ref="557813841"/>
 					<reference ref="803336529"/>
 					<reference ref="852238208"/>

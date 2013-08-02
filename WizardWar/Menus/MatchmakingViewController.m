@@ -400,7 +400,7 @@
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (section == 0) return @"Challenges";
+    if (section == 0) return nil;
     else if (section == 1) return @"Near You";
     else if (section == 2) return nil;
     else if (section == 3) return @"Frenemies";
@@ -415,7 +415,7 @@
     else if (section == 2) return 0;
     else if (section == 3) return 26;
     else if (section == 4) return 26;
-    return 26;
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

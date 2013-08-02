@@ -254,7 +254,10 @@
 
 - (void)renderWallStrength {
     if (![self isWall:self.spell]) return;
-    NSString * frameName = [NSString stringWithFormat:@"%@-%i.png", self.sheetName, (self.spell.strength+1)];
+    NSInteger strength = self.spell.strength;
+    if (strength < 0) strength = 0;
+    if (strength > 3) strength = 3;
+    NSString * frameName = [NSString stringWithFormat:@"%@-%i.png", self.sheetName, (strength+1)];
     [self.skin setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
 }
 
@@ -274,6 +277,7 @@
             [self addChild:self.explosion];
             CCSprite * sprite = [CCSprite spriteWithSpriteFrameName:@"explode-1"];
             [sprite runAction:self.explodeAction];
+            [sprite runAction:[CCFadeOut actionWithDuration:0.4]];
             [self.explosion addChild:sprite];
         }
     }

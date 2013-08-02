@@ -40,11 +40,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     NSLog(@"applicationDidFinishLaunchingWithOptions");
+
+    // TEST FLIGHT - make it first so it can catch errors
+    [TestFlight takeOff:@"0b4e12af-c3aa-459a-891b-aa357a97e171"];
+    
     
     // PARSE (must be before views)
     [Parse setApplicationId:@"3hsi88WR19iXGN11miDSH8B031uqyoBYBXHQe9bo" clientKey:@"CjkxlkZw0YOMdzdjJzhHfQm4vkPrA2ZWhY9n2Nfo"];
     [Parse setVersion:InfoService.buildNumber];
-    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    // [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeSound];
     
     
@@ -75,6 +79,8 @@
     [OLUnitsService.shared setUnits:units];
     [WizardDirector initializeWithUnits:units];
     
+    NSLog(@" - cocos2d init complete");
+    
     //    NSLog(@"FONT: %@",[UIFont fontNamesForFamilyName:@"ComicZineOT"]);
     //    NSLog(@"FONT: %@",[UIFont fontNamesForFamilyName:@"Comic Zine OT"]);
     //    NSLog(@"FAMLIES %@", [UIFont familyNames]);
@@ -89,7 +95,7 @@
 
     // ANALYTICS
     [AnalyticsService didFinishLaunching:launchOptions];
-    [TestFlight takeOff:@"0b4e12af-c3aa-459a-891b-aa357a97e171"];
+    NSLog(@" - app launch complete"); 
     
     return YES;
 }

@@ -136,8 +136,8 @@
 - (id<Multiplayer>)defaultMultiplayerService {
     MultiplayerService * mp = [MultiplayerService new];
 #if DEBUG
-    mp.simulatedLatency = 0.5;
-    NSLog(@"*** SIMULATED LATENCY *** %f", mp.simulatedLatency);
+//    mp.simulatedLatency = 0.5;
+//    NSLog(@"*** SIMULATED LATENCY *** %f", mp.simulatedLatency);
 #endif
     return mp;
 }
