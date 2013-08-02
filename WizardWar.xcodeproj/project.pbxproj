@@ -160,6 +160,7 @@
 		78306BDC17AADD1000487B16 /* wizard-undies.png in Resources */ = {isa = PBXBuildFile; fileRef = 78306BD617AADD1000487B16 /* wizard-undies.png */; };
 		78306BDE17AAE7CE00487B16 /* double-rainbow.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78306BDD17AAE7CE00487B16 /* double-rainbow.mp3 */; };
 		78306BE017AAE7D400487B16 /* chicken.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78306BDF17AAE7D400487B16 /* chicken.mp3 */; };
+		78306BE217AAF0F500487B16 /* buzzer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78306BE117AAF0F500487B16 /* buzzer.mp3 */; };
 		7837D6AD17540836001D820E /* GameTimerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7837D6AC17540836001D820E /* GameTimerService.m */; };
 		7837D6B017540893001D820E /* PlayerTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7837D6AF17540893001D820E /* PlayerTime.m */; };
 		7837F16B1749B9D000D29445 /* navbar-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7837F1691749B9CF00D29445 /* navbar-logo.png */; };
@@ -680,6 +681,7 @@
 		78306BD617AADD1000487B16 /* wizard-undies.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard-undies.png"; sourceTree = "<group>"; };
 		78306BDD17AAE7CE00487B16 /* double-rainbow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "double-rainbow.mp3"; sourceTree = "<group>"; };
 		78306BDF17AAE7D400487B16 /* chicken.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = chicken.mp3; sourceTree = "<group>"; };
+		78306BE117AAF0F500487B16 /* buzzer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = buzzer.mp3; sourceTree = "<group>"; };
 		7837D6AB17540836001D820E /* GameTimerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTimerService.h; sourceTree = "<group>"; };
 		7837D6AC17540836001D820E /* GameTimerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTimerService.m; sourceTree = "<group>"; };
 		7837D6AE17540893001D820E /* PlayerTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerTime.h; sourceTree = "<group>"; };
@@ -1091,6 +1093,7 @@
 				78E22CA51782400E00146D49 /* YouLose2.mp3 */,
 				78306BDD17AAE7CE00487B16 /* double-rainbow.mp3 */,
 				78306BDF17AAE7D400487B16 /* chicken.mp3 */,
+				78306BE117AAF0F500487B16 /* buzzer.mp3 */,
 			);
 			path = sounds;
 			sourceTree = "<group>";
@@ -2263,6 +2266,7 @@
 				78306BDC17AADD1000487B16 /* wizard-undies.png in Resources */,
 				78306BDE17AAE7CE00487B16 /* double-rainbow.mp3 in Resources */,
 				78306BE017AAE7D400487B16 /* chicken.mp3 in Resources */,
+				78306BE217AAF0F500487B16 /* buzzer.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

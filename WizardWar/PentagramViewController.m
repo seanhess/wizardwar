@@ -212,7 +212,7 @@
     BOOL showMisfire = (self.castDisabled && [self.combos.castSpell isKindOfClass:[SpellFail class]]);
     if (hasHintedSpell || showNoMana) {
         if (showNoMana) {
-            self.feedbackLabel.textColor = [UIColor redColor];
+            self.feedbackLabel.textColor = [AppStyle redErrorColor];
             [self.feedbackLabel setText:@"No Mana!"];
         } else {
             self.feedbackLabel.textColor = [UIColor whiteColor];            
@@ -223,7 +223,7 @@
             self.feedbackLabel.alpha = 1.0;
         }];
     } else if(showMisfire) {
-        self.feedbackLabel.textColor = [UIColor redColor];
+        self.feedbackLabel.textColor = [AppStyle redErrorColor];
         [self.feedbackLabel setText:@"Misfire!"];
 
         // this is because there's no event that says it should STOP, I'm just making it up
@@ -232,7 +232,7 @@
             self.feedbackLabel.alpha = 1.0;
         }];
     } else {
-        [UIView animateWithDuration:0.5 animations:^{
+        [UIView animateWithDuration:0.8 animations:^{
             self.feedbackLabel.alpha = 0.0;
         }];
     }

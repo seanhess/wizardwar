@@ -7,6 +7,7 @@
 //
 
 #import "DrawingLayer.h"
+#import "AppStyle.h"
 
 @implementation DrawingLayer
 
@@ -23,7 +24,7 @@
 
 -(void)setCastDisabled:(BOOL)castDisabled {
     if (castDisabled)
-        self.lineColor = [UIColor redColor];
+        self.lineColor = [AppStyle redErrorColor];
     else
         self.lineColor = [UIColor whiteColor];
     

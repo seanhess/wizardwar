@@ -22,5 +22,6 @@
 +(UIColor*)yellowButtonTextColor;
 +(UIImage *)imageWithColor:(UIColor *)color;
 +(UIColor*)greenOnlineColor;
++(UIColor*)redErrorColor;
 
 @end

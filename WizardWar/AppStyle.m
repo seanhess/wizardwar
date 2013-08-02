@@ -60,4 +60,8 @@
     return image;
 }
 
++(UIColor*)redErrorColor {
+    return [UIColor colorFromRGB:0xF3826F];
+}
+
 @end

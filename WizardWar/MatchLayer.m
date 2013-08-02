@@ -166,6 +166,10 @@
     } else if (spell.class == SpellFailChicken.class) {
         [[SimpleAudioEngine sharedEngine] playEffect:@"chicken.mp3"];
     }
+    
+    if ([spell isKindOfClass:SpellFail.class]) {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"buzzer.mp3"];
+    }
 }
 
 - (void)didAddPlayer:(Wizard *)wizard {
