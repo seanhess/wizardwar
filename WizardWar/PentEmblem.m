@@ -9,11 +9,14 @@
 #import "PentEmblem.h"
 #import <QuartzCore/QuartzCore.h>
 #import "PentEmblemHighlight.h"
+#import <DACircularProgressView.h>
 
 @interface PentEmblem ()
 @property (nonatomic) CGRect startingFrame;
 @property (nonatomic, strong) UIImageView * imageView;
 @property (nonatomic, strong) PentEmblemHighlight * highlight;
+@property (nonatomic, strong) DACircularProgressView * timerView;
+@property (nonatomic) BOOL configuredTimerView;
 @end
 
 @implementation PentEmblem
@@ -36,7 +39,10 @@
         self.highlight.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         [self addSubview:self.highlight];
         
-        NSLog(@"PENTEMBLEM %@", NSStringFromCGSize(self.frame.size));
+        self.configuredTimerView = NO;
+        self.timerView = [[DACircularProgressView alloc] initWithFrame:self.bounds];
+        self.timerView.hidden = YES;
+        [self addSubview:self.timerView];
     }
     return self;
 }
@@ -44,11 +50,12 @@
 -(void)setStatus:(EmblemStatus)status {
     _status = status;
 
-    if (status == EmblemStatusDisabled) {
-        self.alpha = 0.3;
-    } else {
-        self.alpha = 1.0;
-    }
+    self.alpha = 1.0;
+//    if (status == EmblemStatusDisabled) {
+//        self.alpha = 0.3;
+//    } else {
+//        self.alpha = 1.0;
+//    }
     
     if (status == EmblemStatusSelected) {
         self.highlight.borderColor = [UIColor whiteColor];
@@ -67,6 +74,21 @@
 ////        else
 ////            self.transform = CGAffineTransformIdentity;    
 //    }];
+}
+
+-(void)setEnabledProgress:(CGFloat)enabledProgress {
+    _enabledProgress = enabledProgress;
+    
+    if (!self.configuredTimerView) {
+        self.configuredTimerView = YES;
+        self.timerView.progressTintColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+        self.timerView.trackTintColor = [UIColor clearColor];
+        self.timerView.thicknessRatio = 1.0;
+        self.timerView.roundedCorners = NO;
+    }
+    
+    self.timerView.hidden = NO;
+    self.timerView.progress = 1-enabledProgress;
 }
 
 -(void)setSize:(CGSize)size {

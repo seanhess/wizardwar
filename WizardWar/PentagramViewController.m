@@ -34,7 +34,7 @@
 
 @property (strong, nonatomic) NSTimer * castTimer;
 @property (weak, nonatomic) IBOutlet UILabel *feedbackLabel;
-
+@property (nonatomic) CGFloat castDelayProgress;
 @property (nonatomic) BOOL castDisabled;
 
 @property (nonatomic) CGSize emblemSize;
@@ -63,13 +63,13 @@
     [self.view insertSubview:self.drawingLayer atIndex:0];
     [self setUpPentagram];
     
-    self.waitProgress.roundedCorners = NO;
-//    self.waitProgress.trackTintColor = [UIColor colorWithRed:0 green:0.0 blue:0 alpha:0.4];
-    self.waitProgress.trackTintColor = [UIColor colorWithRed:0 green:0.0 blue:0 alpha:0.0];
-    self.waitProgress.progressTintColor = [UIColor colorWithRed:0.5 green:0.7 blue:1.0 alpha:0.6]; // [UIColor colorFromRGB:0xA3C7E7];
-    self.waitProgress.progress = 0.4;
+//    self.waitProgress.roundedCorners = NO;
+////    self.waitProgress.trackTintColor = [UIColor colorWithRed:0 green:0.0 blue:0 alpha:0.4];
+//    self.waitProgress.trackTintColor = [UIColor colorWithRed:0 green:0.0 blue:0 alpha:0.0];
+//    self.waitProgress.progressTintColor = [UIColor colorWithRed:0.5 green:0.7 blue:1.0 alpha:0.6]; // [UIColor colorFromRGB:0xA3C7E7];
+//    self.waitProgress.progress = 0.4;
     self.waitProgress.alpha = 0.0;
-    self.waitProgress.thicknessRatio = 1.0;
+//    self.waitProgress.thicknessRatio = 1.0;
     
     self.feedbackLabel.font = [UIFont fontWithName:FONT_COMIC_ZINE_SOLID size:36];
     self.feedbackLabel.alpha = 0.0;
@@ -187,15 +187,25 @@
     [self renderFeedback];    
 }
 
+-(void)setCastDelayProgress:(CGFloat)progress {
+    _castDelayProgress = progress;
+    self.waitProgress.progress = progress;
+    self.waitProgress.progress = 0.0;
+    self.waitProgress.alpha = 0.0;
+    
+    for(PentEmblem *emblem in self.emblems)
+    {
+        emblem.enabledProgress = progress;
+    }
+}
+
 
 -(void)delayCast:(NSTimeInterval)delay {
     if (delay == 0) return;  
     NSTimeInterval tickTime = 0.05;
     CGFloat percentIncreasePerTick = tickTime / delay;
     self.castTimer = [NSTimer scheduledTimerWithTimeInterval:tickTime target:self selector:@selector(onCastTimer:) userInfo:@(percentIncreasePerTick) repeats:YES];
-    self.waitProgress.progress = 0.0;
-    self.waitProgress.alpha = 1.0;
-    
+    [self setCastDelayProgress:0.0];
     self.castDisabled = YES;
     
     for(PentEmblem *emblem in self.emblems)
@@ -206,9 +216,9 @@
 
 -(void)onCastTimer:(NSTimer*)timer {
     NSNumber * percentIncreasePerTick = timer.userInfo;
-    self.waitProgress.progress += percentIncreasePerTick.floatValue;
+    self.castDelayProgress += percentIncreasePerTick.floatValue;
     
-    if (self.waitProgress.progress >= 1.0) {
+    if (self.castDelayProgress >= 1.0) {
         self.castDisabled = NO;
         [self.castTimer invalidate];
         self.castTimer = nil;
@@ -219,9 +229,9 @@
                 emblem.status = EmblemStatusNormal;
         }
         
-        [UIView animateWithDuration:0.2 animations:^{
-            self.waitProgress.alpha = 0.0;
-        }];
+//        [UIView animateWithDuration:0.2 animations:^{
+//            self.waitProgress.alpha = 0.0;
+//        }];
         
         [self renderFeedback];
     }
