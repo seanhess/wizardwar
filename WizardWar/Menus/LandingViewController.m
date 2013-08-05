@@ -18,6 +18,7 @@
 #import "SettingsViewController.h"
 #import "UserFriendService.h"
 #import "AnalyticsService.h"
+#import "UIViewController+Idiom.h"
 
 @interface LandingViewController ()
 @end
@@ -62,7 +63,7 @@
     
     [AnalyticsService event:@"PracticeGameTap"];
     
-    MatchViewController * match = [MatchViewController new];
+    MatchViewController * match = [[MatchViewController alloc] initPerIdoim];
     [match startMatchAsWizard:UserService.shared.currentWizard withAI:ai];
     [self.navigationController presentViewController:match animated:YES completion:nil];
 }

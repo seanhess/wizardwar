@@ -39,6 +39,7 @@
 #import <NSString+FontAwesome.h>
 #import <FacebookSDK/FacebookSDK.h>
 #import "AnalyticsService.h"
+#import "UIViewController+Idiom.h"
 
 @interface MatchmakingViewController () <NSFetchedResultsControllerDelegate, FBFriendPickerDelegate>
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
@@ -534,7 +535,7 @@
     // Only the active user broadcasts what he is doing
     [LobbyService.shared user:self.currentUser joinedMatch:challenge.matchId];
     
-    MatchViewController * match = [MatchViewController new];
+    MatchViewController * match = [[MatchViewController alloc] initPerIdoim];
     [match startChallenge:challenge currentWizard:UserService.shared.currentWizard];
     [self.navigationController presentViewController:match animated:YES completion:nil];
 }

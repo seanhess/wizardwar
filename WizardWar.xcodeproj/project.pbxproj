@@ -209,6 +209,10 @@
 		786246571767D885001904AC /* helmet-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 786246551767D885001904AC /* helmet-hd.png */; };
 		786246581767D885001904AC /* helmet.png in Resources */ = {isa = PBXBuildFile; fileRef = 786246561767D885001904AC /* helmet.png */; };
 		7862465B1767EAE2001904AC /* EffectHelmet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7862465A1767EAE2001904AC /* EffectHelmet.m */; };
+		78782B5A17B031800089F1D6 /* PentEmblemHighlight.m in Sources */ = {isa = PBXBuildFile; fileRef = 78782B5917B031800089F1D6 /* PentEmblemHighlight.m */; };
+		78782B5C17B036140089F1D6 /* MatchViewController_ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78782B5B17B036140089F1D6 /* MatchViewController_ipad.xib */; };
+		78782B5E17B03BFB0089F1D6 /* PentagramViewController_ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78782B5D17B03BFB0089F1D6 /* PentagramViewController_ipad.xib */; };
+		78782B6217B03D320089F1D6 /* UIViewController+Idiom.m in Sources */ = {isa = PBXBuildFile; fileRef = 78782B6117B03D320089F1D6 /* UIViewController+Idiom.m */; };
 		787A2A85174E85E3004C4FDB /* ConnectionService.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A2A84174E85E3004C4FDB /* ConnectionService.m */; };
 		787A2A99174EA43D004C4FDB /* MatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A2A97174EA43D004C4FDB /* MatchViewController.m */; };
 		787A2A9A174EA43D004C4FDB /* MatchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787A2A98174EA43D004C4FDB /* MatchViewController.xib */; };
@@ -758,6 +762,12 @@
 		786246561767D885001904AC /* helmet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helmet.png; sourceTree = "<group>"; };
 		786246591767EAE2001904AC /* EffectHelmet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectHelmet.h; sourceTree = "<group>"; };
 		7862465A1767EAE2001904AC /* EffectHelmet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectHelmet.m; sourceTree = "<group>"; };
+		78782B5817B031800089F1D6 /* PentEmblemHighlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PentEmblemHighlight.h; sourceTree = "<group>"; };
+		78782B5917B031800089F1D6 /* PentEmblemHighlight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PentEmblemHighlight.m; sourceTree = "<group>"; };
+		78782B5B17B036140089F1D6 /* MatchViewController_ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchViewController_ipad.xib; sourceTree = "<group>"; };
+		78782B5D17B03BFB0089F1D6 /* PentagramViewController_ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PentagramViewController_ipad.xib; sourceTree = "<group>"; };
+		78782B6017B03D320089F1D6 /* UIViewController+Idiom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Idiom.h"; sourceTree = "<group>"; };
+		78782B6117B03D320089F1D6 /* UIViewController+Idiom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Idiom.m"; sourceTree = "<group>"; };
 		787A2A83174E85E3004C4FDB /* ConnectionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionService.h; sourceTree = "<group>"; };
 		787A2A84174E85E3004C4FDB /* ConnectionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionService.m; sourceTree = "<group>"; };
 		787A2A96174EA43D004C4FDB /* MatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchViewController.h; sourceTree = "<group>"; };
@@ -1402,8 +1412,11 @@
 				6F0B2FA5174750FF00CFC092 /* PentagramViewController.h */,
 				6F0B2FA6174750FF00CFC092 /* PentagramViewController.m */,
 				78ABA886175A5CA5003D2F23 /* PentagramViewController.xib */,
+				78782B5D17B03BFB0089F1D6 /* PentagramViewController_ipad.xib */,
 				6F0B2FA7174750FF00CFC092 /* PentEmblem.h */,
 				6F0B2FA8174750FF00CFC092 /* PentEmblem.m */,
+				78782B5817B031800089F1D6 /* PentEmblemHighlight.h */,
+				78782B5917B031800089F1D6 /* PentEmblemHighlight.m */,
 			);
 			name = Pentagram;
 			sourceTree = "<group>";
@@ -1544,6 +1557,15 @@
 				78915282176A72A8001694B1 /* EffectLevitate.m */,
 			);
 			name = Effects;
+			sourceTree = "<group>";
+		};
+		78782B5F17B03CA70089F1D6 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				78782B6017B03D320089F1D6 /* UIViewController+Idiom.h */,
+				78782B6117B03D320089F1D6 /* UIViewController+Idiom.m */,
+			);
+			name = Helper;
 			sourceTree = "<group>";
 		};
 		787A2A82174E81AC004C4FDB /* Service */ = {
@@ -1811,6 +1833,7 @@
 				785FBEA4177261BD0021AEE5 /* Menus */,
 				787A2A82174E81AC004C4FDB /* Service */,
 				78F6B3BD1746B27B00AA070D /* Match */,
+				78782B5F17B03CA70089F1D6 /* Helper */,
 				78F6B1ED1746AD8900AA070D /* Supporting Files */,
 			);
 			path = WizardWar;
@@ -1969,6 +1992,7 @@
 				787A2A96174EA43D004C4FDB /* MatchViewController.h */,
 				787A2A97174EA43D004C4FDB /* MatchViewController.m */,
 				787A2A98174EA43D004C4FDB /* MatchViewController.xib */,
+				78782B5B17B036140089F1D6 /* MatchViewController_ipad.xib */,
 				F283A920174807A40068EEB2 /* LifeIndicatorNode.h */,
 				F283A921174807A40068EEB2 /* LifeIndicatorNode.m */,
 				78F6B3AB1746B27600AA070D /* MatchLayer.h */,
@@ -2267,6 +2291,8 @@
 				78306BDE17AAE7CE00487B16 /* double-rainbow.mp3 in Resources */,
 				78306BE017AAE7D400487B16 /* chicken.mp3 in Resources */,
 				78306BE217AAF0F500487B16 /* buzzer.mp3 in Resources */,
+				78782B5C17B036140089F1D6 /* MatchViewController_ipad.xib in Resources */,
+				78782B5E17B03BFB0089F1D6 /* PentagramViewController_ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2521,6 +2547,8 @@
 				78306BBC17AADC2500487B16 /* SpellFailUndies.m in Sources */,
 				78306BBF17AADC3900487B16 /* SpellFailChicken.m in Sources */,
 				78306BC217AADC4A00487B16 /* SpellFailRainbow.m in Sources */,
+				78782B5A17B031800089F1D6 /* PentEmblemHighlight.m in Sources */,
+				78782B6217B03D320089F1D6 /* UIViewController+Idiom.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

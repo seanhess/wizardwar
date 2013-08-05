@@ -17,10 +17,12 @@ typedef enum EmblemStatus {
     EmblemStatusDisabled
 } EmblemStatus;
 
-@interface PentEmblem : UIImageView
+@interface PentEmblem : UIView
 
+@property (nonatomic, strong) UIImage * image;
 @property (nonatomic) ElementType element;
 @property (nonatomic) EmblemStatus status;
 @property (nonatomic) NSInteger mana;
+@property (nonatomic) CGSize size;
 
 @end

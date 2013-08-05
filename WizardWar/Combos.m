@@ -49,6 +49,7 @@
 }
 
 -(void)moveToElement:(ElementType)element {
+    self.didMisfire = NO;
     self.castSpell = nil;
     self.lastElement = element;
     [self.allElements addObject:@(element)];
@@ -70,11 +71,14 @@
     Spell * spellToCast = self.hintedSpell;
     
     if (!spellToCast) {
-        spellToCast = [self randomFailSpell];
+        self.didMisfire = YES;
+//        spellToCast = [self randomFailSpell];
     }
-
-    self.castSpell = spellToCast;
-    self.lastSuccessfulSpell = self.castSpell;
+    
+    if (spellToCast) {
+        self.castSpell = spellToCast;
+        self.lastSuccessfulSpell = self.castSpell;
+    }
     
     [self reset];
 }

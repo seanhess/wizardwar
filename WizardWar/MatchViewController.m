@@ -26,6 +26,7 @@
 #import "UIColor+Hex.h"
 #import "AnalyticsService.h"
 #import "OLUnitsService.h"
+#import "UIViewController+Idiom.h"
 
 @interface MatchViewController ()
 @property (strong, nonatomic) PentagramViewController * pentagram;
@@ -38,14 +39,6 @@
 @end
 
 @implementation MatchViewController
-
-- (id)init {
-    self = [super init];
-    if (self) {
-        self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;        
-    }
-    return self;
-}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -73,10 +66,14 @@
     
     self.combos = [Combos new];
     
-    self.pentagram = [PentagramViewController new];
+    NSLog(@" - pv size %@", NSStringFromCGRect(self.pentagramView.frame));
+    self.pentagram = [[PentagramViewController alloc] initPerIdoim];
     self.pentagram.combos = self.combos;
+//    self.pentagram.view.frame = CGRectMake(0, 0, 100, 100);
+    self.pentagram.view.frame = self.pentagramView.bounds;
     [self.pentagramView addSubview:self.pentagram.view];
-    [self.pentagram viewDidLoad];
+    // You don't need to call viewDidLoad on pentagram I guess
+    // Maybe it gets called automatically after the frame is set?
     
     [self playMusic];
     

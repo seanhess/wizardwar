@@ -37,10 +37,11 @@
 
 @property (nonatomic) BOOL castDisabled;
 
+@property (nonatomic) CGSize emblemSize;
+
 @end
 
 @implementation PentagramViewController
-
 
 - (void)viewDidLoad
 {
@@ -48,6 +49,8 @@
     
     [super viewDidLoad];
     [self.view setMultipleTouchEnabled:YES];
+//    self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+//    self.view.backgroundColor = [UIColor redColor];
     
     self.view.opaque = NO;
     DrawingLayer *drawLayer = [[DrawingLayer alloc] initWithFrame:self.view.bounds];
@@ -67,7 +70,7 @@
     self.waitProgress.thicknessRatio = 1.0;
     
     self.feedbackLabel.font = [UIFont fontWithName:FONT_COMIC_ZINE_SOLID size:36];
-    self.feedbackLabel.alpha = 0.0;    
+    self.feedbackLabel.alpha = 0.0;
 }
 
 - (void)setUpPentagram
@@ -75,22 +78,32 @@
     self.fireEmblem.element = Fire;
     self.fireEmblem.status = EmblemStatusNormal;
     self.fireEmblem.mana = MAX_MANA;
+    self.fireEmblem.image = [UIImage imageNamed:@"pentagram-fire.png"];
+//    self.fireEmblem.size = self.emblemSize;
     
     self.heartEmblem.element = Heart;
     self.heartEmblem.status = EmblemStatusNormal;
     self.heartEmblem.mana = MAX_MANA;
+    self.heartEmblem.image = [UIImage imageNamed:@"pentagram-heart.png"];
+//    self.heartEmblem.size = self.emblemSize;
     
     self.waterEmblem.element = Water;
     self.waterEmblem.status = EmblemStatusNormal;
     self.waterEmblem.mana = MAX_MANA;
+    self.waterEmblem.image = [UIImage imageNamed:@"pentagram-water.png"];
+//    self.waterEmblem.size = self.emblemSize;
     
     self.earthEmblem.element = Earth;
     self.earthEmblem.status = EmblemStatusNormal;
     self.earthEmblem.mana = MAX_MANA;
+    self.earthEmblem.image = [UIImage imageNamed:@"pentagram-earth.png"];
+//    self.earthEmblem.size = self.emblemSize;
     
     self.windEmblem.element = Air;
     self.windEmblem.status = EmblemStatusNormal;
     self.windEmblem.mana = MAX_MANA;
+    self.windEmblem.image = [UIImage imageNamed:@"pentagram-wind"];
+//    self.windEmblem.size = self.emblemSize;
     
     self.emblems = [NSArray arrayWithObjects: self.fireEmblem, self.heartEmblem, self.waterEmblem, self.earthEmblem, self.windEmblem, nil];
 }
@@ -178,10 +191,10 @@
     
     self.castDisabled = YES;
     
-//    for(PentEmblem *emblem in self.emblems)
-//    {
-//        emblem.status = EmblemStatusDisabled;
-//    }    
+    for(PentEmblem *emblem in self.emblems)
+    {
+        emblem.status = EmblemStatusDisabled;
+    }    
 }
 
 -(void)onCastTimer:(NSTimer*)timer {
@@ -195,7 +208,8 @@
         
         for(PentEmblem *emblem in self.emblems)
         {
-            emblem.status = EmblemStatusNormal;
+            if (emblem.status == EmblemStatusDisabled)
+                emblem.status = EmblemStatusNormal;
         }
         
         [UIView animateWithDuration:0.2 animations:^{
@@ -209,7 +223,9 @@
 -(void)renderFeedback {
     BOOL hasHintedSpell = (self.combos.hintedSpell != nil);
     BOOL showNoMana = (!self.combos.castSpell && self.combos.hasElements && self.castDisabled);
-    BOOL showMisfire = (self.castDisabled && [self.combos.castSpell isKindOfClass:[SpellFail class]]);
+//    BOOL showMisfire = (self.castDisabled && [self.combos.castSpell isKindOfClass:[SpellFail class]]);
+    BOOL showMisfire = (self.castDisabled && self.combos.didMisfire);
+    
     if (hasHintedSpell || showNoMana) {
         if (showNoMana) {
             self.feedbackLabel.textColor = [AppStyle redErrorColor];

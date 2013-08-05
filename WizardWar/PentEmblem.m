@@ -2,15 +2,18 @@
 //  PentEmblem.m
 //  WizardWar
 //
-//  Created by Dallin Skinner on 5/17/13.
+//  Created by ; Skinner on 5/17/13.
 //  Copyright (c) 2013 WizardWar. All rights reserved.
 //
 
 #import "PentEmblem.h"
 #import <QuartzCore/QuartzCore.h>
+#import "PentEmblemHighlight.h"
 
 @interface PentEmblem ()
 @property (nonatomic) CGRect startingFrame;
+@property (nonatomic, strong) UIImageView * imageView;
+@property (nonatomic, strong) PentEmblemHighlight * highlight;
 @end
 
 @implementation PentEmblem
@@ -18,7 +21,22 @@
 -(id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self.layer.anchorPoint = CGPointMake(0.5f, 0.5f);
+//        self.layer.anchorPoint = CGPointMake(0.5f, 0.5f);
+        
+        self.backgroundColor = [UIColor clearColor];
+        self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)];
+        self.imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        self.imageView.layer.anchorPoint = CGPointMake(0.5f, 0.5f);
+        [self addSubview:self.imageView];
+        
+        CGRect frame = self.bounds;
+        frame.origin.x = 2;
+        frame.origin.y = 2;
+        self.highlight = [[PentEmblemHighlight alloc] initWithFrame:frame];
+        self.highlight.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        [self addSubview:self.highlight];
+        
+        NSLog(@"PENTEMBLEM %@", NSStringFromCGSize(self.frame.size));
     }
     return self;
 }
@@ -30,6 +48,12 @@
         self.alpha = 0.3;
     } else {
         self.alpha = 1.0;
+    }
+    
+    if (status == EmblemStatusSelected) {
+        self.highlight.borderColor = [UIColor whiteColor];
+    } else {
+        self.highlight.borderColor = [UIColor blackColor];
     }
 
 //    [UIView animateWithDuration:0.3 animations:^{
@@ -43,6 +67,29 @@
 ////        else
 ////            self.transform = CGAffineTransformIdentity;    
 //    }];
+}
+
+-(void)setSize:(CGSize)size {
+    _size = size;
+    
+    CGRect frame = self.frame;
+    frame.size = size;
+    self.frame = frame;
+    NSLog(@"PENTEMBLEM SIZE %@", NSStringFromCGSize(self.frame.size));
+    
+    
+//    CGRect imageFrame = self.imageView.frame;
+//    imageFrame.size = size;
+//    self.imageView.frame = imageFrame;
+//    
+//    CGRect highlightFrame = self.highlight.frame;
+//    highlightFrame.size = size;
+//    self.highlight.frame = highlightFrame;
+}
+
+-(void)setImage:(UIImage *)image {
+    _image = image;
+    self.imageView.image = image;
 }
 
 -(void)setMana:(NSInteger)mana {

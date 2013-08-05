@@ -19,6 +19,7 @@
 @property (nonatomic) BOOL castDisabled;
 @property (nonatomic, strong) Spell * hintedSpell;
 @property (nonatomic, strong) Spell * castSpell;
+@property (nonatomic) BOOL didMisfire;
 
 @property (nonatomic, readonly) BOOL sameSpellTwice;
 @property (nonatomic, readonly) BOOL hasElements;
