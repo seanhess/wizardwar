@@ -187,6 +187,8 @@
             self.subMessage.alpha = 0;            
             self.message.alpha = 0;
         }];
+        
+        [self.pentagram showHelpMessage];
     }
     
     else if (self.match.status == MatchStatusEnded) {

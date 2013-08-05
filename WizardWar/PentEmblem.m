@@ -75,8 +75,6 @@
     CGRect frame = self.frame;
     frame.size = size;
     self.frame = frame;
-    NSLog(@"PENTEMBLEM SIZE %@", NSStringFromCGSize(self.frame.size));
-    
     
 //    CGRect imageFrame = self.imageView.frame;
 //    imageFrame.size = size;
@@ -85,6 +83,23 @@
 //    CGRect highlightFrame = self.highlight.frame;
 //    highlightFrame.size = size;
 //    self.highlight.frame = highlightFrame;
+}
+
+-(void)flashHighlight {
+    self.highlight.borderColor = [UIColor whiteColor];
+    double delayInSeconds = 0.2;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        self.highlight.borderColor = [UIColor blackColor];
+        dispatch_time_t popTime2 = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime2, dispatch_get_main_queue(), ^(void){
+            self.highlight.borderColor = [UIColor whiteColor];
+            dispatch_time_t popTime3 = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+            dispatch_after(popTime3, dispatch_get_main_queue(), ^(void){
+                self.status = self.status;
+            });
+        });
+    });
 }
 
 -(void)setImage:(UIImage *)image {

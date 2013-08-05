@@ -39,6 +39,8 @@
 
 @property (nonatomic) CGSize emblemSize;
 
+@property (nonatomic) BOOL showHelp;
+
 @end
 
 @implementation PentagramViewController
@@ -135,6 +137,7 @@
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    self.showHelp = NO;
     [touches enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
         UITouch *touch = obj;
         CGPoint touchPoint = [touch locationInView:self.view];
@@ -145,6 +148,7 @@
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    self.showHelp = NO;    
     [touches enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
         
         UITouch *touch = obj;
@@ -165,6 +169,9 @@
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    // If they only tapped, show the help stuff!
+    self.showHelp = (self.combos.allElements.count <= 2);
     
     for(PentEmblem *emblem in self.emblems)
     {
@@ -226,7 +233,18 @@
 //    BOOL showMisfire = (self.castDisabled && [self.combos.castSpell isKindOfClass:[SpellFail class]]);
     BOOL showMisfire = (self.castDisabled && self.combos.didMisfire);
     
-    if (hasHintedSpell || showNoMana) {
+    if (self.showHelp) {
+        self.feedbackLabel.text = @"Connect 3 Elements";
+        [UIView animateWithDuration:0.2 animations:^{
+            self.feedbackLabel.alpha = 1.0;
+        }];
+        
+        for(PentEmblem *emblem in self.emblems)
+        {
+            [emblem flashHighlight];
+        }
+
+    } else if (hasHintedSpell || showNoMana) {
         if (showNoMana) {
             self.feedbackLabel.textColor = [AppStyle redErrorColor];
             [self.feedbackLabel setText:@"No Mana!"];
@@ -252,6 +270,11 @@
             self.feedbackLabel.alpha = 0.0;
         }];
     }
+}
+
+-(void)showHelpMessage {
+    self.showHelp = YES;
+    [self renderFeedback];
 }
 
 -(void)setCastDisabled:(BOOL)castDisabled {

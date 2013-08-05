@@ -25,4 +25,6 @@ typedef enum EmblemStatus {
 @property (nonatomic) NSInteger mana;
 @property (nonatomic) CGSize size;
 
+-(void)flashHighlight;
+
 @end
