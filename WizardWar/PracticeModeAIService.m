@@ -25,6 +25,8 @@
 @interface PracticeModeAIService ()
 @property (nonatomic) NSInteger lastSpellTick;
 @property (nonatomic) NSArray * allSpells;
+
+@property (nonatomic) BOOL stop;
 @end
 
 @implementation PracticeModeAIService
@@ -35,12 +37,13 @@
         
         self.allSpells = @[[SpellFireball class], [SpellEarthwall class], [SpellWindblast class], [SpellMonster class], [SpellBubble class], [SpellVine class], [SpellFist class], [SpellHelmet class], [SpellFireball class]];
         
-        self.allSpells = @[[SpellMonster class]];
+        self.allSpells = @[[SpellEarthwall class]];
     }
     return self;
 }
 
 -(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
+    if (self.stop) return;
     // interval is seconds per tick
     float ticksPerSecond = 1/interval;
     NSInteger castTickInterval = 3*ticksPerSecond;
@@ -48,6 +51,7 @@
     if (self.lastSpellTick + castTickInterval < currentTick) {
         self.lastSpellTick = currentTick;
         [self.delegate aiDidCastSpell:[self randomSpell]];
+        self.stop = YES;
     }
 }
 

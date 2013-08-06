@@ -39,7 +39,7 @@
     else if ([spell isType:[SpellFireball class]] && spell.direction != self.direction) {
         self.strength -= spell.damage;
         
-        if (self.strength == 0)
+        if (self.strength <= 0)
             return [SpellInteraction cancel];
         else
             return [SpellInteraction modify];

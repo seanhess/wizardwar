@@ -136,7 +136,6 @@
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    NSLog(@"TOUCHES BEGAN");
     self.showHelp = NO;
     [touches enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
         UITouch *touch = obj;
