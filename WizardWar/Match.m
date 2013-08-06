@@ -224,17 +224,22 @@
     }];
     
     // SIMULATE SPELLS
+    // this moves them all. This happens AFTER collision detection
     [self.activeSpells forEach:^(Spell * spell) {
         SpellInteraction * interaction = [spell simulateTick:currentTick interval:tickInterval];
         [self handleInteraction:interaction forSpell:spell];
     }];
     
+    // COLLISIONS: detect whether they are about to hit or not
+    // do this first, or we won't be able to detect whether they collide or not
     // run the simulation
     // try to simulate EVERYTHING, but allow yourself to be corrected by owner
     // in other words, go ahead and make all changes locally, but don't SYNC unless you own them
     [self checkHitsWithCurrentTick:currentTick interval:tickInterval];
     
     // HACK: sync the player every second
+    // this happens because I allow the spells to modify the player, but there's no way for them
+    // to return a player modification event.
     if ((currentTick % (int)round(TICKS_PER_SECOND)) == 0) {
         [self.multiplayer updatePlayer:self.currentWizard];
     }
@@ -279,7 +284,7 @@
     NSInteger tickDifference = currentTick - referenceTick;
     if (tickDifference < 0) NSLog(@" SPELL IN FUTURE");
     spell.position = [spell moveFromReferencePosition:(tickDifference * self.timer.tickInterval)];
-    spell.status = SpellStatusActive;    
+    spell.status = SpellStatusActive;
 }
 
 // does a spell automatically change the effect?
@@ -315,7 +320,7 @@
         // start at the next spell (don't check collisons twice)
         for (int j = i+1; j < spells.count; j++) {
             Spell * spell2 = spells[j];
-            if ([spell hitsSpell:spell2 duringInterval:TICK_INTERVAL])
+            if ([spell didHitSpell:spell2 duringInterval:self.timer.tickInterval])
                 [self hitSpell:spell withSpell:spell2];
         }
     }

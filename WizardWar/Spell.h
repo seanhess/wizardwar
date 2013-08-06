@@ -57,7 +57,7 @@ typedef enum SpellStatus {
 -(SpellInteraction*)interactWizard:(Wizard*)wizard currentTick:(NSInteger)currentTick;
 
 -(BOOL)hitsPlayer:(Wizard*)player duringInterval:(NSTimeInterval)dt;
--(BOOL)hitsSpell:(Spell*)spell duringInterval:(NSTimeInterval)dt;
+-(BOOL)didHitSpell:(Spell*)spell duringInterval:(NSTimeInterval)dt;
 +(Spell*)fromType:(NSString*)type;
 +(NSString*)type;
 -(float)move:(NSTimeInterval)dt;

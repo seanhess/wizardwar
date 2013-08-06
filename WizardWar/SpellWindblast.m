@@ -30,6 +30,10 @@
     return self;
 }
 
+-(SpellInteraction*)interactWizard:(Wizard *)wizard currentTick:(NSInteger)currentTick {
+    return [SpellInteraction nothing];
+}
+
 -(SpellInteraction *)interactSpell:(Spell *)spell {
 //    if ([spell isType:[SpellMonster class]]) {
 //        return [SpellInteraction cancel];

@@ -140,17 +140,18 @@
 
 // NEW HITTING ALGORITHM
 // if the positions will cross during this tick, given their current directions
--(BOOL)hitsSpell:(Spell *)spell duringInterval:(NSTimeInterval)dt {
+// I should check whether they DID cross, just barely.
+// not whether they are about to.
+-(BOOL)didHitSpell:(Spell *)spell duringInterval:(NSTimeInterval)dt {
     
     if (self.altitude != spell.altitude) return NO;
 
     // return if it WILL cross positions during this time interval
-    float spellStart = spell.position;
-    float spellEnd = [spell move:dt];
+    float spellStart = [spell move:-dt];
+    float spellEnd = spell.position;
     
-    float selfStart = self.position;
-    float selfEnd = [self move:dt];
-    
+    float selfStart = [self move:-dt];
+    float selfEnd = self.position;
     
     if (spellStart < selfStart) {
         return (spellEnd >= selfEnd);

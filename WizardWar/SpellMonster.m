@@ -17,13 +17,11 @@
 #import "SpellFirewall.h"
 #import "SpellSleep.h"
 
-#define MONSTER_SPEED 20
-
 @implementation SpellMonster
 
 -(id)init {
     if ((self=[super init])) {
-        self.speed = MONSTER_SPEED;
+        self.speed = 20;
         self.name = @"Summon Ogre";
         self.castDelay *= 1.5;
     }
@@ -46,6 +44,11 @@
     
     else if ([spell isType:[SpellFirewall class]] && self.direction != spell.direction) {
         return [SpellInteraction cancel];
+    }
+    
+    else if ([spell isType:[SpellEarthwall class]] && self.direction != spell.direction) {
+        self.speed = 5;
+        return [SpellInteraction modify];
     }
     
     else if ([spell isType:[SpellSleep class]]) {
