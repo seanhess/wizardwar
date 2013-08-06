@@ -22,27 +22,27 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="pentagram-heart.png" id="37" customClass="PentEmblem">
-                    <rect key="frame" x="221" y="132" width="60" height="60"/>
+                    <rect key="frame" x="221" y="117" width="80" height="80"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="pentagram-wind.png" id="69" customClass="PentEmblem">
-                    <rect key="frame" x="130" y="42" width="60" height="60"/>
+                    <rect key="frame" x="130" y="27" width="80" height="80"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="pentagram-fire.png" id="77" customClass="PentEmblem">
-                    <rect key="frame" x="15" y="132" width="60" height="60"/>
+                    <rect key="frame" x="15" y="117" width="80" height="80"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="pentagram-earth.png" id="88" customClass="PentEmblem">
-                    <rect key="frame" x="66" y="252" width="60" height="60"/>
+                    <rect key="frame" x="66" y="237" width="80" height="80"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="pentagram-water.png" id="96" customClass="PentEmblem">
-                    <rect key="frame" x="197" y="252" width="60" height="60"/>
+                    <rect key="frame" x="197" y="237" width="80" height="80"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="264">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

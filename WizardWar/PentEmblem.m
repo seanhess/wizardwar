@@ -24,23 +24,33 @@
 -(id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
+        // I had changed the anchor point for transforms to the view
 //        self.layer.anchorPoint = CGPointMake(0.5f, 0.5f);
         
-        self.backgroundColor = [UIColor clearColor];
-        self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)];
+        CGFloat innerSizeWidth = 60;
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            innerSizeWidth = 80;
+        }
+        
+        CGSize outerSize = self.frame.size;
+        CGSize innerSize = CGSizeMake(innerSizeWidth, innerSizeWidth);
+        CGRect innerFrame = CGRectMake((outerSize.width-innerSize.width)/2, (outerSize.height-innerSize.height)/2, innerSize.width, innerSize.height);
+        
+//        self.backgroundColor = [UIColor redColor];
+        self.imageView = [[UIImageView alloc] initWithFrame:innerFrame];
         self.imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         self.imageView.layer.anchorPoint = CGPointMake(0.5f, 0.5f);
         [self addSubview:self.imageView];
         
-        CGRect frame = self.bounds;
-        frame.origin.x = 2;
-        frame.origin.y = 2;
+        CGRect frame = innerFrame;
+        frame.origin.x += 2;
+        frame.origin.y += 2;
         self.highlight = [[PentEmblemHighlight alloc] initWithFrame:frame];
         self.highlight.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         [self addSubview:self.highlight];
         
         self.configuredTimerView = NO;
-        self.timerView = [[DACircularProgressView alloc] initWithFrame:self.bounds];
+        self.timerView = [[DACircularProgressView alloc] initWithFrame:innerFrame];
         self.timerView.hidden = YES;
         [self addSubview:self.timerView];
     }

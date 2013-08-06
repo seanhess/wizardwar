@@ -51,13 +51,12 @@
     
     [super viewDidLoad];
     [self.view setMultipleTouchEnabled:YES];
-//    self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-//    self.view.backgroundColor = [UIColor redColor];
+    self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.view.backgroundColor = [UIColor clearColor];
+    self.view.clipsToBounds = YES;
     
-    self.view.opaque = NO;
     DrawingLayer *drawLayer = [[DrawingLayer alloc] initWithFrame:self.view.bounds];
     self.drawingLayer = drawLayer;
-    drawLayer.opaque = NO;
     drawLayer.backgroundColor = [UIColor clearColor];
     self.drawingLayer.points = [[NSMutableArray alloc] init];
     [self.view insertSubview:self.drawingLayer atIndex:0];
@@ -137,6 +136,7 @@
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    NSLog(@"TOUCHES BEGAN");
     self.showHelp = NO;
     [touches enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
         UITouch *touch = obj;

@@ -35,9 +35,9 @@
         return [SpellInteraction cancel];
     }
     
-    else if ([spell isType:[SpellFireball class]]) {
-        return [SpellInteraction cancel];
-    }
+//    else if ([spell isType:[SpellFireball class]]) {
+//        return [SpellInteraction cancel];
+//    }
     
     else if ([spell isType:[SpellEarthwall class]] && spell.direction != self.direction) {
         return [SpellInteraction cancel];
