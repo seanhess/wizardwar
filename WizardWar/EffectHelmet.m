@@ -15,7 +15,9 @@
 -(SpellInteraction *)interceptSpell:(Spell *)spell onWizard:(Wizard *)wizard {
     // make everything pass through me except for fist
     if ([spell isType:[SpellFist class]]) {
-        wizard.effect = nil;                // the helmet is broken!
+//        wizard.effect = nil;                // the helmet is broken!
+        // it wasn't fun that way. Better that it lasts longer. You're immune to fists
+        // It's sort of trick question
         return [SpellInteraction cancel];
     }
     else {

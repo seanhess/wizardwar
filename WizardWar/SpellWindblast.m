@@ -39,11 +39,11 @@
         return [SpellInteraction cancel];
     }
     
-    else if ([spell isType:[SpellEarthwall class]]) {
+    else if ([spell isType:[SpellEarthwall class]] && spell.direction != self.direction) {
         return [SpellInteraction cancel];
     }
     
-    else if ([spell isType:[SpellIcewall class]]) {
+    else if ([spell isType:[SpellIcewall class]] && spell.direction != self.direction) {
         self.direction *= -1;
         return [SpellInteraction modify];
     }

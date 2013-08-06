@@ -247,12 +247,14 @@
         self.feedbackLabel.text = @"Connect 3 Elements";
         [UIView animateWithDuration:0.2 animations:^{
             self.feedbackLabel.alpha = 1.0;
+        } completion:^(BOOL finished) {
+            [self flashFeedback:1];
         }];
         
-        for(PentEmblem *emblem in self.emblems)
-        {
-            [emblem flashHighlight];
-        }
+//        for(PentEmblem *emblem in self.emblems)
+//        {
+//            [emblem flashHighlight];
+//        }
 
     } else if (hasHintedSpell || showNoMana) {
         if (showNoMana) {
@@ -280,6 +282,37 @@
             self.feedbackLabel.alpha = 0.0;
         }];
     }
+}
+
+-(void)flashFeedback {
+    [UIView animateWithDuration:0.2 animations:^{
+        self.feedbackLabel.alpha = 1.0;
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.2 animations:^{
+            self.feedbackLabel.alpha = 0.0;
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:0.2 animations:^{
+                self.feedbackLabel.alpha = 1.0;
+            } completion:^(BOOL finished) {
+                
+            }];
+        }];
+    }];
+}
+
+// always ends ON
+-(void)flashFeedback:(NSInteger)times {
+    [UIView animateWithDuration:0.2 animations:^{
+        self.feedbackLabel.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.2 animations:^{
+            self.feedbackLabel.alpha = 1.0;
+        } completion:^(BOOL finished) {
+            if (times > 0) {
+                [self flashFeedback:times-1];
+            }
+        }];
+    }];
 }
 
 -(void)showHelpMessage {

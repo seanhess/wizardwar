@@ -30,7 +30,7 @@
 
 -(SpellInteraction *)interactSpell:(Spell *)spell {
 
-    if ([spell isType:[SpellFirewall class]]) {
+    if ([spell isType:[SpellFirewall class]] && spell.direction != self.direction) {
         return [SpellInteraction cancel];
     }
     

@@ -25,11 +25,11 @@
 }
 
 -(SpellInteraction *)interactSpell:(Spell *)spell {
-    if ([spell isType:[SpellMonster class]]) {
+    if ([spell isType:[SpellMonster class]] && spell.direction != self.direction) {
         return [SpellInteraction cancel];
     }
     
-    else if ([spell isType:[SpellFireball class]]) {
+    else if ([spell isType:[SpellFireball class]] && spell.direction != self.direction) {
         return [SpellInteraction cancel];
     }
     

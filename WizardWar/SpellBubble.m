@@ -31,8 +31,8 @@
         return [SpellInteraction modify];
     }
     
-    else if ([spell isType:[SpellIcewall class]]) {
-        self.direction *= -1;
+    else if ([spell isType:[SpellIcewall class]] && spell.direction != self.direction) {
+        self.direction = spell.direction;
         return [SpellInteraction modify];
     }
     

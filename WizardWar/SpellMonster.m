@@ -44,7 +44,7 @@
         return [SpellInteraction modify];
     }
     
-    else if ([spell isType:[SpellFirewall class]]) {
+    else if ([spell isType:[SpellFirewall class]] && self.direction != spell.direction) {
         return [SpellInteraction cancel];
     }
     

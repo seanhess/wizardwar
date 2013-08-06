@@ -28,9 +28,10 @@
 
 -(SpellInteraction*)interactSpell:(Spell*)spell {
     
-    if ([spell isType:[SpellEarthwall class]]) {
-        // TODO wear down!
-        // oh, yeah! wear it down for sure!
+    if ([spell isType:[SpellEarthwall class]] && spell.direction != self.direction) {
+        // TODO wear down?
+        
+        
         return [SpellInteraction cancel];
     }
     
@@ -54,7 +55,7 @@
         }
     }
     
-    else if ([spell isType:[SpellIcewall class]]) {
+    else if ([spell isType:[SpellIcewall class]] && spell.direction != self.direction) {
         return [SpellInteraction cancel];
     }
     

@@ -15,7 +15,7 @@
         self.speed = 0;
         self.strength = 1;
         self.startOffsetPosition = 15;
-        self.castDelay = 0.0;
+        self.castDelay = 0.5;
     }
     return self;
 }

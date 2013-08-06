@@ -29,7 +29,7 @@
         return [SpellInteraction cancel];
     }
     
-    else if ([spell isType:[SpellFireball class]]) {
+    else if ([spell isType:[SpellFireball class]] && spell.direction != self.direction) {
         // TODO wear down!
         self.strength -= spell.damage;
         
@@ -39,7 +39,7 @@
             return [SpellInteraction modify];
     }
     
-    else if ([spell isType:[SpellMonster class]]) {
+    else if ([spell isType:[SpellMonster class]] && spell.direction != self.direction) {
         return [SpellInteraction cancel];
     }
     
