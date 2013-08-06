@@ -10,6 +10,7 @@
 #import "SpellFireball.h"
 #import "SpellMonster.h"
 #import "SpellIcewall.h"
+#import "SpellFirewall.h"
 #import "Tick.h"
 
 @implementation SpellEarthwall
@@ -24,13 +25,18 @@
 
 -(SpellInteraction *)interactSpell:(Spell *)spell {
     
+    // Earthwalls and Firewalls can collide if the firewall is contained by a bubble.
+    if ([spell isKindOfClass:[SpellFirewall class]] && spell.direction != self.direction) {
+        return [SpellInteraction cancel];
+    }
+    
+    
     // replace older walls
-    if ([self isNewerWall:spell]) {
+    else if ([self isNewerWall:spell]) {
         return [SpellInteraction cancel];
     }
     
     else if ([spell isType:[SpellFireball class]] && spell.direction != self.direction) {
-        // TODO wear down!
         self.strength -= spell.damage;
         
         if (self.strength == 0)

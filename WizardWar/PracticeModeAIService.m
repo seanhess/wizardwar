@@ -35,8 +35,7 @@
         
         self.allSpells = @[[SpellFireball class], [SpellEarthwall class], [SpellWindblast class], [SpellMonster class], [SpellBubble class], [SpellVine class], [SpellFist class], [SpellHelmet class], [SpellFireball class]];
         
-//        self.allSpells = @[[SpellFirewall class]];
-//        self.allSpells = @[[SpellFireball class]];
+        self.allSpells = @[[SpellBubble class]];
     }
     return self;
 }

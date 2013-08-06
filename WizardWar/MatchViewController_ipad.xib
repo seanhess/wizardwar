@@ -335,7 +335,7 @@
 								<int key="contentType">3</int>
 								<bool key="placeholder">NO</bool>
 							</object>
-							<object class="IBNSLayoutConstraint" id="483879893">
+							<object class="IBNSLayoutConstraint" id="699762360">
 								<reference key="firstItem" ref="292474087"/>
 								<int key="firstAttribute">3</int>
 								<int key="relation">0</int>
@@ -352,7 +352,7 @@
 								<int key="contentType">3</int>
 								<bool key="placeholder">NO</bool>
 							</object>
-							<object class="IBNSLayoutConstraint" id="491380567">
+							<object class="IBNSLayoutConstraint" id="770424495">
 								<reference key="firstItem" ref="292474087"/>
 								<int key="firstAttribute">10</int>
 								<int key="relation">0</int>
@@ -738,12 +738,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">244</int>
-						<reference key="object" ref="491380567"/>
+						<reference key="object" ref="770424495"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">245</int>
-						<reference key="object" ref="483879893"/>
+						<reference key="object" ref="699762360"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
@@ -763,8 +763,8 @@
 					<reference ref="187004374"/>
 					<reference ref="695759471"/>
 					<reference ref="529532746"/>
-					<reference ref="491380567"/>
-					<reference ref="483879893"/>
+					<reference ref="770424495"/>
+					<reference ref="699762360"/>
 					<reference ref="805839622"/>
 					<reference ref="776112768"/>
 					<reference ref="890345346"/>

@@ -253,6 +253,8 @@
 }
 
 - (void)renderWallStrength {
+    // You don't want to do Firewall here, because it is animated, unlike the others.
+    // So you can't do both the strength and the animation
     if (![self isWall:self.spell]) return;
     NSInteger strength = self.spell.strength;
     if (strength < 0) strength = 0;

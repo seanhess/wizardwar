@@ -39,10 +39,10 @@
         return [SpellInteraction cancel];
     }
     
-    else if ([spell isType:[SpellBubble class]]) {
-        self.direction = spell.direction;
-        return [SpellInteraction modify];
-    }
+//    else if ([spell isType:[SpellBubble class]]) {
+//        self.direction = spell.direction;
+//        return [SpellInteraction modify];
+//    }
     
     else if ([spell isType:[SpellFirewall class]] && self.direction != spell.direction) {
         return [SpellInteraction cancel];
@@ -59,8 +59,11 @@
             self.speed += 30;
         }
         else {
-            self.direction *= -1;
-            self.speed = 0;
+            self.speed -= 15;
+            if (self.speed < 0) {
+                self.direction *= -1;
+                self.speed *= -1;
+            }
         }
         
             

@@ -31,15 +31,15 @@
 }
 
 -(SpellInteraction *)interactSpell:(Spell *)spell {
-    if ([spell isType:[SpellMonster class]]) {
-        return [SpellInteraction cancel];
-    }
+//    if ([spell isType:[SpellMonster class]]) {
+//        return [SpellInteraction cancel];
+//    }
     
 //    else if ([spell isType:[SpellFireball class]]) {
 //        return [SpellInteraction cancel];
 //    }
     
-    else if ([spell isType:[SpellEarthwall class]] && spell.direction != self.direction) {
+    if ([spell isType:[SpellEarthwall class]] && spell.direction != self.direction) {
         return [SpellInteraction cancel];
     }
     

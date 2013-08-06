@@ -27,7 +27,16 @@
 -(SpellInteraction *)interactSpell:(Spell *)spell {
     
     if ([spell isType:[SpellWindblast class]]) {
-        self.direction = spell.direction;
+        if (self.direction == spell.direction) {
+            self.speed += 35;
+        }
+        else {
+            self.speed -= 35;
+            if (self.speed < 0) {
+                self.direction *= -1;
+                self.speed *= -1;
+            }
+        }
         return [SpellInteraction modify];
     }
     

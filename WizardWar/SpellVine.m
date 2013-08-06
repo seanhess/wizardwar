@@ -23,7 +23,7 @@
         // TODO mana cost higher!
         // TODO harder to cast!
         self.name = @"Summon Vine";
-        self.castDelay *= 1.8;
+        self.castDelay *= 2.5;
     }
     return self;
 }

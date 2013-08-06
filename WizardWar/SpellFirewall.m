@@ -11,6 +11,7 @@
 #import "SpellMonster.h"
 #import "SpellIcewall.h"
 #import "SpellBubble.h"
+#import "SpellEarthwall.h"
 #import "Tick.h"
 
 @implementation SpellFirewall
@@ -26,8 +27,13 @@
 
 -(SpellInteraction *)interactSpell:(Spell *)spell {
     
+    // Earthwalls and Firewalls can collide if the firewall is contained by a bubble.
+    if ([spell isKindOfClass:[SpellEarthwall class]] && spell.direction != self.direction) {
+        return [SpellInteraction cancel];
+    }
+    
     // replace older walls
-    if ([self isNewerWall:spell]) {
+    else if ([self isNewerWall:spell]) {
         return [SpellInteraction cancel];
     }
     
@@ -40,6 +46,10 @@
         self.speed = spell.speed;
         self.direction = spell.direction;
         return [SpellInteraction modify];
+    }
+    
+    else if ([spell isKindOfClass:[SpellMonster class]]) {
+        return [SpellInteraction cancel];
     }
     
     return [SpellInteraction nothing];

@@ -8,6 +8,7 @@
 
 #import "SpellSleep.h"
 #import "SpellMonster.h"
+#import "SpellIcewall.h"
 #import "EffectSleep.h"
 
 @implementation SpellSleep
@@ -30,7 +31,11 @@
     if ([spell isType:[SpellMonster class]]) {
         return [SpellInteraction cancel];
     }
-        
+    
+    else if ([spell isType:[SpellIcewall class]] && spell.direction != self.direction) {
+        return [SpellInteraction cancel];
+    }
+    
     return [SpellInteraction nothing];
 }
 

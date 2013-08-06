@@ -36,23 +36,10 @@
     }
     
     else if ([spell isType:[SpellWindblast class]]) {
-        // TODO make it bigger
-        
-        // if going the same direction, then make it bigger and faster?
-        // if not, then dissipate it
-        // only make it bigger!
-        if (self.direction == spell.direction) {
-            self.damage += 1;
-            self.speed += 5;
-        } else {
-            self.damage -= 1;
-        }
-        
-        if (self.damage > 0) {
-            return [SpellInteraction modify];
-        } else {
-            return [SpellInteraction cancel];
-        }
+        // all it does is make it bigger
+        // tee hee
+        self.damage += 1;
+        return [SpellInteraction modify];
     }
     
     else if ([spell isType:[SpellIcewall class]] && spell.direction != self.direction) {
