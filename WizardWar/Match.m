@@ -104,6 +104,7 @@
 }
 
 - (void)removeSpell:(Spell*)spell {
+    NSLog(@"*** REMOVE SPELL %i %@", spell.status, spell);    
     [self.spells removeObjectForKey:spell.spellId];
     [self.delegate didRemoveSpell:spell];
 }
@@ -151,14 +152,26 @@
 -(void)mpDidAddSpell:(Spell *)spell {
     if (![self.spells objectForKey:spell.spellId]) {
         // it must be from the other guy!
+        // Force to be prepare. Sometimes they can set to Destroyed immediately, and it never registers as prepare over here
+        spell.status = SpellStatusPrepare;
+        NSLog(@"*** MP ADD SPELL %i %@", spell.status, spell);
         [self addSpell:spell];
     }
 }
 
 -(void)mpDidUpdate:(NSDictionary*)updates spellWithId:(NSString*)spellId {
     // doesn't matter if you run this more than once
+    
     Spell * spell = [self.spells objectForKey:spellId];
+    BOOL wasPrepare = spell.status == SpellStatusPrepare;
+    
     [spell setValuesForKeysWithDictionary:updates];
+
+    // Force to be prepare. Sometimes they can set to Destroyed immediately, and it never registers as prepare over here
+    if (wasPrepare && spell.status == SpellStatusDestroyed)
+        spell.status = SpellStatusPrepare;
+    
+    NSLog(@"*** UPDATE SPELL %i %@", spell.status, spell);        
 }
 
 -(void)mpDidRemoveSpellWithId:(NSString*)spellId {
@@ -266,6 +279,7 @@
     }];
     
     [newSpells forEach:^(Spell * spell) {
+        NSLog(@"*** NEW SPELL %i %@", spell.status, spell);        
         Wizard * creator = spell.creator;
         
         if (creator.effect.cancelsOnCast)
@@ -328,8 +342,9 @@
 
 // this only matters
 - (void)cleanupDestroyed {
+    NSInteger oldestValidUpdatedTick = self.timer.nextTick - 10;
     NSArray * oldSpells = [self.spells.allValues filter:^BOOL(Spell * spell) {
-        return ((spell.status == SpellStatusDestroyed) && (spell.updatedTick < self.timer.nextTick-10)) || ((spell.status == SpellStatusActive && (spell.position < UNITS_MIN-UNITS_DISTANCE || spell.position > UNITS_MAX+UNITS_DISTANCE)));
+        return ((spell.status == SpellStatusDestroyed) && (spell.updatedTick < oldestValidUpdatedTick)) || ((spell.status == SpellStatusActive && (spell.position < UNITS_MIN-UNITS_DISTANCE || spell.position > UNITS_MAX+UNITS_DISTANCE)));
     }];
     
     [oldSpells forEach:^(Spell * spell) {
@@ -339,6 +354,10 @@
     NSArray * closeOldSpells = [oldSpells filter:^BOOL(Spell * spell) {
         return [self isSpellClose:spell];
     }];
+    
+    if (closeOldSpells.count)
+        NSLog(@"REMOVE OLD SPELLS %@", closeOldSpells);
+    
     [self.multiplayer removeSpells:closeOldSpells];
 }
 
@@ -433,7 +452,7 @@
 }
 
 -(void)destroySpell:(Spell*)spell {
-//    NSLog(@" - destroySpell %@", spell);
+    NSLog(@" - destroySpell %@", spell);
     spell.status = SpellStatusDestroyed;
     spell.updatedTick = self.timer.nextTick;
     if ([self isSpellClose:spell])

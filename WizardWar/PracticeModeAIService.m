@@ -36,8 +36,8 @@
     if (self) {
         
         self.allSpells = @[[SpellFireball class], [SpellEarthwall class], [SpellWindblast class], [SpellMonster class], [SpellBubble class], [SpellVine class], [SpellFist class], [SpellHelmet class], [SpellFireball class]];
-        
-        self.allSpells = @[[SpellEarthwall class]];
+        self.stop = YES;
+//        self.allSpells = @[[SpellEarthwall class]];
     }
     return self;
 }
@@ -51,7 +51,7 @@
     if (self.lastSpellTick + castTickInterval < currentTick) {
         self.lastSpellTick = currentTick;
         [self.delegate aiDidCastSpell:[self randomSpell]];
-        self.stop = YES;
+//        self.stop = YES;
     }
 }
 
