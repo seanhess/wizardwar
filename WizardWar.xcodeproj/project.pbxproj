@@ -431,6 +431,7 @@
 		6F0B2FAE1747511800CFC092 /* DrawingLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingLayer.m; sourceTree = "<group>"; };
 		7801E9F717B1830C005D14D8 /* EffectTeddyHeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectTeddyHeal.h; sourceTree = "<group>"; };
 		7801E9F817B1830C005D14D8 /* EffectTeddyHeal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectTeddyHeal.m; sourceTree = "<group>"; };
+		7801E9FA17B18ED4005D14D8 /* DataModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DataModel 2.xcdatamodel"; sourceTree = "<group>"; };
 		781234DF174AE4C0008EDE88 /* Objectable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Objectable.h; sourceTree = "<group>"; };
 		781372D2177E311A00486899 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		781372D4177E313000486899 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -2729,9 +2730,10 @@
 		78306B9A17A7144300487B16 /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				7801E9FA17B18ED4005D14D8 /* DataModel 2.xcdatamodel */,
 				78306B9B17A7144300487B16 /* DataModel.xcdatamodel */,
 			);
-			currentVersion = 78306B9B17A7144300487B16 /* DataModel.xcdatamodel */;
+			currentVersion = 7801E9FA17B18ED4005D14D8 /* DataModel 2.xcdatamodel */;
 			path = DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

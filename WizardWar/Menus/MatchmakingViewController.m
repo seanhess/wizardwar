@@ -41,7 +41,7 @@
 #import "AnalyticsService.h"
 #import "UIViewController+Idiom.h"
 
-@interface MatchmakingViewController () <NSFetchedResultsControllerDelegate, FBFriendPickerDelegate>
+@interface MatchmakingViewController () <NSFetchedResultsControllerDelegate, FBFriendPickerDelegate, MatchViewControllerDelegate>
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
 
 @property (nonatomic, strong) ConnectionService* connection;
@@ -150,9 +150,9 @@
     
     
     // DEBUG ONLY: show all users. Uncomment and change # of sections to 4
-    self.allResults = [ObjectStore.shared fetchedResultsForRequest:[UserFriendService.shared requestStrangers:user withLimit:5]];
-    self.allResults.delegate = self;
-    [self.allResults performFetch:&error];
+//    self.allResults = [ObjectStore.shared fetchedResultsForRequest:[UserFriendService.shared requestStrangers:user withLimit:5]];
+//    self.allResults.delegate = self;
+//    [self.allResults performFetch:&error];
     
 
     // I think friends should be showing up faster, no?
@@ -343,7 +343,8 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 5;
+    return 4;
+//    return 5; // to show debug users
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -528,16 +529,17 @@
 }
 
 - (void)joinMatch:(Challenge*)challenge {
-
-    // Add as a friend
-    [UserFriendService.shared user:self.currentUser addChallenge:challenge];
-    
     // Only the active user broadcasts what he is doing
     [LobbyService.shared user:self.currentUser joinedMatch:challenge.matchId];
     
     MatchViewController * match = [[MatchViewController alloc] initPerIdoim];
+    match.delegate = self;
     [match startChallenge:challenge currentWizard:UserService.shared.currentWizard];
     [self.navigationController presentViewController:match animated:YES completion:nil];
+}
+
+- (void)didFinishChallenge:(Challenge *)challenge didWin:(BOOL)didWin {
+    [UserFriendService.shared user:self.currentUser addChallenge:challenge didWin:didWin];
 }
 
 - (void)dealloc {

@@ -20,7 +20,8 @@
 @property (nonatomic) double locationLongitude;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * userId;
-@property (nonatomic) int16_t friendPoints;
+@property (nonatomic) int16_t gamesTotal;
+@property (nonatomic) int16_t gamesWins;
 @property (nonatomic) CLLocationDistance distance;
 @property (nonatomic) NSTimeInterval updated;
 @property (nonatomic) int32_t colorRGB; // hex rgb value

@@ -17,7 +17,8 @@
 @dynamic locationLongitude;
 @dynamic name;
 @dynamic userId;
-@dynamic friendPoints;
+@dynamic gamesTotal;
+@dynamic gamesWins;
 @dynamic distance;
 @dynamic challenge;
 @dynamic updated;
@@ -39,7 +40,7 @@
 }
 
 - (NSString*)description {
-    return [NSString stringWithFormat:@"%@ name:%@ count:%i", super.description, self.name, self.friendPoints];
+    return [NSString stringWithFormat:@"%@ name:%@ count:%i", super.description, self.name, self.gamesTotal];
 }
 
 - (CLLocation *)location {
@@ -48,7 +49,7 @@
 }
 
 - (BOOL)isFrenemy {
-    return self.friendPoints > 0;
+    return self.gamesTotal > 0;
 }
 
 -(BOOL)isFacebookFriend {

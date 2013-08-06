@@ -62,16 +62,18 @@
 }
 
 
--(void)user:(User *)user addFriend:(User *)friend {
-    friend.friendPoints++;
-}
-
--(void)user:(User *)user addChallenge:(Challenge *)challenge {
-    // Only one of them is (me)
+-(void)user:(User *)user addChallenge:(Challenge *)challenge didWin:(BOOL)didWin {
+    User * friend = nil;
     if (![challenge.main.userId isEqualToString:user.userId])
-        [self user:user addFriend:challenge.main];
+        friend = challenge.main;
     else
-        [self user:user addFriend:challenge.opponent];
+        friend = challenge.opponent;
+    
+    // Wins AGAINST that friend
+    friend.gamesTotal++;
+    if (didWin) {
+        friend.gamesWins++;
+    }
 }
 
 -(BOOL)hasConnectedFacebook:(User*)user {
@@ -293,7 +295,7 @@
 #pragma mark - Core Data stuff
 
 -(NSPredicate*)predicateIsFrenemy:(User *)user {
-    return [NSPredicate predicateWithFormat:@"friendPoints > 0"];
+    return [NSPredicate predicateWithFormat:@"gamesTotal > 0"];
 }
 
 -(NSPredicate*)predicateIsFacebookFriend:(User *)user {
@@ -332,8 +334,8 @@
 - (NSFetchRequest*)requestFriends:(User *)user {
     NSFetchRequest * request = [UserService.shared requestAllUsersExcept:user];
     request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[[self predicateIsFBFriendOrFrenemy:user], request.predicate]];
-    NSSortDescriptor * sortFriendPoints = [NSSortDescriptor sortDescriptorWithKey:@"friendPoints" ascending:NO];
-    request.sortDescriptors = @[[UserService.shared sortIsOnline], sortFriendPoints];
+    NSSortDescriptor * sortGamesTotal = [NSSortDescriptor sortDescriptorWithKey:@"gamesTotal" ascending:NO];
+    request.sortDescriptors = @[[UserService.shared sortIsOnline], sortGamesTotal];
     
     return request;
 }

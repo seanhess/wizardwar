@@ -39,6 +39,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *message;
 @property (weak, nonatomic) IBOutlet UILabel *subMessage;
 @property (strong, nonatomic) UIButton * replayButton;
+@property (nonatomic, strong) Challenge * challenge;
 @end
 
 @implementation MatchViewController
@@ -156,6 +157,7 @@
 
 - (void)startChallenge:(Challenge *)challenge currentWizard:(Wizard *)wizard {
     // join in the ready screen!
+    self.challenge = challenge;
     self.match = [[Match alloc] initWithMatchId:challenge.matchId hostName:challenge.main.name currentWizard:wizard withAI:nil multiplayer:self.defaultMultiplayerService sync:self.defaultSyncService];
 }
 
@@ -210,12 +212,16 @@
             self.subMessage.alpha = 1.0;
             self.subMessage.text = @"(YOU LOSE)";
             [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"YouLose2.mp3" loop:NO];
+            if (self.challenge)
+                [self.delegate didFinishChallenge:self.challenge didWin:NO];
         }
         
         else {
             self.message.textColor = [UIColor colorFromRGB:0x18AB34];
             self.message.text = @"YOU WON!";
             [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"YouWon.mp3" loop:NO];
+            if (self.challenge)
+                [self.delegate didFinishChallenge:self.challenge didWin:YES];
         }
         
         [self showEndButtons];

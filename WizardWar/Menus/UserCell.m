@@ -21,7 +21,8 @@
 @interface UserCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *otherLabel;
+@property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet UILabel *typeLabel;
 @end
 
@@ -87,23 +88,44 @@
     else
         self.typeLabel.text = [NSString stringFromAwesomeIcon:FAIconGlobe];
     
-    NSString * games = [NSString stringWithFormat:@"%i Games", user.friendPoints];
+    // DISTANCE
     NSString * distance = @"";
-    
     if (user.isOnline && user.distance >= 0) {
-        distance = [NSString stringWithFormat:@"%@, ", [LocationService.shared distanceString:user.distance]];
+        distance = [LocationService.shared distanceString:user.distance];
     }
+    self.distanceLabel.text = distance;
     
-    self.otherLabel.text = [NSString stringWithFormat:@"%@%@", distance, games];
+    Challenge * challenge = nil;
     
     if (user.activeMatchId) {
         Challenge * challenge = [ChallengeService.shared challengeWithId:user.activeMatchId create:NO];
-        if (!challenge) {
+        if (!challenge)
             NSLog(@"****NO CHALLENGE %@", user.activeMatchId);
-            return;
-        }
+    }
+    
+    // STATUS
+    if (challenge) {
         User * opponent = [challenge findOpponent:user];
-        self.otherLabel.text = [NSString stringWithFormat:@"FIGHTING %@!", opponent.name];
+        self.statusLabel.text = [NSString stringWithFormat:@"FIGHTING %@!", opponent.name];
+        self.statusLabel.textColor = [UIColor darkGrayColor];
+    }
+
+    // WINS
+    else {
+        
+        if (user.gamesTotal > 0) {
+            self.statusLabel.text = [NSString stringWithFormat:@"%i/%i Wins", user.gamesWins, user.gamesTotal];
+            if (user.gamesWins > user.gamesTotal/2) {
+                self.statusLabel.textColor = [AppStyle greenGrassColor];
+            } else {
+                self.statusLabel.textColor = [UIColor redColor];
+            }
+        } else {
+            self.statusLabel.text = @"";
+        }
+        
+        
+        
     }
 }
 
