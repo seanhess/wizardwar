@@ -38,7 +38,7 @@ typedef enum SpellStatus {
 @property (nonatomic) NSInteger createdTick;
 @property (nonatomic) NSInteger updatedTick;
 @property (nonatomic) SpellStatus status;
-@property (nonatomic, strong) NSString * creator;
+@property (nonatomic, strong) Wizard * creator;
 @property (nonatomic) NSInteger altitude; // how high it is. normal = 0;
 @property (nonatomic) BOOL heavy; // if it falls
 @property (nonatomic, strong) Effect * effect; // if the spell creates an effect

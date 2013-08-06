@@ -197,7 +197,8 @@
     // HEART    teddy
     // WATER    hotdog
     
-    ElementType firstElement = [[elements firstObject] intValue];
+    if (elements.count == 0) return nil;
+    ElementType firstElement = [elements[0] intValue];
     if (firstElement == Earth)
         return [SpellFailChicken new]; // does 3 damage, but dies if it hits ANYTHING :)
     else if (firstElement == Air)

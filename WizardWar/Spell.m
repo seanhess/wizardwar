@@ -47,7 +47,7 @@
 }
 
 -(void)initCaster:(Wizard*)player tick:(NSInteger)tick {
-    self.creator = player.name;
+    self.creator = player;
     self.createdTick = tick;
     [self setPositionFromPlayer:player];
 }

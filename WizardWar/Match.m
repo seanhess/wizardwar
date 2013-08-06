@@ -96,6 +96,9 @@
 
 - (void)addSpell:(Spell*)spell {
     spell.position = spell.referencePosition;
+    if (!spell.creator) {
+        spell.creator = [self otherWizard:self.currentWizard];
+    }
     [self.spells setObject:spell forKey:spell.spellId];
     [self.delegate didAddSpell:spell];
 }
@@ -135,9 +138,6 @@
 
 
 
-
-
-
 /// AI //
 
 - (void)aiDidCastSpell:(Spell *)spell {
@@ -149,8 +149,10 @@
 // we only make changes locally if they haven't been made yet
 // any time we make a change, make it locally first, then sync to remote
 -(void)mpDidAddSpell:(Spell *)spell {
-    if (![self.spells objectForKey:spell.spellId])
+    if (![self.spells objectForKey:spell.spellId]) {
+        // it must be from the other guy!
         [self addSpell:spell];
+    }
 }
 
 -(void)mpDidUpdate:(NSDictionary*)updates spellWithId:(NSString*)spellId {
@@ -264,9 +266,7 @@
     }];
     
     [newSpells forEach:^(Spell * spell) {
-        Wizard * creator = [self.players.allValues find:^BOOL(Wizard* player) {
-            return [player.name isEqualToString:spell.creator];
-        }];
+        Wizard * creator = spell.creator;
         
         if (creator.effect.cancelsOnCast)
             creator.effect = nil;
@@ -371,9 +371,7 @@
             wizard.effect = nil;
             [wizard setState:WizardStatusDead];
             // need to set the OTHER wizard to something else
-            Wizard * otherWizard = [self.players.allValues find:^BOOL(Wizard* aWizard) {
-                return (aWizard != wizard);
-            }];
+            Wizard * otherWizard = [self otherWizard:wizard];
             otherWizard.effect = nil;
             [otherWizard setState:WizardStatusWon];
 
@@ -471,6 +469,12 @@
 
 -(void)castSpell:(Spell *)spell {
     [self player:self.currentWizard castSpell:spell currentTick:self.timer.nextTick];
+}
+
+-(Wizard*)otherWizard:(Wizard*)wizard {
+    return [self.players.allValues find:^BOOL(Wizard* aWizard) {
+        return (aWizard != wizard);
+    }];
 }
 
 -(void)disconnect {
