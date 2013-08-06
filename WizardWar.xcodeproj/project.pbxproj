@@ -26,6 +26,7 @@
 		6F0B2FAA174750FF00CFC092 /* PentEmblem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0B2FA8174750FF00CFC092 /* PentEmblem.m */; };
 		6F0B2FAF1747511800CFC092 /* DotsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0B2FAC1747511800CFC092 /* DotsView.m */; };
 		6F0B2FB01747511800CFC092 /* DrawingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0B2FAE1747511800CFC092 /* DrawingLayer.m */; };
+		7801E9F917B1830C005D14D8 /* EffectTeddyHeal.m in Sources */ = {isa = PBXBuildFile; fileRef = 7801E9F817B1830C005D14D8 /* EffectTeddyHeal.m */; };
 		781372D3177E311A00486899 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781372D2177E311A00486899 /* MobileCoreServices.framework */; };
 		781372D5177E313000486899 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781372D4177E313000486899 /* StoreKit.framework */; };
 		781372D7177E313A00486899 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781372D6177E313A00486899 /* SystemConfiguration.framework */; };
@@ -428,6 +429,8 @@
 		6F0B2FAC1747511800CFC092 /* DotsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DotsView.m; sourceTree = "<group>"; };
 		6F0B2FAD1747511800CFC092 /* DrawingLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingLayer.h; sourceTree = "<group>"; };
 		6F0B2FAE1747511800CFC092 /* DrawingLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingLayer.m; sourceTree = "<group>"; };
+		7801E9F717B1830C005D14D8 /* EffectTeddyHeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectTeddyHeal.h; sourceTree = "<group>"; };
+		7801E9F817B1830C005D14D8 /* EffectTeddyHeal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectTeddyHeal.m; sourceTree = "<group>"; };
 		781234DF174AE4C0008EDE88 /* Objectable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Objectable.h; sourceTree = "<group>"; };
 		781372D2177E311A00486899 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		781372D4177E313000486899 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -1555,6 +1558,8 @@
 				78D0855D176A4C7C00EDC405 /* EffectSleep.m */,
 				78915281176A72A8001694B1 /* EffectLevitate.h */,
 				78915282176A72A8001694B1 /* EffectLevitate.m */,
+				7801E9F717B1830C005D14D8 /* EffectTeddyHeal.h */,
+				7801E9F817B1830C005D14D8 /* EffectTeddyHeal.m */,
 			);
 			name = Effects;
 			sourceTree = "<group>";
@@ -2362,6 +2367,7 @@
 				78F6B3761746AE5900AA070D /* mat4.c in Sources */,
 				78F6B3771746AE5900AA070D /* neon_matrix_impl.c in Sources */,
 				78F6B3781746AE5900AA070D /* plane.c in Sources */,
+				7801E9F917B1830C005D14D8 /* EffectTeddyHeal.m in Sources */,
 				78F6B3791746AE5900AA070D /* quaternion.c in Sources */,
 				78F6B37A1746AE5900AA070D /* ray2.c in Sources */,
 				78F6B37B1746AE5900AA070D /* utility.c in Sources */,

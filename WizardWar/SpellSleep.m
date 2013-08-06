@@ -10,6 +10,7 @@
 #import "SpellMonster.h"
 #import "SpellIcewall.h"
 #import "EffectSleep.h"
+#import "SpellBubble.h"
 
 @implementation SpellSleep
 
@@ -34,6 +35,16 @@
     
     else if ([spell isType:[SpellIcewall class]] && spell.direction != self.direction) {
         return [SpellInteraction cancel];
+    }
+    
+    else if ([spell isType:[SpellBubble class]]) {
+        if (self.position == spell.position && self.speed == spell.speed && self.direction == spell.direction)
+            return [SpellInteraction nothing];
+        
+        self.position = spell.position;
+        self.speed = spell.speed;
+        self.direction = spell.direction;
+        return [SpellInteraction modify];
     }
     
     return [SpellInteraction nothing];

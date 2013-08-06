@@ -7,6 +7,7 @@
 //
 
 #import "SpellFailTeddy.h"
+#import "EffectTeddyHeal.h"
 
 @implementation SpellFailTeddy
 
@@ -17,5 +18,13 @@
     return self;
 }
 
+-(Effect*)effect {
+    return [EffectTeddyHeal new];
+}
+
+// It goes through EVERYTHING to heal your opponent
+-(SpellInteraction*)interactSpell:(Spell*)spell {
+    return [SpellInteraction nothing];
+}
 
 @end

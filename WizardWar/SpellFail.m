@@ -7,6 +7,7 @@
 //
 
 #import "SpellFail.h"
+#import "SpellWall.h"
 
 @implementation SpellFail
 
@@ -19,12 +20,11 @@
 }
 
 -(SpellInteraction*)interactSpell:(Spell*)spell {
-    // don't do much of anything
-    return [SpellInteraction nothing];
-}
-
--(SpellInteraction*)interactWizard:(Wizard *)wizard currentTick:(NSInteger)currentTick {
-    return [SpellInteraction nothing];
+    if ([spell isKindOfClass:[SpellWall class]] && self.direction == spell.direction) {
+        return [SpellInteraction nothing];
+    }
+    
+    return [SpellInteraction cancel];
 }
 
 @end

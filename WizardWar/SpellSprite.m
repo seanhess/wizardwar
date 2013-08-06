@@ -286,6 +286,8 @@
 
 }
 
+// crap, I don't know the old value here.
+// there's no way to know.
 - (void)renderEffect {
     if (self.spell.targetSelf) return;
     

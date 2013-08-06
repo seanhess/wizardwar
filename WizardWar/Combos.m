@@ -136,14 +136,15 @@
     hitCombos[@"__FHW"] = [SpellBubble class];
     
     // 4 combos
-    hitCombos[@"AEFH_"] = [NSObject class];
+//  hitCombos[@"AEFH_"] = [NSObject class];
     hitCombos[@"AEF_W"] = [SpellVine class];
     hitCombos[@"AE_HW"] = [SpellFist class];
     hitCombos[@"A_FHW"] = [SpellInvisibility class];
     hitCombos[@"_EFHW"] = [SpellMonster class];
     
     // 5 combos
-    hitCombos[@"AEFHW"] = [NSObject class];
+    // 5-combos are all unique.
+    // hitCombos[@"AEFHW"] = [NSObject class];
     
     return hitCombos;
 }
@@ -188,16 +189,45 @@
     return fail;
 }
 
+-(Spell *)basic5Spell:(NSArray*)elements {
+    // give back a fail spell based on the first element used. (CONFUSING :)
+    // EARTH    chicken
+    // AIR      rainbow
+    // FIRE     undies
+    // HEART    teddy
+    // WATER    hotdog
+    
+    ElementType firstElement = [[elements firstObject] intValue];
+    if (firstElement == Earth)
+        return [SpellFailChicken new]; // does 3 damage, but dies if it hits ANYTHING :)
+    else if (firstElement == Air)
+        return [SpellFailRainbow new]; // Just annoying "What does this mean?"
+    else if (firstElement == Fire)
+        return [SpellFailUndies new]; // _____________________
+    else if (firstElement == Heart)
+        return [SpellFailTeddy new]; // Heals your enemy
+    else if (firstElement == Water)
+        return [SpellFailHotdog new]; // Makes monsters stronger.
+    
+    return nil;
+}
+
 
 // COMBOS AEFHW
 
 -(Spell*)spellForElements:(NSArray*)elements {
     NSString * key = [Combos hitKey:elements];
     Class SpellClass = self.hitCombos[key];
-    if (SpellClass != [NSObject class])
-        return [SpellClass new];
+    Spell * spell = nil;
+    if (SpellClass) {
+        spell = [SpellClass new];
+    }
+    
+    else if (elements.count >= 5) {
+        spell = [self basic5Spell:elements];
+    }
 
-    return nil;
+    return spell;
 }
 
 @end

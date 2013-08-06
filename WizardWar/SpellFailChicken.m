@@ -7,15 +7,16 @@
 //
 
 #import "SpellFailChicken.h"
+#import "SpellWall.h"
 
 @implementation SpellFailChicken
 
 -(id)init {
     if ((self=[super init])) {
         self.name = @"Summon Chicken";
+        self.damage = 3;
     }
     return self;
 }
-
 
 @end

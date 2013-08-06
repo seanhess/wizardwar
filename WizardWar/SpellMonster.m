@@ -16,6 +16,7 @@
 #import "SpellWindblast.h"
 #import "SpellFirewall.h"
 #import "SpellSleep.h"
+#import "SpellFailHotdog.h"
 
 @implementation SpellMonster
 
@@ -35,6 +36,11 @@
     
     else if ([spell isType:[SpellFireball class]]) {
         return [SpellInteraction cancel];
+    }
+    
+    else if ([spell isKindOfClass:[SpellFailHotdog class]]) {
+        self.damage += 1;
+        return [SpellInteraction modify];
     }
     
 //    else if ([spell isType:[SpellBubble class]]) {
