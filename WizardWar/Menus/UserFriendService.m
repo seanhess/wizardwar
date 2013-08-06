@@ -208,13 +208,16 @@
 }
 
 -(void)openFeedDialogTo:(NSArray *)facebookIds {
+    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"name"] = @"Download Wizard War";
     params[@"caption"] = @"App Store";
     params[@"description"] = @"Come play Wizard War with me! Download the free app for iPhone or iPad!";
     params[@"link"] = @"http://tflig.ht/10YUQCE";
     params[@"picture"] = @"http://wizardwarapp.com/fblogo.png";
-    params[@"to"] = [facebookIds lastObject];
+    
+    if (facebookIds.count > 0)
+        params[@"to"] = [facebookIds lastObject];
 //    params[@"tags"] = [facebookIds componentsJoinedByString:@","];
 //    params[@"place"] = @"109530785744253";
     

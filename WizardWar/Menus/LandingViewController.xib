@@ -66,7 +66,7 @@
 						<double key="IBUITitleEdgeInsets.bottom">0.0</double>
 						<double key="IBUITitleEdgeInsets.left">0.0</double>
 						<double key="IBUITitleEdgeInsets.right">0.0</double>
-						<object class="NSColor" key="IBUINormalTitleColor" id="332473338">
+						<object class="NSColor" key="IBUINormalTitleColor" id="723374981">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MzE0IDAuMzA5ODAzOTIxNiAwLjUyMTU2ODYyNzUAA</bytes>
 						</object>
@@ -83,7 +83,7 @@
 							<int key="type">2</int>
 							<double key="pointSize">15</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="369465939">
+						<object class="NSFont" key="IBUIFont" id="509191688">
 							<string key="NSName">HelveticaNeue-Bold</string>
 							<double key="NSSize">15</double>
 							<int key="NSfFlags">16</int>
@@ -117,7 +117,7 @@
 							<string key="NSResourceName">icon-share.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="429332537"/>
-						<reference key="IBUIFont" ref="369465939"/>
+						<reference key="IBUIFont" ref="509191688"/>
 					</object>
 					<object class="IBUIButton" id="307179361">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -147,7 +147,7 @@
 							<string key="NSResourceName">icon-settings.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="429332537"/>
-						<reference key="IBUIFont" ref="369465939"/>
+						<reference key="IBUIFont" ref="509191688"/>
 					</object>
 					<object class="IBUIButton" id="540599341">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -164,12 +164,12 @@
 						<double key="IBUITitleEdgeInsets.bottom">0.0</double>
 						<double key="IBUITitleEdgeInsets.left">0.0</double>
 						<double key="IBUITitleEdgeInsets.right">0.0</double>
-						<reference key="IBUINormalTitleColor" ref="332473338"/>
+						<reference key="IBUINormalTitleColor" ref="723374981"/>
 						<reference key="IBUIHighlightedTitleColor" ref="410103668"/>
 						<string key="IBUINormalTitle">Multiplayer</string>
 						<reference key="IBUINormalTitleShadowColor" ref="849548250"/>
 						<reference key="IBUIFontDescription" ref="429332537"/>
-						<reference key="IBUIFont" ref="369465939"/>
+						<reference key="IBUIFont" ref="509191688"/>
 					</object>
 				</array>
 				<string key="NSFrameSize">{320, 568}</string>
@@ -219,6 +219,15 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">31</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">didTapShare:</string>
+						<reference key="source" ref="459196969"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">328</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -587,7 +596,7 @@
 						<int key="objectID">25</int>
 						<reference key="object" ref="307179361"/>
 						<array class="NSMutableArray" key="children">
-							<object class="IBNSLayoutConstraint" id="1055754018">
+							<object class="IBNSLayoutConstraint" id="702853574">
 								<reference key="firstItem" ref="307179361"/>
 								<int key="firstAttribute">8</int>
 								<int key="relation">0</int>
@@ -604,7 +613,7 @@
 								<int key="contentType">1</int>
 								<bool key="placeholder">NO</bool>
 							</object>
-							<object class="IBNSLayoutConstraint" id="439337841">
+							<object class="IBNSLayoutConstraint" id="67074662">
 								<reference key="firstItem" ref="307179361"/>
 								<int key="firstAttribute">7</int>
 								<int key="relation">0</int>
@@ -735,12 +744,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">326</int>
-						<reference key="object" ref="439337841"/>
+						<reference key="object" ref="67074662"/>
 						<reference key="parent" ref="307179361"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">327</int>
-						<reference key="object" ref="1055754018"/>
+						<reference key="object" ref="702853574"/>
 						<reference key="parent" ref="307179361"/>
 					</object>
 				</array>
@@ -775,8 +784,8 @@
 				<string key="25.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="1" key="25.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 				<array key="25.IBViewMetadataConstraints">
-					<reference ref="439337841"/>
-					<reference ref="1055754018"/>
+					<reference ref="67074662"/>
+					<reference ref="702853574"/>
 				</array>
 				<boolean value="NO" key="25.IBViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
 				<string key="279.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -820,7 +829,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">327</int>
+			<int key="maxID">328</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

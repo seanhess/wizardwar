@@ -20,7 +20,10 @@
 #import "AnalyticsService.h"
 #import "UIViewController+Idiom.h"
 
-@interface LandingViewController ()
+#import <FacebookSDK/FacebookSDK.h>
+#import "NSArray+Functional.h"
+
+@interface LandingViewController ()  <FBFriendPickerDelegate>
 @end
 
 @implementation LandingViewController
@@ -102,5 +105,24 @@
     settings.onDone = ^{};
     [self.navigationController presentViewController:navigation animated:YES completion:nil];
 }
+
+- (IBAction)didTapShare:(id)sender {
+    [AnalyticsService event:@"ShareTap"];
+    
+    // Connect their facebook account first, then open the friend invite dialog
+    // it doesn't make sense to invite friends without having them connect facebook first
+    
+    User * user = [UserService.shared currentUser];
+    [UserFriendService.shared user:user authenticateFacebook:^(BOOL success, User * updated) {
+        if (updated) {
+            [UserService.shared saveCurrentUser];
+        }
+        
+        if (success) {
+            [UserFriendService.shared openFeedDialogTo:@[]];
+        }
+    }];
+}
+
 
 @end
