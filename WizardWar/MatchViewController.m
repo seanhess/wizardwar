@@ -27,6 +27,8 @@
 #import "AnalyticsService.h"
 #import "OLUnitsService.h"
 #import "UIViewController+Idiom.h"
+#import <BButton.h>
+#import "MenuButton.h"
 
 @interface MatchViewController ()
 @property (strong, nonatomic) PentagramViewController * pentagram;
@@ -36,6 +38,7 @@
 @property (strong, nonatomic) Combos * combos;
 @property (weak, nonatomic) IBOutlet UILabel *message;
 @property (weak, nonatomic) IBOutlet UILabel *subMessage;
+@property (strong, nonatomic) UIButton * replayButton;
 @end
 
 @implementation MatchViewController
@@ -80,6 +83,12 @@
     CCDirector * director = [CCDirector sharedDirector];
     [self.cocosView addSubview:director.view];
     
+    // REPLAY BUTTONS
+    self.replayButton = [[MenuButton alloc] initWithFrame:CGRectMake(self.cocosView.center.x-100, self.cocosView.frame.size.height, 200, 80)];
+    [self.replayButton setTitle:@"Leave" forState:UIControlStateNormal];
+    [self.replayButton addTarget:self action:@selector(didTapLeave:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.replayButton];
+    
     
     
     __weak MatchViewController * wself = self;
@@ -96,6 +105,8 @@
     [[RACAble(self.combos.castSpell) distinctUntilChanged] subscribeNext:^(Spell * spell) {
         [wself didCastSpell:spell];
     }];
+    
+//    [self showEndButtons];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -206,6 +217,8 @@
             self.message.text = @"YOU WON!";
             [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"YouWon.mp3" loop:NO];
         }
+        
+        [self showEndButtons];
     }
 }
 
@@ -236,6 +249,26 @@
     self.match = nil;
     [self dismissViewControllerAnimated:YES completion:nil];
     //    [self.navigationController popViewControllerAnimated:YES];    
+}
+
+- (void)showEndButtons {
+
+    if (self.match.currentWizard.state == WizardStatusDead) {
+        [self.replayButton setTitle:@"Run Away" forState:UIControlStateNormal];
+    } else {
+        [self.replayButton setTitle:@"Return Victorious!" forState:UIControlStateNormal];
+    }
+
+    // My view's size is wacked at this point. Use cocos2d view I guess.
+    [UIView animateWithDuration:0.3 animations:^{
+        CGRect frame = self.replayButton.frame;
+        frame.origin.y = self.cocosView.frame.size.height - frame.size.height - 15;
+        self.replayButton.frame = frame;
+    }];
+}
+
+- (void)didTapLeave:(id)sender {
+    [self leaveMatch];
 }
 
 

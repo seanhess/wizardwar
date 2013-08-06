@@ -30,7 +30,7 @@
 }
 
 -(SpellInteraction *)interactSpell:(Spell *)spell {
-    if ([spell isType:[SpellMonster class]]) {
+    if ([spell isType:[SpellMonster class]] && spell.direction != self.direction) {
         return [SpellInteraction cancel];
     }
     
