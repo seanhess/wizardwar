@@ -52,8 +52,10 @@
         
         // No heal or invisibility because he's not patient tnough to let it finish
         
-//        self.stop = YES;
-//        self.allSpells = @[[SpellEarthwall class]];
+#ifdef DEBUG
+        self.stop = YES;
+        self.allSpells = @[[SpellBubble class]];
+#endif
     }
     return self;
 }

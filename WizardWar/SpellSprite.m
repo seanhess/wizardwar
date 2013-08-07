@@ -152,8 +152,6 @@
         [[RACAble(self.spell.altitude) distinctUntilChanged] subscribeNext:^(id x) {
             [self renderAltitude];
         }];
-
-        
         
         self.position = ccp(self.spellX, self.spellY);
         [self renderWallStrength];
@@ -165,7 +163,9 @@
 }
 
 -(void)update:(ccTime)delta {
-//    NSLog(@"Spell UPDATE %f", delta);
+//    if ([self.spell isKindOfClass:[SpellVine class]]) {
+//        return;
+//    }
     
     CGFloat y = self.position.y;
     CGFloat x = self.position.x;
@@ -190,6 +190,16 @@
 //    [self stopAction:self.positionAction];
 //    self.positionAction = [CCMoveTo actionWithDuration:0.2 position:ccp(self.spellX, self.spellY)];
 //    [self runAction:self.positionAction];
+    
+//    if ([self.spell isKindOfClass:[SpellVine class]]) {
+//        if (self.position.x > 0) {
+//            // already positioned
+//            // just stop it
+////            NSLog(@"SKIP VINE");
+//            return;
+//        }
+//    }
+
     self.position = ccp(self.spellX, self.spellY);
 }
 
@@ -228,6 +238,19 @@
     if ([self.spell isType:[SpellHelmet class]]) {
         x -= 15*self.spell.direction;
     }
+    
+//    else if ([self.spell isKindOfClass:[SpellVine class]]) {
+//        // the contentSize is constant. Each frame of Vine has the same size
+//        // this is close, but the contentSize is set to the widest frame
+//        NSLog(@"SPELL X %f %@", x, NSStringFromCGSize(self.skin.displayFrame.rect.size));
+////        if (self.skin.displayFrame.rect.size.width > 0)
+////            [self.skin stopAllActions];
+////        x = self.units.min - 310 + self.skin.displayFrame.rect.size.width;
+//        // it's like they are all right aligned for some reason
+////        x = 0;
+//        self.skin.anchorPoint = ccp(0,0);
+//        x = 0;
+//    }
     
     return x;
 }
