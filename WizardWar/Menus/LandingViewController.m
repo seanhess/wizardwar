@@ -48,6 +48,7 @@
     [UserFriendService.shared checkFBStatus:UserService.shared.currentUser];
     [LobbyService.shared connect];
     [LocationService.shared connect];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {

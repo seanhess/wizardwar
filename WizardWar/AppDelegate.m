@@ -25,6 +25,9 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "OLUnitsService.h"
 #import "InfoService.h"
+#import "WizardSprite.h"
+#import "SpellSprite.h"
+#import "PreloadLayer.h"
 
 // The director should belong to the app delegate or a singleton
 // and you should manually unload or reload it
@@ -91,8 +94,8 @@
     NSDictionary * remoteNotification = [launchOptions valueForKey:@"UIApplicationLaunchOptionsRemoteNotificationKey"];
     if (remoteNotification) [self application:application didReceiveRemoteNotification:remoteNotification];
     
+    [PreloadLayer loadSprites];
     
-
     // ANALYTICS
     [AnalyticsService didFinishLaunching:launchOptions];
     NSLog(@" - app launch complete"); 

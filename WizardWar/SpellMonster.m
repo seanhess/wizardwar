@@ -33,7 +33,7 @@
 
 -(SpellInteraction *)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
     
-    if ([self.effect isKindOfClass:[EffectSleep class]]) {
+    if (self.effect && [self.effect isKindOfClass:[EffectSleep class]]) {
         EffectSleep * sleep = (EffectSleep*)self.effect;
         if ([sleep sleepShouldEndAtTick:currentTick interval:interval]) {
             self.effect = [EffectBasicDamage new];

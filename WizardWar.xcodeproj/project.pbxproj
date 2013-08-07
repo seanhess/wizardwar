@@ -219,6 +219,7 @@
 		786EE5C017B2A5FE004D9214 /* HelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 786EE5BE17B2A5FE004D9214 /* HelpViewController.xib */; };
 		786EE5C317B2B4F3004D9214 /* vine-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 786EE5C117B2B4F3004D9214 /* vine-hd.plist */; };
 		786EE5C417B2B4F3004D9214 /* vine-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 786EE5C217B2B4F3004D9214 /* vine-hd.png */; };
+		786EE5C717B2E4A4004D9214 /* PreloadLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 786EE5C617B2E4A2004D9214 /* PreloadLayer.m */; };
 		78782B5A17B031800089F1D6 /* PentEmblemHighlight.m in Sources */ = {isa = PBXBuildFile; fileRef = 78782B5917B031800089F1D6 /* PentEmblemHighlight.m */; };
 		78782B5C17B036140089F1D6 /* MatchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78782B5B17B036140089F1D6 /* MatchViewController.xib */; };
 		78782B5E17B03BFB0089F1D6 /* PentagramViewController_ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78782B5D17B03BFB0089F1D6 /* PentagramViewController_ipad.xib */; };
@@ -782,6 +783,8 @@
 		786EE5BE17B2A5FE004D9214 /* HelpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpViewController.xib; sourceTree = "<group>"; };
 		786EE5C117B2B4F3004D9214 /* vine-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "vine-hd.plist"; path = "vine/vine-hd.plist"; sourceTree = "<group>"; };
 		786EE5C217B2B4F3004D9214 /* vine-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "vine-hd.png"; path = "vine/vine-hd.png"; sourceTree = "<group>"; };
+		786EE5C517B2E49F004D9214 /* PreloadLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreloadLayer.h; sourceTree = "<group>"; };
+		786EE5C617B2E4A2004D9214 /* PreloadLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreloadLayer.m; sourceTree = "<group>"; };
 		78782B5817B031800089F1D6 /* PentEmblemHighlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PentEmblemHighlight.h; sourceTree = "<group>"; };
 		78782B5917B031800089F1D6 /* PentEmblemHighlight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PentEmblemHighlight.m; sourceTree = "<group>"; };
 		78782B5B17B036140089F1D6 /* MatchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchViewController.xib; sourceTree = "<group>"; };
@@ -2031,6 +2034,8 @@
 				F283A921174807A40068EEB2 /* LifeIndicatorNode.m */,
 				78F6B3AB1746B27600AA070D /* MatchLayer.h */,
 				78F6B3AC1746B27600AA070D /* MatchLayer.m */,
+				786EE5C517B2E49F004D9214 /* PreloadLayer.h */,
+				786EE5C617B2E4A2004D9214 /* PreloadLayer.m */,
 				78CF318D1791E49D00BC8C29 /* FeedbackLayer.h */,
 				78CF318E1791E49D00BC8C29 /* FeedbackLayer.m */,
 				78F6B3AF1746B27600AA070D /* WizardSprite.h */,
@@ -2590,6 +2595,7 @@
 				78782B5A17B031800089F1D6 /* PentEmblemHighlight.m in Sources */,
 				78782B6217B03D320089F1D6 /* UIViewController+Idiom.m in Sources */,
 				786EE5BF17B2A5FE004D9214 /* HelpViewController.m in Sources */,
+				786EE5C717B2E4A4004D9214 /* PreloadLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

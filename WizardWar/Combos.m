@@ -56,6 +56,33 @@
     self.hintedSpell = [self spellForElements:self.allElements];
 }
 
++(NSArray*)allSpellClasses {
+    return @[
+       [SpellFailChicken class],
+       [SpellFailHotdog class],
+       [SpellFailRainbow class],
+       [SpellFailTeddy class],
+       [SpellFailUndies class],
+       
+       [SpellFirewall class],
+       [SpellInvisibility class],
+       [SpellHeal class],
+       
+       [SpellFireball class],
+       [SpellEarthwall class],
+       [SpellIcewall class],
+       [SpellWindblast class],
+       [SpellMonster class],
+       [SpellBubble class],
+       [SpellVine class],
+       [SpellFist class],
+       [SpellHelmet class],
+       [SpellLevitate class],
+       [SpellSleep class],
+   ];
+
+}
+
 -(void)releaseElements {
     
     // Can't cast the same spell twice!

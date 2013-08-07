@@ -11,8 +11,7 @@
 #import "Match.h"
 
 @interface WizardSprite : CCSprite
-
 @property (nonatomic, strong) Wizard * wizard;
-
++(void)loadSprites;
 -(id)initWithWizard:(Wizard*)wizard units:(Units*)units match:(Match*)match isCurrentWizard:(BOOL)isCurrentWizard;
 @end
