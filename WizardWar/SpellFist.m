@@ -49,7 +49,7 @@
     self.position = self.referencePosition;
 }
 
--(SpellInteraction*)interactSpell:(Spell*)spell {
+-(SpellInteraction*)interactSpell:(Spell*)spell currentTick:(NSInteger)currentTick {
     
     if ([spell isType:[SpellHelmet class]]) {
         return [SpellInteraction cancel];

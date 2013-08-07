@@ -38,7 +38,7 @@
     return nil;
 }
 
--(SpellInteraction*)interactSpell:(Spell*)spell {
+-(SpellInteraction*)interactSpell:(Spell*)spell currentTick:(NSInteger)currentTick {
     
     if (self.strength > 0) {
         self.strength += 1;

@@ -34,7 +34,7 @@
     return [SpellInteraction nothing];
 }
 
--(SpellInteraction *)interactSpell:(Spell *)spell {
+-(SpellInteraction *)interactSpell:(Spell *)spell currentTick:(NSInteger)currentTick {
 //    if ([spell isType:[SpellMonster class]]) {
 //        return [SpellInteraction cancel];
 //    }

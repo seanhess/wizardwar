@@ -26,7 +26,7 @@
 }
 
 
--(SpellInteraction*)interactSpell:(Spell*)spell {
+-(SpellInteraction*)interactSpell:(Spell*)spell currentTick:(NSInteger)currentTick {
     
     if ([spell isType:[SpellEarthwall class]] && spell.direction != self.direction) {
         // TODO wear down?

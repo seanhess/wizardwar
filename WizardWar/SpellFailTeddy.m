@@ -23,7 +23,7 @@
 }
 
 // It goes through EVERYTHING to heal your opponent
--(SpellInteraction*)interactSpell:(Spell*)spell {
+-(SpellInteraction*)interactSpell:(Spell*)spell currentTick:(NSInteger)currentTick {
     return [SpellInteraction nothing];
 }
 

@@ -28,7 +28,7 @@
     return self;
 }
 
--(SpellInteraction *)interactSpell:(Spell *)spell {
+-(SpellInteraction *)interactSpell:(Spell *)spell currentTick:(NSInteger)currentTick {
 
     if ([spell isType:[SpellFirewall class]] && spell.direction != self.direction) {
         return [SpellInteraction cancel];

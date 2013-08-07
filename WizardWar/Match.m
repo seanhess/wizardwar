@@ -330,7 +330,7 @@
         for (int j = i+1; j < spells.count; j++) {
             Spell * spell2 = spells[j];
             if ([spell didHitSpell:spell2 duringInterval:self.timer.tickInterval])
-                [self hitSpell:spell withSpell:spell2];
+                [self hitSpell:spell withSpell:spell2 currentTick:currentTick];
         }
     }
 }
@@ -394,10 +394,10 @@
     }
 }
 
--(void)hitSpell:(Spell*)spell withSpell:(Spell*)spell2 {
+-(void)hitSpell:(Spell*)spell withSpell:(Spell*)spell2 currentTick:(NSInteger)currentTick {
 //    NSLog(@"HIT %@ %@", spell, spell2);
-    [self handleInteraction:[spell interactSpell:spell2] forSpell:spell];
-    [self handleInteraction:[spell2 interactSpell:spell] forSpell:spell2];
+    [self handleInteraction:[spell interactSpell:spell2 currentTick:currentTick] forSpell:spell];
+    [self handleInteraction:[spell2 interactSpell:spell currentTick:currentTick] forSpell:spell2];
 }
 
 -(void)checkWin {

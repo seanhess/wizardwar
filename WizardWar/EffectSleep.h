@@ -10,5 +10,5 @@
 #import "EffectApply.h"
 
 @interface EffectSleep : EffectApply
-
+-(BOOL)sleepShouldEndAtTick:(NSInteger)currentTick interval:(NSTimeInterval)interval;
 @end

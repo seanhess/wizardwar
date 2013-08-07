@@ -90,7 +90,7 @@
     return [self.type isEqualToString:className];
 }
 
--(SpellInteraction*)interactSpell:(Spell*)spell {
+-(SpellInteraction*)interactSpell:(Spell*)spell currentTick:(NSInteger)currentTick {
     // interact spell should contain the HALF of the spell that matters
     // so if fireball destroys earthwall and continues
         // fireball interact: nothing

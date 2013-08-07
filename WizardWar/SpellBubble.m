@@ -24,7 +24,7 @@
     return self;
 }
 
--(SpellInteraction *)interactSpell:(Spell *)spell {
+-(SpellInteraction *)interactSpell:(Spell *)spell currentTick:(NSInteger)currentTick {
     
     if ([spell isType:[SpellWindblast class]]) {
         if (self.direction == spell.direction) {

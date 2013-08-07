@@ -315,8 +315,8 @@
     if (self.spell.targetSelf) return;
     
     if ([self.spell.effect class] == [EffectSleep class]) {
-        CCFiniteTimeAction * toPos = [CCMoveTo actionWithDuration:0.2 position:ccp(self.spellX, self.spellY - 30)];
-        CCFiniteTimeAction * rotate = [CCRotateTo actionWithDuration:0.2 angle:90.0];
+        CCFiniteTimeAction * toPos = [CCMoveTo actionWithDuration:0.2 position:ccp(self.spellX, self.spellY - 50)];
+        CCFiniteTimeAction * rotate = [CCRotateTo actionWithDuration:0.2 angle:-90.0*self.spell.direction];
         [self stopAction:self.self.frameAnimation];
         [self runAction:toPos];
         [self runAction:rotate];

@@ -25,7 +25,7 @@
 }
 
 
--(SpellInteraction *)interactSpell:(Spell *)spell {
+-(SpellInteraction *)interactSpell:(Spell *)spell currentTick:(NSInteger)currentTick {
     
     // Earthwalls and Firewalls can collide if the firewall is contained by a bubble.
     if ([spell isKindOfClass:[SpellEarthwall class]] && spell.direction != self.direction) {

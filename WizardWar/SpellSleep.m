@@ -27,9 +27,12 @@
     return [EffectSleep new];
 }
 
--(SpellInteraction *)interactSpell:(Spell *)spell {
+-(SpellInteraction *)interactSpell:(Spell *)spell currentTick:(NSInteger)currentTick {
     
+    // the order matters, because the effect gets applied RIGHT THEN
     if ([spell isType:[SpellMonster class]]) {
+        if([spell.effect isKindOfClass:[EffectSleep class]] && spell.effect.startTick < currentTick)
+            return [SpellInteraction nothing];
         return [SpellInteraction cancel];
     }
     

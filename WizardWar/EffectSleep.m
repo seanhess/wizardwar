@@ -21,9 +21,13 @@
     return self;
 }
 
--(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval player:(Wizard *)player {
+-(BOOL)sleepShouldEndAtTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
     NSInteger ticksPerDuration = round(EFFECT_SLEEP_DURATION / interval);
-    if ((currentTick - self.startTick) >= ticksPerDuration) {
+    return ((currentTick - self.startTick) >= ticksPerDuration);
+}
+
+-(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval player:(Wizard *)player {
+    if ([self sleepShouldEndAtTick:currentTick interval:interval]) {
         player.effect = nil;
     }
 }

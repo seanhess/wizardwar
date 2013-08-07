@@ -19,7 +19,7 @@
     return self;
 }
 
--(SpellInteraction*)interactSpell:(Spell*)spell {
+-(SpellInteraction*)interactSpell:(Spell*)spell currentTick:(NSInteger)currentTick {
     if ([spell isKindOfClass:[SpellWall class]] && self.direction == spell.direction) {
         return [SpellInteraction nothing];
     }
