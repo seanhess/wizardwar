@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Wizard.h"
 #import "Challenge.h"
+#import "HelpViewController.h"
 
 @protocol MatchViewControllerDelegate <NSObject>
 -(void)didFinishChallenge:(Challenge*)challenge didWin:(BOOL)win;
@@ -16,6 +17,9 @@
 
 @interface MatchViewController : UIViewController
 @property (nonatomic, weak) id<MatchViewControllerDelegate>delegate;
-- (void)startMatchAsWizard:(Wizard*)wizard withAI:(Wizard*)ai;
-- (void)startChallenge:(Challenge*)challenge currentWizard:(Wizard*)wizard;
+- (void)createMatchWithWizard:(Wizard*)wizard withAI:(Wizard*)ai;
+- (void)createMatchWithChallenge:(Challenge*)challenge currentWizard:(Wizard*)wizard;
+- (void)startMatch;
+- (void)showHelp:(HelpViewController*)help;
+- (void)hideHelp:(HelpViewController*)help;
 @end

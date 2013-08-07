@@ -65,6 +65,9 @@
 
 @property (weak, nonatomic) IBOutlet BButton *inviteFriendsButton;
 
+@property (strong, nonatomic) MatchViewController * currentMatch;
+@property (strong, nonatomic) Challenge * currentChallenge;
+
 @end
 
 @implementation MatchmakingViewController
@@ -529,13 +532,23 @@
 }
 
 - (void)joinMatch:(Challenge*)challenge {
+    // don't join the same match twice
+    if (challenge == self.currentChallenge) return;
+    NSLog(@"*** JOIN MATCH");
+    
     // Only the active user broadcasts what he is doing
     [LobbyService.shared user:self.currentUser joinedMatch:challenge.matchId];
     
     MatchViewController * match = [[MatchViewController alloc] init];
     match.delegate = self;
-    [match startChallenge:challenge currentWizard:UserService.shared.currentWizard];
+    [match createMatchWithChallenge:challenge currentWizard:UserService.shared.currentWizard];
     [self.navigationController presentViewController:match animated:YES completion:nil];
+
+    // Should be called after viewDidLoad
+    [match startMatch];
+    
+    self.currentChallenge = challenge;
+    self.currentMatch = match;
 }
 
 - (void)didFinishChallenge:(Challenge *)challenge didWin:(BOOL)didWin {

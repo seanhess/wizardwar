@@ -19,11 +19,13 @@
 #import "UserFriendService.h"
 #import "AnalyticsService.h"
 #import "UIViewController+Idiom.h"
+#import "HelpViewController.h"
 
 #import <FacebookSDK/FacebookSDK.h>
 #import "NSArray+Functional.h"
 
-@interface LandingViewController ()  <FBFriendPickerDelegate>
+@interface LandingViewController ()  <FBFriendPickerDelegate, HelpDelegate>
+@property (nonatomic, strong) MatchViewController* match;
 @end
 
 @implementation LandingViewController
@@ -60,16 +62,30 @@
 }
 
 - (IBAction)didTapQuest:(id)sender {
+    [AnalyticsService event:@"PracticeGameTap"];
+    
     Wizard * ai = [Wizard new];
     ai.name = @"Zorlak Bot";
     ai.wizardType = WIZARD_TYPE_ONE;
     
-    [AnalyticsService event:@"PracticeGameTap"];
-    
+    // 1 show the help
+    // 2 after it is closed, then start the match
     MatchViewController * match = [[MatchViewController alloc] init];
-    [match startMatchAsWizard:UserService.shared.currentWizard withAI:ai];
+    [match createMatchWithWizard:UserService.shared.currentWizard withAI:ai];
     [self.navigationController presentViewController:match animated:YES completion:nil];
+    self.match = match;
+    
+    HelpViewController * help = [HelpViewController new];
+    help.delegate = self;
+    [match showHelp:help];
 }
+
+- (void)didTapHelpClose:(HelpViewController *)help {
+    [self.match hideHelp:help];
+    [self.match startMatch];
+}
+
+
 
 //- (IBAction)didTapParties:(id)sender {
 //    User * user = [User new];

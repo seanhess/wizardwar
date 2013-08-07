@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class HelpViewController;
 @protocol HelpDelegate <NSObject>
 
--(void)didTapHelpClose;
+-(void)didTapHelpClose:(HelpViewController*)help;
 
 @end
 

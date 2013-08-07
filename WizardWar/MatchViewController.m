@@ -44,9 +44,8 @@
 @property (strong, nonatomic) UIButton * replayButton;
 @property (nonatomic, strong) Challenge * challenge;
 @property (weak, nonatomic) IBOutlet UIButton *helpButton;
-@property (weak, nonatomic) IBOutlet UIImageView *tutorialImage;
 
-@property (nonatomic, strong) HelpViewController * help;
+@property (strong, nonatomic) HelpViewController *help;
 @end
 
 @implementation MatchViewController
@@ -63,10 +62,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    
     [AnalyticsService event:@"MatchLoad"];    
     
     NSLog(@"MatchVC.viewDidLoad");
-    
     
     self.helpButton.titleLabel.font = [UIFont fontWithName:FONT_AWESOME size:38];
     [self.helpButton setTitle:[NSString stringFromAwesomeIcon:FAIconQuestionSign] forState:UIControlStateNormal];
@@ -78,19 +78,19 @@
     
     self.subMessage.font = [UIFont fontWithName:FONT_COMIC_ZINE size:40];
     self.subMessage.textColor = [UIColor colorFromRGB:0xCACACA];
+    self.subMessage.alpha = 0.0;
     
     self.combos = [Combos new];
     
     NSLog(@" - pv size %@", NSStringFromCGRect(self.pentagramView.frame));
     self.pentagram = [[PentagramViewController alloc] initPerIdoim];
     self.pentagram.combos = self.combos;
+    self.pentagram.view.hidden = YES;
 //    self.pentagram.view.frame = CGRectMake(0, 0, 100, 100);
     self.pentagram.view.frame = self.pentagramView.bounds;
     [self.pentagramView addSubview:self.pentagram.view];
     // You don't need to call viewDidLoad on pentagram I guess
     // Maybe it gets called automatically after the frame is set?
-    
-    [self playMusic];
     
     CCDirector * director = [CCDirector sharedDirector];
     [self.cocosView addSubview:director.view];
@@ -101,7 +101,27 @@
     [self.replayButton addTarget:self action:@selector(didTapLeave:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.replayButton];
     
+    [self renderMatchStatus];
+}
+
+- (void)startMatch {
+    [self startMatch:self.match];
+}
+
+- (void)startMatch:(Match*)match {
+    NSLog(@"START MATCH %@", match);
     
+    self.match = match;
+    
+    [self playMusic];
+
+    MatchLayer * matchLayer = [[MatchLayer alloc] initWithMatch:self.match size:self.view.bounds.size combos:self.combos units:[OLUnitsService.shared units]];
+    [WizardDirector runLayer:matchLayer];
+    
+    // Match starts.... NOW
+    [self.match connect];
+    
+    [self renderMatchStatus];    
     
     __weak MatchViewController * wself = self;
     
@@ -117,27 +137,15 @@
     [[RACAble(self.combos.castSpell) distinctUntilChanged] subscribeNext:^(Spell * spell) {
         [wself didCastSpell:spell];
     }];
-    
-//    [self showEndButtons];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    // Add the director's view to us
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
-    
     self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-
+    
+    // The size is finally correct here. Set it so it matches
     CCDirector * director = [CCDirector sharedDirector];
-    NSLog(@"MatchVC.viewWillAppear");
     director.view.frame = self.view.bounds;
-    MatchLayer * matchLayer = [[MatchLayer alloc] initWithMatch:self.match size:self.view.bounds.size combos:self.combos units:[OLUnitsService.shared units]];
-    [WizardDirector runLayer:matchLayer];
-    
-    // CONNECT / START!
-    // this always happens after? LAME!
-    [self.match connect];
-    
-    [self renderMatchStatus];    
 }
 
 -(NSUInteger)supportedInterfaceOrientations {
@@ -166,14 +174,16 @@
     return [TimerSyncService new];
 }
 
-- (void)startChallenge:(Challenge *)challenge currentWizard:(Wizard *)wizard {
+- (void)createMatchWithChallenge:(Challenge *)challenge currentWizard:(Wizard *)wizard {
     // join in the ready screen!
     self.challenge = challenge;
-    self.match = [[Match alloc] initWithMatchId:challenge.matchId hostName:challenge.main.name currentWizard:wizard withAI:nil multiplayer:self.defaultMultiplayerService sync:self.defaultSyncService];
+    Match * match = [[Match alloc] initWithMatchId:challenge.matchId hostName:challenge.main.name currentWizard:wizard withAI:nil multiplayer:self.defaultMultiplayerService sync:self.defaultSyncService];
+    self.match = match;
 }
 
-- (void)startMatchAsWizard:(Wizard *)wizard withAI:(Wizard *)ai {
-    self.match = [[Match alloc] initWithMatchId:@"Practice" hostName:wizard.name currentWizard:wizard withAI:ai multiplayer:nil sync:nil];
+- (void)createMatchWithWizard:(Wizard *)wizard withAI:(Wizard *)ai {
+    Match * match = [[Match alloc] initWithMatchId:@"Practice" hostName:wizard.name currentWizard:wizard withAI:ai multiplayer:nil sync:nil];
+    self.match = match;
 }
 
 // I want to unsubscribe from this when the match ends.
@@ -298,28 +308,38 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)didTapHelp:(id)sender {
-    HelpViewController * help = [HelpViewController new];
-    help.delegate = self;
+- (void)showHelp:(HelpViewController*)help {
     help.view.frame = self.view.bounds;
     help.view.alpha = 0.0;
     [self.view addSubview:help.view];
-    self.help = help;
     
     [UIView animateWithDuration:0.3 animations:^{
         help.view.alpha = 1.0;
     }];
-}
-
-- (void)didTapHelpClose {
-    [UIView animateWithDuration:0.3 animations:^{
-        self.help.view.alpha = 0.0;
-    } completion:^(BOOL finished) {
-        [self.help.view removeFromSuperview];    
-    }];
-
     
+    // need strong reference or the view controller stops working
+    self.help = help;
 }
+
+- (void)hideHelp:(HelpViewController*)help {
+    [UIView animateWithDuration:0.3 animations:^{
+        help.view.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        [help.view removeFromSuperview];
+    }];    
+}
+
+- (IBAction)didTapHelp:(id)sender {
+    HelpViewController * help = [HelpViewController new];
+    help.delegate = self;
+    [self showHelp:help];
+}
+
+- (void)didTapHelpClose:(HelpViewController *)help {
+    [self hideHelp:help];
+}
+
+
 
 # pragma mark Pentagram Delegate
 

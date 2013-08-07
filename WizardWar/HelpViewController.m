@@ -40,11 +40,11 @@
 }
 
 - (IBAction)didTapClose:(id)sender {
-    [self.delegate didTapHelpClose];
+    [self.delegate didTapHelpClose:self];
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self.delegate didTapHelpClose];
+    [self.delegate didTapHelpClose:self];
 }
 
 @end
