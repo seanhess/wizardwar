@@ -97,7 +97,7 @@
 - (void)addSpell:(Spell*)spell {
     spell.position = spell.referencePosition;
     if (!spell.creator) {
-        spell.creator = [self otherWizard:self.currentWizard];
+        [spell initCaster:[self otherWizard:self.currentWizard] tick:spell.createdTick];
     }
     [self.spells setObject:spell forKey:spell.spellId];
     [self.delegate didAddSpell:spell];
