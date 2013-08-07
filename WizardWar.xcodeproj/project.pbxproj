@@ -217,6 +217,8 @@
 		786EE5BB17B2A4BE004D9214 /* tutorial~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 786EE5B617B2A4BE004D9214 /* tutorial~ipad.png */; };
 		786EE5BF17B2A5FE004D9214 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 786EE5BD17B2A5FE004D9214 /* HelpViewController.m */; };
 		786EE5C017B2A5FE004D9214 /* HelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 786EE5BE17B2A5FE004D9214 /* HelpViewController.xib */; };
+		786EE5C317B2B4F3004D9214 /* vine-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 786EE5C117B2B4F3004D9214 /* vine-hd.plist */; };
+		786EE5C417B2B4F3004D9214 /* vine-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 786EE5C217B2B4F3004D9214 /* vine-hd.png */; };
 		78782B5A17B031800089F1D6 /* PentEmblemHighlight.m in Sources */ = {isa = PBXBuildFile; fileRef = 78782B5917B031800089F1D6 /* PentEmblemHighlight.m */; };
 		78782B5C17B036140089F1D6 /* MatchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78782B5B17B036140089F1D6 /* MatchViewController.xib */; };
 		78782B5E17B03BFB0089F1D6 /* PentagramViewController_ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78782B5D17B03BFB0089F1D6 /* PentagramViewController_ipad.xib */; };
@@ -325,8 +327,6 @@
 		78F09BCD175AE45200BA775E /* vine-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78F09BCA175AE45200BA775E /* vine-animation.plist */; };
 		78F09BCE175AE45200BA775E /* vine.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78F09BCB175AE45200BA775E /* vine.plist */; };
 		78F09BCF175AE45200BA775E /* vine.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F09BCC175AE45200BA775E /* vine.png */; };
-		78F09BD2175AE45800BA775E /* vine-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78F09BD0175AE45800BA775E /* vine-hd.plist */; };
-		78F09BD3175AE45800BA775E /* vine-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F09BD1175AE45800BA775E /* vine-hd.png */; };
 		78F193E2174715A700BB8587 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F193E1174715A700BB8587 /* Default-568h@2x.png */; };
 		78F193E4174715B100BB8587 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F193E3174715B100BB8587 /* Default.png */; };
 		78F193E6174715B500BB8587 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F193E5174715B500BB8587 /* Default@2x.png */; };
@@ -780,6 +780,8 @@
 		786EE5BC17B2A5FE004D9214 /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
 		786EE5BD17B2A5FE004D9214 /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
 		786EE5BE17B2A5FE004D9214 /* HelpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpViewController.xib; sourceTree = "<group>"; };
+		786EE5C117B2B4F3004D9214 /* vine-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "vine-hd.plist"; path = "vine/vine-hd.plist"; sourceTree = "<group>"; };
+		786EE5C217B2B4F3004D9214 /* vine-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "vine-hd.png"; path = "vine/vine-hd.png"; sourceTree = "<group>"; };
 		78782B5817B031800089F1D6 /* PentEmblemHighlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PentEmblemHighlight.h; sourceTree = "<group>"; };
 		78782B5917B031800089F1D6 /* PentEmblemHighlight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PentEmblemHighlight.m; sourceTree = "<group>"; };
 		78782B5B17B036140089F1D6 /* MatchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchViewController.xib; sourceTree = "<group>"; };
@@ -925,8 +927,6 @@
 		78F09BCA175AE45200BA775E /* vine-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "vine-animation.plist"; path = "vine/vine-animation.plist"; sourceTree = "<group>"; };
 		78F09BCB175AE45200BA775E /* vine.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = vine.plist; path = vine/vine.plist; sourceTree = "<group>"; };
 		78F09BCC175AE45200BA775E /* vine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vine.png; path = vine/vine.png; sourceTree = "<group>"; };
-		78F09BD0175AE45800BA775E /* vine-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "vine-hd.plist"; path = "vine-hd/vine-hd.plist"; sourceTree = "<group>"; };
-		78F09BD1175AE45800BA775E /* vine-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "vine-hd.png"; path = "vine-hd/vine-hd.png"; sourceTree = "<group>"; };
 		78F193E1174715A700BB8587 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		78F193E3174715B100BB8587 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		78F193E5174715B500BB8587 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -1664,8 +1664,8 @@
 				78F09BCA175AE45200BA775E /* vine-animation.plist */,
 				78F09BCB175AE45200BA775E /* vine.plist */,
 				78F09BCC175AE45200BA775E /* vine.png */,
-				78F09BD0175AE45800BA775E /* vine-hd.plist */,
-				78F09BD1175AE45800BA775E /* vine-hd.png */,
+				786EE5C117B2B4F3004D9214 /* vine-hd.plist */,
+				786EE5C217B2B4F3004D9214 /* vine-hd.png */,
 				78F09BC0175AE42900BA775E /* ogre-animation.plist */,
 				78F09BC1175AE42900BA775E /* ogre.plist */,
 				78F09BC2175AE42900BA775E /* ogre.png */,
@@ -2234,8 +2234,6 @@
 				78F09BCD175AE45200BA775E /* vine-animation.plist in Resources */,
 				78F09BCE175AE45200BA775E /* vine.plist in Resources */,
 				78F09BCF175AE45200BA775E /* vine.png in Resources */,
-				78F09BD2175AE45800BA775E /* vine-hd.plist in Resources */,
-				78F09BD3175AE45800BA775E /* vine-hd.png in Resources */,
 				786246501767D05C001904AC /* fist-hd.png in Resources */,
 				786246511767D05C001904AC /* fist.png in Resources */,
 				786246571767D885001904AC /* helmet-hd.png in Resources */,
@@ -2332,6 +2330,8 @@
 				786EE5BA17B2A4BE004D9214 /* tutorial@2x~ipad.png in Resources */,
 				786EE5BB17B2A4BE004D9214 /* tutorial~ipad.png in Resources */,
 				786EE5C017B2A5FE004D9214 /* HelpViewController.xib in Resources */,
+				786EE5C317B2B4F3004D9214 /* vine-hd.plist in Resources */,
+				786EE5C417B2B4F3004D9214 /* vine-hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
