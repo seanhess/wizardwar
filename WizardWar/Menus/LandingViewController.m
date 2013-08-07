@@ -66,7 +66,7 @@
     
     [AnalyticsService event:@"PracticeGameTap"];
     
-    MatchViewController * match = [[MatchViewController alloc] initPerIdoim];
+    MatchViewController * match = [[MatchViewController alloc] init];
     [match startMatchAsWizard:UserService.shared.currentWizard withAI:ai];
     [self.navigationController presentViewController:match animated:YES completion:nil];
 }

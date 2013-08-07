@@ -12,6 +12,7 @@
 #define FONT_LOVEYA_BOLD @"LoveYaLikeASisterSolid"
 #define FONT_COMIC_ZINE @"ComicZineOT"
 #define FONT_COMIC_ZINE_SOLID @"ComicZineSolid-Regular"
+#define FONT_AWESOME @"FontAwesome"
 
 @interface AppStyle : NSObject
 

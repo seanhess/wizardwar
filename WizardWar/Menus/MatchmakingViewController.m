@@ -532,7 +532,7 @@
     // Only the active user broadcasts what he is doing
     [LobbyService.shared user:self.currentUser joinedMatch:challenge.matchId];
     
-    MatchViewController * match = [[MatchViewController alloc] initPerIdoim];
+    MatchViewController * match = [[MatchViewController alloc] init];
     match.delegate = self;
     [match startChallenge:challenge currentWizard:UserService.shared.currentWizard];
     [self.navigationController presentViewController:match animated:YES completion:nil];

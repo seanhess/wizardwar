@@ -118,7 +118,6 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    NSLog(@"***************** PUSHY TIME: %@", userInfo);
     [PFPush handlePush:userInfo];
     [self launchMatchmaking:userInfo[@"matchId"]];
 }

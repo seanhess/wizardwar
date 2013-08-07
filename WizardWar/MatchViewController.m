@@ -29,6 +29,8 @@
 #import "UIViewController+Idiom.h"
 #import <BButton.h>
 #import "MenuButton.h"
+#import <NSString+FontAwesome.h>
+#import "AppStyle.h"
 
 @interface MatchViewController ()
 @property (strong, nonatomic) PentagramViewController * pentagram;
@@ -40,6 +42,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *subMessage;
 @property (strong, nonatomic) UIButton * replayButton;
 @property (nonatomic, strong) Challenge * challenge;
+@property (weak, nonatomic) IBOutlet UIButton *helpButton;
 @end
 
 @implementation MatchViewController
@@ -59,6 +62,10 @@
     [AnalyticsService event:@"MatchLoad"];    
     
     NSLog(@"MatchVC.viewDidLoad");
+    
+    
+    self.helpButton.titleLabel.font = [UIFont fontWithName:FONT_AWESOME size:38];
+    [self.helpButton setTitle:[NSString stringFromAwesomeIcon:FAIconQuestionSign] forState:UIControlStateNormal];
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];    
     
@@ -107,7 +114,7 @@
         [wself didCastSpell:spell];
     }];
     
-//    [self showEndButtons];
+    [self showEndButtons];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -146,7 +153,7 @@
     MultiplayerService * mp = [MultiplayerService new];
 #if DEBUG
 //    mp.simulatedLatency = 0.5;
-//    NSLog(@"*** SIMULATED LATENCY *** %f", mp.simulatedLatency);
+//    NSLog(@"!!! SIMULATED LATENCY *** %f", mp.simulatedLatency);
 #endif
     return mp;
 }
@@ -266,6 +273,9 @@
     }
 
     // My view's size is wacked at this point. Use cocos2d view I guess.
+    CGRect frame = self.replayButton.frame;
+    frame.origin.x = self.cocosView.center.x - frame.size.width/2;
+    self.replayButton.frame = frame;
     [UIView animateWithDuration:0.3 animations:^{
         CGRect frame = self.replayButton.frame;
         frame.origin.y = self.cocosView.frame.size.height - frame.size.height - 15;
@@ -282,6 +292,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)didTapHelp:(id)sender {
+    
 }
 
 # pragma mark Pentagram Delegate

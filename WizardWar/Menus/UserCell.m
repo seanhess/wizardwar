@@ -100,7 +100,7 @@
     if (user.activeMatchId) {
         Challenge * challenge = [ChallengeService.shared challengeWithId:user.activeMatchId create:NO];
         if (!challenge)
-            NSLog(@"****NO CHALLENGE %@", user.activeMatchId);
+            NSLog(@"!!! NO CHALLENGE %@", user.activeMatchId);
     }
     
     // STATUS

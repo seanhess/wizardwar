@@ -19,6 +19,7 @@
 #import "SpellInvisibility.h"
 #import "SpellFist.h"
 #import "SpellHelmet.h"
+#import "SpellLevitate.h"
 #import "SpellSleep.h"
 #import "NSArray+Functional.h"
 
@@ -35,8 +36,23 @@
     self = [super init];
     if (self) {
         
-        self.allSpells = @[[SpellFireball class], [SpellEarthwall class], [SpellWindblast class], [SpellMonster class], [SpellBubble class], [SpellVine class], [SpellFist class], [SpellHelmet class], [SpellFireball class]];
-        self.stop = YES;
+        self.allSpells = @[
+                           [SpellFireball class], [SpellFireball class],
+                           [SpellEarthwall class],
+                           [SpellIcewall class],
+                           [SpellWindblast class],
+                           [SpellMonster class], [SpellMonster class],
+                           [SpellBubble class],
+                           [SpellVine class],
+                           [SpellFist class],
+                           [SpellHelmet class],
+                           [SpellLevitate class],
+                           [SpellSleep class],
+                           ];
+        
+        // No heal or invisibility because he's not patient tnough to let it finish
+        
+//        self.stop = YES;
 //        self.allSpells = @[[SpellEarthwall class]];
     }
     return self;
