@@ -210,6 +210,13 @@
 		786246571767D885001904AC /* helmet-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 786246551767D885001904AC /* helmet-hd.png */; };
 		786246581767D885001904AC /* helmet.png in Resources */ = {isa = PBXBuildFile; fileRef = 786246561767D885001904AC /* helmet.png */; };
 		7862465B1767EAE2001904AC /* EffectHelmet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7862465A1767EAE2001904AC /* EffectHelmet.m */; };
+		786EE5B717B2A4BE004D9214 /* tutorial-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 786EE5B217B2A4BE004D9214 /* tutorial-568h@2x.png */; };
+		786EE5B817B2A4BE004D9214 /* tutorial.png in Resources */ = {isa = PBXBuildFile; fileRef = 786EE5B317B2A4BE004D9214 /* tutorial.png */; };
+		786EE5B917B2A4BE004D9214 /* tutorial@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 786EE5B417B2A4BE004D9214 /* tutorial@2x.png */; };
+		786EE5BA17B2A4BE004D9214 /* tutorial@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 786EE5B517B2A4BE004D9214 /* tutorial@2x~ipad.png */; };
+		786EE5BB17B2A4BE004D9214 /* tutorial~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 786EE5B617B2A4BE004D9214 /* tutorial~ipad.png */; };
+		786EE5BF17B2A5FE004D9214 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 786EE5BD17B2A5FE004D9214 /* HelpViewController.m */; };
+		786EE5C017B2A5FE004D9214 /* HelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 786EE5BE17B2A5FE004D9214 /* HelpViewController.xib */; };
 		78782B5A17B031800089F1D6 /* PentEmblemHighlight.m in Sources */ = {isa = PBXBuildFile; fileRef = 78782B5917B031800089F1D6 /* PentEmblemHighlight.m */; };
 		78782B5C17B036140089F1D6 /* MatchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78782B5B17B036140089F1D6 /* MatchViewController.xib */; };
 		78782B5E17B03BFB0089F1D6 /* PentagramViewController_ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78782B5D17B03BFB0089F1D6 /* PentagramViewController_ipad.xib */; };
@@ -765,6 +772,14 @@
 		786246561767D885001904AC /* helmet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helmet.png; sourceTree = "<group>"; };
 		786246591767EAE2001904AC /* EffectHelmet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectHelmet.h; sourceTree = "<group>"; };
 		7862465A1767EAE2001904AC /* EffectHelmet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectHelmet.m; sourceTree = "<group>"; };
+		786EE5B217B2A4BE004D9214 /* tutorial-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorial-568h@2x.png"; sourceTree = "<group>"; };
+		786EE5B317B2A4BE004D9214 /* tutorial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorial.png; sourceTree = "<group>"; };
+		786EE5B417B2A4BE004D9214 /* tutorial@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorial@2x.png"; sourceTree = "<group>"; };
+		786EE5B517B2A4BE004D9214 /* tutorial@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorial@2x~ipad.png"; sourceTree = "<group>"; };
+		786EE5B617B2A4BE004D9214 /* tutorial~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorial~ipad.png"; sourceTree = "<group>"; };
+		786EE5BC17B2A5FE004D9214 /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
+		786EE5BD17B2A5FE004D9214 /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
+		786EE5BE17B2A5FE004D9214 /* HelpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpViewController.xib; sourceTree = "<group>"; };
 		78782B5817B031800089F1D6 /* PentEmblemHighlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PentEmblemHighlight.h; sourceTree = "<group>"; };
 		78782B5917B031800089F1D6 /* PentEmblemHighlight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PentEmblemHighlight.m; sourceTree = "<group>"; };
 		78782B5B17B036140089F1D6 /* MatchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchViewController.xib; sourceTree = "<group>"; };
@@ -1563,6 +1578,18 @@
 			name = Effects;
 			sourceTree = "<group>";
 		};
+		786EE5B117B2A4B6004D9214 /* tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				786EE5B217B2A4BE004D9214 /* tutorial-568h@2x.png */,
+				786EE5B317B2A4BE004D9214 /* tutorial.png */,
+				786EE5B417B2A4BE004D9214 /* tutorial@2x.png */,
+				786EE5B517B2A4BE004D9214 /* tutorial@2x~ipad.png */,
+				786EE5B617B2A4BE004D9214 /* tutorial~ipad.png */,
+			);
+			name = tutorial;
+			sourceTree = "<group>";
+		};
 		78782B5F17B03CA70089F1D6 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -1726,6 +1753,7 @@
 			isa = PBXGroup;
 			children = (
 				674926AB178CD016005B75D0 /* icon-settings.png */,
+				786EE5B117B2A4B6004D9214 /* tutorial */,
 				674926AC178CD016005B75D0 /* icon-settings@2x.png */,
 				674926AD178CD016005B75D0 /* icon-share.png */,
 				674926AE178CD017005B75D0 /* icon-share@2x.png */,
@@ -1996,6 +2024,9 @@
 				787A2A96174EA43D004C4FDB /* MatchViewController.h */,
 				787A2A97174EA43D004C4FDB /* MatchViewController.m */,
 				78782B5B17B036140089F1D6 /* MatchViewController.xib */,
+				786EE5BC17B2A5FE004D9214 /* HelpViewController.h */,
+				786EE5BD17B2A5FE004D9214 /* HelpViewController.m */,
+				786EE5BE17B2A5FE004D9214 /* HelpViewController.xib */,
 				F283A920174807A40068EEB2 /* LifeIndicatorNode.h */,
 				F283A921174807A40068EEB2 /* LifeIndicatorNode.m */,
 				78F6B3AB1746B27600AA070D /* MatchLayer.h */,
@@ -2295,6 +2326,12 @@
 				78306BE217AAF0F500487B16 /* buzzer.mp3 in Resources */,
 				78782B5C17B036140089F1D6 /* MatchViewController.xib in Resources */,
 				78782B5E17B03BFB0089F1D6 /* PentagramViewController_ipad.xib in Resources */,
+				786EE5B717B2A4BE004D9214 /* tutorial-568h@2x.png in Resources */,
+				786EE5B817B2A4BE004D9214 /* tutorial.png in Resources */,
+				786EE5B917B2A4BE004D9214 /* tutorial@2x.png in Resources */,
+				786EE5BA17B2A4BE004D9214 /* tutorial@2x~ipad.png in Resources */,
+				786EE5BB17B2A4BE004D9214 /* tutorial~ipad.png in Resources */,
+				786EE5C017B2A5FE004D9214 /* HelpViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2552,6 +2589,7 @@
 				78306BC217AADC4A00487B16 /* SpellFailRainbow.m in Sources */,
 				78782B5A17B031800089F1D6 /* PentEmblemHighlight.m in Sources */,
 				78782B6217B03D320089F1D6 /* UIViewController+Idiom.m in Sources */,
+				786EE5BF17B2A5FE004D9214 /* HelpViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

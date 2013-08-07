@@ -31,8 +31,9 @@
 #import "MenuButton.h"
 #import <NSString+FontAwesome.h>
 #import "AppStyle.h"
+#import "HelpViewController.h"
 
-@interface MatchViewController ()
+@interface MatchViewController () <HelpDelegate>
 @property (strong, nonatomic) PentagramViewController * pentagram;
 @property (weak, nonatomic) IBOutlet UIView *pentagramView;
 @property (weak, nonatomic) IBOutlet UIView *cocosView;
@@ -43,6 +44,9 @@
 @property (strong, nonatomic) UIButton * replayButton;
 @property (nonatomic, strong) Challenge * challenge;
 @property (weak, nonatomic) IBOutlet UIButton *helpButton;
+@property (weak, nonatomic) IBOutlet UIImageView *tutorialImage;
+
+@property (nonatomic, strong) HelpViewController * help;
 @end
 
 @implementation MatchViewController
@@ -114,7 +118,7 @@
         [wself didCastSpell:spell];
     }];
     
-    [self showEndButtons];
+//    [self showEndButtons];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -295,6 +299,25 @@
 }
 
 - (IBAction)didTapHelp:(id)sender {
+    HelpViewController * help = [HelpViewController new];
+    help.delegate = self;
+    help.view.frame = self.view.bounds;
+    help.view.alpha = 0.0;
+    [self.view addSubview:help.view];
+    self.help = help;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        help.view.alpha = 1.0;
+    }];
+}
+
+- (void)didTapHelpClose {
+    [UIView animateWithDuration:0.3 animations:^{
+        self.help.view.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        [self.help.view removeFromSuperview];    
+    }];
+
     
 }
 
