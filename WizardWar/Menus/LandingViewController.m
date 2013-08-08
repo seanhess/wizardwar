@@ -21,6 +21,7 @@
 #import "UIViewController+Idiom.h"
 #import "HelpViewController.h"
 #import "PreloadLayer.h"
+#import "UIColor+Hex.h"
 
 #import <FacebookSDK/FacebookSDK.h>
 #import "NSArray+Functional.h"
@@ -72,6 +73,7 @@
     Wizard * ai = [Wizard new];
     ai.name = @"Zorlak Bot";
     ai.wizardType = WIZARD_TYPE_ONE;
+    ai.color = [UIColor colorFromRGB:0x005EA8];
     
     // 1 show the help
     // 2 after it is closed, then start the match

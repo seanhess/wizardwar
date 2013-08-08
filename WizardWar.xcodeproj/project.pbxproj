@@ -268,6 +268,7 @@
 		78C98629178DE0C800B545F9 /* Challenge.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C98628178DE0C800B545F9 /* Challenge.m */; };
 		78C9862B178DFFE300B545F9 /* ChallengeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78C9862A178DFFE300B545F9 /* ChallengeCell.xib */; };
 		78C9862E178DFFF000B545F9 /* ChallengeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C9862D178DFFF000B545F9 /* ChallengeCell.m */; };
+		78CD5ECE17B4197600FE0FB0 /* EffectUndies.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CD5ECD17B4197600FE0FB0 /* EffectUndies.m */; };
 		78CF31841791E0B000BC8C29 /* wizard1-set1-clothes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78CF317A1791E0B000BC8C29 /* wizard1-set1-clothes.plist */; };
 		78CF31851791E0B000BC8C29 /* wizard1-set1-clothes.png in Resources */ = {isa = PBXBuildFile; fileRef = 78CF317B1791E0B000BC8C29 /* wizard1-set1-clothes.png */; };
 		78CF31861791E0B000BC8C29 /* wizard1-set1-clothes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78CF317C1791E0B000BC8C29 /* wizard1-set1-clothes-hd.plist */; };
@@ -856,6 +857,8 @@
 		78C9862A178DFFE300B545F9 /* ChallengeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChallengeCell.xib; sourceTree = "<group>"; };
 		78C9862C178DFFF000B545F9 /* ChallengeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeCell.h; sourceTree = "<group>"; };
 		78C9862D178DFFF000B545F9 /* ChallengeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeCell.m; sourceTree = "<group>"; };
+		78CD5ECC17B4197600FE0FB0 /* EffectUndies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectUndies.h; sourceTree = "<group>"; };
+		78CD5ECD17B4197600FE0FB0 /* EffectUndies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectUndies.m; sourceTree = "<group>"; };
 		78CF317A1791E0B000BC8C29 /* wizard1-set1-clothes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set1-clothes.plist"; sourceTree = "<group>"; };
 		78CF317B1791E0B000BC8C29 /* wizard1-set1-clothes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard1-set1-clothes.png"; sourceTree = "<group>"; };
 		78CF317C1791E0B000BC8C29 /* wizard1-set1-clothes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set1-clothes-hd.plist"; sourceTree = "<group>"; };
@@ -1577,6 +1580,8 @@
 				78915282176A72A8001694B1 /* EffectLevitate.m */,
 				7801E9F717B1830C005D14D8 /* EffectTeddyHeal.h */,
 				7801E9F817B1830C005D14D8 /* EffectTeddyHeal.m */,
+				78CD5ECC17B4197600FE0FB0 /* EffectUndies.h */,
+				78CD5ECD17B4197600FE0FB0 /* EffectUndies.m */,
 			);
 			name = Effects;
 			sourceTree = "<group>";
@@ -2596,6 +2601,7 @@
 				78782B6217B03D320089F1D6 /* UIViewController+Idiom.m in Sources */,
 				786EE5BF17B2A5FE004D9214 /* HelpViewController.m in Sources */,
 				786EE5C717B2E4A4004D9214 /* PreloadLayer.m in Sources */,
+				78CD5ECE17B4197600FE0FB0 /* EffectUndies.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

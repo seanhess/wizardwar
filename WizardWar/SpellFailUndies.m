@@ -7,6 +7,7 @@
 //
 
 #import "SpellFailUndies.h"
+#import "EffectUndies.h"
 
 @implementation SpellFailUndies
 
@@ -15,6 +16,10 @@
         self.name = @"Undies";
     }
     return self;
+}
+
+-(Effect*)effect {
+    return [EffectUndies new];
 }
 
 
