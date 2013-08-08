@@ -94,7 +94,8 @@
     NSDictionary * remoteNotification = [launchOptions valueForKey:@"UIApplicationLaunchOptionsRemoteNotificationKey"];
     if (remoteNotification) [self application:application didReceiveRemoteNotification:remoteNotification];
     
-    [PreloadLayer loadSprites];
+    [PreloadLayer loadSpells];
+    [PreloadLayer loadWizards];
     
     // ANALYTICS
     [AnalyticsService didFinishLaunching:launchOptions];

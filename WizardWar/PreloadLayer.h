@@ -9,5 +9,6 @@
 #import "CCLayer.h"
 
 @interface PreloadLayer : CCLayer
-+(void)loadSprites;
++(void)loadSpells;
++(void)loadWizards;
 @end
