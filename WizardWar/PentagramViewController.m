@@ -214,12 +214,17 @@
 
 -(void)renderFeedback {
     BOOL hasHintedSpell = (self.combos.hintedSpell != nil);
-    BOOL showNoMana = (!self.combos.castSpell && self.combos.hasElements && self.castDisabled);
+//    BOOL showNoMana = (!self.combos.castSpell && self.combos.hasElements && self.castDisabled);
+    BOOL showNoMana = (self.castDisabled && self.combos.disabledSpell != nil);
 //    BOOL showMisfire = (self.castDisabled && [self.combos.castSpell isKindOfClass:[SpellFail class]]);
     BOOL showMisfire = (self.castDisabled && self.combos.didMisfire);
     
+    // don't show mana unless they release, actually
+//    NSLog(@"RENDER FEEDBACK hasHintedSpell=%i showNoMana=%i showMisfire=%i", hasHintedSpell, showNoMana, showMisfire);
+    
     if (self.showHelp) {
         self.feedbackLabel.text = @"Connect 3 Elements";
+        self.feedbackLabel.textColor = [UIColor whiteColor];
         [self flashFeedback];
         
 //        for(PentEmblem *emblem in self.emblems)
@@ -227,14 +232,16 @@
 //            [emblem flashHighlight];
 //        }
 
-    } else if (hasHintedSpell || showNoMana) {
-        if (showNoMana) {
-            self.feedbackLabel.textColor = [AppStyle redErrorColor];
-            [self.feedbackLabel setText:@"No Mana!"];
-        } else {
-            self.feedbackLabel.textColor = [UIColor whiteColor];            
-            [self.feedbackLabel setText:self.combos.hintedSpell.name];
-        }
+    } else if (showNoMana) {
+        self.feedbackLabel.textColor = [AppStyle redErrorColor];
+        [self.feedbackLabel setText:@"No Mana!"];
+//        [UIView animateWithDuration:0.2 animations:^{
+//            self.feedbackLabel.alpha = 1.0;
+//        }];
+        [self flashFeedback];
+    } else if (hasHintedSpell) {
+        self.feedbackLabel.textColor = [UIColor whiteColor];
+        [self.feedbackLabel setText:self.combos.hintedSpell.name];
         
         [UIView animateWithDuration:0.2 animations:^{
             self.feedbackLabel.alpha = 1.0;
@@ -249,13 +256,14 @@
             self.feedbackLabel.alpha = 1.0;
         }];
     } else {
-        [UIView animateWithDuration:0.8 animations:^{
+        [UIView animateWithDuration:1.3 animations:^{
             self.feedbackLabel.alpha = 0.0;
         }];
     }
 }
 
 -(void)flashFeedback {
+    NSLog(@" - flashFeedback");
     self.feedbackLabel.alpha = 0.0;
     self.feedbackLabel.transform = CGAffineTransformMakeScale(0.1, 0.1);
     [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -267,19 +275,19 @@
 }
 
 // always ends ON
--(void)flashFeedback:(NSInteger)times {
-    [UIView animateWithDuration:0.2 animations:^{
-        self.feedbackLabel.alpha = 0.0;
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.2 animations:^{
-            self.feedbackLabel.alpha = 1.0;
-        } completion:^(BOOL finished) {
-            if (times > 0) {
-                [self flashFeedback:times-1];
-            }
-        }];
-    }];
-}
+//-(void)flashFeedback:(NSInteger)times {
+//    [UIView animateWithDuration:0.2 animations:^{
+//        self.feedbackLabel.alpha = 0.0;
+//    } completion:^(BOOL finished) {
+//        [UIView animateWithDuration:0.2 animations:^{
+//            self.feedbackLabel.alpha = 1.0;
+//        } completion:^(BOOL finished) {
+//            if (times > 0) {
+//                [self flashFeedback:times-1];
+//            }
+//        }];
+//    }];
+//}
 
 -(void)showHelpMessage {
     self.showHelp = YES;

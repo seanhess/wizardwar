@@ -51,6 +51,7 @@
 -(void)moveToElement:(ElementType)element {
     self.didMisfire = NO;
     self.castSpell = nil;
+    self.disabledSpell = nil;
     self.lastElement = element;
     [self.allElements addObject:@(element)];
     self.hintedSpell = [self spellForElements:self.allElements];
@@ -91,6 +92,7 @@
 //    }
     
     if (self.castDisabled == YES) {
+        self.disabledSpell = self.hintedSpell;
         [self reset];
         return;
     }

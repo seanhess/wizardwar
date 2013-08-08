@@ -29,7 +29,7 @@
         self.targetSelf = NO;
         self.heavy = YES;
         self.effect = [EffectBasicDamage new];
-        self.castDelay = 0.7;
+        self.castDelay = 0.8;
         
         self.spellId = [Spell generateSpellId];
     }
