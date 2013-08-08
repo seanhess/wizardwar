@@ -14,6 +14,7 @@
 
 @interface PentagramViewController : UIViewController
 @property (strong, nonatomic) Combos * combos;
+@property (strong, nonatomic) DrawingLayer * drawingLayer;
 -(void)delayCast:(NSTimeInterval)delay;
 -(void)showHelpMessage;
 @end

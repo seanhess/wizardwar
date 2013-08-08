@@ -28,6 +28,7 @@
 
 -(void)moveToElement:(ElementType)element;
 -(void)releaseElements;
+-(void)reset;
 
 -(Spell*)spellForElements:(NSArray*)elements;
 

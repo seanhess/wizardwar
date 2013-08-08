@@ -95,7 +95,7 @@
     if (remoteNotification) [self application:application didReceiveRemoteNotification:remoteNotification];
     
     [PreloadLayer loadSpells];
-    [PreloadLayer loadWizards];
+    [PreloadLayer loadWizards];    
     
     // ANALYTICS
     [AnalyticsService didFinishLaunching:launchOptions];

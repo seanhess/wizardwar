@@ -31,6 +31,7 @@
 #import "LifeIndicatorNode.h"
 #import "Tick.h"
 #import "FeedbackLayer.h"
+#import "DrawingLayer.h"
 
 #import <ReactiveCocoa.h>
 
@@ -51,6 +52,8 @@
 @property (nonatomic, strong) CCLabelTTF * debug;
 
 @property (nonatomic, strong) UIButton * backButton;
+
+@property (nonatomic, strong) DrawingLayer * drawingLayer;
 
 @end
 
@@ -74,6 +77,9 @@
         // TODO: MatchLayer should create match if it is the delegate
         self.match = match;
         self.match.delegate = self;
+        
+//        self.drawingLayer = [DrawingLayer new];
+//        [self addChild:self.drawingLayer];
        
         self.indicators = [CCLayer node];
         [self addChild:self.indicators];        

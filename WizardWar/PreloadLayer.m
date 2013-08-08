@@ -35,6 +35,8 @@
 
 -(void)load {
     
+    self.position = ccp(-1000, -1000);
+    
     NSArray * spellClasses = [Combos allSpellClasses];
     
     for (Class SpellType in spellClasses) {

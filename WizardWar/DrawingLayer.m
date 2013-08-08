@@ -1,3 +1,7 @@
+
+
+
+
 //
 //  DrawingLayer.m
 //  WizardWar
@@ -8,6 +12,44 @@
 
 #import "DrawingLayer.h"
 #import "AppStyle.h"
+#import <QuartzCore/QuartzCore.h>
+#import "NSArray+Functional.h"
+
+// LINE SEGMENT
+@interface LineSegment : NSObject
+@property (nonatomic) CGPoint start;
+@property (nonatomic) CGPoint end;
+-(BOOL)isEqualToSegment:(LineSegment*)segment;
+@end
+
+@implementation LineSegment
+-(BOOL)isEqualToSegment:(LineSegment *)segment {
+    return (CGPointEqualToPoint(self.start, segment.start) && CGPointEqualToPoint(self.end, segment.end))
+    || (CGPointEqualToPoint(self.start, segment.end) && CGPointEqualToPoint(self.end, segment.start));
+}
+
+@end
+
+
+
+
+
+
+
+
+
+
+
+
+
+@interface DrawingLayer ()
+@property (nonatomic) CGPoint tailPoint;
+@property (nonatomic) CGPoint anchorPoint;
+@property (nonatomic) CGPoint nextAnchorPoint;
+
+@property (nonatomic, strong) CALayer * anchorLayer;
+@property (nonatomic, strong) NSMutableArray * lineSegments;
+@end
 
 @implementation DrawingLayer
 
@@ -17,6 +59,7 @@
     if (self) {
         // Initialization code
         self.lineColor = [UIColor whiteColor];
+        self.lineSegments = [NSMutableArray array];
     }
     return self;
 }
@@ -31,40 +74,131 @@
     [self setNeedsDisplay];
 }
 
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
+// as touches move, you just need to change the current tail point
+// does not create a segment though!
+- (void)addAnchorPoint:(CGPoint)point {
+//    [self.points addObject:[NSValue valueWithCGPoint:point]];
+    
+    self.tailPoint = CGPointZero;
+    
+    if (![self isPointSet:self.anchorPoint]) {
+        self.anchorPoint = point;
+        return;
+    }
+    
+    else {
+        LineSegment * segment = [LineSegment new];
+        segment.start = self.anchorPoint;
+        segment.end = point;
+        if ([self addLineSegment:segment])
+            [self setNeedsDisplay];
+        self.anchorPoint = point;
+    }
+    
+}
+
+- (BOOL)isPointSet:(CGPoint)point {
+    return !CGPointEqualToPoint(point, CGPointZero);
+}
+
+- (void)moveTailPoint:(CGPoint)point {
+    self.tailPoint = point;
+    [self setNeedsDisplay];
+}
+
+- (BOOL)addLineSegment:(LineSegment*)segment {
+    if (![self isSegmentDrawn:segment]) {
+        [self.lineSegments addObject:segment];
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL)isSegmentDrawn:(LineSegment*)segment {
+    LineSegment * existing = [self.lineSegments find:^BOOL(LineSegment*s) {
+        return [s isEqualToSegment:segment];
+    }];
+    return (existing != nil);
+}
+
+// you don't need to clear ANYTHING unless you actually clear
+// Add multiple layers, and draw to the other one
+
+// maybe only slow because drawing the same segment over and over?
+// good way to just draw the one
+
+// Save the existing stuff on another layer
+
+// Now, I need to SAVE the drawing from anchor to anchor
+
+// DRAW the segments on another layer and only change when the segments change?
+
+// The problem is drawing these in UIView vs cocos2d I think
+// it practically pauses cocos2d
+
+// nothing to do with anything. 
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextClearRect(context, self.bounds);
-    // Drawing lines with a white stroke color
     CGContextSetStrokeColorWithColor(context, self.lineColor.CGColor);
-	// Draw them with a 2.0 stroke width so they are a bit more visible.
 	CGContextSetLineWidth(context, 4.0);
-	// NSLog(@"%@", self.points);
-    
 
+    CGContextBeginPath(context);
+//    if ([self isPointSet:self.anchorPoint] && [self isPointSet:self.tailPoint]) {
+//        CGContextMoveToPoint(context, self.anchorPoint.x, self.anchorPoint.y);
+//        CGContextAddLineToPoint(context, self.tailPoint.x, self.tailPoint.y);
+//    }
     
-    if([self.points count] > 0)
-    {
-        CGPoint point = [[self.points objectAtIndex:0] CGPointValue];
-        CGContextMoveToPoint(context, point.x, point.y);
+    // draws all activated segments, and
+    
+    NSLog(@"DRAWING %i", self.lineSegments.count);
+    
+    for (LineSegment * segment in self.lineSegments) {
+        [self context:context drawSegment:segment];
     }
     
+    if ([self isPointSet:self.tailPoint])
+        [self context:context drawFrom:self.anchorPoint to:self.tailPoint];
     
-    for(NSValue *value in self.points)
-    {
-        CGPoint point = [value CGPointValue];
-        
-        CGContextAddLineToPoint(context, point.x, point.y);
-    }
+//    if([self.points count] > 0)
+//    {
+//        CGPoint startingPoint = [self.points[0] CGPointValue];
+//        CGContextMoveToPoint(context, startingPoint.x, startingPoint.y);
+//        
+//        for (int i = 1; i < self.points.count; i++) {
+//            NSValue * value = self.points[i];
+//            CGPoint point = [value CGPointValue];
+//            CGContextAddLineToPoint(context, point.x, point.y);
+//        }
+//        
+//        if (!CGPointEqualToPoint(self.tailPoint, CGPointZero))
+//            CGContextAddLineToPoint(context, self.tailPoint.x, self.tailPoint.y);
+//    }
     
-	// Draw a single line from left to right
-	
-//	CGContextAddLineToPoint(context, 310.0, 30.0);
 	CGContextStrokePath(context);
-//    self.points = [[NSMutableArray alloc] init];
+    
+//    self.anchorPoint = self.nextAnchorPoint;    
 }
 
+- (void)context:(CGContextRef)context drawSegment:(LineSegment*)segment {
+    [self context:context drawFrom:segment.start to:segment.end];
+}
+
+- (void)context:(CGContextRef)context drawFrom:(CGPoint)from to:(CGPoint)to {
+    CGContextMoveToPoint(context, from.x, from.y);
+    CGContextAddLineToPoint(context, to.x, to.y);
+}
 
 @end
+
+
+
+@interface LineLayer : CALayer
+@end
+
+@implementation LineLayer
+@end
+
+
+
+

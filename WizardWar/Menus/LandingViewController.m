@@ -20,6 +20,7 @@
 #import "AnalyticsService.h"
 #import "UIViewController+Idiom.h"
 #import "HelpViewController.h"
+#import "PreloadLayer.h"
 
 #import <FacebookSDK/FacebookSDK.h>
 #import "NSArray+Functional.h"
@@ -54,6 +55,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     [LobbyService.shared leaveLobby:UserService.shared.currentUser];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
 }
 
 - (void)didReceiveMemoryWarning

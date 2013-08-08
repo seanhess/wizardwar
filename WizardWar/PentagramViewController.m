@@ -26,8 +26,6 @@
 @property (weak, nonatomic) IBOutlet PentEmblem *waterEmblem;
 @property (weak, nonatomic) IBOutlet PentEmblem *heartEmblem;
 
-@property (weak, nonatomic) DrawingLayer *drawingLayer;
-
 @property (weak, nonatomic) PentEmblem *currentEmblem;
 @property (copy, nonatomic) NSArray *emblems;
 @property (weak, nonatomic) IBOutlet DACircularProgressView *waitProgress;
@@ -60,6 +58,7 @@
     drawLayer.backgroundColor = [UIColor clearColor];
     self.drawingLayer.points = [[NSMutableArray alloc] init];
     [self.view insertSubview:self.drawingLayer atIndex:0];
+    
     [self setUpPentagram];
     
 //    self.waitProgress.roundedCorners = NO;
@@ -123,9 +122,7 @@
     }];
     
     if (emblem && emblem != self.currentEmblem) {
-        [self.drawingLayer.points replaceObjectAtIndex: ([self.drawingLayer.points count] - 1) withObject:[NSValue valueWithCGPoint:CGPointMake((emblem.frame.origin.x + (emblem.frame.size.width / 2)), (emblem.frame.origin.y + (emblem.frame.size.height / 2)))]];
-        
-        [self.drawingLayer.points addObject:[NSValue valueWithCGPoint:point]];
+        [self.drawingLayer addAnchorPoint:emblem.center];
         
         self.currentEmblem = emblem;
         emblem.status = EmblemStatusSelected;
@@ -137,34 +134,17 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     self.showHelp = NO;
-    [touches enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
-        UITouch *touch = obj;
-        CGPoint touchPoint = [touch locationInView:self.view];
-        [self.drawingLayer.points addObject: [NSValue valueWithCGPoint:touchPoint]];
-        [self checkSelectedEmblems:touchPoint];
-    }];
-    
+    UITouch * touch = [touches anyObject];
+    CGPoint touchPoint = [touch locationInView:self.view];
+    [self checkSelectedEmblems:touchPoint];
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    self.showHelp = NO;    
-    [touches enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
-        
-        UITouch *touch = obj;
-        CGPoint touchPoint = [touch locationInView:self.view];
-        
-        // what if it is 0?
-        if ([self.drawingLayer.points count] <= 1) {
-            // [self.drawingLayer.points replaceObjectAtIndex:1 withObject:[NSValue valueWithCGPoint:touchPoint]];
-            [self.drawingLayer.points addObject: [NSValue valueWithCGPoint:touchPoint]];
-        } else {
-            [self.drawingLayer.points replaceObjectAtIndex:([self.drawingLayer.points count]-1) withObject:[NSValue valueWithCGPoint:touchPoint]];
-        }
-
-        [self.drawingLayer setNeedsDisplay];
-        
-        [self checkSelectedEmblems:touchPoint];
-    }];
+    self.showHelp = NO;
+    UITouch *touch = [touches anyObject];
+    CGPoint touchPoint = [touch locationInView:self.view];
+    [self.drawingLayer moveTailPoint:touchPoint];
+    [self checkSelectedEmblems:touchPoint];
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -182,7 +162,8 @@
     
     self.currentEmblem = nil;
     
-    [self.combos releaseElements];
+//    [self.combos releaseElements];
+    [self.combos reset];
     [self renderFeedback];    
 }
 
@@ -237,6 +218,7 @@
 }
 
 -(void)renderFeedback {
+    return;
     BOOL hasHintedSpell = (self.combos.hintedSpell != nil);
     BOOL showNoMana = (!self.combos.castSpell && self.combos.hasElements && self.castDisabled);
 //    BOOL showMisfire = (self.castDisabled && [self.combos.castSpell isKindOfClass:[SpellFail class]]);
