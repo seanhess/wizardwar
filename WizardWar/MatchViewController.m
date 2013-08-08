@@ -323,7 +323,9 @@
 }
 
 - (void)hideHelp:(HelpViewController*)help {
-    [UIView animateWithDuration:0.3 animations:^{
+    [UIView animateWithDuration:0.5 animations:^{
+        help.view.frame = self.helpButton.frame;
+        help.imageView.frame = help.view.bounds;
         help.view.alpha = 0.0;
     } completion:^(BOOL finished) {
         [help.view removeFromSuperview];

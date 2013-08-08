@@ -263,7 +263,6 @@
 }
 
 -(void)flashFeedback {
-    NSLog(@" - flashFeedback");
     self.feedbackLabel.alpha = 0.0;
     self.feedbackLabel.transform = CGAffineTransformMakeScale(0.1, 0.1);
     [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{

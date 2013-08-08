@@ -10,7 +10,6 @@
 #import <BButton.h>
 
 @interface HelpViewController ()
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet BButton *closeButton;
 
 @end
@@ -28,6 +27,7 @@
 
 - (void)viewDidLoad
 {
+    self.view.backgroundColor = [UIColor clearColor];
     [self.closeButton setType:BButtonTypeSuccess];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.

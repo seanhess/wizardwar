@@ -16,5 +16,6 @@
 @end
 
 @interface HelpViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (nonatomic, weak) id<HelpDelegate>delegate;
 @end
