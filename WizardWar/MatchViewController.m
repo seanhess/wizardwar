@@ -116,6 +116,7 @@
     [self playMusic];
 
     MatchLayer * matchLayer = [[MatchLayer alloc] initWithMatch:self.match size:self.view.bounds.size combos:self.combos units:[OLUnitsService.shared units]];
+    self.pentagram.drawingLayer = matchLayer.drawingLayer;
     [WizardDirector runLayer:matchLayer];
     
     // Match starts.... NOW

@@ -12,7 +12,9 @@
 #import "Match.h"
 #import "Combos.h"
 #import "Units.h"
+#import "DrawingLayer.h"
 
 @interface MatchLayer : CCLayer
+@property (nonatomic, strong) DrawingLayer * drawingLayer;
 -(id)initWithMatch:(Match*)match size:(CGSize)size combos:(Combos*)combos units:(Units*)units;
 @end

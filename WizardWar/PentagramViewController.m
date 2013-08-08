@@ -53,12 +53,6 @@
     self.view.backgroundColor = [UIColor clearColor];
     self.view.clipsToBounds = YES;
     
-    DrawingLayer *drawLayer = [[DrawingLayer alloc] initWithFrame:self.view.bounds];
-    self.drawingLayer = drawLayer;
-    drawLayer.backgroundColor = [UIColor clearColor];
-    self.drawingLayer.points = [[NSMutableArray alloc] init];
-    [self.view insertSubview:self.drawingLayer atIndex:0];
-    
     [self setUpPentagram];
     
 //    self.waitProgress.roundedCorners = NO;
@@ -115,7 +109,8 @@
 }
 
 
-- (void)checkSelectedEmblems:(CGPoint)point {
+// returns whether it is over an emblem
+- (BOOL)checkSelectedEmblems:(CGPoint)point {
     
     PentEmblem * emblem = [self.emblems find:^BOOL(PentEmblem*emblem) {
         return CGRectContainsPoint(emblem.frame, point);
@@ -130,6 +125,8 @@
         [self.combos moveToElement:emblem.element];
         [self renderFeedback];
     }
+    
+    return (emblem != nil);
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -143,8 +140,8 @@
     self.showHelp = NO;
     UITouch *touch = [touches anyObject];
     CGPoint touchPoint = [touch locationInView:self.view];
-    [self.drawingLayer moveTailPoint:touchPoint];
-    [self checkSelectedEmblems:touchPoint];
+    if (![self checkSelectedEmblems:touchPoint])
+        [self.drawingLayer moveTailPoint:touchPoint];
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -156,15 +153,13 @@
     {
         emblem.status = EmblemStatusNormal;
     }
-    
-    self.drawingLayer.points = [[NSMutableArray alloc] init];
-    [self.drawingLayer setNeedsDisplay];
+
+    [self.drawingLayer clear];
     
     self.currentEmblem = nil;
     
-//    [self.combos releaseElements];
-    [self.combos reset];
-    [self renderFeedback];    
+    [self.combos releaseElements];
+    [self renderFeedback];
 }
 
 -(void)setCastDelayProgress:(CGFloat)progress {
@@ -218,7 +213,6 @@
 }
 
 -(void)renderFeedback {
-    return;
     BOOL hasHintedSpell = (self.combos.hintedSpell != nil);
     BOOL showNoMana = (!self.combos.castSpell && self.combos.hasElements && self.castDisabled);
 //    BOOL showMisfire = (self.castDisabled && [self.combos.castSpell isKindOfClass:[SpellFail class]]);

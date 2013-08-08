@@ -31,7 +31,7 @@
 #import "LifeIndicatorNode.h"
 #import "Tick.h"
 #import "FeedbackLayer.h"
-#import "DrawingLayer.h"
+
 
 #import <ReactiveCocoa.h>
 
@@ -52,8 +52,6 @@
 @property (nonatomic, strong) CCLabelTTF * debug;
 
 @property (nonatomic, strong) UIButton * backButton;
-
-@property (nonatomic, strong) DrawingLayer * drawingLayer;
 
 @end
 
@@ -78,8 +76,8 @@
         self.match = match;
         self.match.delegate = self;
         
-//        self.drawingLayer = [DrawingLayer new];
-//        [self addChild:self.drawingLayer];
+        self.drawingLayer = [[DrawingLayer alloc] initWithUnits:units];
+        [self addChild:self.drawingLayer];
        
         self.indicators = [CCLayer node];
         [self addChild:self.indicators];        

@@ -8,16 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "cocos2d.h"
+#import "Units.h"
 
 // Make this an actual CALayer? ... Maybe
-@interface DrawingLayer : UIView
-
-@property (strong, nonatomic) NSMutableArray *points;
-@property (strong, nonatomic) UIColor * lineColor;
+@interface DrawingLayer : CCLayer
 
 @property (nonatomic) BOOL castDisabled;
 
+-(id)initWithUnits:(Units*)units;
+
 -(void)addAnchorPoint:(CGPoint)point;
 -(void)moveTailPoint:(CGPoint)point;
+-(void)clear;
 
 @end

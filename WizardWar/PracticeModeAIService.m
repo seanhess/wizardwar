@@ -53,8 +53,8 @@
         // No heal or invisibility because he's not patient tnough to let it finish
         
 #ifdef DEBUG
-        self.stop = YES;
-        self.allSpells = @[[SpellMonster class]];
+//        self.stop = YES;
+//        self.allSpells = @[[SpellMonster class]];
 #endif
     }
     return self;

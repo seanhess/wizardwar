@@ -49,7 +49,6 @@
 }
 
 -(void)moveToElement:(ElementType)element {
-    return;
     self.didMisfire = NO;
     self.castSpell = nil;
     self.lastElement = element;
