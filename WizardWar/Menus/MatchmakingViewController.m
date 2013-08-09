@@ -68,6 +68,8 @@
 @property (strong, nonatomic) MatchViewController * currentMatch;
 @property (strong, nonatomic) Challenge * currentChallenge;
 
+@property (nonatomic) BOOL connectedToLobby;
+
 @end
 
 @implementation MatchmakingViewController
@@ -279,11 +281,17 @@
     }
 
     else {
-        // decline all challenges when we disconect, yes
         [ChallengeService.shared removeUserChallenge:self.currentUser];
-        [ChallengeService.shared declineAllChallenges:self.currentUser];
+
+        // If we DISCONNECT, decline all challenges
+        // but when you load this for the first, you START disconnected.
+        if (self.connectedToLobby == YES)
+            [ChallengeService.shared declineAllChallenges:self.currentUser];
+        
         [self showLoading];
     }
+    
+    self.connectedToLobby = joined;
 }
 
 -(void)showLoading {
@@ -540,8 +548,12 @@
 
 - (void)joinMatch:(Challenge*)challenge {
     // don't join the same match twice
+    // both lines MUST be at the top (challenge gets modified during this block)
     if (challenge == self.currentChallenge) return;
+    self.currentChallenge = challenge;
     NSLog(@"*** JOIN MATCH: challenge=%@ currentChallenge=%@", challenge, self.currentChallenge);
+    
+    // the challenge is updated, and bindings are fired, BEFORE I get to the end of this block
     
     // Only the active user broadcasts what he is doing
     [LobbyService.shared user:self.currentUser joinedMatch:challenge.matchId];
@@ -554,7 +566,6 @@
     // Should be called after viewDidLoad
     [match startMatch];
     
-    self.currentChallenge = challenge;
     self.currentMatch = match;
 }
 

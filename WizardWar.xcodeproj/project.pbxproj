@@ -653,6 +653,7 @@
 		781B4C4717839C00002551CA /* utlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utlist.h; sourceTree = "<group>"; };
 		781B4C4817839C00002551CA /* ZipUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipUtils.h; sourceTree = "<group>"; };
 		781B4C4917839C00002551CA /* ZipUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipUtils.m; sourceTree = "<group>"; };
+		781BC26517B5766900870A2C /* AIService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AIService.h; sourceTree = "<group>"; };
 		782602781773D8F700059981 /* firewall-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "firewall-animation.plist"; sourceTree = "<group>"; };
 		782602791773D8F700059981 /* firewall-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "firewall-hd.plist"; sourceTree = "<group>"; };
 		7826027A1773D8F700059981 /* firewall-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "firewall-hd.png"; sourceTree = "<group>"; };
@@ -1553,6 +1554,7 @@
 				78C46B5917562CAC0077EE98 /* MultiplayerService.m */,
 				78F97FDC1758F7F500764D70 /* PracticeModeAIService.h */,
 				78F97FDD1758F7F500764D70 /* PracticeModeAIService.m */,
+				781BC26517B5766900870A2C /* AIService.h */,
 				789BAB8117566ABF003C0116 /* Multiplayer.h */,
 				78ABA888175A6C70003D2F23 /* Tick.h */,
 			);

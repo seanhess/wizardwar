@@ -18,6 +18,7 @@
 @interface LobbyService : NSObject
 
 @property (nonatomic) BOOL joined;
+@property (nonatomic) NSInteger totalInLobby;
 
 + (LobbyService *)shared;
 

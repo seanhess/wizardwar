@@ -212,6 +212,12 @@
     }
 }
 
+-(void)attemptedCastButFailedBecauseOfSleep {
+    self.feedbackLabel.text = @"You are Asleep!";
+    self.feedbackLabel.textColor = [UIColor whiteColor];
+    [self flashFeedback];
+}
+
 -(void)renderFeedback {
     BOOL hasHintedSpell = (self.combos.hintedSpell != nil);
 //    BOOL showNoMana = (!self.combos.castSpell && self.combos.hasElements && self.castDisabled);

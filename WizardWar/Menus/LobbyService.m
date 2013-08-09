@@ -53,10 +53,12 @@
     __weak LobbyService * wself = self;
 
     [self.lobby observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
+        self.totalInLobby++;        
         [wself onAdded:snapshot];
     }];
     
     [self.lobby observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
+        self.totalInLobby--;
         [wself onRemoved:snapshot];
     }];
     

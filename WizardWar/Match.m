@@ -24,6 +24,7 @@
 #import "TimerSyncService.h"
 #import "PracticeModeAIService.h"
 #import "Tick.h"
+#import "AIService.h"
 
 #define CLEANUP_TICKS 50 // 10 is 1 second
 #define MIN_READY_STATE 2.5
@@ -36,7 +37,7 @@
 @property (nonatomic, strong) GameTimerService * timer;
 @property (nonatomic, strong) id<Multiplayer> multiplayer;
 @property (nonatomic, strong) TimerSyncService * sync;
-@property (nonatomic, strong) PracticeModeAIService * ai;
+@property (nonatomic, strong) id<AIService> ai;
 
 @property (nonatomic, strong) NSMutableDictionary * players;
 @property (nonatomic, strong) NSMutableDictionary * spells;
@@ -51,7 +52,7 @@
 
 // Always use a challenge!
 @implementation Match
--(id)initWithMatchId:(NSString *)matchId hostName:(NSString *)hostName currentWizard:(Wizard *)wizard withAI:(Wizard *)ai multiplayer:(id<Multiplayer>)multiplayer sync:(TimerSyncService *)sync {
+-(id)initWithMatchId:(NSString *)matchId hostName:(NSString *)hostName currentWizard:(Wizard *)wizard withAI:(id<AIService>)ai multiplayer:(id<Multiplayer>)multiplayer sync:(TimerSyncService *)sync {
     if ((self = [super init])) {
         self.matchId = matchId;
         self.hostName = hostName;
@@ -64,14 +65,12 @@
         self.sync.delegate = self;
         self.status = MatchStatusReady;
         self.currentWizard = wizard;
-        self.aiWizard = ai;
+        
+        self.ai = ai;
+        self.ai.delegate = self;
+        self.aiWizard = ai.wizard;
         
         self.enoughTimeAsReady = NO;
-
-        if (self.aiWizard) {
-            self.ai = [PracticeModeAIService new];
-            self.ai.delegate = self;
-        }
     }
     return self;
 }
@@ -465,9 +464,9 @@
     }
 }
 
--(void)player:(Wizard*)player castSpell:(Spell*)spell currentTick:(NSInteger)currentTick {
+-(BOOL)player:(Wizard*)player castSpell:(Spell*)spell currentTick:(NSInteger)currentTick {
     
-    if (player.effect.disablesPlayer) return;
+    if (player.effect.disablesPlayer) return NO;
     
     [player setStatus:WizardStatusCast atTick:currentTick];
     
@@ -478,11 +477,14 @@
     [self addSpell:spell];
     [self.multiplayer addSpell:spell];
     [self.multiplayer updatePlayer:player]; // new mana total?
+    
+    return YES;
 }
 
 
--(void)castSpell:(Spell *)spell {
-    [self player:self.currentWizard castSpell:spell currentTick:self.timer.nextTick];
+-(BOOL)castSpell:(Spell *)spell {
+    [self.ai opponent:self.currentWizard didCastSpell:spell atTick:self.timer.nextTick];
+    return [self player:self.currentWizard castSpell:spell currentTick:self.timer.nextTick];
 }
 
 -(Wizard*)otherWizard:(Wizard*)wizard {

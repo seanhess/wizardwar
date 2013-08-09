@@ -57,10 +57,10 @@
     return (self.isFirstPlayer) ? 1 : -1;
 }
 
--(void)setStatus:(WizardStatus)status atTick:(NSInteger)tick {    
+-(void)setStatus:(WizardStatus)status atTick:(NSInteger)tick {
     // can't change if dead or won! It is forever
     if (self.state == WizardStatusDead || self.state == WizardStatusWon) return;
-    
+
     self.state = status;
     self.updatedTick = tick;
 }

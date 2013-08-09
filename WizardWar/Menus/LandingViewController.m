@@ -22,11 +22,14 @@
 #import "HelpViewController.h"
 #import "PreloadLayer.h"
 #import "UIColor+Hex.h"
+#import <MenuButton.h>
+#import "PracticeModeAIService.h"
 
 #import <FacebookSDK/FacebookSDK.h>
 #import "NSArray+Functional.h"
 
 @interface LandingViewController ()  <FBFriendPickerDelegate, HelpDelegate>
+@property (weak, nonatomic) IBOutlet MenuButton *multiplayerButton;
 @property (nonatomic, strong) MatchViewController* match;
 @end
 
@@ -51,6 +54,13 @@
     [LobbyService.shared connect];
     [LocationService.shared connect];
     
+    // just update the button once with the number of people online?
+    __weak LandingViewController * wself = self;
+    [RACAble(LobbyService.shared, totalInLobby) subscribeNext:^(id x) {
+        [wself renderTotalInLobby];
+    }];
+    [self renderTotalInLobby];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -67,13 +77,19 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)renderTotalInLobby {
+    NSString * title = nil;
+    if (LobbyService.shared.totalInLobby > 0)
+        title = [NSString stringWithFormat:@"(%i) Multiplayer", LobbyService.shared.totalInLobby];
+    else
+        title = @"Multiplayer";
+    [self.multiplayerButton setTitle:title forState:UIControlStateNormal];
+}
+
 - (IBAction)didTapQuest:(id)sender {
     [AnalyticsService event:@"PracticeGameTap"];
     
-    Wizard * ai = [Wizard new];
-    ai.name = @"Zorlak Bot";
-    ai.wizardType = WIZARD_TYPE_ONE;
-    ai.color = [UIColor colorFromRGB:0x005EA8];
+    PracticeModeAIService * ai = [PracticeModeAIService new];
     
     // 1 show the help
     // 2 after it is closed, then start the match

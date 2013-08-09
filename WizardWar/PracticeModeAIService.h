@@ -9,11 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "Spell.h"
 #import "Simulated.h"
+#import "AIService.h"
 
-@protocol AIDelegate <NSObject>
--(void)aiDidCastSpell:(Spell*)spell;
-@end
+@interface PracticeModeAIService : NSObject <AIService>
 
-@interface PracticeModeAIService : NSObject <Simulated>
-@property (nonatomic, weak) id<AIDelegate> delegate;
 @end

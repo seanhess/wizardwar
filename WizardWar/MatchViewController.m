@@ -183,7 +183,7 @@
     self.match = match;
 }
 
-- (void)createMatchWithWizard:(Wizard *)wizard withAI:(Wizard *)ai {
+- (void)createMatchWithWizard:(Wizard *)wizard withAI:(id<AIService>)ai {
     Match * match = [[Match alloc] initWithMatchId:@"Practice" hostName:wizard.name currentWizard:wizard withAI:ai multiplayer:nil sync:nil];
     self.match = match;
 }
@@ -352,8 +352,11 @@
 {
     if (spell) {
         // now, disable the basturd
-        [self.match castSpell:spell];
-        [self.pentagram delayCast:spell.castDelay];
+        BOOL success = [self.match castSpell:spell];
+        if (success)
+            [self.pentagram delayCast:spell.castDelay];
+        else
+            [self.pentagram attemptedCastButFailedBecauseOfSleep];
     }
 }
 

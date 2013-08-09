@@ -98,9 +98,11 @@
     Challenge * challenge = nil;
     
     if (user.activeMatchId) {
-        Challenge * challenge = [ChallengeService.shared challengeWithId:user.activeMatchId create:NO];
-        if (!challenge)
-            NSLog(@"!!! NO CHALLENGE %@", user.activeMatchId);
+        challenge = [ChallengeService.shared challengeWithId:user.activeMatchId create:NO];
+        // If challenge is nil, don't worry about it for now, I never really clear it.
+        // I should probably use ... I don't know.
+//        if (!challenge)
+//            NSLog(@"!!! NO CHALLENGE %@", user.activeMatchId);
     }
     
     // STATUS

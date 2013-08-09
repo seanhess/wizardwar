@@ -12,6 +12,7 @@
 #import "Multiplayer.h"
 #import "TimerSyncService.h"
 #import "Simulated.h"
+#import "AIService.h"
 
 typedef enum MatchStatus {
     MatchStatusReady,
@@ -39,9 +40,9 @@ typedef enum MatchStatus {
 @property (nonatomic, strong) NSMutableArray * sortedPlayers;
 @property (nonatomic) MatchStatus status;
 
--(id)initWithMatchId:(NSString*)matchId hostName:(NSString*)hostName currentWizard:(Wizard*)wizard withAI:(Wizard*)ai multiplayer:(id<Multiplayer>)multiplayer sync:(TimerSyncService*)sync;
+-(id)initWithMatchId:(NSString*)matchId hostName:(NSString*)hostName currentWizard:(Wizard*)wizard withAI:(id<AIService>)ai multiplayer:(id<Multiplayer>)multiplayer sync:(TimerSyncService*)sync;
 -(void)update:(NSTimeInterval)dt;
--(void)castSpell:(Spell *)spell;
+-(BOOL)castSpell:(Spell *)spell;
 -(void)connect;
 -(void)disconnect;
 @end

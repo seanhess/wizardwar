@@ -17,4 +17,5 @@
 @property (strong, nonatomic) DrawingLayer * drawingLayer;
 -(void)delayCast:(NSTimeInterval)delay;
 -(void)showHelpMessage;
+-(void)attemptedCastButFailedBecauseOfSleep;
 @end

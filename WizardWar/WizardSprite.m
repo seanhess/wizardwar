@@ -139,7 +139,6 @@
     if (self.wizard.effect.class == EffectSleep.class && (self.wizard.state == WizardStatusReady || self.wizard.state == WizardStatusHit || self.wizard.state == WizardStatusCast))
         return;
     
-//    NSLog(@"RENDER STATUS %@ = %i", self.wizard.name, self.wizard.state);
     // I should remove all status actions, not all actions
 //    [self.skin stopAllActions];
 //    [self.clothes stopAllActions];
