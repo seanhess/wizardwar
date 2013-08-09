@@ -216,7 +216,11 @@
 - (NSFetchRequest*)requestCloseUsers:(User *)user {
     NSFetchRequest * request = [UserService.shared requestOtherOnline:user];
     NSPredicate * isClose = [NSPredicate predicateWithFormat:@"distance >= 0 AND distance < %f", MAX_SAME_LOCATION_DISTANCE];
-    request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[isClose, [self predicateNotFriend:user], request.predicate]];
+    // they also must be online...
+    
+    // We allow friends in close one
+//    request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[isClose, [self predicateNotFriend:user], request.predicate]];
+    request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[isClose, request.predicate]];
     return request;
 }
 

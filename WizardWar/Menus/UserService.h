@@ -36,6 +36,7 @@
 
 - (NSSortDescriptor*)sortIsOnline;
 - (NSPredicate*)predicateIsUser:(NSString*)userId;
+- (NSPredicate*)predicateIsOnline:(BOOL)online;
 - (NSFetchRequest*)requestAllUsers;
 - (NSFetchRequest*)requestAllUsersExcept:(User*)user;
 - (NSFetchRequest*)requestOtherOnline:(User*)user;

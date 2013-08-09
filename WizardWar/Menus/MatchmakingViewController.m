@@ -41,6 +41,29 @@
 #import "AnalyticsService.h"
 #import "UIViewController+Idiom.h"
 
+#define SECTION_INDEX_CHALLENGES 0
+
+// People who are "Right here" but who aren't friends. Usually this will be blank
+#define SECTION_INDEX_LOCAL 1
+
+// Friends who are online
+#define SECTION_INDEX_FRIENDS_ONLINE 2
+
+// People who are closeby, but not RIGHT here
+#define SECTION_INDEX_CLOSE 3
+
+// Offline friends
+#define SECTION_INDEX_FRIENDS 4
+
+#define SECTION_INDEX_STRANGERS 5
+
+#define SECTION_INDEX_ONLINE_USERS SECTION_INDEX_LOCAL
+#define SECTION_INDEX_OFFLINE_USERS SECTION_INDEX_FRIENDS
+#define SECTION_INDEX_LAST SECTION_INDEX_FRIENDS
+
+#define SECTION_INDEX_MESSAGES 0
+
+
 @interface MatchmakingViewController () <NSFetchedResultsControllerDelegate, FBFriendPickerDelegate, MatchViewControllerDelegate>
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
 
@@ -53,6 +76,7 @@
 @property (strong, nonatomic) NSFetchedResultsController * friendResults;
 @property (strong, nonatomic) NSFetchedResultsController * localResults;
 @property (strong, nonatomic) NSFetchedResultsController * otherCloseResults;
+@property (strong, nonatomic) NSFetchedResultsController * friendOnlineResults;
 @property (strong, nonatomic) NSFetchedResultsController * allResults;
 
 @property (strong, nonatomic) RACDisposable * matchStatusSignal;
@@ -140,9 +164,13 @@
     self.challengeResults.delegate = self;
     [self.challengeResults performFetch:&error];
     
-    self.friendResults = [ObjectStore.shared fetchedResultsForRequest:[UserFriendService.shared requestFriends:user]];
+    self.friendResults = [ObjectStore.shared fetchedResultsForRequest:[UserFriendService.shared requestFriends:user isOnline:NO]];
     self.friendResults.delegate = self;
     [self.friendResults performFetch:&error];
+    
+    self.friendOnlineResults = [ObjectStore.shared fetchedResultsForRequest:[UserFriendService.shared requestFriends:user isOnline:YES]];
+    self.friendOnlineResults.delegate = self;
+    [self.friendOnlineResults performFetch:&error];
     
     // Show anyone right here, and 4 closest other users online
     self.localResults = [ObjectStore.shared fetchedResultsForRequest:[LobbyService.shared requestCloseUsers:self.currentUser]];
@@ -215,27 +243,26 @@
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
     
     NSInteger sectionGlobal = 0;
-    if (controller == self.challengeResults)
-        sectionGlobal = 0;
-    
-    else if (controller == self.localResults) sectionGlobal = 1;
-    else if (controller == self.otherCloseResults) sectionGlobal = 2;
-    else if (controller == self.friendResults) sectionGlobal = 3;
-    else if (controller == self.allResults) sectionGlobal = 4;
+    if (controller == self.challengeResults) sectionGlobal = SECTION_INDEX_CHALLENGES;
+    else if (controller == self.localResults) sectionGlobal = SECTION_INDEX_LOCAL;
+    else if (controller == self.otherCloseResults) sectionGlobal = SECTION_INDEX_CLOSE;
+    else if (controller == self.friendResults) sectionGlobal = SECTION_INDEX_FRIENDS;
+    else if (controller == self.allResults) sectionGlobal = SECTION_INDEX_STRANGERS;
+    else if (controller == self.friendOnlineResults) sectionGlobal = SECTION_INDEX_FRIENDS_ONLINE;
     
     NSIndexPath * indexPathGlobal = [NSIndexPath indexPathForItem:indexPath.row inSection:sectionGlobal];
     NSIndexPath * newIndexPathGlobal = [NSIndexPath indexPathForItem:newIndexPath.row inSection:sectionGlobal];
     
     if (type == NSFetchedResultsChangeInsert) {
-        if (sectionGlobal == 0) NSLog(@"CHALLENGE INSERT");
+        if (sectionGlobal == SECTION_INDEX_CHALLENGES) NSLog(@"CHALLENGE INSERT");
         [self.tableView insertRowsAtIndexPaths:@[newIndexPathGlobal] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
     else if (type == NSFetchedResultsChangeDelete) {
-        if (sectionGlobal == 0) NSLog(@"CHALLENGE DELETE");        
+        if (sectionGlobal == SECTION_INDEX_CHALLENGES) NSLog(@"CHALLENGE DELETE");        
         [self.tableView deleteRowsAtIndexPaths:@[indexPathGlobal] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
     else if (type == NSFetchedResultsChangeMove) {
-        if (sectionGlobal == 0) {
+        if (sectionGlobal == SECTION_INDEX_CHALLENGES) {
             NSLog(@"CHALLENGE MOVE");
             return;
         }
@@ -246,7 +273,7 @@
         [self.tableView moveRowAtIndexPath:indexPathGlobal toIndexPath:newIndexPathGlobal];
     }
     else if (type == NSFetchedResultsChangeUpdate) {
-        if (sectionGlobal == 0) {
+        if (sectionGlobal == SECTION_INDEX_CHALLENGES) {
             NSLog(@"CHALLENGE UPDATE");
 
             // do a remove/insert instead. it's kewl looking
@@ -330,7 +357,7 @@
 #pragma mark - Table view data source
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) return YES;
+    if (indexPath.section == SECTION_INDEX_CHALLENGES) return YES;
     return NO;
 }
 
@@ -361,21 +388,23 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return SECTION_INDEX_LAST+1;
 //    return 5; // to show debug users
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
+    if (section == SECTION_INDEX_CHALLENGES) {
         return [[self.challengeResults.sections objectAtIndex:0] numberOfObjects];
-    } else if (section == 1){
+    } else if (section == SECTION_INDEX_LOCAL){
         return [[self.localResults.sections objectAtIndex:0] numberOfObjects];
-    } else if (section == 2){
+    } else if (section == SECTION_INDEX_CLOSE){
         return [[self.otherCloseResults.sections objectAtIndex:0] numberOfObjects];
-    } else if (section == 3) {
+    } else if (section == SECTION_INDEX_FRIENDS) {
         return [[self.friendResults.sections objectAtIndex:0] numberOfObjects];
-    } else if (section == 4) {
+    } else if (section == SECTION_INDEX_FRIENDS_ONLINE) {
+        return [[self.friendOnlineResults.sections objectAtIndex:0] numberOfObjects];
+    } else if (section == SECTION_INDEX_STRANGERS) {
         return [[self.allResults.sections objectAtIndex:0] numberOfObjects];
     } else {
         return 0;
@@ -384,7 +413,7 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (section == 0 && (!LocationService.shared.accepted || !UserService.shared.pushAccepted)) {
+    if (section == SECTION_INDEX_MESSAGES && (!LocationService.shared.accepted || !UserService.shared.pushAccepted)) {
         
         NSMutableString * message = [NSMutableString string];
         
@@ -406,12 +435,12 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    if (section == 4) return 80;
+    if (section == SECTION_INDEX_LAST) return 80;
     return 0;
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    if (section == 4) {
+    if (section == SECTION_INDEX_LAST) {
         UIView * blankView = [UIView new];
         blankView.backgroundColor = [UIColor clearColor];
         return blankView;
@@ -420,32 +449,39 @@
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (section == 0) return nil;
-    else if (section == 1) return @"Near You";
-    else if (section == 2) return nil;
-    else if (section == 3) return @"Frenemies";
-    else if (section == 4) return @"Strangers";
+    if (section == SECTION_INDEX_CHALLENGES) return @"Challenges";
+    
+    else if (section == SECTION_INDEX_ONLINE_USERS) return @"Online";
+    else if (section == SECTION_INDEX_OFFLINE_USERS) return @"Offline";
+    
+    else if (section == SECTION_INDEX_CLOSE) return @"Nearby";
+    else if (section == SECTION_INDEX_LOCAL) return @"Right Here";
+    else if (section == SECTION_INDEX_FRIENDS) return @"Frenemies";
+    else if (section == SECTION_INDEX_FRIENDS_ONLINE) return @"Friends Online";
+    else if (section == SECTION_INDEX_STRANGERS) return @"Strangers";
     return nil;
 }
 
 - (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == 0 && (!LocationService.shared.accepted || !UserService.shared.pushAccepted))
+    if (section == SECTION_INDEX_MESSAGES && (!LocationService.shared.accepted || !UserService.shared.pushAccepted))
         return self.warningsView.frame.size.height;
-    else if (section == 1) return 26;
-    else if (section == 2) return 0;
-    else if (section == 3) return 26;
-    else if (section == 4) return 26;
+//    else if (section == SECTION_INDEX_ONLINE_USERS) return 26;
+//    else if (section == SECTION_INDEX_OFFLINE_USERS) return 26;
+//    else if (section == 1) return 26;
+//    else if (section == 2) return 0;
+//    else if (section == 3) return 26;
+//    else if (section == 4) return 26;
     return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) return 65;
+    if (indexPath.section == SECTION_INDEX_CHALLENGES) return 65;
     else return 54;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
+    if (indexPath.section == SECTION_INDEX_CHALLENGES) {
         return [self tableView:tableView challengeCellForRowAtIndexPath:indexPath];
     } else {
         User * user = [self userForIndexPath:indexPath];
@@ -456,13 +492,15 @@
 -(User*)userForIndexPath:(NSIndexPath*)indexPath {
     NSIndexPath * localIndexPath = [NSIndexPath indexPathForItem:indexPath.row inSection:0];
     User * user = nil;
-    if (indexPath.section == 1) {
+    if (indexPath.section == SECTION_INDEX_LOCAL) {
         user = [self.localResults objectAtIndexPath:localIndexPath];
-    } else if (indexPath.section == 2) {
+    } else if (indexPath.section == SECTION_INDEX_CLOSE) {
         user = [self.otherCloseResults objectAtIndexPath:localIndexPath];
-    } else if (indexPath.section == 3) {
+    } else if (indexPath.section == SECTION_INDEX_FRIENDS) {
         user = [self.friendResults objectAtIndexPath:localIndexPath];
-    } else if (indexPath.section == 4) {
+    } else if (indexPath.section == SECTION_INDEX_FRIENDS_ONLINE) {
+        user = [self.friendOnlineResults objectAtIndexPath:localIndexPath];
+    } else if (indexPath.section == SECTION_INDEX_STRANGERS) {
         user = [self.allResults objectAtIndexPath:localIndexPath];
     } 
     return user;
@@ -505,15 +543,17 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSIndexPath * localIndexPath = [NSIndexPath indexPathForItem:indexPath.row inSection:0];
-    if (indexPath.section == 0)
+    if (indexPath.section == SECTION_INDEX_CHALLENGES)
         [self didSelectChallenge:[self.challengeResults objectAtIndexPath:localIndexPath]];
-    else if (indexPath.section == 1)
+    else if (indexPath.section == SECTION_INDEX_LOCAL)
         [self didSelectUser:[self.localResults objectAtIndexPath:localIndexPath]];
-    else if (indexPath.section == 2)
+    else if (indexPath.section == SECTION_INDEX_CLOSE)
         [self didSelectUser:[self.otherCloseResults objectAtIndexPath:localIndexPath]];
-    else if (indexPath.section == 3)
+    else if (indexPath.section == SECTION_INDEX_FRIENDS)
         [self didSelectUser:[self.friendResults objectAtIndexPath:localIndexPath]];
-    else if (indexPath.section == 4)
+    else if (indexPath.section == SECTION_INDEX_FRIENDS_ONLINE)
+        [self didSelectUser:[self.friendOnlineResults objectAtIndexPath:localIndexPath]];
+    else if (indexPath.section == SECTION_INDEX_STRANGERS)
         [self didSelectUser:[self.allResults objectAtIndexPath:localIndexPath]];
     
     else {}

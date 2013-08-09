@@ -46,6 +46,7 @@
 
 // We only need one reading
 - (void)updateLocation:(CLLocation*)location {
+    NSLog(@"LocationService: (+) %@", location);
     self.location = location;
     if (location)
         [self.locationManager stopUpdatingLocation];
@@ -58,11 +59,10 @@
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     self.accepted = (status == kCLAuthorizationStatusAuthorized);
-//    NSLog(@"LOCATION: (status) %i", status);
+    NSLog(@"LOCATION: (status) %i", status);
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    NSLog(@"LocationService: (+)");
     [self updateLocation:locations.lastObject];
 }
 

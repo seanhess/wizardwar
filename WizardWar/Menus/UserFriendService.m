@@ -22,6 +22,7 @@
 #import <ReactiveCocoa.h>
 #import <Parse/Parse.h>
 #import "UserService.h"
+#import "LocationService.h"
 
 @implementation UserFriendService
 
@@ -338,8 +339,23 @@
     NSFetchRequest * request = [UserService.shared requestAllUsersExcept:user];
     request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[[self predicateIsFBFriendOrFrenemy:user], request.predicate]];
     NSSortDescriptor * sortGamesTotal = [NSSortDescriptor sortDescriptorWithKey:@"gamesTotal" ascending:NO];
-    request.sortDescriptors = @[[UserService.shared sortIsOnline], sortGamesTotal];
+    request.sortDescriptors = @[sortGamesTotal];
     
+    return request;
+}
+
+-(NSFetchRequest*)requestFriends:(User *)user isOnline:(BOOL)isOnline {
+    NSFetchRequest * request = [self requestFriends:user];
+    NSPredicate * matchesOnline = [UserService.shared predicateIsOnline:isOnline];
+    NSMutableArray * predicates = [NSMutableArray arrayWithArray:@[matchesOnline, request.predicate]];
+
+    // If we are looking for ONLINE friends, don't show close ones because they are in the HERE list
+    if (isOnline) {
+        NSPredicate * isFar = [NSPredicate predicateWithFormat:@"distance > %f", MAX_SAME_LOCATION_DISTANCE];
+        [predicates addObject:isFar];
+    }
+    
+    request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicates];
     return request;
 }
 

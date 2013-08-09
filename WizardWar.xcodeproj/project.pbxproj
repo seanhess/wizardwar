@@ -2683,7 +2683,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DE8809F786384C2C96220236 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sean Hess (PYW9L3WH97)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sean Hess (PYW9L3WH97)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -2707,7 +2708,8 @@
 					"-lz",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "0F2171E3-EFA7-46BA-8086-3E66C27C39B8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0F2171E3-EFA7-46BA-8086-3E66C27C39B8";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
@@ -2718,8 +2720,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DE8809F786384C2C96220236 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Orbital Labs LLC";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Orbital Labs LLC";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -2743,8 +2745,8 @@
 					"-lz",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "41752EAB-D1D8-4F71-9CE7-CE1CD5D5D96E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "41752EAB-D1D8-4F71-9CE7-CE1CD5D5D96E";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;

@@ -47,7 +47,9 @@ typedef enum FBStatus {
 
 -(NSFetchRequest*)requestAllFacebookUsers;
 -(NSFetchRequest*)requestFacebookUserFriends:(User*)user;
+
 -(NSFetchRequest*)requestFriends:(User *)user;
+-(NSFetchRequest*)requestFriends:(User *)user isOnline:(BOOL)isOnline;
 -(NSFetchRequest*)requestStrangers:(User*)user withLimit:(NSUInteger)limit;
 
 @end

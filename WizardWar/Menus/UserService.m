@@ -231,6 +231,10 @@
     return [NSPredicate predicateWithFormat:@"userId = %@", userId];
 }
 
+- (NSPredicate*)predicateIsOnline:(BOOL)online {
+    return [NSPredicate predicateWithFormat:@"isOnline = %i", online];
+}
+
 - (NSFetchRequest*)requestAllUsers {
     // valid users include:
     NSFetchRequest * request = [NSFetchRequest fetchRequestWithEntityName:self.entityName];
@@ -248,8 +252,7 @@
 
 - (NSFetchRequest*)requestOtherOnline:(User *)user {
     NSFetchRequest * request = [self requestAllUsersExcept:user];
-    NSPredicate * isOnline = [NSPredicate predicateWithFormat:@"isOnline = YES"];
-    request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[isOnline, request.predicate]];
+    request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[[self predicateIsOnline:YES], request.predicate]];
     return request;
 }
 
