@@ -45,6 +45,7 @@
     NSLog(@"applicationDidFinishLaunchingWithOptions");
 
     // TEST FLIGHT - make it first so it can catch errors
+    [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
     [TestFlight takeOff:@"0b4e12af-c3aa-459a-891b-aa357a97e171"];
     
     

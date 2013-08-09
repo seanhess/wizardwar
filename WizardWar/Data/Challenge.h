@@ -28,7 +28,6 @@ typedef enum ChallengeStatus {
 
 @property (nonatomic, strong) NSString * mainId;
 @property (nonatomic, strong) NSString * opponentId;
-@property (nonatomic) BOOL isDeletedRemotely;
 
 -(User*)findOpponent:(User*)user;
 

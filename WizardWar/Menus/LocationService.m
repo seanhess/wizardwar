@@ -48,6 +48,7 @@
 - (void)updateLocation:(CLLocation*)location {
     NSLog(@"LocationService: (+) %@", location);
     self.location = location;
+    self.cannotFindLocation = NO;
     if (location)
         [self.locationManager stopUpdatingLocation];
 }

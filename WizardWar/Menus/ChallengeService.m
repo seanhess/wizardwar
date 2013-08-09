@@ -80,7 +80,6 @@
     Challenge * challenge = [self challengeWithId:snapshot.name create:NO];
     if (challenge) {
         NSLog(@"ChallengeService (-) %@ vs %@", challenge.main.name, challenge.opponent.name);
-        challenge.isDeletedRemotely = YES;
         [ObjectStore.shared.context deleteObject:challenge];
     }
 }
@@ -110,6 +109,7 @@
 
 
 - (Firebase*)challengeNode:(Challenge*)challenge {
+    if (!challenge.matchId) return nil;
     return [self.node childByAppendingPath:challenge.matchId];
 }
 
@@ -166,7 +166,7 @@
 }
 
 - (void)removeChallenge:(Challenge*)challenge {
-    if (challenge.isDeletedRemotely) return;
+    if (!challenge.matchId) return;
     Firebase * child = [self challengeNode:challenge];
     [child removeValue];
 }
