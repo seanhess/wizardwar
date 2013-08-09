@@ -82,6 +82,7 @@
 @property (strong, nonatomic) RACDisposable * matchStatusSignal;
 
 @property (strong, nonatomic) IBOutlet UITextView *warningsView;
+@property (strong, nonatomic) IBOutlet UITextView *explanationsView;
 
 @property (weak, nonatomic) IBOutlet UIView *loadingOverlayView;
 
@@ -441,9 +442,7 @@
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     if (section == SECTION_INDEX_LAST) {
-        UIView * blankView = [UIView new];
-        blankView.backgroundColor = [UIColor clearColor];
-        return blankView;
+        return self.explanationsView;
     }
     return nil;
 }

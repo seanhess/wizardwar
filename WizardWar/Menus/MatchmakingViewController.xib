@@ -36,9 +36,12 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUITextView" id="750870030">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<string key="NSFrameSize">{320, 88}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
+				<reference key="NSNextKeyView"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">2</int>
@@ -58,11 +61,11 @@ aCBOb3RpZmljYXRpb25zIHNvIGZyaWVuZHMgY2FuIGludml0ZSB5b3UgdG8gcGxheS4</string>
 					<int key="IBUIAutocapitalizationType">2</int>
 					<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				</object>
-				<object class="IBUIFontDescription" key="IBUIFontDescription">
+				<object class="IBUIFontDescription" key="IBUIFontDescription" id="795481361">
 					<int key="type">1</int>
 					<double key="pointSize">14</double>
 				</object>
-				<object class="NSFont" key="IBUIFont">
+				<object class="NSFont" key="IBUIFont" id="520775555">
 					<string key="NSName">Helvetica</string>
 					<double key="NSSize">14</double>
 					<int key="NSfFlags">16</int>
@@ -104,6 +107,7 @@ aCBOb3RpZmljYXRpb25zIHNvIGZyaWVuZHMgY2FuIGludml0ZSB5b3UgdG8gcGxheS4</string>
 						<string key="NSFrame">{{20, 467}, {280, 48}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -193,6 +197,39 @@ aCBOb3RpZmljYXRpb25zIHNvIGZyaWVuZHMgY2FuIGludml0ZSB5b3UgdG8gcGxheS4</string>
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
+			<object class="IBUITextView" id="785280618">
+				<reference key="NSNextResponder"/>
+				<int key="NSvFlags">274</int>
+				<string key="NSFrameSize">{320, 152}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
+				<reference key="NSNextKeyView"/>
+				<string key="NSReuseIdentifierKey">_NS:9</string>
+				<object class="NSColor" key="IBUIBackgroundColor">
+					<int key="NSColorSpace">3</int>
+					<bytes key="NSWhite">MCAwAA</bytes>
+				</object>
+				<bool key="IBUIClipsSubviews">YES</bool>
+				<bool key="IBUIUserInteractionEnabled">NO</bool>
+				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+				<bool key="IBUIBounces">NO</bool>
+				<bool key="IBUIScrollEnabled">NO</bool>
+				<bool key="IBUIShowsHorizontalScrollIndicator">NO</bool>
+				<bool key="IBUIShowsVerticalScrollIndicator">NO</bool>
+				<bool key="IBUIBouncesZoom">NO</bool>
+				<string key="IBUIText">This lobby shows you nearby players and "Frenemies": facebook friends or anyone you have played a game against. </string>
+				<object class="NSColor" key="IBUITextColor">
+					<int key="NSColorSpace">1</int>
+					<bytes key="NSRGB">MC4zODIxMTE5MjI2IDAuMzgyMTExOTIyNiAwLjM4MjExMTkyMjYAA</bytes>
+				</object>
+				<int key="IBUITextAlignment">1</int>
+				<object class="IBUITextInputTraits" key="IBUITextInputTraits">
+					<int key="IBUIAutocapitalizationType">2</int>
+					<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+				</object>
+				<reference key="IBUIFontDescription" ref="795481361"/>
+				<reference key="IBUIFont" ref="520775555"/>
+			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<array class="NSMutableArray" key="connectionRecords">
@@ -243,6 +280,14 @@ aCBOb3RpZmljYXRpb25zIHNvIGZyaWVuZHMgY2FuIGludml0ZSB5b3UgdG8gcGxheS4</string>
 						<reference key="destination" ref="892074894"/>
 					</object>
 					<int key="connectionID">198</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">explanationsView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="785280618"/>
+					</object>
+					<int key="connectionID">216</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -575,6 +620,7 @@ aCBOb3RpZmljYXRpb25zIHNvIGZyaWVuZHMgY2FuIGludml0ZSB5b3UgdG8gcGxheS4</string>
 						<reference key="object" ref="750870030"/>
 						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="0"/>
+						<string key="objectName">Warning View</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">169</int>
@@ -624,6 +670,12 @@ aCBOb3RpZmljYXRpb25zIHNvIGZyaWVuZHMgY2FuIGludml0ZSB5b3UgdG8gcGxheS4</string>
 						<reference key="object" ref="630774969"/>
 						<reference key="parent" ref="892074894"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">215</int>
+						<reference key="object" ref="785280618"/>
+						<reference key="parent" ref="0"/>
+						<string key="objectName">Explanation View</string>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -670,6 +722,7 @@ aCBOb3RpZmljYXRpb25zIHNvIGZyaWVuZHMgY2FuIGludml0ZSB5b3UgdG8gcGxheS4</string>
 				<string key="169.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="213.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="214.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="215.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<boolean value="NO" key="3.IBViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -681,7 +734,7 @@ aCBOb3RpZmljYXRpb25zIHNvIGZyaWVuZHMgY2FuIGludml0ZSB5b3UgdG8gcGxheS4</string>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">214</int>
+			<int key="maxID">216</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -712,6 +765,7 @@ aCBOb3RpZmljYXRpb25zIHNvIGZyaWVuZHMgY2FuIGludml0ZSB5b3UgdG8gcGxheS4</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="activityView">UIActivityIndicatorView</string>
+						<string key="explanationsView">UITextView</string>
 						<string key="inviteFriendsButton">BButton</string>
 						<string key="loadingOverlayView">UIView</string>
 						<string key="tableView">UITableView</string>
@@ -721,6 +775,10 @@ aCBOb3RpZmljYXRpb25zIHNvIGZyaWVuZHMgY2FuIGludml0ZSB5b3UgdG8gcGxheS4</string>
 						<object class="IBToOneOutletInfo" key="activityView">
 							<string key="name">activityView</string>
 							<string key="candidateClassName">UIActivityIndicatorView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="explanationsView">
+							<string key="name">explanationsView</string>
+							<string key="candidateClassName">UITextView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="inviteFriendsButton">
 							<string key="name">inviteFriendsButton</string>
