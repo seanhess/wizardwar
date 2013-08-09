@@ -10,6 +10,7 @@
 #import <Firebase/Firebase.h>
 #import "PlayerTime.h"
 #import "FirebaseCollection.h"
+#import "IdService.h"
 
 #define DELAY_START 1
 #define MAX_TOLERANCE 0.01
@@ -17,57 +18,89 @@
 @interface TimerSyncService ()
 @property (strong, nonatomic) Firebase * node;
 @property (strong, nonatomic) NSMutableDictionary * times;
-@property (strong, nonatomic) FirebaseCollection * timesCollection;
 @property (strong, nonatomic) PlayerTime * myTime;
+@property (strong, nonatomic) PlayerTime * otherTime;
+@property (strong, nonatomic) NSString * name;
+@property (nonatomic) BOOL isHost;
 @end
 
 
 @implementation TimerSyncService
 
 - (void)syncTimerWithMatchId:(NSString *)matchId player:(Wizard *)player isHost:(BOOL)isHost {
+    NSLog(@"TIMER SYNC SERVICE start: self=%@ matchId=%@", self, matchId);
+    
+    self.isHost = isHost;
+    self.name = [NSString stringWithFormat:@"%@ %@", player.name, [IdService randomId:4]];
     
     Firebase * matchNode = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"https://wizardwar.firebaseio.com/match/%@", matchId]];
     self.node = [matchNode childByAppendingPath:@"times"];
     
-    // both players add themselves
-    self.times = [NSMutableDictionary dictionary];
-    self.timesCollection = [[FirebaseCollection alloc] initWithNode:self.node dictionary:self.times type:[PlayerTime class]];
-    
     // you'll get the other guy here, not in update
     __weak TimerSyncService * wself = self;
-    [self.timesCollection didAddChild:^(PlayerTime * time) {
-//        NSLog(@"Timer added %@ %i", time, isHost);
-        NSTimeInterval currentTime = CACurrentMediaTime();
-        if (isHost && time != wself.myTime) {
-//            NSLog(@"ICH BIN HOST");
-            [wself sendEstimate:time currentTime:currentTime];
-        }
+    [self.node observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
+        [wself onAdded:snapshot];
     }];
     
-    [self.timesCollection didUpdateChild:^(PlayerTime * time) {
-        NSTimeInterval currentTime = CACurrentMediaTime();
-        if (time == wself.myTime && time.accepted) {
-//            NSLog(@"(OTHER) ACCEPTED my time! %f", time.currentTime);
-            [wself startWithPlayerTime:time];
-        }
-        else if (time != wself.myTime && !time.accepted) {
-            if ([wself checkEstimate:time currentTime:currentTime]) {
-//                NSLog(@"(ME) ACCEPTING their time! %f", time.currentTime);
-                [wself acceptTime:time];
-                [wself startWithPlayerTime:time];
-            }
-            else {
-                [wself sendEstimate:time currentTime:currentTime];
-            }
-        }
-        
+    [self.node observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
+        [wself onChanged:snapshot];
     }];
     
     PlayerTime *myTime = [PlayerTime new];
-    myTime.name = player.name;
+    myTime.name = self.name;
     myTime.currentTime = CACurrentMediaTime();
     self.myTime = myTime;
-    [self.timesCollection addObject:myTime withName:myTime.name];
+    [self save:myTime];
+}
+
+- (void)onAdded:(FDataSnapshot*)snapshot {
+    // If it is the other
+    if (![self isMine:snapshot] && !self.otherTime) {
+        NSLog(@"TSS added: %@", snapshot.name);
+        PlayerTime * time = [PlayerTime new];
+        [time setValuesForKeysWithDictionary:snapshot.value];
+        self.otherTime = time;
+        
+        // host kicks off the message passing
+        if (self.isHost) {
+            NSLog(@"TSS Host Kickoff");
+            NSTimeInterval currentTime = CACurrentMediaTime();
+            [self sendEstimate:time currentTime:currentTime];
+        }
+    }
+
+}
+
+- (void)onChanged:(FDataSnapshot*)snapshot {
+    
+    // This should NOT be called until we have other time
+    
+    NSTimeInterval currentTime = CACurrentMediaTime();
+    
+    BOOL isMine = [self isMine:snapshot];
+    PlayerTime * time = (isMine) ? self.myTime : self.otherTime;
+    [time setValuesForKeysWithDictionary:snapshot.value];
+    
+    if (isMine && time.accepted) {
+        NSLog(@"TSS accepted (OTHER)");
+        [self startWithPlayerTime:time];
+    }
+    else if (!isMine && !time.accepted) {
+        NSAssert(self.otherTime, @"Other time not set");
+        if ([self checkEstimate:time currentTime:currentTime]) {
+            NSLog(@"TSS accept (SELF)");
+            [self acceptTime:time];
+            [self startWithPlayerTime:time];
+        }
+        else {
+            [self sendEstimate:time currentTime:currentTime];
+        }
+    }
+    
+}
+
+- (BOOL)isMine:(FDataSnapshot*)snapshot {
+    return [snapshot.name isEqualToString:self.name];
 }
 
 - (void)sendEstimate:(PlayerTime*)other currentTime:(NSTimeInterval)currentTime {
@@ -81,20 +114,27 @@
     if (other.dTimeTo)
         self.myTime.dTimeFrom = other.dTimeTo;
     
-//    NSLog(@" - sending");
+//    NSLog(@"TSS send myTime=%f from=%f", self.myTime.currentTime, self.myTime.dTimeFrom);
     
-    [self.timesCollection updateObject:self.myTime];
+    [self save:self.myTime];
+}
+
+- (void)save:(PlayerTime*)time {
+    Firebase * mynode = [self.node childByAppendingPath:time.name];
+    [mynode onDisconnectRemoveValue];
+    [mynode setValue:time.toObject];
 }
 
 - (BOOL)checkEstimate:(PlayerTime*)other currentTime:(NSTimeInterval)currentTime {
     NSTimeInterval localTimeOfOther = other.currentTime + other.dTimeFrom;
-//    NSLog(@"EEE me=%f them=%f local=%f diff=%f", currentTime, other.currentTime, localTimeOfOther, currentTime - localTimeOfOther);
-    return (fabs(currentTime - localTimeOfOther) < MAX_TOLERANCE);
+    CGFloat diff = fabs(currentTime - localTimeOfOther);
+//    NSLog(@"TSS check (them=%f + from=%f) diff=%f", other.currentTime, other.dTimeFrom, diff);
+    return (diff < MAX_TOLERANCE);
 }
 
 - (void)acceptTime:(PlayerTime*)other {
     other.accepted = YES;
-    [self.timesCollection updateObject:other];
+    [self save:other];
 }
 
 // ok, he accepted, it was accurate, so start 1 true second from that time
@@ -103,7 +143,7 @@
     if (time != self.myTime) {
         startTime += time.dTimeFrom;
     }
-//    NSLog(@"SHOULD START currentTime=%f startTime=%f diff=%f", CACurrentMediaTime(), startTime, );
+    NSLog(@"TSS ** START dTimeFrom=%f", time.dTimeFrom);
     [self.delegate gameShouldStartAt:startTime];
 }
 

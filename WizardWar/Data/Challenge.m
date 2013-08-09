@@ -19,6 +19,7 @@
 
 @synthesize mainId;
 @synthesize opponentId;
+@synthesize isDeletedRemotely;
 
 -(NSDictionary*)toObject {
     return @{@"mainId": self.main.userId, @"opponentId": self.opponent.userId, @"status": @(self.status), @"matchId": self.matchId};
@@ -48,6 +49,10 @@
 
 -(void)setValue:(id)value forUndefinedKey:(NSString *)key {
     
+}
+
+- (NSString*)challenge {
+    return [NSString stringWithFormat:@"%@ %@ %@ vs %@", super.description, self.matchId, self.main.name, self.opponent.name];
 }
 
 

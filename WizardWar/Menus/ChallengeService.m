@@ -79,7 +79,8 @@
 -(void)onRemoved:(FDataSnapshot*)snapshot {
     Challenge * challenge = [self challengeWithId:snapshot.name create:NO];
     if (challenge) {
-        NSLog(@"ChallengeService (-) %@ vs %@", challenge.main.name, challenge.opponent.name);        
+        NSLog(@"ChallengeService (-) %@ vs %@", challenge.main.name, challenge.opponent.name);
+        challenge.isDeletedRemotely = YES;
         [ObjectStore.shared.context deleteObject:challenge];
     }
 }
@@ -165,6 +166,7 @@
 }
 
 - (void)removeChallenge:(Challenge*)challenge {
+    if (challenge.isDeletedRemotely) return;
     Firebase * child = [self challengeNode:challenge];
     [child removeValue];
 }

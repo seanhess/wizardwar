@@ -109,6 +109,7 @@
 }
 
 - (void)addPlayer:(Wizard*)player {
+    NSLog(@"ADD PLAYER %@", player.name);
     [self.players setObject:player forKey:player.name];
     
     if ([player.name isEqualToString:self.hostName]) {
@@ -194,6 +195,8 @@
 
 -(void)startIfReady {
     if (self.players.count < 2) return;
+    
+    NSLog(@"Match: starting...");
     
     BOOL isHost = (self.currentWizard == self.host);
     self.timer = [GameTimerService new];
@@ -291,7 +294,7 @@
 
 -(void)positionSpell:(Spell*)spell referenceTick:(NSInteger)referenceTick currentTick:(NSInteger)currentTick {
     NSInteger tickDifference = currentTick - referenceTick;
-    if (tickDifference < 0) NSLog(@" SPELL IN FUTURE");
+    if (tickDifference < 0) NSLog(@"******************SPELL IN FUTURE*****************");
     spell.position = [spell moveFromReferencePosition:(tickDifference * self.timer.tickInterval)];
     spell.status = SpellStatusActive;
 }

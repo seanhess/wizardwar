@@ -172,9 +172,15 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    self.currentChallenge = nil;
+    self.currentMatch = nil;
     if (ChallengeService.shared.connected) {
         [ChallengeService.shared removeUserChallenge:self.currentUser];
-        [ChallengeService.shared declineAllChallenges:self.currentUser];
+        // Why do this? to remove the challenge you were just in.
+        // If the other user leaves
+        //[ChallengeService.shared declineAllChallenges:self.currentUser];
+        // when the invitee hits back, it's still here for him.
+        // need to remove the one I was just in. 
     }
 }
 
@@ -273,6 +279,7 @@
     }
 
     else {
+        // decline all challenges when we disconect, yes
         [ChallengeService.shared removeUserChallenge:self.currentUser];
         [ChallengeService.shared declineAllChallenges:self.currentUser];
         [self showLoading];
@@ -534,7 +541,7 @@
 - (void)joinMatch:(Challenge*)challenge {
     // don't join the same match twice
     if (challenge == self.currentChallenge) return;
-    NSLog(@"*** JOIN MATCH");
+    NSLog(@"*** JOIN MATCH: challenge=%@ currentChallenge=%@", challenge, self.currentChallenge);
     
     // Only the active user broadcasts what he is doing
     [LobbyService.shared user:self.currentUser joinedMatch:challenge.matchId];

@@ -14,4 +14,8 @@
     return [self dictionaryWithValuesForKeys:@[@"name", @"currentTime", @"dTimeTo", @"accepted", @"dTimeFrom"]];
 }
 
+-(NSString*)description {
+    return [NSString stringWithFormat:@"%@ %@", [super description], [self toObject]];
+}
+
 @end

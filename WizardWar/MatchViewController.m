@@ -32,6 +32,7 @@
 #import <NSString+FontAwesome.h>
 #import "AppStyle.h"
 #import "HelpViewController.h"
+#import "ChallengeService.h"
 
 @interface MatchViewController () <HelpDelegate>
 @property (strong, nonatomic) PentagramViewController * pentagram;
@@ -275,6 +276,7 @@
     [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
     self.match = nil;
+    [ChallengeService.shared removeChallenge:self.challenge];
     [self dismissViewControllerAnimated:YES completion:nil];
     //    [self.navigationController popViewControllerAnimated:YES];    
 }
