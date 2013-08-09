@@ -61,11 +61,11 @@ aCBOb3RpZmljYXRpb25zIHNvIGZyaWVuZHMgY2FuIGludml0ZSB5b3UgdG8gcGxheS4</string>
 					<int key="IBUIAutocapitalizationType">2</int>
 					<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				</object>
-				<object class="IBUIFontDescription" key="IBUIFontDescription" id="795481361">
+				<object class="IBUIFontDescription" key="IBUIFontDescription" id="788843761">
 					<int key="type">1</int>
 					<double key="pointSize">14</double>
 				</object>
-				<object class="NSFont" key="IBUIFont" id="520775555">
+				<object class="NSFont" key="IBUIFont" id="490989252">
 					<string key="NSName">Helvetica</string>
 					<double key="NSSize">14</double>
 					<int key="NSfFlags">16</int>
@@ -197,10 +197,10 @@ aCBOb3RpZmljYXRpb25zIHNvIGZyaWVuZHMgY2FuIGludml0ZSB5b3UgdG8gcGxheS4</string>
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
-			<object class="IBUITextView" id="785280618">
+			<object class="IBUITextView" id="713344633">
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
-				<string key="NSFrameSize">{320, 152}</string>
+				<string key="NSFrameSize">{320, 109}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView"/>
@@ -227,8 +227,8 @@ aCBOb3RpZmljYXRpb25zIHNvIGZyaWVuZHMgY2FuIGludml0ZSB5b3UgdG8gcGxheS4</string>
 					<int key="IBUIAutocapitalizationType">2</int>
 					<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				</object>
-				<reference key="IBUIFontDescription" ref="795481361"/>
-				<reference key="IBUIFont" ref="520775555"/>
+				<reference key="IBUIFontDescription" ref="788843761"/>
+				<reference key="IBUIFont" ref="490989252"/>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -285,7 +285,7 @@ aCBOb3RpZmljYXRpb25zIHNvIGZyaWVuZHMgY2FuIGludml0ZSB5b3UgdG8gcGxheS4</string>
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">explanationsView</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="785280618"/>
+						<reference key="destination" ref="713344633"/>
 					</object>
 					<int key="connectionID">216</int>
 				</object>
@@ -672,7 +672,7 @@ aCBOb3RpZmljYXRpb25zIHNvIGZyaWVuZHMgY2FuIGludml0ZSB5b3UgdG8gcGxheS4</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">215</int>
-						<reference key="object" ref="785280618"/>
+						<reference key="object" ref="713344633"/>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Explanation View</string>
 					</object>

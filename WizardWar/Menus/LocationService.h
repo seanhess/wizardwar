@@ -17,6 +17,7 @@
 
 @property (nonatomic, strong) CLLocation * location;
 @property (nonatomic) BOOL accepted;
+@property (nonatomic) BOOL cannotFindLocation;
 @property (nonatomic, readonly) BOOL hasLocation;
 
 + (LocationService *)shared;

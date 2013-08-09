@@ -119,6 +119,8 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"ChallengeCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"ChallengeCell"];
     
+    [self.tableView setTableFooterView:self.explanationsView];
+    
     self.title = @"Matchmaking";
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationItem.titleView = [ComicZineDoubleLabel titleView:self.title navigationBar:self.navigationController.navigationBar];
@@ -419,7 +421,10 @@
         NSMutableString * message = [NSMutableString string];
         
         if (!LocationService.shared.accepted) {
-            [message appendString:@"Enable Location Services to see players near you\n"];
+            if (LocationService.shared.cannotFindLocation)
+                [message appendString:@"Cannot locate you! Please make sure Location Services are enabled to see players near you.\n"];
+            else
+                [message appendString:@"Enable Location Services to see players near you. You can do this in Settings.\n"];
         }
         
         if (!UserService.shared.pushAccepted) {
@@ -435,17 +440,16 @@
     }
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    if (section == SECTION_INDEX_LAST) return 80;
-    return 0;
-}
+//-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+//    return 0;
+//}
 
--(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    if (section == SECTION_INDEX_LAST) {
-        return self.explanationsView;
-    }
-    return nil;
-}
+//-(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+//    if (section == SECTION_INDEX_LAST) {
+//        return self.explanationsView;
+//    }
+//    return nil;
+//}
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == SECTION_INDEX_CHALLENGES) return @"Challenges";
