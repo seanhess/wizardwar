@@ -242,6 +242,7 @@
         else {
             self.message.textColor = [UIColor colorFromRGB:0x18AB34];
             self.message.text = @"YOU WON!";
+            self.subMessage.alpha = 0.0;
             [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"YouWon.mp3" loop:NO];
             if (self.challenge)
                 [self.delegate didFinishChallenge:self.challenge didWin:YES];
