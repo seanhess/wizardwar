@@ -194,7 +194,7 @@
     // I think friends should be showing up faster, no?
     [self.tableView reloadData];
     
-    [ChallengeService.shared connectAndReset];
+    [ChallengeService.shared connectAndReset:self];
     [LocationService.shared startMonitoring];
 
 //    __weak MatchmakingViewController * wself = self;
@@ -614,6 +614,7 @@
 }
 
 - (void)dealloc {
+    [ChallengeService.shared disconnect];
     // don't worry about disconnecting. If you aren't THERE, it's ok
     NSLog(@"MatchmakingViewController: dealloc");
 }

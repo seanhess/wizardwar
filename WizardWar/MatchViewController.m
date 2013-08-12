@@ -172,14 +172,10 @@
     return mp;
 }
 
-- (TimerSyncService*)defaultSyncService {
-    return [TimerSyncService new];
-}
-
 - (void)createMatchWithChallenge:(Challenge *)challenge currentWizard:(Wizard *)wizard {
     // join in the ready screen!
     self.challenge = challenge;
-    Match * match = [[Match alloc] initWithMatchId:challenge.matchId hostName:challenge.main.name currentWizard:wizard withAI:nil multiplayer:self.defaultMultiplayerService sync:self.defaultSyncService];
+    Match * match = [[Match alloc] initWithMatchId:challenge.matchId hostName:challenge.main.name currentWizard:wizard withAI:nil multiplayer:self.defaultMultiplayerService sync:[TimerSyncService shared]];
     self.match = match;
 }
 

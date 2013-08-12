@@ -7,7 +7,7 @@
 		<key>earthwall-cast</key>
 		<dict>
 			<key>delay</key>
-			<real>1.25</real>
+			<real>0.25</real>
 			<key>frames</key>
 			<array>
 				<string>earthwall-1.png</string>

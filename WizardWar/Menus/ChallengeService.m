@@ -20,6 +20,7 @@
 @interface ChallengeService ()
 @property (nonatomic, strong) Firebase * node;
 @property (nonatomic, strong) NSString * entityName;
+@property (nonatomic, weak) id subscriber;
 @end
 
 @implementation ChallengeService
@@ -35,11 +36,17 @@
     return instance;
 }
 
-- (void)connectAndReset {
+- (void)connectAndReset:(id)subscriber {
+    if (self.subscriber || self.connected) {
+        NSLog(@"Attempted to connect to ChallengeService twice!");
+        NSAssert(false, @"Attempted to connect to ChallengeService twice!");
+        return;
+    }
+    
+    self.subscriber = subscriber;
     self.connected = YES;    
 
     [self removeAll];
-
 
     self.node = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/challenges2"];
 
@@ -55,6 +62,13 @@
     [self.node observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
         [wself onChanged:snapshot];
     }];
+}
+
+- (void)disconnect {
+    self.connected = NO;
+    self.subscriber = nil;
+    [self.node removeAllObservers];
+    self.node = nil;
 }
 
 -(void)removeAll {
@@ -250,6 +264,5 @@
         @"matchId":challenge.matchId
     }];
 }
-
 
 @end

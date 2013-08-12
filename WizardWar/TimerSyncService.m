@@ -16,6 +16,7 @@
 #define MAX_TOLERANCE 0.01
 
 @interface TimerSyncService ()
+@property (strong, nonatomic) NSString * currentMatchId;
 @property (strong, nonatomic) Firebase * node;
 @property (strong, nonatomic) NSMutableDictionary * times;
 @property (strong, nonatomic) PlayerTime * myTime;
@@ -25,9 +26,26 @@
 @end
 
 
+
 @implementation TimerSyncService
 
++ (TimerSyncService *)shared {
+    static TimerSyncService *instance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instance = [[TimerSyncService alloc] init];
+    });
+    return instance;
+}
+
 - (void)syncTimerWithMatchId:(NSString *)matchId player:(Wizard *)player isHost:(BOOL)isHost {
+    
+    if (self.currentMatchId) {
+        NSLog(@"!!! Attempted to connect to match=%@ while still connected to %@", matchId, self.currentMatchId);
+        NSAssert(false, @"Connected to more than one match at a time. Remember to call disconnect!");
+    }
+    
+    self.currentMatchId = matchId;
     NSLog(@"TIMER SYNC SERVICE start: self=%@ matchId=%@", self, matchId);
     
     self.isHost = isHost;
@@ -148,6 +166,7 @@
 }
 
 - (void)disconnect {
+    self.currentMatchId = nil;
     [self.node removeValue];
 }
 @end

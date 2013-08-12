@@ -22,7 +22,9 @@
 - (void)removeChallenge:(Challenge*)challenge;
 - (void)setChallenge:(Challenge*)challenge status:(ChallengeStatus)status;
 
-- (void)connectAndReset;
+// only have one person connecting and disconnecting at a time
+- (void)connectAndReset:(id)subscriber;
+- (void)disconnect;
 
 - (Challenge*)challengeWithId:(NSString*)matchId create:(BOOL)create;
 
