@@ -63,4 +63,5 @@ typedef enum SpellStatus {
 -(float)move:(NSTimeInterval)dt;
 -(float)moveFromReferencePosition:(NSTimeInterval)dt;
 +(NSString*)generateSpellId;
+-(void)setPositionFromPlayer:(Wizard*)player;
 @end

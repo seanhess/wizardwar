@@ -71,7 +71,7 @@
         
 #ifdef DEBUG
 //        self.stop = YES;
-        self.allSpells = @[[SpellFireball class]];
+        self.allSpells = @[[SpellVine class]];
 #endif
     }
     return self;
@@ -98,7 +98,6 @@
 }
 
 -(void)opponent:(Wizard*)wizard didCastSpell:(Spell*)spell atTick:(NSInteger)tick {
-    NSLog(@"OPPONENT SPELL %@ %@", wizard, spell);
     self.opponentSpellsCast += 1;
     self.lastSpellTick = tick-15;
 }

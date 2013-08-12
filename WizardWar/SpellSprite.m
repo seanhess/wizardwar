@@ -227,6 +227,10 @@
         y += 60;
     }
     
+    else if ([self.spell isType:[SpellVine class]]) {
+        y += 30;
+    }    
+    
     return y;
 }
 
@@ -236,6 +240,10 @@
     CGFloat x = [self.units toX:self.spell.position];
     
     if ([self.spell isType:[SpellHelmet class]]) {
+        x -= 15*self.spell.direction;
+    }
+    
+    else if ([self.spell isType:[SpellVine class]]) {
         x -= 15*self.spell.direction;
     }
     

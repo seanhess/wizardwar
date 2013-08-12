@@ -8,6 +8,8 @@
 
 #import "Spell.h"
 
+#define SPELL_WALL_OFFSET_POSITION 15
+
 @interface SpellWall : Spell
 -(BOOL)isNewerWall:(Spell*)spell;
 @end
