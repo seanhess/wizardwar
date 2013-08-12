@@ -590,26 +590,23 @@
 }
 
 - (void)joinMatch:(Challenge*)challenge {
-    // don't join the same match twice
-    // both lines MUST be at the top (challenge gets modified during this block)
-    if (challenge == self.currentChallenge) return;
-    self.currentChallenge = challenge;
-    NSLog(@"*** JOIN MATCH: challenge=%@ currentChallenge=%@", challenge, self.currentChallenge);
     
     // the challenge is updated, and bindings are fired, BEFORE I get to the end of this block
+    // Therefore: make EXTRA SURE you can't join a match while it's going, or you end up joining the same one twice
     
+    if (self.currentMatch) return;
+    NSLog(@"---- JOIN MATCH (%@) ----", challenge.matchId);
+    self.currentChallenge = challenge;
+    self.currentMatch = [[MatchViewController alloc] init];
+    self.currentMatch.delegate = self;
+    [self.currentMatch createMatchWithChallenge:challenge currentWizard:UserService.shared.currentWizard];
+    [self.navigationController presentViewController:self.currentMatch animated:YES completion:nil];
+    
+    // Should be called after viewDidLoad
+    [self.currentMatch startMatch];
+
     // Only the active user broadcasts what he is doing
     [LobbyService.shared user:self.currentUser joinedMatch:challenge.matchId];
-    
-    MatchViewController * match = [[MatchViewController alloc] init];
-    match.delegate = self;
-    [match createMatchWithChallenge:challenge currentWizard:UserService.shared.currentWizard];
-    [self.navigationController presentViewController:match animated:YES completion:nil];
-
-    // Should be called after viewDidLoad
-    [match startMatch];
-    
-    self.currentMatch = match;
 }
 
 - (void)didFinishChallenge:(Challenge *)challenge didWin:(BOOL)didWin {

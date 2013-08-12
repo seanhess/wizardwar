@@ -143,7 +143,7 @@
     if (time != self.myTime) {
         startTime += time.dTimeFrom;
     }
-    NSLog(@"TSS ** START dTimeFrom=%f", time.dTimeFrom);
+    NSLog(@"TSS START dTimeFrom=%f", time.dTimeFrom);
     [self.delegate gameShouldStartAt:startTime];
 }
 
