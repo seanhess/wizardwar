@@ -216,6 +216,7 @@
 }
 
 -(void)update:(NSTimeInterval)dt {
+    [self.sync update:dt];
     [self.timer update:dt];    
 }
 
@@ -501,6 +502,10 @@
 
 - (void)dealloc {
     NSLog(@"Match: dealloc");
+    
+    // SAME THING HERE
+    // you should NEVER be connected to more than one match at a time
+    // add something that forces you to know!
 }
 
 @end

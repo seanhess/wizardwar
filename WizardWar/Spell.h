@@ -33,7 +33,6 @@ typedef enum SpellStatus {
 @property (nonatomic) NSInteger direction;  // 1, or -1
 @property (nonatomic) NSInteger strength;
 @property (nonatomic) NSInteger damage;
-@property (nonatomic) NSTimeInterval created;
 @property (nonatomic, strong) NSString * type; // tells me which class to instantiate. Use the string representation
 @property (nonatomic) NSInteger createdTick;
 @property (nonatomic) NSInteger updatedTick;

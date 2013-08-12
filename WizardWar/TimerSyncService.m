@@ -11,6 +11,7 @@
 #import "PlayerTime.h"
 #import "FirebaseCollection.h"
 #import "IdService.h"
+#import "cocos2d.h"
 
 #define DELAY_START 1
 #define MAX_TOLERANCE 0.01
@@ -23,8 +24,9 @@
 @property (strong, nonatomic) PlayerTime * otherTime;
 @property (strong, nonatomic) NSString * name;
 @property (nonatomic) BOOL isHost;
-@end
 
+@property (nonatomic) CGFloat currentTime;
+@end
 
 
 @implementation TimerSyncService
@@ -38,6 +40,10 @@
     return instance;
 }
 
+- (void)update:(NSTimeInterval)delta {
+    self.currentTime += delta;
+}
+
 - (void)syncTimerWithMatchId:(NSString *)matchId player:(Wizard *)player isHost:(BOOL)isHost {
     
     if (self.currentMatchId) {
@@ -46,7 +52,7 @@
     }
     
     self.currentMatchId = matchId;
-    NSLog(@"TIMER SYNC SERVICE start: self=%@ matchId=%@", self, matchId);
+    NSLog(@"TIMER SYNC SERVICE start: matchId=%@ isHost=%i", matchId, isHost);
     
     self.isHost = isHost;
     self.name = [NSString stringWithFormat:@"%@ %@", player.name, [IdService randomId:4]];
@@ -66,13 +72,19 @@
     
     PlayerTime *myTime = [PlayerTime new];
     myTime.name = self.name;
-    myTime.currentTime = CACurrentMediaTime();
+    myTime.currentTime = self.currentTime;
+    NSAssert((self.myTime == nil), @"myTime was not cleared!");
     self.myTime = myTime;
     [self save:myTime];
 }
 
 - (void)onAdded:(FDataSnapshot*)snapshot {
     // If it is the other
+    
+    if (self.isHost) {
+        NSLog(@"TSS onAdded isHost");
+    }
+    
     if (![self isMine:snapshot] && !self.otherTime) {
         NSLog(@"TSS added: %@", snapshot.name);
         PlayerTime * time = [PlayerTime new];
@@ -82,8 +94,7 @@
         // host kicks off the message passing
         if (self.isHost) {
             NSLog(@"TSS Host Kickoff");
-            NSTimeInterval currentTime = CACurrentMediaTime();
-            [self sendEstimate:time currentTime:currentTime];
+            [self sendEstimate:time currentTime:self.currentTime];
         }
     }
 
@@ -92,8 +103,6 @@
 - (void)onChanged:(FDataSnapshot*)snapshot {
     
     // This should NOT be called until we have other time
-    
-    NSTimeInterval currentTime = CACurrentMediaTime();
     
     BOOL isMine = [self isMine:snapshot];
     PlayerTime * time = (isMine) ? self.myTime : self.otherTime;
@@ -105,13 +114,13 @@
     }
     else if (!isMine && !time.accepted) {
         NSAssert(self.otherTime, @"Other time not set");
-        if ([self checkEstimate:time currentTime:currentTime]) {
+        if ([self checkEstimate:time currentTime:self.currentTime]) {
             NSLog(@"TSS accept (SELF)");
             [self acceptTime:time];
             [self startWithPlayerTime:time];
         }
         else {
-            [self sendEstimate:time currentTime:currentTime];
+            [self sendEstimate:time currentTime:self.currentTime];
         }
     }
     
@@ -166,7 +175,11 @@
 }
 
 - (void)disconnect {
+    self.myTime = nil;
+    self.otherTime = nil;    
     self.currentMatchId = nil;
     [self.node removeValue];
+    self.node = nil;
+    self.name = nil;
 }
 @end

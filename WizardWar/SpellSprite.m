@@ -305,7 +305,6 @@
         [self renderPosition];
     } else {
         NSString * frameName = [NSString stringWithFormat:@"%@-%i.png", self.sheetName, (strength+1)];
-        NSLog(@"RENDER STRENGTH %i %@", strength, frameName);
         [self.skin setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
     }
 }

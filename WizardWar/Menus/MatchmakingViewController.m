@@ -137,11 +137,11 @@
     
     
     [RACAble(LocationService.shared, accepted) subscribeNext:^(id x) {
-        [self.tableView reloadData];
+        [wself.tableView reloadData];
     }];
     
     [RACAble(UserService.shared, pushAccepted) subscribeNext:^(id x) {
-        [self.tableView reloadData];
+        [wself.tableView reloadData];
     }];
     
     

@@ -19,6 +19,7 @@
 @interface TimerSyncService : NSObject
 @property (nonatomic, weak) id<TimerSyncDelegate> delegate;
 +(TimerSyncService*)shared;
+-(void)update:(NSTimeInterval)delta;
 -(void)syncTimerWithMatchId:(NSString*)matchId player:(Wizard*)player isHost:(BOOL)isHost;
 -(void)disconnect;
 @end

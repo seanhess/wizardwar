@@ -19,7 +19,6 @@
 -(id)init {
     if ((self = [super init])) {
         self.type = NSStringFromClass([self class]);
-        self.created = CACurrentMediaTime();
         self.damage = 1; // default value
         self.speed = 30; // 30 units per second
         self.strength = 1; // destroyed is read from this
@@ -66,7 +65,7 @@
 }
 
 -(NSDictionary*)toObject {
-    return [self dictionaryWithValuesForKeys:@[@"speed", @"referencePosition", @"created", @"type", @"direction", @"createdTick", @"strength", @"status", @"updatedTick"]];
+    return [self dictionaryWithValuesForKeys:@[@"speed", @"referencePosition", @"type", @"direction", @"createdTick", @"strength", @"status", @"updatedTick"]];
 }
 
 -(void)setPositionFromPlayer:(Wizard*)player {

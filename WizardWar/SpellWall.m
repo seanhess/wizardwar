@@ -22,7 +22,7 @@
 }
 
 -(BOOL)isNewerWall:(Spell*)spell {
-    return (spell.speed == 0 && spell.startOffsetPosition == self.startOffsetPosition) && (self.created < spell.created);
+    return (spell.speed == 0 && spell.startOffsetPosition == self.startOffsetPosition) && (self.createdTick < spell.createdTick);
 }
 
 @end

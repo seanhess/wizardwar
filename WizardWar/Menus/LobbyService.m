@@ -53,12 +53,10 @@
     __weak LobbyService * wself = self;
 
     [self.lobby observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
-        self.totalInLobby++;        
         [wself onAdded:snapshot];
     }];
     
     [self.lobby observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
-        self.totalInLobby--;
         [wself onRemoved:snapshot];
     }];
     
@@ -90,13 +88,17 @@
 
 // Guaranteed: that we have currentLocation at this point
 -(void)onAdded:(FDataSnapshot *)snapshot {
-    
+
     // It doesn't matter if this arrives before the user object
     // it will just add the isOnline, locationLatitude, locationLongitude
     
     User * user = [UserService.shared userWithId:snapshot.name create:YES];
     [user setValuesForKeysWithDictionary:snapshot.value];
     user.isOnline = YES;
+    
+    if (user != UserService.shared.currentUser) {
+        self.totalInLobby++;
+    }
 
     // Come through later and add distance!
     if (self.currentLocation)
@@ -110,6 +112,11 @@
 -(void)onRemoved:(FDataSnapshot*)snapshot {
     User * removed = [UserService.shared userWithId:snapshot.name];
     if (removed) {
+        
+        if (removed != UserService.shared.currentUser) {
+            self.totalInLobby--;
+        }
+        
         NSLog(@"LobbyService: (-) %@", removed.name);
         [self setUserOffline:removed];
     }

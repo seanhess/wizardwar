@@ -153,7 +153,6 @@
 
 -(NSMapTable*)wizard1HeadOffsets {
     if (!_wizard1HeadOffsets) {
-        NSLog(@"GENERATE OFFSETS");
         NSMapTable * mapTable = [NSMapTable mapTableWithKeyOptions:NSPointerFunctionsObjectPointerPersonality valueOptions:NSPointerFunctionsObjectPersonality];
         
         [self mapTable:mapTable setOffset:ccp(0,0) rotation:0 forAnimationName:@"wizard1-prepare.png"];
@@ -227,7 +226,7 @@
         if ([self.wizard.effect isKindOfClass:[EffectHelmet class]]) {
             CGPoint helmetOffset = ccp(self.wizard.direction*-4, 22);
             self.effect.position = ccp(self.browCenter.x+helmetOffset.x, self.browCenter.y+helmetOffset.y);
-            self.effect.rotation = headOffset.rotation;
+            self.effect.rotation = self.wizard.direction*headOffset.rotation;
         }
     } else {
         NSLog(@"CANT FIND FRAME status=%i", self.wizard.state);
