@@ -48,8 +48,16 @@
         return [SpellInteraction modify];
     }
     
+    // You CAN'T do the spell strength thing!
+    // Firewall has an animation, so you would need each size animated (unless you made it smaller)
+    // Actually that would work pretty well
     else if ([spell isKindOfClass:[SpellMonster class]] && spell.direction != self.direction) {
-        return [SpellInteraction cancel];
+        self.strength -= spell.damage;
+        
+        if (self.strength <= 0)
+            return [SpellInteraction cancel];
+        else
+            return [SpellInteraction modify];
     }
     
     return [SpellInteraction nothing];

@@ -24,10 +24,12 @@
 #import "SpellFailHotdog.h"
 #import "NSArray+Functional.h"
 #import "UIColor+Hex.h"
+#import "SpellLightningOrb.h"
 
 @interface PracticeModeAIService ()
 @property (nonatomic) NSInteger lastSpellTick;
-@property (nonatomic) NSArray * allSpells;
+@property (nonatomic) NSArray * allOffensive;
+@property (nonatomic) NSArray * allDefensive;
 @property (nonatomic) BOOL stop;
 
 @property (nonatomic) NSInteger totalSpellsCast;
@@ -35,8 +37,12 @@
 
 @property (nonatomic) NSTimeInterval castInterval;
 
+@property (nonatomic, strong) Spell * lastCastSpell;
+
 @end
 
+// He can cast walls for free!
+// they don't count against the limit
 @implementation PracticeModeAIService
 @synthesize wizard = _wizard;
 @synthesize delegate = _delegate;
@@ -53,25 +59,30 @@
         wizard.color = [UIColor colorFromRGB:0x005EA8];
         self.wizard = wizard;
                 
-        self.allSpells = @[
-                           [SpellFireball class], [SpellFireball class],
-                           [SpellEarthwall class],
-                           [SpellIcewall class],
-                           [SpellWindblast class],
-                           [SpellMonster class], [SpellMonster class],
-                           [SpellBubble class],
-                           [SpellVine class],
-                           [SpellFist class],
-                           [SpellHelmet class],
-                           [SpellLevitate class],
-                           [SpellSleep class],
-                           ];
+        self.allOffensive = @[
+            [SpellFireball class], [SpellFireball class],
+            [SpellWindblast class],
+            [SpellMonster class], [SpellMonster class],
+            [SpellBubble class],
+            [SpellLightningOrb class], [SpellLightningOrb class],
+            [SpellVine class],
+            [SpellFist class],
+            [SpellSleep class],
+        ];
+        
+        self.allDefensive = @[
+            [SpellEarthwall class],
+            [SpellIcewall class],
+            [SpellFirewall class],
+            [SpellHelmet class],
+            [SpellLevitate class],            
+        ];
         
         // No heal or invisibility because he's not patient tnough to let it finish
         
 #ifdef DEBUG
 //        self.stop = YES;
-        self.allSpells = @[[SpellVine class]];
+//        self.allOffensive = @[[SpellFireball class]];
 #endif
     }
     return self;
@@ -79,27 +90,34 @@
 
 -(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
     if (self.stop) return;
-    if (self.totalSpellsCast >= self.opponentSpellsCast) return;
     // interval is seconds per tick
     float ticksPerSecond = 1/interval;
     NSInteger castTickInterval = self.castInterval*ticksPerSecond;
     
     if (self.lastSpellTick + castTickInterval < currentTick) {
         self.lastSpellTick = currentTick;
-        self.totalSpellsCast+=1;
-        [self.delegate aiDidCastSpell:[self randomSpell]];
+        if (self.totalSpellsCast == self.opponentSpellsCast) {
+            if (![self.lastCastSpell isKindOfClass:[SpellWall class]]) {
+                Class SpellType = [self.allDefensive randomItem];
+                self.lastCastSpell = [SpellType new];
+                [self.delegate aiDidCastSpell:self.lastCastSpell];                
+            }
+        } else if (self.totalSpellsCast < self.opponentSpellsCast) {
+            self.totalSpellsCast+=1;
+            self.lastCastSpell = [self randomSpell];
+            [self.delegate aiDidCastSpell:self.lastCastSpell];
+        }
 //        self.stop = YES;
     }
 }
 
 -(Spell*)randomSpell {
-    Class SpellType = [self.allSpells randomItem];
+    Class SpellType = [self.allOffensive randomItem];
     return [SpellType new];
 }
 
 -(void)opponent:(Wizard*)wizard didCastSpell:(Spell*)spell atTick:(NSInteger)tick {
     self.opponentSpellsCast += 1;
-    self.lastSpellTick = tick-15;
 }
 
 @end

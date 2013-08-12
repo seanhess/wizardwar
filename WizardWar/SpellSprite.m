@@ -126,8 +126,6 @@
         }
         
         
-        
-        
         // TODO add a cool reduce thing to make sure they both get changed or something
         
         [[RACAble(self.spell.position) distinctUntilChanged] subscribeNext:^(id x) {
@@ -185,7 +183,7 @@
 }
 
 -(BOOL)isWall:(Spell*)spell {
-    return ([self.spell isType:[SpellEarthwall class]] || [self.spell isType:[SpellIcewall class]]);
+    return ([self.spell isKindOfClass:[SpellWall class]]);
 }
 
 -(void)renderDirection {
@@ -217,12 +215,16 @@
 -(CGFloat)spellYWithAltitude:(NSInteger)altitude {
     CGFloat y = [self.units altitudeY:altitude];
     
-    if ([self isWall:self.spell] || [self.spell class] == [SpellFirewall class]) {
+    if ([self isWall:self.spell]) {
         // stuff that needs to be on the ground
         y -= 25;
+        
+        if ([self.spell isKindOfClass:[SpellFirewall class]]) {
+            y -= 12 * (3-self.spell.strength);
+        }
     }
     
-    else if (self.spell.class == SpellFailChicken.class) {
+    if (self.spell.class == SpellFailChicken.class) {
         y -= 50;
     }
     
@@ -297,8 +299,14 @@
     NSInteger strength = self.spell.strength;
     if (strength < 0) strength = 0;
     if (strength > 3) strength = 3;
-    NSString * frameName = [NSString stringWithFormat:@"%@-%i.png", self.sheetName, (strength+1)];
-    [self.skin setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
+    
+    if ([self.spell isKindOfClass:[SpellFirewall class]]) {
+        self.skin.scale = (1 + (strength/3.0))/2;
+        [self renderPosition];
+    } else {
+        NSString * frameName = [NSString stringWithFormat:@"%@-%i.png", self.sheetName, (strength+1)];
+        [self.skin setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
+    }
 }
 
 - (void)renderStatus {

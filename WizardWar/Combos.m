@@ -84,6 +84,8 @@
        [SpellLevitate class],
        [SpellSleep class],
        [SpellCheeseCaptainPlanet class],
+
+       [SpellLightningOrb class],
    ];
 
 }

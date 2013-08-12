@@ -12,6 +12,7 @@
 #import "SpellIcewall.h"
 #import "SpellBubble.h"
 #import "SpellMonster.h"
+#import "SpellLightningOrb.h"
 
 @implementation SpellFireball
 
@@ -29,9 +30,8 @@
 -(SpellInteraction*)interactSpell:(Spell*)spell currentTick:(NSInteger)currentTick {
     
     if ([spell isType:[SpellEarthwall class]] && spell.direction != self.direction) {
-        // TODO wear down?
-        
-        
+        // DO NOT: reduce the strength of the fireball too
+        // the earthwall is reducing its strength, and it's not clear which happens first
         return [SpellInteraction cancel];
     }
     
@@ -46,6 +46,10 @@
         return [SpellInteraction cancel];
     }
     
+    else if ([spell isType:[SpellLightningOrb class]]) {
+        return [SpellInteraction cancel];
+    }
+    
     else if ([spell isType:[SpellBubble class]]) {
         if (self.position == spell.position && self.speed == spell.speed && self.direction == spell.direction)
             return [SpellInteraction nothing];
@@ -56,16 +60,14 @@
         return [SpellInteraction modify];
     }
     
-    else if ([spell isType:[SpellMonster class]]) {
-        self.damage -= 1;
-        
-        if (self.damage > 0) {
-            return [SpellInteraction modify];
-        } else {
-            return [SpellInteraction cancel];
-        }
-    }
-    
+//    else if ([spell isType:[SpellMonster class]]) {
+//        self.damage -= 1;
+//        if (self.damage > 0) {
+//            return [SpellInteraction modify];
+//        } else {
+//            return [SpellInteraction cancel];
+//        }
+//    }
     
     // fire + fire is ignored
     return [SpellInteraction nothing];
