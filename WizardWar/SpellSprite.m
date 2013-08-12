@@ -298,13 +298,14 @@
     if (![self isWall:self.spell]) return;
     NSInteger strength = self.spell.strength;
     if (strength < 0) strength = 0;
-    if (strength > 3) strength = 3;
+    if (strength > 3) strength = 3;   
     
     if ([self.spell isKindOfClass:[SpellFirewall class]]) {
         self.skin.scale = (1 + (strength/3.0))/2;
         [self renderPosition];
     } else {
         NSString * frameName = [NSString stringWithFormat:@"%@-%i.png", self.sheetName, (strength+1)];
+        NSLog(@"RENDER STRENGTH %i %@", strength, frameName);
         [self.skin setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
     }
 }
@@ -469,6 +470,8 @@
     
     CCActionInterval * actionInterval = [CCAnimate actionWithAnimation:animation];
     CCAction * action = actionInterval;
+    
+    NSLog(@"CAST ANIMATION %@", self.castAnimationName);
     
     if (self.spell.class == SpellFirewall.class) {
         CCAnimation * startAnimation = [[CCAnimationCache sharedAnimationCache] animationByName:@"firewall-start"];

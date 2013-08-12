@@ -16,7 +16,12 @@
 #import "Tick.h"
 #import "SpellFirewall.h"
 
-#define TIME_UNTIL_ATTACK 3
+#define TIME_UNTIL_ATTACK_START 1.5
+#define TIME_UNTIL_ATTACK_END 3
+
+@interface SpellVine ()
+@property (nonatomic) BOOL isAttacking;
+@end
 
 @implementation SpellVine
 
@@ -28,6 +33,7 @@
         self.castDelay *= 2.5;
         self.speed = 0;
         self.startOffsetPosition = UNITS_MAX - SPELL_WALL_OFFSET_POSITION;
+        self.isAttacking = NO;
     }
     return self;
 }
@@ -38,19 +44,26 @@
         return [SpellInteraction cancel];
     }
     
+    else if (self.isAttacking && [spell isKindOfClass:[SpellFireball class]]) {
+        return [SpellInteraction cancel];
+    }
+    
     return [SpellInteraction nothing];
 }
 
 -(SpellInteraction *)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
     NSInteger elapsedTicks = currentTick - self.createdTick;
-    NSInteger lastTick = round(TIME_UNTIL_ATTACK/interval);
-    if (elapsedTicks >= lastTick + 4) {
+    NSInteger ticksUntilAttackStart = round(TIME_UNTIL_ATTACK_START/interval);
+    NSInteger ticksUntilAttackEnd = round(TIME_UNTIL_ATTACK_END/interval);
+    if (elapsedTicks >= ticksUntilAttackEnd + 4) {
         return [SpellInteraction cancel];
-    } else if (elapsedTicks >= lastTick) {
+    } else if (elapsedTicks >= ticksUntilAttackEnd) {
         if (self.position < UNITS_MID)
             self.position = UNITS_MIN;
         else
             self.position = UNITS_MAX;
+    } else if (elapsedTicks >= ticksUntilAttackStart) {
+        self.isAttacking = YES;
     }
     
     return nil;
