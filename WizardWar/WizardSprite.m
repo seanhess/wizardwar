@@ -369,7 +369,7 @@
     else if ([self.wizard.effect class] == [EffectUndies class]) {
         self.effect = [CCSprite spriteWithFile:@"wizard-undies.png"];
 //        self.effect.flipY = YES;
-        self.effect.position = ccp(self.wizard.direction*-15, -34);
+        self.effect.position = ccp(self.wizard.direction*-12, -30);
         
         
     }
