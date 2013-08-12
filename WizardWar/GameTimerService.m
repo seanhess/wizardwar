@@ -13,7 +13,6 @@
 @interface GameTimerService ()
 @property (nonatomic) NSInteger currentTick;
 @property (nonatomic) NSTimeInterval nextTickTime;
-@property (nonatomic) CGFloat currentTime;
 @end
 
 @implementation GameTimerService
@@ -24,9 +23,9 @@
 
 // make sure you start calling this by the time you call startAt
 - (void)update:(NSTimeInterval)dt {
-    self.currentTime += dt;
+    self.localTime += dt;
     if (!self.nextTickTime) return;
-    if (self.nextTickTime < self.currentTime) {
+    if (self.nextTickTime < self.localTime) {
         self.nextTickTime = self.nextTickTime + self.tickInterval;
         
         self.currentTick = self.nextTick;

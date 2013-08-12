@@ -206,7 +206,7 @@
     
     // TODO; I only want to do this if the multiplayer so requires...
     if (self.sync)
-        [self.sync syncTimerWithMatchId:self.matchId player:self.currentWizard isHost:isHost];
+        [self.sync syncTimerWithMatchId:self.matchId player:self.currentWizard isHost:isHost timer:self.timer];
     else
         [self gameShouldStartAt:CACurrentMediaTime() + 0.1];
 }

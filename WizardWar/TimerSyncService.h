@@ -12,6 +12,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Wizard.h"
+#import "GameTimerService.h"
 @protocol TimerSyncDelegate
 -(void)gameShouldStartAt:(NSTimeInterval)startTime;
 @end
@@ -19,7 +20,6 @@
 @interface TimerSyncService : NSObject
 @property (nonatomic, weak) id<TimerSyncDelegate> delegate;
 +(TimerSyncService*)shared;
--(void)update:(NSTimeInterval)delta;
--(void)syncTimerWithMatchId:(NSString*)matchId player:(Wizard*)player isHost:(BOOL)isHost;
+-(void)syncTimerWithMatchId:(NSString*)matchId player:(Wizard*)player isHost:(BOOL)isHost timer:(GameTimerService*)timer;
 -(void)disconnect;
 @end

@@ -24,8 +24,7 @@
 @property (strong, nonatomic) PlayerTime * otherTime;
 @property (strong, nonatomic) NSString * name;
 @property (nonatomic) BOOL isHost;
-
-@property (nonatomic) CGFloat currentTime;
+@property (nonatomic, strong) GameTimerService * timer;
 @end
 
 
@@ -40,11 +39,17 @@
     return instance;
 }
 
-- (void)update:(NSTimeInterval)delta {
-    self.currentTime += delta;
-}
+// player: "localTime = t2, offset = dt" (start with 100ms, or something)
+// host: modifies player with hostTime
+// player: repeat
+// host: modifies player with hostTime
+// player: repeat
+// host: modifies player with accepted = YES, hostTime, startTime
+// player: gets accepted message, saves offset, starts game at correct host time
 
-- (void)syncTimerWithMatchId:(NSString *)matchId player:(Wizard *)player isHost:(BOOL)isHost {
+// TODO: use the same updated timer as timer service
+
+- (void)syncTimerWithMatchId:(NSString *)matchId player:(Wizard *)player isHost:(BOOL)isHost timer:(GameTimerService *)timer {
     
     if (self.currentMatchId) {
         NSLog(@"!!! Attempted to connect to match=%@ while still connected to %@", matchId, self.currentMatchId);
@@ -54,6 +59,7 @@
     self.currentMatchId = matchId;
     NSLog(@"TIMER SYNC SERVICE start: matchId=%@ isHost=%i", matchId, isHost);
     
+    self.timer = timer;
     self.isHost = isHost;
     self.name = [NSString stringWithFormat:@"%@ %@", player.name, [IdService randomId:4]];
     
@@ -72,7 +78,7 @@
     
     PlayerTime *myTime = [PlayerTime new];
     myTime.name = self.name;
-    myTime.currentTime = self.currentTime;
+    myTime.currentTime = self.timer.localTime;
     NSAssert((self.myTime == nil), @"myTime was not cleared!");
     self.myTime = myTime;
     [self save:myTime];
@@ -94,7 +100,7 @@
         // host kicks off the message passing
         if (self.isHost) {
             NSLog(@"TSS Host Kickoff");
-            [self sendEstimate:time currentTime:self.currentTime];
+            [self sendEstimate:time currentTime:self.timer.localTime];
         }
     }
 
@@ -114,13 +120,13 @@
     }
     else if (!isMine && !time.accepted) {
         NSAssert(self.otherTime, @"Other time not set");
-        if ([self checkEstimate:time currentTime:self.currentTime]) {
+        if ([self checkEstimate:time currentTime:self.timer.localTime]) {
             NSLog(@"TSS accept (SELF)");
             [self acceptTime:time];
             [self startWithPlayerTime:time];
         }
         else {
-            [self sendEstimate:time currentTime:self.currentTime];
+            [self sendEstimate:time currentTime:self.timer.localTime];
         }
     }
     
