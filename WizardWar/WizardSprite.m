@@ -24,12 +24,13 @@
 #define PIXELS_HIGH_PER_ALTITUDE 100
 
 
-@interface WizardSkinFrame : NSObject
-@property (nonatomic) CGPoint browOffset;
-@property (nonatomic) CGPoint waistOffset;
+@interface WizardEffectOffset : NSObject
+@property (nonatomic) float x;
+@property (nonatomic) float y;
+@property (nonatomic) float rotation;
 @end
 
-@implementation WizardSkinFrame
+@implementation WizardEffectOffset
 @end
 
 
@@ -116,9 +117,11 @@
         self.label = [CCLabelTTF labelWithString:self.wizardName fontName:FONT_COMIC_ZINE fontSize:36];
         self.label.position = ccp(0, 130);
         [self addChild:self.label];
-        
+
+#ifdef DEBUG
         self.headDebug = [DebugSprite new];
         [self addChild:self.headDebug];
+#endif
         
         // BIND: state, position
         [self renderPosition];
@@ -153,28 +156,32 @@
         NSLog(@"GENERATE OFFSETS");
         NSMapTable * mapTable = [NSMapTable mapTableWithKeyOptions:NSPointerFunctionsObjectPointerPersonality valueOptions:NSPointerFunctionsObjectPersonality];
         
-        [self mapTable:mapTable setOffset:ccp(0,0) forAnimationName:@"wizard1-prepare.png"];
-        [self mapTable:mapTable setOffset:ccp(-3,-4) forAnimationName:@"wizard1-prepare2.png"];
-        [self mapTable:mapTable setOffset:ccp(-5,-5) forAnimationName:@"wizard1-prepare3.png"];
-        [self mapTable:mapTable setOffset:ccp(-9,-9) forAnimationName:@"wizard1-prepare4.png"];
+        [self mapTable:mapTable setOffset:ccp(0,0) rotation:0 forAnimationName:@"wizard1-prepare.png"];
+        [self mapTable:mapTable setOffset:ccp(-3,-4) rotation:0 forAnimationName:@"wizard1-prepare2.png"];
+        [self mapTable:mapTable setOffset:ccp(-5,-5) rotation:-1 forAnimationName:@"wizard1-prepare3.png"];
+        [self mapTable:mapTable setOffset:ccp(-9,-9) rotation:-2 forAnimationName:@"wizard1-prepare4.png"];
 
-        [self mapTable:mapTable setOffset:ccp(-5,5) forAnimationName:@"wizard1-attack2.png"];
-        [self mapTable:mapTable setOffset:ccp(0,2) forAnimationName:@"wizard1-attack3.png"];
-        [self mapTable:mapTable setOffset:ccp(8,-3) forAnimationName:@"wizard1-attack4.png"];
-        [self mapTable:mapTable setOffset:ccp(8,-3) forAnimationName:@"wizard1-attack.png"];
+        [self mapTable:mapTable setOffset:ccp(-5,5) rotation:0 forAnimationName:@"wizard1-attack2.png"];
+        [self mapTable:mapTable setOffset:ccp(0,2) rotation:0 forAnimationName:@"wizard1-attack3.png"];
+        [self mapTable:mapTable setOffset:ccp(8,-3) rotation:0 forAnimationName:@"wizard1-attack4.png"];
+        [self mapTable:mapTable setOffset:ccp(8,-3) rotation:0 forAnimationName:@"wizard1-attack.png"];
         
-        [self mapTable:mapTable setOffset:ccp(0,0) forAnimationName:@"wizard1-damage.png"];
-        [self mapTable:mapTable setOffset:ccp(-7,-3) forAnimationName:@"wizard1-damage2.png"];
-        [self mapTable:mapTable setOffset:ccp(-35,1) forAnimationName:@"wizard1-damage5.png"];
-        [self mapTable:mapTable setOffset:ccp(-48,-9) forAnimationName:@"wizard1-damage6.png"];
+        [self mapTable:mapTable setOffset:ccp(0,0) rotation:0 forAnimationName:@"wizard1-damage.png"];
+        [self mapTable:mapTable setOffset:ccp(-7,-3) rotation:0 forAnimationName:@"wizard1-damage2.png"];
+        [self mapTable:mapTable setOffset:ccp(-36,0) rotation:-10 forAnimationName:@"wizard1-damage5.png"];
+        [self mapTable:mapTable setOffset:ccp(-49,-10) rotation:-20 forAnimationName:@"wizard1-damage6.png"];
         self.wizard1HeadOffsets = mapTable;
     }
     
     return _wizard1HeadOffsets;
 }
 
--(void)mapTable:(NSMapTable*)mapTable setOffset:(CGPoint)offset forAnimationName:(NSString*)name {
-    [mapTable setObject:[NSValue valueWithCGPoint:offset] forKey:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:name]];
+-(void)mapTable:(NSMapTable*)mapTable setOffset:(CGPoint)point rotation:(float)rotation forAnimationName:(NSString*)name {
+    WizardEffectOffset * offset = [WizardEffectOffset new];
+    offset.x = point.x;
+    offset.y = point.y;
+    offset.rotation = rotation;
+    [mapTable setObject:offset forKey:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:name]];
 }
      
      
@@ -212,7 +219,7 @@
     
     if (currentFrame) {
         CGPoint restBrow = ccp(0, 70);        
-        CGPoint headOffset = [[self.wizard1HeadOffsets objectForKey:currentFrame] CGPointValue];
+        WizardEffectOffset* headOffset = [self.wizard1HeadOffsets objectForKey:currentFrame];
         self.browCenter = ccp(self.wizard.direction*headOffset.x, restBrow.y + headOffset.y);
         
         self.headDebug.position = self.browCenter;
@@ -220,6 +227,7 @@
         if ([self.wizard.effect isKindOfClass:[EffectHelmet class]]) {
             CGPoint helmetOffset = ccp(self.wizard.direction*-4, 22);
             self.effect.position = ccp(self.browCenter.x+helmetOffset.x, self.browCenter.y+helmetOffset.y);
+            self.effect.rotation = headOffset.rotation;
         }
     } else {
         NSLog(@"CANT FIND FRAME status=%i", self.wizard.state);
