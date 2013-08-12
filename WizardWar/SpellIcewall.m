@@ -13,6 +13,7 @@
 #import "SpellBubble.h"
 #import "SpellVine.h"
 #import "SpellWindblast.h"
+#import "SpellLightningOrb.h"
 #import "Tick.h"
 
 @implementation SpellIcewall
@@ -36,6 +37,15 @@
     else if ([self isNewerWall:spell]) {
         return [SpellInteraction cancel];
     }
+    
+    else if ([spell isType:[SpellLightningOrb class]] && spell.direction != self.direction) {
+        self.strength -= spell.damage;
+
+        if (self.strength <= 0)
+            return [SpellInteraction cancel];
+        else
+            return [SpellInteraction modify];
+    }    
     
     return [SpellInteraction nothing];
 }

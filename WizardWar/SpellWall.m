@@ -14,7 +14,7 @@
     if ((self=[super init])) {
         self.speed = 0;
         self.damage = 0;
-        self.strength = 1;
+        self.strength = 3;
         self.startOffsetPosition = SPELL_WALL_OFFSET_POSITION;
         self.castDelay = 0.5;
     }

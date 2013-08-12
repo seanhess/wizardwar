@@ -83,6 +83,7 @@
 #ifdef DEBUG
 //        self.stop = YES;
 //        self.allOffensive = @[[SpellFireball class]];
+        self.allDefensive = @[[SpellIcewall class]];
 #endif
     }
     return self;

@@ -40,13 +40,15 @@
         return [SpellInteraction cancel];
     }
     
-//    if ([spell isType:[SpellFireball class]]) {
-//        self.damage += 1;
-//        return [SpellInteraction modify];
-//    }
+    // Try this for now! Might be OP
+    if ([spell isType:[SpellFireball class]]) {
+        self.damage += 1;
+        return [SpellInteraction modify];
+    }
     
     return [SpellInteraction nothing];
 }
+
 
 
 

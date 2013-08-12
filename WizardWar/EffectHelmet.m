@@ -8,6 +8,7 @@
 
 #import "EffectHelmet.h"
 #import "SpellFist.h"
+#import "SpellLightningOrb.h"
 
 @implementation EffectHelmet
 
@@ -20,9 +21,15 @@
         // It's sort of trick question
         return [SpellInteraction cancel];
     }
-    else {
-        return nil;
-    }
+
+    // Hmm, maybe this is a bad idea. Grom is already kind of OP
+    // But not for advanced guys, might as well just leave the helmet on (I think that's what advanced players are doing)
+    // It doesn't make a lot of sense though
+//    else if ([spell isKindOfClass:[SpellLightningOrb class]]) {
+//        wizard.effect = nil;
+//    }
+    
+    return nil;    
 }
 
 @end
