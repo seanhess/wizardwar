@@ -10,4 +10,12 @@
 
 @implementation SpellLightningOrb
 
+-(id)init {
+    if ((self=[super init])) {
+        self.heavy = NO;
+        self.name = @"Lightning Orb";
+    }
+    return self;
+}
+
 @end

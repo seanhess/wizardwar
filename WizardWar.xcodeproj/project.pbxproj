@@ -139,6 +139,16 @@
 		7829934E17710C5D00881DA8 /* wizard1-set2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7829934817710C5D00881DA8 /* wizard1-set2.plist */; };
 		7829934F17710C5D00881DA8 /* wizard1-set2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7829934917710C5D00881DA8 /* wizard1-set2.png */; };
 		782BC1AB17B90DD100EB7FC6 /* DebugSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 782BC1AA17B90DD100EB7FC6 /* DebugSprite.m */; };
+		782BC1B317B94DEC00EB7FC6 /* captain-planet.png in Resources */ = {isa = PBXBuildFile; fileRef = 782BC1B217B94DEC00EB7FC6 /* captain-planet.png */; };
+		782BC1B517B94DF300EB7FC6 /* captain-planet-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 782BC1B417B94DF300EB7FC6 /* captain-planet-hd.png */; };
+		782BC1B817B94F5F00EB7FC6 /* SpellCheeseCaptainPlanet.m in Sources */ = {isa = PBXBuildFile; fileRef = 782BC1B717B94F5E00EB7FC6 /* SpellCheeseCaptainPlanet.m */; };
+		782BC1BA17B9566F00EB7FC6 /* captain-planet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 782BC1B917B9566F00EB7FC6 /* captain-planet.mp3 */; };
+		782BC1BD17B9595900EB7FC6 /* SpellLightningOrb.m in Sources */ = {isa = PBXBuildFile; fileRef = 782BC1BC17B9595700EB7FC6 /* SpellLightningOrb.m */; };
+		782BC1C317B959DD00EB7FC6 /* lightning-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 782BC1BE17B959DB00EB7FC6 /* lightning-animation.plist */; };
+		782BC1C417B959DD00EB7FC6 /* lightning-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 782BC1BF17B959DB00EB7FC6 /* lightning-hd.plist */; };
+		782BC1C517B959DD00EB7FC6 /* lightning-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 782BC1C017B959DC00EB7FC6 /* lightning-hd.png */; };
+		782BC1C617B959DD00EB7FC6 /* lightning.plist in Resources */ = {isa = PBXBuildFile; fileRef = 782BC1C117B959DC00EB7FC6 /* lightning.plist */; };
+		782BC1C717B959DD00EB7FC6 /* lightning.png in Resources */ = {isa = PBXBuildFile; fileRef = 782BC1C217B959DC00EB7FC6 /* lightning.png */; };
 		78306B9C17A7144300487B16 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78306B9A17A7144300487B16 /* DataModel.xcdatamodeld */; };
 		78306BB017A99AEC00487B16 /* OLUnitsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78306BAF17A99AEC00487B16 /* OLUnitsService.m */; };
 		78306BB317AAD94600487B16 /* SpellFail.m in Sources */ = {isa = PBXBuildFile; fileRef = 78306BB217AAD94400487B16 /* SpellFail.m */; };
@@ -671,6 +681,18 @@
 		7829934917710C5D00881DA8 /* wizard1-set2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard1-set2.png"; sourceTree = "<group>"; };
 		782BC1A917B90DD100EB7FC6 /* DebugSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugSprite.h; sourceTree = "<group>"; };
 		782BC1AA17B90DD100EB7FC6 /* DebugSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugSprite.m; sourceTree = "<group>"; };
+		782BC1B217B94DEC00EB7FC6 /* captain-planet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "captain-planet.png"; sourceTree = "<group>"; };
+		782BC1B417B94DF300EB7FC6 /* captain-planet-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "captain-planet-hd.png"; sourceTree = "<group>"; };
+		782BC1B617B94F5E00EB7FC6 /* SpellCheeseCaptainPlanet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellCheeseCaptainPlanet.h; sourceTree = "<group>"; };
+		782BC1B717B94F5E00EB7FC6 /* SpellCheeseCaptainPlanet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellCheeseCaptainPlanet.m; sourceTree = "<group>"; };
+		782BC1B917B9566F00EB7FC6 /* captain-planet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "captain-planet.mp3"; sourceTree = "<group>"; };
+		782BC1BB17B9595700EB7FC6 /* SpellLightningOrb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellLightningOrb.h; sourceTree = "<group>"; };
+		782BC1BC17B9595700EB7FC6 /* SpellLightningOrb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellLightningOrb.m; sourceTree = "<group>"; };
+		782BC1BE17B959DB00EB7FC6 /* lightning-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "lightning-animation.plist"; path = "lightning/lightning-animation.plist"; sourceTree = "<group>"; };
+		782BC1BF17B959DB00EB7FC6 /* lightning-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "lightning-hd.plist"; path = "lightning/lightning-hd.plist"; sourceTree = "<group>"; };
+		782BC1C017B959DC00EB7FC6 /* lightning-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lightning-hd.png"; path = "lightning/lightning-hd.png"; sourceTree = "<group>"; };
+		782BC1C117B959DC00EB7FC6 /* lightning.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = lightning.plist; path = lightning/lightning.plist; sourceTree = "<group>"; };
+		782BC1C217B959DC00EB7FC6 /* lightning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lightning.png; path = lightning/lightning.png; sourceTree = "<group>"; };
 		78306B9B17A7144300487B16 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		78306BAE17A99AEC00487B16 /* OLUnitsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLUnitsService.h; sourceTree = "<group>"; };
 		78306BAF17A99AEC00487B16 /* OLUnitsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLUnitsService.m; sourceTree = "<group>"; };
@@ -1118,6 +1140,7 @@
 		30CE785C1747F71B00848FE0 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				782BC1B917B9566F00EB7FC6 /* captain-planet.mp3 */,
 				78E22CA71782427400146D49 /* bubble.mp3 */,
 				78E22CA81782427400146D49 /* earthwall.mp3 */,
 				78E22CA91782427400146D49 /* fireball.mp3 */,
@@ -1674,6 +1697,13 @@
 		78E22CB71782540B00146D49 /* spells */ = {
 			isa = PBXGroup;
 			children = (
+				782BC1BE17B959DB00EB7FC6 /* lightning-animation.plist */,
+				782BC1BF17B959DB00EB7FC6 /* lightning-hd.plist */,
+				782BC1C017B959DC00EB7FC6 /* lightning-hd.png */,
+				782BC1C117B959DC00EB7FC6 /* lightning.plist */,
+				782BC1C217B959DC00EB7FC6 /* lightning.png */,
+				782BC1B217B94DEC00EB7FC6 /* captain-planet.png */,
+				782BC1B417B94DF300EB7FC6 /* captain-planet-hd.png */,
 				78F09BCA175AE45200BA775E /* vine-animation.plist */,
 				78F09BCB175AE45200BA775E /* vine.plist */,
 				78F09BCC175AE45200BA775E /* vine.png */,
@@ -2085,12 +2115,16 @@
 				78306BBE17AADC3700487B16 /* SpellFailChicken.m */,
 				78306BC017AADC4600487B16 /* SpellFailRainbow.h */,
 				78306BC117AADC4800487B16 /* SpellFailRainbow.m */,
+				782BC1B617B94F5E00EB7FC6 /* SpellCheeseCaptainPlanet.h */,
+				782BC1B717B94F5E00EB7FC6 /* SpellCheeseCaptainPlanet.m */,
 				78F6B3D01746E2E000AA070D /* SpellInteraction.h */,
 				78F6B3D11746E2E000AA070D /* SpellInteraction.m */,
 				786246421767C959001904AC /* SpellWall.h */,
 				786246431767C959001904AC /* SpellWall.m */,
 				78F6B3CD1746E05E00AA070D /* SpellFireball.h */,
 				78F6B3CE1746E05E00AA070D /* SpellFireball.m */,
+				782BC1BB17B9595700EB7FC6 /* SpellLightningOrb.h */,
+				782BC1BC17B9595700EB7FC6 /* SpellLightningOrb.m */,
 				7862464B1767CF62001904AC /* SpellFist.h */,
 				7862464C1767CF63001904AC /* SpellFist.m */,
 				786246521767D719001904AC /* SpellHelmet.h */,
@@ -2349,6 +2383,14 @@
 				786EE5C017B2A5FE004D9214 /* HelpViewController.xib in Resources */,
 				786EE5C317B2B4F3004D9214 /* vine-hd.plist in Resources */,
 				786EE5C417B2B4F3004D9214 /* vine-hd.png in Resources */,
+				782BC1B317B94DEC00EB7FC6 /* captain-planet.png in Resources */,
+				782BC1B517B94DF300EB7FC6 /* captain-planet-hd.png in Resources */,
+				782BC1BA17B9566F00EB7FC6 /* captain-planet.mp3 in Resources */,
+				782BC1C317B959DD00EB7FC6 /* lightning-animation.plist in Resources */,
+				782BC1C417B959DD00EB7FC6 /* lightning-hd.plist in Resources */,
+				782BC1C517B959DD00EB7FC6 /* lightning-hd.png in Resources */,
+				782BC1C617B959DD00EB7FC6 /* lightning.plist in Resources */,
+				782BC1C717B959DD00EB7FC6 /* lightning.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2610,6 +2652,8 @@
 				786EE5C717B2E4A4004D9214 /* PreloadLayer.m in Sources */,
 				78CD5ECE17B4197600FE0FB0 /* EffectUndies.m in Sources */,
 				782BC1AB17B90DD100EB7FC6 /* DebugSprite.m in Sources */,
+				782BC1B817B94F5F00EB7FC6 /* SpellCheeseCaptainPlanet.m in Sources */,
+				782BC1BD17B9595900EB7FC6 /* SpellLightningOrb.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

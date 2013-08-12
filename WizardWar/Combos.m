@@ -21,12 +21,15 @@
 #import "SpellHeal.h"
 #import "SpellLevitate.h"
 #import "SpellSleep.h"
+#import "SpellLightningOrb.h"
 
 #import "SpellFailUndies.h"
 #import "SpellFailTeddy.h"
 #import "SpellFailRainbow.h"
 #import "SpellFailChicken.h"
 #import "SpellFailHotdog.h"
+
+#import "SpellCheeseCaptainPlanet.h"
 
 #import "NSArray+Functional.h"
 #import "SpellFail.h"
@@ -80,6 +83,7 @@
        [SpellHelmet class],
        [SpellLevitate class],
        [SpellSleep class],
+       [SpellCheeseCaptainPlanet class],
    ];
 
 }
@@ -155,7 +159,7 @@
     
     hitCombos[@"AEF__"] = [SpellFirewall class];
     hitCombos[@"AE_H_"] = [SpellHeal class];
-    hitCombos[@"AE__W"] = [SpellSleep class]; // Tornado, Geyser, Sleep,
+    hitCombos[@"AE__W"] = [SpellLightningOrb class]; // Tornado, Geyser, Sleep,
     hitCombos[@"A_FH_"] = [SpellFireball class];
     hitCombos[@"A_F_W"] = [SpellWindblast class];
     hitCombos[@"A__HW"] = [SpellLevitate class];
@@ -165,7 +169,7 @@
     hitCombos[@"__FHW"] = [SpellBubble class];
     
     // 4 combos
-//  hitCombos[@"AEFH_"] = [NSObject class];
+    hitCombos[@"AEFH_"] = [SpellSleep class];
     hitCombos[@"AEF_W"] = [SpellVine class];
     hitCombos[@"AE_HW"] = [SpellFist class];
     hitCombos[@"A_FHW"] = [SpellInvisibility class];
@@ -177,6 +181,8 @@
     
     return hitCombos;
 }
+
+// EFAWH
 
 //+(NSDictionary*)hitElements:(NSArray*)elements {
 //    NSMutableDictionary * dict = [NSMutableDictionary dictionary];
@@ -208,6 +214,17 @@
         [key replaceCharactersInRange:NSMakeRange(element, 1) withString:elementId];
     }];
     return key;
+}
+
++(NSString*)sequenceKey:(NSArray*)elements {
+    return [[self elementIds:elements] componentsJoinedByString:@""];
+}
+
++(NSArray*)elementIds:(NSArray*)elements {
+    return [elements map:^(NSNumber * elementNumber) {
+        ElementType element = elementNumber.intValue;
+        return [Elements elementId:element];
+    }];
 }
 
 -(Spell*)randomFailSpell {
@@ -242,10 +259,20 @@
     return nil;
 }
 
+-(Spell*)exactCombo:(NSArray*)elements {
+    NSString * sequence = [Combos sequenceKey:elements];
+    if ([sequence isEqualToString:@"EFAWH"]) {
+        return [SpellCheeseCaptainPlanet new];
+    }
+    return nil;
+}
+
 
 // COMBOS AEFHW
 
 -(Spell*)spellForElements:(NSArray*)elements {
+    
+    // Hit combos catch first (they are most common)
     NSString * key = [Combos hitKey:elements];
     Class SpellClass = self.hitCombos[key];
     Spell * spell = nil;
@@ -253,8 +280,11 @@
         spell = [SpellClass new];
     }
     
+    // Only worry about more specific ones with 5+
     else if (elements.count >= 5) {
-        spell = [self basic5Spell:elements];
+        // check exact combos first
+        spell = [self exactCombo:elements];
+        if (!spell) spell = [self basic5Spell:elements];
     }
 
     return spell;

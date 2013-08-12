@@ -22,6 +22,9 @@
 #import "SpellFist.h"
 #import "SpellHelmet.h"
 #import "SpellSleep.h"
+#import "SpellLightningOrb.h"
+
+#import "SpellCheeseCaptainPlanet.h"
 
 #import "SpellFailChicken.h"
 #import "SpellFailHotdog.h"
@@ -77,6 +80,10 @@
         
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"chicken.plist"];
         [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"chicken-animation.plist"];
+        
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"lightning.plist"];
+        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"lightning-animation.plist"];
+        
     });
 }
 
@@ -344,6 +351,7 @@
             spell.class == SpellFailRainbow.class ||
             spell.class == SpellFailHotdog.class ||
             spell.class == SpellFailTeddy.class ||
+            spell.class == SpellCheeseCaptainPlanet.class ||
             spell.class == SpellFailUndies.class
             );
 }
@@ -416,6 +424,15 @@
     else if ([spell isType:[SpellFailUndies class]]) {
         return @"wizard-undies";
     }
+
+    else if ([spell isType:[SpellCheeseCaptainPlanet class]]) {
+        return @"captain-planet";
+    }
+    
+    else if ([spell isType:[SpellLightningOrb class]]) {
+        return @"lightning";
+    }
+    
     
     return @"fireball";
 }
@@ -435,28 +452,24 @@
 
 -(CCAction*)spellAction {
     CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:self.castAnimationName];
+    NSAssert(animation, @"Animation not defined");
     animation.restoreOriginalFrame = NO;
     
-    NSAssert(animation, @"Animation not defined");
+    if (self.spell.class == SpellFireball.class || self.spell.class == SpellBubble.class || self.spell.class == SpellWindblast.class || self.spell.class == SpellMonster.class || self.spell.class == SpellFailChicken.class || self.spell.class == SpellLightningOrb.class || self.spell.class == SpellFirewall.class) {
+        animation.loops = 10000;
+    }
     
     CCActionInterval * actionInterval = [CCAnimate actionWithAnimation:animation];
     CCAction * action = actionInterval;
     
-    if (self.spell.class == SpellFireball.class || self.spell.class == SpellBubble.class || self.spell.class == SpellWindblast.class || self.spell.class == SpellMonster.class || self.spell.class == SpellFailChicken.class) {
-        action = [CCRepeatForever actionWithAction:actionInterval];
-    }
-    
-    else if (self.spell.class == SpellFirewall.class) {
-        // also do a start animation!
-        // WOW this is a hack.
-        // Why can't I just play the normal one after the first one is done?
-        // I hate cocos2d
+    if (self.spell.class == SpellFirewall.class) {
         CCAnimation * startAnimation = [[CCAnimationCache sharedAnimationCache] animationByName:@"firewall-start"];
+        startAnimation.loops = 1;
         CCActionInterval * start = [CCAnimate actionWithAnimation:startAnimation];
-        CCActionInterval * burn = [CCRepeat actionWithAction:actionInterval times:10000];
-        CCSequence * startThenBurn = [CCSequence actions:start, burn, nil];
+        CCSequence * startThenBurn = [CCSequence actions:start, actionInterval, nil];
         action = startThenBurn;
     }
+    
     
     return action;
 }
