@@ -27,6 +27,7 @@
 #import "SpellFailRainbow.h"
 #import "SpellFailChicken.h"
 #import "SpellFirewall.h"
+#import "SpellCheeseCaptainPlanet.h"
 
 #import "NSArray+Functional.h"
 #import "LifeIndicatorNode.h"
@@ -174,6 +175,8 @@
         [[SimpleAudioEngine sharedEngine] playEffect:@"windblast.mp3"];
     } else if (spell.class == SpellFailRainbow.class) {
         [[SimpleAudioEngine sharedEngine] playEffect:@"double-rainbow.mp3"];
+    } else if ([spell isKindOfClass:[SpellCheeseCaptainPlanet class]]) {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"captain-planet.mp3"];        
     } else if (spell.class == SpellFailChicken.class) {
         [[SimpleAudioEngine sharedEngine] playEffect:@"chicken.mp3"];
         
