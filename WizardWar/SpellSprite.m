@@ -300,7 +300,7 @@
         else if (!self.explosion) {
             self.explosion = [CCSpriteBatchNode batchNodeWithFile:@"explode.png"];
             [self addChild:self.explosion];
-            CCSprite * sprite = [CCSprite spriteWithSpriteFrameName:@"explode-1"];
+            CCSprite * sprite = [CCSprite spriteWithTexture:self.explosion.texture rect:CGRectZero];
             [sprite runAction:self.explodeAction];
             [sprite runAction:[CCFadeOut actionWithDuration:0.4]];
             [self.explosion addChild:sprite];

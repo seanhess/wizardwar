@@ -41,7 +41,7 @@
 @property (nonatomic, strong) Match * match;
 @property (nonatomic, strong) Units * units;
 @property (nonatomic, strong) CCLayer * spells;
-@property (nonatomic, strong) CCLayer * players;
+@property (nonatomic, strong) CCLayer * wizards;
 @property (nonatomic, strong) CCLayer * indicators;
 //@property (nonatomic, strong) FeedbackLayer * feedback;
 
@@ -82,8 +82,8 @@
         self.indicators = [CCLayer node];
         [self addChild:self.indicators];        
         
-        self.players = [CCLayer node];
-        [self addChild:self.players];
+        self.wizards = [CCLayer node];
+        [self addChild:self.wizards];
         
         self.spells = [CCLayer node];
         [self addChild:self.spells];
@@ -136,6 +136,10 @@
     for (SpellSprite * spell in self.spells.children) {
         [spell update:delta];
     }
+    
+    for (WizardSprite * wizard in self.wizards.children) {
+        [wizard update:delta];
+    }
 }
 
 #pragma mark -  MATCH DELEGATE
@@ -179,14 +183,14 @@
     BOOL isCurrentWizard = (wizard == self.match.currentWizard);
     WizardSprite * sprite = [[WizardSprite alloc] initWithWizard:wizard units:self.units match:self.match isCurrentWizard:isCurrentWizard];
 
-    [self.players addChild:sprite];
+    [self.wizards addChild:sprite];
 }
 
 - (void)didRemovePlayer:(Wizard *)wizard {
-    WizardSprite * sprite = [NSArray array:self.players.children find:^BOOL(WizardSprite * sprite) {
+    WizardSprite * sprite = [NSArray array:self.wizards.children find:^BOOL(WizardSprite * sprite) {
         return (sprite.wizard == wizard);
     }];
-    [self.players removeChild:sprite];
+    [self.wizards removeChild:sprite];
     // Someone disconnected
 }
 
@@ -198,13 +202,13 @@
     self.spells.visible = (self.match.status == MatchStatusPlaying);
     
     if (self.match.status == MatchStatusPlaying) {
-        // assign players to indicators
-        NSArray * players = self.match.sortedPlayers;
-        [players forEachIndex:^(int i) {
+        // assign wizards to indicators
+        NSArray * wizards = self.match.sortedPlayers;
+        [wizards forEachIndex:^(int i) {
             // view can data-bind to player
             LifeIndicatorNode * node = [self.indicators.children objectAtIndex:i];
-            Wizard * player = players[i];
-            node.player = player;
+            Wizard * wizard = wizards[i];
+            node.player = wizard;
         }];
     }
     

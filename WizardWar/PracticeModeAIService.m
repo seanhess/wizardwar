@@ -21,6 +21,7 @@
 #import "SpellHelmet.h"
 #import "SpellLevitate.h"
 #import "SpellSleep.h"
+#import "SpellFailHotdog.h"
 #import "NSArray+Functional.h"
 #import "UIColor+Hex.h"
 
@@ -70,7 +71,7 @@
         
 #ifdef DEBUG
 //        self.stop = YES;
-        self.allSpells = @[[SpellSleep class]];
+        self.allSpells = @[[SpellFireball class]];
 #endif
     }
     return self;

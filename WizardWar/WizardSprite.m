@@ -17,9 +17,21 @@
 #import "EffectSleep.h"
 #import "AppStyle.h"
 #import "EffectUndies.h"
+#import "DebugSprite.h"
 
+#define SLEEP_ANIMATION_START_DELAY 0.2
 #define WIZARD_PADDING 20
 #define PIXELS_HIGH_PER_ALTITUDE 100
+
+
+@interface WizardSkinFrame : NSObject
+@property (nonatomic) CGPoint browOffset;
+@property (nonatomic) CGPoint waistOffset;
+@end
+
+@implementation WizardSkinFrame
+@end
+
 
 @interface WizardSprite ()
 @property (nonatomic, strong) Units * units;
@@ -35,8 +47,24 @@
 @property (nonatomic) BOOL isCurrentWizard;
 
 
-@property (nonatomic, strong) CCAction * skinStatusAction;
-@property (nonatomic, strong) CCAction * clothesStatusAction;
+
+@property (nonatomic) CGPoint browCenter;
+@property (nonatomic) CGPoint waistCenter;
+
+@property (nonatomic, strong) CCSprite * headDebug;
+
+@property (nonatomic, strong) CCActionInterval * skinStatusAction;
+@property (nonatomic, strong) CCActionInterval * clothesStatusAction;
+@property (nonatomic, strong) CCAnimation * skinStatusAnimation;
+@property (nonatomic, strong) CCAnimation * clothesStatusAnimation;
+@property (nonatomic) NSInteger currentStatusFrame;
+@property (nonatomic) NSTimeInterval currentTime;
+
+@property (nonatomic, strong) CCAction * skinEffectAction;
+@property (nonatomic, strong) CCAction * clothesEffectAction;
+
+
+@property (nonatomic, strong) NSMapTable * wizard1HeadOffsets;
 
 @end
 
@@ -80,7 +108,6 @@
         self.skin = [CCSprite node];
         self.clothes = [CCSprite node];
         ccColor3B color = [self colorWithColor:wizard.color];
-        NSLog(@"WIZARD COLOR %i %i %i", color.r, color.g, color.b);
         self.clothes.color = color;
         [self addChild:self.skin];
         [self addChild:self.clothes];
@@ -89,6 +116,9 @@
         self.label = [CCLabelTTF labelWithString:self.wizardName fontName:FONT_COMIC_ZINE fontSize:36];
         self.label.position = ccp(0, 130);
         [self addChild:self.label];
+        
+        self.headDebug = [DebugSprite new];
+        [self addChild:self.headDebug];
         
         // BIND: state, position
         [self renderPosition];
@@ -118,6 +148,36 @@
     return self;
 }
 
+-(NSMapTable*)wizard1HeadOffsets {
+    if (!_wizard1HeadOffsets) {
+        NSLog(@"GENERATE OFFSETS");
+        NSMapTable * mapTable = [NSMapTable mapTableWithKeyOptions:NSPointerFunctionsObjectPointerPersonality valueOptions:NSPointerFunctionsObjectPersonality];
+        
+        [self mapTable:mapTable setOffset:ccp(0,0) forAnimationName:@"wizard1-prepare.png"];
+        [self mapTable:mapTable setOffset:ccp(-3,-4) forAnimationName:@"wizard1-prepare2.png"];
+        [self mapTable:mapTable setOffset:ccp(-5,-5) forAnimationName:@"wizard1-prepare3.png"];
+        [self mapTable:mapTable setOffset:ccp(-9,-9) forAnimationName:@"wizard1-prepare4.png"];
+
+        [self mapTable:mapTable setOffset:ccp(-5,5) forAnimationName:@"wizard1-attack2.png"];
+        [self mapTable:mapTable setOffset:ccp(0,2) forAnimationName:@"wizard1-attack3.png"];
+        [self mapTable:mapTable setOffset:ccp(8,-3) forAnimationName:@"wizard1-attack4.png"];
+        [self mapTable:mapTable setOffset:ccp(8,-3) forAnimationName:@"wizard1-attack.png"];
+        
+        [self mapTable:mapTable setOffset:ccp(0,0) forAnimationName:@"wizard1-damage.png"];
+        [self mapTable:mapTable setOffset:ccp(-7,-3) forAnimationName:@"wizard1-damage2.png"];
+        [self mapTable:mapTable setOffset:ccp(-35,1) forAnimationName:@"wizard1-damage5.png"];
+        [self mapTable:mapTable setOffset:ccp(-48,-9) forAnimationName:@"wizard1-damage6.png"];
+        self.wizard1HeadOffsets = mapTable;
+    }
+    
+    return _wizard1HeadOffsets;
+}
+
+-(void)mapTable:(NSMapTable*)mapTable setOffset:(CGPoint)offset forAnimationName:(NSString*)name {
+    [mapTable setObject:[NSValue valueWithCGPoint:offset] forKey:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:name]];
+}
+     
+     
 -(ccColor3B)colorWithColor:(UIColor*)color {
     CGFloat red = 0.0, green = 0.0, blue = 0.0, alpha =0.0;
     [color getRed:&red green:&green blue:&blue alpha:&alpha];
@@ -134,39 +194,79 @@
     self.clothes.flipX = self.skin.flipX;
 }
 
+
+-(void)update:(ccTime)delta {
+    
+    NSArray * frames = self.skinStatusAnimation.frames;
+    NSInteger frameIndex = -1;
+    CCSpriteFrame * currentFrame = nil;
+    for (int i = 0; i < frames.count; i++) {
+        CCAnimationFrame * frame = frames[i];
+        CCSpriteFrame * spriteFrame = [frame spriteFrame];
+        if ([self.skin isFrameDisplayed:spriteFrame]) {
+            frameIndex = i;
+            currentFrame = spriteFrame;
+            break;
+        }
+    }
+    
+    if (currentFrame) {
+        CGPoint restBrow = ccp(0, 70);        
+        CGPoint headOffset = [[self.wizard1HeadOffsets objectForKey:currentFrame] CGPointValue];
+        self.browCenter = ccp(self.wizard.direction*headOffset.x, restBrow.y + headOffset.y);
+        
+        self.headDebug.position = self.browCenter;
+        
+        if ([self.wizard.effect isKindOfClass:[EffectHelmet class]]) {
+            CGPoint helmetOffset = ccp(self.wizard.direction*-4, 22);
+            self.effect.position = ccp(self.browCenter.x+helmetOffset.x, self.browCenter.y+helmetOffset.y);
+        }
+    } else {
+        NSLog(@"CANT FIND FRAME status=%i", self.wizard.state);
+    }
+    
+
+}
+
 -(void)renderStatus {
     
     if (self.wizard.effect.class == EffectSleep.class && (self.wizard.state == WizardStatusReady || self.wizard.state == WizardStatusHit || self.wizard.state == WizardStatusCast))
         return;
     
-    // I should remove all status actions, not all actions
-//    [self.skin stopAllActions];
-//    [self.clothes stopAllActions];
-    
     [self.skin stopAction:self.skinStatusAction];
-    self.skinStatusAction = [self animationForStatus:self.wizard.state clothes:NO];
+    [self.clothes stopAction:self.clothesStatusAction];
+    
+    CCAnimation * skinAnimation = [self animationForStatus:self.wizard.state clothes:NO];
+    CCAnimation * clothesAnimation = [self animationForStatus:self.wizard.state clothes:YES];
+    
+    self.skinStatusAnimation = skinAnimation;
+    self.clothesStatusAnimation = clothesAnimation;
+    self.currentStatusFrame = 0;
+
+    self.skinStatusAction = [CCAnimate actionWithAnimation:skinAnimation];
     [self.skin runAction:self.skinStatusAction];
 
-    [self.clothes stopAction:self.clothesStatusAction];
-    self.clothesStatusAction = [self animationForStatus:self.wizard.state clothes:YES];
+    self.clothesStatusAction = [CCAnimate actionWithAnimation:clothesAnimation];
     [self.clothes runAction:self.clothesStatusAction];
     
-//    NSString * imageName = [NSString stringWithFormat:@"%@.png", @"wizard1-sleep1"];
-//    [self.skin setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:imageName]];
+//    if ([self.wizard.effect isKindOfClass:[EffectHelmet class]]) {
+//        // I need to stop this at the same time :(
+//    }
 }
 
--(CCAction*)animationForStatus:(WizardStatus)status clothes:(BOOL)isClothes {
+// The problem is that the clothes, skin, and whatever are NOT independent of each other.
+// So I should play through them perhaps?
+// I could index them depending on the delta...
+-(CCAnimation*)animationForStatus:(WizardStatus)status clothes:(BOOL)isClothes {
     NSString * clothesSuffix = (isClothes) ? @"-clothes" : @"";
     NSString * animationName = [NSString stringWithFormat:@"%@%@", [self animationNameForStatus:status], clothesSuffix];
     CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:animationName];
-    NSAssert(animation, @"DID NOT LOAD ANIMATION");
-    CCActionInterval * actionInterval = [CCAnimate actionWithAnimation:animation];
-    CCAction * action = actionInterval;
     
     if (self.wizard.state == WizardStatusReady || self.wizard.state == WizardStatusWon)
-        action = [CCRepeatForever actionWithAction:actionInterval];
-    
-    return action;
+        animation.loops = 1000;
+
+    NSAssert(animation, @"DID NOT LOAD ANIMATION");
+    return animation;
 }
 
 - (void)renderMatchStatus {
@@ -187,26 +287,37 @@
     
     if (self.effect) {
         [self removeChild:self.effect];
+        self.effect = nil;
     }
     
 //    NSLog(@"RENDER EFFECT %@ = %@", self.wizard.name, self.wizard.effect);
     
-    [self.skin stopAllActions];
-    [self.clothes stopAllActions];
+    [self.skin stopAction:self.skinEffectAction];
+    [self.clothes stopAction:self.clothesEffectAction];
+    self.skinEffectAction = nil;
+    self.clothesEffectAction = nil;
+    
     self.skin.opacity = 255;
     self.clothes.opacity = 255;
     
     // set opactiy based on invisible
     if ([self.wizard.effect class] == [EffectInvisible class]) {
-        [self.skin runAction:[CCFadeTo actionWithDuration:self.wizard.effect.delay opacity:20]];
-        [self.clothes runAction:[CCFadeTo actionWithDuration:self.wizard.effect.delay opacity:20]];
+        self.skinEffectAction = [CCFadeTo actionWithDuration:self.wizard.effect.delay opacity:20];
+        self.clothesEffectAction = [CCFadeTo actionWithDuration:self.wizard.effect.delay opacity:20];
     }
     
     else if ([self.wizard.effect class] == [EffectHelmet class]) {
+        [self renderStatus];
         self.effect = [CCSprite spriteWithFile:@"helmet.png"];
         self.effect.flipX = self.wizard.position == UNITS_MAX;
-        self.effect.position = ccp(-4*self.wizard.direction, 80);
-        [self addChild:self.effect];
+        
+        // well, I just finished my cast animation I guess
+        // I need to pin it to the wizard's center
+        // I need to know which frame of the wizard animation I am on.
+        // then set it every update
+        
+        // I KNOW I just cast a spell, so I'm in the middle of the cast animation
+        [self moveHelmetAround:self.wizard.state];
     }
     
     else if ([self.wizard.effect class] == [EffectHeal class]) {
@@ -218,28 +329,29 @@
         CCFiniteTimeAction * toRed = [CCTintTo actionWithDuration:1 red:255 green:100 blue:100];
         CCFiniteTimeAction * toNormal = [CCTintTo actionWithDuration:1 red:255 green:255 blue:255];
         CCAction * glowRed = [CCRepeatForever actionWithAction:[CCSequence actions:toRed, toNormal, nil]];
-        [self.skin runAction:glowRed];
-//        [self.clothes runAction:glowRed];
+        self.skinEffectAction = glowRed;
     }
     
-    else if ([self.wizard.effect class] == [EffectSleep class]) {
-        [self.skin runAction:[self actionForSleepEffectForClothes:NO]];
-        [self.clothes runAction:[self actionForSleepEffectForClothes:YES]];
+    else if ([self.wizard.effect class] == [EffectSleep class]) {        
+        self.skinEffectAction = [self actionForSleepEffectForClothes:NO];
+        self.clothesEffectAction = [self actionForSleepEffectForClothes:YES];
         
         // then when the effect wears off, we need to re-render status
         CGPoint pos = self.calculatedPosition;
-        self.rotation = -90.0;
-        CCFiniteTimeAction * toPos = [CCMoveTo actionWithDuration:0.2 position:pos];
-        CCFiniteTimeAction * rotate = [CCRotateTo actionWithDuration:0.2 angle:0.0];
+        self.rotation = -90;
+        CCFiniteTimeAction * toPos = [CCMoveTo actionWithDuration:SLEEP_ANIMATION_START_DELAY position:pos];
+        CCFiniteTimeAction * rotate = [CCRotateTo actionWithDuration:SLEEP_ANIMATION_START_DELAY angle:0];
         [self runAction:toPos];
         [self runAction:rotate];
+        
+        // you get 2 actions conflicting here!
+        // TODO fix getting hit by sleep
     }
     
     else if ([self.wizard.effect class] == [EffectUndies class]) {
         self.effect = [CCSprite spriteWithFile:@"wizard-undies.png"];
 //        self.effect.flipY = YES;
         self.effect.position = ccp(self.wizard.direction*-15, -34);
-        [self addChild:self.effect];
     }
     
     else {
@@ -248,20 +360,52 @@
 //        [self runAction:[CCMoveTo actionWithDuration:0.2 position:self.calculatedPosition]];
 //        [self runAction:[CCRotateTo actionWithDuration:0.2 angle:0]];
         [self renderStatus];
-        
+    }
+    
+    if (self.effect)
+        [self addChild:self.effect];
+    
+    if (self.skinEffectAction) {
+        [self.skin stopAction:self.skinStatusAction];
+        [self.skin runAction:self.skinEffectAction];
+    }
+    
+    if (self.clothesEffectAction) {
+        [self.clothes stopAction:self.clothesStatusAction];
+        [self.clothes runAction:self.clothesEffectAction];
     }
 }
 
+-(void)moveHelmetAround:(WizardStatus)status {
+    CCAction * action;
+    CGPoint rest = ccp(-6*self.wizard.direction, 90);
+    CGPoint castback = ccp(rest.x-6, rest.y+10);
+//    self.effect.position = res    t;
+    
+    if (status == WizardStatusCast) {
+        self.effect.position = castback;
+        action = [CCMoveTo actionWithDuration:0.1 position:rest];
+    } else if (status == WizardStatusReady) {
+        
+    } else if (status == WizardStatusHit) {
+        
+    }
+    
+    [self.effect runAction:action];
+}
+
 -(CCAction*)actionForSleepEffectForClothes:(BOOL)isClothes {
+    // I have to set the angle to 0 degrees right when the animation starts
+    // crap. 
+    
     NSString * clothesSuffix = (isClothes) ? @"-clothes" : @"";
     NSString * animationName = [NSString stringWithFormat:@"wizard1-sleep%@", clothesSuffix];
-    CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:animationName];
-    NSAssert(animation, @"DID NOT LOAD ANIMATION");
-    CCFiniteTimeAction * wait = [CCFadeTo actionWithDuration:0.2 opacity:255];
-    CCActionInterval * actionInterval = [CCAnimate actionWithAnimation:animation];
-    CCActionInterval * sleep = [CCRepeat actionWithAction:actionInterval times:10000];
-    CCSequence * sequence = [CCSequence actions:wait, sleep, nil];
-    return sequence;
+//    CCFiniteTimeAction * wait = [CCFadeTo actionWithDuration:SLEEP_ANIMATION_START_DELAY opacity:255];
+    CCAnimation *sleep = [[CCAnimationCache sharedAnimationCache] animationByName:animationName];
+    NSAssert(sleep, @"DID NOT LOAD ANIMATION");
+    sleep.loops = 1000;
+//    CCSequence * sequence = [CCSequence actions:wait, [CCAnimate actionWithAnimation:sleep], nil];
+    return [CCAnimate actionWithAnimation:sleep];
 }
 
 -(void)renderAltitude {

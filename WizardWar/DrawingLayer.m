@@ -138,7 +138,7 @@
     glLineWidth(5.0f * [CCDirector sharedDirector].view.contentScaleFactor);
     
     // set line color.
-//    ccDrawColor4B(1.0, 1.0, 1.0, 1.0);
+    ccDrawColor4B(255, 255, 255, 255);
     
 //    ccDrawLine(ccp(100,100), ccp(100, 200));
 //    ccDrawLine(ccp(100,200), ccp(200, 200));

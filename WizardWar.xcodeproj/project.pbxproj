@@ -138,6 +138,7 @@
 		7829934D17710C5D00881DA8 /* wizard1-set2-animations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7829934717710C5D00881DA8 /* wizard1-set2-animations.plist */; };
 		7829934E17710C5D00881DA8 /* wizard1-set2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7829934817710C5D00881DA8 /* wizard1-set2.plist */; };
 		7829934F17710C5D00881DA8 /* wizard1-set2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7829934917710C5D00881DA8 /* wizard1-set2.png */; };
+		782BC1AB17B90DD100EB7FC6 /* DebugSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 782BC1AA17B90DD100EB7FC6 /* DebugSprite.m */; };
 		78306B9C17A7144300487B16 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78306B9A17A7144300487B16 /* DataModel.xcdatamodeld */; };
 		78306BB017A99AEC00487B16 /* OLUnitsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78306BAF17A99AEC00487B16 /* OLUnitsService.m */; };
 		78306BB317AAD94600487B16 /* SpellFail.m in Sources */ = {isa = PBXBuildFile; fileRef = 78306BB217AAD94400487B16 /* SpellFail.m */; };
@@ -668,6 +669,8 @@
 		7829934717710C5D00881DA8 /* wizard1-set2-animations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set2-animations.plist"; sourceTree = "<group>"; };
 		7829934817710C5D00881DA8 /* wizard1-set2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-set2.plist"; sourceTree = "<group>"; };
 		7829934917710C5D00881DA8 /* wizard1-set2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard1-set2.png"; sourceTree = "<group>"; };
+		782BC1A917B90DD100EB7FC6 /* DebugSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugSprite.h; sourceTree = "<group>"; };
+		782BC1AA17B90DD100EB7FC6 /* DebugSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugSprite.m; sourceTree = "<group>"; };
 		78306B9B17A7144300487B16 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		78306BAE17A99AEC00487B16 /* OLUnitsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLUnitsService.h; sourceTree = "<group>"; };
 		78306BAF17A99AEC00487B16 /* OLUnitsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLUnitsService.m; sourceTree = "<group>"; };
@@ -2047,6 +2050,8 @@
 				78CF318E1791E49D00BC8C29 /* FeedbackLayer.m */,
 				78F6B3AF1746B27600AA070D /* WizardSprite.h */,
 				78F6B3B01746B27600AA070D /* WizardSprite.m */,
+				782BC1A917B90DD100EB7FC6 /* DebugSprite.h */,
+				782BC1AA17B90DD100EB7FC6 /* DebugSprite.m */,
 				78F6B3B11746B27700AA070D /* SpellSprite.h */,
 				78F6B3B21746B27700AA070D /* SpellSprite.m */,
 				78D0855F176A4D7900EDC405 /* Simulated.h */,
@@ -2604,6 +2609,7 @@
 				786EE5BF17B2A5FE004D9214 /* HelpViewController.m in Sources */,
 				786EE5C717B2E4A4004D9214 /* PreloadLayer.m in Sources */,
 				78CD5ECE17B4197600FE0FB0 /* EffectUndies.m in Sources */,
+				782BC1AB17B90DD100EB7FC6 /* DebugSprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
