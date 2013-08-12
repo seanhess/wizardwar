@@ -312,6 +312,9 @@
     if ([self.wizard.effect class] == [EffectInvisible class]) {
         self.skinEffectAction = [CCFadeTo actionWithDuration:self.wizard.effect.delay opacity:20];
         self.clothesEffectAction = [CCFadeTo actionWithDuration:self.wizard.effect.delay opacity:20];
+        
+        [self.skin runAction:self.skinEffectAction];
+        [self.clothes runAction:self.clothesEffectAction];        
     }
     
     else if ([self.wizard.effect class] == [EffectHelmet class]) {
@@ -325,7 +328,7 @@
         // then set it every update
         
         // I KNOW I just cast a spell, so I'm in the middle of the cast animation
-        [self moveHelmetAround:self.wizard.state];
+//        [self moveHelmetAround:self.wizard.state];
     }
     
     else if ([self.wizard.effect class] == [EffectHeal class]) {
@@ -338,6 +341,8 @@
         CCFiniteTimeAction * toNormal = [CCTintTo actionWithDuration:1 red:255 green:255 blue:255];
         CCAction * glowRed = [CCRepeatForever actionWithAction:[CCSequence actions:toRed, toNormal, nil]];
         self.skinEffectAction = glowRed;
+        
+        [self.skin runAction:self.skinEffectAction];
     }
     
     else if ([self.wizard.effect class] == [EffectSleep class]) {        
@@ -354,12 +359,19 @@
         
         // you get 2 actions conflicting here!
         // TODO fix getting hit by sleep
+        
+        [self.skin stopAction:self.skinStatusAction];
+        [self.skin runAction:self.skinEffectAction];
+        [self.clothes stopAction:self.clothesStatusAction];
+        [self.clothes runAction:self.clothesEffectAction];
     }
     
     else if ([self.wizard.effect class] == [EffectUndies class]) {
         self.effect = [CCSprite spriteWithFile:@"wizard-undies.png"];
 //        self.effect.flipY = YES;
         self.effect.position = ccp(self.wizard.direction*-15, -34);
+        
+        
     }
     
     else {
@@ -371,36 +383,26 @@
     }
     
     if (self.effect)
-        [self addChild:self.effect];
-    
-    if (self.skinEffectAction) {
-        [self.skin stopAction:self.skinStatusAction];
-        [self.skin runAction:self.skinEffectAction];
-    }
-    
-    if (self.clothesEffectAction) {
-        [self.clothes stopAction:self.clothesStatusAction];
-        [self.clothes runAction:self.clothesEffectAction];
-    }
+        [self addChild:self.effect];    
 }
 
--(void)moveHelmetAround:(WizardStatus)status {
-    CCAction * action;
-    CGPoint rest = ccp(-6*self.wizard.direction, 90);
-    CGPoint castback = ccp(rest.x-6, rest.y+10);
-//    self.effect.position = res    t;
-    
-    if (status == WizardStatusCast) {
-        self.effect.position = castback;
-        action = [CCMoveTo actionWithDuration:0.1 position:rest];
-    } else if (status == WizardStatusReady) {
-        
-    } else if (status == WizardStatusHit) {
-        
-    }
-    
-    [self.effect runAction:action];
-}
+//-(void)moveHelmetAround:(WizardStatus)status {
+//    CCAction * action;
+//    CGPoint rest = ccp(-6*self.wizard.direction, 90);
+//    CGPoint castback = ccp(rest.x-6, rest.y+10);
+////    self.effect.position = res    t;
+//    
+//    if (status == WizardStatusCast) {
+//        self.effect.position = castback;
+//        action = [CCMoveTo actionWithDuration:0.1 position:rest];
+//    } else if (status == WizardStatusReady) {
+//        
+//    } else if (status == WizardStatusHit) {
+//        
+//    }
+//    
+//    [self.effect runAction:action];
+//}
 
 -(CCAction*)actionForSleepEffectForClothes:(BOOL)isClothes {
     // I have to set the angle to 0 degrees right when the animation starts

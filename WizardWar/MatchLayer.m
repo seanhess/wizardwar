@@ -26,6 +26,7 @@
 #import "SpellIcewall.h"
 #import "SpellFailRainbow.h"
 #import "SpellFailChicken.h"
+#import "SpellFirewall.h"
 
 #import "NSArray+Functional.h"
 #import "LifeIndicatorNode.h"
@@ -159,6 +160,8 @@
         [[SimpleAudioEngine sharedEngine] playEffect:@"fireball.mp3"];
     } else if([spell isMemberOfClass: [SpellEarthwall class]]){
         [[SimpleAudioEngine sharedEngine] playEffect:@"earthwall.mp3"];
+    } else if ([spell isKindOfClass:[SpellFirewall class]]) {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"icewall.mp3"];
     } else if([spell isMemberOfClass: [SpellVine class]]){
         [[SimpleAudioEngine sharedEngine] playEffect:@"vine.mp3"];
     } else if([spell isMemberOfClass: [SpellBubble class]]){
@@ -173,6 +176,10 @@
         [[SimpleAudioEngine sharedEngine] playEffect:@"double-rainbow.mp3"];
     } else if (spell.class == SpellFailChicken.class) {
         [[SimpleAudioEngine sharedEngine] playEffect:@"chicken.mp3"];
+        
+    } else {
+        // This will help us remember to add sounds!
+//        [[SimpleAudioEngine sharedEngine] playEffect:@"chicken.mp3"];
     }
 //    if ([spell isKindOfClass:SpellFail.class]) {
 //        [[SimpleAudioEngine sharedEngine] playEffect:@"buzzer.mp3"];

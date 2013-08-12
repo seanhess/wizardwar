@@ -48,7 +48,7 @@
         return [SpellInteraction modify];
     }
     
-    else if ([spell isKindOfClass:[SpellMonster class]]) {
+    else if ([spell isKindOfClass:[SpellMonster class]] && spell.direction != self.direction) {
         return [SpellInteraction cancel];
     }
     

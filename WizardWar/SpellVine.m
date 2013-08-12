@@ -43,7 +43,10 @@
 
 -(SpellInteraction *)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
     NSInteger elapsedTicks = currentTick - self.createdTick;
-    if (elapsedTicks >= round(TIME_UNTIL_ATTACK/interval)) {
+    NSInteger lastTick = round(TIME_UNTIL_ATTACK/interval);
+    if (elapsedTicks >= lastTick + 4) {
+        return [SpellInteraction cancel];
+    } else if (elapsedTicks >= lastTick) {
         if (self.position < UNITS_MID)
             self.position = UNITS_MIN;
         else
