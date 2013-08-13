@@ -14,7 +14,7 @@
 #import "Wizard.h"
 #import "GameTimerService.h"
 @protocol TimerSyncDelegate
--(void)gameShouldStartAt:(NSTimeInterval)startTime;
+-(void)gameIsSynchronized;
 @end
 
 @interface TimerSyncService : NSObject

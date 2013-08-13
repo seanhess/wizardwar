@@ -21,7 +21,7 @@
 @property (nonatomic) NSTimeInterval tickInterval;
 @property (nonatomic, readonly) NSInteger nextTick;
 @property (nonatomic, weak) id<GameTimerDelegate> delegate;
--(void)startAt:(NSTimeInterval)startTime;
+-(void)start;
 -(void)stop;
 -(void)update:(NSTimeInterval)dt;
 @end

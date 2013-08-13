@@ -22,6 +22,13 @@
 }
 
 // make sure you start calling this by the time you call startAt
+// If they pause I am SCREWED
+// Or if animation lags?
+// hmm, maybe this isn't such a good idea!
+
+// Unless I sync constantly...
+// Then I could start more quickly and kind of go from there. 
+
 - (void)update:(NSTimeInterval)dt {
     self.localTime += dt;
     if (!self.nextTickTime) return;
@@ -33,9 +40,8 @@
     }
 }
 
-- (void)start {
-    NSAssert(self.tickInterval, @"Must set tick interval > 0");
-    self.currentTick = 0;
+-(void)start {
+    self.localTime = 0;
 }
 
 - (void)stop {

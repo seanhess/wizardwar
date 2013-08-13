@@ -174,7 +174,7 @@
 		78306BE017AAE7D400487B16 /* chicken.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78306BDF17AAE7D400487B16 /* chicken.mp3 */; };
 		78306BE217AAF0F500487B16 /* buzzer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78306BE117AAF0F500487B16 /* buzzer.mp3 */; };
 		7837D6AD17540836001D820E /* GameTimerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7837D6AC17540836001D820E /* GameTimerService.m */; };
-		7837D6B017540893001D820E /* PlayerTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7837D6AF17540893001D820E /* PlayerTime.m */; };
+		7837D6B017540893001D820E /* ClientTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7837D6AF17540893001D820E /* ClientTime.m */; };
 		7837F16B1749B9D000D29445 /* navbar-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7837F1691749B9CF00D29445 /* navbar-logo.png */; };
 		7837F16C1749B9D000D29445 /* navbar-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7837F16A1749B9CF00D29445 /* navbar-logo@2x.png */; };
 		783BD39E176A79A50092D93C /* SpellSleep.m in Sources */ = {isa = PBXBuildFile; fileRef = 78915288176A7815001694B1 /* SpellSleep.m */; };
@@ -726,8 +726,8 @@
 		78306BE117AAF0F500487B16 /* buzzer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = buzzer.mp3; sourceTree = "<group>"; };
 		7837D6AB17540836001D820E /* GameTimerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTimerService.h; sourceTree = "<group>"; };
 		7837D6AC17540836001D820E /* GameTimerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTimerService.m; sourceTree = "<group>"; };
-		7837D6AE17540893001D820E /* PlayerTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerTime.h; sourceTree = "<group>"; };
-		7837D6AF17540893001D820E /* PlayerTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerTime.m; sourceTree = "<group>"; };
+		7837D6AE17540893001D820E /* ClientTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientTime.h; sourceTree = "<group>"; };
+		7837D6AF17540893001D820E /* ClientTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientTime.m; sourceTree = "<group>"; };
 		7837F1691749B9CF00D29445 /* navbar-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar-logo.png"; sourceTree = "<group>"; };
 		7837F16A1749B9CF00D29445 /* navbar-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar-logo@2x.png"; sourceTree = "<group>"; };
 		783E8064176A88B800A21FE5 /* SpellVortex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellVortex.h; sourceTree = "<group>"; };
@@ -2044,8 +2044,8 @@
 				786246361767BF0B001904AC /* Effects */,
 				78F6B3A21746B25F00AA070D /* Match.h */,
 				78F6B3A31746B25F00AA070D /* Match.m */,
-				7837D6AE17540893001D820E /* PlayerTime.h */,
-				7837D6AF17540893001D820E /* PlayerTime.m */,
+				7837D6AE17540893001D820E /* ClientTime.h */,
+				7837D6AF17540893001D820E /* ClientTime.m */,
 				78F6B3A41746B26000AA070D /* Wizard.h */,
 				78F6B3A51746B26000AA070D /* Wizard.m */,
 				78F6B3C91746D77B00AA070D /* Units.h */,
@@ -2494,7 +2494,7 @@
 				787A2A85174E85E3004C4FDB /* ConnectionService.m in Sources */,
 				787A2A99174EA43D004C4FDB /* MatchViewController.m in Sources */,
 				7837D6AD17540836001D820E /* GameTimerService.m in Sources */,
-				7837D6B017540893001D820E /* PlayerTime.m in Sources */,
+				7837D6B017540893001D820E /* ClientTime.m in Sources */,
 				78C46B5A17562CAC0077EE98 /* MultiplayerService.m in Sources */,
 				789BAB8417566CFE003C0116 /* TimerSyncService.m in Sources */,
 				78F97FDE1758F7F500764D70 /* PracticeModeAIService.m in Sources */,

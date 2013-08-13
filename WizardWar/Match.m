@@ -201,23 +201,24 @@
     self.timer = [GameTimerService new];
     self.timer.tickInterval = TICK_INTERVAL;
     self.timer.delegate = self;
+    [self.timer start];
     
-    self.status = MatchStatusSyncing;
-    
-    // TODO; I only want to do this if the multiplayer so requires...
-    if (self.sync)
+    if (self.sync) {
+        self.status = MatchStatusSyncing;
         [self.sync syncTimerWithMatchId:self.matchId player:self.currentWizard isHost:isHost timer:self.timer];
-    else
-        [self gameShouldStartAt:CACurrentMediaTime() + 0.1];
+    }
+    else {
+        self.status = MatchStatusPlaying;
+    }
+        
 }
 
-- (void)gameShouldStartAt:(NSTimeInterval)startTime {
-    [self.timer startAt:startTime];
+-(void)gameIsSynchronized {
+    self.status = MatchStatusPlaying;
 }
 
 -(void)update:(NSTimeInterval)dt {
-    [self.sync update:dt];
-    [self.timer update:dt];    
+    [self.timer update:dt];
 }
 
 - (void)gameDidTick:(NSInteger)currentTick {

@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 The LAB. All rights reserved.
 //
 
-#import "PlayerTime.h"
+#import "ClientTime.h"
 
-@implementation PlayerTime
+@implementation ClientTime
 
 -(NSDictionary*)toObject {
-    return [self dictionaryWithValuesForKeys:@[@"name", @"currentTime", @"dTimeTo", @"accepted", @"dTimeFrom"]];
+    return [self dictionaryWithValuesForKeys:@[@"name", @"time", @"offset", @"error"]];
 }
 
 -(NSString*)description {
