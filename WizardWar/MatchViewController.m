@@ -258,8 +258,10 @@
             sae.backgroundMusicVolume = 0.4f;
         }
     }
-    
+ 
+#ifndef DEBUG
     [sae playBackgroundMusic:@"theme.mp3"];
+#endif
 }
 
 - (IBAction)didTapBack:(id)sender {

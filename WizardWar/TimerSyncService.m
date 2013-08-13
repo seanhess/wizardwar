@@ -8,7 +8,7 @@
 
 #import "TimerSyncService.h"
 #import <Firebase/Firebase.h>
-#import "ClientTime.h"
+#import "GameTime.h"
 #import "FirebaseCollection.h"
 #import "IdService.h"
 #import "cocos2d.h"
@@ -19,12 +19,12 @@
 @interface TimerSyncService ()
 @property (strong, nonatomic) NSString * currentMatchId;
 @property (strong, nonatomic) Firebase * node;
+@property (strong, nonatomic) NSMutableDictionary * times;
 @property (strong, nonatomic) NSString * name;
-@property (nonatomic) BOOL isHost;
 @property (nonatomic, strong) GameTimerService * timer;
 
-@property (nonatomic) NSUInteger serverTime;
-@property (nonatomic) NSUInteger startTime;
+@property (nonatomic) BOOL isHost;
+@property (nonatomic) NSTimeInterval requestStartTime;
 @end
 
 
@@ -38,6 +38,8 @@
     });
     return instance;
 }
+
+
 - (void)syncTimerWithMatchId:(NSString *)matchId player:(Wizard *)player isHost:(BOOL)isHost timer:(GameTimerService *)timer {
     
     if (self.currentMatchId) {
@@ -52,81 +54,75 @@
     self.isHost = isHost;
     self.name = [NSString stringWithFormat:@"%@ %@", player.name, [IdService randomId:4]];
     
-    // Connect to my personal node
     Firebase * matchNode = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"https://wizardwar.firebaseio.com/match/%@", matchId]];
-    self.node = [[matchNode childByAppendingPath:@"times"] childByAppendingPath:self.name];
-    [self getInitialServerTime];
-}
-
-- (void)getInitialServerTime {
-    NSLog(@"TSS getInitialServerTime");
-    __weak TimerSyncService * wself = self;
-    [self.node observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {        
-        [wself.node removeAllObservers];
-        [wself measureRTT:[snapshot.value intValue]];
-    }];
+    self.node = [matchNode childByAppendingPath:@"times"];
     
-    [self.node onDisconnectRemoveValue];
-    [self.node setValue:kFirebaseServerValueTimestamp];    
-}
-
-- (void)measureRTT:(NSUInteger)startTime {
-    NSLog(@"Measure RTT %i", startTime);
-    [self.node setValue:kFirebaseServerValueTimestamp];
+    // you'll get the other guy here, not in update
     __weak TimerSyncService * wself = self;
-    [self.node observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-        NSUInteger serverTime = [snapshot.value intValue];
-        if (serverTime == startTime) return; // you get the same value right at first
-        NSUInteger roundTripTime = serverTime - startTime;
-        [wself addServerTime:serverTime roundTripTime:roundTripTime];
-        [wself.node removeAllObservers];        
-    }];
+    
+    // hosts listen for new time requests
+    if (isHost) {
+        [self.node observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
+            [wself hostRespondChild:snapshot];
+        }];
+    }
+    
+    // clients listen for responses
+    else {
+        [self.node observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
+            [wself clientReceiveRequestUpdate:snapshot];
+        }];
+        [self sendTimeRequest];        
+    }    
 }
 
-- (void)addServerTime:(NSUInteger)serverTime roundTripTime:(NSUInteger)roundTripTime {
-    NSLog(@"GOT SERVER TIME %i RTT %i", serverTime, roundTripTime);
+- (void)sendTimeRequest {
+    self.requestStartTime = CACurrentMediaTime();
+    GameTime *gameTime = [GameTime new];
+    gameTime.name = self.name;
+    NSLog(@"TSS request %@", gameTime);
+    [self save:gameTime];
 }
 
-// Well, this is a bust
-// Hae
-
-- (void)onChanged:(FDataSnapshot*)snapshot {    
-//    BOOL isMine = [self isMine:snapshot];
-//    ClientTime * time = (isMine) ? self.myTime : self.otherTime;
-//    [time setValuesForKeysWithDictionary:snapshot.value];
-//    
-//    if (isMine && time.accepted) {
-//        NSLog(@"TSS accepted (OTHER)");
-//        [self startWithPlayerTime:time];
-//    }
-//    else if (!isMine && !time.accepted) {
-//        NSAssert(self.otherTime, @"Other time not set");
-//        if ([self checkEstimate:time currentTime:self.timer.localTime]) {
-//            NSLog(@"TSS accept (SELF)");
-//            [self acceptTime:time];
-//            [self startWithPlayerTime:time];
-//        }
-//        else {
-//            [self sendEstimate:time currentTime:self.timer.localTime];
-//        }
-//    }
+// This only matters if you are the host. you don't add your own as a host
+- (void)hostRespondChild:(FDataSnapshot*)snapshot {
+    GameTime * time = [GameTime new];
+    [time setValuesForKeysWithDictionary:snapshot.value];
+    time.nextTickTime = self.timer.nextTickTime;
+    time.nextTick = self.timer.nextTick;
+    time.gameTime = self.timer.gameTime;
+    NSLog(@"TSS (host) respond %@", time);    
+    [self save:time];
 }
 
-//- (void)hostCheckTime:(ClientTime*)client {
-//    NSTimeInterval error = self.timer.gameTime - client.time;
-//    client.error = error;
-//    [self save:client];
-//}
+- (void)clientReceiveRequestUpdate:(FDataSnapshot*)snapshot {
+    
+    // Measure RTT first
+    NSTimeInterval roundTripTime = CACurrentMediaTime() - self.requestStartTime;
+    
+    GameTime * gameTime = [GameTime new];
+    [gameTime setValuesForKeysWithDictionary:snapshot.value];
+    
+    // convert into local game time
+    
+    GameTime * adjustedGameTime = [GameTime new];
+    adjustedGameTime.name = self.name;
+    adjustedGameTime.nextTick = gameTime.nextTick;
+    adjustedGameTime.gameTime = gameTime.gameTime + roundTripTime/2;
+    adjustedGameTime.nextTickTime = gameTime.nextTickTime;
+    
+    NSLog(@"TSS got rtt=%f %@", roundTripTime, adjustedGameTime);
+    [self.timer updateFromRemoteTime:adjustedGameTime];
+    
+    // If gameTime > nextTickTime we need to jump / simulate the next tick immediately?
+    // Naw, nothing will happen
+}
 
-//- (BOOL)isMine:(FDataSnapshot*)snapshot {
-//    return [snapshot.name isEqualToString:self.name];
-//}
-
-//- (void)save:(ClientTime*)time {
-//    Firebase * mynode = [self.node childByAppendingPath:time.name];
-//    [mynode onDisconnectRemoveValue];
-//    [mynode setValue:time.toObject];
-//}
+- (void)save:(GameTime*)time {
+    Firebase * mynode = [self.node childByAppendingPath:time.name];
+    [mynode onDisconnectRemoveValue];
+    [mynode setValue:time.toObject];
+}
 
 //- (BOOL)checkEstimate:(ClientTime*)other currentTime:(NSTimeInterval)currentTime {
 //    NSTimeInterval localTimeOfOther = other.currentTime + other.dTimeFrom;
@@ -151,7 +147,6 @@
 //}
 
 - (void)disconnect {
-//    self.client = nil;
     self.currentMatchId = nil;
     [self.node removeValue];
     self.node = nil;

@@ -9,12 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "Objectable.h"
 
-@interface ClientTime : NSObject <Objectable>
-
-// Client Time
+@interface GameTime : NSObject <Objectable>
 @property (nonatomic) NSString * name;
-@property (nonatomic) NSTimeInterval time;
-
-// Host stuff
-@property (nonatomic) NSTimeInterval error;
+@property (nonatomic) NSInteger nextTick;
+@property (nonatomic) NSTimeInterval gameTime;
+@property (nonatomic) NSTimeInterval nextTickTime;
 @end

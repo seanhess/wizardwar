@@ -12,7 +12,6 @@
 
 @interface GameTimerService ()
 @property (nonatomic) NSInteger currentTick;
-@property (nonatomic) NSTimeInterval nextTickTime;
 @end
 
 @implementation GameTimerService
@@ -32,16 +31,23 @@
 - (void)update:(NSTimeInterval)dt {
     self.gameTime += dt;
     if (!self.nextTickTime) return;
-    if (self.nextTickTime < self.gameTime) {
+    [self simulateTicks];
+}
+
+-(void)simulateTicks {
+    NSTimeInterval timePastNextTick = self.gameTime - self.nextTickTime;
+    while (timePastNextTick > 0) {
         self.nextTickTime = self.nextTickTime + self.tickInterval;
         
         self.currentTick = self.nextTick;
         [self.delegate gameDidTick:self.currentTick];
+        timePastNextTick -= self.tickInterval;
     }
 }
 
 -(void)start {
     self.gameTime = 0;
+    self.nextTickTime = self.gameTime + self.tickInterval;
 }
 
 - (void)stop {
@@ -50,6 +56,13 @@
 
 - (NSInteger)nextTick {
     return self.currentTick + 1;
+}
+
+- (void)updateFromRemoteTime:(GameTime *)gameTime {    
+    self.gameTime = gameTime.gameTime;
+    self.nextTickTime = gameTime.nextTickTime;
+    self.currentTick = gameTime.nextTick - 1;
+    [self simulateTicks];
 }
 
 @end
