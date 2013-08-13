@@ -17,7 +17,7 @@
 
 // Automatically starts the syncing process right when you create it
 @interface GameTimerService : NSObject
-@property (nonatomic) CGFloat localTime;
+@property (nonatomic) CGFloat gameTime;
 @property (nonatomic) NSTimeInterval tickInterval;
 @property (nonatomic, readonly) NSInteger nextTick;
 @property (nonatomic, weak) id<GameTimerDelegate> delegate;

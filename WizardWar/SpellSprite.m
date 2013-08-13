@@ -470,8 +470,6 @@
     CCActionInterval * actionInterval = [CCAnimate actionWithAnimation:animation];
     CCAction * action = actionInterval;
     
-    NSLog(@"CAST ANIMATION %@", self.castAnimationName);
-    
     if (self.spell.class == SpellFirewall.class) {
         CCAnimation * startAnimation = [[CCAnimationCache sharedAnimationCache] animationByName:@"firewall-start"];
         startAnimation.loops = 1;

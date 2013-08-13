@@ -30,9 +30,9 @@
 // Then I could start more quickly and kind of go from there. 
 
 - (void)update:(NSTimeInterval)dt {
-    self.localTime += dt;
+    self.gameTime += dt;
     if (!self.nextTickTime) return;
-    if (self.nextTickTime < self.localTime) {
+    if (self.nextTickTime < self.gameTime) {
         self.nextTickTime = self.nextTickTime + self.tickInterval;
         
         self.currentTick = self.nextTick;
@@ -41,7 +41,7 @@
 }
 
 -(void)start {
-    self.localTime = 0;
+    self.gameTime = 0;
 }
 
 - (void)stop {
