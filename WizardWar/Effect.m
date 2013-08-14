@@ -27,7 +27,7 @@
 }
 
 -(void)cancel:(Wizard*)player {
-    player.effect = nil;
+    
 }
 
 // Default effect applied to player, is to deal damage
@@ -37,8 +37,10 @@
     if (spell.damage > 0)
         [wizard setStatus:WizardStatusHit atTick:currentTick];
     
-    if (wizard.effect.cancelsOnHit)
+    if (wizard.effect.cancelsOnHit) {
         [wizard.effect cancel:wizard];
+        wizard.effect = nil;
+    }
     
     return [SpellInteraction cancel];
 }

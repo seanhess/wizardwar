@@ -74,6 +74,8 @@
 
 @property (nonatomic) CCSpriteFrame * currentSkinFrame;
 
+@property (nonatomic, strong) Effect * currentEffect;
+
 @end
 
 @implementation WizardSprite
@@ -193,7 +195,7 @@
 
 -(void)alignBrow:(CCSpriteFrame*)currentFrame {
     
-    if (self.wizard.state == WizardStatusDead || self.wizard.state == WizardStatusWon)
+    if (self.wizard.state == WizardStatusDead || self.wizard.state == WizardStatusWon || [self.wizard.effect isKindOfClass:[EffectSleep class]])
         return;
 
     if (!currentFrame) {
@@ -337,23 +339,27 @@
         [self.skin runAction:self.skinEffectAction];
     }
     
-    else if ([self.wizard.effect class] == [EffectSleep class]) {        
+    else if ([self.wizard.effect class] == [EffectSleep class]) {
         self.skinEffectAction = [self actionForSleepEffectForClothes:NO];
         self.clothesEffectAction = [self actionForSleepEffectForClothes:YES];
         
         // then when the effect wears off, we need to re-render status
-        CGPoint pos = self.calculatedPosition;
-        self.rotation = -90;
-        CCFiniteTimeAction * toPos = [CCMoveTo actionWithDuration:SLEEP_ANIMATION_START_DELAY position:pos];
-        CCFiniteTimeAction * rotate = [CCRotateTo actionWithDuration:SLEEP_ANIMATION_START_DELAY angle:0];
-        [self runAction:toPos];
-        [self runAction:rotate];
+        if (![self.currentEffect isKindOfClass:[EffectSleep class]]) {
+            CGPoint pos = self.calculatedPosition;
+            self.rotation = -90;
+            CCFiniteTimeAction * toPos = [CCMoveTo actionWithDuration:SLEEP_ANIMATION_START_DELAY position:pos];
+            CCFiniteTimeAction * rotate = [CCRotateTo actionWithDuration:SLEEP_ANIMATION_START_DELAY angle:0];
+            [self runAction:toPos];
+            [self runAction:rotate];
+        }
         
         // you get 2 actions conflicting here!
         // TODO fix getting hit by sleep
-        
+
+        [self.skin stopAction:self.skinEffectAction];
         [self.skin stopAction:self.skinStatusAction];
         [self.skin runAction:self.skinEffectAction];
+        [self.clothes stopAction:self.clothesEffectAction];
         [self.clothes stopAction:self.clothesStatusAction];
         [self.clothes runAction:self.clothesEffectAction];
     }
@@ -375,7 +381,10 @@
     }
     
     if (self.effect)
-        [self addChild:self.effect];    
+        [self addChild:self.effect];
+    
+    self.currentEffect = self.wizard.effect;
+    return;
 }
 
 //-(void)moveHelmetAround:(WizardStatus)status {
