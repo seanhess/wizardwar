@@ -49,6 +49,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    self.view.backgroundColor = [UIColor colorFromRGB:0x67B0DF];
+    
     [UserService.shared connect];
     [UserFriendService.shared checkFBStatus:UserService.shared.currentUser];
     [LobbyService.shared connect];
@@ -76,6 +78,21 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation
+{
+    if (orientation == UIInterfaceOrientationPortrait)
+        return YES;
+    
+    return NO;
+}
+
+
 
 - (void)renderTotalInLobby {
     NSString * title = nil;
