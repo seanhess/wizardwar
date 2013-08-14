@@ -179,6 +179,10 @@
 		7837F16C1749B9D000D29445 /* navbar-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7837F16A1749B9CF00D29445 /* navbar-logo@2x.png */; };
 		783BD39E176A79A50092D93C /* SpellSleep.m in Sources */ = {isa = PBXBuildFile; fileRef = 78915288176A7815001694B1 /* SpellSleep.m */; };
 		783E8066176A88B800A21FE5 /* SpellVortex.m in Sources */ = {isa = PBXBuildFile; fileRef = 783E8065176A88B800A21FE5 /* SpellVortex.m */; };
+		784C519B17BAB8FC003FDC4F /* spells.plist in Resources */ = {isa = PBXBuildFile; fileRef = 784C519717BAB8FC003FDC4F /* spells.plist */; };
+		784C519C17BAB8FC003FDC4F /* spells.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 784C519817BAB8FC003FDC4F /* spells.pvr.ccz */; };
+		784C519D17BAB8FC003FDC4F /* spells-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 784C519917BAB8FC003FDC4F /* spells-hd.plist */; };
+		784C519E17BAB8FC003FDC4F /* spells-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 784C519A17BAB8FC003FDC4F /* spells-hd.pvr.ccz */; };
 		784D3BDB17748BF1009945F8 /* menu-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 784D3BDA17748BF1009945F8 /* menu-bg.png */; };
 		784D3BDE1774F753009945F8 /* LobbyService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BDD1774F753009945F8 /* LobbyService.m */; };
 		784D3BE1177501E9009945F8 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BE0177501E9009945F8 /* UserService.m */; };
@@ -732,6 +736,10 @@
 		7837F16A1749B9CF00D29445 /* navbar-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar-logo@2x.png"; sourceTree = "<group>"; };
 		783E8064176A88B800A21FE5 /* SpellVortex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellVortex.h; sourceTree = "<group>"; };
 		783E8065176A88B800A21FE5 /* SpellVortex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellVortex.m; sourceTree = "<group>"; };
+		784C519717BAB8FC003FDC4F /* spells.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = spells.plist; sourceTree = "<group>"; };
+		784C519817BAB8FC003FDC4F /* spells.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = spells.pvr.ccz; sourceTree = "<group>"; };
+		784C519917BAB8FC003FDC4F /* spells-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "spells-hd.plist"; sourceTree = "<group>"; };
+		784C519A17BAB8FC003FDC4F /* spells-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "spells-hd.pvr.ccz"; sourceTree = "<group>"; };
 		784D3BDA17748BF1009945F8 /* menu-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-bg.png"; sourceTree = "<group>"; };
 		784D3BDC1774F753009945F8 /* LobbyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LobbyService.h; sourceTree = "<group>"; };
 		784D3BDD1774F753009945F8 /* LobbyService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LobbyService.m; sourceTree = "<group>"; };
@@ -1697,6 +1705,10 @@
 		78E22CB71782540B00146D49 /* spells */ = {
 			isa = PBXGroup;
 			children = (
+				784C519717BAB8FC003FDC4F /* spells.plist */,
+				784C519817BAB8FC003FDC4F /* spells.pvr.ccz */,
+				784C519917BAB8FC003FDC4F /* spells-hd.plist */,
+				784C519A17BAB8FC003FDC4F /* spells-hd.pvr.ccz */,
 				782BC1BE17B959DB00EB7FC6 /* lightning-animation.plist */,
 				782BC1BF17B959DB00EB7FC6 /* lightning-hd.plist */,
 				782BC1C017B959DC00EB7FC6 /* lightning-hd.png */,
@@ -2391,6 +2403,10 @@
 				782BC1C517B959DD00EB7FC6 /* lightning-hd.png in Resources */,
 				782BC1C617B959DD00EB7FC6 /* lightning.plist in Resources */,
 				782BC1C717B959DD00EB7FC6 /* lightning.png in Resources */,
+				784C519B17BAB8FC003FDC4F /* spells.plist in Resources */,
+				784C519C17BAB8FC003FDC4F /* spells.pvr.ccz in Resources */,
+				784C519D17BAB8FC003FDC4F /* spells-hd.plist in Resources */,
+				784C519E17BAB8FC003FDC4F /* spells-hd.pvr.ccz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
