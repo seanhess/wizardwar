@@ -294,7 +294,7 @@
     self.replayButton.frame = frame;
     [UIView animateWithDuration:0.3 animations:^{
         CGRect frame = self.replayButton.frame;
-        frame.origin.y = self.cocosView.frame.size.height - frame.size.height - 15;
+        frame.origin.y = self.cocosView.frame.size.height - frame.size.height - 8;
         self.replayButton.frame = frame;
     }];
 }
