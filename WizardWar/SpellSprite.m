@@ -37,83 +37,45 @@
 
 @interface SpellSprite ()
 @property (nonatomic, strong) Units * units;
-@property (nonatomic, strong) CCSprite * skin;
-@property (nonatomic, strong) CCSpriteBatchNode * sheet;
 @property (nonatomic, strong) CCAction * frameAnimation;
-@property (nonatomic, strong) CCSpriteBatchNode * explosion;
-@property (nonatomic) NSInteger currentAltitude;
 @property (nonatomic, strong) CCAction * positionAction;
+@property (nonatomic, strong) CCAction * explodeAction;
+@property (nonatomic) NSInteger currentAltitude;
 @end
 
 @implementation SpellSprite
-
-+(void)loadSprites {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        NSLog(@"LOAD SPELL SPRITES");
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"explode.plist"];
-        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"explode-animation.plist"];
-        
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"firewall.plist"];
-        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"firewall-animation.plist"];
-        
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"chicken.plist"];
-        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"chicken-animation.plist"];
-        
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"lightning.plist"];
-        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"lightning-animation.plist"];
-        
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"spells.plist"];
-        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"ogre-animation.plist"];
-        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"fireball-animation.plist"];
-        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"windblast-animation.plist"];        
-        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"bubble-animation.plist"];
-        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"vine-animation.plist"];
-        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"icewall-animation.plist"];
-        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"earthwall-animation.plist"];                
-    });
-}
-
 
 -(id)initWithSpell:(Spell*)spell units:(Units *)units {
     if ((self=[super init])) {
         self.spell = spell;
         self.units = units;
         
-        if ([spell isKindOfClass:[SpellFailChicken class]] || [spell isKindOfClass:[SpellFirewall class]] || [spell isKindOfClass:[SpellLightningOrb class]]) {
-            return self;
-        }
-        
         if (spell.targetSelf) {
+            self.visible = NO;
             return self;
         }
-        
-        [SpellSprite loadSprites];
         
         // STATIC sprites
         if ([SpellSprite isSingleImage:self.spell]) {
-            self.skin = [SpellSprite singleImage:spell];
-            [self addChild:self.skin];
+            [self setDisplayFrame:[SpellSprite singleImageFrame:spell]];
             
             if (spell.class == SpellSleep.class || spell.class == SpellFailUndies.class || spell.class == SpellFailTeddy.class || spell.class == SpellFailHotdog.class) {
                 CCActionInterval * rotate = [CCRotateBy actionWithDuration:1.4 angle:360.0];
-                [self.skin runAction:[CCRepeatForever actionWithAction:rotate]];
+                [self runAction:[CCRepeatForever actionWithAction:rotate]];
             } else if (spell.class == SpellFailRainbow.class) {
                 CCActionInterval * fade = [CCFadeIn actionWithDuration:1.0];
-                [self.skin runAction:fade];
+                [self runAction:fade];
             }
         }
 
         // ANIMATED sprites
         else {
-            self.sheet = [CCSpriteBatchNode batchNodeWithFile:@"spells.pvr.ccz"];
-            [self addChild:self.sheet];
-            
             // Make the skin use the right texture, but not decide what to display
-            self.skin = [CCSprite spriteWithTexture:self.sheet.texture rect:CGRectZero];
-            self.frameAnimation = self.spellAction;
-            [self.skin runAction:self.frameAnimation];
-            [self.sheet addChild:self.skin];            
+            CCAnimation * animation = [self spellAnimation];
+            self.frameAnimation = [self spellAction:animation];
+            CCAnimationFrame * firstFrame = animation.frames[0];
+            [self setDisplayFrame:firstFrame.spriteFrame];
+            [self runAction:self.frameAnimation];
         }
         
         
@@ -178,7 +140,7 @@
 }
 
 -(void)renderDirection {
-    self.skin.flipX = (self.spell.direction < 0);
+    self.flipX = (self.spell.direction < 0);
 }
 
 -(void)renderPosition {
@@ -278,9 +240,9 @@
 
 - (void)renderSpellDamage {
     if (self.spell.damage > 1) {
-        self.skin.scale = self.spell.damage;
+        self.scale = self.spell.damage;
     }
-    else self.skin.scale = 1.0;
+    else self.scale = 1.0;
 }
 
 - (void)renderWallStrength {
@@ -292,32 +254,31 @@
     if (strength > 3) strength = 3;   
     
     if ([self.spell isKindOfClass:[SpellFirewall class]]) {
-        self.skin.scale = (1 + (strength/3.0))/2;
+        self.scale = (1 + (strength/3.0))/2;
         [self renderPosition];
     } else {
         NSString * frameName = [NSString stringWithFormat:@"%@-%i.png", self.sheetName, (strength+1)];
-        [self.skin setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
+        [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
     }
 }
 
 - (void)renderStatus {
 //    self.skin.visible = (self.spell.status != SpellStatusDestroyed);
-    self.skin.visible = (self.spell.status == SpellStatusActive || self.spell.status == SpellStatusPrepare || self.spell.status == SpellStatusUpdated);
+//    self.visible = (self.spell.status == SpellStatusActive || self.spell.status == SpellStatusPrepare || self.spell.status == SpellStatusUpdated);
 
     if (self.spell.status == SpellStatusDestroyed) {
         
         if (self.spell.class == SpellFailRainbow.class) {
-            self.skin.visible = YES;
-            [self.skin runAction:[CCFadeOut actionWithDuration:1.0]];
+            self.visible = YES;
+            [self runAction:[CCFadeOut actionWithDuration:1.0]];
         }
         
-        else if (!self.explosion) {
-            self.explosion = [CCSpriteBatchNode batchNodeWithFile:@"explode.png"];
-            [self addChild:self.explosion];
-            CCSprite * sprite = [CCSprite spriteWithTexture:self.explosion.texture rect:CGRectZero];
-            [sprite runAction:self.explodeAction];
-            [sprite runAction:[CCFadeOut actionWithDuration:0.4]];
-            [self.explosion addChild:sprite];
+        else if (!self.explodeAction) {
+            CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:@"explode"];
+            self.explodeAction = [CCAnimate actionWithAnimation:animation];
+            self.frameAnimation = self.explodeAction;
+            [self runAction:self.explodeAction];
+            [self runAction:[CCFadeOut actionWithDuration:0.4]];
         }
     }
 
@@ -359,8 +320,9 @@
     return (spell.class == SpellInvisibility.class || spell.class == SpellHeal.class || spell.class == SpellLevitate.class);
 }
 
-+(CCSprite*)singleImage:(Spell*)spell {
-    return [CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", [self sheetName:spell]]];
++(CCSpriteFrame*)singleImageFrame:(Spell*)spell {
+    NSString * frameName = [NSString stringWithFormat:@"%@.png", [self sheetName:spell]];
+    return [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName];
 }
 
 +(NSString*)sheetName:(Spell*)spell {
@@ -448,8 +410,7 @@
     return [SpellSprite castAnimationName:self.spell];
 }
 
-
--(CCAction*)spellAction {
+-(CCAnimation*)spellAnimation {
     CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:self.castAnimationName];
     NSAssert(animation, @"Animation not defined");
     animation.restoreOriginalFrame = NO;
@@ -457,6 +418,11 @@
     if (self.spell.class == SpellFireball.class || self.spell.class == SpellBubble.class || self.spell.class == SpellWindblast.class || self.spell.class == SpellMonster.class || self.spell.class == SpellFailChicken.class || self.spell.class == SpellLightningOrb.class || self.spell.class == SpellFirewall.class) {
         animation.loops = 10000;
     }
+    
+    return animation;
+}
+
+-(CCAction*)spellAction:(CCAnimation*)animation {
     
     CCActionInterval * actionInterval = [CCAnimate actionWithAnimation:animation];
     CCAction * action = actionInterval;
@@ -469,15 +435,7 @@
         action = startThenBurn;
     }
     
-    
     return action;
-}
-
--(CCAction*)explodeAction {
-    CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:@"explode"];
-    animation.restoreOriginalFrame = NO;
-    CCActionInterval * actionInterval = [CCAnimate actionWithAnimation:animation];
-    return actionInterval;
 }
 
 @end

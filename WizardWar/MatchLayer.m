@@ -34,6 +34,7 @@
 #import "Tick.h"
 #import "FeedbackLayer.h"
 
+#import "SpellsLayer.h"
 
 #import <ReactiveCocoa.h>
 
@@ -42,7 +43,7 @@
 @interface MatchLayer () <CCTouchOneByOneDelegate, MatchDelegate>
 @property (nonatomic, strong) Match * match;
 @property (nonatomic, strong) Units * units;
-@property (nonatomic, strong) CCLayer * spells;
+@property (nonatomic, strong) SpellsLayer * spells;
 @property (nonatomic, strong) CCLayer * wizards;
 @property (nonatomic, strong) CCLayer * indicators;
 //@property (nonatomic, strong) FeedbackLayer * feedback;
@@ -87,7 +88,7 @@
         self.wizards = [CCLayer node];
         [self addChild:self.wizards];
         
-        self.spells = [CCLayer node];
+        self.spells = [SpellsLayer new];
         [self addChild:self.spells];
         
         
@@ -134,10 +135,7 @@
     
     // need to update each one
     [self.match update:delta];
-    
-    for (SpellSprite * spell in self.spells.children) {
-        [spell update:delta];
-    }
+    [self.spells update:delta];
     
     for (WizardSprite * wizard in self.wizards.children) {
         [wizard update:delta];
@@ -147,7 +145,7 @@
 #pragma mark -  MATCH DELEGATE
 
 -(void)didRemoveSpell:(Spell *)spell {
-    SpellSprite * sprite = [NSArray array:self.spells.children find:^BOOL(SpellSprite * sprite) {
+    SpellSprite * sprite = [NSArray array:self.spells.allSpellSprites find:^BOOL(SpellSprite * sprite) {
         return (sprite.spell == spell);
     }];
     [self.spells removeChild:sprite];
@@ -155,7 +153,7 @@
 
 -(void)didAddSpell:(Spell *)spell {
     SpellSprite * sprite = [[SpellSprite alloc] initWithSpell:spell units:self.units];
-    [self.spells addChild:sprite];
+    [self.spells addSpell:sprite];
     
     if([spell isMemberOfClass: [SpellFireball class]]){
         [[SimpleAudioEngine sharedEngine] playEffect:@"fireball.mp3"];

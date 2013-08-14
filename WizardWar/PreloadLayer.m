@@ -13,15 +13,13 @@
 #import "WizardSprite.h"
 #import "SpellVine.h"
 #import "Combos.h"
+#import "SpellsLayer.h"
 
 @implementation PreloadLayer
 
 +(void)loadSpells {
     NSLog(@"------ PRELOAD -------");
 //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [SpellSprite loadSprites];
-        [WizardSprite loadSprites];
-        
         PreloadLayer * layer = [PreloadLayer new];
         [WizardDirector runLayer:layer];
         [layer load];
@@ -39,11 +37,14 @@
     
     NSArray * spellClasses = [Combos allSpellClasses];
     
+    SpellsLayer * spells = [SpellsLayer new];
+    [self addChild:spells];
+    
     for (Class SpellType in spellClasses) {
         Spell * spell = [SpellType new];
         NSLog(@"PRELOAD %@", spell.type);
         SpellSprite * sprite = [[SpellSprite alloc] initWithSpell:spell units:nil];
-        [self addChild:sprite];
+        [spells addSpell:sprite];
     }
     
     Wizard * wizard = [Wizard new];

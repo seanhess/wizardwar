@@ -71,38 +71,12 @@
 
 @implementation WizardSprite
 
-+(void)loadSprites {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        NSLog(@"LOAD WIZARD SPRITES");
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard1-set1.plist"];
-        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"wizard1-set1-animations.plist"];
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard1-set2.plist"];
-        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"wizard1-set2-animations.plist"];
-
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard1-set1-clothes.plist"];
-        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"wizard1-set1-clothes-animations.plist"];
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard1-set2-clothes.plist"];
-        [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"wizard1-set2-clothes-animations.plist"];
-
-    });
-}
-
-
 -(id)initWithWizard:(Wizard *)wizard units:(Units *)units match:(Match*)match isCurrentWizard:(BOOL)isCurrentWizard {
     if ((self=[super init])) {
         self.wizard = wizard;
         self.units = units;
         self.match = match;
         self.isCurrentWizard = isCurrentWizard;
-        
-        [WizardSprite loadSprites];
-
-        // To use BatchNodes, you need to add the sprite TO the batch node
-        // Then it only uses one draw call
-        // see SpellSprite
-//        [CCSpriteBatchNode batchNodeWithFile:@"wizard1-set1.png"];
-//        [CCSpriteBatchNode batchNodeWithFile:@"wizard1-set2.png"];
         
         __weak WizardSprite * wself = self;
         
@@ -318,7 +292,7 @@
     
     else if ([self.wizard.effect class] == [EffectHelmet class]) {
         [self renderStatus];
-        self.effect = [CCSprite spriteWithFile:@"helmet.png"];
+        self.effect = [CCSprite spriteWithSpriteFrameName:@"helmet.png"];
         self.effect.flipX = self.wizard.position == UNITS_MAX;
         
         // well, I just finished my cast animation I guess
@@ -366,7 +340,7 @@
     }
     
     else if ([self.wizard.effect class] == [EffectUndies class]) {
-        self.effect = [CCSprite spriteWithFile:@"wizard-undies.png"];
+        self.effect = [CCSprite spriteWithSpriteFrameName:@"wizard-undies.png"];
 //        self.effect.flipY = YES;
         self.effect.position = ccp(self.wizard.direction*-12, -30);
         

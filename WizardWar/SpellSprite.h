@@ -13,11 +13,11 @@
 @interface SpellSprite : CCSprite
 -(id)initWithSpell:(Spell*)spell units:(Units*)units;
 @property (nonatomic, strong) Spell * spell;
-+(void)loadSprites;
+@property (nonatomic, strong) NSString * explodeAnimationName;
 
 +(BOOL)isSingleImage:(Spell*)spell;
 +(BOOL)isNoRender:(Spell*)spell;
 +(NSString*)sheetName:(Spell*)spell;
 +(NSString*)castAnimationName:(Spell*)spell;
-+(CCSprite*)singleImage:(Spell*)spell;
++(CCSpriteFrame*)singleImageFrame:(Spell*)spell;
 @end
