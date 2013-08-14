@@ -51,6 +51,7 @@
         self.units = units;
         
         if (spell.targetSelf) {
+//            [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"fireball-1.png"]];
             self.visible = NO;
             return self;
         }

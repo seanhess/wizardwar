@@ -148,7 +148,7 @@
         [self mapTable:mapTable setOffset:ccp(8,-3) rotation:0 forAnimationName:@"wizard1-attack4.png"];
         [self mapTable:mapTable setOffset:ccp(8,-3) rotation:0 forAnimationName:@"wizard1-attack.png"];
         
-        [self mapTable:mapTable setOffset:ccp(0,0) rotation:0 forAnimationName:@"wizard1-damage.png"];
+//        [self mapTable:mapTable setOffset:ccp(0,0) rotation:0 forAnimationName:@"wizard1-damage.png"];
         [self mapTable:mapTable setOffset:ccp(-7,-3) rotation:0 forAnimationName:@"wizard1-damage2.png"];
         [self mapTable:mapTable setOffset:ccp(-17,-3) rotation:0 forAnimationName:@"wizard1-damage3.png"];
         [self mapTable:mapTable setOffset:ccp(-19,7) rotation:0 forAnimationName:@"wizard1-damage4.png"];

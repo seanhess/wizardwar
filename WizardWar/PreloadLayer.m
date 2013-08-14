@@ -19,12 +19,10 @@
 
 +(void)loadSpells {
     NSLog(@"------ PRELOAD -------");
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         PreloadLayer * layer = [PreloadLayer new];
         [WizardDirector runLayer:layer];
         [layer load];
         [WizardDirector stop];
-//    });
 }
 
 +(void)loadWizards {
@@ -49,16 +47,17 @@
     
     Wizard * wizard = [Wizard new];
     wizard.name = @"preload bot";
+    NSLog(@"PRELOAD wizard %i", WizardStatusReady);
     wizard.state = WizardStatusReady;
     wizard.wizardType = WIZARD_TYPE_ONE;
     
-    // set 1: attack, celebrate, prepare
-    // set 2: dead, damage, sleep
-    
     WizardSprite * wizardSprite = [[WizardSprite alloc] initWithWizard:wizard units:nil match:nil isCurrentWizard:YES];
     [self addChild:wizardSprite];
-    
+
+    NSLog(@"PRELOAD wizard %i", WizardStatusHit);
     wizard.state = WizardStatusHit;
+    NSLog(@"PRELOAD wizard %i", WizardStatusCast);
+    wizard.state = WizardStatusCast;
 }
 
 @end
