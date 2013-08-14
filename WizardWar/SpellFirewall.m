@@ -18,6 +18,7 @@
 
 -(id)init {
     if ((self=[super init])) {
+        self.damage = 1;
         self.strength = 3;
         self.name = @"Wall of Fire";
     }
