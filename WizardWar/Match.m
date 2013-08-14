@@ -239,7 +239,8 @@
     }];
     
     // SIMULATE SPELLS
-    // this moves them all. This happens AFTER collision detection
+    // move before checking hits, then we check hits with didHit
+    // = whether or not they passed each other during that interval
     [self.activeSpells forEach:^(Spell * spell) {
         SpellInteraction * interaction = [spell simulateTick:currentTick interval:tickInterval];
         [self handleInteraction:interaction forSpell:spell];
@@ -399,9 +400,9 @@
 }
 
 -(void)hitSpell:(Spell*)spell withSpell:(Spell*)spell2 currentTick:(NSInteger)currentTick {
-//    NSLog(@"HIT %@ %@", spell, spell2);
     [self handleInteraction:[spell interactSpell:spell2 currentTick:currentTick] forSpell:spell];
     [self handleInteraction:[spell2 interactSpell:spell currentTick:currentTick] forSpell:spell2];
+//    NSLog(@"HIT tick=%i (pos=%i dmg=%i) (pos=%i dmg=%i)", currentTick, (int)spell.position, spell.damage, (int)spell2.position, spell2.damage);
 }
 
 -(void)checkWin {

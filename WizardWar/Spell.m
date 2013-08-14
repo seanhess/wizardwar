@@ -156,8 +156,13 @@
         return (spellEnd >= selfEnd);
     }
     
-    else {
+    else if (spellStart > selfStart) {
         return (spellEnd <= selfEnd);
+    }
+    
+    else {
+        // If they STARTED touching, we counted the hit last time
+        return NO;
     }
 }
 
