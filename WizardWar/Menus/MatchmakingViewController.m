@@ -120,6 +120,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"ChallengeCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"ChallengeCell"];
     
     [self.tableView setTableFooterView:self.explanationsView];
+    NSLog(@"TESTING %@", NSStringFromCGRect(self.tableView.tableFooterView.frame));
     
     self.title = @"Matchmaking";
     [self.navigationController setNavigationBarHidden:NO animated:YES];
@@ -137,13 +138,13 @@
     
     
     [RACAble(LocationService.shared, accepted) subscribeNext:^(id x) {
-        [wself.tableView reloadData];
+        [wself renderTableHeader];
     }];
     
     [RACAble(UserService.shared, pushAccepted) subscribeNext:^(id x) {
-        [wself.tableView reloadData];
+        [wself renderTableHeader];
     }];
-    
+    [self renderTableHeader];    
     
     
     // CHECK AUTHENTICATED
@@ -155,6 +156,32 @@
 //        accounts.delegate = self;
 //        [self.navigationController presentViewController:accounts animated:YES completion:nil];
 //    }
+    
+
+}
+
+- (void)renderTableHeader {
+    if (!LocationService.shared.accepted || !UserService.shared.pushAccepted) {
+        
+        NSMutableString * message = [NSMutableString string];
+        
+        if (!LocationService.shared.accepted) {
+            if (LocationService.shared.cannotFindLocation)
+                [message appendString:@"Cannot locate you! Please make sure Location Services are enabled to see players near you.\n"];
+            else
+                [message appendString:@"Enable Location Services to see players near you. You can do this in Settings.\n"];
+        }
+        
+        if (!UserService.shared.pushAccepted) {
+            [message appendString:@"Enable Push Notifications so friends can invite you to play\n"];
+        }
+        
+        self.warningsView.text = message;
+        
+        self.tableView.tableHeaderView = self.warningsView;
+    } else {
+        self.tableView.tableHeaderView = nil;
+    }
 }
 
 - (void)connect {
@@ -414,34 +441,9 @@
     }
 }
 
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    if (section == SECTION_INDEX_MESSAGES && (!LocationService.shared.accepted || !UserService.shared.pushAccepted)) {
-        
-        NSMutableString * message = [NSMutableString string];
-        
-        if (!LocationService.shared.accepted) {
-            if (LocationService.shared.cannotFindLocation)
-                [message appendString:@"Cannot locate you! Please make sure Location Services are enabled to see players near you.\n"];
-            else
-                [message appendString:@"Enable Location Services to see players near you. You can do this in Settings.\n"];
-        }
-        
-        if (!UserService.shared.pushAccepted) {
-            [message appendString:@"Enable Push Notifications so friends can invite you to play\n"];
-        }
-        
-        self.warningsView.text = message;
-        
-        return self.warningsView;
-    }
-    else {
-        return nil;
-    }
-}
 
 //-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-//    return 0;
+//    return self.explanationsView.frame.size.height + 30;
 //}
 
 //-(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
@@ -466,8 +468,8 @@
 }
 
 - (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == SECTION_INDEX_MESSAGES && (!LocationService.shared.accepted || !UserService.shared.pushAccepted))
-        return self.warningsView.frame.size.height;
+//    if (section == SECTION_INDEX_MESSAGES && (!LocationService.shared.accepted || !UserService.shared.pushAccepted))
+//        return self.warningsView.frame.size.height;
 //    else if (section == SECTION_INDEX_ONLINE_USERS) return 26;
 //    else if (section == SECTION_INDEX_OFFLINE_USERS) return 26;
 //    else if (section == 1) return 26;

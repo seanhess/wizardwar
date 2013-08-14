@@ -41,7 +41,6 @@
 				<string key="NSFrameSize">{320, 88}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">2</int>
@@ -87,6 +86,7 @@ aCBOb3RpZmljYXRpb25zIHNvIGZyaWVuZHMgY2FuIGludml0ZSB5b3UgdG8gcGxheS4</string>
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC44OTAzOTE0NzQyIDAuODkwMzkxNDc0MiAwLjg5MDM5MTQ3NDIAA</bytes>
 						</object>
+						<bool key="IBUIAutoresizesSubviews">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<bool key="IBUIAlwaysBounceVertical">YES</bool>
@@ -107,7 +107,6 @@ aCBOb3RpZmljYXRpb25zIHNvIGZyaWVuZHMgY2FuIGludml0ZSB5b3UgdG8gcGxheS4</string>
 						<string key="NSFrame">{{20, 467}, {280, 48}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -200,10 +199,9 @@ aCBOb3RpZmljYXRpb25zIHNvIGZyaWVuZHMgY2FuIGludml0ZSB5b3UgdG8gcGxheS4</string>
 			<object class="IBUITextView" id="713344633">
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
-				<string key="NSFrameSize">{320, 109}</string>
+				<string key="NSFrameSize">{320, 145}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -749,20 +747,6 @@ aCBOb3RpZmljYXRpb25zIHNvIGZyaWVuZHMgY2FuIGludml0ZSB5b3UgdG8gcGxheS4</string>
 				<object class="IBPartialClassDescription">
 					<string key="className">MatchmakingViewController</string>
 					<string key="superclassName">UIViewController</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="didTapInviteFriends:">id</string>
-						<string key="didTapLogin:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="didTapInviteFriends:">
-							<string key="name">didTapInviteFriends:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="didTapLogin:">
-							<string key="name">didTapLogin:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="activityView">UIActivityIndicatorView</string>
 						<string key="explanationsView">UITextView</string>
