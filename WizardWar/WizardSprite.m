@@ -18,6 +18,7 @@
 #import "AppStyle.h"
 #import "EffectUndies.h"
 #import "DebugSprite.h"
+#import "OLSprite.h"
 
 #define SLEEP_ANIMATION_START_DELAY 0.2
 #define WIZARD_PADDING 20
@@ -28,17 +29,21 @@
 @property (nonatomic) float x;
 @property (nonatomic) float y;
 @property (nonatomic) float rotation;
+@property (nonatomic, readonly) CGPoint point;
 @end
 
 @implementation WizardEffectOffset
+-(CGPoint)point {
+    return ccp(self.x, self.y);
+}
 @end
 
 
-@interface WizardSprite ()
+@interface WizardSprite () <OLSpriteFrameDelegate>
 @property (nonatomic, strong) Units * units;
 
 @property (nonatomic, strong) CCLabelTTF * label;
-@property (nonatomic, strong) CCSprite * skin;
+@property (nonatomic, strong) OLSprite * skin;
 @property (nonatomic, strong) CCSprite * clothes;
 @property (nonatomic, strong) CCSprite * effect;
 
@@ -49,7 +54,7 @@
 
 
 
-@property (nonatomic) CGPoint browCenter;
+@property (nonatomic, strong) WizardEffectOffset* browOffset;
 @property (nonatomic) CGPoint waistCenter;
 
 @property (nonatomic, strong) CCSprite * headDebug;
@@ -67,6 +72,8 @@
 
 @property (nonatomic, strong) NSMapTable * wizard1HeadOffsets;
 
+@property (nonatomic) CCSpriteFrame * currentSkinFrame;
+
 @end
 
 @implementation WizardSprite
@@ -80,7 +87,8 @@
         
         __weak WizardSprite * wself = self;
         
-        self.skin = [CCSprite node];
+        self.skin = [OLSprite node];
+        self.skin.delegate = self;
         self.clothes = [CCSprite node];
         ccColor3B color = [self colorWithColor:wizard.color];
         self.clothes.color = color;
@@ -121,6 +129,7 @@
         [[RACAble(self.match.status) distinctUntilChanged] subscribeNext:^(id x) {
             [wself renderMatchStatus];
         }];
+        
     }
     return self;
 }
@@ -141,7 +150,9 @@
         
         [self mapTable:mapTable setOffset:ccp(0,0) rotation:0 forAnimationName:@"wizard1-damage.png"];
         [self mapTable:mapTable setOffset:ccp(-7,-3) rotation:0 forAnimationName:@"wizard1-damage2.png"];
-        [self mapTable:mapTable setOffset:ccp(-36,0) rotation:-10 forAnimationName:@"wizard1-damage5.png"];
+        [self mapTable:mapTable setOffset:ccp(-17,-3) rotation:0 forAnimationName:@"wizard1-damage3.png"];
+        [self mapTable:mapTable setOffset:ccp(-19,7) rotation:0 forAnimationName:@"wizard1-damage4.png"];
+        [self mapTable:mapTable setOffset:ccp(-36,1) rotation:-10 forAnimationName:@"wizard1-damage5.png"];
         [self mapTable:mapTable setOffset:ccp(-49,-10) rotation:-20 forAnimationName:@"wizard1-damage6.png"];
         self.wizard1HeadOffsets = mapTable;
     }
@@ -174,39 +185,46 @@
     self.clothes.flipX = self.skin.flipX;
 }
 
+-(void)update:(ccTime)delta {}
 
--(void)update:(ccTime)delta {
+-(void)sprite:(OLSprite *)sprite didChangeFrame:(CCSpriteFrame *)frame {
+    [self alignBrow:frame];
+}
+
+-(void)alignBrow:(CCSpriteFrame*)currentFrame {
     
-    NSArray * frames = self.skinStatusAnimation.frames;
-    NSInteger frameIndex = -1;
-    CCSpriteFrame * currentFrame = nil;
-    for (int i = 0; i < frames.count; i++) {
-        CCAnimationFrame * frame = frames[i];
-        CCSpriteFrame * spriteFrame = [frame spriteFrame];
-        if ([self.skin isFrameDisplayed:spriteFrame]) {
-            frameIndex = i;
-            currentFrame = spriteFrame;
-            break;
-        }
-    }
-    
-    if (currentFrame) {
-        CGPoint restBrow = ccp(0, 70);        
-        WizardEffectOffset* headOffset = [self.wizard1HeadOffsets objectForKey:currentFrame];
-        self.browCenter = ccp(self.wizard.direction*headOffset.x, restBrow.y + headOffset.y);
-        
-        self.headDebug.position = self.browCenter;
-        
-        if ([self.wizard.effect isKindOfClass:[EffectHelmet class]]) {
-            CGPoint helmetOffset = ccp(self.wizard.direction*-4, 22);
-            self.effect.position = ccp(self.browCenter.x+helmetOffset.x, self.browCenter.y+helmetOffset.y);
-            self.effect.rotation = self.wizard.direction*headOffset.rotation;
-        }
-    } else {
+    if (self.wizard.state == WizardStatusDead || self.wizard.state == WizardStatusWon)
+        return;
+
+    if (!currentFrame) {
         NSLog(@"CANT FIND FRAME status=%i", self.wizard.state);
+        return;
     }
     
+    CGPoint restBrow = ccp(0, 70);
+    WizardEffectOffset* headOffset = [self.wizard1HeadOffsets objectForKey:currentFrame];
+    
+    if (!headOffset) {
+        NSLog(@"CANT FIND FRAME OFFSET status=%i currentFrame=%@", self.wizard.state, currentFrame);
+        return;
+    }
+    
+    WizardEffectOffset* browOffset = [WizardEffectOffset new];
+    browOffset.x = self.wizard.direction*headOffset.x;
+    browOffset.y = restBrow.y + headOffset.y;
+    browOffset.rotation = headOffset.rotation;
+    self.browOffset = browOffset;
+    self.headDebug.position = browOffset.point;
+    
+    if ([self.wizard.effect isKindOfClass:[EffectHelmet class]]) {
+        [self alignHelmet];
+    }
+}
 
+-(void)alignHelmet {
+    CGPoint helmetOffset = ccp(self.wizard.direction*-4, 22);
+    self.effect.position = ccp(self.browOffset.x+helmetOffset.x, self.browOffset.y+helmetOffset.y);
+    self.effect.rotation = self.wizard.direction*self.browOffset.rotation;
 }
 
 -(void)renderStatus {
@@ -294,6 +312,7 @@
         [self renderStatus];
         self.effect = [CCSprite spriteWithSpriteFrameName:@"helmet.png"];
         self.effect.flipX = self.wizard.position == UNITS_MAX;
+        [self alignHelmet];
         
         // well, I just finished my cast animation I guess
         // I need to pin it to the wizard's center

@@ -215,6 +215,7 @@
 		787E1C2917BBF5290092F5D6 /* wizard1-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 787E1C2117BBF5290092F5D6 /* wizard1-hd.pvr.ccz */; };
 		787E1C2A17BBF5290092F5D6 /* wizard1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 787E1C2217BBF5290092F5D6 /* wizard1.plist */; };
 		787E1C2B17BBF5290092F5D6 /* wizard1.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 787E1C2317BBF5290092F5D6 /* wizard1.pvr.ccz */; };
+		787E1C3117BBFC000092F5D6 /* OLSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 787E1C3017BBFC000092F5D6 /* OLSprite.m */; };
 		78915283176A72DB001694B1 /* SpellLevitate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78915280176A7136001694B1 /* SpellLevitate.m */; };
 		78915284176A72DE001694B1 /* EffectLevitate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78915282176A72A8001694B1 /* EffectLevitate.m */; };
 		789787A61778F11C00094AF9 /* menu-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 789787A51778F11C00094AF9 /* menu-bg@2x.png */; };
@@ -734,6 +735,8 @@
 		787E1C2117BBF5290092F5D6 /* wizard1-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "wizard1-hd.pvr.ccz"; sourceTree = "<group>"; };
 		787E1C2217BBF5290092F5D6 /* wizard1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = wizard1.plist; sourceTree = "<group>"; };
 		787E1C2317BBF5290092F5D6 /* wizard1.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = wizard1.pvr.ccz; sourceTree = "<group>"; };
+		787E1C2F17BBFC000092F5D6 /* OLSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLSprite.h; sourceTree = "<group>"; };
+		787E1C3017BBFC000092F5D6 /* OLSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLSprite.m; sourceTree = "<group>"; };
 		7891527F176A7136001694B1 /* SpellLevitate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpellLevitate.h; sourceTree = "<group>"; };
 		78915280176A7136001694B1 /* SpellLevitate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpellLevitate.m; sourceTree = "<group>"; };
 		78915281176A72A8001694B1 /* EffectLevitate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EffectLevitate.h; sourceTree = "<group>"; };
@@ -1901,6 +1904,8 @@
 				782BC1AA17B90DD100EB7FC6 /* DebugSprite.m */,
 				78F6B3B11746B27700AA070D /* SpellSprite.h */,
 				78F6B3B21746B27700AA070D /* SpellSprite.m */,
+				787E1C2F17BBFC000092F5D6 /* OLSprite.h */,
+				787E1C3017BBFC000092F5D6 /* OLSprite.m */,
 				78D0855F176A4D7900EDC405 /* Simulated.h */,
 			);
 			name = Match;
@@ -2403,6 +2408,7 @@
 				782BC1BD17B9595900EB7FC6 /* SpellLightningOrb.m in Sources */,
 				7860683017BBD255004D2E68 /* SpellsLayer.m in Sources */,
 				7860683317BBD3D1004D2E68 /* SpriteCache.m in Sources */,
+				787E1C3117BBFC000092F5D6 /* OLSprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -81,9 +81,9 @@
         // No heal or invisibility because he's not patient tnough to let it finish
         
 #ifdef DEBUG
-        self.stop = YES;
-        self.allOffensive = @[[SpellVine class]];
-        self.allDefensive = @[[SpellEarthwall class]];
+//        self.stop = YES;
+        self.allOffensive = @[[SpellFireball class]];
+        self.allDefensive = @[[SpellHelmet class]];
 #endif
     }
     return self;
@@ -108,7 +108,6 @@
             self.lastCastSpell = [self randomSpell];
             [self.delegate aiDidCastSpell:self.lastCastSpell];
         }
-//        self.stop = YES;
     }
 }
 
