@@ -1137,11 +1137,11 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="pentagram-earth.png">{47, 47}</string>
-			<string key="pentagram-fire.png">{47, 47}</string>
-			<string key="pentagram-heart.png">{47, 47}</string>
-			<string key="pentagram-water.png">{47, 47}</string>
-			<string key="pentagram-wind.png">{47, 47}</string>
+			<string key="pentagram-earth.png">{75, 75}</string>
+			<string key="pentagram-fire.png">{75, 75}</string>
+			<string key="pentagram-heart.png">{75, 75}</string>
+			<string key="pentagram-water.png">{75, 75}</string>
+			<string key="pentagram-wind.png">{75, 75}</string>
 		</dictionary>
 		<bool key="IBDocument.UseAutolayout">YES</bool>
 		<string key="IBCocoaTouchPluginVersion">2083</string>

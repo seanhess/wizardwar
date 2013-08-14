@@ -20,7 +20,7 @@
         self.strength = 1;
         self.altitude = 2; // it's up high!
         self.name = @"Fist of Grom";
-        self.castDelay *= 2.5;
+        self.castDelay = 3.0;
     }
     return self;
 }
@@ -36,7 +36,6 @@
     
     return [super simulateTick:currentTick interval:interval];
 }
-
 
 -(void)setPositionFromPlayer:(Wizard*)player {
     self.direction = 1;

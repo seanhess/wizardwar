@@ -63,9 +63,11 @@
     }];
     [self renderTotalInLobby];
     
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     [LobbyService.shared leaveLobby:UserService.shared.currentUser];
 }
