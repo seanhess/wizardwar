@@ -7,11 +7,11 @@
             <key>wizard1-attack-clothes.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,588},{116,208}}</string>
+                <string>{{2,708},{116,208}}</string>
                 <key>offset</key>
                 <string>{-4,3}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{66,21},{116,208}}</string>
                 <key>sourceSize</key>
@@ -20,7 +20,7 @@
             <key>wizard1-attack2-clothes.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,256},{160,220}}</string>
+                <string>{{226,162},{160,220}}</string>
                 <key>offset</key>
                 <string>{-24,7}</string>
                 <key>rotated</key>
@@ -46,7 +46,7 @@
             <key>wizard1-attack4-clothes.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{218,494},{132,208}}</string>
+                <string>{{652,458},{132,208}}</string>
                 <key>offset</key>
                 <string>{2,3}</string>
                 <key>rotated</key>
@@ -59,7 +59,7 @@
             <key>wizard1-celebrate1-clothes.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{656,462},{142,214}}</string>
+                <string>{{666,314},{142,214}}</string>
                 <key>offset</key>
                 <string>{-3,-5}</string>
                 <key>rotated</key>
@@ -72,7 +72,7 @@
             <key>wizard1-celebrate2-clothes.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{440,328},{144,214}}</string>
+                <string>{{666,168},{144,214}}</string>
                 <key>offset</key>
                 <string>{1,-1}</string>
                 <key>rotated</key>
@@ -95,23 +95,10 @@
                 <key>sourceSize</key>
                 <string>{256,256}</string>
             </dict>
-            <key>wizard1-damage-clothes.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{226,162},{160,220}}</string>
-                <key>offset</key>
-                <string>{-10,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{38,18},{160,220}}</string>
-                <key>sourceSize</key>
-                <string>{256,256}</string>
-            </dict>
             <key>wizard1-damage2-clothes.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{694,132},{164,216}}</string>
+                <string>{{694,2},{164,216}}</string>
                 <key>offset</key>
                 <string>{-10,-2}</string>
                 <key>rotated</key>
@@ -124,7 +111,7 @@
             <key>wizard1-damage3-clothes.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,418},{168,214}}</string>
+                <string>{{224,324},{168,214}}</string>
                 <key>offset</key>
                 <string>{-12,-3}</string>
                 <key>rotated</key>
@@ -137,7 +124,7 @@
             <key>wizard1-damage4-clothes.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{694,2},{128,220}}</string>
+                <string>{{2,256},{128,220}}</string>
                 <key>offset</key>
                 <string>{-19,7}</string>
                 <key>rotated</key>
@@ -150,11 +137,11 @@
             <key>wizard1-damage5-clothes.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{440,474},{140,212}}</string>
+                <string>{{882,168},{140,212}}</string>
                 <key>offset</key>
                 <string>{-24,3}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{34,19},{140,212}}</string>
                 <key>sourceSize</key>
@@ -163,130 +150,65 @@
             <key>wizard1-damage6-clothes.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{866,712},{148,198}}</string>
+                <string>{{2,550},{148,198}}</string>
                 <key>offset</key>
                 <string>{-24,-6}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{30,35},{148,198}}</string>
                 <key>sourceSize</key>
                 <string>{256,256}</string>
             </dict>
-            <key>wizard1-dead-clothes.png</key>
+            <key>wizard1-dead10-clothes.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{226,162},{160,220}}</string>
-                <key>offset</key>
-                <string>{-10,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{38,18},{160,220}}</string>
-                <key>sourceSize</key>
-                <string>{256,256}</string>
-            </dict>
-            <key>wizard1-dead2-clothes.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{694,132},{164,216}}</string>
-                <key>offset</key>
-                <string>{-11,-1}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{35,21},{164,216}}</string>
-                <key>sourceSize</key>
-                <string>{256,256}</string>
-            </dict>
-            <key>wizard1-dead3-clothes.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{224,324},{168,214}}</string>
-                <key>offset</key>
-                <string>{-14,-2}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{30,23},{168,214}}</string>
-                <key>sourceSize</key>
-                <string>{256,256}</string>
-            </dict>
-            <key>wizard1-dead4-clothes.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{882,298},{140,212}}</string>
-                <key>offset</key>
-                <string>{-6,-1}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{52,23},{140,212}}</string>
-                <key>sourceSize</key>
-                <string>{256,256}</string>
-            </dict>
-            <key>wizard1-dead5-clothes.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{872,512},{148,198}}</string>
-                <key>offset</key>
-                <string>{-9,-8}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{45,37},{148,198}}</string>
-                <key>sourceSize</key>
-                <string>{256,256}</string>
-            </dict>
-            <key>wizard1-dead6-clothes.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{428,616},{168,196}}</string>
-                <key>offset</key>
-                <string>{-19,-9}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{25,39},{168,196}}</string>
-                <key>sourceSize</key>
-                <string>{256,256}</string>
-            </dict>
-            <key>wizard1-dead7-clothes.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{212,628},{160,196}}</string>
-                <key>offset</key>
-                <string>{-15,-9}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{33,39},{160,196}}</string>
-                <key>sourceSize</key>
-                <string>{256,256}</string>
-            </dict>
-            <key>wizard1-dead8-clothes.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,706},{138,126}}</string>
-                <key>offset</key>
-                <string>{1,-44}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{60,109},{138,126}}</string>
-                <key>sourceSize</key>
-                <string>{256,256}</string>
-            </dict>
-            <key>wizard1-dead9-clothes.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{916,2},{98,42}}</string>
+                <string>{{912,2},{98,42}}</string>
                 <key>offset</key>
                 <string>{-11,-41}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
                 <string>{{68,148},{98,42}}</string>
+                <key>sourceSize</key>
+                <string>{256,256}</string>
+            </dict>
+            <key>wizard1-dead7-clothes.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{120,708},{168,196}}</string>
+                <key>offset</key>
+                <string>{-19,-9}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{25,39},{168,196}}</string>
+                <key>sourceSize</key>
+                <string>{256,256}</string>
+            </dict>
+            <key>wizard1-dead8-clothes.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{862,510},{160,196}}</string>
+                <key>offset</key>
+                <string>{-15,-9}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{33,39},{160,196}}</string>
+                <key>sourceSize</key>
+                <string>{256,256}</string>
+            </dict>
+            <key>wizard1-dead9-clothes.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{882,382},{138,126}}</string>
+                <key>offset</key>
+                <string>{1,-44}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{60,109},{138,126}}</string>
                 <key>sourceSize</key>
                 <string>{256,256}</string>
             </dict>
@@ -319,7 +241,7 @@
             <key>wizard1-prepare3-clothes.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{666,298},{162,214}}</string>
+                <string>{{2,386},{162,214}}</string>
                 <key>offset</key>
                 <string>{-11,-3}</string>
                 <key>rotated</key>
@@ -332,7 +254,7 @@
             <key>wizard1-prepare4-clothes.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{654,606},{164,210}}</string>
+                <string>{{440,328},{164,210}}</string>
                 <key>offset</key>
                 <string>{-12,-5}</string>
                 <key>rotated</key>
@@ -365,7 +287,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:ac752fb6e4d6652c1223031b0323d5b2:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:a24ea87651019c70ac4513ae31e21493:1/1$</string>
             <key>textureFileName</key>
             <string>wizard1-clothes.pvr.ccz</string>
         </dict>

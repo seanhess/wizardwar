@@ -10,7 +10,7 @@
 			<real>0.076</real>
 			<key>frames</key>
 			<array>
-				<string>wizard1-damage-clothes.png</string>
+				<string>wizard1-prepare-clothes.png</string>
 				<string>wizard1-damage2-clothes.png</string>
 				<string>wizard1-damage3-clothes.png</string>
 				<string>wizard1-damage4-clothes.png</string>
@@ -31,21 +31,19 @@
 			<real>0.083</real>
 			<key>frames</key>
 			<array>
-				<string>wizard1-dead-clothes.png</string>
-				<string>wizard1-dead2-clothes.png</string>
-				<string>wizard1-dead3-clothes.png</string>
-				<string>wizard1-dead4-clothes.png</string>
-				<string>wizard1-dead5-clothes.png</string>
-				<string>wizard1-dead6-clothes.png</string>
-				<string>wizard1-dead6-clothes.png</string>
-				<string>wizard1-dead6-clothes.png</string>
-				<string>wizard1-dead6-clothes.png</string>
+				<string>wizard1-prepare-clothes.png</string>
+				<string>wizard1-damage2-clothes.png</string>
+				<string>wizard1-damage3-clothes.png</string>
+				<string>wizard1-damage4-clothes.png</string>
+				<string>wizard1-damage5-clothes.png</string>
+				<string>wizard1-damage6-clothes.png</string>
+				<string>wizard1-dead7-clothes.png</string>
+				<string>wizard1-dead7-clothes.png</string>
+				<string>wizard1-dead7-clothes.png</string>
 				<string>wizard1-dead7-clothes.png</string>
 				<string>wizard1-dead8-clothes.png</string>
 				<string>wizard1-dead9-clothes.png</string>
-				<string>wizard1-dead9-clothes.png</string>
-				<string>wizard1-dead9-clothes.png</string>
-				<string>wizard1-dead9-clothes.png</string>
+				<string>wizard1-dead10-clothes.png</string>
 			</array>
 		</dict>
 		<key>wizard1-sleep-clothes</key>
