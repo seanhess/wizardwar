@@ -162,7 +162,8 @@
     
     else {
         // If they STARTED touching, we counted the hit last time
-        return NO;
+        // unless they are STILL touching, in which case they did hit (again)
+        return (spellEnd == selfEnd);
     }
 }
 
