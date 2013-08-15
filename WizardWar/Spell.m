@@ -57,7 +57,11 @@
 }
 
 -(float)move:(NSTimeInterval)dt {
-    return self.position + self.direction * self.speed * dt;
+    return self.position + [self moveDx:dt];
+}
+
+-(float)moveDx:(NSTimeInterval)dt {
+    return self.direction * self.speed * dt;    
 }
 
 -(float)moveFromReferencePosition:(NSTimeInterval)dt {

@@ -26,6 +26,8 @@
 #import "UIColor+Hex.h"
 #import "SpellLightningOrb.h"
 
+#import "SpellCheeseCaptainPlanet.h"
+
 @interface PracticeModeAIService ()
 @property (nonatomic) NSInteger lastSpellTick;
 @property (nonatomic) NSArray * allOffensive;
@@ -82,12 +84,29 @@
         
 #ifdef DEBUG
 //        self.stop = YES;
-        self.allOffensive = @[[SpellFireball class]];
-        self.allDefensive = @[[SpellHelmet class]];
+//        self.allOffensive = @[[SpellFireball class]];
+//        self.allDefensive = @[[SpellCheeseCaptainPlanet class]];
 #endif
     }
     return self;
 }
+
+-(BOOL)isDefensive:(Spell*)spell {
+    Class SpellClass = [spell class];
+    Class Found = [self.allDefensive find:^BOOL(Class DefClass) {
+        return (SpellClass == DefClass);
+    }];
+    return Found != nil;
+}
+
+-(void)castSpell:(NSArray*)fromList {
+    Class SpellType = [fromList randomItem];
+    self.lastCastSpell = [SpellType new];
+    [self.delegate aiDidCastSpell:self.lastCastSpell];
+}
+
+// It's more like does he HAVE a wall or not?
+// aaaannnd, I have no idea. 
 
 -(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
     if (self.stop) return;
@@ -99,14 +118,15 @@
         self.lastSpellTick = currentTick;
         if (self.totalSpellsCast == self.opponentSpellsCast) {
             if (![self.lastCastSpell isKindOfClass:[SpellWall class]]) {
-                Class SpellType = [self.allDefensive randomItem];
-                self.lastCastSpell = [SpellType new];
-                [self.delegate aiDidCastSpell:self.lastCastSpell];                
+                [self castSpell:self.allDefensive];
             }
         } else if (self.totalSpellsCast < self.opponentSpellsCast) {
-            self.totalSpellsCast+=1;
-            self.lastCastSpell = [self randomSpell];
-            [self.delegate aiDidCastSpell:self.lastCastSpell];
+            if ([self isDefensive:self.lastCastSpell]) {
+                self.totalSpellsCast+=1;
+                [self castSpell:self.allOffensive];
+            } else {
+                [self castSpell:self.allDefensive];
+            }
         }
     }
 }

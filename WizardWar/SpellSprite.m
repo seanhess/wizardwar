@@ -118,6 +118,7 @@
         [self renderStatus];
         [self renderAltitude];
     }
+    
     return self;
 }
 
@@ -129,11 +130,16 @@
     CGFloat y = self.position.y;
     CGFloat x = self.position.x;
     
-    CGFloat dxInUnits = self.spell.direction * self.spell.speed * delta;
+    CGFloat dxInUnits = [self.spell moveDx:delta];
     CGFloat dxInPixels = [self.units toWidth:dxInUnits];
     x += dxInPixels;
     
-    self.position = ccp(x, y);
+    if ([self.spell isKindOfClass:[SpellCheeseCaptainPlanet class]]) {
+        y += [self flyYForTheCaptain:fabs(dxInUnits)];
+    }
+    
+    CGPoint position = ccp(x, y);
+    self.position = position;
 }
 
 -(BOOL)isWall:(Spell*)spell {
@@ -159,7 +165,24 @@
 //        }
 //    }
 
-    self.position = ccp(self.spellX, self.spellY);
+    CGPoint position = ccp(self.spellX, self.spellY);
+    if ([self.spell isKindOfClass:[SpellCheeseCaptainPlanet class]]) {
+        // send in the change in x from the beginning
+        CGFloat dx = self.spell.position;
+        if (self.spell.direction < 0) dx = UNITS_MAX - dx;
+        position.y += [self flyYForTheCaptain:dx];
+    }
+    self.position = position;
+}
+
+// The flyY depends on
+// current x
+
+-(CGFloat)flyYForTheCaptain:(CGFloat)dx {
+    // spellY always returns the ground position
+    CGFloat dPercentAcross = (dx/UNITS_MAX);
+    CGFloat totalFlyDistance = self.units.maxY - self.units.zeroY;
+    return dPercentAcross*totalFlyDistance;
 }
 
 - (CGFloat)spellY {
@@ -192,7 +215,7 @@
     
     else if ([self.spell isType:[SpellVine class]]) {
         y += 30;
-    }    
+    }
     
     return y;
 }
