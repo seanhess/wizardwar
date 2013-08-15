@@ -171,10 +171,10 @@
     
     if ([self isWall:self.spell]) {
         // stuff that needs to be on the ground
-        y -= 25;
+        y -= 45;
         
         if ([self.spell isKindOfClass:[SpellFirewall class]]) {
-            y -= 12 * (3-self.spell.strength);
+            y -= 12 * (3-self.spell.strength) + 8;
         }
     }
     
