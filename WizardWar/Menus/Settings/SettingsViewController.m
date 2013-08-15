@@ -294,10 +294,6 @@
     [AnalyticsService event:@"FacebookConnectTap"];        
     User * user = [UserService.shared currentUser];
     [UserFriendService.shared user:user authenticateFacebook:^(BOOL success, User* updated) {
-        if (updated) {
-            [UserService.shared saveCurrentUser];
-        }
-        
         if (success) {
             // load friends now in the background
             [UserFriendService.shared user:user loadFacebookFriends:nil];
@@ -311,7 +307,6 @@
     [self.popover dismissPopoverAnimated:YES];
     User * user = UserService.shared.currentUser;
     user.color = color;
-    [UserService.shared saveCurrentUser];
     [self.tableView reloadData];
 }
 
@@ -326,7 +321,6 @@
     if (textField.text.length && ![textField.text isEqualToString:UserService.shared.currentUser.name]) {
         User * user = UserService.shared.currentUser;
         user.name = textField.text;
-        [UserService.shared saveCurrentUser];
     }
 }
 
@@ -339,6 +333,9 @@
 -(void)didTapDone:(id)sender {
     User * user = UserService.shared.currentUser;
     user.isGuestAccount = NO;
+    ProfileCell * cell = (ProfileCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:1]];
+    user.name = cell.inputField.text;
+    [UserService.shared saveCurrentUser];
     
     if (self.onDone) {
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
