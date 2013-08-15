@@ -8,6 +8,7 @@
 
 #import "WizardDirector.h"
 #import "cocos2d.h"
+#import <QuartzCore/QuartzCore.h>
 
 //         CGSize size = CCDirector.sharedDirector.winSize;
 
@@ -72,22 +73,26 @@
     // Default texture format for PNG/BMP/TIFF/JPEG/GIF images
     // It can be RGBA8888, RGBA4444, RGB5_A1, RGB565
     // You can change anytime.
-    [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
+    [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444];
     
     // If the 1st suffix is not found and if fallback is enabled then fallback suffixes are going to searched. If none is found, it will try with the name without suffix.
     // On iPad HD  : "-ipadhd", "-ipad",  "-hd"
     // On iPad     : "-ipad", "-hd"
     // On iPhone HD: "-hd"
     CCFileUtils *sharedFileUtils = [CCFileUtils sharedFileUtils];
-    [sharedFileUtils setEnableFallbackSuffixes:NO];				// Default: NO. No fallback suffixes are going to be used
+    [sharedFileUtils setEnableiPhoneResourcesOniPad:YES];
+    
     [sharedFileUtils setiPhoneRetinaDisplaySuffix:@"-hd"];		// Default on iPhone RetinaDisplay is "-hd"
     [sharedFileUtils setiPadSuffix:@""];                        // Default on iPad is "ipad"
     [sharedFileUtils setiPadRetinaDisplaySuffix:@"-hd"];        // Default on iPad RetinaDisplay is "-ipadhd"
     
+    
+
+    
+    
     // the ipads are TALLER than the iphones
     // so we need to fit it in
-    director.view.contentScaleFactor = director.view.contentScaleFactor / units.scaleModifier;
-        
+//    director.view.contentScaleFactor = director.view.contentScaleFactor / units.scaleModifier;
     
     // Assume that PVR images have premultiplied alpha
     [CCTexture2D PVRImagesHavePremultipliedAlpha:YES];

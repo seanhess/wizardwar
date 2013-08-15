@@ -49,6 +49,7 @@
     if ((self=[super init])) {
         self.spell = spell;
         self.units = units;
+        self.scale = units.spriteScaleModifier;
         
         if (spell.targetSelf) {
 //            [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"fireball-1.png"]];
@@ -264,9 +265,9 @@
 
 - (void)renderSpellDamage {
     if (self.spell.damage > 1) {
-        self.scale = self.spell.damage;
+        self.scale = self.spell.damage * self.units.spriteScaleModifier;
     }
-    else self.scale = 1.0;
+    else self.scale = 1.0*self.units.spriteScaleModifier;
 }
 
 - (void)renderWallStrength {
@@ -278,7 +279,7 @@
     if (strength > 3) strength = 3;   
     
     if ([self.spell isKindOfClass:[SpellFirewall class]]) {
-        self.scale = (1 + (strength/3.0))/2;
+        self.scale = self.units.spriteScaleModifier * (1 + (strength/3.0))/2;
         [self renderPosition];
     } else {
         NSString * frameName = [NSString stringWithFormat:@"%@-%i.png", self.sheetName, (strength+1)];

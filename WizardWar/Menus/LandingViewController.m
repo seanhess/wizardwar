@@ -49,7 +49,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.view.backgroundColor = [UIColor colorFromRGB:0x67B0DF];
+    self.view.backgroundColor = [UIColor colorFromRGB:0x404240];
     
     [UserService.shared connect];
     [UserFriendService.shared checkFBStatus:UserService.shared.currentUser];

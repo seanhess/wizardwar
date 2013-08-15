@@ -18,11 +18,13 @@
     if ((self=[super init])) {
         
         self.realSize = size;
+        self.scaleModifier = 1.0;
         
-        if (size.width > 700) // ipad-like
-            self.scaleModifier = IPAD_SCALE_MODIFIER;
-        else
-            self.scaleModifier = 1;
+        if (size.width > 700) {
+            self.spriteScaleModifier = IPAD_SCALE_MODIFIER;
+        } else {
+            self.spriteScaleModifier = 1;
+        }
         
         // Make sure it is in landscape
         CGFloat w = size.width;
@@ -40,7 +42,7 @@
         gameWidth = size.width / self.scaleModifier;
         gameHeight = size.height / self.scaleModifier;        
         
-        CGFloat horizontalPadding = 25 + (50 * self.scaleModifier);
+        CGFloat horizontalPadding = 25 + (50 * self.spriteScaleModifier);
         
         // it's too small on the ipad!
         // don't forget! I'm setting a scale factor too!
@@ -51,7 +53,7 @@
         self.min = horizontalPadding;
         self.max = gameWidth-horizontalPadding;
         // this should be centered instead!!!
-        self.zeroY = gameHeight/2 - (40 * self.scaleModifier);
+        self.zeroY = gameHeight/2 - (40 * self.spriteScaleModifier);
         self.width = self.max - self.min;
         self.maxY = gameHeight;
     }

@@ -22,8 +22,9 @@
 
 @implementation LifeIndicatorNode
 
--(id)init {
+-(id)initWithUnits:(Units *)units {
     if (self == [super init]) {
+        self.scale = units.spriteScaleModifier;
         CCSprite *backgroundBar = [CCSprite spriteWithFile:@"mana-container.png"];
         [self addChild:backgroundBar];
         

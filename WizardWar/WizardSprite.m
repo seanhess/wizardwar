@@ -86,6 +86,7 @@
         self.units = units;
         self.match = match;
         self.isCurrentWizard = isCurrentWizard;
+        self.scale = units.spriteScaleModifier;
         
         __weak WizardSprite * wself = self;
         

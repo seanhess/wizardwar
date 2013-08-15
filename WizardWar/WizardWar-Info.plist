@@ -14,8 +14,10 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>Icon-57.png</string>
-				<string>Icon-57@2x.png</string>
+				<string>icon-iphone.png</string>
+				<string>icon-iphone-retina and-5.png</string>
+				<string>icon-ipad-retina.png</string>
+				<string>icon-ipad.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
 			<true/>
@@ -47,7 +49,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2178</string>
+	<string>2245</string>
 	<key>FacebookAppID</key>
 	<string>150922078436714</string>
 	<key>LSRequiresIPhoneOS</key>

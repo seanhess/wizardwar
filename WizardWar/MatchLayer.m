@@ -50,11 +50,10 @@
 
 @property (nonatomic, strong) NSString * matchId;
 
-@property (nonatomic, strong) CCSprite * background;
-
 @property (nonatomic, strong) CCLabelTTF * debug;
 
 @property (nonatomic, strong) UIButton * backButton;
+@property (nonatomic, strong) CCSprite * background;
 
 @end
 
@@ -68,11 +67,17 @@
         
         [self addChild:[CCLayerColor layerWithColor:ccc4(66, 66, 66, 255)]];
         
-        self.background = [CCSprite spriteWithFile:@"background-cave.png"];
+        __weak MatchLayer * wself = self;
+        
+        
+        NSInteger device = [[CCConfiguration sharedConfiguration] runningDevice];
+        if (device == kCCDeviceiPadRetinaDisplay || device == kCCDeviceiPad) {
+            self.background = [CCSprite spriteWithFile:@"background-cave-ipad.png"];
+        } else {
+            self.background = [CCSprite spriteWithFile:@"background-cave.png"];
+        }
         self.background.anchorPoint = ccp(0,0);
         [self addChild:self.background];
-        
-        __weak MatchLayer * wself = self;
         
         // match
         // TODO: MatchLayer should create match if it is the delegate
@@ -91,7 +96,6 @@
         self.spells = [SpellsLayer new];
         [self addChild:self.spells];
         
-        
         // thrown off because of scale!
 //        self.feedback = [FeedbackLayer node];
 //        self.feedback.combos = combos;
@@ -99,14 +103,14 @@
 //        [self addChild:self.feedback];
         
         // LIFE MANA INDICATORS add two of them to the right spot
-        LifeIndicatorNode * player1Indicator = [LifeIndicatorNode node];
-        LifeIndicatorNode * player2Indicator = [LifeIndicatorNode node];
+        LifeIndicatorNode * player1Indicator = [[LifeIndicatorNode alloc] initWithUnits:units];
+        LifeIndicatorNode * player2Indicator = [[LifeIndicatorNode alloc] initWithUnits:units];
         
         player1Indicator.match = self.match;
         player2Indicator.match = self.match;
         
-        player1Indicator.position = ccp(self.units.min, self.units.maxY - INDICATOR_PADDING_Y);
-        player2Indicator.position = ccp(self.units.max, self.units.maxY - INDICATOR_PADDING_Y);
+        player1Indicator.position = ccp(self.units.min, self.units.maxY - INDICATOR_PADDING_Y*units.spriteScaleModifier);
+        player2Indicator.position = ccp(self.units.max, self.units.maxY - INDICATOR_PADDING_Y*units.spriteScaleModifier);
         
         [self.indicators addChild:player1Indicator];
         [self.indicators addChild:player2Indicator];

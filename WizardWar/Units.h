@@ -16,6 +16,7 @@
 @interface Units : NSObject
 @property (nonatomic) CGSize realSize;
 @property (nonatomic) CGFloat scaleModifier;
+@property (nonatomic) CGFloat spriteScaleModifier;
 
 @property (nonatomic) CGFloat min;
 @property (nonatomic) CGFloat max;
