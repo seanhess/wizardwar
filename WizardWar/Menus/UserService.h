@@ -41,6 +41,8 @@
 - (NSFetchRequest*)requestAllUsersExcept:(User*)user;
 - (NSFetchRequest*)requestOtherOnline:(User*)user;
 
+- (BOOL)user:(User*)user shouldUpgradeToMatch:(User*)user;
+
 
 
 @end

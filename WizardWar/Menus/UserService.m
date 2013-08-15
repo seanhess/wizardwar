@@ -196,6 +196,11 @@
     return [UIDevice currentDevice].identifierForVendor.UUIDString;
 }
 
+- (BOOL)user:(User*)user shouldUpgradeToMatch:(User*)user2 {
+    NSComparisonResult result = [user.version compare:user2.version];
+    return (result == NSOrderedAscending);
+}
+
 
 # pragma mark - Users
 

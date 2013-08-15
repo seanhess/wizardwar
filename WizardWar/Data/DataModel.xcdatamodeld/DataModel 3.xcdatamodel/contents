@@ -29,6 +29,7 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updated" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="version" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="challenge" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Challenge" inverseName="main" inverseEntity="Challenge" syncable="YES"/>
         <relationship name="challenges" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Challenge" inverseName="opponent" inverseEntity="Challenge" syncable="YES"/>
         <relationship name="facebookUser" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="FacebookUser" inverseName="user" inverseEntity="FacebookUser" syncable="YES"/>
@@ -36,6 +37,6 @@
     <elements>
         <element name="Challenge" positionX="0" positionY="0" width="128" height="105"/>
         <element name="FacebookUser" positionX="0" positionY="0" width="128" height="135"/>
-        <element name="User" positionX="0" positionY="0" width="128" height="300"/>
+        <element name="User" positionX="0" positionY="0" width="128" height="315"/>
     </elements>
 </model>

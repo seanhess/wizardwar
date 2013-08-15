@@ -40,6 +40,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "AnalyticsService.h"
 #import "UIViewController+Idiom.h"
+#import "InfoService.h"
 
 #define SECTION_INDEX_CHALLENGES 0
 
@@ -569,6 +570,10 @@
 
 - (void)didSelectUser:(User*)user {
     
+    if ([UserService.shared user:self.currentUser shouldUpgradeToMatch:user]) {
+        return [self forceUpgradeToMatch:user];
+    }
+    
     Challenge * existingChallenge = [ChallengeService.shared user:self.currentUser challengedByOpponent:user];
     if (existingChallenge) {
         // accept their challenge instead         
@@ -584,9 +589,14 @@
 }
 
 - (void)didSelectChallenge:(Challenge*)challenge {
-    
+
     // If I have been challenged
     if ([challenge.opponent.userId isEqualToString:self.currentUser.userId]) {
+
+        if ([UserService.shared user:self.currentUser shouldUpgradeToMatch:challenge.main]) {
+            return [self forceUpgradeToMatch:challenge.main];
+        }
+                
         [ChallengeService.shared acceptChallenge:challenge];
     }
 }
@@ -619,6 +629,18 @@
     [ChallengeService.shared disconnect];
     // don't worry about disconnecting. If you aren't THERE, it's ok
     NSLog(@"MatchmakingViewController: dealloc");
+}
+
+- (void)forceUpgradeToMatch:(User*)user {
+    NSString * message = [NSString stringWithFormat:@"'%@' has a newer version of Wizard War (%@). Download it now?", user.name, user.version];
+    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"Upgrade?" message:message delegate:self cancelButtonTitle:@"Later" otherButtonTitles:@"Upgrade", nil];
+    [alertView show];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        [[UIApplication sharedApplication] openURL:[InfoService downloadURL]];
+    }
 }
 
 

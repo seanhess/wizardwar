@@ -11,10 +11,7 @@
 @implementation InfoService
 
 +(NSString*)version {
-    // return [NSString stringWithUTF8String:__DATE__];
-    NSString * version = [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
-//    NSString * date = self.buildDate;
-    return [NSString stringWithFormat:@"%@ (%i)", version, [self buildNumber]];
+    return [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
 }
 
 +(NSInteger)buildNumber {
@@ -24,6 +21,10 @@
 
 +(NSString*)buildDate {
     return [NSString stringWithUTF8String:__DATE__];
+}
+
++(NSURL *)downloadURL {
+    return [NSURL URLWithString:@"https://testflightapp.com/m/builds"];
 }
 
 @end

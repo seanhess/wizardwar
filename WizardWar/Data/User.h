@@ -27,6 +27,7 @@
 @property (nonatomic) int32_t colorRGB; // hex rgb value
 @property (nonatomic) BOOL isMain;
 @property (nonatomic, retain) NSString* facebookId;
+@property (nonatomic, retain) NSString* version;
 
 @property (nonatomic) BOOL isGuestAccount;
 

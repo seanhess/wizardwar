@@ -765,6 +765,7 @@
 		7881FD7E17BD413900FBC7C8 /* icon-iphone-retina and-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-iphone-retina and-5.png"; sourceTree = "<group>"; };
 		7881FD8017BD414700FBC7C8 /* icon-ipad-retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-ipad-retina.png"; sourceTree = "<group>"; };
 		7881FD8217BD414F00FBC7C8 /* icon-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-ipad.png"; sourceTree = "<group>"; };
+		7881FD8417BD4A9600FBC7C8 /* DataModel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DataModel 3.xcdatamodel"; sourceTree = "<group>"; };
 		7891527F176A7136001694B1 /* SpellLevitate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpellLevitate.h; sourceTree = "<group>"; };
 		78915280176A7136001694B1 /* SpellLevitate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpellLevitate.m; sourceTree = "<group>"; };
 		78915281176A72A8001694B1 /* EffectLevitate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EffectLevitate.h; sourceTree = "<group>"; };
@@ -2633,10 +2634,11 @@
 		78306B9A17A7144300487B16 /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				7881FD8417BD4A9600FBC7C8 /* DataModel 3.xcdatamodel */,
 				7801E9FA17B18ED4005D14D8 /* DataModel 2.xcdatamodel */,
 				78306B9B17A7144300487B16 /* DataModel.xcdatamodel */,
 			);
-			currentVersion = 7801E9FA17B18ED4005D14D8 /* DataModel 2.xcdatamodel */;
+			currentVersion = 7881FD8417BD4A9600FBC7C8 /* DataModel 3.xcdatamodel */;
 			path = DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

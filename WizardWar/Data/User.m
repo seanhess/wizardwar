@@ -27,6 +27,7 @@
 @dynamic isMain;
 @dynamic facebookId;
 @dynamic facebookUser;
+@dynamic version;
 
 @synthesize isClose;
 @synthesize isGuestAccount;
@@ -36,7 +37,7 @@
 };
 
 -(NSDictionary*)toLobbyObject {
-    return [self dictionaryWithValuesForKeys:@[@"locationLatitude", @"locationLongitude", @"activeMatchId"]];
+    return [self dictionaryWithValuesForKeys:@[@"locationLatitude", @"locationLongitude", @"activeMatchId", @"version"]];
 }
 
 - (NSString*)description {

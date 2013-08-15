@@ -13,5 +13,6 @@
 +(NSString*)version;
 +(NSString*)buildDate;
 +(NSInteger)buildNumber;
++(NSURL*)downloadURL;
 
 @end

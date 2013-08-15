@@ -17,6 +17,7 @@
 #import "ConnectionService.h"
 #import <ReactiveCocoa.h>
 #import "UserFriendService.h"
+#import "InfoService.h"
 
 // Just implement global people for this yo
 @interface LobbyService ()
@@ -181,6 +182,7 @@
         user.locationLongitude = self.currentLocation.coordinate.longitude;
         user.locationLatitude = self.currentLocation.coordinate.latitude;
     }
+    user.version = [InfoService version];
     
     [self saveUserToLobby:user];
 }

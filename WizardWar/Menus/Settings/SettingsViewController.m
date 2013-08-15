@@ -158,7 +158,7 @@
         }
         if (indexPath.row == 1) {
             cell.textLabel.text = @"Version";
-            cell.detailTextLabel.text = [InfoService version];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ (%i)", [InfoService version], [InfoService buildNumber]];
         }
     }
     
