@@ -301,6 +301,7 @@
         else if (!self.explodeAction) {
             CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:@"explode"];
             self.explodeAction = [CCAnimate actionWithAnimation:animation];
+            [self stopAction:self.frameAnimation];
             self.frameAnimation = self.explodeAction;
             [self runAction:self.explodeAction];
             [self runAction:[CCFadeOut actionWithDuration:0.4]];

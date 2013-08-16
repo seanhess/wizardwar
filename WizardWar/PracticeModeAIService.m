@@ -84,8 +84,8 @@
         
 #ifdef DEBUG
 //        self.stop = YES;
-//        self.allOffensive = @[[SpellFireball class]];
-//        self.allDefensive = @[[SpellCheeseCaptainPlanet class]];
+        self.allOffensive = @[[SpellVine class]];
+        self.allDefensive = @[[SpellFirewall class]];
 #endif
     }
     return self;
