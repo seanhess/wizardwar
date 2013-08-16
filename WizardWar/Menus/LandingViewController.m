@@ -24,6 +24,7 @@
 #import "UIColor+Hex.h"
 #import <MenuButton.h>
 #import "PracticeModeAIService.h"
+#import "ConnectionService.h"
 
 #import <FacebookSDK/FacebookSDK.h>
 #import "NSArray+Functional.h"
@@ -51,9 +52,13 @@
     
     self.view.backgroundColor = [UIColor colorFromRGB:0x404240];
     
-    [UserService.shared connect];
+    NSString * firebaseUrl = @"https://wizardwar.firebaseio.com";
+    [ConnectionService.shared monitorDomain:[NSURL URLWithString:firebaseUrl]];
+    Firebase * rootRef = [[Firebase alloc] initWithUrl:firebaseUrl];    
+
+    [UserService.shared connect:rootRef];
     [UserFriendService.shared checkFBStatus:UserService.shared.currentUser];
-    [LobbyService.shared connect];
+    [LobbyService.shared connect:rootRef];
     [LocationService.shared connect];
     
     // just update the button once with the number of people online?

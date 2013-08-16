@@ -164,7 +164,6 @@
 		785FBEC6177261BD0021AEE5 /* LandingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEAA177261BD0021AEE5 /* LandingViewController.m */; };
 		785FBEC7177261BD0021AEE5 /* LandingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEAB177261BD0021AEE5 /* LandingViewController.xib */; };
 		785FBEC8177261BD0021AEE5 /* LocalParty.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEAD177261BD0021AEE5 /* LocalParty.m */; };
-		785FBEC9177261BD0021AEE5 /* LocalPartyService.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEAF177261BD0021AEE5 /* LocalPartyService.m */; };
 		785FBECA177261BD0021AEE5 /* MainNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEB1177261BD0021AEE5 /* MainNavViewController.m */; };
 		785FBECB177261BD0021AEE5 /* MatchmakingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEB3177261BD0021AEE5 /* MatchmakingViewController.m */; };
 		785FBECC177261BD0021AEE5 /* MatchmakingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEB4177261BD0021AEE5 /* MatchmakingViewController.xib */; };
@@ -675,8 +674,6 @@
 		785FBEAB177261BD0021AEE5 /* LandingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LandingViewController.xib; sourceTree = "<group>"; };
 		785FBEAC177261BD0021AEE5 /* LocalParty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalParty.h; sourceTree = "<group>"; };
 		785FBEAD177261BD0021AEE5 /* LocalParty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalParty.m; sourceTree = "<group>"; };
-		785FBEAE177261BD0021AEE5 /* LocalPartyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalPartyService.h; sourceTree = "<group>"; };
-		785FBEAF177261BD0021AEE5 /* LocalPartyService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalPartyService.m; sourceTree = "<group>"; };
 		785FBEB0177261BD0021AEE5 /* MainNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainNavViewController.h; sourceTree = "<group>"; };
 		785FBEB1177261BD0021AEE5 /* MainNavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainNavViewController.m; sourceTree = "<group>"; };
 		785FBEB2177261BD0021AEE5 /* MatchmakingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchmakingViewController.h; sourceTree = "<group>"; };
@@ -1415,8 +1412,6 @@
 			children = (
 				78516B8617A5925700A49257 /* NSObject+Reflection.h */,
 				78516B8717A5925700A49257 /* NSObject+Reflection.m */,
-				785FBEAE177261BD0021AEE5 /* LocalPartyService.h */,
-				785FBEAF177261BD0021AEE5 /* LocalPartyService.m */,
 				784D3BDC1774F753009945F8 /* LobbyService.h */,
 				784D3BDD1774F753009945F8 /* LobbyService.m */,
 				784D3BDF177501E9009945F8 /* UserService.h */,
@@ -2327,7 +2322,6 @@
 				785FBEC5177261BD0021AEE5 /* Interaction.m in Sources */,
 				785FBEC6177261BD0021AEE5 /* LandingViewController.m in Sources */,
 				785FBEC8177261BD0021AEE5 /* LocalParty.m in Sources */,
-				785FBEC9177261BD0021AEE5 /* LocalPartyService.m in Sources */,
 				785FBECA177261BD0021AEE5 /* MainNavViewController.m in Sources */,
 				785FBECB177261BD0021AEE5 /* MatchmakingViewController.m in Sources */,
 				785FBECD177261BD0021AEE5 /* MenuButton.m in Sources */,

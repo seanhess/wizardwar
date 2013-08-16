@@ -10,6 +10,7 @@
 #import <ReactiveCocoa.h>
 #import "User.h"
 #import <CoreLocation/CoreLocation.h>
+#import <Firebase/Firebase.h>
 
 // Maintains the connection to the lobby
 // Let's you know whenever users join/quit
@@ -20,10 +21,11 @@
 @property (nonatomic) BOOL joined;
 @property (nonatomic) NSInteger totalInLobby;
 @property (nonatomic) NSTimeInterval currentServerTime;
+@property (nonatomic, strong) Firebase * root;
 
 + (LobbyService *)shared;
 
-- (void)connect;
+- (void)connect:(Firebase*)root;
 
 - (void)setLocation:(CLLocation*)location;
 - (void)joinLobby:(User*)user;

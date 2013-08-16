@@ -10,8 +10,11 @@
 #import "User.h"
 #import "Wizard.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <Firebase/Firebase.h>
 
 @interface UserService : NSObject
+
+@property (nonatomic, strong) Firebase * root;
 
 // currentUser ALWAYS exists with at least the userId
 @property (nonatomic, strong) User * currentUser;
@@ -24,7 +27,7 @@
 
 - (void)saveDeviceToken:(NSString*)deviceToken;
 - (void)saveCurrentUser;
-- (void)connect;
+- (void)connect:(Firebase*)root;
 
 - (BOOL)isAuthenticated;
 

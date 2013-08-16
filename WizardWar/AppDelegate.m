@@ -75,9 +75,6 @@
     [self.window makeKeyAndVisible];
     self.rootNavigationController = navigationController;
     
-    // SERVICES
-    [ConnectionService.shared monitorDomain:[NSURL URLWithString:@"https://wizardwar.firebaseio.com"]];
-    
     // INITIALIZE DIRECTOR
     NSLog(@"INITILIZE WITH BOUNDS %@", NSStringFromCGRect(self.window.bounds));
     Units * units = [[Units alloc] initWithRealSize:self.window.bounds.size];

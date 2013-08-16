@@ -164,7 +164,7 @@
 }
 
 - (id<Multiplayer>)defaultMultiplayerService {
-    MultiplayerService * mp = [MultiplayerService new];
+    MultiplayerService * mp = [[MultiplayerService alloc] initWithRootRef:[ChallengeService.shared root]];
 #if DEBUG
 //    mp.simulatedLatency = 0.5;
 //    NSLog(@"!!! SIMULATED LATENCY *** %f", mp.simulatedLatency);
@@ -175,6 +175,7 @@
 - (void)createMatchWithChallenge:(Challenge *)challenge currentWizard:(Wizard *)wizard {
     // join in the ready screen!
     self.challenge = challenge;
+    TimerSyncService.shared.root = ChallengeService.shared.root;
     Match * match = [[Match alloc] initWithMatchId:challenge.matchId hostName:challenge.main.name currentWizard:wizard withAI:nil multiplayer:self.defaultMultiplayerService sync:[TimerSyncService shared]];
     self.match = match;
 }

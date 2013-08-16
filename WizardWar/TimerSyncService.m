@@ -42,6 +42,12 @@
 
 - (void)syncTimerWithMatchId:(NSString *)matchId player:(Wizard *)player isHost:(BOOL)isHost timer:(GameTimerService *)timer {
     
+    if (!self.root) {
+        NSLog(@"!!! Cannot sync without firebase root ref");
+        NSAssert(false, @"!!! Cannot sync without firebase root ref");
+        return;
+    }
+    
     if (self.currentMatchId) {
         NSLog(@"!!! Attempted to connect to match=%@ while still connected to %@", matchId, self.currentMatchId);
         NSAssert(false, @"Connected to more than one match at a time. Remember to call disconnect!");
@@ -54,7 +60,7 @@
     self.isHost = isHost;
     self.name = [NSString stringWithFormat:@"%@ %@", player.name, [IdService randomId:4]];
     
-    Firebase * matchNode = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"https://wizardwar.firebaseio.com/match/%@", matchId]];
+    Firebase * matchNode = [[self.root childByAppendingPath:@"match"] childByAppendingPath:matchId];
     self.node = [matchNode childByAppendingPath:@"times"];
     
     // you'll get the other guy here, not in update

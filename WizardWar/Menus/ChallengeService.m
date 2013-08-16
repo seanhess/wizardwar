@@ -36,19 +36,21 @@
     return instance;
 }
 
-- (void)connectAndReset:(id)subscriber {
+- (void)connectAndReset:(id)subscriber rootRef:(Firebase *)root {
     if (self.subscriber || self.connected) {
         NSLog(@"Attempted to connect to ChallengeService twice!");
         NSAssert(false, @"Attempted to connect to ChallengeService twice!");
         return;
     }
     
+    self.root = root;
+    
     self.subscriber = subscriber;
     self.connected = YES;    
 
     [self removeAll];
 
-    self.node = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/challenges2"];
+    self.node = [root childByAppendingPath:@"challenges2"];
 
     __weak ChallengeService * wself = self;
     [self.node observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {

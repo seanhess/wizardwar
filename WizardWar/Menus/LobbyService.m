@@ -45,14 +45,14 @@
     return instance;
 }
 
-- (void)connect {
-    
+- (void)connect:(Firebase *)root {
+    self.root = root;
     
     NSLog(@"LobbyService: connect");
     [self setAllOffline];
     
-    self.lobby = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/lobby"];
-    self.serverTimeOffset = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/.info/serverTimeOffset"];
+    self.lobby = [root childByAppendingPath:@"lobby"];
+    self.serverTimeOffset = [root childByAppendingPath:@".info/serverTimeOffset"];
     
     __weak LobbyService * wself = self;
     

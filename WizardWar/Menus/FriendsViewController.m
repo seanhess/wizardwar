@@ -68,7 +68,6 @@
     return;
     
 //    NSLog(@"WOOT");
-//    Firebase * firebase = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseio.com/"];
 //    FirebaseSimpleLogin* authClient = [[FirebaseSimpleLogin alloc] initWithRef:firebase];
 
 //    [authClient checkAuthStatusWithBlock:^(NSError* error, FAUser* user) {

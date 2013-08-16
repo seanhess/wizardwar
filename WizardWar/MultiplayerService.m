@@ -23,12 +23,26 @@
 @implementation MultiplayerService
 @synthesize delegate;
 
+-(id)initWithRootRef:(Firebase*)rootRef {
+    self = [super init];
+    if (self) {
+        self.root = rootRef;
+    }
+    return self;
+}
+
 -(void)connectToMatchId:(NSString*)matchId {
+    
+    if (!self.root) {
+        NSLog(@"Cannot connect without firebase root ref");
+        NSAssert(false, @"cannot connect without firebase root ref");
+        return;
+    }
     
     __weak MultiplayerService * wself = self;
     
     // Firebase
-    self.matchNode = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"https://wizardwar.firebaseio.com/match/%@", matchId]];
+    self.matchNode = [[self.root childByAppendingPath:@"match"] childByAppendingPath:matchId];
     self.spellsNode = [self.matchNode childByAppendingPath:@"spells"];
     self.playersNode = [self.matchNode childByAppendingPath:@"players"];
     

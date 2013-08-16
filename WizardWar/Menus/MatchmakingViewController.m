@@ -146,8 +146,9 @@
     
     [RACAble(LocationService.shared, accepted) subscribeNext:^(id x) {
         [wself setWarnings];
-        [wself.tableView reloadSections:[NSIndexSet indexSetWithIndex:SECTION_INDEX_WARNINGS] withRowAnimation:UITableViewRowAnimationAutomatic];
-        [wself loadConditionalCloseResults];        
+        [wself loadConditionalCloseResults];
+        [wself.tableView reloadSections:[NSIndexSet indexSetWithIndex:SECTION_INDEX_WARNINGS] withRowAnimation:UITableViewRowAnimationAutomatic];        
+        [wself.tableView reloadSections:[NSIndexSet indexSetWithIndex:SECTION_INDEX_CLOSE] withRowAnimation:UITableViewRowAnimationAutomatic];
     }];
     
     [RACAble(UserService.shared, pushAccepted) subscribeNext:^(id x) {
@@ -196,23 +197,28 @@
     User * user = [UserService.shared currentUser];
     NSLog(@"MatchmakingViewController: connect");
     
+    NSLog(@" - challengeResults");
     self.challengeResults = [ObjectStore.shared fetchedResultsForRequest:[ChallengeService.shared requestChallengesForUser:self.currentUser]];
     self.challengeResults.delegate = self;
     [self.challengeResults performFetch:&error];
-    
+
+    NSLog(@" - friendResults");
     self.friendResults = [ObjectStore.shared fetchedResultsForRequest:[UserFriendService.shared requestFriends:user isOnline:NO]];
     self.friendResults.delegate = self;
     [self.friendResults performFetch:&error];
-    
+
+    NSLog(@" - friendOnlineResults");
     self.friendOnlineResults = [ObjectStore.shared fetchedResultsForRequest:[UserFriendService.shared requestFriends:user isOnline:YES]];
     self.friendOnlineResults.delegate = self;
     [self.friendOnlineResults performFetch:&error];
-    
+   
+    NSLog(@" - localResults");
     // Show anyone right here, and 4 closest other users online
     self.localResults = [ObjectStore.shared fetchedResultsForRequest:[LobbyService.shared requestCloseUsers:self.currentUser]];
     self.localResults.delegate = self;
     [self.localResults performFetch:&error];
     
+    NSLog(@" - otherCloseResults");    
     self.otherCloseResults = [ObjectStore.shared fetchedResultsForRequest:[UserService.shared requestOtherOnline:self.currentUser]];
     self.otherCloseResults.delegate = self;
     [self loadConditionalCloseResults];
@@ -227,7 +233,7 @@
     // I think friends should be showing up faster, no?
     [self.tableView reloadData];
     
-    [ChallengeService.shared connectAndReset:self];
+    [ChallengeService.shared connectAndReset:self rootRef:LobbyService.shared.root];
     [LocationService.shared startMonitoring];
 
 //    __weak MatchmakingViewController * wself = self;
@@ -265,7 +271,7 @@
     self.otherCloseResults.fetchRequest.sortDescriptors = request.sortDescriptors;
     
     [self.otherCloseResults performFetch:&error];
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:SECTION_INDEX_CLOSE] withRowAnimation:UITableViewRowAnimationAutomatic];
+//    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:SECTION_INDEX_CLOSE] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -334,7 +340,7 @@
             [self.tableView deleteRowsAtIndexPaths:@[indexPathGlobal] withRowAnimation:UITableViewRowAnimationAutomatic];
             [self.tableView insertRowsAtIndexPaths:@[newIndexPathGlobal] withRowAnimation:UITableViewRowAnimationAutomatic];
             
-            Challenge * challenge = [self.challengeResults objectAtIndexPath:indexPathGlobal];
+            Challenge * challenge = [self.challengeResults objectAtIndexPath:indexPath];
             if (challenge.status == ChallengeStatusAccepted) {
                 [self joinMatch:challenge];
             }
@@ -660,6 +666,8 @@
     self.currentMatch.delegate = self;
     [self.currentMatch createMatchWithChallenge:challenge currentWizard:UserService.shared.currentWizard];
     [self.navigationController presentViewController:self.currentMatch animated:YES completion:nil];
+    
+    [AnalyticsService event:@"JoinMultiplayer"];
     
     // Should be called after viewDidLoad
     [self.currentMatch startMatch];

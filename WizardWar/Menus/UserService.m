@@ -33,8 +33,9 @@
     return instance;
 }
 
-- (void)connect {
-    self.node = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/users"];
+- (void)connect:(Firebase*)root {
+    self.root = root;
+    self.node = [root childByAppendingPath:@"users"];
     self.entityName = @"User";
     
     self.lastUpdatedTime = [self loadLastUpdatedTime];

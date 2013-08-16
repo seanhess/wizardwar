@@ -10,10 +10,12 @@
 #import <ReactiveCocoa.h>
 #import "User.h"
 #import "Challenge.h"
+#import <Firebase/Firebase.h>
 
 @interface ChallengeService : NSObject
 
 @property (nonatomic) BOOL connected;
+@property (nonatomic, strong) Firebase * root;
 
 + (ChallengeService *)shared;
 - (Challenge*)user:(User*)user challengeOpponent:(User*)opponent isRemote:(BOOL)isRemote;
@@ -23,7 +25,7 @@
 - (void)setChallenge:(Challenge*)challenge status:(ChallengeStatus)status;
 
 // only have one person connecting and disconnecting at a time
-- (void)connectAndReset:(id)subscriber;
+- (void)connectAndReset:(id)subscriber rootRef:(Firebase*)root;
 - (void)disconnect;
 
 - (Challenge*)challengeWithId:(NSString*)matchId create:(BOOL)create;

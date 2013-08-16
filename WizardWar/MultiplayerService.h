@@ -14,4 +14,6 @@
 
 @interface MultiplayerService : NSObject <Multiplayer>
 @property (nonatomic) NSTimeInterval simulatedLatency;
+@property (nonatomic, strong) Firebase * root;
+-(id)initWithRootRef:(Firebase*)rootRef;
 @end
