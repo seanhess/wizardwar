@@ -58,10 +58,15 @@
     return self.currentTick + 1;
 }
 
-- (void)updateFromRemoteTime:(GameTime *)gameTime {    
+- (void)startFromRemoteTime:(GameTime *)gameTime {    
     self.gameTime = gameTime.gameTime;
     self.nextTickTime = gameTime.nextTickTime;
     self.currentTick = gameTime.nextTick - 1;
+    [self simulateTicks];
+}
+
+- (void)updateFromRemoteTime:(NSTimeInterval)gameTime {
+    self.gameTime = gameTime;
     [self simulateTicks];
 }
 

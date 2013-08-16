@@ -13,8 +13,8 @@
 #import "IdService.h"
 #import "cocos2d.h"
 
-#define DELAY_START 1
-#define MAX_TOLERANCE 0.01
+#define SYNC_INTERVAL 2.0
+#define MAX_TIME_SHIFT 0.01
 
 @interface TimerSyncService ()
 @property (strong, nonatomic) NSString * currentMatchId;
@@ -23,9 +23,14 @@
 @property (strong, nonatomic) NSString * name;
 @property (nonatomic, strong) GameTimerService * timer;
 
+@property (nonatomic) NSTimeInterval averageRoundTripTime;
+@property (nonatomic) NSInteger numberOfTimeRequests;
+
 @property (nonatomic) BOOL isHost;
 @property (nonatomic) NSTimeInterval requestStartTime;
 @end
+
+// Continue to send more of these and see if you can dial in.
 
 
 @implementation TimerSyncService
@@ -78,15 +83,16 @@
         [self.node observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
             [wself clientReceiveRequestUpdate:snapshot];
         }];
+        self.numberOfTimeRequests = 0;
         [self sendTimeRequest];        
     }    
 }
 
 - (void)sendTimeRequest {
+    self.numberOfTimeRequests += 1;
     self.requestStartTime = CACurrentMediaTime();
     GameTime *gameTime = [GameTime new];
     gameTime.name = self.name;
-    NSLog(@"TSS request %@", gameTime);
     [self save:gameTime];
 }
 
@@ -105,29 +111,70 @@
     
     // Measure RTT first
     NSTimeInterval roundTripTime = CACurrentMediaTime() - self.requestStartTime;
+    NSTimeInterval localGameTime = self.timer.gameTime;
+    self.averageRoundTripTime = [self calculateAverageRoundTripTime:roundTripTime];
     
     GameTime * gameTime = [GameTime new];
     [gameTime setValuesForKeysWithDictionary:snapshot.value];
     
-    // convert into local game time
+    // You don't want to use the average to calculate. It's more likely to be close to the current round trip time
+    // Now, just bump it a little bit, depending on how far off it is?
+    NSTimeInterval calculatedGameTime = gameTime.gameTime + roundTripTime/2;
+    NSTimeInterval dGameTime = localGameTime - calculatedGameTime;
     
-    GameTime * adjustedGameTime = [GameTime new];
-    adjustedGameTime.name = self.name;
-    adjustedGameTime.nextTick = gameTime.nextTick;
-    adjustedGameTime.gameTime = gameTime.gameTime + roundTripTime/2;
-    adjustedGameTime.nextTickTime = gameTime.nextTickTime;
+    NSLog(@"TSS got  (%i) RTT(%.3f %.3f) dGameTime(%.3f)", self.numberOfTimeRequests, roundTripTime, self.averageRoundTripTime, dGameTime);
+
+    if (self.numberOfTimeRequests <= 1) {
+        // convert into local game time
+        GameTime * adjustedGameTime = [GameTime new];
+        adjustedGameTime.name = self.name;
+        adjustedGameTime.nextTick = gameTime.nextTick;
+        adjustedGameTime.gameTime = calculatedGameTime;
+        adjustedGameTime.nextTickTime = gameTime.nextTickTime;
+        [self.timer startFromRemoteTime:adjustedGameTime];
+    }
+
+    else {
+        if (dGameTime > MAX_TIME_SHIFT) dGameTime = MAX_TIME_SHIFT;
+        else if (dGameTime < -MAX_TIME_SHIFT) dGameTime = -MAX_TIME_SHIFT;
+        NSTimeInterval newGameTime = localGameTime + dGameTime;
+        [self.timer updateFromRemoteTime:newGameTime];
+    }
     
-    NSLog(@"TSS got rtt=%f %@", roundTripTime, adjustedGameTime);
-    [self.timer updateFromRemoteTime:adjustedGameTime];
     
-    // If gameTime > nextTickTime we need to jump / simulate the next tick immediately?
-    // Naw, nothing will happen
+    // dGameTime: 0.47, 0.2, 0.04, 0.37, 0.27, 0.02, 0.09
+    // a shift of 0.05 will be very noticiable
+    // a shift of 0.01 might not be
+    
+    
+    // how different is the calculated game time from the current game time
+    
+    [self remove:gameTime];
+    [self syncAgainAfterDelay:SYNC_INTERVAL];
+}
+
+- (void)syncAgainAfterDelay:(NSTimeInterval)delay {
+    double delayInSeconds = delay;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        if (self.node && self.currentMatchId)
+            [self sendTimeRequest];
+    });
+}
+
+- (NSTimeInterval)calculateAverageRoundTripTime:(NSTimeInterval)roundTripTime {
+    return (roundTripTime + self.averageRoundTripTime*(self.numberOfTimeRequests-1)) / self.numberOfTimeRequests;
 }
 
 - (void)save:(GameTime*)time {
     Firebase * mynode = [self.node childByAppendingPath:time.name];
     [mynode onDisconnectRemoveValue];
     [mynode setValue:time.toObject];
+}
+
+- (void)remove:(GameTime*)time {
+    Firebase * mynode = [self.node childByAppendingPath:time.name];
+    [mynode removeValue];
 }
 
 //- (BOOL)checkEstimate:(ClientTime*)other currentTime:(NSTimeInterval)currentTime {

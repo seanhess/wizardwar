@@ -181,7 +181,7 @@
     }
     
     if ([self shouldShowPushWarning]) {
-        self.pushWarning = @"Enable Push Notifications so friends can invite you to play:\n\n    Settings / Notifications";
+        self.pushWarning = @"Enable Push Notifications so friends can invite you to play while you are offline:\n\n    Settings / Notifications";
     }    
 }
 

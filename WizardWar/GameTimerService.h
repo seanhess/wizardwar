@@ -26,5 +26,6 @@
 -(void)start;
 -(void)stop;
 -(void)update:(NSTimeInterval)dt;
--(void)updateFromRemoteTime:(GameTime*)gameTime;
+-(void)startFromRemoteTime:(GameTime*)gameTime;
+-(void)updateFromRemoteTime:(NSTimeInterval)gameTime;
 @end
