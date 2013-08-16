@@ -158,6 +158,7 @@
 		785168BD17A40EDE00A49257 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 785168B917A40EDD00A49257 /* README.md */; };
 		785168BE17A40EDE00A49257 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 785168BA17A40EDD00A49257 /* release_notes.md */; };
 		78516B8817A5925800A49257 /* NSObject+Reflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 78516B8717A5925700A49257 /* NSObject+Reflection.m */; };
+		785C44B317BE671200733E7B /* WarningCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 785C44B217BE671200733E7B /* WarningCell.xib */; };
 		785FBEC4177261BD0021AEE5 /* InstagramEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEA6177261BD0021AEE5 /* InstagramEnemy.m */; };
 		785FBEC5177261BD0021AEE5 /* Interaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEA8177261BD0021AEE5 /* Interaction.m */; };
 		785FBEC6177261BD0021AEE5 /* LandingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEAA177261BD0021AEE5 /* LandingViewController.m */; };
@@ -234,6 +235,7 @@
 		7881FD8317BD414F00FBC7C8 /* icon-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7881FD8217BD414F00FBC7C8 /* icon-ipad.png */; };
 		78915283176A72DB001694B1 /* SpellLevitate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78915280176A7136001694B1 /* SpellLevitate.m */; };
 		78915284176A72DE001694B1 /* EffectLevitate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78915282176A72A8001694B1 /* EffectLevitate.m */; };
+		7892EF9A17BE66E100F9A89D /* WarningCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7892EF9917BE66E100F9A89D /* WarningCell.m */; };
 		789787A91778F27300094AF9 /* UserFriendService.m in Sources */ = {isa = PBXBuildFile; fileRef = 789787A81778F27300094AF9 /* UserFriendService.m */; };
 		789B47C5178F1AEE00611CA5 /* EffectApply.m in Sources */ = {isa = PBXBuildFile; fileRef = 789B47C4178F1AED00611CA5 /* EffectApply.m */; };
 		789B47C8178F1C2D00611CA5 /* EffectBasicDamage.m in Sources */ = {isa = PBXBuildFile; fileRef = 789B47C7178F1C2D00611CA5 /* EffectBasicDamage.m */; };
@@ -663,6 +665,7 @@
 		785168BB17A40EDD00A49257 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		78516B8617A5925700A49257 /* NSObject+Reflection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Reflection.h"; sourceTree = "<group>"; };
 		78516B8717A5925700A49257 /* NSObject+Reflection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Reflection.m"; sourceTree = "<group>"; };
+		785C44B217BE671200733E7B /* WarningCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WarningCell.xib; sourceTree = "<group>"; };
 		785FBEA5177261BD0021AEE5 /* InstagramEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramEnemy.h; sourceTree = "<group>"; };
 		785FBEA6177261BD0021AEE5 /* InstagramEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramEnemy.m; sourceTree = "<group>"; };
 		785FBEA7177261BD0021AEE5 /* Interaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Interaction.h; sourceTree = "<group>"; };
@@ -765,13 +768,15 @@
 		7881FD7E17BD413900FBC7C8 /* icon-iphone-retina and-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-iphone-retina and-5.png"; sourceTree = "<group>"; };
 		7881FD8017BD414700FBC7C8 /* icon-ipad-retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-ipad-retina.png"; sourceTree = "<group>"; };
 		7881FD8217BD414F00FBC7C8 /* icon-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-ipad.png"; sourceTree = "<group>"; };
-		7881FD8417BD4A9600FBC7C8 /* DataModel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DataModel 3.xcdatamodel"; sourceTree = "<group>"; };
+		7881FD8417BD4A9600FBC7C8 /* DataModel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DataModel 3.xcdatamodel"; sourceTree = "<group>"; };
 		7891527F176A7136001694B1 /* SpellLevitate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpellLevitate.h; sourceTree = "<group>"; };
 		78915280176A7136001694B1 /* SpellLevitate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpellLevitate.m; sourceTree = "<group>"; };
 		78915281176A72A8001694B1 /* EffectLevitate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EffectLevitate.h; sourceTree = "<group>"; };
 		78915282176A72A8001694B1 /* EffectLevitate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EffectLevitate.m; sourceTree = "<group>"; };
 		78915287176A7815001694B1 /* SpellSleep.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpellSleep.h; sourceTree = "<group>"; };
 		78915288176A7815001694B1 /* SpellSleep.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpellSleep.m; sourceTree = "<group>"; };
+		7892EF9817BE66E100F9A89D /* WarningCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarningCell.h; sourceTree = "<group>"; };
+		7892EF9917BE66E100F9A89D /* WarningCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WarningCell.m; sourceTree = "<group>"; };
 		789787A71778F27300094AF9 /* UserFriendService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserFriendService.h; sourceTree = "<group>"; };
 		789787A81778F27300094AF9 /* UserFriendService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserFriendService.m; sourceTree = "<group>"; };
 		789B47C3178F1AED00611CA5 /* EffectApply.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectApply.h; sourceTree = "<group>"; };
@@ -1390,6 +1395,9 @@
 				78C9862C178DFFF000B545F9 /* ChallengeCell.h */,
 				78C9862D178DFFF000B545F9 /* ChallengeCell.m */,
 				78C9862A178DFFE300B545F9 /* ChallengeCell.xib */,
+				7892EF9817BE66E100F9A89D /* WarningCell.h */,
+				7892EF9917BE66E100F9A89D /* WarningCell.m */,
+				785C44B217BE671200733E7B /* WarningCell.xib */,
 				78DAB8251795E24F0093A701 /* Settings */,
 				78DAB81B1795AAE40093A701 /* FriendsViewController.h */,
 				78DAB81C1795AAE40093A701 /* FriendsViewController.m */,
@@ -2192,6 +2200,7 @@
 				7881FD7F17BD413900FBC7C8 /* icon-iphone-retina and-5.png in Resources */,
 				7881FD8117BD414700FBC7C8 /* icon-ipad-retina.png in Resources */,
 				7881FD8317BD414F00FBC7C8 /* icon-ipad.png in Resources */,
+				785C44B317BE671200733E7B /* WarningCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2458,6 +2467,7 @@
 				7860683017BBD255004D2E68 /* SpellsLayer.m in Sources */,
 				7860683317BBD3D1004D2E68 /* SpriteCache.m in Sources */,
 				787E1C3117BBFC000092F5D6 /* OLSprite.m in Sources */,
+				7892EF9A17BE66E100F9A89D /* WarningCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -54,6 +54,7 @@
     [Parse setVersion:InfoService.buildNumber];
     // [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeSound];
+//    [[UIApplication sharedApplication] unregisterForRemoteNotifications];
     
     
     [AppStyle customizeUIKitStyles];

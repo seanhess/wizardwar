@@ -41,29 +41,31 @@
 #import "AnalyticsService.h"
 #import "UIViewController+Idiom.h"
 #import "InfoService.h"
+#import "WarningCell.h"
 
-#define SECTION_INDEX_CHALLENGES 0
+
+#define SECTION_INDEX_WARNINGS 0
+#define SECTION_INDEX_CHALLENGES 1
 
 // People who are "Right here" but who aren't friends. Usually this will be blank
-#define SECTION_INDEX_LOCAL 1
+#define SECTION_INDEX_LOCAL 2
 
 // Friends who are online
-#define SECTION_INDEX_FRIENDS_ONLINE 2
+#define SECTION_INDEX_FRIENDS_ONLINE 3
 
 // People who are closeby, but not RIGHT here
-#define SECTION_INDEX_CLOSE 3
+#define SECTION_INDEX_CLOSE 4
 
 // Offline friends
-#define SECTION_INDEX_FRIENDS 4
+#define SECTION_INDEX_FRIENDS 5
 
-#define SECTION_INDEX_STRANGERS 5
+#define SECTION_INDEX_STRANGERS 6
 
 #define SECTION_INDEX_ONLINE_USERS SECTION_INDEX_LOCAL
 #define SECTION_INDEX_OFFLINE_USERS SECTION_INDEX_FRIENDS
 #define SECTION_INDEX_LAST SECTION_INDEX_FRIENDS
 
-#define SECTION_INDEX_MESSAGES 0
-
+// Do one warning at a time?
 
 @interface MatchmakingViewController () <NSFetchedResultsControllerDelegate, FBFriendPickerDelegate, MatchViewControllerDelegate>
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
@@ -82,7 +84,6 @@
 
 @property (strong, nonatomic) RACDisposable * matchStatusSignal;
 
-@property (strong, nonatomic) IBOutlet UITextView *warningsView;
 @property (strong, nonatomic) IBOutlet UITextView *explanationsView;
 
 @property (weak, nonatomic) IBOutlet UIView *loadingOverlayView;
@@ -93,6 +94,9 @@
 
 @property (strong, nonatomic) MatchViewController * currentMatch;
 @property (strong, nonatomic) Challenge * currentChallenge;
+
+@property (strong, nonatomic) NSString * locationWarning;
+@property (strong, nonatomic) NSString * pushWarning;
 
 @property (nonatomic) BOOL connectedToLobby;
 
@@ -120,6 +124,8 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"ChallengeCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"ChallengeCell"];
     
+    [self.tableView registerNib:[UINib nibWithNibName:@"WarningCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WarningCell"];    
+    
     [self.tableView setTableFooterView:self.explanationsView];
     NSLog(@"TESTING %@", NSStringFromCGRect(self.tableView.tableFooterView.frame));
     
@@ -139,13 +145,16 @@
     
     
     [RACAble(LocationService.shared, accepted) subscribeNext:^(id x) {
-        [wself renderTableHeader];
+        [wself setWarnings];
+        [wself.tableView reloadSections:[NSIndexSet indexSetWithIndex:SECTION_INDEX_WARNINGS] withRowAnimation:UITableViewRowAnimationAutomatic];
     }];
     
     [RACAble(UserService.shared, pushAccepted) subscribeNext:^(id x) {
-        [wself renderTableHeader];
+        [wself setWarnings];
+        [wself.tableView reloadSections:[NSIndexSet indexSetWithIndex:SECTION_INDEX_WARNINGS] withRowAnimation:UITableViewRowAnimationAutomatic];        
     }];
-    [self renderTableHeader];    
+    
+    [wself setWarnings];    
     
     
     // CHECK AUTHENTICATED
@@ -157,32 +166,27 @@
 //        accounts.delegate = self;
 //        [self.navigationController presentViewController:accounts animated:YES completion:nil];
 //    }
-    
-
 }
 
-- (void)renderTableHeader {
-    if (!LocationService.shared.accepted || !UserService.shared.pushAccepted) {
-        
-        NSMutableString * message = [NSMutableString string];
-        
-        if (!LocationService.shared.accepted) {
-            if (LocationService.shared.cannotFindLocation)
-                [message appendString:@"Cannot locate you! Please make sure Location Services are enabled to see players near you.\n"];
-            else
-                [message appendString:@"Enable Location Services to see players near you. You can do this in Settings.\n"];
+- (void)setWarnings {
+    if ([self shouldShowLocationWarning]) {
+        self.locationWarning = @"Enable Location Services to see players near you:\n\n    Settings / Privacy / Location Services";
+        if (LocationService.shared.cannotFindLocation) {
+            self.locationWarning = [NSString stringWithFormat:@"Location Error: %@", self.locationWarning];
         }
-        
-        if (!UserService.shared.pushAccepted) {
-            [message appendString:@"Enable Push Notifications so friends can invite you to play\n"];
-        }
-        
-        self.warningsView.text = message;
-        
-        self.tableView.tableHeaderView = self.warningsView;
-    } else {
-        self.tableView.tableHeaderView = nil;
     }
+    
+    if ([self shouldShowPushWarning]) {
+        self.pushWarning = @"Enable Push Notifications so friends can invite you to play:\n\n    Settings / Notifications";
+    }    
+}
+
+- (BOOL)shouldShowLocationWarning {
+    return !LocationService.shared.accepted;
+}
+
+- (BOOL)shouldShowPushWarning {
+    return !UserService.shared.pushAccepted;
 }
 
 - (void)connect {
@@ -437,6 +441,11 @@
         return [[self.friendOnlineResults.sections objectAtIndex:0] numberOfObjects];
     } else if (section == SECTION_INDEX_STRANGERS) {
         return [[self.allResults.sections objectAtIndex:0] numberOfObjects];
+    } else if (section == SECTION_INDEX_WARNINGS) {
+        if ([self shouldShowLocationWarning] || [self shouldShowPushWarning])
+            return 1;
+        else
+            return 0;
     } else {
         return 0;
     }
@@ -482,6 +491,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == SECTION_INDEX_CHALLENGES) return 65;
+    if (indexPath.section == SECTION_INDEX_WARNINGS) return 90;
     else return 54;
 }
 
@@ -489,6 +499,8 @@
 {
     if (indexPath.section == SECTION_INDEX_CHALLENGES) {
         return [self tableView:tableView challengeCellForRowAtIndexPath:indexPath];
+    } else if (indexPath.section == SECTION_INDEX_WARNINGS) {
+        return [self tableView:tableView warningCellForRowAtIndexPath:indexPath];
     } else {
         User * user = [self userForIndexPath:indexPath];
         return [self tableView:tableView userCellForUser:user];
@@ -538,6 +550,23 @@
     
     return cell;    
 }
+
+-(UITableViewCell*)tableView:(UITableView *)tableView warningCellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    WarningCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WarningCell"];
+    
+    if (!cell) {
+        cell = [[WarningCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"WarningCell"];
+    }
+    
+    if ([self shouldShowLocationWarning])
+        cell.textView.text = self.locationWarning;
+    else
+        cell.textView.text = self.pushWarning;
+    
+    return cell;
+}
+
 
 - (NSString*)nameOrYou:(NSString*)name {
     if ([name isEqualToString:self.currentUser.name]) return @"You";
