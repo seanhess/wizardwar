@@ -16,6 +16,7 @@
 #import "FacebookUser.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "UserFriendService.h"
+#import <ReactiveCocoa.h>
 
 // https://graph.facebook.com/644505774/picture?width=640&height=640
 
@@ -48,6 +49,12 @@
 
 - (void)awakeFromNib {
     self.typeLabel.font = [UIFont fontWithName:@"FontAwesome" size:20.0];
+//    self.distanceLabel.font = [UIFont fontWithName:@"FontAwesome" size:12.0];
+    
+    __weak UserCell * wself = self;
+    [RACAble(LobbyService.shared, currentServerTime) subscribeNext:^(id x) {
+        [wself renderTimeAndDistance:wself.user];
+    }];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -90,21 +97,7 @@
         self.typeLabel.text = [NSString stringFromAwesomeIcon:FAIconGlobe];
     
     // DISTANCE
-    NSString * distance = @"";
-    if (user.isOnline && user.distance >= 0) {
-        distance = [LocationService.shared distanceString:user.distance];
-    }
-
-    // this isn't quite right. It should be time from NOW,
-//    NSTimeInterval timeInLobby = LobbyService.shared.currentServerTime - user.joined;
-//    NSInteger minutes = timeInLobby / 60;
-//    NSString * time;
-//    if (minutes < 1)
-//        time = [NSString stringWithFormat:@"%i seconds", (int)timeInLobby];
-//    else
-//        time = [NSString stringWithFormat:@"%i minutes", (int)minutes];
-    
-    self.distanceLabel.text = distance;
+    [self renderTimeAndDistance:user];
     
     Challenge * challenge = nil;
     
@@ -136,6 +129,29 @@
             self.statusLabel.text = @"";
         }
     }
+}
+
+-(void)renderTimeAndDistance:(User*)user {
+    if (!user) return;
+    NSString * distance = @"";
+    if (user.isOnline && user.distance >= 0) {
+        distance = [LocationService.shared distanceString:user.distance];
+    }
+    
+    // this isn't quite right. It should be time from NOW,
+    NSTimeInterval timeInLobby = LobbyService.shared.currentServerTime - user.joined;
+    
+    if (timeInLobby > 0) {
+        NSInteger minutes = timeInLobby / 60;
+        NSString * time;
+        if (minutes < 1)
+            time = [NSString stringWithFormat:@"%i sec", (int)timeInLobby];
+        else
+            time = [NSString stringWithFormat:@"%i min", (int)minutes];
+        
+        distance = [NSString stringWithFormat:@"%@ - %@", time, distance];
+    }
+    self.distanceLabel.text = distance;
 }
 
 -(void)reloadFromUser {

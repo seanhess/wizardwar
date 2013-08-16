@@ -14,5 +14,4 @@
 @property (nonatomic, strong) User * currentUser;
 @property (nonatomic, strong) User * user;
 -(void)reloadFromUser;
--(void)setUser:(User *)user currentUser:(User*)currentUser;
 @end

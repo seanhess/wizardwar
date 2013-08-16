@@ -22,9 +22,11 @@
 // Just implement global people for this yo
 @interface LobbyService ()
 @property (nonatomic, strong) Firebase * lobby;
+@property (nonatomic, strong) Firebase * serverTimeOffset;
 @property (nonatomic, strong) CLLocation * currentLocation;
 @property (nonatomic, strong) User * joinedUser;
 @property (nonatomic) BOOL joining;
+@property (nonatomic) NSTimeInterval serverOffset;
 @end
 
 // Use location is central to LOBBY
@@ -50,8 +52,15 @@
     [self setAllOffline];
     
     self.lobby = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/lobby"];
+    self.serverTimeOffset = [[Firebase alloc] initWithUrl:@"https://wizardwar.firebaseIO.com/.info/serverTimeOffset"];
     
     __weak LobbyService * wself = self;
+    
+    [self.serverTimeOffset observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+        if (snapshot.value == [NSNull null]) return;
+        wself.serverOffset = [(NSNumber *)snapshot.value doubleValue]/1000.0;
+        [wself calculateServerTime];
+    }];
 
     [self.lobby observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
         [wself onAdded:snapshot];
@@ -86,6 +95,10 @@
     }];
 }
 
+-(void)calculateServerTime {
+    self.currentServerTime = [[NSDate date] timeIntervalSince1970] + self.serverOffset;
+}
+
 
 // Guaranteed: that we have currentLocation at this point
 -(void)onAdded:(FDataSnapshot *)snapshot {
@@ -97,7 +110,7 @@
     [user setValuesForKeysWithDictionary:snapshot.value];
     user.joined = ([snapshot.value[@"joined"] doubleValue] / 1000.0);
     if (user.joined > self.currentServerTime)
-        self.currentServerTime = user.joined;
+        [self calculateServerTime];
     user.isOnline = YES;
     
     if (user != UserService.shared.currentUser) {
@@ -200,6 +213,7 @@
     [node setValue:object withCompletionBlock:^(NSError *error, Firebase *ref) {
         self.joined = YES;
         self.joining = NO;
+        [self calculateServerTime];
         NSLog(@"LobbyService: (joined)");
     }];    
 }
