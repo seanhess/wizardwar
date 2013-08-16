@@ -11,6 +11,7 @@
 #import "SpellMonster.h"
 #import "SpellIcewall.h"
 #import "SpellFirewall.h"
+#import "SpellBubble.h"
 #import "Tick.h"
 
 @implementation SpellEarthwall
@@ -30,13 +31,15 @@
         return [SpellInteraction cancel];
     }
     
-    
     // replace older walls
     else if ([self isNewerWall:spell]) {
         return [SpellInteraction cancel];
     }
     
     else if ([spell isType:[SpellFireball class]] && spell.direction != self.direction) {
+        if ([spell.linkedSpell isKindOfClass:[SpellBubble class]])
+            return [SpellInteraction nothing];
+
         self.strength -= spell.damage;
         
         if (self.strength <= 0)

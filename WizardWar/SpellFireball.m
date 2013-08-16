@@ -74,7 +74,6 @@
         return [SpellInteraction cancel];
     }
     
-
 //    else if ([spell isType:[SpellMonster class]]) {
 //        self.damage -= 1;
 //        if (self.damage > 0) {

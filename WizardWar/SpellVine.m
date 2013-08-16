@@ -45,6 +45,9 @@
     }
     
     else if (self.isAttacking && [spell isKindOfClass:[SpellFireball class]]) {
+        if ([spell.linkedSpell isKindOfClass:[SpellBubble class]])
+            return [SpellInteraction nothing];
+
         return [SpellInteraction cancel];
     }
     

@@ -40,17 +40,17 @@
         return [SpellInteraction modify];
     }
     
-    // Does not react while in a bubble
-    else if ([self.linkedSpell isKindOfClass:[SpellBubble class]]) {
-        return [SpellInteraction nothing];
-    }
-
     // the order matters, because the effect gets applied RIGHT THEN
     else if ([spell isType:[SpellMonster class]]) {
         if([spell.effect isKindOfClass:[EffectSleep class]] && spell.effect.startTick < currentTick)
             return [SpellInteraction nothing];
         return [SpellInteraction cancel];
     }
+    
+    // Does not react while in a bubble
+    else if ([self.linkedSpell isKindOfClass:[SpellBubble class]]) {
+        return [SpellInteraction nothing];
+    }    
     
     else if ([spell isType:[SpellIcewall class]] && spell.direction != self.direction) {
         return [SpellInteraction cancel];
