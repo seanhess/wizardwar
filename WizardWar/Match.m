@@ -264,6 +264,14 @@
     
     // SIMULATE AI
     [self.ai simulateTick:currentTick interval:tickInterval];
+    
+    // SYNC EVERYTHING?
+    // This might be the better way to go, if we changed it to be set up to handle updates better
+//    [[self.activeSpells filter:^BOOL(Spell*spell) {
+//        return [self isSpellClose:spell] && (spell.speed > 0);
+//    }] forEach:^(Spell* spell) {
+//        [self modifySpell:spell];
+//    }];
 }
 
 -(void)simulateUpdatedSpells:(NSInteger)currentTick interval:(NSTimeInterval)tickInterval {
@@ -276,6 +284,7 @@
     }];
     
     [updatedSpells forEach:^(Spell * spell) {
+//        NSLog(@"UPDATED SPELL %@", spell.name);
         [self positionSpell:spell referenceTick:spell.updatedTick currentTick:currentTick];
     }];
     
