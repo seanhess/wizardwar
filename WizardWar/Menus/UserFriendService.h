@@ -29,6 +29,7 @@ typedef enum FBStatus {
 
 -(FacebookUser*)facebookUserWithId:(NSString*)facebookId;
 
+-(void)user:(User*)user removeFrenemy:(User*)frenemy;
 -(void)user:(User*)user addChallenge:(Challenge*)challenge didWin:(BOOL)didWin;
 -(void)user:(User*)user authenticateFacebook:(void(^)(BOOL, User*))cb;
 -(void)user:(User*)user disconnectFacebook:(void(^)(void))cb;

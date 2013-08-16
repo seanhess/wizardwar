@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 The LAB. All rights reserved.
 //
 
-#define kLocationDistanceInvalid -1
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
+#define kLocationDistanceInvalid -1
 #define MAX_SAME_LOCATION_DISTANCE 100.0
 
 @interface LocationService : NSObject

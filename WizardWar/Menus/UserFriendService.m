@@ -77,6 +77,12 @@
     }
 }
 
+-(void)user:(User*)user removeFrenemy:(User*)frenemy {
+    frenemy.gamesTotal = 0;
+    frenemy.gamesWins = 0;
+}
+
+
 -(BOOL)hasConnectedFacebook:(User*)user {
     return (user.facebookId != nil);
 }
@@ -351,7 +357,7 @@
 
     // If we are looking for ONLINE friends, don't show close ones because they are in the HERE list
     if (isOnline) {
-        NSPredicate * isFar = [NSPredicate predicateWithFormat:@"distance > %f", MAX_SAME_LOCATION_DISTANCE];
+        NSPredicate * isFar = [NSPredicate predicateWithFormat:@"distance > %f || distance == %i", MAX_SAME_LOCATION_DISTANCE, kLocationDistanceInvalid];
         [predicates addObject:isFar];
     }
     

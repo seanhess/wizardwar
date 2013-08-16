@@ -133,15 +133,12 @@
 
 -(void)renderTimeAndDistance:(User*)user {
     if (!user) return;
-    NSString * distance = @"";
-    if (user.isOnline && user.distance >= 0) {
-        distance = [LocationService.shared distanceString:user.distance];
-    }
     
-    // this isn't quite right. It should be time from NOW,
+    NSMutableArray * items = [NSMutableArray array];
+    
     NSTimeInterval timeInLobby = LobbyService.shared.currentServerTime - user.joined;
     
-    if (timeInLobby > 0) {
+    if (timeInLobby > 0 && user.isOnline) {
         NSInteger minutes = timeInLobby / 60;
         NSString * time;
         if (minutes < 1)
@@ -149,9 +146,17 @@
         else
             time = [NSString stringWithFormat:@"%i min", (int)minutes];
         
-        distance = [NSString stringWithFormat:@"%@ - %@", time, distance];
+        [items addObject:time];
     }
-    self.distanceLabel.text = distance;
+    
+    
+    if (user.isOnline && user.distance >= 0) {
+        NSString * distance = [LocationService.shared distanceString:user.distance];
+        [items addObject:distance];
+    }
+    
+    
+    self.distanceLabel.text = [items componentsJoinedByString:@" - "];
 }
 
 -(void)reloadFromUser {

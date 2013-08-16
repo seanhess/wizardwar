@@ -21,7 +21,7 @@
 
 -(id)init {
     if ((self=[super init])) {
-        self.speed = 50;
+        self.speed = 60;
         self.damage = 0;
         self.heavy = NO;
         self.name = @"Wind Blast";
