@@ -31,6 +31,10 @@
     }
     
     else if ([spell isType:[SpellFireball class]] && spell.direction != self.direction) {
+        if ([spell.linkedSpell isKindOfClass:[SpellBubble class]]) {
+            return [SpellInteraction nothing];
+        }
+
         return [SpellInteraction cancel];
     }
     

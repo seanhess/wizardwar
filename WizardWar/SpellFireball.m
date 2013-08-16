@@ -29,7 +29,31 @@
 
 -(SpellInteraction*)interactSpell:(Spell*)spell currentTick:(NSInteger)currentTick {
     
-    if ([spell isType:[SpellEarthwall class]] && spell.direction != self.direction) {
+    if ([spell isType:[SpellWindblast class]]) {
+        // all it does is make it bigger
+        // tee hee
+        self.damage += 1;
+        return [SpellInteraction modify];
+    }
+    
+    else if ([spell isType:[SpellBubble class]]) {
+        if (self.position == spell.position && self.speed == spell.speed && self.direction == spell.direction)
+            return [SpellInteraction nothing];
+        
+        self.linkedSpell = spell;
+        self.position = spell.position;
+        self.speed = spell.speed;
+        self.direction = spell.direction;
+        return [SpellInteraction modify];
+    }
+
+    // Windblast reacts while its in bubble form, but not the stuff below
+    else if ([self.linkedSpell isKindOfClass:[SpellBubble class]]) {
+        return [SpellInteraction nothing];
+    }
+    
+    else if ([spell isType:[SpellEarthwall class]] && spell.direction != self.direction) {
+        
         // DO NOT: reduce the strength of the fireball too
         // the earthwall is reducing its strength, and it's not clear which happens first
         return [SpellInteraction cancel];
@@ -50,17 +74,7 @@
         return [SpellInteraction cancel];
     }
     
-    else if ([spell isType:[SpellBubble class]]) {
-        if (self.position == spell.position && self.speed == spell.speed && self.direction == spell.direction)
-            return [SpellInteraction nothing];
-        
-        self.linkedSpell = spell;
-        self.position = spell.position;
-        self.speed = spell.speed;
-        self.direction = spell.direction;
-        return [SpellInteraction modify];
-    }
-    
+
 //    else if ([spell isType:[SpellMonster class]]) {
 //        self.damage -= 1;
 //        if (self.damage > 0) {

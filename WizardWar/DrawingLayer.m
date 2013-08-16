@@ -48,6 +48,7 @@
 @property (nonatomic) CGPoint anchorPoint;
 @property (strong, nonatomic) UIColor * lineColor;
 @property (strong, nonatomic) Units * units;
+@property (nonatomic, strong) CCAction * fadeAction;
 
 //@property (nonatomic, strong) NSMutableArray * lineSegments;
 @property (nonatomic, strong) NSMutableArray * points;
@@ -82,6 +83,7 @@
 // as touches move, you just need to change the current tail point
 // does not create a segment though!
 - (void)addAnchorPoint:(CGPoint)point {
+    [self cancelFadeAndReset];    
     CGPoint converted = [self convertPoint:point];
     [self.points addObject:[NSValue valueWithCGPoint:converted]];
     self.tailPoint = CGPointZero;
@@ -111,7 +113,8 @@
 }
 
 - (void)clear {
-    self.points = [NSMutableArray array];
+    self.fadeAction = [CCFadeTo actionWithDuration:FEEDBACK_FADE_TIME opacity:0];
+    [self runAction:self.fadeAction];
 }
 
 - (BOOL)isPointSet:(CGPoint)point {
@@ -119,10 +122,20 @@
 }
 
 - (void)moveTailPoint:(CGPoint)point {
+    [self cancelFadeAndReset];
 //    self.tailPoint = point;
     CGPoint converted = [self convertPoint:point];
     self.tailPoint = converted;
 //    [self setNeedsDisplay];
+}
+
+- (void)cancelFadeAndReset {
+    if (self.fadeAction) {
+        [self stopAction:self.fadeAction];
+        self.points = [NSMutableArray array];
+        self.opacity = 255;
+        self.fadeAction = nil;
+    }
 }
 
 - (void)draw {
@@ -138,7 +151,7 @@
     glLineWidth(5.0f * [CCDirector sharedDirector].view.contentScaleFactor);
     
     // set line color.
-    ccDrawColor4B(255, 255, 255, 255);
+    ccDrawColor4B(255, 255, 255, self.opacity);
     
 //    ccDrawLine(ccp(100,100), ccp(100, 200));
 //    ccDrawLine(ccp(100,200), ccp(200, 200));

@@ -28,17 +28,7 @@
 
 -(SpellInteraction *)interactSpell:(Spell *)spell currentTick:(NSInteger)currentTick {
     
-    // Earthwalls and Firewalls can collide if the firewall is contained by a bubble.
-    if ([spell isKindOfClass:[SpellEarthwall class]] && spell.direction != self.direction) {
-        return [SpellInteraction cancel];
-    }
-    
-    // replace older walls
-    else if ([self isNewerWall:spell]) {
-        return [SpellInteraction cancel];
-    }
-    
-    else if ([spell isType:[SpellBubble class]]) {
+    if ([spell isType:[SpellBubble class]]) {
         // do whatever fireball does
         if (self.position == spell.position && self.speed == spell.speed && self.direction == spell.direction)
             return [SpellInteraction nothing];
@@ -48,6 +38,21 @@
         self.speed = spell.speed;
         self.direction = spell.direction;
         return [SpellInteraction modify];
+    }
+    
+    // Does not react while in a bubble
+    else if ([self.linkedSpell isKindOfClass:[SpellBubble class]]) {
+        return [SpellInteraction nothing];
+    }    
+    
+    // Earthwalls and Firewalls can collide if the firewall is contained by a bubble.
+    else if ([spell isKindOfClass:[SpellEarthwall class]] && spell.direction != self.direction) {
+        return [SpellInteraction cancel];
+    }
+    
+    // replace older walls
+    else if ([self isNewerWall:spell]) {
+        return [SpellInteraction cancel];
     }
     
     // You CAN'T do the spell strength thing!

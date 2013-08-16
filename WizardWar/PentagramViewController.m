@@ -262,7 +262,7 @@
             self.feedbackLabel.alpha = 1.0;
         }];
     } else {
-        [UIView animateWithDuration:1.3 animations:^{
+        [UIView animateWithDuration:FEEDBACK_FADE_TIME animations:^{
             self.feedbackLabel.alpha = 0.0;
         }];
     }

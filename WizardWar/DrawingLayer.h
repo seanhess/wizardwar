@@ -10,8 +10,10 @@
 #import "cocos2d.h"
 #import "Units.h"
 
+#define FEEDBACK_FADE_TIME 1.3
+
 // Make this an actual CALayer? ... Maybe
-@interface DrawingLayer : CCLayer
+@interface DrawingLayer : CCSprite
 
 @property (nonatomic) BOOL castDisabled;
 
