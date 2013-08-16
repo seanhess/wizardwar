@@ -377,12 +377,35 @@
 
 -(void)hitPlayer:(Wizard*)wizard withSpell:(Spell*)spell atTick:(NSInteger)currentTick {
     
-    SpellInteraction * interaction = [spell interactWizard:wizard currentTick:currentTick];
+    Wizard * clone = [wizard evilClone];
+    SpellInteraction * interaction = [spell interactWizard:clone currentTick:currentTick];
     [self handleInteraction:interaction forSpell:spell];
+
+    // Now copy the wizard changes into your current wizard
+    // Maybe it would have been easier to do it like this for the spells too?
+    // EXCEPT health, wait and see if we have multiplayer first
+    
+    // position can't change right now, it breaks the animation on levitate
+    wizard.altitude = clone.altitude;
+    wizard.updatedTick = clone.updatedTick;
+    
+    if (clone.effect != wizard.effect) {
+        [wizard.effect cancel:wizard];
+        wizard.effect = clone.effect;
+        [wizard.effect start:currentTick player:wizard];
+    }
+
+    if (wizard.state != clone.state) {
+        [wizard setStatus:clone.state atTick:currentTick];
+    }
+    
     
     // handle player sync / update / death check
     // only YOU can say you died
     if (wizard == self.currentWizard || wizard == self.aiWizard) {
+        
+        wizard.health = clone.health;
+        
         if (wizard.health == 0) {
             wizard.effect = nil;
             [wizard setState:WizardStatusDead];

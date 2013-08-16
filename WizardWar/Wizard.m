@@ -99,4 +99,21 @@
     return [types randomItem];
 }
 
+-(Wizard*)evilClone {
+    Wizard * clone = [Wizard new];
+    [clone copyStateFrom:self];
+    return clone;
+}
+
+-(void)copyStateFrom:(Wizard *)wizard {
+    self.health = wizard.health;
+    self.state = wizard.state;
+    self.effect = wizard.effect;
+    self.altitude = wizard.altitude;
+    self.position = wizard.position;
+    self.updatedTick = wizard.updatedTick;
+}
+
+
+
 @end

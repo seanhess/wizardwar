@@ -40,4 +40,6 @@ typedef enum WizardStatus {
 -(BOOL)isFirstPlayer;
 -(void)setStatus:(WizardStatus)status atTick:(NSInteger)tick;
 +(NSString*)randomWizardType;
+-(Wizard*)evilClone;
+-(void)copyStateFrom:(Wizard*)wizard;
 @end
