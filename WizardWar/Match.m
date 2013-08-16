@@ -319,12 +319,13 @@
 -(void)checkHitsWithCurrentTick:(NSInteger)currentTick interval:(NSTimeInterval)tickInterval {
     
     // Things with linkedSpells go last
-    // Then, 
+    // Then, older spells go last (they apply more strongly)
+    // No bubble steal
     NSArray * spells = [self.activeSpells sortedArrayUsingComparator:^NSComparisonResult(Spell * one, Spell * two) {
         if (one.linkedSpell && !two.linkedSpell) return NSOrderedDescending;
         else if (!one.linkedSpell && two.linkedSpell) return NSOrderedAscending;
-        else if (one.createdTick < two.createdTick) return NSOrderedAscending;
-        else if (one.createdTick > two.createdTick) return NSOrderedDescending;
+        else if (one.createdTick > two.createdTick) return NSOrderedAscending;
+        else if (one.createdTick < two.createdTick) return NSOrderedDescending;
         else return NSOrderedSame;
     }];
     
