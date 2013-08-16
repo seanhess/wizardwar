@@ -22,6 +22,11 @@
     return self;
 }
 
+-(NSComparisonResult)compare:(Effect*)effect {
+    if (effect) return NSOrderedSame;
+    return NSOrderedAscending;
+}
+
 -(void)start:(NSInteger)tick player:(Wizard *)player {
     self.startTick = tick;
 }

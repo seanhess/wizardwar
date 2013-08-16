@@ -24,6 +24,7 @@
 @property (nonatomic) NSTimeInterval duration; // how long before it wears off?
 @property (nonatomic) NSInteger startTick; // when it began operating.
 
+-(NSComparisonResult)compare:(Effect*)effect;
 -(void)start:(NSInteger)tick player:(Wizard*)player;
 -(void)cancel:(Wizard*)player;
 -(SpellInteraction*)applySpell:(Spell*)spell onWizard:(Wizard*)wizard currentTick:(NSInteger)currentTick;

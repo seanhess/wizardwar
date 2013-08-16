@@ -317,9 +317,14 @@
 //}
 
 -(void)checkHitsWithCurrentTick:(NSInteger)currentTick interval:(NSTimeInterval)tickInterval {
-    // HITS ARE CALLED MORE THAN ONCE!
-    // A hits B, B hits A
-    NSArray * spells = self.activeSpells;
+    
+    // Things with linkedSpells go last
+    NSArray * spells = [self.activeSpells sortedArrayUsingComparator:^NSComparisonResult(Spell * one, Spell * two) {
+        if (one.linkedSpell && !two.linkedSpell) return NSOrderedDescending;
+        else if (!one.linkedSpell && two.linkedSpell) return NSOrderedAscending;
+        else return NSOrderedSame;
+    }];
+    
     NSArray * players = self.players.allValues;
     for (int i = 0; i < spells.count; i++) {
         Spell * spell = spells[i];
@@ -334,8 +339,9 @@
         // start at the next spell (don't check collisons twice)
         for (int j = i+1; j < spells.count; j++) {
             Spell * spell2 = spells[j];
-            if ([spell didHitSpell:spell2 duringInterval:self.timer.tickInterval])
+            if ([spell didHitSpell:spell2 duringInterval:self.timer.tickInterval]) {
                 [self hitSpell:spell withSpell:spell2 currentTick:currentTick];
+            }
         }
     }
 }
@@ -423,6 +429,8 @@
 }
 
 -(void)hitSpell:(Spell*)spell withSpell:(Spell*)spell2 currentTick:(NSInteger)currentTick {
+//    NSLog(@"(%i) INTERACT %@ %@", currentTick, spell.type, spell2.type);
+
     [self handleInteraction:[spell interactSpell:spell2 currentTick:currentTick] forSpell:spell];
     [self handleInteraction:[spell2 interactSpell:spell currentTick:currentTick] forSpell:spell2];
 //    NSLog(@"HIT tick=%i (pos=%i dmg=%i) (pos=%i dmg=%i)", currentTick, (int)spell.position, spell.damage, (int)spell2.position, spell2.damage);

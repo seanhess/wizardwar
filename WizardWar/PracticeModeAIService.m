@@ -84,8 +84,8 @@
         
 #ifdef DEBUG
 //        self.stop = YES;
-        self.allOffensive = @[[SpellVine class]];
-        self.allDefensive = @[[SpellFirewall class]];
+        self.allOffensive = @[[SpellBubble class]];
+        self.allDefensive = @[[SpellBubble class]];
 #endif
     }
     return self;

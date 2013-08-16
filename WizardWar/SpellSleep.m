@@ -44,6 +44,7 @@
         if (self.position == spell.position && self.speed == spell.speed && self.direction == spell.direction)
             return [SpellInteraction nothing];
         
+        self.linkedSpell = spell;        
         self.position = spell.position;
         self.speed = spell.speed;
         self.direction = spell.direction;
