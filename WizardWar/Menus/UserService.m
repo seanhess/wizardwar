@@ -63,8 +63,8 @@
 -(void)onAdded:(FDataSnapshot *)snapshot {
     NSString * userId = snapshot.name;
     User * user = [self userWithId:userId create:YES];
+    // This does not throw an error for missing keys, because I implemented the methods in User.m
     [user setValuesForKeysWithDictionary:snapshot.value];
-//    [FirebaseSerializer updateObject:user withDictionary:snapshot.value];
     user.updated = ([snapshot.priority doubleValue] / 1000.0); // comes down in milliseconds
     NSLog(@"UserService: (+) %i %@", (int)(user.updated - self.lastUpdatedTime), user.name);
     

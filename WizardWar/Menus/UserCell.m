@@ -9,6 +9,7 @@
 #import "UserCell.h"
 #import "LocationService.h"
 #import "ChallengeService.h"
+#import "LobbyService.h"
 #import "UIColor+Hex.h"
 #import "NSString+FontAwesome.h"
 #import "AppStyle.h"
@@ -56,18 +57,18 @@
     // Configure the view for the selected state
 }
 
-- (void)setUser:(User *)user {
+-(void)setUser:(User *)user {
     _user = user;
     
     NSString * name = user.name;
     if (user.facebookUser) {
-//        BOOL nameContainsFirstName = ([name.lowercaseString rangeOfString:user.facebookUser.firstName.lowercaseString].length > 0);
-//        BOOL nameContainsLastName = ([name.lowercaseString rangeOfString:user.facebookUser.lastName.lowercaseString].length > 0);
-//        
-//        if (!nameContainsFirstName || !nameContainsLastName) {
-//            NSString * firstName = (nameContainsFirstName) ? @"" : user.facebookUser.firstName;
-//            NSString * lastName = (nameContainsLastName) ? @"" : user.facebookUser.lastName;
-//        }
+        //        BOOL nameContainsFirstName = ([name.lowercaseString rangeOfString:user.facebookUser.firstName.lowercaseString].length > 0);
+        //        BOOL nameContainsLastName = ([name.lowercaseString rangeOfString:user.facebookUser.lastName.lowercaseString].length > 0);
+        //
+        //        if (!nameContainsFirstName || !nameContainsLastName) {
+        //            NSString * firstName = (nameContainsFirstName) ? @"" : user.facebookUser.firstName;
+        //            NSString * lastName = (nameContainsLastName) ? @"" : user.facebookUser.lastName;
+        //        }
         name = [NSString stringWithFormat:@"%@ (%@ %@)", name, user.facebookUser.firstName, user.facebookUser.lastName];
     }
     self.nameLabel.text = name;
@@ -80,7 +81,7 @@
     CGSize size = self.avatarImageView.frame.size;
     NSURL * imageUrl = [UserFriendService.shared user:user facebookAvatarURLWithSize:size];
     [self.avatarImageView setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@"user.jpg"]];
-
+    
     if (user.isFacebookFriend)
         self.typeLabel.text = [NSString stringFromAwesomeIcon:FAIconFacebookSign];
     else if (user.isFrenemy)
@@ -93,6 +94,16 @@
     if (user.isOnline && user.distance >= 0) {
         distance = [LocationService.shared distanceString:user.distance];
     }
+
+    // this isn't quite right. It should be time from NOW,
+//    NSTimeInterval timeInLobby = LobbyService.shared.currentServerTime - user.joined;
+//    NSInteger minutes = timeInLobby / 60;
+//    NSString * time;
+//    if (minutes < 1)
+//        time = [NSString stringWithFormat:@"%i seconds", (int)timeInLobby];
+//    else
+//        time = [NSString stringWithFormat:@"%i minutes", (int)minutes];
+    
     self.distanceLabel.text = distance;
     
     Challenge * challenge = nil;
@@ -101,8 +112,8 @@
         challenge = [ChallengeService.shared challengeWithId:user.activeMatchId create:NO];
         // If challenge is nil, don't worry about it for now, I never really clear it.
         // I should probably use ... I don't know.
-//        if (!challenge)
-//            NSLog(@"!!! NO CHALLENGE %@", user.activeMatchId);
+        //        if (!challenge)
+        //            NSLog(@"!!! NO CHALLENGE %@", user.activeMatchId);
     }
     
     // STATUS
@@ -111,10 +122,9 @@
         self.statusLabel.text = [NSString stringWithFormat:@"FIGHTING %@!", opponent.name];
         self.statusLabel.textColor = [UIColor darkGrayColor];
     }
-
+    
     // WINS
     else {
-        
         if (user.gamesTotal > 0) {
             self.statusLabel.text = [NSString stringWithFormat:@"%i/%i Wins", user.gamesWins, user.gamesTotal];
             if (user.gamesWins > user.gamesTotal/2) {
@@ -125,14 +135,11 @@
         } else {
             self.statusLabel.text = @"";
         }
-        
-        
-        
     }
 }
 
 -(void)reloadFromUser {
-    self.user = self.user;
+    [self setUser:self.user];
 }
 
 @end

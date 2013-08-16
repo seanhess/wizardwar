@@ -95,6 +95,9 @@
     
     User * user = [UserService.shared userWithId:snapshot.name create:YES];
     [user setValuesForKeysWithDictionary:snapshot.value];
+    user.joined = ([snapshot.value[@"joined"] doubleValue] / 1000.0);
+    if (user.joined > self.currentServerTime)
+        self.currentServerTime = user.joined;
     user.isOnline = YES;
     
     if (user != UserService.shared.currentUser) {
@@ -189,8 +192,12 @@
 
 - (void)saveUserToLobby:(User*)user {
     Firebase * node = [self.lobby childByAppendingPath:user.userId];
+    
+    NSMutableDictionary * object = [NSMutableDictionary dictionaryWithDictionary:user.toLobbyObject];
+    object[@"joined"] = kFirebaseServerValueTimestamp;
+    
     [node onDisconnectRemoveValue];
-    [node setValue:user.toLobbyObject withCompletionBlock:^(NSError *error, Firebase *ref) {
+    [node setValue:object withCompletionBlock:^(NSError *error, Firebase *ref) {
         self.joined = YES;
         self.joining = NO;
         NSLog(@"LobbyService: (joined)");
@@ -248,6 +255,18 @@
     
     return request;
 }
+
+- (NSFetchRequest*)requestRecentUsers:(User *)user withLimit:(NSInteger)limit {
+    NSFetchRequest * request = [UserService.shared requestOtherOnline:user];
+    NSPredicate * notFriend = [self predicateNotFriend:user];
+    request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[notFriend, request.predicate]];
+    NSSortDescriptor * sortDistance = [NSSortDescriptor sortDescriptorWithKey:@"joined" ascending:NO];
+    request.sortDescriptors = @[sortDistance];
+    request.fetchLimit = limit;
+    return request;
+}
+
+
 
 - (NSFetchRequest*)requestUsersWithLocations {
     User * user = UserService.shared.currentUser;

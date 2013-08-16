@@ -19,6 +19,7 @@
 
 @property (nonatomic) BOOL joined;
 @property (nonatomic) NSInteger totalInLobby;
+@property (nonatomic) NSTimeInterval currentServerTime;
 
 + (LobbyService *)shared;
 
@@ -32,6 +33,7 @@
 
 - (NSFetchRequest*)requestCloseUsers:(User*)user;
 - (NSFetchRequest*)requestClosestUsers:(User*)user withLimit:(NSInteger)limit;
+- (NSFetchRequest*)requestRecentUsers:(User*)user withLimit:(NSInteger)limit;
 
 //-(BOOL)userIsLocal:(User*)user;
 

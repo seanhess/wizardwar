@@ -147,6 +147,7 @@
     [RACAble(LocationService.shared, accepted) subscribeNext:^(id x) {
         [wself setWarnings];
         [wself.tableView reloadSections:[NSIndexSet indexSetWithIndex:SECTION_INDEX_WARNINGS] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [wself loadConditionalCloseResults];        
     }];
     
     [RACAble(UserService.shared, pushAccepted) subscribeNext:^(id x) {
@@ -212,9 +213,9 @@
     self.localResults.delegate = self;
     [self.localResults performFetch:&error];
     
-    self.otherCloseResults = [ObjectStore.shared fetchedResultsForRequest:[LobbyService.shared requestClosestUsers:self.currentUser withLimit:4]];
+    self.otherCloseResults = [ObjectStore.shared fetchedResultsForRequest:[UserService.shared requestOtherOnline:self.currentUser]];
     self.otherCloseResults.delegate = self;
-    [self.otherCloseResults performFetch:&error];
+    [self loadConditionalCloseResults];
     
     
     // DEBUG ONLY: show all users. Uncomment and change # of sections to 4
@@ -247,6 +248,24 @@
         // when the invitee hits back, it's still here for him.
         // need to remove the one I was just in. 
     }
+}
+
+- (void)loadConditionalCloseResults {
+    NSError * error = nil;
+    
+    NSFetchRequest * request;
+    if ([LocationService.shared accepted]) {
+        request = [LobbyService.shared requestClosestUsers:self.currentUser withLimit:4];
+    } else {
+        request = [LobbyService.shared requestRecentUsers:self.currentUser withLimit:4];
+    }
+
+    self.otherCloseResults.fetchRequest.predicate = request.predicate;
+    self.otherCloseResults.fetchRequest.fetchLimit = request.fetchLimit;
+    self.otherCloseResults.fetchRequest.sortDescriptors = request.sortDescriptors;
+    
+    [self.otherCloseResults performFetch:&error];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:SECTION_INDEX_CLOSE] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -330,7 +349,6 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-//    [self.tableView reloadData];
     [self.tableView endUpdates];
 }
 

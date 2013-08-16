@@ -22,6 +22,7 @@
 @dynamic distance;
 @dynamic challenge;
 @dynamic updated;
+@dynamic joined;
 @dynamic activeMatchId;
 @dynamic colorRGB;
 @dynamic isMain;

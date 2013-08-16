@@ -24,6 +24,7 @@
 @property (nonatomic) int16_t gamesWins;
 @property (nonatomic) CLLocationDistance distance;
 @property (nonatomic) NSTimeInterval updated;
+@property (nonatomic) NSTimeInterval joined;
 @property (nonatomic) int32_t colorRGB; // hex rgb value
 @property (nonatomic) BOOL isMain;
 @property (nonatomic, retain) NSString* facebookId;
