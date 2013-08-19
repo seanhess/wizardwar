@@ -3,16 +3,16 @@
 #!/bin/sh
 
 TP="/usr/local/bin/TexturePacker"
-cd ${PROJECT_DIR}/${PROJECT}/images
+cd ${PROJECT_DIR}/${PROJECT}
 
 if [ "${ACTION}" = "clean" ]; then
 echo "cleaning..."
 
-rm -f spells/spells*.pvr.ccz
-rm -f spells/spells*.plist
+rm -f images/spells/spells*.pvr.ccz
+rm -f images/spells/spells*.plist
 
-rm -f wizard/wizard1*.pvr.ccz
-rm -f Resources/background*.plist
+#rm -f wizard/wizard1*.pvr.ccz
+#rm -f Resources/background*.plist
 
 # ....
 # add all files to be removed in clean phase
@@ -22,9 +22,10 @@ else
 if [ -f "${TP}" ]; then
 echo "building..."
 # create assets
-${TP} --smart-update Resources/sprites.tps
+${TP} --smart-update images/spells-core.tps
+${TP} --smart-update images/spells-extra.tps
 
-${TP} --smart-update Resources/background.tps
+# ${TP} --smart-update images/Resources/background.tps
 
 # ....
 # add other sheets to create here

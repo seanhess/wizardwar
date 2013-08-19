@@ -371,6 +371,16 @@
 		F283A93217480F5E0068EEB2 /* heart-full.png in Resources */ = {isa = PBXBuildFile; fileRef = F283A92C17480F5E0068EEB2 /* heart-full.png */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		7842FB8317C2754B0050A858 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 78F6B1DB1746AD8900AA070D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7842FB7F17C274E40050A858;
+			remoteInfo = TexturePacker;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		6749269B178CC433005B75D0 /* btn-yellow-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-yellow-highlighted.png"; sourceTree = "<group>"; };
 		6749269C178CC433005B75D0 /* btn-yellow-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-yellow-highlighted@2x.png"; sourceTree = "<group>"; };
@@ -2023,6 +2033,23 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXLegacyTarget section */
+		7842FB7F17C274E40050A858 /* TexturePacker */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "${PROJECT_DIR}/${PROJECT}/images/packTextures.sh";
+			buildConfigurationList = 7842FB8017C274E40050A858 /* Build configuration list for PBXLegacyTarget "TexturePacker" */;
+			buildPhases = (
+			);
+			buildToolPath = /bin/sh;
+			buildWorkingDirectory = "";
+			dependencies = (
+			);
+			name = TexturePacker;
+			passBuildSettingsInEnvironment = 1;
+			productName = TexturePacker;
+		};
+/* End PBXLegacyTarget section */
+
 /* Begin PBXNativeTarget section */
 		78F6B1E21746AD8900AA070D /* WizardWar */ = {
 			isa = PBXNativeTarget;
@@ -2038,6 +2065,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7842FB8417C2754B0050A858 /* PBXTargetDependency */,
 			);
 			name = WizardWar;
 			productName = WizardWar2;
@@ -2067,6 +2095,7 @@
 			projectRoot = "";
 			targets = (
 				78F6B1E21746AD8900AA070D /* WizardWar */,
+				7842FB7F17C274E40050A858 /* TexturePacker */,
 			);
 		};
 /* End PBXProject section */
@@ -2469,6 +2498,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		7842FB8417C2754B0050A858 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7842FB7F17C274E40050A858 /* TexturePacker */;
+			targetProxy = 7842FB8317C2754B0050A858 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		78F6B1EF1746AD8900AA070D /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
@@ -2481,6 +2518,38 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		7842FB8117C274E40050A858 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				DEBUGGING_SYMBOLS = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		7842FB8217C274E40050A858 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		78F6B1FE1746AD8900AA070D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2616,6 +2685,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7842FB8017C274E40050A858 /* Build configuration list for PBXLegacyTarget "TexturePacker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7842FB8117C274E40050A858 /* Debug */,
+				7842FB8217C274E40050A858 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		78F6B1DE1746AD8900AA070D /* Build configuration list for PBXProject "WizardWar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
