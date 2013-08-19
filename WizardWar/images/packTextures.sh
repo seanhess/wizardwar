@@ -26,6 +26,7 @@ ${TP} --smart-update images/spells-core.tps
 ${TP} --smart-update images/spells-extra.tps
 ${TP} --smart-update images/wizard1.tps
 ${TP} --smart-update images/wizard1-clothes.tps
+${TP} --smart-update images/sprites.tps
 
 # ${TP} --smart-update images/Resources/background.tps
 

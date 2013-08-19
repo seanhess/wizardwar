@@ -170,6 +170,10 @@
 		7842FBB217C2774F0050A858 /* spells-extra-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 7842FBAA17C2774E0050A858 /* spells-extra-hd.pvr.ccz */; };
 		7842FBB317C2774F0050A858 /* spells-extra.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FBAB17C2774E0050A858 /* spells-extra.plist */; };
 		7842FBB417C2774F0050A858 /* spells-extra.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 7842FBAC17C2774F0050A858 /* spells-extra.pvr.ccz */; };
+		7842FBB917C2783D0050A858 /* sprites-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FBB517C2783D0050A858 /* sprites-hd.plist */; };
+		7842FBBA17C2783D0050A858 /* sprites-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 7842FBB617C2783D0050A858 /* sprites-hd.pvr.ccz */; };
+		7842FBBB17C2783D0050A858 /* sprites.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FBB717C2783D0050A858 /* sprites.plist */; };
+		7842FBBC17C2783D0050A858 /* sprites.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 7842FBB817C2783D0050A858 /* sprites.pvr.ccz */; };
 		784D3BDE1774F753009945F8 /* LobbyService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BDD1774F753009945F8 /* LobbyService.m */; };
 		784D3BE1177501E9009945F8 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BE0177501E9009945F8 /* UserService.m */; };
 		784D3BE417750441009945F8 /* IdService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BE317750441009945F8 /* IdService.m */; };
@@ -361,14 +365,6 @@
 		78F6B3D81746E6D300AA070D /* SpellEarthwall.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3D71746E6D100AA070D /* SpellEarthwall.m */; };
 		78F97FDE1758F7F500764D70 /* PracticeModeAIService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F97FDD1758F7F500764D70 /* PracticeModeAIService.m */; };
 		F283A922174807A40068EEB2 /* LifeIndicatorNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F283A921174807A40068EEB2 /* LifeIndicatorNode.m */; };
-		F283A92517480F4F0068EEB2 /* mana-container-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F283A92317480F4F0068EEB2 /* mana-container-hd.png */; };
-		F283A92617480F4F0068EEB2 /* mana-container.png in Resources */ = {isa = PBXBuildFile; fileRef = F283A92417480F4F0068EEB2 /* mana-container.png */; };
-		F283A92D17480F5E0068EEB2 /* heart-damage-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F283A92717480F5E0068EEB2 /* heart-damage-hd.png */; };
-		F283A92E17480F5E0068EEB2 /* heart-damage.png in Resources */ = {isa = PBXBuildFile; fileRef = F283A92817480F5E0068EEB2 /* heart-damage.png */; };
-		F283A92F17480F5E0068EEB2 /* heart-empty-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F283A92917480F5E0068EEB2 /* heart-empty-hd.png */; };
-		F283A93017480F5E0068EEB2 /* heart-empty.png in Resources */ = {isa = PBXBuildFile; fileRef = F283A92A17480F5E0068EEB2 /* heart-empty.png */; };
-		F283A93117480F5E0068EEB2 /* heart-full-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = F283A92B17480F5E0068EEB2 /* heart-full-hd.png */; };
-		F283A93217480F5E0068EEB2 /* heart-full.png in Resources */ = {isa = PBXBuildFile; fileRef = F283A92C17480F5E0068EEB2 /* heart-full.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -680,6 +676,10 @@
 		7842FBAA17C2774E0050A858 /* spells-extra-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; name = "spells-extra-hd.pvr.ccz"; path = "WizardWar/images/build/spells-extra-hd.pvr.ccz"; sourceTree = SOURCE_ROOT; };
 		7842FBAB17C2774E0050A858 /* spells-extra.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "spells-extra.plist"; path = "WizardWar/images/build/spells-extra.plist"; sourceTree = SOURCE_ROOT; };
 		7842FBAC17C2774F0050A858 /* spells-extra.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; name = "spells-extra.pvr.ccz"; path = "WizardWar/images/build/spells-extra.pvr.ccz"; sourceTree = SOURCE_ROOT; };
+		7842FBB517C2783D0050A858 /* sprites-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "sprites-hd.plist"; path = "build/sprites-hd.plist"; sourceTree = "<group>"; };
+		7842FBB617C2783D0050A858 /* sprites-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; name = "sprites-hd.pvr.ccz"; path = "build/sprites-hd.pvr.ccz"; sourceTree = "<group>"; };
+		7842FBB717C2783D0050A858 /* sprites.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = sprites.plist; path = build/sprites.plist; sourceTree = "<group>"; };
+		7842FBB817C2783D0050A858 /* sprites.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; name = sprites.pvr.ccz; path = build/sprites.pvr.ccz; sourceTree = "<group>"; };
 		784D3BDC1774F753009945F8 /* LobbyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LobbyService.h; sourceTree = "<group>"; };
 		784D3BDD1774F753009945F8 /* LobbyService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LobbyService.m; sourceTree = "<group>"; };
 		784D3BDF177501E9009945F8 /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserService.h; sourceTree = "<group>"; };
@@ -995,14 +995,6 @@
 		DE8809F786384C2C96220236 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		F283A920174807A40068EEB2 /* LifeIndicatorNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LifeIndicatorNode.h; sourceTree = "<group>"; };
 		F283A921174807A40068EEB2 /* LifeIndicatorNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LifeIndicatorNode.m; sourceTree = "<group>"; };
-		F283A92317480F4F0068EEB2 /* mana-container-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mana-container-hd.png"; sourceTree = "<group>"; };
-		F283A92417480F4F0068EEB2 /* mana-container.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mana-container.png"; sourceTree = "<group>"; };
-		F283A92717480F5E0068EEB2 /* heart-damage-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-damage-hd.png"; sourceTree = "<group>"; };
-		F283A92817480F5E0068EEB2 /* heart-damage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-damage.png"; sourceTree = "<group>"; };
-		F283A92917480F5E0068EEB2 /* heart-empty-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-empty-hd.png"; sourceTree = "<group>"; };
-		F283A92A17480F5E0068EEB2 /* heart-empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-empty.png"; sourceTree = "<group>"; };
-		F283A92B17480F5E0068EEB2 /* heart-full-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-full-hd.png"; sourceTree = "<group>"; };
-		F283A92C17480F5E0068EEB2 /* heart-full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-full.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1485,21 +1477,6 @@
 			name = Service;
 			sourceTree = "<group>";
 		};
-		7860683417BBD880004D2E68 /* life mana */ = {
-			isa = PBXGroup;
-			children = (
-				F283A92317480F4F0068EEB2 /* mana-container-hd.png */,
-				F283A92417480F4F0068EEB2 /* mana-container.png */,
-				F283A92717480F5E0068EEB2 /* heart-damage-hd.png */,
-				F283A92817480F5E0068EEB2 /* heart-damage.png */,
-				F283A92917480F5E0068EEB2 /* heart-empty-hd.png */,
-				F283A92A17480F5E0068EEB2 /* heart-empty.png */,
-				F283A92B17480F5E0068EEB2 /* heart-full-hd.png */,
-				F283A92C17480F5E0068EEB2 /* heart-full.png */,
-			);
-			path = "life mana";
-			sourceTree = "<group>";
-		};
 		786246361767BF0B001904AC /* Effects */ = {
 			isa = PBXGroup;
 			children = (
@@ -1678,13 +1655,16 @@
 			isa = PBXGroup;
 			children = (
 				7842FB5217C2681B0050A858 /* packTextures.sh */,
+				7842FBB517C2783D0050A858 /* sprites-hd.plist */,
+				7842FBB617C2783D0050A858 /* sprites-hd.pvr.ccz */,
+				7842FBB717C2783D0050A858 /* sprites.plist */,
+				7842FBB817C2783D0050A858 /* sprites.pvr.ccz */,
 				786EE5B117B2A4B6004D9214 /* tutorial */,
 				787E1C1717BBEEDE0092F5D6 /* menu */,
 				784D3BE51775102A009945F8 /* lobby */,
 				781372E4177E33F600486899 /* wizards */,
 				78E22CB81782556100146D49 /* Pentagram */,
 				78E22CB71782540B00146D49 /* spells */,
-				7860683417BBD880004D2E68 /* life mana */,
 				78E22CB9178255B700146D49 /* user.jpg */,
 				78F195031747FBFA00BB8587 /* exit.png */,
 				78F195041747FBFA00BB8587 /* exit@2x.png */,
@@ -2124,14 +2104,6 @@
 				6F0367311747EB3C00971B61 /* Icon-57@2x.png in Resources */,
 				78F195051747FBFA00BB8587 /* exit.png in Resources */,
 				78F195061747FBFA00BB8587 /* exit@2x.png in Resources */,
-				F283A92517480F4F0068EEB2 /* mana-container-hd.png in Resources */,
-				F283A92617480F4F0068EEB2 /* mana-container.png in Resources */,
-				F283A92D17480F5E0068EEB2 /* heart-damage-hd.png in Resources */,
-				F283A92E17480F5E0068EEB2 /* heart-damage.png in Resources */,
-				F283A92F17480F5E0068EEB2 /* heart-empty-hd.png in Resources */,
-				F283A93017480F5E0068EEB2 /* heart-empty.png in Resources */,
-				F283A93117480F5E0068EEB2 /* heart-full-hd.png in Resources */,
-				F283A93217480F5E0068EEB2 /* heart-full.png in Resources */,
 				78ABA887175A5CA6003D2F23 /* PentagramViewController.xib in Resources */,
 				785FBEC7177261BD0021AEE5 /* LandingViewController.xib in Resources */,
 				785FBECC177261BD0021AEE5 /* MatchmakingViewController.xib in Resources */,
@@ -2227,6 +2199,10 @@
 				7842FBB217C2774F0050A858 /* spells-extra-hd.pvr.ccz in Resources */,
 				7842FBB317C2774F0050A858 /* spells-extra.plist in Resources */,
 				7842FBB417C2774F0050A858 /* spells-extra.pvr.ccz in Resources */,
+				7842FBB917C2783D0050A858 /* sprites-hd.plist in Resources */,
+				7842FBBA17C2783D0050A858 /* sprites-hd.pvr.ccz in Resources */,
+				7842FBBB17C2783D0050A858 /* sprites.plist in Resources */,
+				7842FBBC17C2783D0050A858 /* sprites.pvr.ccz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
