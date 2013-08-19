@@ -38,7 +38,7 @@
         <key>dataFormat</key>
         <string>cocos2d</string>
         <key>textureFileName</key>
-        <filename>spells-core-hd.pvr.ccz</filename>
+        <filename>build/spells-core-hd.pvr.ccz</filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>
@@ -127,7 +127,7 @@
             <enum type="AndEngine::MagFilter">MagLinear</enum>
         </struct>
         <key>dataFileName</key>
-        <filename>spells-core-hd.plist</filename>
+        <filename>build/spells-core-hd.plist</filename>
         <key>multiPack</key>
         <false/>
         <key>mainExtension</key>

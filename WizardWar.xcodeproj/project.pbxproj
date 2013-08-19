@@ -145,14 +145,6 @@
 		783E8066176A88B800A21FE5 /* SpellVortex.m in Sources */ = {isa = PBXBuildFile; fileRef = 783E8065176A88B800A21FE5 /* SpellVortex.m */; };
 		7842FB5817C26DE00050A858 /* bubble-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB5717C26DE00050A858 /* bubble-animation.plist */; };
 		7842FB5A17C26DE60050A858 /* earthwall-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB5917C26DE60050A858 /* earthwall-animation.plist */; };
-		7842FB5F17C26DFD0050A858 /* spells-core-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB5B17C26DFD0050A858 /* spells-core-hd.plist */; };
-		7842FB6017C26DFD0050A858 /* spells-core-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB5C17C26DFD0050A858 /* spells-core-hd.pvr.ccz */; };
-		7842FB6117C26DFD0050A858 /* spells-core.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB5D17C26DFD0050A858 /* spells-core.plist */; };
-		7842FB6217C26DFD0050A858 /* spells-core.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB5E17C26DFD0050A858 /* spells-core.pvr.ccz */; };
-		7842FB6717C26E020050A858 /* spells-extra-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB6317C26E020050A858 /* spells-extra-hd.plist */; };
-		7842FB6817C26E020050A858 /* spells-extra-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB6417C26E020050A858 /* spells-extra-hd.pvr.ccz */; };
-		7842FB6917C26E020050A858 /* spells-extra.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB6517C26E020050A858 /* spells-extra.plist */; };
-		7842FB6A17C26E020050A858 /* spells-extra.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB6617C26E020050A858 /* spells-extra.pvr.ccz */; };
 		7842FB6C17C26E0C0050A858 /* explode-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB6B17C26E0C0050A858 /* explode-animation.plist */; };
 		7842FB6E17C26E110050A858 /* fireball-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB6D17C26E110050A858 /* fireball-animation.plist */; };
 		7842FB7217C26E1D0050A858 /* icewall-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB7117C26E1D0050A858 /* icewall-animation.plist */; };
@@ -162,6 +154,22 @@
 		7842FB7A17C26E3A0050A858 /* windblast-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB7917C26E3A0050A858 /* windblast-animation.plist */; };
 		7842FB7C17C26E670050A858 /* chicken-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB7B17C26E670050A858 /* chicken-animation.plist */; };
 		7842FB7E17C272870050A858 /* firewall-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB7D17C272870050A858 /* firewall-animation.plist */; };
+		7842FB9D17C277450050A858 /* wizard1-clothes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB9517C277450050A858 /* wizard1-clothes-hd.plist */; };
+		7842FB9E17C277450050A858 /* wizard1-clothes-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB9617C277450050A858 /* wizard1-clothes-hd.pvr.ccz */; };
+		7842FB9F17C277450050A858 /* wizard1-clothes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB9717C277450050A858 /* wizard1-clothes.plist */; };
+		7842FBA017C277450050A858 /* wizard1-clothes.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB9817C277450050A858 /* wizard1-clothes.pvr.ccz */; };
+		7842FBA117C277450050A858 /* wizard1-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB9917C277450050A858 /* wizard1-hd.plist */; };
+		7842FBA217C277450050A858 /* wizard1-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB9A17C277450050A858 /* wizard1-hd.pvr.ccz */; };
+		7842FBA317C277450050A858 /* wizard1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB9B17C277450050A858 /* wizard1.plist */; };
+		7842FBA417C277450050A858 /* wizard1.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB9C17C277450050A858 /* wizard1.pvr.ccz */; };
+		7842FBAD17C2774F0050A858 /* spells-core-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FBA517C2774E0050A858 /* spells-core-hd.plist */; };
+		7842FBAE17C2774F0050A858 /* spells-core-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 7842FBA617C2774E0050A858 /* spells-core-hd.pvr.ccz */; };
+		7842FBAF17C2774F0050A858 /* spells-core.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FBA717C2774E0050A858 /* spells-core.plist */; };
+		7842FBB017C2774F0050A858 /* spells-core.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 7842FBA817C2774E0050A858 /* spells-core.pvr.ccz */; };
+		7842FBB117C2774F0050A858 /* spells-extra-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FBA917C2774E0050A858 /* spells-extra-hd.plist */; };
+		7842FBB217C2774F0050A858 /* spells-extra-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 7842FBAA17C2774E0050A858 /* spells-extra-hd.pvr.ccz */; };
+		7842FBB317C2774F0050A858 /* spells-extra.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FBAB17C2774E0050A858 /* spells-extra.plist */; };
+		7842FBB417C2774F0050A858 /* spells-extra.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 7842FBAC17C2774F0050A858 /* spells-extra.pvr.ccz */; };
 		784D3BDE1774F753009945F8 /* LobbyService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BDD1774F753009945F8 /* LobbyService.m */; };
 		784D3BE1177501E9009945F8 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BE0177501E9009945F8 /* UserService.m */; };
 		784D3BE417750441009945F8 /* IdService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BE317750441009945F8 /* IdService.m */; };
@@ -214,14 +222,6 @@
 		787A2A99174EA43D004C4FDB /* MatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A2A97174EA43D004C4FDB /* MatchViewController.m */; };
 		787E1C1A17BBF2960092F5D6 /* wizard1-animations-clothes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 787E1C1817BBF2960092F5D6 /* wizard1-animations-clothes.plist */; };
 		787E1C1B17BBF2960092F5D6 /* wizard1-animations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 787E1C1917BBF2960092F5D6 /* wizard1-animations.plist */; };
-		787E1C2417BBF5290092F5D6 /* wizard1-clothes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 787E1C1C17BBF5290092F5D6 /* wizard1-clothes-hd.plist */; };
-		787E1C2517BBF5290092F5D6 /* wizard1-clothes-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 787E1C1D17BBF5290092F5D6 /* wizard1-clothes-hd.pvr.ccz */; };
-		787E1C2617BBF5290092F5D6 /* wizard1-clothes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 787E1C1E17BBF5290092F5D6 /* wizard1-clothes.plist */; };
-		787E1C2717BBF5290092F5D6 /* wizard1-clothes.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 787E1C1F17BBF5290092F5D6 /* wizard1-clothes.pvr.ccz */; };
-		787E1C2817BBF5290092F5D6 /* wizard1-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 787E1C2017BBF5290092F5D6 /* wizard1-hd.plist */; };
-		787E1C2917BBF5290092F5D6 /* wizard1-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 787E1C2117BBF5290092F5D6 /* wizard1-hd.pvr.ccz */; };
-		787E1C2A17BBF5290092F5D6 /* wizard1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 787E1C2217BBF5290092F5D6 /* wizard1.plist */; };
-		787E1C2B17BBF5290092F5D6 /* wizard1.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 787E1C2317BBF5290092F5D6 /* wizard1.pvr.ccz */; };
 		787E1C3117BBFC000092F5D6 /* OLSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 787E1C3017BBFC000092F5D6 /* OLSprite.m */; };
 		787E1C3317BC0CCB0092F5D6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787E1C3217BC0CCB0092F5D6 /* Default-568h@2x.png */; };
 		787E1C3517BC0CD20092F5D6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787E1C3417BC0CD10092F5D6 /* Default@2x.png */; };
@@ -655,14 +655,6 @@
 		7842FB5217C2681B0050A858 /* packTextures.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = packTextures.sh; sourceTree = "<group>"; };
 		7842FB5717C26DE00050A858 /* bubble-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "bubble-animation.plist"; path = "WizardWar/images/spells-core/bubble/bubble-animation.plist"; sourceTree = SOURCE_ROOT; };
 		7842FB5917C26DE60050A858 /* earthwall-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "earthwall-animation.plist"; path = "WizardWar/images/spells-core/earthwall/earthwall-animation.plist"; sourceTree = SOURCE_ROOT; };
-		7842FB5B17C26DFD0050A858 /* spells-core-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "spells-core-hd.plist"; path = "WizardWar/images/spells-core-hd.plist"; sourceTree = SOURCE_ROOT; };
-		7842FB5C17C26DFD0050A858 /* spells-core-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; name = "spells-core-hd.pvr.ccz"; path = "WizardWar/images/spells-core-hd.pvr.ccz"; sourceTree = SOURCE_ROOT; };
-		7842FB5D17C26DFD0050A858 /* spells-core.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "spells-core.plist"; path = "WizardWar/images/spells-core.plist"; sourceTree = SOURCE_ROOT; };
-		7842FB5E17C26DFD0050A858 /* spells-core.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; name = "spells-core.pvr.ccz"; path = "WizardWar/images/spells-core.pvr.ccz"; sourceTree = SOURCE_ROOT; };
-		7842FB6317C26E020050A858 /* spells-extra-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "spells-extra-hd.plist"; path = "WizardWar/images/spells-extra-hd.plist"; sourceTree = SOURCE_ROOT; };
-		7842FB6417C26E020050A858 /* spells-extra-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; name = "spells-extra-hd.pvr.ccz"; path = "WizardWar/images/spells-extra-hd.pvr.ccz"; sourceTree = SOURCE_ROOT; };
-		7842FB6517C26E020050A858 /* spells-extra.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "spells-extra.plist"; path = "WizardWar/images/spells-extra.plist"; sourceTree = SOURCE_ROOT; };
-		7842FB6617C26E020050A858 /* spells-extra.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; name = "spells-extra.pvr.ccz"; path = "WizardWar/images/spells-extra.pvr.ccz"; sourceTree = SOURCE_ROOT; };
 		7842FB6B17C26E0C0050A858 /* explode-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "explode-animation.plist"; path = "WizardWar/images/spells-core/explode/explode-animation.plist"; sourceTree = SOURCE_ROOT; };
 		7842FB6D17C26E110050A858 /* fireball-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "fireball-animation.plist"; path = "WizardWar/images/spells-core/fireball/fireball-animation.plist"; sourceTree = SOURCE_ROOT; };
 		7842FB7117C26E1D0050A858 /* icewall-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "icewall-animation.plist"; path = "WizardWar/images/spells-core/icewall/icewall-animation.plist"; sourceTree = SOURCE_ROOT; };
@@ -672,6 +664,22 @@
 		7842FB7917C26E3A0050A858 /* windblast-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "windblast-animation.plist"; path = "WizardWar/images/spells-core/windblast/windblast-animation.plist"; sourceTree = SOURCE_ROOT; };
 		7842FB7B17C26E670050A858 /* chicken-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "chicken-animation.plist"; path = "WizardWar/images/spells-extra/chicken/chicken-animation.plist"; sourceTree = SOURCE_ROOT; };
 		7842FB7D17C272870050A858 /* firewall-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "firewall-animation.plist"; path = "WizardWar/images/spells-core/firewall/firewall-animation.plist"; sourceTree = SOURCE_ROOT; };
+		7842FB9517C277450050A858 /* wizard1-clothes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "wizard1-clothes-hd.plist"; path = "WizardWar/images/build/wizard1-clothes-hd.plist"; sourceTree = SOURCE_ROOT; };
+		7842FB9617C277450050A858 /* wizard1-clothes-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; name = "wizard1-clothes-hd.pvr.ccz"; path = "WizardWar/images/build/wizard1-clothes-hd.pvr.ccz"; sourceTree = SOURCE_ROOT; };
+		7842FB9717C277450050A858 /* wizard1-clothes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "wizard1-clothes.plist"; path = "WizardWar/images/build/wizard1-clothes.plist"; sourceTree = SOURCE_ROOT; };
+		7842FB9817C277450050A858 /* wizard1-clothes.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; name = "wizard1-clothes.pvr.ccz"; path = "WizardWar/images/build/wizard1-clothes.pvr.ccz"; sourceTree = SOURCE_ROOT; };
+		7842FB9917C277450050A858 /* wizard1-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "wizard1-hd.plist"; path = "WizardWar/images/build/wizard1-hd.plist"; sourceTree = SOURCE_ROOT; };
+		7842FB9A17C277450050A858 /* wizard1-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; name = "wizard1-hd.pvr.ccz"; path = "WizardWar/images/build/wizard1-hd.pvr.ccz"; sourceTree = SOURCE_ROOT; };
+		7842FB9B17C277450050A858 /* wizard1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = wizard1.plist; path = WizardWar/images/build/wizard1.plist; sourceTree = SOURCE_ROOT; };
+		7842FB9C17C277450050A858 /* wizard1.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; name = wizard1.pvr.ccz; path = WizardWar/images/build/wizard1.pvr.ccz; sourceTree = SOURCE_ROOT; };
+		7842FBA517C2774E0050A858 /* spells-core-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "spells-core-hd.plist"; path = "WizardWar/images/build/spells-core-hd.plist"; sourceTree = SOURCE_ROOT; };
+		7842FBA617C2774E0050A858 /* spells-core-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; name = "spells-core-hd.pvr.ccz"; path = "WizardWar/images/build/spells-core-hd.pvr.ccz"; sourceTree = SOURCE_ROOT; };
+		7842FBA717C2774E0050A858 /* spells-core.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "spells-core.plist"; path = "WizardWar/images/build/spells-core.plist"; sourceTree = SOURCE_ROOT; };
+		7842FBA817C2774E0050A858 /* spells-core.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; name = "spells-core.pvr.ccz"; path = "WizardWar/images/build/spells-core.pvr.ccz"; sourceTree = SOURCE_ROOT; };
+		7842FBA917C2774E0050A858 /* spells-extra-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "spells-extra-hd.plist"; path = "WizardWar/images/build/spells-extra-hd.plist"; sourceTree = SOURCE_ROOT; };
+		7842FBAA17C2774E0050A858 /* spells-extra-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; name = "spells-extra-hd.pvr.ccz"; path = "WizardWar/images/build/spells-extra-hd.pvr.ccz"; sourceTree = SOURCE_ROOT; };
+		7842FBAB17C2774E0050A858 /* spells-extra.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "spells-extra.plist"; path = "WizardWar/images/build/spells-extra.plist"; sourceTree = SOURCE_ROOT; };
+		7842FBAC17C2774F0050A858 /* spells-extra.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; name = "spells-extra.pvr.ccz"; path = "WizardWar/images/build/spells-extra.pvr.ccz"; sourceTree = SOURCE_ROOT; };
 		784D3BDC1774F753009945F8 /* LobbyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LobbyService.h; sourceTree = "<group>"; };
 		784D3BDD1774F753009945F8 /* LobbyService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LobbyService.m; sourceTree = "<group>"; };
 		784D3BDF177501E9009945F8 /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserService.h; sourceTree = "<group>"; };
@@ -757,14 +765,6 @@
 		787A2A97174EA43D004C4FDB /* MatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchViewController.m; sourceTree = "<group>"; };
 		787E1C1817BBF2960092F5D6 /* wizard1-animations-clothes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-animations-clothes.plist"; sourceTree = "<group>"; };
 		787E1C1917BBF2960092F5D6 /* wizard1-animations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-animations.plist"; sourceTree = "<group>"; };
-		787E1C1C17BBF5290092F5D6 /* wizard1-clothes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-clothes-hd.plist"; sourceTree = "<group>"; };
-		787E1C1D17BBF5290092F5D6 /* wizard1-clothes-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "wizard1-clothes-hd.pvr.ccz"; sourceTree = "<group>"; };
-		787E1C1E17BBF5290092F5D6 /* wizard1-clothes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-clothes.plist"; sourceTree = "<group>"; };
-		787E1C1F17BBF5290092F5D6 /* wizard1-clothes.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "wizard1-clothes.pvr.ccz"; sourceTree = "<group>"; };
-		787E1C2017BBF5290092F5D6 /* wizard1-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wizard1-hd.plist"; sourceTree = "<group>"; };
-		787E1C2117BBF5290092F5D6 /* wizard1-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "wizard1-hd.pvr.ccz"; sourceTree = "<group>"; };
-		787E1C2217BBF5290092F5D6 /* wizard1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = wizard1.plist; sourceTree = "<group>"; };
-		787E1C2317BBF5290092F5D6 /* wizard1.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = wizard1.pvr.ccz; sourceTree = "<group>"; };
 		787E1C2F17BBFC000092F5D6 /* OLSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLSprite.h; sourceTree = "<group>"; };
 		787E1C3017BBFC000092F5D6 /* OLSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLSprite.m; sourceTree = "<group>"; };
 		787E1C3217BC0CCB0092F5D6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -1093,14 +1093,14 @@
 			children = (
 				787E1C1817BBF2960092F5D6 /* wizard1-animations-clothes.plist */,
 				787E1C1917BBF2960092F5D6 /* wizard1-animations.plist */,
-				787E1C1C17BBF5290092F5D6 /* wizard1-clothes-hd.plist */,
-				787E1C1D17BBF5290092F5D6 /* wizard1-clothes-hd.pvr.ccz */,
-				787E1C1E17BBF5290092F5D6 /* wizard1-clothes.plist */,
-				787E1C1F17BBF5290092F5D6 /* wizard1-clothes.pvr.ccz */,
-				787E1C2017BBF5290092F5D6 /* wizard1-hd.plist */,
-				787E1C2117BBF5290092F5D6 /* wizard1-hd.pvr.ccz */,
-				787E1C2217BBF5290092F5D6 /* wizard1.plist */,
-				787E1C2317BBF5290092F5D6 /* wizard1.pvr.ccz */,
+				7842FB9517C277450050A858 /* wizard1-clothes-hd.plist */,
+				7842FB9617C277450050A858 /* wizard1-clothes-hd.pvr.ccz */,
+				7842FB9717C277450050A858 /* wizard1-clothes.plist */,
+				7842FB9817C277450050A858 /* wizard1-clothes.pvr.ccz */,
+				7842FB9917C277450050A858 /* wizard1-hd.plist */,
+				7842FB9A17C277450050A858 /* wizard1-hd.pvr.ccz */,
+				7842FB9B17C277450050A858 /* wizard1.plist */,
+				7842FB9C17C277450050A858 /* wizard1.pvr.ccz */,
 			);
 			name = wizards;
 			path = wizard;
@@ -1633,14 +1633,14 @@
 		78E22CB71782540B00146D49 /* spells */ = {
 			isa = PBXGroup;
 			children = (
-				7842FB5B17C26DFD0050A858 /* spells-core-hd.plist */,
-				7842FB5C17C26DFD0050A858 /* spells-core-hd.pvr.ccz */,
-				7842FB5D17C26DFD0050A858 /* spells-core.plist */,
-				7842FB5E17C26DFD0050A858 /* spells-core.pvr.ccz */,
-				7842FB6317C26E020050A858 /* spells-extra-hd.plist */,
-				7842FB6417C26E020050A858 /* spells-extra-hd.pvr.ccz */,
-				7842FB6517C26E020050A858 /* spells-extra.plist */,
-				7842FB6617C26E020050A858 /* spells-extra.pvr.ccz */,
+				7842FBA517C2774E0050A858 /* spells-core-hd.plist */,
+				7842FBA617C2774E0050A858 /* spells-core-hd.pvr.ccz */,
+				7842FBA717C2774E0050A858 /* spells-core.plist */,
+				7842FBA817C2774E0050A858 /* spells-core.pvr.ccz */,
+				7842FBA917C2774E0050A858 /* spells-extra-hd.plist */,
+				7842FBAA17C2774E0050A858 /* spells-extra-hd.pvr.ccz */,
+				7842FBAB17C2774E0050A858 /* spells-extra.plist */,
+				7842FBAC17C2774F0050A858 /* spells-extra.pvr.ccz */,
 				7842FB5717C26DE00050A858 /* bubble-animation.plist */,
 				7842FB5917C26DE60050A858 /* earthwall-animation.plist */,
 				7842FB6B17C26E0C0050A858 /* explode-animation.plist */,
@@ -2182,14 +2182,6 @@
 				782BC1BA17B9566F00EB7FC6 /* captain-planet.mp3 in Resources */,
 				787E1C1A17BBF2960092F5D6 /* wizard1-animations-clothes.plist in Resources */,
 				787E1C1B17BBF2960092F5D6 /* wizard1-animations.plist in Resources */,
-				787E1C2417BBF5290092F5D6 /* wizard1-clothes-hd.plist in Resources */,
-				787E1C2517BBF5290092F5D6 /* wizard1-clothes-hd.pvr.ccz in Resources */,
-				787E1C2617BBF5290092F5D6 /* wizard1-clothes.plist in Resources */,
-				787E1C2717BBF5290092F5D6 /* wizard1-clothes.pvr.ccz in Resources */,
-				787E1C2817BBF5290092F5D6 /* wizard1-hd.plist in Resources */,
-				787E1C2917BBF5290092F5D6 /* wizard1-hd.pvr.ccz in Resources */,
-				787E1C2A17BBF5290092F5D6 /* wizard1.plist in Resources */,
-				787E1C2B17BBF5290092F5D6 /* wizard1.pvr.ccz in Resources */,
 				787E1C3317BC0CCB0092F5D6 /* Default-568h@2x.png in Resources */,
 				787E1C3517BC0CD20092F5D6 /* Default@2x.png in Resources */,
 				787E1C3717BC0CD40092F5D6 /* Default.png in Resources */,
@@ -2210,14 +2202,6 @@
 				785C44B317BE671200733E7B /* WarningCell.xib in Resources */,
 				7842FB5817C26DE00050A858 /* bubble-animation.plist in Resources */,
 				7842FB5A17C26DE60050A858 /* earthwall-animation.plist in Resources */,
-				7842FB5F17C26DFD0050A858 /* spells-core-hd.plist in Resources */,
-				7842FB6017C26DFD0050A858 /* spells-core-hd.pvr.ccz in Resources */,
-				7842FB6117C26DFD0050A858 /* spells-core.plist in Resources */,
-				7842FB6217C26DFD0050A858 /* spells-core.pvr.ccz in Resources */,
-				7842FB6717C26E020050A858 /* spells-extra-hd.plist in Resources */,
-				7842FB6817C26E020050A858 /* spells-extra-hd.pvr.ccz in Resources */,
-				7842FB6917C26E020050A858 /* spells-extra.plist in Resources */,
-				7842FB6A17C26E020050A858 /* spells-extra.pvr.ccz in Resources */,
 				7842FB6C17C26E0C0050A858 /* explode-animation.plist in Resources */,
 				7842FB6E17C26E110050A858 /* fireball-animation.plist in Resources */,
 				7842FB7217C26E1D0050A858 /* icewall-animation.plist in Resources */,
@@ -2227,6 +2211,22 @@
 				7842FB7A17C26E3A0050A858 /* windblast-animation.plist in Resources */,
 				7842FB7C17C26E670050A858 /* chicken-animation.plist in Resources */,
 				7842FB7E17C272870050A858 /* firewall-animation.plist in Resources */,
+				7842FB9D17C277450050A858 /* wizard1-clothes-hd.plist in Resources */,
+				7842FB9E17C277450050A858 /* wizard1-clothes-hd.pvr.ccz in Resources */,
+				7842FB9F17C277450050A858 /* wizard1-clothes.plist in Resources */,
+				7842FBA017C277450050A858 /* wizard1-clothes.pvr.ccz in Resources */,
+				7842FBA117C277450050A858 /* wizard1-hd.plist in Resources */,
+				7842FBA217C277450050A858 /* wizard1-hd.pvr.ccz in Resources */,
+				7842FBA317C277450050A858 /* wizard1.plist in Resources */,
+				7842FBA417C277450050A858 /* wizard1.pvr.ccz in Resources */,
+				7842FBAD17C2774F0050A858 /* spells-core-hd.plist in Resources */,
+				7842FBAE17C2774F0050A858 /* spells-core-hd.pvr.ccz in Resources */,
+				7842FBAF17C2774F0050A858 /* spells-core.plist in Resources */,
+				7842FBB017C2774F0050A858 /* spells-core.pvr.ccz in Resources */,
+				7842FBB117C2774F0050A858 /* spells-extra-hd.plist in Resources */,
+				7842FBB217C2774F0050A858 /* spells-extra-hd.pvr.ccz in Resources */,
+				7842FBB317C2774F0050A858 /* spells-extra.plist in Resources */,
+				7842FBB417C2774F0050A858 /* spells-extra.pvr.ccz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
