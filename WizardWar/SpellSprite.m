@@ -441,7 +441,7 @@
     NSAssert(animation, @"Animation not defined");
     animation.restoreOriginalFrame = NO;
     
-    if (self.spell.class == SpellFireball.class || self.spell.class == SpellBubble.class || self.spell.class == SpellWindblast.class || self.spell.class == SpellMonster.class || self.spell.class == SpellFailChicken.class || self.spell.class == SpellLightningOrb.class || self.spell.class == SpellFirewall.class) {
+    if (self.spell.class == SpellFireball.class || self.spell.class == SpellBubble.class || self.spell.class == SpellWindblast.class || self.spell.class == SpellMonster.class || self.spell.class == SpellFailChicken.class || self.spell.class == SpellLightningOrb.class) {
         animation.loops = 10000;
     }
     
@@ -454,10 +454,10 @@
     CCAction * action = actionInterval;
     
     if (self.spell.class == SpellFirewall.class) {
-        CCAnimation * startAnimation = [[CCAnimationCache sharedAnimationCache] animationByName:@"firewall-start"];
-        startAnimation.loops = 1;
-        CCActionInterval * start = [CCAnimate actionWithAnimation:startAnimation];
-        CCSequence * startThenBurn = [CCSequence actions:start, actionInterval, nil];
+        CCAnimation * burnAnimation = [[CCAnimationCache sharedAnimationCache] animationByName:@"firewall-burn"];
+        burnAnimation.loops = 10000;
+        CCActionInterval * burn = [CCAnimate actionWithAnimation:burnAnimation];
+        CCSequence * startThenBurn = [CCSequence actions:actionInterval, burn, nil];
         action = startThenBurn;
     }
     

@@ -164,12 +164,8 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>spells/captain-planet.png</filename>
-            <filename>spells/chicken</filename>
-            <filename>spells/hotdog.png</filename>
-            <filename>spells/rainbow.png</filename>
-            <filename>spells/teddybear.png</filename>
-            <filename>spells/wizard-undies.png</filename>
+            <filename>spells-extra/chicken</filename>
+            <filename>spells-extra/images</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

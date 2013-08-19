@@ -7,93 +7,93 @@
             <key>captain-planet.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,240},{270,266}}</string>
+                <string>{{2,479},{542,533}}</string>
                 <key>offset</key>
-                <string>{3,3}</string>
+                <string>{4,2}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{13,7},{270,266}}</string>
+                <string>{{23,17},{542,533}}</string>
                 <key>sourceSize</key>
-                <string>{290,286}</string>
+                <string>{580,571}</string>
             </dict>
             <key>chicken-1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{363,65},{67,89}}</string>
+                <string>{{724,124},{132,176}}</string>
                 <key>offset</key>
-                <string>{-4,1}</string>
+                <string>{-8,1}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{25,17},{67,89}}</string>
+                <string>{{51,36},{132,176}}</string>
                 <key>sourceSize</key>
-                <string>{125,125}</string>
+                <string>{250,250}</string>
             </dict>
             <key>chicken-2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{363,2},{61,93}}</string>
+                <string>{{724,2},{120,188}}</string>
                 <key>offset</key>
-                <string>{-4,2}</string>
+                <string>{-8,4}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{28,14},{61,93}}</string>
+                <string>{{57,27},{120,188}}</string>
                 <key>sourceSize</key>
-                <string>{125,125}</string>
+                <string>{250,250}</string>
             </dict>
             <key>hotdog.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{454,65},{73,39}}</string>
+                <string>{{902,124},{144,76}}</string>
                 <key>offset</key>
-                <string>{-2,-6}</string>
+                <string>{-4,-13}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{24,49},{73,39}}</string>
+                <string>{{49,100},{144,76}}</string>
                 <key>sourceSize</key>
-                <string>{125,125}</string>
+                <string>{250,250}</string>
             </dict>
             <key>rainbow.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{359,236}}</string>
+                <string>{{2,2},{720,475}}</string>
                 <key>offset</key>
-                <string>{7,-1}</string>
+                <string>{14,-2}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{25,9},{359,236}}</string>
+                <string>{{49,16},{720,475}}</string>
                 <key>sourceSize</key>
-                <string>{395,252}</string>
+                <string>{790,503}</string>
             </dict>
             <key>teddybear.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{363,134},{75,69}}</string>
+                <string>{{724,258},{150,138}}</string>
                 <key>offset</key>
-                <string>{-5,-5}</string>
+                <string>{-9,-9}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{20,33},{75,69}}</string>
+                <string>{{41,65},{150,138}}</string>
                 <key>sourceSize</key>
-                <string>{125,125}</string>
+                <string>{250,250}</string>
             </dict>
             <key>wizard-undies.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{458,2},{61,41}}</string>
+                <string>{{914,2},{120,78}}</string>
                 <key>offset</key>
-                <string>{0,-4}</string>
+                <string>{1,-9}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{32,46},{61,41}}</string>
+                <string>{{66,95},{120,78}}</string>
                 <key>sourceSize</key>
-                <string>{125,125}</string>
+                <string>{250,250}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -101,13 +101,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>spells-extra.pvr.ccz</string>
+            <string>spells-extra-hd.pvr.ccz</string>
             <key>size</key>
-            <string>{512,512}</string>
+            <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:c34bff930fce8551425c3385fd9628c7:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:eca8075ac926bb5731de974d2294e3c0:1/1$</string>
             <key>textureFileName</key>
-            <string>spells-extra.pvr.ccz</string>
+            <string>spells-extra-hd.pvr.ccz</string>
         </dict>
     </dict>
 </plist>

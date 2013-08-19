@@ -124,12 +124,10 @@
 		781B4CA017839C00002551CA /* TGAlib.m in Sources */ = {isa = PBXBuildFile; fileRef = 781B4C4317839C00002551CA /* TGAlib.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		781B4CA117839C00002551CA /* TransformUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 781B4C4517839C00002551CA /* TransformUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		781B4CA217839C00002551CA /* ZipUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 781B4C4917839C00002551CA /* ZipUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		7826027D1773D8F700059981 /* firewall-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 782602781773D8F700059981 /* firewall-animation.plist */; };
 		782BC1AB17B90DD100EB7FC6 /* DebugSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 782BC1AA17B90DD100EB7FC6 /* DebugSprite.m */; };
 		782BC1B817B94F5F00EB7FC6 /* SpellCheeseCaptainPlanet.m in Sources */ = {isa = PBXBuildFile; fileRef = 782BC1B717B94F5E00EB7FC6 /* SpellCheeseCaptainPlanet.m */; };
 		782BC1BA17B9566F00EB7FC6 /* captain-planet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 782BC1B917B9566F00EB7FC6 /* captain-planet.mp3 */; };
 		782BC1BD17B9595900EB7FC6 /* SpellLightningOrb.m in Sources */ = {isa = PBXBuildFile; fileRef = 782BC1BC17B9595700EB7FC6 /* SpellLightningOrb.m */; };
-		782BC1C317B959DD00EB7FC6 /* lightning-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 782BC1BE17B959DB00EB7FC6 /* lightning-animation.plist */; };
 		78306B9C17A7144300487B16 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78306B9A17A7144300487B16 /* DataModel.xcdatamodeld */; };
 		78306BB017A99AEC00487B16 /* OLUnitsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78306BAF17A99AEC00487B16 /* OLUnitsService.m */; };
 		78306BB317AAD94600487B16 /* SpellFail.m in Sources */ = {isa = PBXBuildFile; fileRef = 78306BB217AAD94400487B16 /* SpellFail.m */; };
@@ -138,7 +136,6 @@
 		78306BBC17AADC2500487B16 /* SpellFailUndies.m in Sources */ = {isa = PBXBuildFile; fileRef = 78306BBB17AADC2400487B16 /* SpellFailUndies.m */; };
 		78306BBF17AADC3900487B16 /* SpellFailChicken.m in Sources */ = {isa = PBXBuildFile; fileRef = 78306BBE17AADC3700487B16 /* SpellFailChicken.m */; };
 		78306BC217AADC4A00487B16 /* SpellFailRainbow.m in Sources */ = {isa = PBXBuildFile; fileRef = 78306BC117AADC4800487B16 /* SpellFailRainbow.m */; };
-		78306BC817AADCE800487B16 /* chicken-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78306BC317AADCE800487B16 /* chicken-animation.plist */; };
 		78306BDE17AAE7CE00487B16 /* double-rainbow.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78306BDD17AAE7CE00487B16 /* double-rainbow.mp3 */; };
 		78306BE017AAE7D400487B16 /* chicken.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78306BDF17AAE7D400487B16 /* chicken.mp3 */; };
 		78306BE217AAF0F500487B16 /* buzzer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78306BE117AAF0F500487B16 /* buzzer.mp3 */; };
@@ -146,6 +143,25 @@
 		7837D6B017540893001D820E /* GameTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7837D6AF17540893001D820E /* GameTime.m */; };
 		783BD39E176A79A50092D93C /* SpellSleep.m in Sources */ = {isa = PBXBuildFile; fileRef = 78915288176A7815001694B1 /* SpellSleep.m */; };
 		783E8066176A88B800A21FE5 /* SpellVortex.m in Sources */ = {isa = PBXBuildFile; fileRef = 783E8065176A88B800A21FE5 /* SpellVortex.m */; };
+		7842FB5817C26DE00050A858 /* bubble-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB5717C26DE00050A858 /* bubble-animation.plist */; };
+		7842FB5A17C26DE60050A858 /* earthwall-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB5917C26DE60050A858 /* earthwall-animation.plist */; };
+		7842FB5F17C26DFD0050A858 /* spells-core-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB5B17C26DFD0050A858 /* spells-core-hd.plist */; };
+		7842FB6017C26DFD0050A858 /* spells-core-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB5C17C26DFD0050A858 /* spells-core-hd.pvr.ccz */; };
+		7842FB6117C26DFD0050A858 /* spells-core.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB5D17C26DFD0050A858 /* spells-core.plist */; };
+		7842FB6217C26DFD0050A858 /* spells-core.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB5E17C26DFD0050A858 /* spells-core.pvr.ccz */; };
+		7842FB6717C26E020050A858 /* spells-extra-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB6317C26E020050A858 /* spells-extra-hd.plist */; };
+		7842FB6817C26E020050A858 /* spells-extra-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB6417C26E020050A858 /* spells-extra-hd.pvr.ccz */; };
+		7842FB6917C26E020050A858 /* spells-extra.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB6517C26E020050A858 /* spells-extra.plist */; };
+		7842FB6A17C26E020050A858 /* spells-extra.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB6617C26E020050A858 /* spells-extra.pvr.ccz */; };
+		7842FB6C17C26E0C0050A858 /* explode-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB6B17C26E0C0050A858 /* explode-animation.plist */; };
+		7842FB6E17C26E110050A858 /* fireball-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB6D17C26E110050A858 /* fireball-animation.plist */; };
+		7842FB7217C26E1D0050A858 /* icewall-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB7117C26E1D0050A858 /* icewall-animation.plist */; };
+		7842FB7417C26E270050A858 /* lightning-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB7317C26E270050A858 /* lightning-animation.plist */; };
+		7842FB7617C26E2D0050A858 /* ogre-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB7517C26E2D0050A858 /* ogre-animation.plist */; };
+		7842FB7817C26E340050A858 /* vine-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB7717C26E340050A858 /* vine-animation.plist */; };
+		7842FB7A17C26E3A0050A858 /* windblast-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB7917C26E3A0050A858 /* windblast-animation.plist */; };
+		7842FB7C17C26E670050A858 /* chicken-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB7B17C26E670050A858 /* chicken-animation.plist */; };
+		7842FB7E17C272870050A858 /* firewall-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB7D17C272870050A858 /* firewall-animation.plist */; };
 		784D3BDE1774F753009945F8 /* LobbyService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BDD1774F753009945F8 /* LobbyService.m */; };
 		784D3BE1177501E9009945F8 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BE0177501E9009945F8 /* UserService.m */; };
 		784D3BE417750441009945F8 /* IdService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BE317750441009945F8 /* IdService.m */; };
@@ -174,14 +190,6 @@
 		785FBEE3177263850021AEE5 /* AppStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEE2177263850021AEE5 /* AppStyle.m */; };
 		7860683017BBD255004D2E68 /* SpellsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7860682F17BBD255004D2E68 /* SpellsLayer.m */; };
 		7860683317BBD3D1004D2E68 /* SpriteCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7860683217BBD3D1004D2E68 /* SpriteCache.m */; };
-		7860683D17BBDA89004D2E68 /* spells-core-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7860683517BBDA89004D2E68 /* spells-core-hd.plist */; };
-		7860683E17BBDA89004D2E68 /* spells-core-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 7860683617BBDA89004D2E68 /* spells-core-hd.pvr.ccz */; };
-		7860683F17BBDA89004D2E68 /* spells-core.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7860683717BBDA89004D2E68 /* spells-core.plist */; };
-		7860684017BBDA89004D2E68 /* spells-core.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 7860683817BBDA89004D2E68 /* spells-core.pvr.ccz */; };
-		7860684117BBDA89004D2E68 /* spells-extra-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7860683917BBDA89004D2E68 /* spells-extra-hd.plist */; };
-		7860684217BBDA89004D2E68 /* spells-extra-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 7860683A17BBDA89004D2E68 /* spells-extra-hd.pvr.ccz */; };
-		7860684317BBDA89004D2E68 /* spells-extra.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7860683B17BBDA89004D2E68 /* spells-extra.plist */; };
-		7860684417BBDA89004D2E68 /* spells-extra.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 7860683C17BBDA89004D2E68 /* spells-extra.pvr.ccz */; };
 		786246321767B790001904AC /* SpellInvisibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246311767B790001904AC /* SpellInvisibility.m */; };
 		786246351767BE47001904AC /* Effect.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246341767BE47001904AC /* Effect.m */; };
 		786246391767BF19001904AC /* EffectInvisible.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246381767BF19001904AC /* EffectInvisible.m */; };
@@ -239,11 +247,7 @@
 		789B47C5178F1AEE00611CA5 /* EffectApply.m in Sources */ = {isa = PBXBuildFile; fileRef = 789B47C4178F1AED00611CA5 /* EffectApply.m */; };
 		789B47C8178F1C2D00611CA5 /* EffectBasicDamage.m in Sources */ = {isa = PBXBuildFile; fileRef = 789B47C7178F1C2D00611CA5 /* EffectBasicDamage.m */; };
 		789BAB8417566CFE003C0116 /* TimerSyncService.m in Sources */ = {isa = PBXBuildFile; fileRef = 789BAB8317566CFE003C0116 /* TimerSyncService.m */; };
-		789BAB901756AA65003C0116 /* explode-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 789BAB8F1756AA65003C0116 /* explode-animation.plist */; };
 		78ABA887175A5CA6003D2F23 /* PentagramViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78ABA886175A5CA5003D2F23 /* PentagramViewController.xib */; };
-		78ABA88C175A6E2C003D2F23 /* icewall-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78ABA889175A6E2B003D2F23 /* icewall-animation.plist */; };
-		78ABA896175A6F29003D2F23 /* fireball-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78ABA893175A6F27003D2F23 /* fireball-animation.plist */; };
-		78ABA8B4175A749D003D2F23 /* windblast-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78ABA8B1175A749A003D2F23 /* windblast-animation.plist */; };
 		78AF756C1792E162008499DB /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AF756B1792E162008499DB /* UIColor+Hex.m */; };
 		78AF756F1792ECB9008499DB /* AccountColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AF756E1792ECB9008499DB /* AccountColorViewController.m */; };
 		78C46B5A17562CAC0077EE98 /* MultiplayerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C46B5917562CAC0077EE98 /* MultiplayerService.m */; };
@@ -287,10 +291,6 @@
 		78E22CB61782427500146D49 /* windblast.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CAE1782427500146D49 /* windblast.mp3 */; };
 		78E22CBA178255B700146D49 /* user.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CB9178255B700146D49 /* user.jpg */; };
 		78E8EA6A1759427E00017747 /* Combos.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E8EA691759427E00017747 /* Combos.m */; };
-		78F09BA5175AE32600BA775E /* earthwall-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78F09BA2175AE32600BA775E /* earthwall-animation.plist */; };
-		78F09BB3175AE36E00BA775E /* bubble-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78F09BB0175AE36E00BA775E /* bubble-animation.plist */; };
-		78F09BC3175AE42900BA775E /* ogre-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78F09BC0175AE42900BA775E /* ogre-animation.plist */; };
-		78F09BCD175AE45200BA775E /* vine-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78F09BCA175AE45200BA775E /* vine-animation.plist */; };
 		78F1946217471A0E00BB8587 /* background-cave.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F193E817471A0E00BB8587 /* background-cave.png */; };
 		78F1946317471A0E00BB8587 /* background-cave-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F193E917471A0E00BB8587 /* background-cave-hd.png */; };
 		78F194A217471A0E00BB8587 /* pentagram-earth.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F1942817471A0E00BB8587 /* pentagram-earth.png */; };
@@ -611,7 +611,6 @@
 		781B4C4817839C00002551CA /* ZipUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipUtils.h; sourceTree = "<group>"; };
 		781B4C4917839C00002551CA /* ZipUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipUtils.m; sourceTree = "<group>"; };
 		781BC26517B5766900870A2C /* AIService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AIService.h; sourceTree = "<group>"; };
-		782602781773D8F700059981 /* firewall-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "firewall-animation.plist"; sourceTree = "<group>"; };
 		782BC1A917B90DD100EB7FC6 /* DebugSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugSprite.h; sourceTree = "<group>"; };
 		782BC1AA17B90DD100EB7FC6 /* DebugSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugSprite.m; sourceTree = "<group>"; };
 		782BC1B617B94F5E00EB7FC6 /* SpellCheeseCaptainPlanet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellCheeseCaptainPlanet.h; sourceTree = "<group>"; };
@@ -619,7 +618,6 @@
 		782BC1B917B9566F00EB7FC6 /* captain-planet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "captain-planet.mp3"; sourceTree = "<group>"; };
 		782BC1BB17B9595700EB7FC6 /* SpellLightningOrb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellLightningOrb.h; sourceTree = "<group>"; };
 		782BC1BC17B9595700EB7FC6 /* SpellLightningOrb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellLightningOrb.m; sourceTree = "<group>"; };
-		782BC1BE17B959DB00EB7FC6 /* lightning-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "lightning-animation.plist"; sourceTree = "<group>"; };
 		78306B9B17A7144300487B16 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		78306BAE17A99AEC00487B16 /* OLUnitsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLUnitsService.h; sourceTree = "<group>"; };
 		78306BAF17A99AEC00487B16 /* OLUnitsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLUnitsService.m; sourceTree = "<group>"; };
@@ -635,7 +633,6 @@
 		78306BBE17AADC3700487B16 /* SpellFailChicken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellFailChicken.m; sourceTree = "<group>"; };
 		78306BC017AADC4600487B16 /* SpellFailRainbow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellFailRainbow.h; sourceTree = "<group>"; };
 		78306BC117AADC4800487B16 /* SpellFailRainbow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellFailRainbow.m; sourceTree = "<group>"; };
-		78306BC317AADCE800487B16 /* chicken-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "chicken-animation.plist"; sourceTree = "<group>"; };
 		78306BDD17AAE7CE00487B16 /* double-rainbow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "double-rainbow.mp3"; sourceTree = "<group>"; };
 		78306BDF17AAE7D400487B16 /* chicken.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = chicken.mp3; sourceTree = "<group>"; };
 		78306BE117AAF0F500487B16 /* buzzer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = buzzer.mp3; sourceTree = "<group>"; };
@@ -645,6 +642,26 @@
 		7837D6AF17540893001D820E /* GameTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTime.m; sourceTree = "<group>"; };
 		783E8064176A88B800A21FE5 /* SpellVortex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellVortex.h; sourceTree = "<group>"; };
 		783E8065176A88B800A21FE5 /* SpellVortex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellVortex.m; sourceTree = "<group>"; };
+		7842FB5217C2681B0050A858 /* packTextures.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = packTextures.sh; sourceTree = "<group>"; };
+		7842FB5717C26DE00050A858 /* bubble-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "bubble-animation.plist"; path = "WizardWar/images/spells-core/bubble/bubble-animation.plist"; sourceTree = SOURCE_ROOT; };
+		7842FB5917C26DE60050A858 /* earthwall-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "earthwall-animation.plist"; path = "WizardWar/images/spells-core/earthwall/earthwall-animation.plist"; sourceTree = SOURCE_ROOT; };
+		7842FB5B17C26DFD0050A858 /* spells-core-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "spells-core-hd.plist"; path = "WizardWar/images/spells-core-hd.plist"; sourceTree = SOURCE_ROOT; };
+		7842FB5C17C26DFD0050A858 /* spells-core-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; name = "spells-core-hd.pvr.ccz"; path = "WizardWar/images/spells-core-hd.pvr.ccz"; sourceTree = SOURCE_ROOT; };
+		7842FB5D17C26DFD0050A858 /* spells-core.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "spells-core.plist"; path = "WizardWar/images/spells-core.plist"; sourceTree = SOURCE_ROOT; };
+		7842FB5E17C26DFD0050A858 /* spells-core.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; name = "spells-core.pvr.ccz"; path = "WizardWar/images/spells-core.pvr.ccz"; sourceTree = SOURCE_ROOT; };
+		7842FB6317C26E020050A858 /* spells-extra-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "spells-extra-hd.plist"; path = "WizardWar/images/spells-extra-hd.plist"; sourceTree = SOURCE_ROOT; };
+		7842FB6417C26E020050A858 /* spells-extra-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; name = "spells-extra-hd.pvr.ccz"; path = "WizardWar/images/spells-extra-hd.pvr.ccz"; sourceTree = SOURCE_ROOT; };
+		7842FB6517C26E020050A858 /* spells-extra.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "spells-extra.plist"; path = "WizardWar/images/spells-extra.plist"; sourceTree = SOURCE_ROOT; };
+		7842FB6617C26E020050A858 /* spells-extra.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; name = "spells-extra.pvr.ccz"; path = "WizardWar/images/spells-extra.pvr.ccz"; sourceTree = SOURCE_ROOT; };
+		7842FB6B17C26E0C0050A858 /* explode-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "explode-animation.plist"; path = "WizardWar/images/spells-core/explode/explode-animation.plist"; sourceTree = SOURCE_ROOT; };
+		7842FB6D17C26E110050A858 /* fireball-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "fireball-animation.plist"; path = "WizardWar/images/spells-core/fireball/fireball-animation.plist"; sourceTree = SOURCE_ROOT; };
+		7842FB7117C26E1D0050A858 /* icewall-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "icewall-animation.plist"; path = "WizardWar/images/spells-core/icewall/icewall-animation.plist"; sourceTree = SOURCE_ROOT; };
+		7842FB7317C26E270050A858 /* lightning-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "lightning-animation.plist"; path = "WizardWar/images/spells-core/lightning-orb/lightning-animation.plist"; sourceTree = SOURCE_ROOT; };
+		7842FB7517C26E2D0050A858 /* ogre-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "ogre-animation.plist"; path = "WizardWar/images/spells-core/ogre/ogre-animation.plist"; sourceTree = SOURCE_ROOT; };
+		7842FB7717C26E340050A858 /* vine-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "vine-animation.plist"; path = "WizardWar/images/spells-core/vine/vine-animation.plist"; sourceTree = SOURCE_ROOT; };
+		7842FB7917C26E3A0050A858 /* windblast-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "windblast-animation.plist"; path = "WizardWar/images/spells-core/windblast/windblast-animation.plist"; sourceTree = SOURCE_ROOT; };
+		7842FB7B17C26E670050A858 /* chicken-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "chicken-animation.plist"; path = "WizardWar/images/spells-extra/chicken/chicken-animation.plist"; sourceTree = SOURCE_ROOT; };
+		7842FB7D17C272870050A858 /* firewall-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "firewall-animation.plist"; path = "WizardWar/images/spells-core/firewall/firewall-animation.plist"; sourceTree = SOURCE_ROOT; };
 		784D3BDC1774F753009945F8 /* LobbyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LobbyService.h; sourceTree = "<group>"; };
 		784D3BDD1774F753009945F8 /* LobbyService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LobbyService.m; sourceTree = "<group>"; };
 		784D3BDF177501E9009945F8 /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserService.h; sourceTree = "<group>"; };
@@ -691,14 +708,6 @@
 		7860682F17BBD255004D2E68 /* SpellsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellsLayer.m; sourceTree = "<group>"; };
 		7860683117BBD3D1004D2E68 /* SpriteCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteCache.h; sourceTree = "<group>"; };
 		7860683217BBD3D1004D2E68 /* SpriteCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriteCache.m; sourceTree = "<group>"; };
-		7860683517BBDA89004D2E68 /* spells-core-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "spells-core-hd.plist"; sourceTree = "<group>"; };
-		7860683617BBDA89004D2E68 /* spells-core-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "spells-core-hd.pvr.ccz"; sourceTree = "<group>"; };
-		7860683717BBDA89004D2E68 /* spells-core.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "spells-core.plist"; sourceTree = "<group>"; };
-		7860683817BBDA89004D2E68 /* spells-core.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "spells-core.pvr.ccz"; sourceTree = "<group>"; };
-		7860683917BBDA89004D2E68 /* spells-extra-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "spells-extra-hd.plist"; sourceTree = "<group>"; };
-		7860683A17BBDA89004D2E68 /* spells-extra-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "spells-extra-hd.pvr.ccz"; sourceTree = "<group>"; };
-		7860683B17BBDA89004D2E68 /* spells-extra.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "spells-extra.plist"; sourceTree = "<group>"; };
-		7860683C17BBDA89004D2E68 /* spells-extra.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "spells-extra.pvr.ccz"; sourceTree = "<group>"; };
 		786246301767B790001904AC /* SpellInvisibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellInvisibility.h; sourceTree = "<group>"; };
 		786246311767B790001904AC /* SpellInvisibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellInvisibility.m; sourceTree = "<group>"; };
 		786246331767BE47001904AC /* Effect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Effect.h; sourceTree = "<group>"; };
@@ -783,12 +792,8 @@
 		789BAB8117566ABF003C0116 /* Multiplayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Multiplayer.h; sourceTree = "<group>"; };
 		789BAB8217566CFE003C0116 /* TimerSyncService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerSyncService.h; sourceTree = "<group>"; };
 		789BAB8317566CFE003C0116 /* TimerSyncService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerSyncService.m; sourceTree = "<group>"; };
-		789BAB8F1756AA65003C0116 /* explode-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "explode-animation.plist"; sourceTree = "<group>"; };
 		78ABA886175A5CA5003D2F23 /* PentagramViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PentagramViewController.xib; sourceTree = "<group>"; };
 		78ABA888175A6C70003D2F23 /* Tick.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tick.h; sourceTree = "<group>"; };
-		78ABA889175A6E2B003D2F23 /* icewall-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "icewall-animation.plist"; sourceTree = "<group>"; };
-		78ABA893175A6F27003D2F23 /* fireball-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "fireball-animation.plist"; sourceTree = "<group>"; };
-		78ABA8B1175A749A003D2F23 /* windblast-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "windblast-animation.plist"; sourceTree = "<group>"; };
 		78AF756A1792E162008499DB /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		78AF756B1792E162008499DB /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		78AF756D1792ECB9008499DB /* AccountColorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountColorViewController.h; sourceTree = "<group>"; };
@@ -856,10 +861,6 @@
 		78E22CB9178255B700146D49 /* user.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = user.jpg; sourceTree = "<group>"; };
 		78E8EA681759427E00017747 /* Combos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Combos.h; sourceTree = "<group>"; };
 		78E8EA691759427E00017747 /* Combos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Combos.m; sourceTree = "<group>"; };
-		78F09BA2175AE32600BA775E /* earthwall-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "earthwall-animation.plist"; sourceTree = "<group>"; };
-		78F09BB0175AE36E00BA775E /* bubble-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "bubble-animation.plist"; sourceTree = "<group>"; };
-		78F09BC0175AE42900BA775E /* ogre-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ogre-animation.plist"; sourceTree = "<group>"; };
-		78F09BCA175AE45200BA775E /* vine-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "vine-animation.plist"; sourceTree = "<group>"; };
 		78F193E817471A0E00BB8587 /* background-cave.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-cave.png"; sourceTree = "<group>"; };
 		78F193E917471A0E00BB8587 /* background-cave-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-cave-hd.png"; sourceTree = "<group>"; };
 		78F1942817471A0E00BB8587 /* pentagram-earth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pentagram-earth.png"; sourceTree = "<group>"; };
@@ -1622,25 +1623,25 @@
 		78E22CB71782540B00146D49 /* spells */ = {
 			isa = PBXGroup;
 			children = (
-				7860683517BBDA89004D2E68 /* spells-core-hd.plist */,
-				7860683617BBDA89004D2E68 /* spells-core-hd.pvr.ccz */,
-				7860683717BBDA89004D2E68 /* spells-core.plist */,
-				7860683817BBDA89004D2E68 /* spells-core.pvr.ccz */,
-				7860683917BBDA89004D2E68 /* spells-extra-hd.plist */,
-				7860683A17BBDA89004D2E68 /* spells-extra-hd.pvr.ccz */,
-				7860683B17BBDA89004D2E68 /* spells-extra.plist */,
-				7860683C17BBDA89004D2E68 /* spells-extra.pvr.ccz */,
-				782BC1BE17B959DB00EB7FC6 /* lightning-animation.plist */,
-				78F09BCA175AE45200BA775E /* vine-animation.plist */,
-				78F09BC0175AE42900BA775E /* ogre-animation.plist */,
-				78F09BB0175AE36E00BA775E /* bubble-animation.plist */,
-				78ABA889175A6E2B003D2F23 /* icewall-animation.plist */,
-				78ABA8B1175A749A003D2F23 /* windblast-animation.plist */,
-				78F09BA2175AE32600BA775E /* earthwall-animation.plist */,
-				78ABA893175A6F27003D2F23 /* fireball-animation.plist */,
-				782602781773D8F700059981 /* firewall-animation.plist */,
-				78306BC317AADCE800487B16 /* chicken-animation.plist */,
-				789BAB8F1756AA65003C0116 /* explode-animation.plist */,
+				7842FB5B17C26DFD0050A858 /* spells-core-hd.plist */,
+				7842FB5C17C26DFD0050A858 /* spells-core-hd.pvr.ccz */,
+				7842FB5D17C26DFD0050A858 /* spells-core.plist */,
+				7842FB5E17C26DFD0050A858 /* spells-core.pvr.ccz */,
+				7842FB6317C26E020050A858 /* spells-extra-hd.plist */,
+				7842FB6417C26E020050A858 /* spells-extra-hd.pvr.ccz */,
+				7842FB6517C26E020050A858 /* spells-extra.plist */,
+				7842FB6617C26E020050A858 /* spells-extra.pvr.ccz */,
+				7842FB5717C26DE00050A858 /* bubble-animation.plist */,
+				7842FB5917C26DE60050A858 /* earthwall-animation.plist */,
+				7842FB6B17C26E0C0050A858 /* explode-animation.plist */,
+				7842FB6D17C26E110050A858 /* fireball-animation.plist */,
+				7842FB7117C26E1D0050A858 /* icewall-animation.plist */,
+				7842FB7317C26E270050A858 /* lightning-animation.plist */,
+				7842FB7517C26E2D0050A858 /* ogre-animation.plist */,
+				7842FB7717C26E340050A858 /* vine-animation.plist */,
+				7842FB7917C26E3A0050A858 /* windblast-animation.plist */,
+				7842FB7B17C26E670050A858 /* chicken-animation.plist */,
+				7842FB7D17C272870050A858 /* firewall-animation.plist */,
 			);
 			path = spells;
 			sourceTree = "<group>";
@@ -1666,6 +1667,7 @@
 		78F193E717471A0E00BB8587 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				7842FB5217C2681B0050A858 /* packTextures.sh */,
 				786EE5B117B2A4B6004D9214 /* tutorial */,
 				787E1C1717BBEEDE0092F5D6 /* menu */,
 				784D3BE51775102A009945F8 /* lobby */,
@@ -2101,20 +2103,11 @@
 				F283A93017480F5E0068EEB2 /* heart-empty.png in Resources */,
 				F283A93117480F5E0068EEB2 /* heart-full-hd.png in Resources */,
 				F283A93217480F5E0068EEB2 /* heart-full.png in Resources */,
-				789BAB901756AA65003C0116 /* explode-animation.plist in Resources */,
 				78ABA887175A5CA6003D2F23 /* PentagramViewController.xib in Resources */,
-				78ABA88C175A6E2C003D2F23 /* icewall-animation.plist in Resources */,
-				78ABA896175A6F29003D2F23 /* fireball-animation.plist in Resources */,
-				78ABA8B4175A749D003D2F23 /* windblast-animation.plist in Resources */,
-				78F09BA5175AE32600BA775E /* earthwall-animation.plist in Resources */,
-				78F09BB3175AE36E00BA775E /* bubble-animation.plist in Resources */,
-				78F09BC3175AE42900BA775E /* ogre-animation.plist in Resources */,
-				78F09BCD175AE45200BA775E /* vine-animation.plist in Resources */,
 				785FBEC7177261BD0021AEE5 /* LandingViewController.xib in Resources */,
 				785FBECC177261BD0021AEE5 /* MatchmakingViewController.xib in Resources */,
 				785FBEDC1772628C0021AEE5 /* LoveYaLikeASister.ttf in Resources */,
 				785FBEDD1772628C0021AEE5 /* LoveYaLikeASisterSolid.ttf in Resources */,
-				7826027D1773D8F700059981 /* firewall-animation.plist in Resources */,
 				78D28BE9177F6F8A00FF5D6E /* ComicZineOT.otf in Resources */,
 				78D28BEA177F6F8A00FF5D6E /* ComicZineSolid.otf in Resources */,
 				78E22CA41782400900146D49 /* YouWon.mp3 in Resources */,
@@ -2146,7 +2139,6 @@
 				78DAB82A1795E2B00093A701 /* SettingsViewController.xib in Resources */,
 				785168BD17A40EDE00A49257 /* README.md in Resources */,
 				785168BE17A40EDE00A49257 /* release_notes.md in Resources */,
-				78306BC817AADCE800487B16 /* chicken-animation.plist in Resources */,
 				78306BDE17AAE7CE00487B16 /* double-rainbow.mp3 in Resources */,
 				78306BE017AAE7D400487B16 /* chicken.mp3 in Resources */,
 				78306BE217AAF0F500487B16 /* buzzer.mp3 in Resources */,
@@ -2159,15 +2151,6 @@
 				786EE5BB17B2A4BE004D9214 /* tutorial~ipad.png in Resources */,
 				786EE5C017B2A5FE004D9214 /* HelpViewController.xib in Resources */,
 				782BC1BA17B9566F00EB7FC6 /* captain-planet.mp3 in Resources */,
-				782BC1C317B959DD00EB7FC6 /* lightning-animation.plist in Resources */,
-				7860683D17BBDA89004D2E68 /* spells-core-hd.plist in Resources */,
-				7860683E17BBDA89004D2E68 /* spells-core-hd.pvr.ccz in Resources */,
-				7860683F17BBDA89004D2E68 /* spells-core.plist in Resources */,
-				7860684017BBDA89004D2E68 /* spells-core.pvr.ccz in Resources */,
-				7860684117BBDA89004D2E68 /* spells-extra-hd.plist in Resources */,
-				7860684217BBDA89004D2E68 /* spells-extra-hd.pvr.ccz in Resources */,
-				7860684317BBDA89004D2E68 /* spells-extra.plist in Resources */,
-				7860684417BBDA89004D2E68 /* spells-extra.pvr.ccz in Resources */,
 				787E1C1A17BBF2960092F5D6 /* wizard1-animations-clothes.plist in Resources */,
 				787E1C1B17BBF2960092F5D6 /* wizard1-animations.plist in Resources */,
 				787E1C2417BBF5290092F5D6 /* wizard1-clothes-hd.plist in Resources */,
@@ -2196,6 +2179,25 @@
 				7881FD8117BD414700FBC7C8 /* icon-ipad-retina.png in Resources */,
 				7881FD8317BD414F00FBC7C8 /* icon-ipad.png in Resources */,
 				785C44B317BE671200733E7B /* WarningCell.xib in Resources */,
+				7842FB5817C26DE00050A858 /* bubble-animation.plist in Resources */,
+				7842FB5A17C26DE60050A858 /* earthwall-animation.plist in Resources */,
+				7842FB5F17C26DFD0050A858 /* spells-core-hd.plist in Resources */,
+				7842FB6017C26DFD0050A858 /* spells-core-hd.pvr.ccz in Resources */,
+				7842FB6117C26DFD0050A858 /* spells-core.plist in Resources */,
+				7842FB6217C26DFD0050A858 /* spells-core.pvr.ccz in Resources */,
+				7842FB6717C26E020050A858 /* spells-extra-hd.plist in Resources */,
+				7842FB6817C26E020050A858 /* spells-extra-hd.pvr.ccz in Resources */,
+				7842FB6917C26E020050A858 /* spells-extra.plist in Resources */,
+				7842FB6A17C26E020050A858 /* spells-extra.pvr.ccz in Resources */,
+				7842FB6C17C26E0C0050A858 /* explode-animation.plist in Resources */,
+				7842FB6E17C26E110050A858 /* fireball-animation.plist in Resources */,
+				7842FB7217C26E1D0050A858 /* icewall-animation.plist in Resources */,
+				7842FB7417C26E270050A858 /* lightning-animation.plist in Resources */,
+				7842FB7617C26E2D0050A858 /* ogre-animation.plist in Resources */,
+				7842FB7817C26E340050A858 /* vine-animation.plist in Resources */,
+				7842FB7A17C26E3A0050A858 /* windblast-animation.plist in Resources */,
+				7842FB7C17C26E670050A858 /* chicken-animation.plist in Resources */,
+				7842FB7E17C272870050A858 /* firewall-animation.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

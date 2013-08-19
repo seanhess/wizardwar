@@ -7,7 +7,7 @@
 		<key>bubble-cast</key>
 		<dict>
 			<key>delay</key>
-			<real>0.166</real>
+			<real>0.12</real>
 			<key>frames</key>
 			<array>
 				<string>bubble-1.png</string>

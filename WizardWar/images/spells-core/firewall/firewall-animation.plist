@@ -4,7 +4,7 @@
 <dict>
 	<key>animations</key>
 	<dict>
-		<key>firewall-start</key>
+		<key>firewall-cast</key>
 		<dict>
 			<key>delay</key>
 			<real>0.09</real>
@@ -16,7 +16,7 @@
 				<string>firewall-4.png</string>
 			</array>
 		</dict>
-		<key>firewall-cast</key>
+		<key>firewall-burn</key>
 		<dict>
 			<key>delay</key>
 			<real>0.09</real>
