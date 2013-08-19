@@ -174,6 +174,9 @@
 		7842FBBA17C2783D0050A858 /* sprites-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 7842FBB617C2783D0050A858 /* sprites-hd.pvr.ccz */; };
 		7842FBBB17C2783D0050A858 /* sprites.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FBB717C2783D0050A858 /* sprites.plist */; };
 		7842FBBC17C2783D0050A858 /* sprites.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 7842FBB817C2783D0050A858 /* sprites.pvr.ccz */; };
+		7842FBC417C278F70050A858 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7842FBBE17C278F70050A858 /* libTestFlight.a */; };
+		7842FBC517C278F70050A858 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7842FBBF17C278F70050A858 /* README.md */; };
+		7842FBC617C278F70050A858 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 7842FBC017C278F70050A858 /* release_notes.md */; };
 		784D3BDE1774F753009945F8 /* LobbyService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BDD1774F753009945F8 /* LobbyService.m */; };
 		784D3BE1177501E9009945F8 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BE0177501E9009945F8 /* UserService.m */; };
 		784D3BE417750441009945F8 /* IdService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BE317750441009945F8 /* IdService.m */; };
@@ -182,9 +185,6 @@
 		784D3BF61777C832009945F8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 784D3BF51777C832009945F8 /* CoreLocation.framework */; };
 		785168B417A40ED100A49257 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785168B317A40ED100A49257 /* Parse.framework */; };
 		785168B617A40ED700A49257 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785168B517A40ED700A49257 /* Firebase.framework */; };
-		785168BC17A40EDD00A49257 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 785168B817A40EDD00A49257 /* libTestFlight.a */; };
-		785168BD17A40EDE00A49257 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 785168B917A40EDD00A49257 /* README.md */; };
-		785168BE17A40EDE00A49257 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 785168BA17A40EDD00A49257 /* release_notes.md */; };
 		78516B8817A5925800A49257 /* NSObject+Reflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 78516B8717A5925700A49257 /* NSObject+Reflection.m */; };
 		785C44B317BE671200733E7B /* WarningCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 785C44B217BE671200733E7B /* WarningCell.xib */; };
 		785FBEC4177261BD0021AEE5 /* InstagramEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEA6177261BD0021AEE5 /* InstagramEnemy.m */; };
@@ -680,6 +680,12 @@
 		7842FBB617C2783D0050A858 /* sprites-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; name = "sprites-hd.pvr.ccz"; path = "build/sprites-hd.pvr.ccz"; sourceTree = "<group>"; };
 		7842FBB717C2783D0050A858 /* sprites.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = sprites.plist; path = build/sprites.plist; sourceTree = "<group>"; };
 		7842FBB817C2783D0050A858 /* sprites.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; name = sprites.pvr.ccz; path = build/sprites.pvr.ccz; sourceTree = "<group>"; };
+		7842FBBE17C278F70050A858 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		7842FBBF17C278F70050A858 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		7842FBC017C278F70050A858 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
+		7842FBC117C278F70050A858 /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
+		7842FBC217C278F70050A858 /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
+		7842FBC317C278F70050A858 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		784D3BDC1774F753009945F8 /* LobbyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LobbyService.h; sourceTree = "<group>"; };
 		784D3BDD1774F753009945F8 /* LobbyService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LobbyService.m; sourceTree = "<group>"; };
 		784D3BDF177501E9009945F8 /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserService.h; sourceTree = "<group>"; };
@@ -693,10 +699,6 @@
 		784D3BF51777C832009945F8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		785168B317A40ED100A49257 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		785168B517A40ED700A49257 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
-		785168B817A40EDD00A49257 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		785168B917A40EDD00A49257 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		785168BA17A40EDD00A49257 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
-		785168BB17A40EDD00A49257 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		78516B8617A5925700A49257 /* NSObject+Reflection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Reflection.h"; sourceTree = "<group>"; };
 		78516B8717A5925700A49257 /* NSObject+Reflection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Reflection.m"; sourceTree = "<group>"; };
 		785C44B217BE671200733E7B /* WarningCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WarningCell.xib; sourceTree = "<group>"; };
@@ -1029,7 +1031,7 @@
 				781372D9177E324B00486899 /* FacebookSDK.framework in Frameworks */,
 				785168B417A40ED100A49257 /* Parse.framework in Frameworks */,
 				785168B617A40ED700A49257 /* Firebase.framework in Frameworks */,
-				785168BC17A40EDD00A49257 /* libTestFlight.a in Frameworks */,
+				7842FBC417C278F70050A858 /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1360,22 +1362,24 @@
 			name = Pentagram;
 			sourceTree = "<group>";
 		};
+		7842FBBD17C278F70050A858 /* TestFlightSDK2.0.0 */ = {
+			isa = PBXGroup;
+			children = (
+				7842FBBE17C278F70050A858 /* libTestFlight.a */,
+				7842FBBF17C278F70050A858 /* README.md */,
+				7842FBC017C278F70050A858 /* release_notes.md */,
+				7842FBC117C278F70050A858 /* TestFlight+AsyncLogging.h */,
+				7842FBC217C278F70050A858 /* TestFlight+ManualSessions.h */,
+				7842FBC317C278F70050A858 /* TestFlight.h */,
+			);
+			path = TestFlightSDK2.0.0;
+			sourceTree = "<group>";
+		};
 		784D3BE51775102A009945F8 /* lobby */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = lobby;
-			sourceTree = "<group>";
-		};
-		785168B717A40EDD00A49257 /* TestFlightSDK1.2.6 */ = {
-			isa = PBXGroup;
-			children = (
-				785168B817A40EDD00A49257 /* libTestFlight.a */,
-				785168B917A40EDD00A49257 /* README.md */,
-				785168BA17A40EDD00A49257 /* release_notes.md */,
-				785168BB17A40EDD00A49257 /* TestFlight.h */,
-			);
-			path = TestFlightSDK1.2.6;
 			sourceTree = "<group>";
 		};
 		785FBEA4177261BD0021AEE5 /* Menus */ = {
@@ -1713,8 +1717,8 @@
 		78F6B1E51746AD8900AA070D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7842FBBD17C278F70050A858 /* TestFlightSDK2.0.0 */,
 				78F6B20B1746AE4400AA070D /* Cocos2d */,
-				785168B717A40EDD00A49257 /* TestFlightSDK1.2.6 */,
 				785168B517A40ED700A49257 /* Firebase.framework */,
 				78F6B39E1746B04600AA070D /* libicucore.dylib */,
 				78F6B3821746AF2000AA070D /* libz.dylib */,
@@ -2138,8 +2142,6 @@
 				78C9862B178DFFE300B545F9 /* ChallengeCell.xib in Resources */,
 				78DAB81F1795AAE40093A701 /* FriendsViewController.xib in Resources */,
 				78DAB82A1795E2B00093A701 /* SettingsViewController.xib in Resources */,
-				785168BD17A40EDE00A49257 /* README.md in Resources */,
-				785168BE17A40EDE00A49257 /* release_notes.md in Resources */,
 				78306BDE17AAE7CE00487B16 /* double-rainbow.mp3 in Resources */,
 				78306BE017AAE7D400487B16 /* chicken.mp3 in Resources */,
 				78306BE217AAF0F500487B16 /* buzzer.mp3 in Resources */,
@@ -2203,6 +2205,8 @@
 				7842FBBA17C2783D0050A858 /* sprites-hd.pvr.ccz in Resources */,
 				7842FBBB17C2783D0050A858 /* sprites.plist in Resources */,
 				7842FBBC17C2783D0050A858 /* sprites.pvr.ccz in Resources */,
+				7842FBC517C278F70050A858 /* README.md in Resources */,
+				7842FBC617C278F70050A858 /* release_notes.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2605,7 +2609,7 @@
 				INFOPLIST_FILE = "WizardWar/WizardWar-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks/TestFlightSDK1.2.6\"",
+					"\"$(SRCROOT)/Frameworks/TestFlightSDK2.0.0\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -2642,7 +2646,7 @@
 				INFOPLIST_FILE = "WizardWar/WizardWar-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks/TestFlightSDK1.2.6\"",
+					"\"$(SRCROOT)/Frameworks/TestFlightSDK2.0.0\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",

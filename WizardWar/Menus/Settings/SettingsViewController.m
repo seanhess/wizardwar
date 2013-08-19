@@ -271,7 +271,7 @@
     }
     
     else if (indexPath.section == 2) {
-        [TestFlight openFeedbackView];
+//        [TestFlight openFeedbackView];
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
