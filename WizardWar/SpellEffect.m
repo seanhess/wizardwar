@@ -10,18 +10,6 @@
 #import "SpellBubble.h"
 #import "EffectSleep.h"
 
-// TEST bubble steal (should always steal)
-
-// TODO if monster blows up bubbles, the fireballs still act carried. Monster should blow up anything inside? or at least reset it. Monster should blow up anything inside. somehow.
-
-// Better links: when something happens to the parent, it happens to the child
-// Better links: detect whether you can change a link by whether it is currently linked
-// Well, ANYTHING that happens to the parent happens to child, right?
-// speed, destroy, etc
-
-// 1. If a spell is linked, it no longer interacts AT ALL (not even with its original spell)
-// 2. If the parent is updated, propogate to child
-
 @implementation SpellEffect
 -(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick {
     NSLog(@"OVERRIDE effectSpell");
@@ -84,13 +72,14 @@
 }
 
 -(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick {
-    if ([SECarry isCarried:spell otherSpell:otherSpell]) return NO;
+//    if ([SECarry isCarried:spell otherSpell:otherSpell]) return NO;
+    
+    if ([spell.linkedSpell isKindOfClass:SpellBubble.class] && spell.linkedSpell.createdTick >= otherSpell.createdTick) return NO;
     
     // TODO: make sure they don't hit multiple times, if already carried
     if (spell.position == otherSpell.position && spell.speed == otherSpell.speed && spell.direction == otherSpell.direction)
         return NO;
     
-    NSLog(@"CARRY ME");
     spell.spellEffect = [SECarry new]; // I guess this means it is being carried
     spell.linkedSpell = otherSpell;
     spell.position = otherSpell.position;
@@ -126,7 +115,7 @@
 }
 
 -(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick {
-    if (spell.direction == otherSpell.direction) return NO;
+    // they don't work in the same direction? I don't think so!
     if ([SECarry isCarried:spell otherSpell:otherSpell]) return NO;
     if ([spell.effect isKindOfClass:[EffectSleep class]]) return NO;
     if (self.up > 0) {
@@ -141,6 +130,8 @@
             }            
         }
     } else {
+        // sets only work in one direction? Bah, I guess so :)
+        if (spell.direction == otherSpell.direction) return NO;
         spell.speed = self.set;
     }
     return YES;
