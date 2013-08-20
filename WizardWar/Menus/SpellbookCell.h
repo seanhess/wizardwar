@@ -14,4 +14,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
 -(void)setSpellRecord:(SpellRecord*)record;
++(NSString*)spellTitle:(SpellRecord*)record;
 @end

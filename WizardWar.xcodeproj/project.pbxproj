@@ -32,6 +32,9 @@
 		780A234C17C3BE1900EE3BAA /* SpellbookCastDiagramView.m in Sources */ = {isa = PBXBuildFile; fileRef = 780A234B17C3BE1900EE3BAA /* SpellbookCastDiagramView.m */; };
 		780A234E17C3C18A00EE3BAA /* cast-diagram@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 780A234D17C3C18A00EE3BAA /* cast-diagram@2x.png */; };
 		780A235017C3C1A900EE3BAA /* cast-diagram.png in Resources */ = {isa = PBXBuildFile; fileRef = 780A234F17C3C1A900EE3BAA /* cast-diagram.png */; };
+		780A235217C3DFAB00EE3BAA /* Spellbook.plist in Resources */ = {isa = PBXBuildFile; fileRef = 780A235117C3DFAB00EE3BAA /* Spellbook.plist */; };
+		780A235517C3EAC900EE3BAA /* SpellEffectService.m in Sources */ = {isa = PBXBuildFile; fileRef = 780A235417C3EAC900EE3BAA /* SpellEffectService.m */; };
+		780A235817C40C8600EE3BAA /* SpellEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 780A235717C40C8400EE3BAA /* SpellEffect.m */; };
 		781372D3177E311A00486899 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781372D2177E311A00486899 /* MobileCoreServices.framework */; };
 		781372D5177E313000486899 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781372D4177E313000486899 /* StoreKit.framework */; };
 		781372D7177E313A00486899 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781372D6177E313A00486899 /* SystemConfiguration.framework */; };
@@ -442,6 +445,11 @@
 		780A234B17C3BE1900EE3BAA /* SpellbookCastDiagramView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellbookCastDiagramView.m; sourceTree = "<group>"; };
 		780A234D17C3C18A00EE3BAA /* cast-diagram@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cast-diagram@2x.png"; sourceTree = "<group>"; };
 		780A234F17C3C1A900EE3BAA /* cast-diagram.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cast-diagram.png"; sourceTree = "<group>"; };
+		780A235117C3DFAB00EE3BAA /* Spellbook.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Spellbook.plist; sourceTree = "<group>"; };
+		780A235317C3EAC900EE3BAA /* SpellEffectService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellEffectService.h; sourceTree = "<group>"; };
+		780A235417C3EAC900EE3BAA /* SpellEffectService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellEffectService.m; sourceTree = "<group>"; };
+		780A235617C40C8300EE3BAA /* SpellEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellEffect.h; sourceTree = "<group>"; };
+		780A235717C40C8400EE3BAA /* SpellEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellEffect.m; sourceTree = "<group>"; };
 		781234DF174AE4C0008EDE88 /* Objectable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Objectable.h; sourceTree = "<group>"; };
 		781372D2177E311A00486899 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		781372D4177E313000486899 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -1462,6 +1470,7 @@
 				780A234817C3BDFF00EE3BAA /* SpellbookProgressView.m */,
 				780A234A17C3BE1900EE3BAA /* SpellbookCastDiagramView.h */,
 				780A234B17C3BE1900EE3BAA /* SpellbookCastDiagramView.m */,
+				780A235117C3DFAB00EE3BAA /* Spellbook.plist */,
 			);
 			name = Spellbook;
 			sourceTree = "<group>";
@@ -1598,6 +1607,8 @@
 				781BC26517B5766900870A2C /* AIService.h */,
 				789BAB8117566ABF003C0116 /* Multiplayer.h */,
 				78ABA888175A6C70003D2F23 /* Tick.h */,
+				780A235317C3EAC900EE3BAA /* SpellEffectService.h */,
+				780A235417C3EAC900EE3BAA /* SpellEffectService.m */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -2138,6 +2149,8 @@
 				78915288176A7815001694B1 /* SpellSleep.m */,
 				783E8064176A88B800A21FE5 /* SpellVortex.h */,
 				783E8065176A88B800A21FE5 /* SpellVortex.m */,
+				780A235617C40C8300EE3BAA /* SpellEffect.h */,
+				780A235717C40C8400EE3BAA /* SpellEffect.m */,
 			);
 			name = Spells;
 			sourceTree = "<group>";
@@ -2357,6 +2370,7 @@
 				785B049417C2C4E200B064F6 /* vine.png in Resources */,
 				780A234E17C3C18A00EE3BAA /* cast-diagram@2x.png in Resources */,
 				780A235017C3C1A900EE3BAA /* cast-diagram.png in Resources */,
+				780A235217C3DFAB00EE3BAA /* Spellbook.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2631,6 +2645,8 @@
 				780A234617C3BBA000EE3BAA /* UIImage+MonoImage.m in Sources */,
 				780A234917C3BDFF00EE3BAA /* SpellbookProgressView.m in Sources */,
 				780A234C17C3BE1900EE3BAA /* SpellbookCastDiagramView.m in Sources */,
+				780A235517C3EAC900EE3BAA /* SpellEffectService.m in Sources */,
+				780A235817C40C8600EE3BAA /* SpellEffect.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -41,6 +41,9 @@
     if (!enabled) image = [UIImage generateMonoImage:image withColor:[UIColor grayColor]];
     self.icon.image = image;
     
+    self.nameLabel.text = [SpellbookCell spellTitle:record];
+    self.nameLabel.enabled = record.isUnlocked;
+    
     [self.progressView setRecord:record];
     
     if (record.level < SpellbookLevelAdept) {
@@ -63,6 +66,16 @@
     // adept = yellow?
     // master = green
 }
+
++ (NSString*)spellTitle:(SpellRecord*)record {
+    if (record.isDiscovered) {
+        return record.name;
+    } else {
+        return @"?";
+    }
+}
+
+
 
 // CIEdgeWork
 

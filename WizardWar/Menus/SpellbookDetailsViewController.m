@@ -7,6 +7,7 @@
 //
 
 #import "SpellbookDetailsViewController.h"
+#import "ComicZineDoubleLabel.h"
 
 @interface SpellbookDetailsViewController ()
 
@@ -25,6 +26,10 @@
 
 - (void)viewDidLoad
 {
+    self.title = self.record.name;
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.navigationItem.titleView = [ComicZineDoubleLabel titleView:self.title navigationBar:self.navigationController.navigationBar];
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }

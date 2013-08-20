@@ -10,6 +10,6 @@
 #import "SpellRecord.h"
 
 @interface SpellbookDetailsViewController : UIViewController
-@property (nonatomic, strong) SpellRecord * spell;
+@property (nonatomic, strong) SpellRecord * record;
 
 @end

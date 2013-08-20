@@ -75,38 +75,25 @@
     }
     
     SpellRecord * spell = [self.spells objectAtIndex:indexPath.row];
-
-    cell.nameLabel.text = [self spellTitle:spell];
-    cell.nameLabel.enabled = spell.isUnlocked;
-    
     [cell setSpellRecord:spell];
     return cell;
-}
-
-- (NSString*)spellTitle:(SpellRecord*)record {
-    if (record.isDiscovered) {
-        return record.name;
-    } else {
-        return @"?";
-    }    
 }
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    SpellRecord * spell = [self.spells objectAtIndex:indexPath.row];
-    
+    SpellRecord * record = [self.spells objectAtIndex:indexPath.row];
 
-    if (spell.isUnlocked) {
+    if (record.isUnlocked) {
         SpellbookDetailsViewController * details = [SpellbookDetailsViewController new];
-        details.spell = spell;
+        details.record = record;
         [self.navigationController pushViewController:details animated:YES];
-    } else if (spell.isDiscovered) {
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:[self spellTitle:spell] message:@"Cast this spell in 5 matches to unlock" delegate:nil cancelButtonTitle:@"Done" otherButtonTitles:nil];
+    } else if (record.isDiscovered) {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:[SpellbookCell spellTitle:record] message:@"Cast this spell in 5 matches to unlock" delegate:nil cancelButtonTitle:@"Done" otherButtonTitles:nil];
         [alert show];
     } else {
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:[self spellTitle:spell] message:@"Cast this spell once to discover it" delegate:nil cancelButtonTitle:@"Done" otherButtonTitles:nil];
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:[SpellbookCell spellTitle:record] message:@"Cast this spell once to discover it" delegate:nil cancelButtonTitle:@"Done" otherButtonTitles:nil];
         [alert show];
     }
 }
