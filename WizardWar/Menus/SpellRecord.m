@@ -33,7 +33,16 @@
 
 // Should show the progress from the previous target to the next one
 -(CGFloat)progress {
-    return ((float)self.castUniqueMatches) / [self targetForLevel:SpellbookLevelMaster];
+
+    CGFloat target;
+    if (self.level < SpellbookLevelAdept)
+        target = [self targetForLevel:SpellbookLevelAdept];
+    else
+        target = [self targetForLevel:SpellbookLevelMaster];
+    
+    return self.castUniqueMatches / target;
+    
+    
 //    NSInteger target = [self targetForLevel:self.level];
 //    NSInteger start = [self targetForLevel:self.level-1];
 //    

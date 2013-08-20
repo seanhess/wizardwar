@@ -11,6 +11,7 @@
 #import "UIImage+MonoImage.h"
 #import "SpellbookProgressView.h"
 #import "AppStyle.h"
+#import "UIColor+Hex.h"
 
 @interface SpellbookCell ()
 @property (weak, nonatomic) IBOutlet SpellbookProgressView *progressView;
@@ -43,8 +44,9 @@
     [self.progressView setRecord:record];
     
     if (record.level < SpellbookLevelAdept) {
-        self.progressView.progressColor = [UIColor grayColor];
-        self.progressView.label.textColor = [UIColor grayColor];
+        UIColor * color = [UIColor colorFromRGB:0x8F8F8F];
+        self.progressView.progressColor = color;
+        self.progressView.label.textColor = color;
     }
     else if (record.level < SpellbookLevelMaster) {
         self.progressView.progressColor = [AppStyle blueNavColor];

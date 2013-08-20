@@ -76,7 +76,7 @@
     
     SpellRecord * spell = [self.spells objectAtIndex:indexPath.row];
 
-    cell.nameLabel.text = [NSString stringWithFormat:@"%@ %i", [self spellTitle:spell], spell.castUniqueMatches];
+    cell.nameLabel.text = [self spellTitle:spell];
     cell.nameLabel.enabled = spell.isUnlocked;
     
     [cell setSpellRecord:spell];
