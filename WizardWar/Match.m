@@ -25,6 +25,7 @@
 #import "PracticeModeAIService.h"
 #import "Tick.h"
 #import "AIService.h"
+#import "SpellEffectService.h"
 
 #define CLEANUP_TICKS 50 // 10 is 1 second
 #define MIN_READY_STATE 2.5
@@ -47,6 +48,8 @@
 
 @property (nonatomic) BOOL enoughTimeAsReady;
 
+@property (nonatomic, strong) SpellEffectService * effects;
+
 @end
 
 // Always use a challenge!
@@ -68,6 +71,8 @@
         self.ai = ai;
         self.ai.delegate = self;
         self.aiWizard = ai.wizard;
+        
+        self.effects = [SpellEffectService new];
         
         self.enoughTimeAsReady = NO;
     }
@@ -330,8 +335,8 @@
     // Then, older spells go last (they apply more strongly)
     // No bubble steal
     NSArray * spells = [self.activeSpells sortedArrayUsingComparator:^NSComparisonResult(Spell * one, Spell * two) {
-        if (one.linkedSpell && !two.linkedSpell) return NSOrderedDescending;
-        else if (!one.linkedSpell && two.linkedSpell) return NSOrderedAscending;
+        if (one.spellEffect && !two.spellEffect) return NSOrderedDescending;
+        else if (!one.spellEffect && two.spellEffect) return NSOrderedAscending;
         else if (one.createdTick > two.createdTick) return NSOrderedAscending;
         else if (one.createdTick < two.createdTick) return NSOrderedDescending;
         else return NSOrderedSame;
@@ -441,11 +446,51 @@
 }
 
 -(void)hitSpell:(Spell*)spell withSpell:(Spell*)spell2 currentTick:(NSInteger)currentTick {
-//    NSLog(@"(%i) INTERACT %@ %@", currentTick, spell.type, spell2.type);
+    NSArray * interactions = [self.effects interactionsForSpell:spell.class andSpell:spell2.class];
+    
+    for (SpellInteraction2 * interaction in interactions) {
+        Spell * main;
+        Spell * other;
+        
+        // at this point, we are SURE they apply to both
+        if ([spell isKindOfClass:interaction.spell]) {
+            main = spell;
+            other = spell2;
+            // Woah, hack for if they are both the same class
+            // since I didn't make the assumption there would always be two interactions
+            if ([spell2 isKindOfClass:interaction.spell] && interaction == interactions[1]) {
+                main = spell2;
+                other = spell;
+            }
+        } else {
+            main = spell2;
+            other = spell;
+        }
+        
+        [self interact:interaction main:main other:other currentTick:currentTick];
+    }
+}
 
-    [self handleInteraction:[spell interactSpell:spell2 currentTick:currentTick] forSpell:spell];
-    [self handleInteraction:[spell2 interactSpell:spell currentTick:currentTick] forSpell:spell2];
-//    NSLog(@"HIT tick=%i (pos=%i dmg=%i) (pos=%i dmg=%i)", currentTick, (int)spell.position, spell.damage, (int)spell2.position, spell2.damage);
+-(void)interact:(SpellInteraction2*)interaction main:(Spell*)main other:(Spell*)other currentTick:(NSInteger)currentTick {
+    
+    NSLog(@"INTERACT %@ %@ %@", interaction.effect, main.name, other.name);
+    
+    BOOL modified = [interaction.effect applyToSpell:main otherSpell:other tick:currentTick];
+    if (modified) {
+        [self modifySpell:main];
+        NSArray * linkedSpells = [self spellsLinkedToSpell:main];
+        NSLog(@" - changed %i", linkedSpells.count);
+        [linkedSpells forEach:^(Spell * spell) {
+            [self interact:interaction main:spell other:spell.linkedSpell currentTick:currentTick];
+        }];
+    }
+}
+
+
+-(NSArray*)spellsLinkedToSpell:(Spell*)parent {
+    return [self.activeSpells filter:^BOOL(Spell*spell) {
+        return (spell.linkedSpell == parent);
+    }];
 }
 
 -(void)checkWin {
@@ -492,16 +537,16 @@
 }
 
 -(void)destroySpell:(Spell*)spell {
-//    NSLog(@" - destroySpell %@", spell);
-    spell.status = SpellStatusDestroyed;
-    spell.updatedTick = self.timer.nextTick;
-    if ([self isSpellClose:spell])
-        [self.multiplayer updateSpell:spell];
+    spell.strength = 0;
+    [self modifySpell:spell];
 }
 
 -(void)modifySpell:(Spell*)spell {
 //    NSLog(@" - modifySpell %@ close=%i", spell, [self isSpellClose:spell]);
-    spell.status = SpellStatusUpdated;
+    if (spell.strength > 0)
+        spell.status = SpellStatusUpdated;
+    else
+        spell.status = SpellStatusDestroyed;
     spell.updatedTick = self.timer.nextTick;
     spell.referencePosition = spell.position;
 

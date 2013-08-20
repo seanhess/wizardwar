@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 The LAB. All rights reserved.
 //
 
-#import "Effect.h"
+#import "PlayerEffect.h"
 
-@interface EffectBasicDamage : Effect
+@interface EffectBasicDamage : PlayerEffect
 
 @end

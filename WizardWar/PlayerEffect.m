@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 The LAB. All rights reserved.
 //
 
-#import "Effect.h"
+#import "PlayerEffect.h"
 #import "Spell.h"
 #import "Wizard.h"
 
-@implementation Effect
+@implementation PlayerEffect
 
 -(id)init {
     self = [super init];
@@ -22,7 +22,7 @@
     return self;
 }
 
--(NSComparisonResult)compare:(Effect*)effect {
+-(NSComparisonResult)compare:(PlayerEffect*)effect {
     if (effect) return NSOrderedSame;
     return NSOrderedAscending;
 }

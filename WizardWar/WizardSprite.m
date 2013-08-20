@@ -74,7 +74,7 @@
 
 @property (nonatomic) CCSpriteFrame * currentSkinFrame;
 
-@property (nonatomic, strong) Effect * currentEffect;
+@property (nonatomic, strong) PlayerEffect * currentEffect;
 
 @end
 

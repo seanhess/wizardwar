@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Orbital Labs. All rights reserved.
 //
 #import "SpellEffectService.h"
+#import "NSArray+Functional.h"
 
 #import "SpellFireball.h"
 #import "SpellEarthwall.h"
@@ -66,28 +67,27 @@
 #define CaptainPlanet [SpellCheeseCaptainPlanet class]
 
 
-@interface PlayerEffect : Effect
-@end
-
-@implementation PlayerEffect
-@end
-
-
 
 
 @interface PEHeal : PlayerEffect
 +(id)delay:(NSTimeInterval)delay;
 @end
 
+@implementation PEHeal
++(id)delay:(NSTimeInterval)delay {
+    return [PEHeal new];
+}
+@end
+
 @interface PELevitate : PlayerEffect
 @end
 
-@interface SpellInteraction2 : NSObject
-@property (nonatomic, strong) Class spell;
-@property (nonatomic, strong) Class otherSpell;
-@property (nonatomic, strong) SpellEffect* effect;
+@implementation PELevitate
 @end
 
+
+@implementation SpellInteraction2
+@end
 
 
 
@@ -146,7 +146,13 @@
     
     [self spell:Firewall effect:[SEWeaker new] spell:Monster effect:[SEDestroy new]];
     [self spell:Firewall effect:[SEWeaker new] spell:Vine effect:[SEDestroy new]];
-    [self spell:Firewall effect:[SEDestroy new] spell:Earthwall effect:[SEDestroy new]];
+    
+    [self spell:Earthwall effect:[SEDestroyOlder new] spell:Earthwall effect:[SEDestroyOlder new]];
+    [self spell:Earthwall effect:[SEDestroyOlder new] spell:Icewall effect:[SEDestroyOlder new]];
+    [self spell:Earthwall effect:[SEDestroyOlder new] spell:Firewall effect:[SEDestroyOlder new]];
+    [self spell:Icewall effect:[SEDestroyOlder new] spell:Icewall effect:[SEDestroyOlder new]];
+    [self spell:Icewall effect:[SEDestroyOlder new] spell:Firewall effect:[SEDestroyOlder new]];
+    [self spell:Firewall effect:[SEDestroyOlder new] spell:Firewall effect:[SEDestroyOlder new]];
 
     [self spell:Monster effect:[SENone new] spell:Lightning effect:[SEDestroy new]];
     [self spell:Monster effect:[SENone new] spell:Bubble effect:[SEDestroy new]];
@@ -199,37 +205,49 @@
 }
 
 // You don't have to add player effects.
--(void)spell:(Class)SpellOne player:(Effect*)effect {
+-(void)spell:(Class)SpellOne player:(PlayerEffect*)effect {
     [self.playerEffects setObject:effect forKey:SpellOne];
 }
 
 -(NSArray*)interactionsForSpell:(Class)SpellOne andSpell:(Class)SpellTwo {
     
-    // returns all effects. The order doesn't matter!
-    
-    // each one can modify both spells? Or just one of them?
-    // it can only modify one of them, I think.
-    // code each of these into...
-    // options: they can modify
-    // assume everything is a modify?
-    // no, I don't KNOW it was modified
-    
-    // strength = 0 - means it was destroyed, nothing can have strength 0.
-    // return whether it was modified or not?
-    // it is ALWAYS modified unless it was a NONE
-    // just make an exception for none?
-    
-    // or, wait, do some of them have exceptions?
-    
-    // They should happen atomically, somehow. Take a snapshot of the objects? a clone?
-    
-    // You could either execute them here, but if you're going to return them
     NSMutableArray * interactionsOne = [self interactionsForSpell:SpellOne];
     NSMutableArray * interactionsTwo = [self interactionsForSpell:SpellTwo];
     
-    return [interactionsOne arrayByAddingObjectsFromArray:interactionsTwo];
+    NSMutableArray * allInteractions = [[interactionsOne arrayByAddingObjectsFromArray:interactionsTwo]
+            filter:^BOOL(SpellInteraction2*interaction) {
+                return (interaction.spell == SpellOne && interaction.otherSpell == SpellTwo) || (interaction.spell == SpellTwo && interaction.otherSpell == SpellOne);
+            }];
+    
+    // if a default is set for a given spell, that means that if EITHER spell is that one
+    // then it should return it, unless some are set.
     
     // TODO: apply defaults (chicken)
+    if (allInteractions.count == 0) {
+        SpellEffect * defaultEffectOne = [self.spellEffectDefaults objectForKey:SpellOne];
+        SpellEffect * defaultEffectTwo = [self.spellEffectDefaults objectForKey:SpellTwo];
+        
+        if (defaultEffectOne) {
+            SpellInteraction2 * defaultInteractionOne = [SpellInteraction2 new];
+            defaultInteractionOne.spell = SpellOne;
+            defaultInteractionOne.otherSpell = SpellTwo;
+            defaultInteractionOne.effect = defaultEffectOne;
+            [allInteractions addObject:defaultInteractionOne];
+        }
+        
+        if (defaultEffectTwo) {
+            SpellInteraction2 * defaultInteractionTwo = [SpellInteraction2 new];
+            defaultInteractionTwo.spell = SpellTwo;
+            defaultInteractionTwo.otherSpell = SpellOne;
+            defaultInteractionTwo.effect = defaultEffectTwo;
+            [allInteractions addObject:defaultInteractionTwo];
+        }
+        
+    }
+    
+    return [allInteractions filter:^BOOL(SpellInteraction2 * interaction) {
+        return ![interaction.effect isKindOfClass:[SENone class]];
+    }];
 }
 
 -(PlayerEffect*)playerEffectForSpell:(Class)Spell {

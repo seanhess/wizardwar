@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Orbital Labs. All rights reserved.
 //
 
-#import "Effect.h"
+#import "PlayerEffect.h"
 #import "EffectApply.h"
 
 @interface EffectUndies : EffectApply

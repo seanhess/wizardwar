@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Units.h"
 #import "Objectable.h"
-#import "Effect.h"
+#import "PlayerEffect.h"
 #import "Simulated.h"
 
 #define WIZARD_TYPE_ONE @"1"
@@ -31,7 +31,7 @@ typedef enum WizardStatus {
 @property (nonatomic) float position; // in units (not pixels)
 @property (nonatomic) NSInteger health;
 @property (nonatomic, strong) NSString * wizardType;
-@property (nonatomic, strong) Effect * effect; // current effect applied
+@property (nonatomic, strong) PlayerEffect * effect; // current effect applied
 @property (nonatomic) NSInteger altitude; // how high you are. 0 = normal
 @property (readonly) NSInteger direction;
 @property (nonatomic) NSUInteger colorRGB; // hex rgb value

@@ -14,8 +14,10 @@
 #import <Foundation/Foundation.h>
 #import "Wizard.h"
 #import "SpellInteraction.h"
-#import "Effect.h"
+#import "PlayerEffect.h"
 #import "Simulated.h"
+
+@class SpellEffect;
 
 typedef enum SpellStatus {
     SpellStatusPrepare,
@@ -40,7 +42,8 @@ typedef enum SpellStatus {
 @property (nonatomic, strong) Wizard * creator;
 @property (nonatomic) NSInteger altitude; // how high it is. normal = 0;
 @property (nonatomic) BOOL heavy; // if it falls
-@property (nonatomic, strong) Effect * effect; // if the spell creates an effect
+@property (nonatomic, strong) PlayerEffect * effect; // if the spell creates an effect
+@property (nonatomic, strong) SpellEffect * spellEffect;
 @property (nonatomic) BOOL targetSelf;
 @property (nonatomic, strong) NSString * name;
 @property (nonatomic) CGFloat castDelay; // delay after cast

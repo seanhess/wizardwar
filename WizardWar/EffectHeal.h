@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 The LAB. All rights reserved.
 //
 
-#import "Effect.h"
+#import "PlayerEffect.h"
 #import "EffectApply.h"
 
 // time (in seconds) to heal 1 heart

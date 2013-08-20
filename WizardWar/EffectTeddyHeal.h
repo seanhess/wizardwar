@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Orbital Labs. All rights reserved.
 //
 
-#import "Effect.h"
+#import "PlayerEffect.h"
 
-@interface EffectTeddyHeal : Effect
+@interface EffectTeddyHeal : PlayerEffect
 
 @end

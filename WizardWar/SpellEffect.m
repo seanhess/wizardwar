@@ -10,12 +10,17 @@
 #import "SpellBubble.h"
 #import "EffectSleep.h"
 
-// TODO newer wall
-// TODO fireball, bubble: don't react over and over with bubble when carried
-// TODO fireball: don't react with earthwall if carried by bubble
-// TODO fireball, bubble: don't blow up on icewall if carried by bubble
-// TODO monster: only interact with other monsters if going different directions
-// TODO monster: no speed if asleep
+// TEST bubble steal (should always steal)
+
+// TODO if monster blows up bubbles, the fireballs still act carried. Monster should blow up anything inside? or at least reset it. Monster should blow up anything inside. somehow.
+
+// Better links: when something happens to the parent, it happens to the child
+// Better links: detect whether you can change a link by whether it is currently linked
+// Well, ANYTHING that happens to the parent happens to child, right?
+// speed, destroy, etc
+
+// 1. If a spell is linked, it no longer interacts AT ALL (not even with its original spell)
+// 2. If the parent is updated, propogate to child
 
 @implementation SpellEffect
 -(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick {
@@ -33,6 +38,8 @@
 
 @implementation SEWeaker
 -(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick {
+    if (spell.direction == otherSpell.direction) return NO;
+    if ([SECarry isCarried:spell otherSpell:otherSpell]) return NO;    
     spell.strength -= otherSpell.damage;
     if (spell.strength < 0)
         spell.strength = 0;
@@ -42,13 +49,27 @@
 
 @implementation SEDestroy
 -(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick {
+    if (spell.direction == otherSpell.direction) return NO;
+    if ([SECarry isCarried:spell otherSpell:otherSpell]) return NO;
     spell.strength = 0;
     return YES;
 }
 @end
 
+@implementation SEDestroyOlder
+-(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick {
+    // do not destroy if I am newer than them
+    if (spell.createdTick > otherSpell.createdTick) return NO;
+    if ([SECarry isCarried:spell otherSpell:otherSpell]) return NO;    
+    spell.strength = 0;
+    return YES;
+}
+@end
+
+
 @implementation SEStronger
 -(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick {
+    // it DOES interact with stronger, because I want it to :)
     spell.damage += 1;
     spell.strength += 1;
     return YES;
@@ -56,9 +77,22 @@
 @end
 
 @implementation SECarry
++(BOOL)isCarried:(Spell*)spell otherSpell:(Spell*)otherSpell {
+    if ([spell.linkedSpell isKindOfClass:SpellBubble.class] && spell.linkedSpell.status != SpellStatusDestroyed && spell.linkedSpell != otherSpell) return YES;
+//    if ([otherSpell.spellEffect isKindOfClass:SECarry.class]) return YES;
+    return NO;
+}
+
 -(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick {
+    if ([SECarry isCarried:spell otherSpell:otherSpell]) return NO;
+    
     // TODO: make sure they don't hit multiple times, if already carried
-//    spell.linkedSpell = otherSpell;
+    if (spell.position == otherSpell.position && spell.speed == otherSpell.speed && spell.direction == otherSpell.direction)
+        return NO;
+    
+    NSLog(@"CARRY ME");
+    spell.spellEffect = [SECarry new]; // I guess this means it is being carried
+    spell.linkedSpell = otherSpell;
     spell.position = otherSpell.position;
     spell.speed = otherSpell.speed;
     spell.direction = otherSpell.direction;
@@ -68,6 +102,8 @@
 
 @implementation SESleep
 -(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick {
+    if ([SECarry isCarried:spell otherSpell:otherSpell]) return NO;
+    
     spell.speed = 0;
     spell.effect = [EffectSleep new];
     [spell.effect start:tick player:nil];
@@ -89,7 +125,10 @@
     return effect;
 }
 
--(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell {
+-(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick {
+    if (spell.direction == otherSpell.direction) return NO;
+    if ([SECarry isCarried:spell otherSpell:otherSpell]) return NO;
+    if ([spell.effect isKindOfClass:[EffectSleep class]]) return NO;
     if (self.up > 0) {
         if (spell.direction == otherSpell.direction) {
             spell.speed += self.up;
@@ -110,7 +149,9 @@
 @end
 
 @implementation SEReflect
--(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell {
+-(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick {
+    if (spell.direction == otherSpell.direction) return NO;
+    if ([SECarry isCarried:spell otherSpell:otherSpell]) return NO;    
     spell.direction = otherSpell.direction;
     return YES;
 }

@@ -18,7 +18,7 @@
     return self;
 }
 
--(Effect*)effect {
+-(PlayerEffect*)effect {
     return [EffectUndies new];
 }
 

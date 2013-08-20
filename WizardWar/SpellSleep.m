@@ -23,7 +23,7 @@
     return self;
 }
 
--(Effect*)effect {
+-(PlayerEffect*)effect {
     return [EffectSleep new];
 }
 

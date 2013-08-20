@@ -85,7 +85,7 @@
 #ifdef DEBUG
 //        self.stop = YES;
         self.allOffensive = @[[SpellBubble class]];
-        self.allDefensive = @[[SpellBubble class]];
+        self.allDefensive = @[[SpellEarthwall class]];
 #endif
     }
     return self;
@@ -103,6 +103,9 @@
     Class SpellType = [fromList randomItem];
     self.lastCastSpell = [SpellType new];
     [self.delegate aiDidCastSpell:self.lastCastSpell];
+#ifdef DEBUG
+//    self.stop = YES;
+#endif
 }
 
 // It's more like does he HAVE a wall or not?

@@ -7,7 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SpellEffect.h"
+
+@interface SpellInteraction2 : NSObject
+@property (nonatomic, strong) Class spell;
+@property (nonatomic, strong) Class otherSpell;
+@property (nonatomic, strong) SpellEffect* effect;
+@end
+
 
 @interface SpellEffectService : NSObject
-
+-(NSArray*)interactionsForSpell:(Class)SpellOne andSpell:(Class)SpellTwo;
 @end

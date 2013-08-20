@@ -20,6 +20,9 @@
 @interface SENone : SpellEffect
 @end
 
+@interface SEDestroyOlder : SpellEffect
+@end
+
 @interface SEWeaker : SpellEffect
 @end
 
@@ -30,6 +33,7 @@
 @end
 
 @interface SECarry : SpellEffect
++(BOOL)isCarried:(Spell*)spell otherSpell:(Spell*)spell;
 @end
 
 @interface SESleep : SpellEffect
