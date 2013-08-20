@@ -43,7 +43,6 @@
 @property (nonatomic, strong) NSMutableDictionary * spells;
 
 @property (nonatomic, strong) NSString * hostName;
-@property (nonatomic, strong) NSString * matchId;
 @property (nonatomic, strong) Wizard * aiWizard;
 
 @property (nonatomic) BOOL enoughTimeAsReady;

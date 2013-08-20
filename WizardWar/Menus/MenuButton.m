@@ -1,4 +1,4 @@
-//
+
 //  MenuButton.m
 //  WizardWar
 //
@@ -49,14 +49,16 @@
     self.titleLabel.layer.masksToBounds = NO;
     
     
+    CGFloat topPadding = (self.frame.size.height - self.titleLabel.frame.size.height)/2;
+    self.titleEdgeInsets = UIEdgeInsetsMake(topPadding, 0, 0, 0);
     
 //    [self setBackgroundImage:AppStyle.blueNavColorImage forState:UIControlStateNormal];
 //    [self setBackgroundImage:[AppStyle imageWithColor:UIColorFromRGB(0xFFFFFF)] forState:UIControlStateHighlighted];
 //    [self setTintColor:AppStyle.blueNavColor];
     
-    self.layer.cornerRadius = 10.0f;
-    self.layer.borderColor = [[UIColor clearColor] CGColor];
-    self.layer.borderWidth = 2.0f;
+//    self.layer.cornerRadius = 10.0f;
+//    self.layer.borderColor = [[UIColor clearColor] CGColor];
+//    self.layer.borderWidth = 2.0f;
 }
 
 /*

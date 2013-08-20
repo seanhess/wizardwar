@@ -25,6 +25,7 @@
 #import <MenuButton.h>
 #import "PracticeModeAIService.h"
 #import "ConnectionService.h"
+#import "SpellbookViewController.h"
 
 #import <FacebookSDK/FacebookSDK.h>
 #import "NSArray+Functional.h"
@@ -158,6 +159,11 @@
         UINavigationController * navigation = [[UINavigationController alloc] initWithRootViewController:settings];
         [self.navigationController presentViewController:navigation animated:YES completion:nil];
     }
+}
+
+- (IBAction)didTapSpellbook:(id)sender {
+    SpellbookViewController * spellbook = [SpellbookViewController new];
+    [self.navigationController pushViewController:spellbook animated:YES];
 }
 
 - (IBAction)didTapSettings:(id)sender {

@@ -351,77 +351,84 @@
     return [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName];
 }
 
-+(NSString*)sheetName:(Spell*)spell {
-    if ([spell isType:[SpellEarthwall class]]) {
++(NSString*)sheetNameForClass:(Class)spellClass {
+    if (spellClass == [SpellEarthwall class]) {
         return @"earthwall";
     }
     
-    else if ([spell isType:[SpellVine class]]) {
+    else if (spellClass == [SpellVine class]) {
         return @"vine";
     }
     
-    else if ([spell isType:[SpellMonster class]]) {
+    else if (spellClass == [SpellMonster class]) {
         return @"ogre";
     }
     
-    else if ([spell isType:[SpellBubble class]]) {
+    else if (spellClass == [SpellBubble class]) {
         return @"bubble";
     }
     
-    else if ([spell isType:[SpellIcewall class]]) {
+    else if (spellClass == [SpellIcewall class]) {
         return @"icewall";
     }
     
-    else if ([spell isType:[SpellWindblast class]]) {
+    else if (spellClass == [SpellWindblast class]) {
         return @"windblast";
     }
     
-    else if ([spell isType:[SpellFirewall class]]) {
+    else if (spellClass == [SpellFirewall class]) {
         return @"firewall";
     }
-
-    else if ([spell isType:[SpellFist class]]) {
+    
+    else if (spellClass == [SpellFist class]) {
         return @"fist";
     }
     
-    else if ([spell isType:[SpellHelmet class]]) {
+    else if (spellClass == [SpellHelmet class]) {
         return @"helmet";
     }
     
-    else if ([spell isType:[SpellSleep class]]) {
+    else if (spellClass == [SpellSleep class]) {
         return @"pillow";
     }
     
-    else if ([spell isType:[SpellFailChicken class]]) {
+    else if (spellClass == [SpellFailChicken class]) {
         return @"chicken";
     }
     
-    else if ([spell isType:[SpellFailHotdog class]]) {
+    else if (spellClass == [SpellFailHotdog class]) {
         return @"hotdog";
     }
     
-    else if ([spell isType:[SpellFailRainbow class]]) {
+    else if (spellClass == [SpellFailRainbow class]) {
         return @"rainbow";
     }
     
-    else if ([spell isType:[SpellFailTeddy class]]) {
+    else if (spellClass == [SpellFailTeddy class]) {
         return @"teddybear";
     }
     
-    else if ([spell isType:[SpellFailUndies class]]) {
+    else if (spellClass == [SpellFailUndies class]) {
         return @"wizard-undies";
     }
-
-    else if ([spell isType:[SpellCheeseCaptainPlanet class]]) {
+    
+    else if (spellClass == [SpellCheeseCaptainPlanet class]) {
         return @"captain-planet";
     }
     
-    else if ([spell isType:[SpellLightningOrb class]]) {
+    else if (spellClass == [SpellLightningOrb class]) {
         return @"lightning";
     }
     
+    else if (spellClass == [SpellFireball class]) {
+        return @"fireball";
+    }
     
-    return @"fireball";
+    return nil;
+}
+
++(NSString*)sheetName:(Spell*)spell {
+    return [self sheetNameForClass:spell.class];
 }
 
 -(NSString*)sheetName {

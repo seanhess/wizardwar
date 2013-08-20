@@ -34,6 +34,7 @@ typedef enum MatchStatus {
 @end
 
 @interface Match : NSObject <Simulated>
+@property (nonatomic, strong) NSString * matchId;
 @property (nonatomic, weak) id<MatchDelegate> delegate;
 @property (nonatomic, strong) Wizard * currentWizard;
 

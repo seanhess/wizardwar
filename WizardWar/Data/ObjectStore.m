@@ -64,6 +64,7 @@
 
 -(NSManagedObject*)requestLastObject:(NSFetchRequest *)request {
     request.fetchLimit = 1;
+    
     return [[self requestToArray:request] lastObject];
 }
 

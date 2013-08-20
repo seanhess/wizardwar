@@ -170,11 +170,11 @@
             <filename>spells-core/fireball</filename>
             <filename>spells-core/icewall</filename>
             <filename>spells-core/images</filename>
-            <filename>spells-core/lightning-orb</filename>
             <filename>spells-core/ogre</filename>
             <filename>spells-core/vine</filename>
             <filename>spells-core/windblast</filename>
             <filename>spells-core/firewall</filename>
+            <filename>spells-core/lightning</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

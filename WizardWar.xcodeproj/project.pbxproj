@@ -27,6 +27,11 @@
 		6F0B2FAF1747511800CFC092 /* DotsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0B2FAC1747511800CFC092 /* DotsView.m */; };
 		6F0B2FB01747511800CFC092 /* DrawingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0B2FAE1747511800CFC092 /* DrawingLayer.m */; };
 		7801E9F917B1830C005D14D8 /* EffectTeddyHeal.m in Sources */ = {isa = PBXBuildFile; fileRef = 7801E9F817B1830C005D14D8 /* EffectTeddyHeal.m */; };
+		780A234617C3BBA000EE3BAA /* UIImage+MonoImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 780A234517C3BBA000EE3BAA /* UIImage+MonoImage.m */; };
+		780A234917C3BDFF00EE3BAA /* SpellbookProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 780A234817C3BDFF00EE3BAA /* SpellbookProgressView.m */; };
+		780A234C17C3BE1900EE3BAA /* SpellbookCastDiagramView.m in Sources */ = {isa = PBXBuildFile; fileRef = 780A234B17C3BE1900EE3BAA /* SpellbookCastDiagramView.m */; };
+		780A234E17C3C18A00EE3BAA /* cast-diagram@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 780A234D17C3C18A00EE3BAA /* cast-diagram@2x.png */; };
+		780A235017C3C1A900EE3BAA /* cast-diagram.png in Resources */ = {isa = PBXBuildFile; fileRef = 780A234F17C3C1A900EE3BAA /* cast-diagram.png */; };
 		781372D3177E311A00486899 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781372D2177E311A00486899 /* MobileCoreServices.framework */; };
 		781372D5177E313000486899 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781372D4177E313000486899 /* StoreKit.framework */; };
 		781372D7177E313A00486899 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781372D6177E313A00486899 /* SystemConfiguration.framework */; };
@@ -148,7 +153,6 @@
 		7842FB6C17C26E0C0050A858 /* explode-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB6B17C26E0C0050A858 /* explode-animation.plist */; };
 		7842FB6E17C26E110050A858 /* fireball-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB6D17C26E110050A858 /* fireball-animation.plist */; };
 		7842FB7217C26E1D0050A858 /* icewall-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB7117C26E1D0050A858 /* icewall-animation.plist */; };
-		7842FB7417C26E270050A858 /* lightning-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB7317C26E270050A858 /* lightning-animation.plist */; };
 		7842FB7617C26E2D0050A858 /* ogre-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB7517C26E2D0050A858 /* ogre-animation.plist */; };
 		7842FB7817C26E340050A858 /* vine-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB7717C26E340050A858 /* vine-animation.plist */; };
 		7842FB7A17C26E3A0050A858 /* windblast-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB7917C26E3A0050A858 /* windblast-animation.plist */; };
@@ -177,6 +181,8 @@
 		7842FBC417C278F70050A858 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7842FBBE17C278F70050A858 /* libTestFlight.a */; };
 		7842FBC517C278F70050A858 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7842FBBF17C278F70050A858 /* README.md */; };
 		7842FBC617C278F70050A858 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 7842FBC017C278F70050A858 /* release_notes.md */; };
+		7842FBCB17C27EAE0050A858 /* SpellbookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7842FBC917C27EAE0050A858 /* SpellbookViewController.m */; };
+		7842FBCC17C27EAE0050A858 /* SpellbookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7842FBCA17C27EAE0050A858 /* SpellbookViewController.xib */; };
 		784D3BDE1774F753009945F8 /* LobbyService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BDD1774F753009945F8 /* LobbyService.m */; };
 		784D3BE1177501E9009945F8 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BE0177501E9009945F8 /* UserService.m */; };
 		784D3BE417750441009945F8 /* IdService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BE317750441009945F8 /* IdService.m */; };
@@ -186,6 +192,31 @@
 		785168B417A40ED100A49257 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785168B317A40ED100A49257 /* Parse.framework */; };
 		785168B617A40ED700A49257 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785168B517A40ED700A49257 /* Firebase.framework */; };
 		78516B8817A5925800A49257 /* NSObject+Reflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 78516B8717A5925700A49257 /* NSObject+Reflection.m */; };
+		785B045C17C2B16700B064F6 /* SpellRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 785B045B17C2B16700B064F6 /* SpellRecord.m */; };
+		785B045F17C2B17F00B064F6 /* SpellbookService.m in Sources */ = {isa = PBXBuildFile; fileRef = 785B045E17C2B17F00B064F6 /* SpellbookService.m */; };
+		785B046317C2BA3100B064F6 /* SpellbookDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785B046117C2BA3100B064F6 /* SpellbookDetailsViewController.m */; };
+		785B046417C2BA3100B064F6 /* SpellbookDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 785B046217C2BA3100B064F6 /* SpellbookDetailsViewController.xib */; };
+		785B047817C2BDF700B064F6 /* bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 785B046617C2BDF700B064F6 /* bubble.png */; };
+		785B047917C2BDF700B064F6 /* captain-planet.png in Resources */ = {isa = PBXBuildFile; fileRef = 785B046717C2BDF700B064F6 /* captain-planet.png */; };
+		785B047A17C2BDF700B064F6 /* chicken.png in Resources */ = {isa = PBXBuildFile; fileRef = 785B046817C2BDF700B064F6 /* chicken.png */; };
+		785B047B17C2BDF700B064F6 /* earthwall.png in Resources */ = {isa = PBXBuildFile; fileRef = 785B046917C2BDF700B064F6 /* earthwall.png */; };
+		785B047C17C2BDF700B064F6 /* fireball.png in Resources */ = {isa = PBXBuildFile; fileRef = 785B046A17C2BDF700B064F6 /* fireball.png */; };
+		785B047D17C2BDF700B064F6 /* firewall.png in Resources */ = {isa = PBXBuildFile; fileRef = 785B046B17C2BDF700B064F6 /* firewall.png */; };
+		785B047E17C2BDF700B064F6 /* fist.png in Resources */ = {isa = PBXBuildFile; fileRef = 785B046C17C2BDF700B064F6 /* fist.png */; };
+		785B047F17C2BDF700B064F6 /* helmet.png in Resources */ = {isa = PBXBuildFile; fileRef = 785B046D17C2BDF700B064F6 /* helmet.png */; };
+		785B048017C2BDF700B064F6 /* hotdog.png in Resources */ = {isa = PBXBuildFile; fileRef = 785B046E17C2BDF700B064F6 /* hotdog.png */; };
+		785B048117C2BDF700B064F6 /* icewall.png in Resources */ = {isa = PBXBuildFile; fileRef = 785B046F17C2BDF700B064F6 /* icewall.png */; };
+		785B048317C2BDF700B064F6 /* ogre.png in Resources */ = {isa = PBXBuildFile; fileRef = 785B047117C2BDF700B064F6 /* ogre.png */; };
+		785B048417C2BDF700B064F6 /* pillow.png in Resources */ = {isa = PBXBuildFile; fileRef = 785B047217C2BDF700B064F6 /* pillow.png */; };
+		785B048517C2BDF700B064F6 /* rainbow.png in Resources */ = {isa = PBXBuildFile; fileRef = 785B047317C2BDF700B064F6 /* rainbow.png */; };
+		785B048617C2BDF700B064F6 /* teddybear.png in Resources */ = {isa = PBXBuildFile; fileRef = 785B047417C2BDF700B064F6 /* teddybear.png */; };
+		785B048817C2BDF700B064F6 /* windblast.png in Resources */ = {isa = PBXBuildFile; fileRef = 785B047617C2BDF700B064F6 /* windblast.png */; };
+		785B048917C2BDF700B064F6 /* wizard-undies.png in Resources */ = {isa = PBXBuildFile; fileRef = 785B047717C2BDF700B064F6 /* wizard-undies.png */; };
+		785B048C17C2C0A500B064F6 /* SpellbookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 785B048B17C2C0A500B064F6 /* SpellbookCell.m */; };
+		785B048E17C2C2D500B064F6 /* SpellbookCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 785B048D17C2C2D500B064F6 /* SpellbookCell.xib */; };
+		785B049017C2C4C800B064F6 /* lightning-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 785B048F17C2C4C800B064F6 /* lightning-animation.plist */; };
+		785B049317C2C4E200B064F6 /* lightning.png in Resources */ = {isa = PBXBuildFile; fileRef = 785B049117C2C4E200B064F6 /* lightning.png */; };
+		785B049417C2C4E200B064F6 /* vine.png in Resources */ = {isa = PBXBuildFile; fileRef = 785B049217C2C4E200B064F6 /* vine.png */; };
 		785C44B317BE671200733E7B /* WarningCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 785C44B217BE671200733E7B /* WarningCell.xib */; };
 		785FBEC4177261BD0021AEE5 /* InstagramEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEA6177261BD0021AEE5 /* InstagramEnemy.m */; };
 		785FBEC5177261BD0021AEE5 /* Interaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEA8177261BD0021AEE5 /* Interaction.m */; };
@@ -403,6 +434,14 @@
 		7801E9F717B1830C005D14D8 /* EffectTeddyHeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectTeddyHeal.h; sourceTree = "<group>"; };
 		7801E9F817B1830C005D14D8 /* EffectTeddyHeal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectTeddyHeal.m; sourceTree = "<group>"; };
 		7801E9FA17B18ED4005D14D8 /* DataModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DataModel 2.xcdatamodel"; sourceTree = "<group>"; };
+		780A234417C3BBA000EE3BAA /* UIImage+MonoImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MonoImage.h"; sourceTree = "<group>"; };
+		780A234517C3BBA000EE3BAA /* UIImage+MonoImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MonoImage.m"; sourceTree = "<group>"; };
+		780A234717C3BDFF00EE3BAA /* SpellbookProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellbookProgressView.h; sourceTree = "<group>"; };
+		780A234817C3BDFF00EE3BAA /* SpellbookProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellbookProgressView.m; sourceTree = "<group>"; };
+		780A234A17C3BE1900EE3BAA /* SpellbookCastDiagramView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellbookCastDiagramView.h; sourceTree = "<group>"; };
+		780A234B17C3BE1900EE3BAA /* SpellbookCastDiagramView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellbookCastDiagramView.m; sourceTree = "<group>"; };
+		780A234D17C3C18A00EE3BAA /* cast-diagram@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cast-diagram@2x.png"; sourceTree = "<group>"; };
+		780A234F17C3C1A900EE3BAA /* cast-diagram.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cast-diagram.png"; sourceTree = "<group>"; };
 		781234DF174AE4C0008EDE88 /* Objectable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Objectable.h; sourceTree = "<group>"; };
 		781372D2177E311A00486899 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		781372D4177E313000486899 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -654,7 +693,6 @@
 		7842FB6B17C26E0C0050A858 /* explode-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "explode-animation.plist"; path = "WizardWar/images/spells-core/explode/explode-animation.plist"; sourceTree = SOURCE_ROOT; };
 		7842FB6D17C26E110050A858 /* fireball-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "fireball-animation.plist"; path = "WizardWar/images/spells-core/fireball/fireball-animation.plist"; sourceTree = SOURCE_ROOT; };
 		7842FB7117C26E1D0050A858 /* icewall-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "icewall-animation.plist"; path = "WizardWar/images/spells-core/icewall/icewall-animation.plist"; sourceTree = SOURCE_ROOT; };
-		7842FB7317C26E270050A858 /* lightning-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "lightning-animation.plist"; path = "WizardWar/images/spells-core/lightning-orb/lightning-animation.plist"; sourceTree = SOURCE_ROOT; };
 		7842FB7517C26E2D0050A858 /* ogre-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "ogre-animation.plist"; path = "WizardWar/images/spells-core/ogre/ogre-animation.plist"; sourceTree = SOURCE_ROOT; };
 		7842FB7717C26E340050A858 /* vine-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "vine-animation.plist"; path = "WizardWar/images/spells-core/vine/vine-animation.plist"; sourceTree = SOURCE_ROOT; };
 		7842FB7917C26E3A0050A858 /* windblast-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "windblast-animation.plist"; path = "WizardWar/images/spells-core/windblast/windblast-animation.plist"; sourceTree = SOURCE_ROOT; };
@@ -686,6 +724,9 @@
 		7842FBC117C278F70050A858 /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
 		7842FBC217C278F70050A858 /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
 		7842FBC317C278F70050A858 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		7842FBC817C27EAE0050A858 /* SpellbookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellbookViewController.h; sourceTree = "<group>"; };
+		7842FBC917C27EAE0050A858 /* SpellbookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellbookViewController.m; sourceTree = "<group>"; };
+		7842FBCA17C27EAE0050A858 /* SpellbookViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpellbookViewController.xib; sourceTree = "<group>"; };
 		784D3BDC1774F753009945F8 /* LobbyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LobbyService.h; sourceTree = "<group>"; };
 		784D3BDD1774F753009945F8 /* LobbyService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LobbyService.m; sourceTree = "<group>"; };
 		784D3BDF177501E9009945F8 /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserService.h; sourceTree = "<group>"; };
@@ -701,6 +742,36 @@
 		785168B517A40ED700A49257 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
 		78516B8617A5925700A49257 /* NSObject+Reflection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Reflection.h"; sourceTree = "<group>"; };
 		78516B8717A5925700A49257 /* NSObject+Reflection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Reflection.m"; sourceTree = "<group>"; };
+		785B045A17C2B16700B064F6 /* SpellRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellRecord.h; sourceTree = "<group>"; };
+		785B045B17C2B16700B064F6 /* SpellRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellRecord.m; sourceTree = "<group>"; };
+		785B045D17C2B17F00B064F6 /* SpellbookService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellbookService.h; sourceTree = "<group>"; };
+		785B045E17C2B17F00B064F6 /* SpellbookService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellbookService.m; sourceTree = "<group>"; };
+		785B046017C2BA3100B064F6 /* SpellbookDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellbookDetailsViewController.h; sourceTree = "<group>"; };
+		785B046117C2BA3100B064F6 /* SpellbookDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellbookDetailsViewController.m; sourceTree = "<group>"; };
+		785B046217C2BA3100B064F6 /* SpellbookDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpellbookDetailsViewController.xib; sourceTree = "<group>"; };
+		785B046617C2BDF700B064F6 /* bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble.png; sourceTree = "<group>"; };
+		785B046717C2BDF700B064F6 /* captain-planet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "captain-planet.png"; sourceTree = "<group>"; };
+		785B046817C2BDF700B064F6 /* chicken.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chicken.png; sourceTree = "<group>"; };
+		785B046917C2BDF700B064F6 /* earthwall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = earthwall.png; sourceTree = "<group>"; };
+		785B046A17C2BDF700B064F6 /* fireball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fireball.png; sourceTree = "<group>"; };
+		785B046B17C2BDF700B064F6 /* firewall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firewall.png; sourceTree = "<group>"; };
+		785B046C17C2BDF700B064F6 /* fist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fist.png; sourceTree = "<group>"; };
+		785B046D17C2BDF700B064F6 /* helmet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helmet.png; sourceTree = "<group>"; };
+		785B046E17C2BDF700B064F6 /* hotdog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hotdog.png; sourceTree = "<group>"; };
+		785B046F17C2BDF700B064F6 /* icewall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icewall.png; sourceTree = "<group>"; };
+		785B047117C2BDF700B064F6 /* ogre.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ogre.png; sourceTree = "<group>"; };
+		785B047217C2BDF700B064F6 /* pillow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pillow.png; sourceTree = "<group>"; };
+		785B047317C2BDF700B064F6 /* rainbow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rainbow.png; sourceTree = "<group>"; };
+		785B047417C2BDF700B064F6 /* teddybear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = teddybear.png; sourceTree = "<group>"; };
+		785B047617C2BDF700B064F6 /* windblast.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = windblast.png; sourceTree = "<group>"; };
+		785B047717C2BDF700B064F6 /* wizard-undies.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard-undies.png"; sourceTree = "<group>"; };
+		785B048A17C2C0A500B064F6 /* SpellbookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellbookCell.h; sourceTree = "<group>"; };
+		785B048B17C2C0A500B064F6 /* SpellbookCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellbookCell.m; sourceTree = "<group>"; };
+		785B048D17C2C2D500B064F6 /* SpellbookCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpellbookCell.xib; sourceTree = "<group>"; };
+		785B048F17C2C4C800B064F6 /* lightning-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "lightning-animation.plist"; path = "WizardWar/images/spells-core/lightning/lightning-animation.plist"; sourceTree = SOURCE_ROOT; };
+		785B049117C2C4E200B064F6 /* lightning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightning.png; sourceTree = "<group>"; };
+		785B049217C2C4E200B064F6 /* vine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vine.png; sourceTree = "<group>"; };
+		785B049517C2C70B00B064F6 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		785C44B217BE671200733E7B /* WarningCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WarningCell.xib; sourceTree = "<group>"; };
 		785FBEA5177261BD0021AEE5 /* InstagramEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramEnemy.h; sourceTree = "<group>"; };
 		785FBEA6177261BD0021AEE5 /* InstagramEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramEnemy.m; sourceTree = "<group>"; };
@@ -1375,6 +1446,26 @@
 			path = TestFlightSDK2.0.0;
 			sourceTree = "<group>";
 		};
+		7842FBC717C27E910050A858 /* Spellbook */ = {
+			isa = PBXGroup;
+			children = (
+				7842FBC817C27EAE0050A858 /* SpellbookViewController.h */,
+				7842FBC917C27EAE0050A858 /* SpellbookViewController.m */,
+				7842FBCA17C27EAE0050A858 /* SpellbookViewController.xib */,
+				785B046017C2BA3100B064F6 /* SpellbookDetailsViewController.h */,
+				785B046117C2BA3100B064F6 /* SpellbookDetailsViewController.m */,
+				785B046217C2BA3100B064F6 /* SpellbookDetailsViewController.xib */,
+				785B048A17C2C0A500B064F6 /* SpellbookCell.h */,
+				785B048B17C2C0A500B064F6 /* SpellbookCell.m */,
+				785B048D17C2C2D500B064F6 /* SpellbookCell.xib */,
+				780A234717C3BDFF00EE3BAA /* SpellbookProgressView.h */,
+				780A234817C3BDFF00EE3BAA /* SpellbookProgressView.m */,
+				780A234A17C3BE1900EE3BAA /* SpellbookCastDiagramView.h */,
+				780A234B17C3BE1900EE3BAA /* SpellbookCastDiagramView.m */,
+			);
+			name = Spellbook;
+			sourceTree = "<group>";
+		};
 		784D3BE51775102A009945F8 /* lobby */ = {
 			isa = PBXGroup;
 			children = (
@@ -1382,9 +1473,35 @@
 			name = lobby;
 			sourceTree = "<group>";
 		};
+		785B046517C2BDF700B064F6 /* spellbook */ = {
+			isa = PBXGroup;
+			children = (
+				785B046617C2BDF700B064F6 /* bubble.png */,
+				785B046717C2BDF700B064F6 /* captain-planet.png */,
+				785B046817C2BDF700B064F6 /* chicken.png */,
+				785B046917C2BDF700B064F6 /* earthwall.png */,
+				785B046A17C2BDF700B064F6 /* fireball.png */,
+				785B046B17C2BDF700B064F6 /* firewall.png */,
+				785B046C17C2BDF700B064F6 /* fist.png */,
+				785B046D17C2BDF700B064F6 /* helmet.png */,
+				785B046E17C2BDF700B064F6 /* hotdog.png */,
+				785B046F17C2BDF700B064F6 /* icewall.png */,
+				785B047117C2BDF700B064F6 /* ogre.png */,
+				785B047217C2BDF700B064F6 /* pillow.png */,
+				785B047317C2BDF700B064F6 /* rainbow.png */,
+				785B047417C2BDF700B064F6 /* teddybear.png */,
+				785B047617C2BDF700B064F6 /* windblast.png */,
+				785B047717C2BDF700B064F6 /* wizard-undies.png */,
+				785B049117C2C4E200B064F6 /* lightning.png */,
+				785B049217C2C4E200B064F6 /* vine.png */,
+			);
+			path = spellbook;
+			sourceTree = "<group>";
+		};
 		785FBEA4177261BD0021AEE5 /* Menus */ = {
 			isa = PBXGroup;
 			children = (
+				7842FBC717C27E910050A858 /* Spellbook */,
 				785FBEB0177261BD0021AEE5 /* MainNavViewController.h */,
 				785FBEB1177261BD0021AEE5 /* MainNavViewController.m */,
 				785FBEA9177261BD0021AEE5 /* LandingViewController.h */,
@@ -1431,6 +1548,8 @@
 				784D3BE317750441009945F8 /* IdService.m */,
 				784D3BF21777C622009945F8 /* LocationService.h */,
 				784D3BF31777C622009945F8 /* LocationService.m */,
+				785B045D17C2B17F00B064F6 /* SpellbookService.h */,
+				785B045E17C2B17F00B064F6 /* SpellbookService.m */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -1446,6 +1565,8 @@
 				785FBEA6177261BD0021AEE5 /* InstagramEnemy.m */,
 				785FBEA7177261BD0021AEE5 /* Interaction.h */,
 				785FBEA8177261BD0021AEE5 /* Interaction.m */,
+				785B045A17C2B16700B064F6 /* SpellRecord.h */,
+				785B045B17C2B16700B064F6 /* SpellRecord.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -1525,6 +1646,8 @@
 			children = (
 				78782B6017B03D320089F1D6 /* UIViewController+Idiom.h */,
 				78782B6117B03D320089F1D6 /* UIViewController+Idiom.m */,
+				780A234417C3BBA000EE3BAA /* UIImage+MonoImage.h */,
+				780A234517C3BBA000EE3BAA /* UIImage+MonoImage.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -1627,8 +1750,8 @@
 				7842FB6B17C26E0C0050A858 /* explode-animation.plist */,
 				7842FB6D17C26E110050A858 /* fireball-animation.plist */,
 				7842FB7117C26E1D0050A858 /* icewall-animation.plist */,
-				7842FB7317C26E270050A858 /* lightning-animation.plist */,
 				7842FB7517C26E2D0050A858 /* ogre-animation.plist */,
+				785B048F17C2C4C800B064F6 /* lightning-animation.plist */,
 				7842FB7717C26E340050A858 /* vine-animation.plist */,
 				7842FB7917C26E3A0050A858 /* windblast-animation.plist */,
 				7842FB7B17C26E670050A858 /* chicken-animation.plist */,
@@ -1663,12 +1786,15 @@
 				7842FBB617C2783D0050A858 /* sprites-hd.pvr.ccz */,
 				7842FBB717C2783D0050A858 /* sprites.plist */,
 				7842FBB817C2783D0050A858 /* sprites.pvr.ccz */,
+				780A234D17C3C18A00EE3BAA /* cast-diagram@2x.png */,
+				780A234F17C3C1A900EE3BAA /* cast-diagram.png */,
 				786EE5B117B2A4B6004D9214 /* tutorial */,
 				787E1C1717BBEEDE0092F5D6 /* menu */,
 				784D3BE51775102A009945F8 /* lobby */,
 				781372E4177E33F600486899 /* wizards */,
 				78E22CB81782556100146D49 /* Pentagram */,
 				78E22CB71782540B00146D49 /* spells */,
+				785B046517C2BDF700B064F6 /* spellbook */,
 				78E22CB9178255B700146D49 /* user.jpg */,
 				78F195031747FBFA00BB8587 /* exit.png */,
 				78F195041747FBFA00BB8587 /* exit@2x.png */,
@@ -1694,7 +1820,6 @@
 				787E1C3617BC0CD40092F5D6 /* Default.png */,
 				787E1C3417BC0CD10092F5D6 /* Default@2x.png */,
 				787E1C3217BC0CCB0092F5D6 /* Default-568h@2x.png */,
-				78DAB83C179B08BB0093A701 /* MapKit.framework */,
 				7862463D1767C79F001904AC /* README.md */,
 				6F0367301747EB3C00971B61 /* Icon-57@2x.png */,
 				6F03672E1747EB3700971B61 /* Icon-57.png */,
@@ -1717,6 +1842,8 @@
 		78F6B1E51746AD8900AA070D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				78DAB83C179B08BB0093A701 /* MapKit.framework */,
+				785B049517C2C70B00B064F6 /* CoreImage.framework */,
 				7842FBBD17C278F70050A858 /* TestFlightSDK2.0.0 */,
 				78F6B20B1746AE4400AA070D /* Cocos2d */,
 				785168B517A40ED700A49257 /* Firebase.framework */,
@@ -2179,7 +2306,6 @@
 				7842FB6C17C26E0C0050A858 /* explode-animation.plist in Resources */,
 				7842FB6E17C26E110050A858 /* fireball-animation.plist in Resources */,
 				7842FB7217C26E1D0050A858 /* icewall-animation.plist in Resources */,
-				7842FB7417C26E270050A858 /* lightning-animation.plist in Resources */,
 				7842FB7617C26E2D0050A858 /* ogre-animation.plist in Resources */,
 				7842FB7817C26E340050A858 /* vine-animation.plist in Resources */,
 				7842FB7A17C26E3A0050A858 /* windblast-animation.plist in Resources */,
@@ -2207,6 +2333,30 @@
 				7842FBBC17C2783D0050A858 /* sprites.pvr.ccz in Resources */,
 				7842FBC517C278F70050A858 /* README.md in Resources */,
 				7842FBC617C278F70050A858 /* release_notes.md in Resources */,
+				7842FBCC17C27EAE0050A858 /* SpellbookViewController.xib in Resources */,
+				785B046417C2BA3100B064F6 /* SpellbookDetailsViewController.xib in Resources */,
+				785B047817C2BDF700B064F6 /* bubble.png in Resources */,
+				785B047917C2BDF700B064F6 /* captain-planet.png in Resources */,
+				785B047A17C2BDF700B064F6 /* chicken.png in Resources */,
+				785B047B17C2BDF700B064F6 /* earthwall.png in Resources */,
+				785B047C17C2BDF700B064F6 /* fireball.png in Resources */,
+				785B047D17C2BDF700B064F6 /* firewall.png in Resources */,
+				785B047E17C2BDF700B064F6 /* fist.png in Resources */,
+				785B047F17C2BDF700B064F6 /* helmet.png in Resources */,
+				785B048017C2BDF700B064F6 /* hotdog.png in Resources */,
+				785B048117C2BDF700B064F6 /* icewall.png in Resources */,
+				785B048317C2BDF700B064F6 /* ogre.png in Resources */,
+				785B048417C2BDF700B064F6 /* pillow.png in Resources */,
+				785B048517C2BDF700B064F6 /* rainbow.png in Resources */,
+				785B048617C2BDF700B064F6 /* teddybear.png in Resources */,
+				785B048817C2BDF700B064F6 /* windblast.png in Resources */,
+				785B048917C2BDF700B064F6 /* wizard-undies.png in Resources */,
+				785B048E17C2C2D500B064F6 /* SpellbookCell.xib in Resources */,
+				785B049017C2C4C800B064F6 /* lightning-animation.plist in Resources */,
+				785B049317C2C4E200B064F6 /* lightning.png in Resources */,
+				785B049417C2C4E200B064F6 /* vine.png in Resources */,
+				780A234E17C3C18A00EE3BAA /* cast-diagram@2x.png in Resources */,
+				780A235017C3C1A900EE3BAA /* cast-diagram.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2473,6 +2623,14 @@
 				7860683317BBD3D1004D2E68 /* SpriteCache.m in Sources */,
 				787E1C3117BBFC000092F5D6 /* OLSprite.m in Sources */,
 				7892EF9A17BE66E100F9A89D /* WarningCell.m in Sources */,
+				7842FBCB17C27EAE0050A858 /* SpellbookViewController.m in Sources */,
+				785B045C17C2B16700B064F6 /* SpellRecord.m in Sources */,
+				785B045F17C2B17F00B064F6 /* SpellbookService.m in Sources */,
+				785B046317C2BA3100B064F6 /* SpellbookDetailsViewController.m in Sources */,
+				785B048C17C2C0A500B064F6 /* SpellbookCell.m in Sources */,
+				780A234617C3BBA000EE3BAA /* UIImage+MonoImage.m in Sources */,
+				780A234917C3BDFF00EE3BAA /* SpellbookProgressView.m in Sources */,
+				780A234C17C3BE1900EE3BAA /* SpellbookCastDiagramView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2672,6 +2830,7 @@
 				7842FB8217C274E40050A858 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		78F6B1DE1746AD8900AA070D /* Build configuration list for PBXProject "WizardWar" */ = {
 			isa = XCConfigurationList;

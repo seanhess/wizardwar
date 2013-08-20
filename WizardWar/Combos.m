@@ -62,11 +62,7 @@
 
 +(NSArray*)allSpellClasses {
     return @[
-       [SpellFailChicken class],
-       [SpellFailHotdog class],
-       [SpellFailRainbow class],
-       [SpellFailTeddy class],
-       [SpellFailUndies class],
+       [SpellLightningOrb class],
        
        [SpellFirewall class],
        [SpellInvisibility class],
@@ -84,8 +80,15 @@
        [SpellLevitate class],
        [SpellSleep class],
        [SpellCheeseCaptainPlanet class],
+       
+       [SpellFailChicken class],
+       [SpellFailHotdog class],
+       [SpellFailRainbow class],
+       [SpellFailTeddy class],
+       [SpellFailUndies class],
+       
 
-       [SpellLightningOrb class],
+
    ];
 
 }

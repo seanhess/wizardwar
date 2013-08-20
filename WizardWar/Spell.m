@@ -176,7 +176,12 @@
 }
 
 +(Spell*)fromType:(NSString*)type {
-    return [NSClassFromString(type) new];
+    Class SpellClass = [self classFromType:type];
+    return [SpellClass new];
+}
+
++(Class)classFromType:(NSString*)type {
+    return NSClassFromString(type);
 }
 
 

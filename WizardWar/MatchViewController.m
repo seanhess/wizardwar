@@ -33,6 +33,7 @@
 #import "AppStyle.h"
 #import "HelpViewController.h"
 #import "ChallengeService.h"
+#import "SpellbookService.h"
 
 @interface MatchViewController () <HelpDelegate>
 @property (strong, nonatomic) PentagramViewController * pentagram;
@@ -226,14 +227,13 @@
     
     else if (self.match.status == MatchStatusEnded) {
         self.message.alpha = 1.0;
+        BOOL didWin = (self.match.currentWizard.state != WizardStatusDead);
         if (self.match.currentWizard.state == WizardStatusDead) {
             self.message.textColor = [UIColor colorFromRGB:0xB02410];
             self.message.text = @"DEATH!";
             self.subMessage.alpha = 1.0;
             self.subMessage.text = @"(YOU LOSE)";
             [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"YouLose2.mp3" loop:NO];
-            if (self.challenge)
-                [self.delegate didFinishChallenge:self.challenge didWin:NO];
         }
         
         else {
@@ -241,9 +241,12 @@
             self.message.text = @"YOU WON!";
             self.subMessage.alpha = 0.0;
             [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"YouWon.mp3" loop:NO];
-            if (self.challenge)
-                [self.delegate didFinishChallenge:self.challenge didWin:YES];
         }
+        
+        if (self.challenge)
+            [self.delegate didFinishChallenge:self.challenge didWin:didWin];
+        
+        [SpellbookService.shared finishedMatch:self.match.matchId];
         
         [self showEndButtons];
     }
@@ -351,12 +354,14 @@
 -(void)didCastSpell:(Spell *)spell;
 {
     if (spell) {
-        // now, disable the basturd
         BOOL success = [self.match castSpell:spell];
-        if (success)
+        if (success) {
             [self.pentagram delayCast:spell.castDelay];
-        else
+            [SpellbookService.shared mainPlayerCastSpell:spell inMatch:self.match.matchId];
+        }
+        else {
             [self.pentagram attemptedCastButFailedBecauseOfSleep];
+        }
     }
 }
 
