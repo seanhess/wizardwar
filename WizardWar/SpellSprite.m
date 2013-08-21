@@ -11,17 +11,9 @@
 #import "SpellEarthwall.h"
 #import "SpellVine.h"
 #import "SpellMonster.h"
-#import "SpellBubble.h"
 #import "SpellIcewall.h"
-#import "SpellWindblast.h"
-#import "SpellHeal.h"
-#import "SpellLevitate.h"
-#import "SpellInvisibility.h"
 #import "SpellFirewall.h"
 #import "SpellFist.h"
-#import "SpellHelmet.h"
-#import "SpellSleep.h"
-#import "SpellLightningOrb.h"
 #import "SpellEffectService.h"
 
 #import "SpellEffect.h"
@@ -334,10 +326,6 @@
 
 +(BOOL)isSingleImage:(Spell*)spell {
     return ([spell isAnyType:@[Fist, Helmet, Sleep, Rainbow, Hotdog, Teddy, CaptainPlanet, Undies]]);
-}
-
-+(BOOL)isNoRender:(Spell*)spell {
-    return (spell.class == SpellInvisibility.class || spell.class == SpellHeal.class || spell.class == SpellLevitate.class);
 }
 
 +(CCSpriteFrame*)singleImageFrame:(Spell*)spell {

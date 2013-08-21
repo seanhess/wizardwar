@@ -9,20 +9,11 @@
 #import "NSArray+Functional.h"
 
 #import "SpellEarthwall.h"
-#import "SpellBubble.h"
 #import "SpellMonster.h"
 #import "SpellVine.h"
-#import "SpellWindblast.h"
 #import "SpellIcewall.h"
-#import "SpellInvisibility.h"
 #import "SpellFirewall.h"
 #import "SpellFist.h"
-#import "SpellHelmet.h"
-#import "SpellHeal.h"
-#import "SpellLevitate.h"
-#import "SpellSleep.h"
-#import "SpellLightningOrb.h"
-
 #import "SpellFailRainbow.h"
 
 #import "PEApply.h"
@@ -116,20 +107,60 @@
     captain.damage = 0;
     captain.speed = 18;
     
-    SpellInfo * lightning = [SpellInfo type:Lightning class:[SpellLightningOrb class]];
+    SpellInfo * lightning = [SpellInfo type:Lightning];
+    lightning.heavy = NO;
+    lightning.name = @"Lightning Orb";
+    
+    SpellInfo * helmet = [SpellInfo type:Helmet];
+    helmet.speed = 0;
+    helmet.damage = 0;
+    helmet.targetSelf = YES;
+    helmet.name = @"Mighty Helmet";
+    
+    SpellInfo * bubble = [SpellInfo type:Bubble];
+    bubble.name = @"Bubble";
+    bubble.damage = 0;
+    bubble.heavy = NO;
+    bubble.speed = 20;
+    
+    SpellInfo * windblast = [SpellInfo type:Windblast];
+    windblast.name = @"Wind Blast";
+    windblast.speed = 60;
+    windblast.damage = 0;
+    windblast.heavy = NO;
+    windblast.castDelay = 0.3;
+    
+    
+    SpellInfo * invisibility = [SpellInfo type:Invisibility];
+    invisibility.name = @"Invisibility";
+    invisibility.speed = 0;
+    invisibility.damage = 0;
+    invisibility.targetSelf = YES;
+    
+    SpellInfo * heal = [SpellInfo type:Heal];
+    heal.name = @"Heal";
+    heal.speed = 0;
+    heal.damage = 0;
+    heal.targetSelf = YES;
+    
+    SpellInfo * levitate = [SpellInfo type:Levitate];
+    levitate.name = @"Levitate";
+    levitate.speed = 0;
+    levitate.damage = 0;
+    levitate.targetSelf = YES;
+    
+    SpellInfo * sleep = [SpellInfo type:Sleep];
+    sleep.name = @"Sleep";
+    sleep.damage = 0;
+    sleep.heavy = NO;
+    
+    
     SpellInfo * firewall = [SpellInfo type:Firewall class:[SpellFirewall class]];
-    SpellInfo * invisibility = [SpellInfo type:Invisibility class:[SpellInvisibility class]];
-    SpellInfo * heal = [SpellInfo type:Heal class:[SpellHeal class]];
     SpellInfo * earthwall = [SpellInfo type:Earthwall class:[SpellEarthwall class]];
     SpellInfo * icewall = [SpellInfo type:Icewall class:[SpellIcewall class]];
-    SpellInfo * windblast = [SpellInfo type:Windblast class:[SpellWindblast class]];
     SpellInfo * monster = [SpellInfo type:Monster class:[SpellMonster class]];
-    SpellInfo * bubble = [SpellInfo type:Bubble class:[SpellBubble class]];
     SpellInfo * vine = [SpellInfo type:Vine class:[SpellVine class]];
     SpellInfo * fist = [SpellInfo type:Fist class:[SpellFist class]];
-    SpellInfo * helmet = [SpellInfo type:Helmet class:[SpellHelmet class]];
-    SpellInfo * levitate = [SpellInfo type:Levitate class:[SpellLevitate class]];
-    SpellInfo * sleep = [SpellInfo type:Sleep class:[SpellSleep class]];
     SpellInfo * rainbow = [SpellInfo type:Rainbow class:[SpellFailRainbow class]];
     
     self.allSpellTypes = @[

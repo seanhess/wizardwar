@@ -7,7 +7,6 @@
 //
 
 #import "SpellFist.h"
-#import "SpellHelmet.h"
 
 #define FIST_TIME_DROP_WAIT 2.0
 #define FIST_TIME_DROP_DURATION 1.0

@@ -10,7 +10,6 @@
 #import "cocos2d.h"
 #import "CCLabelTTF.h"
 #import <ReactiveCocoa.h>
-#import "SpellInvisibility.h"
 #import "PEInvisible.h"
 #import "PEHelmet.h"
 #import "PEHeal.h"

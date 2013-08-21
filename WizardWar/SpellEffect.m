@@ -7,9 +7,9 @@
 //
 
 #import "SpellEffect.h"
-#import "SpellBubble.h"
 #import "PESleep.h"
 #import "Spell.h"
+#import "SpellInfo.h"
 
 @implementation SpellEffect
 -(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick {
@@ -69,14 +69,14 @@
 
 @implementation SECarry
 +(BOOL)isCarried:(Spell*)spell {
-    if ([spell.linkedSpell isKindOfClass:SpellBubble.class] && spell.linkedSpell.status != SpellStatusDestroyed) return YES;
+    if ([spell.linkedSpell isType:Bubble] && spell.linkedSpell.status != SpellStatusDestroyed) return YES;
     return NO;
 }
 
 -(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick {
 //    if ([SECarry isCarried:spell]) return NO;
     
-    if ([spell.linkedSpell isKindOfClass:SpellBubble.class] && spell.linkedSpell.createdTick >= otherSpell.createdTick) return NO;
+    if ([spell.linkedSpell isType:Bubble] && spell.linkedSpell.createdTick >= otherSpell.createdTick) return NO;
     
     // TODO: make sure they don't hit multiple times, if already carried
     if (spell.position == otherSpell.position && spell.speed == otherSpell.speed && spell.direction == otherSpell.direction)

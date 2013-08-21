@@ -8,7 +8,6 @@
 
 #import "PEHelmet.h"
 #import "SpellFist.h"
-#import "SpellLightningOrb.h"
 #import "SpellEffectService.h"
 
 @implementation PEHelmet

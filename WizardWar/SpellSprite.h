@@ -16,7 +16,6 @@
 @property (nonatomic, strong) NSString * explodeAnimationName;
 
 +(BOOL)isSingleImage:(Spell*)spell;
-+(BOOL)isNoRender:(Spell*)spell;
 +(NSString*)sheetName:(Spell*)spell;
 +(NSString*)sheetNameForType:(NSString*)type;
 +(NSString*)castAnimationName:(Spell*)spell;
