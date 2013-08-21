@@ -8,6 +8,6 @@
 
 #import "Spell.h"
 
-@interface SpellFailUndies : Spell
+@interface SpellFailUndies : Spell 
 
 @end

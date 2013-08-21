@@ -133,6 +133,7 @@
 		781B4CA217839C00002551CA /* ZipUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 781B4C4917839C00002551CA /* ZipUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		781BE0D717C50FD6005735A9 /* PENone.m in Sources */ = {isa = PBXBuildFile; fileRef = 781BE0D617C50FD6005735A9 /* PENone.m */; };
 		781BE0DA17C53544005735A9 /* SpellInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = 781BE0D917C53541005735A9 /* SpellInteraction.m */; };
+		781BE0DD17C5439B005735A9 /* SpellInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 781BE0DC17C54398005735A9 /* SpellInfo.m */; };
 		782BC1AB17B90DD100EB7FC6 /* DebugSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 782BC1AA17B90DD100EB7FC6 /* DebugSprite.m */; };
 		782BC1B817B94F5F00EB7FC6 /* SpellCheeseCaptainPlanet.m in Sources */ = {isa = PBXBuildFile; fileRef = 782BC1B717B94F5E00EB7FC6 /* SpellCheeseCaptainPlanet.m */; };
 		782BC1BA17B9566F00EB7FC6 /* captain-planet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 782BC1B917B9566F00EB7FC6 /* captain-planet.mp3 */; };
@@ -393,7 +394,6 @@
 		78F6B3C41746B29C00AA070D /* WizardDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3C31746B29C00AA070D /* WizardDirector.m */; };
 		78F6B3C71746C4D300AA070D /* NSArray+Functional.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3C61746C4D300AA070D /* NSArray+Functional.m */; };
 		78F6B3CB1746D77B00AA070D /* Units.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3CA1746D77B00AA070D /* Units.m */; };
-		78F6B3CF1746E05E00AA070D /* SpellFireball.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3CE1746E05E00AA070D /* SpellFireball.m */; };
 		78F6B3D81746E6D300AA070D /* SpellEarthwall.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3D71746E6D100AA070D /* SpellEarthwall.m */; };
 		78F97FDE1758F7F500764D70 /* PracticeModeAIService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F97FDD1758F7F500764D70 /* PracticeModeAIService.m */; };
 		F283A922174807A40068EEB2 /* LifeIndicatorNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F283A921174807A40068EEB2 /* LifeIndicatorNode.m */; };
@@ -664,6 +664,8 @@
 		781BE0D617C50FD6005735A9 /* PENone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PENone.m; sourceTree = "<group>"; };
 		781BE0D817C5353F005735A9 /* SpellInteraction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellInteraction.h; sourceTree = "<group>"; };
 		781BE0D917C53541005735A9 /* SpellInteraction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellInteraction.m; sourceTree = "<group>"; };
+		781BE0DB17C54395005735A9 /* SpellInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellInfo.h; sourceTree = "<group>"; };
+		781BE0DC17C54398005735A9 /* SpellInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellInfo.m; sourceTree = "<group>"; };
 		782BC1A917B90DD100EB7FC6 /* DebugSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugSprite.h; sourceTree = "<group>"; };
 		782BC1AA17B90DD100EB7FC6 /* DebugSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugSprite.m; sourceTree = "<group>"; };
 		782BC1B617B94F5E00EB7FC6 /* SpellCheeseCaptainPlanet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellCheeseCaptainPlanet.h; sourceTree = "<group>"; };
@@ -1060,8 +1062,6 @@
 		78F6B3C61746C4D300AA070D /* NSArray+Functional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+Functional.m"; path = "../WizardWar/NSArray+Functional.m"; sourceTree = "<group>"; };
 		78F6B3C91746D77B00AA070D /* Units.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Units.h; sourceTree = "<group>"; };
 		78F6B3CA1746D77B00AA070D /* Units.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Units.m; sourceTree = "<group>"; };
-		78F6B3CD1746E05E00AA070D /* SpellFireball.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellFireball.h; sourceTree = "<group>"; };
-		78F6B3CE1746E05E00AA070D /* SpellFireball.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellFireball.m; sourceTree = "<group>"; };
 		78F6B3D61746E6D000AA070D /* SpellEarthwall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellEarthwall.h; sourceTree = "<group>"; };
 		78F6B3D71746E6D100AA070D /* SpellEarthwall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellEarthwall.m; sourceTree = "<group>"; };
 		78F97FDC1758F7F500764D70 /* PracticeModeAIService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeModeAIService.h; sourceTree = "<group>"; };
@@ -2093,6 +2093,8 @@
 			children = (
 				78F6B3A01746B25F00AA070D /* Spell.h */,
 				78F6B3A11746B25F00AA070D /* Spell.m */,
+				781BE0DB17C54395005735A9 /* SpellInfo.h */,
+				781BE0DC17C54398005735A9 /* SpellInfo.m */,
 				78306BB417AADBF600487B16 /* SpellFailHotdog.h */,
 				78306BB517AADBF700487B16 /* SpellFailHotdog.m */,
 				78306BB717AADC0900487B16 /* SpellFailTeddy.h */,
@@ -2107,8 +2109,6 @@
 				782BC1B717B94F5E00EB7FC6 /* SpellCheeseCaptainPlanet.m */,
 				786246421767C959001904AC /* SpellWall.h */,
 				786246431767C959001904AC /* SpellWall.m */,
-				78F6B3CD1746E05E00AA070D /* SpellFireball.h */,
-				78F6B3CE1746E05E00AA070D /* SpellFireball.m */,
 				782BC1BB17B9595700EB7FC6 /* SpellLightningOrb.h */,
 				782BC1BC17B9595700EB7FC6 /* SpellLightningOrb.m */,
 				7862464B1767CF62001904AC /* SpellFist.h */,
@@ -2445,7 +2445,6 @@
 				78F6B3C41746B29C00AA070D /* WizardDirector.m in Sources */,
 				78F6B3C71746C4D300AA070D /* NSArray+Functional.m in Sources */,
 				78F6B3CB1746D77B00AA070D /* Units.m in Sources */,
-				78F6B3CF1746E05E00AA070D /* SpellFireball.m in Sources */,
 				78F6B3D81746E6D300AA070D /* SpellEarthwall.m in Sources */,
 				6F0B2FA9174750FF00CFC092 /* PentagramViewController.m in Sources */,
 				6F0B2FAA174750FF00CFC092 /* PentEmblem.m in Sources */,
@@ -2635,6 +2634,7 @@
 				780A235817C40C8600EE3BAA /* SpellEffect.m in Sources */,
 				781BE0D717C50FD6005735A9 /* PENone.m in Sources */,
 				781BE0DA17C53544005735A9 /* SpellInteraction.m in Sources */,
+				781BE0DD17C5439B005735A9 /* SpellInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,15 +6,9 @@
 //  Copyright (c) 2013 The LAB. All rights reserved.
 //
 
-#import "SpellIcewall.h"
-#import "SpellFireball.h"
-#import "SpellEarthwall.h"
-#import "SpellMonster.h"
-#import "SpellBubble.h"
 #import "SpellVine.h"
-#import "SpellWindblast.h"
+#import "SpellWall.h"
 #import "Tick.h"
-#import "SpellFirewall.h"
 
 #define TIME_UNTIL_ATTACK_START 1.5
 #define TIME_UNTIL_ATTACK_END 3

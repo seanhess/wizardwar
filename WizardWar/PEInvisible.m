@@ -9,6 +9,7 @@
 #import "PEInvisible.h"
 #import "Spell.h"
 #import "SpellFist.h"
+#import "SpellEffectService.h"
 
 @implementation PEInvisible
 
@@ -25,7 +26,7 @@
 -(BOOL)interceptSpell:(Spell *)spell onWizard:(Wizard *)wizard interval:(NSTimeInterval)interval currentTick:(NSInteger)currentTick {
     // make everything pass through me except for fist
     // Umm, this doesn't make it pass through, it makes it hit me :(
-    if ([self isActive:wizard interval:interval tick:currentTick] && ![spell isType:[SpellFist class]]) {
+    if ([self isActive:wizard interval:interval tick:currentTick] && ![spell.type isEqualToString:Fist]) {
         NSLog(@"IS ACTIVE %@ %i %i", wizard, currentTick, wizard.effectStartTick);
         return YES;
     }

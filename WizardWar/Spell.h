@@ -51,15 +51,12 @@ typedef enum SpellStatus {
 @property (nonatomic) float startOffsetPosition;
 
 -(void)initCaster:(Wizard*)player tick:(NSInteger)tick;
--(BOOL)isType:(Class)class;
 
 -(BOOL)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval;
 
 -(BOOL)hitsPlayer:(Wizard*)player duringInterval:(NSTimeInterval)dt;
 -(BOOL)didHitSpell:(Spell*)spell duringInterval:(NSTimeInterval)dt;
 +(Spell*)fromType:(NSString*)type;
-+(Class)classFromType:(NSString*)type;
-+(NSString*)type;
 -(float)moveDx:(NSTimeInterval)dt;
 -(float)move:(NSTimeInterval)dt;
 -(float)moveFromReferencePosition:(NSTimeInterval)dt;

@@ -7,13 +7,6 @@
 //
 
 #import "SpellLightningOrb.h"
-#import "SpellEarthwall.h"
-#import "SpellWindblast.h"
-#import "SpellIcewall.h"
-#import "SpellBubble.h"
-#import "SpellMonster.h"
-#import "SpellFireball.h"
-#import "SpellFirewall.h"
 
 @implementation SpellLightningOrb
 

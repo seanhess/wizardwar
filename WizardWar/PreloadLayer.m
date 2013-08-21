@@ -14,6 +14,8 @@
 #import "SpellVine.h"
 #import "Combos.h"
 #import "SpellsLayer.h"
+#import "SpellEffectService.h"
+#import "SpellInfo.h"
 
 @implementation PreloadLayer
 
@@ -33,13 +35,13 @@
     
     self.position = ccp(-1000, -1000);
     
-    NSArray * spellClasses = [Combos allSpellClasses];
+    NSArray * spellTypes = [SpellEffectService.shared allSpellTypes];
     
     SpellsLayer * spells = [SpellsLayer new];
     [self addChild:spells];
     
-    for (Class SpellType in spellClasses) {
-        Spell * spell = [SpellType new];
+    for (SpellInfo* spellType in spellTypes) {
+        Spell * spell = [Spell fromType:spellType.type];
         NSLog(@"PRELOAD %@", spell.type);
         SpellSprite * sprite = [[SpellSprite alloc] initWithSpell:spell units:nil];
         [spells addSpell:sprite];

@@ -25,8 +25,6 @@
 @property (nonatomic, readonly) BOOL sameSpellTwice;
 @property (nonatomic, readonly) BOOL hasElements;
 
-+(NSArray*)allSpellClasses;
-
 -(void)moveToElement:(ElementType)element;
 -(void)releaseElements;
 -(void)reset;

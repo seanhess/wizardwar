@@ -17,17 +17,7 @@
 #import "Elements.h"
 
 #import "SimpleAudioEngine.h"
-#import "SpellFireball.h"
-#import "SpellEarthwall.h"
-#import "SpellBubble.h"
-#import "SpellMonster.h"
-#import "SpellVine.h"
-#import "SpellWindblast.h"
-#import "SpellIcewall.h"
-#import "SpellFailRainbow.h"
-#import "SpellFailChicken.h"
-#import "SpellFirewall.h"
-#import "SpellCheeseCaptainPlanet.h"
+#import "SpellEffectService.h"
 
 #import "NSArray+Functional.h"
 #import "LifeIndicatorNode.h"
@@ -158,33 +148,40 @@
 -(void)didAddSpell:(Spell *)spell {
     SpellSprite * sprite = [[SpellSprite alloc] initWithSpell:spell units:self.units];
     [self.spells addSpell:sprite];
-    
-    if([spell isMemberOfClass: [SpellFireball class]]){
+
+    if(isSpellType(spell, Fireball)) {
         [[SimpleAudioEngine sharedEngine] playEffect:@"fireball.mp3"];
-    } else if([spell isMemberOfClass: [SpellEarthwall class]]){
+    }
+    else if(isSpellType(spell, Earthwall)) {
         [[SimpleAudioEngine sharedEngine] playEffect:@"earthwall.mp3"];
-    } else if ([spell isKindOfClass:[SpellFirewall class]]) {
+    }
+    else if (isSpellType(spell, Icewall)) {
         [[SimpleAudioEngine sharedEngine] playEffect:@"icewall.mp3"];
-    } else if([spell isMemberOfClass: [SpellVine class]]){
+    }
+    else if(isSpellType(spell, Vine)) {
         [[SimpleAudioEngine sharedEngine] playEffect:@"vine.mp3"];
-    } else if([spell isMemberOfClass: [SpellBubble class]]){
+    }
+    else if(isSpellType(spell, Bubble)) {
         [[SimpleAudioEngine sharedEngine] playEffect:@"bubble.mp3"];
-    } else if([spell isMemberOfClass: [SpellIcewall class]]){
-        [[SimpleAudioEngine sharedEngine] playEffect:@"icewall.mp3"];
-    } else if([spell isMemberOfClass: [SpellMonster class]]){
+    }
+    else if(isSpellType(spell, Monster)) {
         [[SimpleAudioEngine sharedEngine] playEffect:@"monster.mp3"];
-    } else if([spell isMemberOfClass: [SpellWindblast class]]){
+    }
+    else if(isSpellType(spell, Windblast)) {
         [[SimpleAudioEngine sharedEngine] playEffect:@"windblast.mp3"];
-    } else if (spell.class == SpellFailRainbow.class) {
+    }
+    else if (isSpellType(spell, Rainbow)) {
         [[SimpleAudioEngine sharedEngine] playEffect:@"double-rainbow.mp3"];
-    } else if ([spell isKindOfClass:[SpellCheeseCaptainPlanet class]]) {
+    }
+    else if (isSpellType(spell, CaptainPlanet)) {
         [[SimpleAudioEngine sharedEngine] playEffect:@"captain-planet.mp3"];        
-    } else if (spell.class == SpellFailChicken.class) {
+    }
+    else if (isSpellType(spell, Chicken)) {
         [[SimpleAudioEngine sharedEngine] playEffect:@"chicken.mp3"];
         
-    } else {
-        // This will help us remember to add sounds!
-//        [[SimpleAudioEngine sharedEngine] playEffect:@"chicken.mp3"];
+    }
+    else {
+        
     }
 //    if ([spell isKindOfClass:SpellFail.class]) {
 //        [[SimpleAudioEngine sharedEngine] playEffect:@"buzzer.mp3"];

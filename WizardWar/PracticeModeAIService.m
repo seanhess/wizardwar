@@ -8,25 +8,10 @@
 
 #import "PracticeModeAIService.h"
 #import "Spell.h"
-#import "SpellFireball.h"
-#import "SpellEarthwall.h"
-#import "SpellBubble.h"
-#import "SpellMonster.h"
-#import "SpellVine.h"
-#import "SpellWindblast.h"
-#import "SpellIcewall.h"
-#import "SpellFirewall.h"
-#import "SpellInvisibility.h"
-#import "SpellFist.h"
-#import "SpellHelmet.h"
-#import "SpellLevitate.h"
-#import "SpellSleep.h"
-#import "SpellFailHotdog.h"
 #import "NSArray+Functional.h"
 #import "UIColor+Hex.h"
-#import "SpellLightningOrb.h"
-
-#import "SpellCheeseCaptainPlanet.h"
+#import "SpellEffectService.h"
+#import "SpellWall.h"
 
 @interface PracticeModeAIService ()
 @property (nonatomic) NSInteger lastSpellTick;
@@ -62,30 +47,30 @@
         self.wizard = wizard;
                 
         self.allOffensive = @[
-            [SpellFireball class], [SpellFireball class],
-            [SpellWindblast class],
-            [SpellMonster class], [SpellMonster class],
-            [SpellBubble class],
-            [SpellLightningOrb class], [SpellLightningOrb class],
-            [SpellVine class],
-            [SpellFist class],
-            [SpellSleep class],
+            Fireball, Fireball,
+            Windblast,
+            Monster, Monster,
+            Bubble,
+            Lightning,
+            Vine,
+            Fist,
+            Sleep,
         ];
         
         self.allDefensive = @[
-            [SpellEarthwall class],
-            [SpellIcewall class],
-            [SpellFirewall class],
-            [SpellHelmet class],
-            [SpellLevitate class],            
+            Earthwall,
+            Icewall,
+            Firewall,
+            Helmet,
+            Levitate,
         ];
         
         // No heal or invisibility because he's not patient tnough to let it finish
         
 #ifdef DEBUG
 //        self.stop = YES;
-        self.allOffensive = @[[SpellVine class]];
-        self.allDefensive = @[[SpellEarthwall class]];
+        self.allOffensive = @[Vine];
+        self.allDefensive = @[Earthwall];
 #endif
     }
     return self;
@@ -100,7 +85,8 @@
 }
 
 -(void)castSpell:(NSArray*)fromList {
-    Class SpellType = [fromList randomItem];
+    NSString * type = [fromList randomItem];
+    Class SpellType = [SpellEffectService.shared classForType:type];
     self.lastCastSpell = [SpellType new];
     [self.delegate aiDidCastSpell:self.lastCastSpell];
 #ifdef DEBUG

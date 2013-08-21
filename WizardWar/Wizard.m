@@ -8,7 +8,6 @@
 
 #import "Wizard.h"
 #import "Spell.h"
-#import "SpellFireball.h"
 #import "UIColor+Hex.h"
 #import "NSArray+Functional.h"
 

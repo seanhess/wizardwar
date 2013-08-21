@@ -7,7 +7,6 @@
 //
 
 #import "Combos.h"
-#import "SpellFireball.h"
 #import "SpellEarthwall.h"
 #import "SpellBubble.h"
 #import "SpellMonster.h"
@@ -32,6 +31,7 @@
 #import "SpellCheeseCaptainPlanet.h"
 
 #import "NSArray+Functional.h"
+#import "SpellEffectService.h"
 
 @interface Combos ()
 @property (strong, nonatomic) NSDictionary * hitCombos;
@@ -57,39 +57,6 @@
     self.lastElement = element;
     [self.allElements addObject:@(element)];
     self.hintedSpell = [self spellForElements:self.allElements];
-}
-
-+(NSArray*)allSpellClasses {
-    return @[
-       [SpellLightningOrb class],
-       
-       [SpellFirewall class],
-       [SpellInvisibility class],
-       [SpellHeal class],
-       
-       [SpellFireball class],
-       [SpellEarthwall class],
-       [SpellIcewall class],
-       [SpellWindblast class],
-       [SpellMonster class],
-       [SpellBubble class],
-       [SpellVine class],
-       [SpellFist class],
-       [SpellHelmet class],
-       [SpellLevitate class],
-       [SpellSleep class],
-       [SpellCheeseCaptainPlanet class],
-       
-       [SpellFailChicken class],
-       [SpellFailHotdog class],
-       [SpellFailRainbow class],
-       [SpellFailTeddy class],
-       [SpellFailUndies class],
-       
-
-
-   ];
-
 }
 
 -(void)releaseElements {
@@ -161,23 +128,23 @@
     
     // 3 combos
     
-    hitCombos[@"AEF__"] = [SpellFirewall class];
-    hitCombos[@"AE_H_"] = [SpellHeal class];
-    hitCombos[@"AE__W"] = [SpellLightningOrb class]; // Tornado, Geyser, Sleep,
-    hitCombos[@"A_FH_"] = [SpellFireball class];
-    hitCombos[@"A_F_W"] = [SpellWindblast class];
-    hitCombos[@"A__HW"] = [SpellLevitate class];
-    hitCombos[@"_EFH_"] = [SpellHelmet class];
-    hitCombos[@"_EF_W"] = [SpellEarthwall class];
-    hitCombos[@"_E_HW"] = [SpellIcewall class]; // hurts monsters. goes down. 
-    hitCombos[@"__FHW"] = [SpellBubble class];
+    hitCombos[@"AEF__"] = Firewall;
+    hitCombos[@"AE_H_"] = Heal;
+    hitCombos[@"AE__W"] = Lightning;
+    hitCombos[@"A_FH_"] = Fireball;
+    hitCombos[@"A_F_W"] = Windblast;
+    hitCombos[@"A__HW"] = Levitate;
+    hitCombos[@"_EFH_"] = Helmet;
+    hitCombos[@"_EF_W"] = Earthwall;
+    hitCombos[@"_E_HW"] = Icewall;
+    hitCombos[@"__FHW"] = Bubble;
     
     // 4 combos
-    hitCombos[@"AEFH_"] = [SpellSleep class];
-    hitCombos[@"AEF_W"] = [SpellVine class];
-    hitCombos[@"AE_HW"] = [SpellFist class];
-    hitCombos[@"A_FHW"] = [SpellInvisibility class];
-    hitCombos[@"_EFHW"] = [SpellMonster class];
+    hitCombos[@"AEFH_"] = Sleep;
+    hitCombos[@"AEF_W"] = Vine;
+    hitCombos[@"AE_HW"] = Fist;
+    hitCombos[@"A_FHW"] = Invisibility;
+    hitCombos[@"_EFHW"] = Monster;
     
     // 5 combos
     // 5-combos are all unique.
@@ -278,9 +245,10 @@
     
     // Hit combos catch first (they are most common)
     NSString * key = [Combos hitKey:elements];
-    Class SpellClass = self.hitCombos[key];
+    NSString * type = self.hitCombos[key];
     Spell * spell = nil;
-    if (SpellClass) {
+    if (type) {
+        Class SpellClass = [SpellEffectService.shared classForType:type];
         spell = [SpellClass new];
     }
     

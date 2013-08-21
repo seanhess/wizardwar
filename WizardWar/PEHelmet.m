@@ -9,13 +9,14 @@
 #import "PEHelmet.h"
 #import "SpellFist.h"
 #import "SpellLightningOrb.h"
+#import "SpellEffectService.h"
 
 @implementation PEHelmet
 
 // Hmm, intercept needs to be able to allow it to pass through!
 -(BOOL)interceptSpell:(Spell *)spell onWizard:(Wizard *)wizard interval:(NSTimeInterval)interval currentTick:(NSInteger)currentTick {
     // make everything pass through me except for fist
-    if ([spell isType:[SpellFist class]]) {
+    if ([spell.type isEqualToString:Fist]) {
         wizard.effect = nil;                // the helmet is broken!
         // it wasn't fun that way. Better that it lasts longer. You're immune to fists
         // It's sort of trick question

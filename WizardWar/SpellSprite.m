@@ -8,7 +8,6 @@
 
 #import "SpellSprite.h"
 #import "cocos2d.h"
-#import "SpellFireball.h"
 #import "SpellEarthwall.h"
 #import "SpellVine.h"
 #import "SpellMonster.h"
@@ -23,6 +22,7 @@
 #import "SpellHelmet.h"
 #import "SpellSleep.h"
 #import "SpellLightningOrb.h"
+#import "SpellEffectService.h"
 
 #import "SpellCheeseCaptainPlanet.h"
 
@@ -206,7 +206,7 @@
         y -= 50;
     }
     
-    else if ([self.spell isType:[SpellHelmet class]]) {
+    else if ([self.spell.type isEqualToString:Helmet]) {
         y += 30;
     }
     
@@ -214,7 +214,7 @@
         y += 60;
     }
     
-    else if ([self.spell isType:[SpellVine class]]) {
+    else if ([self.spell.type isEqualToString:Vine]) {
         y += 30;
     }
     
@@ -226,11 +226,11 @@
     
     CGFloat x = [self.units toX:self.spell.position];
     
-    if ([self.spell isType:[SpellHelmet class]]) {
+    if ([self.spell.type isEqualToString:Helmet]) {
         x -= 15*self.spell.direction;
     }
     
-    else if ([self.spell isType:[SpellVine class]]) {
+    else if ([self.spell.type isEqualToString:Vine]) {
         x -= 15*self.spell.direction;
     }
     
@@ -251,7 +251,7 @@
 }
 
 - (void)renderAltitude {
-    if ([self.spell isType:[SpellFist class]]) {
+    if ([self.spell.type isEqualToString:Fist]) {
         
         if (self.spell.altitude == 2) {
             [self runAction:[CCMoveTo actionWithDuration:0.5 position:ccp(self.spellX, self.spellY)]];
@@ -361,84 +361,13 @@
     return [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName];
 }
 
-+(NSString*)sheetNameForClass:(Class)spellClass {
-    if (spellClass == [SpellEarthwall class]) {
-        return @"earthwall";
-    }
-    
-    else if (spellClass == [SpellVine class]) {
-        return @"vine";
-    }
-    
-    else if (spellClass == [SpellMonster class]) {
-        return @"ogre";
-    }
-    
-    else if (spellClass == [SpellBubble class]) {
-        return @"bubble";
-    }
-    
-    else if (spellClass == [SpellIcewall class]) {
-        return @"icewall";
-    }
-    
-    else if (spellClass == [SpellWindblast class]) {
-        return @"windblast";
-    }
-    
-    else if (spellClass == [SpellFirewall class]) {
-        return @"firewall";
-    }
-    
-    else if (spellClass == [SpellFist class]) {
-        return @"fist";
-    }
-    
-    else if (spellClass == [SpellHelmet class]) {
-        return @"helmet";
-    }
-    
-    else if (spellClass == [SpellSleep class]) {
-        return @"pillow";
-    }
-    
-    else if (spellClass == [SpellFailChicken class]) {
-        return @"chicken";
-    }
-    
-    else if (spellClass == [SpellFailHotdog class]) {
-        return @"hotdog";
-    }
-    
-    else if (spellClass == [SpellFailRainbow class]) {
-        return @"rainbow";
-    }
-    
-    else if (spellClass == [SpellFailTeddy class]) {
-        return @"teddybear";
-    }
-    
-    else if (spellClass == [SpellFailUndies class]) {
-        return @"wizard-undies";
-    }
-    
-    else if (spellClass == [SpellCheeseCaptainPlanet class]) {
-        return @"captain-planet";
-    }
-    
-    else if (spellClass == [SpellLightningOrb class]) {
-        return @"lightning";
-    }
-    
-    else if (spellClass == [SpellFireball class]) {
-        return @"fireball";
-    }
-    
-    return nil;
+// See SpellEffectService.h, name the sprites to match the type constants there :)
++(NSString*)sheetNameForType:(NSString *)type {
+    return type;
 }
 
 +(NSString*)sheetName:(Spell*)spell {
-    return [self sheetNameForClass:spell.class];
+    return [self sheetNameForType:spell.type];
 }
 
 -(NSString*)sheetName {
@@ -458,7 +387,7 @@
     NSAssert(animation, @"Animation not defined");
     animation.restoreOriginalFrame = NO;
     
-    if (self.spell.class == SpellFireball.class || self.spell.class == SpellBubble.class || self.spell.class == SpellWindblast.class || self.spell.class == SpellMonster.class || self.spell.class == SpellFailChicken.class || self.spell.class == SpellLightningOrb.class) {
+    if (isSpellType(self.spell, Fireball) || self.spell.class == SpellBubble.class || self.spell.class == SpellWindblast.class || self.spell.class == SpellMonster.class || self.spell.class == SpellFailChicken.class || self.spell.class == SpellLightningOrb.class) {
         animation.loops = 10000;
     }
     

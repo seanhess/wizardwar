@@ -10,6 +10,8 @@
 #import "Tick.h"
 #import "PEBasicDamage.h"
 #import "NSArray+Functional.h"
+#import "SpellEffectService.h"
+#import "SpellInfo.h"
 
 @interface Spell ()
 @end
@@ -18,29 +20,27 @@
 
 -(id)init {
     if ((self = [super init])) {
-        self.type = NSStringFromClass([self class]);
-        self.damage = 1; // default value
-        self.speed = 30; // 30 units per second
-        self.strength = 1; // destroyed is read from this
-        self.startOffsetPosition = 1;
-        self.status = SpellStatusPrepare;
-        self.altitude = 0;
-        self.targetSelf = NO;
-        self.heavy = YES;
-        self.castDelay = 0.8;
         
+        // Copy stuff from the spell info
+        SpellInfo * info = [SpellEffectService.shared infoForClass:self.class];
+        self.type = info.type;
+        self.damage = info.damage;
+        self.speed = info.speed;
+        self.strength = info.strength;
+        self.startOffsetPosition = info.startOffsetPosition;
+        self.targetSelf = info.targetSelf;
+        self.heavy = info.heavy;
+        self.castDelay = info.castDelay;
+        self.name = info.name;
+        
+        self.status = SpellStatusPrepare;
         self.spellId = [Spell generateSpellId];
     }
     return self;
 }
 
-+(NSString*)type {
-    return NSStringFromClass(self);
-}
-
 -(NSString*)name {
-    if (!_name)
-        return self.type;
+    if (!_name) return self.type;
     return _name;
 }
 
@@ -87,11 +87,6 @@
     return [NSString stringWithFormat:@"<%@ pos=%i dir=%i status=%i>", self.type, (int)self.position, self.direction, self.status];
 }
 
--(BOOL)isType:(Class)class {
-    NSString * className = NSStringFromClass(class);
-    return [self.type isEqualToString:className];
-}
-
 -(BOOL)hitsPlayer:(Wizard*)player duringInterval:(NSTimeInterval)dt {
     
     if (self.altitude != player.altitude) return NO;
@@ -116,7 +111,7 @@
 // not whether they are about to.
 -(BOOL)didHitSpell:(Spell *)spell duringInterval:(NSTimeInterval)dt {
     
-    NSLog(@"DID HIT SPELL? %@:%i %@:%i", self.name, self.altitude, spell.name, spell.altitude);
+//    NSLog(@"DID HIT SPELL? %@:%i %@:%i", self.name, self.altitude, spell.name, spell.altitude);
     
     if (self.altitude != spell.altitude) return NO;
 
@@ -147,13 +142,9 @@
 }
 
 +(Spell*)fromType:(NSString*)type {
-    Class SpellClass = [self classFromType:type];
-    return [SpellClass new];
+    Class SpellClass = [SpellEffectService.shared classForType:type];
+    Spell * spell = [SpellClass new];
+    return spell;
 }
-
-+(Class)classFromType:(NSString*)type {
-    return NSClassFromString(type);
-}
-
 
 @end

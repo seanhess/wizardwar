@@ -8,7 +8,6 @@
 #import "SpellEffectService.h"
 #import "NSArray+Functional.h"
 
-#import "SpellFireball.h"
 #import "SpellEarthwall.h"
 #import "SpellBubble.h"
 #import "SpellMonster.h"
@@ -43,18 +42,30 @@
 
 #import "SpellEffect.h"
 
+#import "SpellInfo.h"
+
 
 
 
 @interface SpellEffectService ()
-@property (nonatomic, strong) NSMutableDictionary * effects;
-@property (nonatomic, strong) NSMutableDictionary * interactions;
 @property (nonatomic, strong) NSMapTable * spellEffectDefaults;
 @property (nonatomic, strong) NSMapTable * spellInteractions;
 @property (nonatomic, strong) NSMapTable * playerEffects;
+@property (nonatomic, strong) NSMutableDictionary * spellsByType;
+@property (nonatomic, strong) NSMapTable * spellsByClass;
 @end
 
 @implementation SpellEffectService
+
++ (SpellEffectService *)shared {
+    static SpellEffectService *instance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instance = [[SpellEffectService alloc] init];
+    });
+    return instance;
+}
+
 
 -(id)init {
     self = [super init];
@@ -63,37 +74,71 @@
         self.spellInteractions = [NSMapTable mapTableWithKeyOptions:NSMapTableWeakMemory valueOptions:NSMapTableStrongMemory];
         self.playerEffects = [NSMapTable mapTableWithKeyOptions:NSMapTableWeakMemory valueOptions:NSMapTableStrongMemory];
         
+        self.spellsByClass = [NSMapTable mapTableWithKeyOptions:NSMapTableWeakMemory valueOptions:NSMapTableStrongMemory];
+        self.spellsByType = [NSMutableDictionary dictionary];
+        
+        SpellInfo * fireball = [SpellInfo type:Fireball];
+        fireball.name = @"Fireball";
+        fireball.heavy = NO;
+        
+        self.allSpellTypes = @[
+            [SpellInfo type:Lightning class:[SpellLightningOrb class]],
+            [SpellInfo type:Firewall class:[SpellFirewall class]],
+            [SpellInfo type:Invisibility class:[SpellInvisibility class]],
+            [SpellInfo type:Heal class:[SpellHeal class]],
+            fireball,
+            [SpellInfo type:Earthwall class:[SpellEarthwall class]],
+            [SpellInfo type:Icewall class:[SpellIcewall class]],
+            [SpellInfo type:Windblast class:[SpellWindblast class]],
+            [SpellInfo type:Monster class:[SpellMonster class]],
+            [SpellInfo type:Bubble class:[SpellBubble class]],
+            [SpellInfo type:Vine class:[SpellVine class]],
+            [SpellInfo type:Fist class:[SpellFist class]],
+            [SpellInfo type:Helmet class:[SpellHelmet class]],
+            [SpellInfo type:Levitate class:[SpellLevitate class]],
+            [SpellInfo type:Sleep class:[SpellSleep class]],
+            [SpellInfo type:CaptainPlanet class:[SpellCheeseCaptainPlanet class]],
+            [SpellInfo type:Chicken class:[SpellFailChicken class]],
+            [SpellInfo type:Hotdog class:[SpellFailHotdog class]],
+            [SpellInfo type:Rainbow class:[SpellFailRainbow class]],
+            [SpellInfo type:Teddy class:[SpellFailTeddy class]],
+            [SpellInfo type:Undies class:[SpellFailUndies class]],
+        ];
+        
+        
+        SpellInfo * test = [SpellInfo type:Lightning class:[SpellLightningOrb class]];
+        
+        NSLog(@"UMMM %@", test);
+        
+        [self.allSpellTypes forEach:^(SpellInfo*spell) {
+            [self.spellsByType setObject:spell forKey:spell.type];
+            [self.spellsByClass setObject:spell forKey:spell.class];
+        }];
+        
         [self createSpellInteractions];
+        
+        NSLog(@"------ SpellEffectService: loaded -------");
     }
     return self;
 }
 
+-(NSString*)typeForClass:(Class)class {
+    SpellInfo * spell = [self.spellsByClass objectForKey:class];
+    return spell.type;
+}
+
+-(Class)classForType:(NSString*)type {
+    SpellInfo * spell = [self.spellsByType objectForKey:type];
+    return spell.class;
+}
+
+-(SpellInfo*)infoForClass:(Class)class {
+    return [self.spellsByClass objectForKey:class];
+}
+
+
 
 -(void)createSpellInteractions {
-    
-    
-    NSString * Hotdog = NSStringFromClass(SpellFailHotdog.class);
-    NSString * Teddy = NSStringFromClass(SpellFailTeddy.class);
-    NSString * Undies = NSStringFromClass(SpellFailUndies.class);
-    NSString * Chicken = NSStringFromClass(SpellFailChicken.class);
-//    NSString * Rainbow = NSStringFromClass(SpellFailRainbow.class);
-    NSString * Fireball = NSStringFromClass(SpellFireball.class);
-    NSString * Lightning = NSStringFromClass(SpellLightningOrb.class);
-    NSString * Fist = NSStringFromClass(SpellFist.class);
-    NSString * Helmet = NSStringFromClass(SpellHelmet.class);
-    NSString * Earthwall = NSStringFromClass(SpellEarthwall.class);
-    NSString * Firewall = NSStringFromClass(SpellFirewall.class);
-    NSString * Bubble = NSStringFromClass(SpellBubble.class);
-    NSString * Icewall = NSStringFromClass(SpellIcewall.class);
-    NSString * Monster = NSStringFromClass(SpellMonster.class);
-    NSString * Vine = NSStringFromClass(SpellVine.class);
-    NSString * Windblast = NSStringFromClass(SpellWindblast.class);
-    NSString * Invisibility = NSStringFromClass(SpellInvisibility.class);
-    NSString * Heal = NSStringFromClass(SpellHeal.class);
-    NSString * Levitate = NSStringFromClass(SpellLevitate.class);
-    NSString * Sleep = NSStringFromClass(SpellSleep.class);
-//    NSString * CaptainPlanet = NSStringFromClass(SpellCheeseCaptainPlanet.class);
-    
     
     [self spell:Hotdog effect:[SEDestroy new] spell:Monster effect:[SEStronger new]];
     [self spell:Teddy player:[PEHeal delay:0]];

@@ -11,13 +11,6 @@
 #import "Wizard.h"
 #import <Firebase/Firebase.h>
 #import "NSArray+Functional.h"
-#import "SpellBubble.h"
-#import "SpellEarthwall.h"
-#import "SpellFireball.h"
-#import "SpellIcewall.h"
-#import "SpellMonster.h"
-#import "SpellVine.h"
-#import "SpellWindblast.h"
 #import "SimpleAudioEngine.h"
 #import <ReactiveCocoa.h>
 #import "GameTimerService.h"
@@ -71,8 +64,6 @@
         self.ai = ai;
         self.ai.delegate = self;
         self.aiWizard = ai.wizard;
-        
-        self.effects = [SpellEffectService new];
         
         self.enoughTimeAsReady = NO;
     }
@@ -459,7 +450,7 @@
 }
 
 -(void)hitSpell:(Spell*)spell withSpell:(Spell*)spell2 interval:(NSTimeInterval)interval currentTick:(NSInteger)currentTick {
-    NSArray * interactions = [self.effects interactionsForSpell:spell.type andSpell:spell2.type];
+    NSArray * interactions = [SpellEffectService.shared interactionsForSpell:spell.type andSpell:spell2.type];
     
     for (SpellInteraction * interaction in interactions) {
         Spell * main;
@@ -520,7 +511,7 @@
     }
     
     // otherwise apply the effect full force
-    PlayerEffect * effect = [self.effects playerEffectForSpell:spell.type];
+    PlayerEffect * effect = [SpellEffectService.shared playerEffectForSpell:spell.type];
     return [effect applySpell:spell onWizard:wizard currentTick:currentTick];
 }
 

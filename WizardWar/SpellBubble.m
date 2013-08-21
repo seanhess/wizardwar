@@ -7,11 +7,6 @@
 //
 
 #import "SpellBubble.h"
-#import "SpellMonster.h"
-#import "SpellFireball.h"
-#import "SpellIcewall.h"
-#import "SpellVine.h"
-#import "SpellWindblast.h"
 
 @implementation SpellBubble
 

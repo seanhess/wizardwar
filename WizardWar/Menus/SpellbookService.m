@@ -11,6 +11,8 @@
 #import "Combos.h"
 #import "NSArray+Functional.h"
 #import "SpellSprite.h"
+#import "SpellEffectService.h"
+#import "SpellInfo.h"
 
 
 @interface SpellbookService ()
@@ -32,8 +34,7 @@
 
 
 - (NSString*)spellIconName:(SpellRecord*)record {
-    Class spellClass = [Spell classFromType:record.type];
-    return [SpellSprite sheetNameForClass:spellClass];
+    return [SpellSprite sheetNameForType:record.type];
 }
 
 // Hmm... how could I tell what's important or not?
@@ -92,8 +93,8 @@
 - (NSArray*)allSpellRecords {
     // loads the spells in the order listed in the combos array
     
-    NSArray * spells = [[[Combos allSpellClasses] map:^(Class SpellClass) {
-        return [SpellClass new];
+    NSArray * spells = [[[SpellEffectService.shared allSpellTypes] map:^(SpellInfo * info) {
+        return [info.class new];
     }] map:^(Spell * spell) {
         SpellRecord * record = [self recordBySpellCreate:spell];
         record.castUniqueMatches = arc4random() % 17;

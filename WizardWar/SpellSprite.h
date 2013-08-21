@@ -18,7 +18,7 @@
 +(BOOL)isSingleImage:(Spell*)spell;
 +(BOOL)isNoRender:(Spell*)spell;
 +(NSString*)sheetName:(Spell*)spell;
-+(NSString*)sheetNameForClass:(Class)spellClass;
++(NSString*)sheetNameForType:(NSString*)type;
 +(NSString*)castAnimationName:(Spell*)spell;
 +(CCSpriteFrame*)singleImageFrame:(Spell*)spell;
 @end
