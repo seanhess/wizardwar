@@ -9,6 +9,7 @@
 #import "SpellEffect.h"
 #import "SpellBubble.h"
 #import "EffectSleep.h"
+#import "Spell.h"
 
 @implementation SpellEffect
 -(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick {
@@ -66,7 +67,8 @@
 
 @implementation SECarry
 +(BOOL)isCarried:(Spell*)spell otherSpell:(Spell*)otherSpell {
-    if ([spell.linkedSpell isKindOfClass:SpellBubble.class] && spell.linkedSpell.status != SpellStatusDestroyed && spell.linkedSpell != otherSpell) return YES;
+    NSLog(@"isCarried? %@ %@ %@", spell, otherSpell, spell.linkedSpell);
+    if ([spell.linkedSpell isKindOfClass:SpellBubble.class] && spell.linkedSpell.status != SpellStatusDestroyed) return YES;
 //    if ([otherSpell.spellEffect isKindOfClass:SECarry.class]) return YES;
     return NO;
 }

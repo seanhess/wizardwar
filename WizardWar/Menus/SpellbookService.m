@@ -97,6 +97,7 @@
     }] map:^(Spell * spell) {
         SpellRecord * record = [self recordBySpellCreate:spell];
         record.castUniqueMatches = arc4random() % 17;
+//        record.castUniqueMatches = 2;
         return record;
     }];
 

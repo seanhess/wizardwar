@@ -9,7 +9,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Spell.h"
+@class Spell;
 
 @interface SpellEffect : NSObject
 -(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick;

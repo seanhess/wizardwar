@@ -476,12 +476,22 @@
     NSLog(@"INTERACT %@ %@ %@", interaction.effect, main.name, other.name);
     
     BOOL modified = [interaction.effect applyToSpell:main otherSpell:other tick:currentTick];
+    
     if (modified) {
         [self modifySpell:main];
+        
+        // LINKED SPELLS should match their link's position, speed, direction, etc
         NSArray * linkedSpells = [self spellsLinkedToSpell:main];
         NSLog(@" - changed %i", linkedSpells.count);
         [linkedSpells forEach:^(Spell * spell) {
-            [self interact:interaction main:spell other:spell.linkedSpell currentTick:currentTick];
+            if (spell.linkedSpell.strength == 0) {
+                spell.strength = 0;
+            } else {
+                spell.position = spell.linkedSpell.position;
+                spell.speed = spell.linkedSpell.speed;
+                spell.direction = spell.linkedSpell.direction;
+            }
+            [self modifySpell:spell];
         }];
     }
 }

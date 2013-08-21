@@ -36,9 +36,9 @@
 }
 
 -(void)setSpellRecord:(SpellRecord*)record {
-    BOOL enabled = record.isDiscovered;
     UIImage * image = [UIImage imageNamed:[SpellbookService.shared spellIconName:record]];
-    if (!enabled) image = [UIImage generateMonoImage:image withColor:[UIColor grayColor]];
+    if (!record.isUnlocked)
+        image = [UIImage generateMonoImage:image withColor:[UIColor grayColor]];
     self.icon.image = image;
     
     self.nameLabel.text = [SpellbookCell spellTitle:record];
@@ -59,12 +59,6 @@
         self.progressView.progressColor = [AppStyle greenOnlineColor];
         self.progressView.label.textColor = [UIColor whiteColor];
     }
-    
-    // COLORS:
-    // none = gray
-    // novice = gray?
-    // adept = yellow?
-    // master = green
 }
 
 + (NSString*)spellTitle:(SpellRecord*)record {
