@@ -84,7 +84,7 @@
         
 #ifdef DEBUG
 //        self.stop = YES;
-        self.allOffensive = @[[SpellMonster class]];
+        self.allOffensive = @[[SpellBubble class]];
         self.allDefensive = @[[SpellEarthwall class]];
 #endif
     }

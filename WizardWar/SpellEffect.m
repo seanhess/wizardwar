@@ -29,7 +29,7 @@
 -(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick {
     if (spell.direction == otherSpell.direction) return NO;
     // only check if the spell that will make ME weaker is carried
-    if ([SECarry isCarried:otherSpell otherSpell:spell]) return NO;
+    if ([SECarry isCarried:otherSpell]) return NO;
     spell.strength -= otherSpell.damage;
     if (spell.strength < 0)
         spell.strength = 0;
@@ -40,7 +40,8 @@
 @implementation SEDestroy
 -(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick {
     if (spell.direction == otherSpell.direction) return NO;
-    if ([SECarry isCarried:spell otherSpell:otherSpell]) return NO;
+    if ([SECarry isCarried:spell]) return NO;
+    if ([SECarry isCarried:otherSpell]) return NO;
     spell.strength = 0;
     return YES;
 }
@@ -50,7 +51,7 @@
 -(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick {
     // do not destroy if I am newer than them
     if (spell.createdTick > otherSpell.createdTick) return NO;
-    if ([SECarry isCarried:spell otherSpell:otherSpell]) return NO;    
+    if ([SECarry isCarried:spell]) return NO;
     spell.strength = 0;
     return YES;
 }
@@ -67,13 +68,13 @@
 @end
 
 @implementation SECarry
-+(BOOL)isCarried:(Spell*)spell otherSpell:(Spell*)otherSpell {
++(BOOL)isCarried:(Spell*)spell {
     if ([spell.linkedSpell isKindOfClass:SpellBubble.class] && spell.linkedSpell.status != SpellStatusDestroyed) return YES;
     return NO;
 }
 
 -(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick {
-//    if ([SECarry isCarried:spell otherSpell:otherSpell]) return NO;
+//    if ([SECarry isCarried:spell]) return NO;
     
     if ([spell.linkedSpell isKindOfClass:SpellBubble.class] && spell.linkedSpell.createdTick >= otherSpell.createdTick) return NO;
     
@@ -91,7 +92,7 @@
 
 @implementation SESleep
 -(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick {
-    if ([SECarry isCarried:spell otherSpell:otherSpell]) return NO;
+    if ([SECarry isCarried:spell]) return NO;
     
     spell.speed = 0;
     spell.spellEffect = self;
@@ -118,7 +119,7 @@
 
 -(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick {
     // they don't work in the same direction? I don't think so!
-    if ([SECarry isCarried:spell otherSpell:otherSpell]) return NO;
+    if ([SECarry isCarried:spell]) return NO;
     if ([spell.spellEffect isKindOfClass:[SESleep class]]) return NO;
     if (self.up > 0) {
         if (spell.direction == otherSpell.direction) {
@@ -144,7 +145,7 @@
 @implementation SEReflect
 -(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick {
     if (spell.direction == otherSpell.direction) return NO;
-    if ([SECarry isCarried:spell otherSpell:otherSpell]) return NO;    
+    if ([SECarry isCarried:spell]) return NO;
     spell.direction = otherSpell.direction;
     return YES;
 }

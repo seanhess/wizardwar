@@ -33,7 +33,7 @@
 @end
 
 @interface SECarry : SpellEffect
-+(BOOL)isCarried:(Spell*)spell otherSpell:(Spell*)spell;
++(BOOL)isCarried:(Spell*)spell;
 @end
 
 @interface SESleep : SpellEffect

@@ -390,6 +390,12 @@
     }];
 }
 
+-(NSArray*)activeOrUpdatedSpells {
+    return [self.spells.allValues filter:^BOOL(Spell * spell) {
+        return spell.status == SpellStatusActive || spell.status == SpellStatusUpdated;
+    }];
+}
+
 // Spells close to you are the ones you "own" in multiplayer
 -(BOOL)isSpellClose:(Spell*)spell {
 //    NSLog(@" - isSpellClose pos=%i play=%i mid=%f", (int)spell.position, self.currentWizard.isFirstPlayer, UNITS_MID);
@@ -422,7 +428,7 @@
             wizard.effect = clone.effect;
         }
         [wizard.effect start:currentTick player:wizard];
-        NSLog(@"(%i) CHANGED EFFECT", currentTick);
+//        NSLog(@"(%i) CHANGED EFFECT", currentTick);
     }
 
     if (wizard.state != clone.state) {
@@ -480,16 +486,18 @@
 
 -(void)interact:(SpellInteraction*)interaction main:(Spell*)main other:(Spell*)other interval:(NSTimeInterval)interval currentTick:(NSInteger)currentTick {
     
-//    NSLog(@"INTERACT %@ %@ %@", interaction.effect, main.name, other.name);
+    NSLog(@"INTERACT %@ %@ %@", interaction.effect, main.name, other.name);
     
     BOOL modified = [interaction.effect applyToSpell:main otherSpell:other tick:currentTick];
     
     if (modified) {
         [self modifySpell:main];
         
+        // it's not just main, it's either?
+        
         // LINKED SPELLS should match their link's position, speed, direction, etc
         NSArray * linkedSpells = [self spellsLinkedToSpell:main];
-//        NSLog(@" - changed %i", linkedSpells.count);
+        NSLog(@" - changed %i", linkedSpells.count);
         [linkedSpells forEach:^(Spell * spell) {
             if (spell.linkedSpell.strength == 0) {
                 spell.strength = 0;
@@ -518,7 +526,7 @@
 
 
 -(NSArray*)spellsLinkedToSpell:(Spell*)parent {
-    return [self.activeSpells filter:^BOOL(Spell*spell) {
+    return [self.activeOrUpdatedSpells filter:^BOOL(Spell*spell) {
         return (spell.linkedSpell == parent);
     }];
 }
