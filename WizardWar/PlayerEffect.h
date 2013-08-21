@@ -22,6 +22,7 @@
 @property (nonatomic) BOOL cancelsOnHit;
 @property (nonatomic) NSTimeInterval delay; // how long it takes to activate
 @property (nonatomic) NSTimeInterval duration; // how long before it wears off?
+@property (nonatomic, strong) NSString * description;
 
 -(NSComparisonResult)compare:(PlayerEffect*)effect;
 -(void)start:(NSInteger)tick player:(Wizard*)player;

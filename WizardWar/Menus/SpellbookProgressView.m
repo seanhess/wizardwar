@@ -7,6 +7,8 @@
 //
 
 #import "SpellbookProgressView.h"
+#import "UIColor+Hex.h"
+#import "AppStyle.h"
 
 @interface SpellbookProgressView ()
 @property (nonatomic, strong) DDProgressView * progressView;
@@ -81,6 +83,21 @@
         self.progressView.frame = self.bottomHalfFrame;
         self.label.frame = self.topHalfFrame;
     }
+    
+    if (record.level < SpellbookLevelAdept) {
+        UIColor * color = [UIColor colorFromRGB:0x8F8F8F];
+        self.progressColor = color;
+        self.label.textColor = color;
+    }
+    else if (record.level < SpellbookLevelMaster) {
+        self.progressColor = [AppStyle blueNavColor];
+        self.label.textColor = [AppStyle blueNavColor];
+    }
+    else {
+        self.progressColor = [AppStyle greenOnlineColor];
+        self.label.textColor = [UIColor whiteColor];
+    }
+    
 }
 
 - (void)setProgressColor:(UIColor *)color {
@@ -90,8 +107,8 @@
 
 -(NSString*)levelString:(SpellbookLevel)level {
     if (level == SpellbookLevelNone) return @"";
-    else if (level == SpellbookLevelAdept) return @"ADEPT";
-    else if (level == SpellbookLevelNovice) return @"NOVICE";
+    else if (level == SpellbookLevelAdept) return @"APPRENTICE";
+    else if (level == SpellbookLevelNovice) return @"N00B";
     else return @"MASTER";
 }
 

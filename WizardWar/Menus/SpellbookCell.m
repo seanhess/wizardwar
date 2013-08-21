@@ -46,19 +46,6 @@
     
     [self.progressView setRecord:record];
     
-    if (record.level < SpellbookLevelAdept) {
-        UIColor * color = [UIColor colorFromRGB:0x8F8F8F];
-        self.progressView.progressColor = color;
-        self.progressView.label.textColor = color;
-    }
-    else if (record.level < SpellbookLevelMaster) {
-        self.progressView.progressColor = [AppStyle blueNavColor];
-        self.progressView.label.textColor = [AppStyle blueNavColor];
-    }
-    else {
-        self.progressView.progressColor = [AppStyle greenOnlineColor];
-        self.progressView.label.textColor = [UIColor whiteColor];
-    }
 }
 
 + (NSString*)spellTitle:(SpellRecord*)record {
