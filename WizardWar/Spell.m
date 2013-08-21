@@ -34,6 +34,7 @@
         self.heavy = info.heavy;
         self.castDelay = info.castDelay;
         self.name = info.name;
+        self.isWall = info.isWall;
         
         self.status = SpellStatusPrepare;
         self.spellId = [Spell generateSpellId];

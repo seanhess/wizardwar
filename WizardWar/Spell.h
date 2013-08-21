@@ -43,6 +43,7 @@ typedef enum SpellStatus {
 @property (nonatomic) NSInteger altitude; // how high it is. normal = 0;
 @property (nonatomic) BOOL heavy; // if it falls
 @property (nonatomic) BOOL targetSelf;
+@property (nonatomic) BOOL isWall;
 @property (nonatomic, strong) NSString * name;
 @property (nonatomic) CGFloat castDelay; // delay after cast
 @property (nonatomic, strong) Spell * linkedSpell;

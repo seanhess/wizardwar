@@ -8,11 +8,8 @@
 
 #import "SpellSprite.h"
 #import "cocos2d.h"
-#import "SpellEarthwall.h"
 #import "SpellVine.h"
 #import "SpellMonster.h"
-#import "SpellIcewall.h"
-#import "SpellFirewall.h"
 #import "SpellFist.h"
 #import "SpellEffectService.h"
 
@@ -127,10 +124,6 @@
     self.position = position;
 }
 
--(BOOL)isWall:(Spell*)spell {
-    return ([self.spell isKindOfClass:[SpellWall class]]);
-}
-
 -(void)renderDirection {
     self.flipX = (self.spell.direction < 0);
 }
@@ -177,11 +170,11 @@
 -(CGFloat)spellYWithAltitude:(NSInteger)altitude {
     CGFloat y = [self.units altitudeY:altitude];
     
-    if ([self isWall:self.spell]) {
+    if (self.spell.isWall) {
         // stuff that needs to be on the ground
         y -= 45;
         
-        if ([self.spell isKindOfClass:[SpellFirewall class]]) {
+        if ([self.spell isType:Firewall]) {
             y -= 12 * (3-self.spell.strength) + 8;
         }
     }
@@ -257,14 +250,14 @@
 - (void)renderWallStrength {
     // You don't want to do Firewall here, because it is animated, unlike the others.
     // So you can't do both the strength and the animation
-    if (![self isWall:self.spell]) return;
+    if (!self.spell.isWall) return;
     NSInteger strength = self.spell.strength;
     if (strength < 0) strength = 0;
     if (strength > 3) strength = 3;
     
 //    NSLog(@"RENDER WALL %i", strength);
     
-    if ([self.spell isKindOfClass:[SpellFirewall class]]) {
+    if ([self.spell isType:Firewall]) {
         self.scale = self.units.spriteScaleModifier * (1 + (strength/3.0))/2;
         [self renderPosition];
     } else {
@@ -371,7 +364,7 @@
     CCActionInterval * actionInterval = [CCAnimate actionWithAnimation:animation];
     CCAction * action = actionInterval;
     
-    if (self.spell.class == SpellFirewall.class) {
+    if ([self.spell isType:Firewall]) {
         CCAnimation * burnAnimation = [[CCAnimationCache sharedAnimationCache] animationByName:@"firewall-burn"];
         burnAnimation.loops = 10000;
         CCActionInterval * burn = [CCAnimate actionWithAnimation:burnAnimation];

@@ -7,7 +7,6 @@
 //
 
 #import "SpellVine.h"
-#import "SpellWall.h"
 #import "Tick.h"
 
 #define TIME_UNTIL_ATTACK_START 1.5
@@ -25,7 +24,7 @@
         self.name = @"Summon Vine";
         self.castDelay *= 2.5;
         self.speed = 0;
-        self.startOffsetPosition = UNITS_MAX - SPELL_WALL_OFFSET_POSITION;
+        self.startOffsetPosition = UNITS_MAX - 15;
     }
     return self;
 }

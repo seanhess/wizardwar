@@ -23,6 +23,7 @@
         self.castDelay = 0.8;
         self.class = [Spell class];
         self.effect = [PEBasicDamage new];
+        self.isWall = NO;
     }
     return self;
 }

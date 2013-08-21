@@ -11,7 +11,6 @@
 #import "NSArray+Functional.h"
 #import "UIColor+Hex.h"
 #import "SpellEffectService.h"
-#import "SpellWall.h"
 
 @interface PracticeModeAIService ()
 @property (nonatomic) NSInteger lastSpellTick;
@@ -105,7 +104,7 @@
     if (self.lastSpellTick + castTickInterval < currentTick) {
         self.lastSpellTick = currentTick;
         if (self.totalSpellsCast == self.opponentSpellsCast) {
-            if (![self.lastCastSpell isKindOfClass:[SpellWall class]]) {
+            if (!self.lastCastSpell.isWall) {
                 [self castSpell:self.allDefensive];
             }
         } else if (self.totalSpellsCast < self.opponentSpellsCast) {

@@ -8,11 +8,8 @@
 #import "SpellEffectService.h"
 #import "NSArray+Functional.h"
 
-#import "SpellEarthwall.h"
 #import "SpellMonster.h"
 #import "SpellVine.h"
-#import "SpellIcewall.h"
-#import "SpellFirewall.h"
 #import "SpellFist.h"
 #import "SpellFailRainbow.h"
 
@@ -31,7 +28,7 @@
 #import "SpellInfo.h"
 
 
-
+#define SPELL_WALL_OFFSET_POSITION 15
 
 @interface SpellEffectService ()
 @property (nonatomic, strong) NSMapTable * spellEffectDefaults;
@@ -159,12 +156,34 @@
     sleep.damage = 0;
     sleep.heavy = NO;
     sleep.effect = [PESleep new];
-
     
+    SpellInfo * firewall = [SpellInfo type:Firewall];
+    firewall.name = @"Wall of Fire";
+    firewall.isWall = YES;
+    firewall.speed = 0;
+    firewall.damage = 1;
+    firewall.strength = 3;
+    firewall.startOffsetPosition = SPELL_WALL_OFFSET_POSITION;
+    firewall.castDelay = 0.5;    
     
-    SpellInfo * firewall = [SpellInfo type:Firewall class:[SpellFirewall class]];
-    SpellInfo * earthwall = [SpellInfo type:Earthwall class:[SpellEarthwall class]];
-    SpellInfo * icewall = [SpellInfo type:Icewall class:[SpellIcewall class]];
+    SpellInfo * earthwall = [SpellInfo type:Earthwall];
+    earthwall.name = @"Wall of Earth";
+    earthwall.isWall = YES;
+    earthwall.speed = 0;
+    earthwall.damage = 0;
+    earthwall.strength = 3;
+    earthwall.startOffsetPosition = SPELL_WALL_OFFSET_POSITION;
+    earthwall.castDelay = 0.5;
+        
+    SpellInfo * icewall = [SpellInfo type:Icewall];
+    icewall.name = @"Wall of Ice";
+    icewall.isWall = YES;
+    icewall.speed = 0;
+    icewall.damage = 0;
+    icewall.strength = 3;
+    icewall.startOffsetPosition = SPELL_WALL_OFFSET_POSITION;
+    icewall.castDelay = 0.5;
+    
     SpellInfo * monster = [SpellInfo type:Monster class:[SpellMonster class]];
     SpellInfo * vine = [SpellInfo type:Vine class:[SpellVine class]];
     SpellInfo * fist = [SpellInfo type:Fist class:[SpellFist class]];

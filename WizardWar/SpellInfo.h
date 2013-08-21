@@ -44,6 +44,7 @@
 @property (nonatomic) NSInteger damage;
 @property (nonatomic) BOOL targetSelf;
 @property (nonatomic) BOOL heavy;
+@property (nonatomic) BOOL isWall;
 
 +(SpellInfo*)type:(NSString*)type class:(Class)class;
 +(SpellInfo*)type:(NSString*)type;
