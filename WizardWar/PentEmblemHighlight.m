@@ -15,9 +15,10 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.borderWidth = frame.size.width/15;
+        self.borderWidth = 4.0;
         self.borderColor = [UIColor whiteColor];
         self.backgroundColor = [UIColor clearColor];
+        self.clipsToBounds = NO;
     }
     return self;
 }
@@ -40,8 +41,8 @@
     CGRect rrect = self.bounds;
     rrect.size.width = rrect.size.width - strokeWidth*2;
     rrect.size.height = rrect.size.height - strokeWidth*2;
-    rrect.origin.x = rrect.origin.x + (strokeWidth / 2);
-    rrect.origin.y = rrect.origin.y + (strokeWidth / 2);
+    rrect.origin.x = 2;
+    rrect.origin.y = 2;
     CGFloat width = CGRectGetWidth(rrect);
     CGFloat height = CGRectGetHeight(rrect);
     

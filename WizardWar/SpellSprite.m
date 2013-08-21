@@ -77,8 +77,6 @@
             // Make the skin use the right texture, but not decide what to display
             CCAnimation * animation = [self spellAnimation];
             self.frameAnimation = [self spellAction:animation];
-            CCAnimationFrame * firstFrame = animation.frames[0];
-            [self setDisplayFrame:firstFrame.spriteFrame];
             [self runAction:self.frameAnimation];
         }
         
@@ -278,14 +276,18 @@
     if (![self isWall:self.spell]) return;
     NSInteger strength = self.spell.strength;
     if (strength < 0) strength = 0;
-    if (strength > 3) strength = 3;   
+    if (strength > 3) strength = 3;
+    
+//    NSLog(@"RENDER WALL %i", strength);
     
     if ([self.spell isKindOfClass:[SpellFirewall class]]) {
         self.scale = self.units.spriteScaleModifier * (1 + (strength/3.0))/2;
         [self renderPosition];
     } else {
-        NSString * frameName = [NSString stringWithFormat:@"%@-%i.png", self.sheetName, (strength+1)];
-        [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
+        if (self.frameAnimation.isDone) {
+            NSString * frameName = [NSString stringWithFormat:@"%@-%i.png", self.sheetName, (strength+1)];
+            [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
+        }
     }
 }
 
