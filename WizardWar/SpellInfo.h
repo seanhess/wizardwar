@@ -36,6 +36,7 @@
 @property (nonatomic, strong) Class class;
 @property (nonatomic, strong) NSString * name;
 @property (nonatomic, strong) PlayerEffect * effect;
+@property (nonatomic) NSString * explanation;
 
 @property (nonatomic) float speed; // units per second
 @property (nonatomic) float startOffsetPosition;  // in units
@@ -45,6 +46,7 @@
 @property (nonatomic) BOOL targetSelf;
 @property (nonatomic) BOOL heavy;
 @property (nonatomic) BOOL isWall;
+
 
 +(SpellInfo*)type:(NSString*)type class:(Class)class;
 +(SpellInfo*)type:(NSString*)type;

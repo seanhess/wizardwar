@@ -167,7 +167,7 @@
 - (UITableViewCell *)tableView:(UITableView*)tableView effectCellForIndexPath:(NSIndexPath*)indexPath
 {
     if (indexPath.row == 0) {
-        return [self tableView:tableView descriptionCell:self.description];
+        return [self tableView:tableView descriptionCell:self.spellDescription];
     } else {
         EffectStat * stat = [self.effectStats objectAtIndex:indexPath.row-1];
         return [self tableView:tableView statCellWithKey:stat.name value:stat.value];
@@ -211,14 +211,20 @@
     return cell;
 }
 
-- (NSString*)description {
-    return @"asdlkjfasdjlfk asfdjlk jafldksjkl afdsjkl adfsjkl afsdljk afdsljk fadsljk afsdljk flajdsljk asdljk fsadljk afsdljk afdsljkfadsljk fdsaljkdflsajkdfskjkl fdsklj dsafjl kadfsjkl afdsjkl UGLY HEAD";
+- (NSString*)spellDescription {
+    return self.record.info.explanation;
 }
 
 - (UIFont*)descriptionFont {
     return [UIFont fontWithName:@"Helvetica" size:17.0];
 }
 
+
+- (CGFloat)heightForDescription:(NSString*)description {
+    CGSize constraintSize = CGSizeMake(self.view.frame.size.width-20, MAXFLOAT);
+    CGSize labelSize = [description sizeWithFont:self.descriptionFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
+    return labelSize.height + 20;
+}
 
 
 
@@ -232,12 +238,9 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == SECTION_INFO) return SPELLBOOK_INFO_HEIGHT;
+    if (indexPath.section == SECTION_STATS) return 54;
     if (indexPath.section == SECTION_EFFECT) {
-        if (indexPath.row == 0) {
-            CGSize constraintSize = CGSizeMake(self.view.frame.size.width, MAXFLOAT);
-            CGSize labelSize = [self.description sizeWithFont:self.descriptionFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
-            return labelSize.height + 20;
-        }
+        if (indexPath.row == 0) return [self heightForDescription:self.spellDescription];
     }
 //    else if (indexPath.section == SECTION_EFFECT) {
 //        if (indexPath.row == 1 && self.spell.damage == 0) return 0;

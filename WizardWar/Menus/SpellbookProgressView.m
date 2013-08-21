@@ -108,7 +108,7 @@
 -(NSString*)levelString:(SpellbookLevel)level {
     if (level == SpellbookLevelNone) return @"";
     else if (level == SpellbookLevelAdept) return @"APPRENTICE";
-    else if (level == SpellbookLevelNovice) return @"N00B";
+    else if (level == SpellbookLevelNovice) return @"NOOB";
     else return @"MASTER";
 }
 
