@@ -68,7 +68,7 @@
         
 #ifdef DEBUG
 //        self.stop = YES;
-        self.allOffensive = @[Vine];
+        self.allOffensive = @[Monster];
         self.allDefensive = @[Earthwall];
 #endif
     }
@@ -76,9 +76,8 @@
 }
 
 -(BOOL)isDefensive:(Spell*)spell {
-    Class SpellClass = [spell class];
-    Class Found = [self.allDefensive find:^BOOL(Class DefClass) {
-        return (SpellClass == DefClass);
+    Class Found = [self.allDefensive find:^BOOL(NSString * type) {
+        return [spell isType:type];
     }];
     return Found != nil;
 }
