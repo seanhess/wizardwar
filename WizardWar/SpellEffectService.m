@@ -44,31 +44,6 @@
 #import "SpellEffect.h"
 
 
-#define Hotdog @"SpellFailHotdog"
-#define Teddy @"SpellFailTeddy"
-#define Undies @"SpellFailUndies"
-#define Chicken @"SpellFailChicken"
-#define Rainbow @"SpellFailRainbow"
-#define Fireball @"SpellFireball"
-#define Lightning @"SpellLightningOrb"
-#define Fist @"SpellFist"
-#define Helmet @"SpellHelmet"
-#define Earthwall @"SpellEarthwall"
-#define Firewall @"SpellFirewall"
-#define Bubble @"SpellBubble"
-#define Icewall @"SpellIcewall"
-#define Monster @"SpellMonster"
-#define Vine @"SpellVine"
-#define Windblast @"SpellWindblast"
-#define Invisibility @"SpellInvisibility"
-#define Heal @"SpellHeal"
-#define Levitate @"SpellLevitate"
-#define Sleep @"SpellSleep"
-#define CaptainPlanet @"SpellCheeseCaptainPlanet"
-
-
-
-
 
 
 @interface SpellEffectService ()
@@ -95,6 +70,31 @@
 
 
 -(void)createSpellInteractions {
+    
+    
+    NSString * Hotdog = NSStringFromClass(SpellFailHotdog.class);
+    NSString * Teddy = NSStringFromClass(SpellFailTeddy.class);
+    NSString * Undies = NSStringFromClass(SpellFailUndies.class);
+    NSString * Chicken = NSStringFromClass(SpellFailChicken.class);
+//    NSString * Rainbow = NSStringFromClass(SpellFailRainbow.class);
+    NSString * Fireball = NSStringFromClass(SpellFireball.class);
+    NSString * Lightning = NSStringFromClass(SpellLightningOrb.class);
+    NSString * Fist = NSStringFromClass(SpellFist.class);
+    NSString * Helmet = NSStringFromClass(SpellHelmet.class);
+    NSString * Earthwall = NSStringFromClass(SpellEarthwall.class);
+    NSString * Firewall = NSStringFromClass(SpellFirewall.class);
+    NSString * Bubble = NSStringFromClass(SpellBubble.class);
+    NSString * Icewall = NSStringFromClass(SpellIcewall.class);
+    NSString * Monster = NSStringFromClass(SpellMonster.class);
+    NSString * Vine = NSStringFromClass(SpellVine.class);
+    NSString * Windblast = NSStringFromClass(SpellWindblast.class);
+    NSString * Invisibility = NSStringFromClass(SpellInvisibility.class);
+    NSString * Heal = NSStringFromClass(SpellHeal.class);
+    NSString * Levitate = NSStringFromClass(SpellLevitate.class);
+    NSString * Sleep = NSStringFromClass(SpellSleep.class);
+//    NSString * CaptainPlanet = NSStringFromClass(SpellCheeseCaptainPlanet.class);
+    
+    
     [self spell:Hotdog effect:[SEDestroy new] spell:Monster effect:[SEStronger new]];
     [self spell:Teddy player:[PEHeal delay:0]];
     [self spell:Undies player:[PEUndies new]];
