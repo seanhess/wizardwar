@@ -7,7 +7,7 @@
 //
 
 #import "SpellRecord.h"
-
+#import "SpellEffectService.h"
 
 @implementation SpellRecord
 
@@ -58,6 +58,10 @@
 
 - (BOOL)isDiscovered {
     return (self.level >= SpellbookLevelNovice);
+}
+
+- (SpellInfo*)info {
+    return [SpellEffectService.shared infoForType:self.type];
 }
 
 @end

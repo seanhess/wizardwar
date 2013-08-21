@@ -18,6 +18,7 @@
     if (self) {
         self.delay = 2.0;
         self.cancelsOnCast = YES;
+        self.description = @"Turns the player invisible";
     }
     return self;
 }

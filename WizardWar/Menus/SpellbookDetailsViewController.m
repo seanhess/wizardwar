@@ -11,15 +11,30 @@
 #import "SpellbookCastDiagramView.h"
 #import "SpellbookInfoView.h"
 #import "SpellbookProgressView.h"
+#import "SpellEffectService.h"
+#import "SpellInfo.h"
+#import "Spell.h"
 
 #define SECTION_INFO 0
 #define SECTION_STATS 1
 #define SECTION_EFFECT 2
 #define SECTION_INTERACTIONS 3
 
+@interface EffectStat : NSObject
+@property (nonatomic, strong) NSString * name;
+@property (nonatomic) NSInteger value;
+@end
+
+@implementation EffectStat
+@end
+
+
+
 @interface SpellbookDetailsViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray * interactions;
+@property (strong, nonatomic) Spell * spell;
+@property (strong, nonatomic) NSMutableArray * effectStats;
 
 @end
 
@@ -41,6 +56,22 @@
     self.navigationItem.titleView = [ComicZineDoubleLabel titleView:self.title navigationBar:self.navigationController.navigationBar];
     
     self.interactions = @[@"asdf", @"asdf", @"asdf"];
+    self.spell = [Spell fromType:self.record.info.type];
+    self.effectStats = [NSMutableArray array];
+    if (self.spell.damage > 0) {
+        EffectStat * stat = [EffectStat new];
+        stat.name = @"Damage";
+        stat.value = self.spell.damage;
+        [self.effectStats addObject:stat];
+    }
+    if (self.spell.speed > 0) {
+        EffectStat * stat = [EffectStat new];
+        stat.name = @"Speed";
+        stat.value = self.spell.speed;
+        [self.effectStats addObject:stat];
+    }
+    
+    
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -72,24 +103,26 @@
     // Return the number of rows in the section.
     if (section == SECTION_INFO) return 1;
     else if (section == SECTION_STATS) return 1;
-    else if (section == SECTION_EFFECT) return 1;
+    else if (section == SECTION_EFFECT) {
+        return self.effectStats.count + 1;
+    }
     else if (section == SECTION_INTERACTIONS) return self.interactions.count;
     else return 0;
 }
 
-- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (section == SECTION_INFO) return @"Info";
-    else if (section == SECTION_STATS) return @"Stats";
-    else if (section == SECTION_EFFECT) return @"Effect";
-    else if (section == SECTION_INTERACTIONS) return @"Interactions";
-    else return @"";
-}
+//- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+//    if (section == SECTION_INFO) return @"Info";
+//    else if (section == SECTION_STATS) return @"Stats";
+//    else if (section == SECTION_EFFECT) return @"Effect";
+//    else if (section == SECTION_INTERACTIONS) return @"Interactions";
+//    else return @"";
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == SECTION_INFO) return [self infoCell:tableView];
     else if (indexPath.section == SECTION_STATS) return [self statsCell:tableView];
-    else if (indexPath.section == SECTION_EFFECT) return [self effectCell:tableView];
+    else if (indexPath.section == SECTION_EFFECT) return [self tableView:tableView effectCellForIndexPath:indexPath];
     else if (indexPath.section == SECTION_INTERACTIONS) return [self tableView:tableView interactionCellForIndexPath:indexPath];
     else return nil;
 }
@@ -131,16 +164,14 @@
     return cell;
 }
 
-- (UITableViewCell *)effectCell:(UITableView*)tableView
+- (UITableViewCell *)tableView:(UITableView*)tableView effectCellForIndexPath:(NSIndexPath*)indexPath
 {
-    static NSString *CellIdentifier = @"SpellbookEffectCell";
-    UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    if (indexPath.row == 0) {
+        return [self tableView:tableView descriptionCell:self.description];
+    } else {
+        EffectStat * stat = [self.effectStats objectAtIndex:indexPath.row-1];
+        return [self tableView:tableView statCellWithKey:stat.name value:stat.value];
     }
-    
-    cell.textLabel.text = @"EFFECT";
-    return cell;
 }
 
 
@@ -155,6 +186,42 @@
     return cell;
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView statCellWithKey:(NSString*)key value:(NSInteger)value {
+    static NSString *CellIdentifier = @"SpellbookStatCell";
+    UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+    }
+    
+    cell.textLabel.text = key;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%i", value];
+    return cell;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView descriptionCell:(NSString*)description {
+    static NSString *CellIdentifier = @"SpellbookDescriptionCell";
+    UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        cell.textLabel.numberOfLines = 0;
+        cell.textLabel.font = self.descriptionFont;
+    }
+    cell.textLabel.text = description;
+    return cell;
+}
+
+- (NSString*)description {
+    return @"asdlkjfasdjlfk asfdjlk jafldksjkl afdsjkl adfsjkl afsdljk afdsljk fadsljk afsdljk flajdsljk asdljk fsadljk afsdljk afdsljkfadsljk fdsaljkdflsajkdfskjkl fdsklj dsafjl kadfsjkl afdsjkl UGLY HEAD";
+}
+
+- (UIFont*)descriptionFont {
+    return [UIFont fontWithName:@"Helvetica" size:17.0];
+}
+
+
+
+
 
 //-(NSString*)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
 //    if (section == 0 && ![UserFriendService.shared isAuthenticatedFacebook]) {
@@ -165,6 +232,17 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == SECTION_INFO) return SPELLBOOK_INFO_HEIGHT;
+    if (indexPath.section == SECTION_EFFECT) {
+        if (indexPath.row == 0) {
+            CGSize constraintSize = CGSizeMake(self.view.frame.size.width, MAXFLOAT);
+            CGSize labelSize = [self.description sizeWithFont:self.descriptionFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
+            return labelSize.height + 20;
+        }
+    }
+//    else if (indexPath.section == SECTION_EFFECT) {
+//        if (indexPath.row == 1 && self.spell.damage == 0) return 0;
+//        if (indexPath.row == 2 && self.spell.speed == 0) return 0;
+//    }
 //    else if (indexPath.section == SECTION_CAST) return SPELLBOOK_DIAGRAM_HEIGHT;
     return 44;
 }

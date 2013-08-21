@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "SpellInfo.h"
 
 typedef enum SpellbookLevel {
     SpellbookLevelNone,
@@ -27,5 +28,6 @@ typedef enum SpellbookLevel {
 @property (nonatomic, readonly) CGFloat progress;
 @property (nonatomic, readonly) BOOL isDiscovered;
 @property (nonatomic, readonly) BOOL isUnlocked;
+@property (nonatomic, readonly) SpellInfo * info;
 
 @end
