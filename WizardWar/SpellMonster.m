@@ -19,6 +19,7 @@
 #import "SpellFailHotdog.h"
 #import "PESleep.h"
 #import "PEBasicDamage.h"
+#import "SpellEffect.h"
 
 @implementation SpellMonster
 
@@ -31,19 +32,17 @@
     return self;
 }
 
-//-(SpellInteraction *)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
-//    
-////    if (self.effect && [self.effect isKindOfClass:[EffectSleep class]]) {
-////        EffectSleep * sleep = (EffectSleep*)self.effect;
-////        if ([sleep sleepShouldEndAtTick:currentTick interval:interval]) {
-////            self.effect = [EffectBasicDamage new];
-////            self.speed = 20;
-////            return [SpellInteraction modify];
-////        }
-////    }
-////    
-////    return [super simulateTick:currentTick interval:interval];
-//    return nil;
-//}
+-(SpellInteraction *)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
+    
+    if (self.spellEffect && [self.spellEffect isKindOfClass:[SESleep class]]) {
+        if ([PESleep sleepShouldEndAtTick:currentTick interval:interval started:self.updatedTick]) {
+            self.spellEffect = nil;
+            self.speed = 20;
+            return [SpellInteraction modify];
+        }
+    }
+    
+    return [super simulateTick:currentTick interval:interval];
+}
 
 @end

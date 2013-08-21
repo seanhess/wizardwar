@@ -93,6 +93,8 @@
     if ([SECarry isCarried:spell otherSpell:otherSpell]) return NO;
     
     spell.speed = 0;
+    spell.spellEffect = self;
+//    spell.linkedSpell = otherSpell;
 //    spell.effect = [EffectSleep new];
 //    [spell.effect start:tick player:nil];
     return YES;
@@ -116,7 +118,7 @@
 -(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick {
     // they don't work in the same direction? I don't think so!
     if ([SECarry isCarried:spell otherSpell:otherSpell]) return NO;
-//    if ([spell.effect isKindOfClass:[EffectSleep class]]) return NO;
+    if ([spell.spellEffect isKindOfClass:[SESleep class]]) return NO;
     if (self.up > 0) {
         if (spell.direction == otherSpell.direction) {
             spell.speed += self.up;

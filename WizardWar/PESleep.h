@@ -11,5 +11,5 @@
 #import "Wizard.h"
 
 @interface PESleep : PEApply
--(BOOL)sleepShouldEndAtTick:(NSInteger)currentTick interval:(NSTimeInterval)interval wizard:(Wizard*)wizard;
++(BOOL)sleepShouldEndAtTick:(NSInteger)currentTick interval:(NSTimeInterval)interval started:(NSInteger)startedTick;
 @end
