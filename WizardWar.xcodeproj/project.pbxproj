@@ -26,7 +26,6 @@
 		6F0B2FAA174750FF00CFC092 /* PentEmblem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0B2FA8174750FF00CFC092 /* PentEmblem.m */; };
 		6F0B2FAF1747511800CFC092 /* DotsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0B2FAC1747511800CFC092 /* DotsView.m */; };
 		6F0B2FB01747511800CFC092 /* DrawingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0B2FAE1747511800CFC092 /* DrawingLayer.m */; };
-		7801E9F917B1830C005D14D8 /* EffectTeddyHeal.m in Sources */ = {isa = PBXBuildFile; fileRef = 7801E9F817B1830C005D14D8 /* EffectTeddyHeal.m */; };
 		780A234617C3BBA000EE3BAA /* UIImage+MonoImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 780A234517C3BBA000EE3BAA /* UIImage+MonoImage.m */; };
 		780A234917C3BDFF00EE3BAA /* SpellbookProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 780A234817C3BDFF00EE3BAA /* SpellbookProgressView.m */; };
 		780A234C17C3BE1900EE3BAA /* SpellbookCastDiagramView.m in Sources */ = {isa = PBXBuildFile; fileRef = 780A234B17C3BE1900EE3BAA /* SpellbookCastDiagramView.m */; };
@@ -132,6 +131,7 @@
 		781B4CA017839C00002551CA /* TGAlib.m in Sources */ = {isa = PBXBuildFile; fileRef = 781B4C4317839C00002551CA /* TGAlib.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		781B4CA117839C00002551CA /* TransformUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 781B4C4517839C00002551CA /* TransformUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		781B4CA217839C00002551CA /* ZipUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 781B4C4917839C00002551CA /* ZipUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		781BE0D717C50FD6005735A9 /* PENone.m in Sources */ = {isa = PBXBuildFile; fileRef = 781BE0D617C50FD6005735A9 /* PENone.m */; };
 		782BC1AB17B90DD100EB7FC6 /* DebugSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 782BC1AA17B90DD100EB7FC6 /* DebugSprite.m */; };
 		782BC1B817B94F5F00EB7FC6 /* SpellCheeseCaptainPlanet.m in Sources */ = {isa = PBXBuildFile; fileRef = 782BC1B717B94F5E00EB7FC6 /* SpellCheeseCaptainPlanet.m */; };
 		782BC1BA17B9566F00EB7FC6 /* captain-planet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 782BC1B917B9566F00EB7FC6 /* captain-planet.mp3 */; };
@@ -238,12 +238,12 @@
 		7860683317BBD3D1004D2E68 /* SpriteCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7860683217BBD3D1004D2E68 /* SpriteCache.m */; };
 		786246321767B790001904AC /* SpellInvisibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246311767B790001904AC /* SpellInvisibility.m */; };
 		786246351767BE47001904AC /* PlayerEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246341767BE47001904AC /* PlayerEffect.m */; };
-		786246391767BF19001904AC /* EffectInvisible.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246381767BF19001904AC /* EffectInvisible.m */; };
+		786246391767BF19001904AC /* PEInvisible.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246381767BF19001904AC /* PEInvisible.m */; };
 		786246411767C8D3001904AC /* SpellFirewall.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246401767C8D3001904AC /* SpellFirewall.m */; };
 		786246441767C95A001904AC /* SpellWall.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246431767C959001904AC /* SpellWall.m */; };
 		7862464D1767CF64001904AC /* SpellFist.m in Sources */ = {isa = PBXBuildFile; fileRef = 7862464C1767CF63001904AC /* SpellFist.m */; };
 		786246541767D71A001904AC /* SpellHelmet.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246531767D71A001904AC /* SpellHelmet.m */; };
-		7862465B1767EAE2001904AC /* EffectHelmet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7862465A1767EAE2001904AC /* EffectHelmet.m */; };
+		7862465B1767EAE2001904AC /* PEHelmet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7862465A1767EAE2001904AC /* PEHelmet.m */; };
 		786EE5B717B2A4BE004D9214 /* tutorial-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 786EE5B217B2A4BE004D9214 /* tutorial-568h@2x.png */; };
 		786EE5B817B2A4BE004D9214 /* tutorial.png in Resources */ = {isa = PBXBuildFile; fileRef = 786EE5B317B2A4BE004D9214 /* tutorial.png */; };
 		786EE5B917B2A4BE004D9214 /* tutorial@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 786EE5B417B2A4BE004D9214 /* tutorial@2x.png */; };
@@ -279,11 +279,11 @@
 		7881FD8117BD414700FBC7C8 /* icon-ipad-retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 7881FD8017BD414700FBC7C8 /* icon-ipad-retina.png */; };
 		7881FD8317BD414F00FBC7C8 /* icon-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7881FD8217BD414F00FBC7C8 /* icon-ipad.png */; };
 		78915283176A72DB001694B1 /* SpellLevitate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78915280176A7136001694B1 /* SpellLevitate.m */; };
-		78915284176A72DE001694B1 /* EffectLevitate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78915282176A72A8001694B1 /* EffectLevitate.m */; };
+		78915284176A72DE001694B1 /* PELevitate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78915282176A72A8001694B1 /* PELevitate.m */; };
 		7892EF9A17BE66E100F9A89D /* WarningCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7892EF9917BE66E100F9A89D /* WarningCell.m */; };
 		789787A91778F27300094AF9 /* UserFriendService.m in Sources */ = {isa = PBXBuildFile; fileRef = 789787A81778F27300094AF9 /* UserFriendService.m */; };
-		789B47C5178F1AEE00611CA5 /* EffectApply.m in Sources */ = {isa = PBXBuildFile; fileRef = 789B47C4178F1AED00611CA5 /* EffectApply.m */; };
-		789B47C8178F1C2D00611CA5 /* EffectBasicDamage.m in Sources */ = {isa = PBXBuildFile; fileRef = 789B47C7178F1C2D00611CA5 /* EffectBasicDamage.m */; };
+		789B47C5178F1AEE00611CA5 /* PEApply.m in Sources */ = {isa = PBXBuildFile; fileRef = 789B47C4178F1AED00611CA5 /* PEApply.m */; };
+		789B47C8178F1C2D00611CA5 /* PEBasicDamage.m in Sources */ = {isa = PBXBuildFile; fileRef = 789B47C7178F1C2D00611CA5 /* PEBasicDamage.m */; };
 		789BAB8417566CFE003C0116 /* TimerSyncService.m in Sources */ = {isa = PBXBuildFile; fileRef = 789BAB8317566CFE003C0116 /* TimerSyncService.m */; };
 		78ABA887175A5CA6003D2F23 /* PentagramViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78ABA886175A5CA5003D2F23 /* PentagramViewController.xib */; };
 		78AF756C1792E162008499DB /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AF756B1792E162008499DB /* UIColor+Hex.m */; };
@@ -298,12 +298,12 @@
 		78C98629178DE0C800B545F9 /* Challenge.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C98628178DE0C800B545F9 /* Challenge.m */; };
 		78C9862B178DFFE300B545F9 /* ChallengeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78C9862A178DFFE300B545F9 /* ChallengeCell.xib */; };
 		78C9862E178DFFF000B545F9 /* ChallengeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C9862D178DFFF000B545F9 /* ChallengeCell.m */; };
-		78CD5ECE17B4197600FE0FB0 /* EffectUndies.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CD5ECD17B4197600FE0FB0 /* EffectUndies.m */; };
+		78CD5ECE17B4197600FE0FB0 /* PEUndies.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CD5ECD17B4197600FE0FB0 /* PEUndies.m */; };
 		78CF318F1791E49D00BC8C29 /* FeedbackLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CF318E1791E49D00BC8C29 /* FeedbackLayer.m */; };
 		78CF319617920C4800BC8C29 /* InfoService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CF319517920C4800BC8C29 /* InfoService.m */; };
 		78D08558176A4AC500EDC405 /* SpellHeal.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D08557176A4AC400EDC405 /* SpellHeal.m */; };
-		78D0855B176A4B2800EDC405 /* EffectHeal.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D0855A176A4B2800EDC405 /* EffectHeal.m */; };
-		78D0855E176A4C7C00EDC405 /* EffectSleep.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D0855D176A4C7C00EDC405 /* EffectSleep.m */; };
+		78D0855B176A4B2800EDC405 /* PEHeal.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D0855A176A4B2800EDC405 /* PEHeal.m */; };
+		78D0855E176A4C7C00EDC405 /* PESleep.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D0855D176A4C7C00EDC405 /* PESleep.m */; };
 		78D28BE9177F6F8A00FF5D6E /* ComicZineOT.otf in Resources */ = {isa = PBXBuildFile; fileRef = 78D28BE7177F6F8A00FF5D6E /* ComicZineOT.otf */; };
 		78D28BEA177F6F8A00FF5D6E /* ComicZineSolid.otf in Resources */ = {isa = PBXBuildFile; fileRef = 78D28BE8177F6F8A00FF5D6E /* ComicZineSolid.otf */; };
 		78D28BF1177F71D500FF5D6E /* ComicZineDoubleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D28BF0177F71D500FF5D6E /* ComicZineDoubleLabel.m */; };
@@ -434,8 +434,6 @@
 		6F0B2FAC1747511800CFC092 /* DotsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DotsView.m; sourceTree = "<group>"; };
 		6F0B2FAD1747511800CFC092 /* DrawingLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingLayer.h; sourceTree = "<group>"; };
 		6F0B2FAE1747511800CFC092 /* DrawingLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingLayer.m; sourceTree = "<group>"; };
-		7801E9F717B1830C005D14D8 /* EffectTeddyHeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectTeddyHeal.h; sourceTree = "<group>"; };
-		7801E9F817B1830C005D14D8 /* EffectTeddyHeal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectTeddyHeal.m; sourceTree = "<group>"; };
 		7801E9FA17B18ED4005D14D8 /* DataModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DataModel 2.xcdatamodel"; sourceTree = "<group>"; };
 		780A234417C3BBA000EE3BAA /* UIImage+MonoImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MonoImage.h"; sourceTree = "<group>"; };
 		780A234517C3BBA000EE3BAA /* UIImage+MonoImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MonoImage.m"; sourceTree = "<group>"; };
@@ -664,6 +662,8 @@
 		781B4C4817839C00002551CA /* ZipUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipUtils.h; sourceTree = "<group>"; };
 		781B4C4917839C00002551CA /* ZipUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipUtils.m; sourceTree = "<group>"; };
 		781BC26517B5766900870A2C /* AIService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AIService.h; sourceTree = "<group>"; };
+		781BE0D517C50FD5005735A9 /* PENone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PENone.h; sourceTree = "<group>"; };
+		781BE0D617C50FD6005735A9 /* PENone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PENone.m; sourceTree = "<group>"; };
 		782BC1A917B90DD100EB7FC6 /* DebugSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugSprite.h; sourceTree = "<group>"; };
 		782BC1AA17B90DD100EB7FC6 /* DebugSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugSprite.m; sourceTree = "<group>"; };
 		782BC1B617B94F5E00EB7FC6 /* SpellCheeseCaptainPlanet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellCheeseCaptainPlanet.h; sourceTree = "<group>"; };
@@ -811,8 +811,8 @@
 		786246311767B790001904AC /* SpellInvisibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellInvisibility.m; sourceTree = "<group>"; };
 		786246331767BE47001904AC /* PlayerEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerEffect.h; sourceTree = "<group>"; };
 		786246341767BE47001904AC /* PlayerEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerEffect.m; sourceTree = "<group>"; };
-		786246371767BF19001904AC /* EffectInvisible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectInvisible.h; sourceTree = "<group>"; };
-		786246381767BF19001904AC /* EffectInvisible.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectInvisible.m; sourceTree = "<group>"; };
+		786246371767BF19001904AC /* PEInvisible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEInvisible.h; sourceTree = "<group>"; };
+		786246381767BF19001904AC /* PEInvisible.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEInvisible.m; sourceTree = "<group>"; };
 		7862463D1767C79F001904AC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		7862463F1767C8D2001904AC /* SpellFirewall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellFirewall.h; sourceTree = "<group>"; };
 		786246401767C8D3001904AC /* SpellFirewall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellFirewall.m; sourceTree = "<group>"; };
@@ -822,8 +822,8 @@
 		7862464C1767CF63001904AC /* SpellFist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellFist.m; sourceTree = "<group>"; };
 		786246521767D719001904AC /* SpellHelmet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellHelmet.h; sourceTree = "<group>"; };
 		786246531767D71A001904AC /* SpellHelmet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellHelmet.m; sourceTree = "<group>"; };
-		786246591767EAE2001904AC /* EffectHelmet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectHelmet.h; sourceTree = "<group>"; };
-		7862465A1767EAE2001904AC /* EffectHelmet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectHelmet.m; sourceTree = "<group>"; };
+		786246591767EAE2001904AC /* PEHelmet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEHelmet.h; sourceTree = "<group>"; };
+		7862465A1767EAE2001904AC /* PEHelmet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEHelmet.m; sourceTree = "<group>"; };
 		786EE5B217B2A4BE004D9214 /* tutorial-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorial-568h@2x.png"; sourceTree = "<group>"; };
 		786EE5B317B2A4BE004D9214 /* tutorial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorial.png; sourceTree = "<group>"; };
 		786EE5B417B2A4BE004D9214 /* tutorial@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorial@2x.png"; sourceTree = "<group>"; };
@@ -868,18 +868,18 @@
 		7881FD8417BD4A9600FBC7C8 /* DataModel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DataModel 3.xcdatamodel"; sourceTree = "<group>"; };
 		7891527F176A7136001694B1 /* SpellLevitate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpellLevitate.h; sourceTree = "<group>"; };
 		78915280176A7136001694B1 /* SpellLevitate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpellLevitate.m; sourceTree = "<group>"; };
-		78915281176A72A8001694B1 /* EffectLevitate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EffectLevitate.h; sourceTree = "<group>"; };
-		78915282176A72A8001694B1 /* EffectLevitate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EffectLevitate.m; sourceTree = "<group>"; };
+		78915281176A72A8001694B1 /* PELevitate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PELevitate.h; sourceTree = "<group>"; };
+		78915282176A72A8001694B1 /* PELevitate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PELevitate.m; sourceTree = "<group>"; };
 		78915287176A7815001694B1 /* SpellSleep.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpellSleep.h; sourceTree = "<group>"; };
 		78915288176A7815001694B1 /* SpellSleep.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpellSleep.m; sourceTree = "<group>"; };
 		7892EF9817BE66E100F9A89D /* WarningCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarningCell.h; sourceTree = "<group>"; };
 		7892EF9917BE66E100F9A89D /* WarningCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WarningCell.m; sourceTree = "<group>"; };
 		789787A71778F27300094AF9 /* UserFriendService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserFriendService.h; sourceTree = "<group>"; };
 		789787A81778F27300094AF9 /* UserFriendService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserFriendService.m; sourceTree = "<group>"; };
-		789B47C3178F1AED00611CA5 /* EffectApply.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectApply.h; sourceTree = "<group>"; };
-		789B47C4178F1AED00611CA5 /* EffectApply.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectApply.m; sourceTree = "<group>"; };
-		789B47C6178F1C2D00611CA5 /* EffectBasicDamage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectBasicDamage.h; sourceTree = "<group>"; };
-		789B47C7178F1C2D00611CA5 /* EffectBasicDamage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectBasicDamage.m; sourceTree = "<group>"; };
+		789B47C3178F1AED00611CA5 /* PEApply.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEApply.h; sourceTree = "<group>"; };
+		789B47C4178F1AED00611CA5 /* PEApply.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEApply.m; sourceTree = "<group>"; };
+		789B47C6178F1C2D00611CA5 /* PEBasicDamage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEBasicDamage.h; sourceTree = "<group>"; };
+		789B47C7178F1C2D00611CA5 /* PEBasicDamage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEBasicDamage.m; sourceTree = "<group>"; };
 		789BAB8117566ABF003C0116 /* Multiplayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Multiplayer.h; sourceTree = "<group>"; };
 		789BAB8217566CFE003C0116 /* TimerSyncService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerSyncService.h; sourceTree = "<group>"; };
 		789BAB8317566CFE003C0116 /* TimerSyncService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerSyncService.m; sourceTree = "<group>"; };
@@ -906,18 +906,18 @@
 		78C9862A178DFFE300B545F9 /* ChallengeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChallengeCell.xib; sourceTree = "<group>"; };
 		78C9862C178DFFF000B545F9 /* ChallengeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeCell.h; sourceTree = "<group>"; };
 		78C9862D178DFFF000B545F9 /* ChallengeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeCell.m; sourceTree = "<group>"; };
-		78CD5ECC17B4197600FE0FB0 /* EffectUndies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectUndies.h; sourceTree = "<group>"; };
-		78CD5ECD17B4197600FE0FB0 /* EffectUndies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectUndies.m; sourceTree = "<group>"; };
+		78CD5ECC17B4197600FE0FB0 /* PEUndies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEUndies.h; sourceTree = "<group>"; };
+		78CD5ECD17B4197600FE0FB0 /* PEUndies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEUndies.m; sourceTree = "<group>"; };
 		78CF318D1791E49D00BC8C29 /* FeedbackLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackLayer.h; sourceTree = "<group>"; };
 		78CF318E1791E49D00BC8C29 /* FeedbackLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackLayer.m; sourceTree = "<group>"; };
 		78CF319417920C4800BC8C29 /* InfoService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoService.h; sourceTree = "<group>"; };
 		78CF319517920C4800BC8C29 /* InfoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoService.m; sourceTree = "<group>"; };
 		78D08556176A4AC400EDC405 /* SpellHeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellHeal.h; sourceTree = "<group>"; };
 		78D08557176A4AC400EDC405 /* SpellHeal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellHeal.m; sourceTree = "<group>"; };
-		78D08559176A4B2800EDC405 /* EffectHeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectHeal.h; sourceTree = "<group>"; };
-		78D0855A176A4B2800EDC405 /* EffectHeal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectHeal.m; sourceTree = "<group>"; };
-		78D0855C176A4C7C00EDC405 /* EffectSleep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectSleep.h; sourceTree = "<group>"; };
-		78D0855D176A4C7C00EDC405 /* EffectSleep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectSleep.m; sourceTree = "<group>"; };
+		78D08559176A4B2800EDC405 /* PEHeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEHeal.h; sourceTree = "<group>"; };
+		78D0855A176A4B2800EDC405 /* PEHeal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEHeal.m; sourceTree = "<group>"; };
+		78D0855C176A4C7C00EDC405 /* PESleep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PESleep.h; sourceTree = "<group>"; };
+		78D0855D176A4C7C00EDC405 /* PESleep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PESleep.m; sourceTree = "<group>"; };
 		78D0855F176A4D7900EDC405 /* Simulated.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Simulated.h; sourceTree = "<group>"; };
 		78D28BE7177F6F8A00FF5D6E /* ComicZineOT.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ComicZineOT.otf; sourceTree = "<group>"; };
 		78D28BE8177F6F8A00FF5D6E /* ComicZineSolid.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ComicZineSolid.otf; sourceTree = "<group>"; };
@@ -1618,24 +1618,24 @@
 			children = (
 				786246331767BE47001904AC /* PlayerEffect.h */,
 				786246341767BE47001904AC /* PlayerEffect.m */,
-				789B47C6178F1C2D00611CA5 /* EffectBasicDamage.h */,
-				789B47C7178F1C2D00611CA5 /* EffectBasicDamage.m */,
-				789B47C3178F1AED00611CA5 /* EffectApply.h */,
-				789B47C4178F1AED00611CA5 /* EffectApply.m */,
-				786246371767BF19001904AC /* EffectInvisible.h */,
-				786246381767BF19001904AC /* EffectInvisible.m */,
-				786246591767EAE2001904AC /* EffectHelmet.h */,
-				7862465A1767EAE2001904AC /* EffectHelmet.m */,
-				78D08559176A4B2800EDC405 /* EffectHeal.h */,
-				78D0855A176A4B2800EDC405 /* EffectHeal.m */,
-				78D0855C176A4C7C00EDC405 /* EffectSleep.h */,
-				78D0855D176A4C7C00EDC405 /* EffectSleep.m */,
-				78915281176A72A8001694B1 /* EffectLevitate.h */,
-				78915282176A72A8001694B1 /* EffectLevitate.m */,
-				7801E9F717B1830C005D14D8 /* EffectTeddyHeal.h */,
-				7801E9F817B1830C005D14D8 /* EffectTeddyHeal.m */,
-				78CD5ECC17B4197600FE0FB0 /* EffectUndies.h */,
-				78CD5ECD17B4197600FE0FB0 /* EffectUndies.m */,
+				789B47C6178F1C2D00611CA5 /* PEBasicDamage.h */,
+				789B47C7178F1C2D00611CA5 /* PEBasicDamage.m */,
+				789B47C3178F1AED00611CA5 /* PEApply.h */,
+				789B47C4178F1AED00611CA5 /* PEApply.m */,
+				786246371767BF19001904AC /* PEInvisible.h */,
+				786246381767BF19001904AC /* PEInvisible.m */,
+				786246591767EAE2001904AC /* PEHelmet.h */,
+				7862465A1767EAE2001904AC /* PEHelmet.m */,
+				78D08559176A4B2800EDC405 /* PEHeal.h */,
+				78D0855A176A4B2800EDC405 /* PEHeal.m */,
+				781BE0D517C50FD5005735A9 /* PENone.h */,
+				781BE0D617C50FD6005735A9 /* PENone.m */,
+				78D0855C176A4C7C00EDC405 /* PESleep.h */,
+				78D0855D176A4C7C00EDC405 /* PESleep.m */,
+				78915281176A72A8001694B1 /* PELevitate.h */,
+				78915282176A72A8001694B1 /* PELevitate.m */,
+				78CD5ECC17B4197600FE0FB0 /* PEUndies.h */,
+				78CD5ECD17B4197600FE0FB0 /* PEUndies.m */,
 			);
 			name = Effects;
 			sourceTree = "<group>";
@@ -2440,7 +2440,6 @@
 				78F6B3761746AE5900AA070D /* mat4.c in Sources */,
 				78F6B3771746AE5900AA070D /* neon_matrix_impl.c in Sources */,
 				78F6B3781746AE5900AA070D /* plane.c in Sources */,
-				7801E9F917B1830C005D14D8 /* EffectTeddyHeal.m in Sources */,
 				78F6B3791746AE5900AA070D /* quaternion.c in Sources */,
 				78F6B37A1746AE5900AA070D /* ray2.c in Sources */,
 				78F6B37B1746AE5900AA070D /* utility.c in Sources */,
@@ -2481,16 +2480,16 @@
 				78E8EA6A1759427E00017747 /* Combos.m in Sources */,
 				786246321767B790001904AC /* SpellInvisibility.m in Sources */,
 				786246351767BE47001904AC /* PlayerEffect.m in Sources */,
-				78915284176A72DE001694B1 /* EffectLevitate.m in Sources */,
-				786246391767BF19001904AC /* EffectInvisible.m in Sources */,
+				78915284176A72DE001694B1 /* PELevitate.m in Sources */,
+				786246391767BF19001904AC /* PEInvisible.m in Sources */,
 				786246411767C8D3001904AC /* SpellFirewall.m in Sources */,
 				786246441767C95A001904AC /* SpellWall.m in Sources */,
 				7862464D1767CF64001904AC /* SpellFist.m in Sources */,
 				786246541767D71A001904AC /* SpellHelmet.m in Sources */,
-				7862465B1767EAE2001904AC /* EffectHelmet.m in Sources */,
+				7862465B1767EAE2001904AC /* PEHelmet.m in Sources */,
 				78D08558176A4AC500EDC405 /* SpellHeal.m in Sources */,
-				78D0855B176A4B2800EDC405 /* EffectHeal.m in Sources */,
-				78D0855E176A4C7C00EDC405 /* EffectSleep.m in Sources */,
+				78D0855B176A4B2800EDC405 /* PEHeal.m in Sources */,
+				78D0855E176A4C7C00EDC405 /* PESleep.m in Sources */,
 				783BD39E176A79A50092D93C /* SpellSleep.m in Sources */,
 				783E8066176A88B800A21FE5 /* SpellVortex.m in Sources */,
 				785FBEC4177261BD0021AEE5 /* InstagramEnemy.m in Sources */,
@@ -2604,8 +2603,8 @@
 				78C5CDE5178B74D700CDCC76 /* UserCell.m in Sources */,
 				78C98629178DE0C800B545F9 /* Challenge.m in Sources */,
 				78C9862E178DFFF000B545F9 /* ChallengeCell.m in Sources */,
-				789B47C5178F1AEE00611CA5 /* EffectApply.m in Sources */,
-				789B47C8178F1C2D00611CA5 /* EffectBasicDamage.m in Sources */,
+				789B47C5178F1AEE00611CA5 /* PEApply.m in Sources */,
+				789B47C8178F1C2D00611CA5 /* PEBasicDamage.m in Sources */,
 				78CF318F1791E49D00BC8C29 /* FeedbackLayer.m in Sources */,
 				78CF319617920C4800BC8C29 /* InfoService.m in Sources */,
 				78AF756C1792E162008499DB /* UIColor+Hex.m in Sources */,
@@ -2629,7 +2628,7 @@
 				78782B6217B03D320089F1D6 /* UIViewController+Idiom.m in Sources */,
 				786EE5BF17B2A5FE004D9214 /* HelpViewController.m in Sources */,
 				786EE5C717B2E4A4004D9214 /* PreloadLayer.m in Sources */,
-				78CD5ECE17B4197600FE0FB0 /* EffectUndies.m in Sources */,
+				78CD5ECE17B4197600FE0FB0 /* PEUndies.m in Sources */,
 				782BC1AB17B90DD100EB7FC6 /* DebugSprite.m in Sources */,
 				782BC1B817B94F5F00EB7FC6 /* SpellCheeseCaptainPlanet.m in Sources */,
 				782BC1BD17B9595900EB7FC6 /* SpellLightningOrb.m in Sources */,
@@ -2647,6 +2646,7 @@
 				780A234C17C3BE1900EE3BAA /* SpellbookCastDiagramView.m in Sources */,
 				780A235517C3EAC900EE3BAA /* SpellEffectService.m in Sources */,
 				780A235817C40C8600EE3BAA /* SpellEffect.m in Sources */,
+				781BE0D717C50FD6005735A9 /* PENone.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

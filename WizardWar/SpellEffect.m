@@ -8,7 +8,7 @@
 
 #import "SpellEffect.h"
 #import "SpellBubble.h"
-#import "EffectSleep.h"
+#import "PESleep.h"
 #import "Spell.h"
 
 @implementation SpellEffect
@@ -67,9 +67,7 @@
 
 @implementation SECarry
 +(BOOL)isCarried:(Spell*)spell otherSpell:(Spell*)otherSpell {
-    NSLog(@"isCarried? %@ %@ %@", spell, otherSpell, spell.linkedSpell);
     if ([spell.linkedSpell isKindOfClass:SpellBubble.class] && spell.linkedSpell.status != SpellStatusDestroyed) return YES;
-//    if ([otherSpell.spellEffect isKindOfClass:SECarry.class]) return YES;
     return NO;
 }
 
@@ -82,7 +80,6 @@
     if (spell.position == otherSpell.position && spell.speed == otherSpell.speed && spell.direction == otherSpell.direction)
         return NO;
     
-    spell.spellEffect = [SECarry new]; // I guess this means it is being carried
     spell.linkedSpell = otherSpell;
     spell.position = otherSpell.position;
     spell.speed = otherSpell.speed;
@@ -96,8 +93,8 @@
     if ([SECarry isCarried:spell otherSpell:otherSpell]) return NO;
     
     spell.speed = 0;
-    spell.effect = [EffectSleep new];
-    [spell.effect start:tick player:nil];
+//    spell.effect = [EffectSleep new];
+//    [spell.effect start:tick player:nil];
     return YES;
 }
 @end
@@ -119,7 +116,7 @@
 -(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick {
     // they don't work in the same direction? I don't think so!
     if ([SECarry isCarried:spell otherSpell:otherSpell]) return NO;
-    if ([spell.effect isKindOfClass:[EffectSleep class]]) return NO;
+//    if ([spell.effect isKindOfClass:[EffectSleep class]]) return NO;
     if (self.up > 0) {
         if (spell.direction == otherSpell.direction) {
             spell.speed += self.up;

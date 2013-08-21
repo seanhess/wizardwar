@@ -7,8 +7,8 @@
 //
 
 #import "PlayerEffect.h"
-#import "EffectApply.h"
+#import "PEApply.h"
 
-@interface EffectLevitate : EffectApply
+@interface PELevitate : PEApply
 
 @end

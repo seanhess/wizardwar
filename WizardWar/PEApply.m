@@ -6,13 +6,12 @@
 //  Copyright (c) 2013 The LAB. All rights reserved.
 //
 
-#import "EffectApply.h"
+#import "PEApply.h"
 #import "Wizard.h"
 
-@implementation EffectApply
+@implementation PEApply
 
 -(SpellInteraction *)applySpell:(Spell *)spell onWizard:(Wizard *)wizard currentTick:(NSInteger)currentTick {
-    
     if (wizard.effect) {
         [wizard.effect cancel:wizard];
     }

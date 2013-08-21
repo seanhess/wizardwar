@@ -7,11 +7,10 @@
 //
 
 #import "PlayerEffect.h"
-#import "EffectApply.h"
+#import "PEApply.h"
 
-// time (in seconds) to heal 1 heart
 #define EFFECT_HEAL_TIME 3.0
 
-@interface EffectHeal : EffectApply
-
+@interface PEHeal : PEApply
++(id)delay:(NSTimeInterval)delay;
 @end

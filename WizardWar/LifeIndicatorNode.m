@@ -7,7 +7,7 @@
 //
 
 #import "LifeIndicatorNode.h"
-#import "EffectHeal.h"
+#import "PEHeal.h"
 #import "NSArray+Functional.h"
 #import <ReactiveCocoa.h>
 
@@ -98,7 +98,7 @@
 }
 
 -(void)renderEffect {
-    if ([self.player.effect class] == [EffectHeal class]) {
+    if ([self.player.effect class] == [PEHeal class]) {
         if (self.player.health < MAX_HEALTH) {
             CCSprite * nextHeart = [self.filledHearts objectAtIndex:self.player.health];
             [nextHeart runAction:self.healAction];

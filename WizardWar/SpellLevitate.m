@@ -7,7 +7,7 @@
 //
 
 #import "SpellLevitate.h"
-#import "EffectLevitate.h"
+#import "PELevitate.h"
 
 @implementation SpellLevitate
 
@@ -15,7 +15,6 @@
     if ((self=[super init])) {
         self.speed = 0;
         self.damage = 0;
-        self.effect = [EffectLevitate new];
         self.targetSelf = YES;
         self.name = @"Levitate";
     }

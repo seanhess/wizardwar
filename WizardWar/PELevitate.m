@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 The LAB. All rights reserved.
 //
 
-#import "EffectLevitate.h"
+#import "PELevitate.h"
 #import "Wizard.h"
 
 #define EFFECT_LEVITATE_DURATION 4.5
 
-@implementation EffectLevitate
+@implementation PELevitate
 
 -(id)init {
     self = [super init];
@@ -38,7 +38,7 @@
 
 -(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval player:(Wizard*)player {
     NSInteger ticksPerDuration = round(EFFECT_LEVITATE_DURATION / interval);
-    if ((currentTick - self.startTick) >= ticksPerDuration) {
+    if ((currentTick - player.effectStartTick) >= ticksPerDuration) {
         player.effect = nil;
         player.altitude = 0;
     }

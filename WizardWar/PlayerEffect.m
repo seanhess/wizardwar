@@ -15,7 +15,6 @@
 -(id)init {
     self = [super init];
     if (self) {
-        self.active = YES;
         self.delay = 0;
         self.duration = EFFECT_INDEFINITE;
     }
@@ -28,7 +27,11 @@
 }
 
 -(void)start:(NSInteger)tick player:(Wizard *)player {
-    self.startTick = tick;
+    player.effectStartTick = tick;
+}
+
+-(void)activateEffect:(Wizard*)wizard {
+    
 }
 
 -(void)cancel:(Wizard*)player {
@@ -51,7 +54,7 @@
 }
 
 // means did not intercept, go ahead with default behavior
--(SpellInteraction*)interceptSpell:(Spell*)spell onWizard:(Wizard*)wizard {
+-(SpellInteraction*)interceptSpell:(Spell*)spell onWizard:(Wizard*)wizard interval:(NSTimeInterval)interval currentTick:(NSInteger)currentTick {
     return nil;
 }
 

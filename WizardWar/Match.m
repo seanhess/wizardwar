@@ -299,7 +299,7 @@
             creator.effect = nil;
         
         if (spell.targetSelf) {
-            [self hitPlayer:creator withSpell:spell atTick:currentTick];
+            [self hitPlayer:creator withSpell:spell interval:tickInterval atTick:currentTick];
         }
         else {
             [self positionSpell:spell referenceTick:spell.createdTick currentTick:currentTick];
@@ -335,9 +335,9 @@
     // Then, older spells go last (they apply more strongly)
     // No bubble steal
     NSArray * spells = [self.activeSpells sortedArrayUsingComparator:^NSComparisonResult(Spell * one, Spell * two) {
-        if (one.spellEffect && !two.spellEffect) return NSOrderedDescending;
-        else if (!one.spellEffect && two.spellEffect) return NSOrderedAscending;
-        else if (one.createdTick > two.createdTick) return NSOrderedAscending;
+//        if (one.spellEffect && !two.spellEffect) return NSOrderedDescending;
+//        else if (!one.spellEffect && two.spellEffect) return NSOrderedAscending;
+        if (one.createdTick > two.createdTick) return NSOrderedAscending;
         else if (one.createdTick < two.createdTick) return NSOrderedDescending;
         else return NSOrderedSame;
     }];
@@ -350,14 +350,14 @@
         // see if spell hits ME (don't check the other player)
         for (Wizard * player in players) {
             if ([spell hitsPlayer:player duringInterval:tickInterval])
-                [self hitPlayer:player withSpell:spell atTick:currentTick];
+                [self hitPlayer:player withSpell:spell interval:tickInterval atTick:currentTick];
         }
         
         // start at the next spell (don't check collisons twice)
         for (int j = i+1; j < spells.count; j++) {
             Spell * spell2 = spells[j];
             if ([spell didHitSpell:spell2 duringInterval:self.timer.tickInterval]) {
-                [self hitSpell:spell withSpell:spell2 currentTick:currentTick];
+                [self hitSpell:spell withSpell:spell2 interval:tickInterval currentTick:currentTick];
             }
         }
     }
@@ -398,10 +398,10 @@
     }
 }
 
--(void)hitPlayer:(Wizard*)wizard withSpell:(Spell*)spell atTick:(NSInteger)currentTick {
+-(void)hitPlayer:(Wizard*)wizard withSpell:(Spell*)spell interval:(NSTimeInterval)interval atTick:(NSInteger)currentTick {
     
     Wizard * clone = [wizard evilClone];
-    SpellInteraction * interaction = [spell interactWizard:clone currentTick:currentTick];
+    SpellInteraction * interaction = [self interactWizard:clone spell:spell interval:interval currentTick:currentTick];
     [self handleInteraction:interaction forSpell:spell];
 
     // Now copy the wizard changes into your current wizard
@@ -445,7 +445,7 @@
     }
 }
 
--(void)hitSpell:(Spell*)spell withSpell:(Spell*)spell2 currentTick:(NSInteger)currentTick {
+-(void)hitSpell:(Spell*)spell withSpell:(Spell*)spell2 interval:(NSTimeInterval)interval currentTick:(NSInteger)currentTick {
     NSArray * interactions = [self.effects interactionsForSpell:spell.class andSpell:spell2.class];
     
     for (SpellInteraction2 * interaction in interactions) {
@@ -467,13 +467,13 @@
             other = spell;
         }
         
-        [self interact:interaction main:main other:other currentTick:currentTick];
+        [self interact:interaction main:main other:other interval:interval currentTick:currentTick];
     }
 }
 
--(void)interact:(SpellInteraction2*)interaction main:(Spell*)main other:(Spell*)other currentTick:(NSInteger)currentTick {
+-(void)interact:(SpellInteraction2*)interaction main:(Spell*)main other:(Spell*)other interval:(NSTimeInterval)interval currentTick:(NSInteger)currentTick {
     
-    NSLog(@"INTERACT %@ %@ %@", interaction.effect, main.name, other.name);
+//    NSLog(@"INTERACT %@ %@ %@", interaction.effect, main.name, other.name);
     
     BOOL modified = [interaction.effect applyToSpell:main otherSpell:other tick:currentTick];
     
@@ -482,7 +482,7 @@
         
         // LINKED SPELLS should match their link's position, speed, direction, etc
         NSArray * linkedSpells = [self spellsLinkedToSpell:main];
-        NSLog(@" - changed %i", linkedSpells.count);
+//        NSLog(@" - changed %i", linkedSpells.count);
         [linkedSpells forEach:^(Spell * spell) {
             if (spell.linkedSpell.strength == 0) {
                 spell.strength = 0;
@@ -494,6 +494,20 @@
             [self modifySpell:spell];
         }];
     }
+}
+
+-(SpellInteraction*)interactWizard:(Wizard *)wizard spell:(Spell*)spell interval:(NSTimeInterval)interval currentTick:(NSInteger)currentTick {
+    
+    // If the wizard has an effect, give it the chance to override the default behavior
+    if (wizard.effect) {
+        SpellInteraction * interaction = [wizard.effect interceptSpell:spell onWizard:wizard interval:interval currentTick:currentTick];
+        if (interaction)
+            return interaction;
+    }
+    
+    // otherwise apply the effect full force
+    PlayerEffect * effect = [self.effects playerEffectForSpell:spell.class];
+    return [effect applySpell:spell onWizard:wizard currentTick:currentTick];
 }
 
 

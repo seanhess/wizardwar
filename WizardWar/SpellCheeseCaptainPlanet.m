@@ -19,8 +19,4 @@
     return self;
 }
 
--(SpellInteraction*)interactWizard:(Wizard *)wizard currentTick:(NSInteger)currentTick {
-    return [SpellInteraction nothing];
-}
-
 @end

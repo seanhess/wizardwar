@@ -11,12 +11,12 @@
 #import "CCLabelTTF.h"
 #import <ReactiveCocoa.h>
 #import "SpellInvisibility.h"
-#import "EffectInvisible.h"
-#import "EffectHelmet.h"
-#import "EffectHeal.h"
-#import "EffectSleep.h"
+#import "PEInvisible.h"
+#import "PEHelmet.h"
+#import "PEHeal.h"
+#import "PESleep.h"
 #import "AppStyle.h"
-#import "EffectUndies.h"
+#import "PEUndies.h"
 #import "DebugSprite.h"
 #import "OLSprite.h"
 
@@ -196,7 +196,7 @@
 
 -(void)alignBrow:(CCSpriteFrame*)currentFrame {
     
-    if (self.wizard.state == WizardStatusDead || self.wizard.state == WizardStatusWon || [self.wizard.effect isKindOfClass:[EffectSleep class]])
+    if (self.wizard.state == WizardStatusDead || self.wizard.state == WizardStatusWon || [self.wizard.effect isKindOfClass:[PESleep class]])
         return;
 
     if (!currentFrame) {
@@ -219,7 +219,7 @@
     self.browOffset = browOffset;
     self.headDebug.position = browOffset.point;
     
-    if ([self.wizard.effect isKindOfClass:[EffectHelmet class]]) {
+    if ([self.wizard.effect isKindOfClass:[PEHelmet class]]) {
         [self alignHelmet];
     }
 }
@@ -232,7 +232,7 @@
 
 -(void)renderStatus {
     
-    if (self.wizard.effect.class == EffectSleep.class && (self.wizard.state == WizardStatusReady || self.wizard.state == WizardStatusHit || self.wizard.state == WizardStatusCast))
+    if (self.wizard.effect.class == PESleep.class && (self.wizard.state == WizardStatusReady || self.wizard.state == WizardStatusHit || self.wizard.state == WizardStatusCast))
         return;
     
     [self.skin stopAction:self.skinStatusAction];
@@ -303,7 +303,7 @@
     self.clothes.opacity = 255;
     
     // set opactiy based on invisible
-    if ([self.wizard.effect class] == [EffectInvisible class]) {
+    if ([self.wizard.effect class] == [PEInvisible class]) {
         self.skinEffectAction = [CCFadeTo actionWithDuration:self.wizard.effect.delay opacity:20];
         self.clothesEffectAction = [CCFadeTo actionWithDuration:self.wizard.effect.delay opacity:20];
         
@@ -311,7 +311,7 @@
         [self.clothes runAction:self.clothesEffectAction];        
     }
     
-    else if ([self.wizard.effect class] == [EffectHelmet class]) {
+    else if ([self.wizard.effect class] == [PEHelmet class]) {
         [self renderStatus];
         self.effect = [CCSprite spriteWithSpriteFrameName:@"helmet.png"];
         self.effect.flipX = self.wizard.position == UNITS_MAX;
@@ -326,7 +326,7 @@
 //        [self moveHelmetAround:self.wizard.state];
     }
     
-    else if ([self.wizard.effect class] == [EffectHeal class]) {
+    else if ([self.wizard.effect class] == [PEHeal class]) {
 //        self.skin.color = ccc3(255, 255, 255);
 //        [self.skin setBlendFunc: (ccBlendFunc) { GL_ONE, GL_ONE }];
 //        [self.skin runAction: [CCRepeatForever actionWithAction:[CCSequence actions:[CCScaleTo actionWithDuration:0.9f scaleX:size.width scaleY:size.height], [CCScaleTo actionWithDuration:0.9f scaleX:size.width*0.75f scaleY:size. height*0.75f], nil] ]];
@@ -340,12 +340,12 @@
         [self.skin runAction:self.skinEffectAction];
     }
     
-    else if ([self.wizard.effect class] == [EffectSleep class]) {
+    else if ([self.wizard.effect class] == [PESleep class]) {
         self.skinEffectAction = [self actionForSleepEffectForClothes:NO];
         self.clothesEffectAction = [self actionForSleepEffectForClothes:YES];
         
         // then when the effect wears off, we need to re-render status
-        if (![self.currentEffect isKindOfClass:[EffectSleep class]]) {
+        if (![self.currentEffect isKindOfClass:[PESleep class]]) {
             CGPoint pos = self.calculatedPosition;
             self.rotation = -90;
             CCFiniteTimeAction * toPos = [CCMoveTo actionWithDuration:SLEEP_ANIMATION_START_DELAY position:pos];
@@ -365,7 +365,7 @@
         [self.clothes runAction:self.clothesEffectAction];
     }
     
-    else if ([self.wizard.effect class] == [EffectUndies class]) {
+    else if ([self.wizard.effect class] == [PEUndies class]) {
         self.effect = [CCSprite spriteWithSpriteFrameName:@"wizard-undies.png"];
 //        self.effect.flipY = YES;
         self.effect.position = ccp(self.wizard.direction*-12, -30);

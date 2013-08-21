@@ -7,7 +7,7 @@
 //
 
 #import "SpellHelmet.h"
-#import "EffectHelmet.h"
+#import "PEHelmet.h"
 
 @implementation SpellHelmet
 
@@ -15,7 +15,6 @@
     if ((self=[super init])) {
         self.speed = 0;
         self.damage = 0;
-        self.effect = [EffectHelmet new];
         self.targetSelf = YES;
         self.name = @"Mighty Helmet";
     }

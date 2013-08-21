@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 The LAB. All rights reserved.
 //
 
-#import "EffectHelmet.h"
+#import "PEHelmet.h"
 #import "SpellFist.h"
 #import "SpellLightningOrb.h"
 
-@implementation EffectHelmet
+@implementation PEHelmet
 
 // Hmm, intercept needs to be able to allow it to pass through!
--(SpellInteraction *)interceptSpell:(Spell *)spell onWizard:(Wizard *)wizard {
+-(SpellInteraction *)interceptSpell:(Spell *)spell onWizard:(Wizard *)wizard interval:(NSTimeInterval)interval currentTick:(NSInteger)currentTick {
     // make everything pass through me except for fist
     if ([spell isType:[SpellFist class]]) {
         wizard.effect = nil;                // the helmet is broken!

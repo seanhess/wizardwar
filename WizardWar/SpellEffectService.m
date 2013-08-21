@@ -31,15 +31,15 @@
 #import "SpellFailHotdog.h"
 
 #import "SpellCheeseCaptainPlanet.h"
-#import "EffectTeddyHeal.h"
-#import "EffectApply.h"
-#import "EffectBasicDamage.h"
-#import "EffectHeal.h"
-#import "EffectHelmet.h"
-#import "EffectInvisible.h"
-#import "EffectLevitate.h"
-#import "EffectSleep.h"
-#import "EffectUndies.h"
+#import "PEApply.h"
+#import "PEBasicDamage.h"
+#import "PEHeal.h"
+#import "PEHelmet.h"
+#import "PEInvisible.h"
+#import "PELevitate.h"
+#import "PESleep.h"
+#import "PEUndies.h"
+#import "PENone.h"
 
 #import "SpellEffect.h"
 
@@ -69,21 +69,7 @@
 
 
 
-@interface PEHeal : PlayerEffect
-+(id)delay:(NSTimeInterval)delay;
-@end
 
-@implementation PEHeal
-+(id)delay:(NSTimeInterval)delay {
-    return [PEHeal new];
-}
-@end
-
-@interface PELevitate : PlayerEffect
-@end
-
-@implementation PELevitate
-@end
 
 
 @implementation SpellInteraction2
@@ -117,7 +103,7 @@
 -(void)createSpellInteractions {
     [self spell:Hotdog effect:[SEDestroy new] spell:Monster effect:[SEStronger new]];
     [self spell:Teddy player:[PEHeal delay:0]];
-    [self spell:Undies player:[EffectUndies new]];
+    [self spell:Undies player:[PEUndies new]];
     [self spell:Chicken default:[SEDestroy new]];
     // Rainbow doesn't do anything
     // CaptainPlanet doesn't do anything    
@@ -125,6 +111,7 @@
     [self spell:Fireball effect:[SENone new] spell:Monster effect:[SEDestroy new]];
     [self spell:Fireball effect:[SEDestroy new] spell:Vine effect:[SEDestroy new]];
     
+    [self spell:Windblast player:[PENone new]];
     [self spell:Windblast effect:[SENone new] spell:Fireball effect:[SEStronger new]];
     [self spell:Windblast effect:[SENone new] spell:Bubble effect:[SESpeed speedUp:35 slowDown:35]];
     [self spell:Windblast effect:[SENone new] spell:Monster effect:[SESpeed speedUp:30 slowDown:15]];
@@ -159,15 +146,16 @@
     [self spell:Monster effect:[SENone new] spell:Icewall effect:[SEDestroy new]];
     [self spell:Monster effect:[SEDestroy new] spell:Monster effect:[SEDestroy new]];
     
-    [self spell:Helmet player:[EffectHelmet new]];
+    [self spell:Helmet player:[PEHelmet new]];
     [self spell:Helmet effect:[SEDestroy new] spell:Fist effect:[SEDestroy new]];
     
-    [self spell:Sleep player:[EffectSleep new]];
+    [self spell:Sleep player:[PESleep new]];
     [self spell:Sleep effect:[SEDestroy new] spell:Monster effect:[SESleep new]];
     
-    [self spell:Heal player:[PEHeal delay:3.0]];
+    [self spell:Heal player:[PEHeal delay:EFFECT_HEAL_TIME]];
     
     [self spell:Levitate player:[PELevitate new]];
+    [self spell:Invisibility player:[PEInvisible new]];
 }
 
 // the normal default spell interaction is nothing
@@ -251,7 +239,11 @@
 }
 
 -(PlayerEffect*)playerEffectForSpell:(Class)Spell {
-    return [self.playerEffects objectForKey:Spell];
+    PlayerEffect * effect = [self.playerEffects objectForKey:Spell];
+    if (!effect) {
+        effect = [PEBasicDamage new];
+    }
+    return effect;
 }
 
 @end

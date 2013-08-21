@@ -42,8 +42,6 @@ typedef enum SpellStatus {
 @property (nonatomic, strong) Wizard * creator;
 @property (nonatomic) NSInteger altitude; // how high it is. normal = 0;
 @property (nonatomic) BOOL heavy; // if it falls
-@property (nonatomic, strong) PlayerEffect * effect; // if the spell creates an effect
-@property (nonatomic, strong) SpellEffect * spellEffect;
 @property (nonatomic) BOOL targetSelf;
 @property (nonatomic, strong) NSString * name;
 @property (nonatomic) CGFloat castDelay; // delay after cast
@@ -57,7 +55,6 @@ typedef enum SpellStatus {
 
 -(SpellInteraction*)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval;
 -(SpellInteraction*)interactSpell:(Spell*)spell currentTick:(NSInteger)currentTick;
--(SpellInteraction*)interactWizard:(Wizard*)wizard currentTick:(NSInteger)currentTick;
 
 -(BOOL)hitsPlayer:(Wizard*)player duringInterval:(NSTimeInterval)dt;
 -(BOOL)didHitSpell:(Spell*)spell duringInterval:(NSTimeInterval)dt;

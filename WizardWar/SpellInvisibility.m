@@ -7,7 +7,6 @@
 //
 
 #import "SpellInvisibility.h"
-#import "EffectInvisible.h"
 
 @implementation SpellInvisibility
 
@@ -15,16 +14,10 @@
     if ((self=[super init])) {
         self.speed = 0;
         self.damage = 0;
-        self.effect = [EffectInvisible new];
         self.targetSelf = YES;
         self.name = @"Invisibility";
     }
     return self;
 }
-
--(SpellInteraction *)interactSpell:(Spell *)spell currentTick:(NSInteger)currentTick {
-    return [SpellInteraction nothing];
-}
-
 
 @end

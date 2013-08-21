@@ -32,7 +32,7 @@
 #import "SpellFailTeddy.h"
 #import "SpellFailUndies.h"
 
-#import "EffectSleep.h"
+#import "PESleep.h"
 #import <ReactiveCocoa.h>
 
 @interface SpellSprite ()
@@ -104,9 +104,9 @@
             [self renderDirection];
         }];
         
-        [[RACAble(self.spell.effect) distinctUntilChanged] subscribeNext:^(id x) {
-            [self renderEffect];
-        }];
+//        [[RACAble(self.spell.effect) distinctUntilChanged] subscribeNext:^(id x) {
+//            [self renderEffect];
+//        }];
         
         self.currentAltitude = self.spell.altitude;
         [[RACAble(self.spell.altitude) distinctUntilChanged] subscribeNext:^(id x) {
@@ -312,22 +312,22 @@
 
 // crap, I don't know the old value here.
 // there's no way to know.
-- (void)renderEffect {
-    if (self.spell.targetSelf) return;
-    
-    if ([self.spell.effect class] == [EffectSleep class]) {
-        CCFiniteTimeAction * toPos = [CCMoveTo actionWithDuration:0.2 position:ccp(self.spellX, self.spellY - 50)];
-        CCFiniteTimeAction * rotate = [CCRotateTo actionWithDuration:0.2 angle:-90.0*self.spell.direction];
-        [self stopAction:self.self.frameAnimation];
-        [self runAction:toPos];
-        [self runAction:rotate];
-    }
-    
-    else {
-        [self runAction:[CCMoveTo actionWithDuration:0.2 position:ccp(self.spellX, self.spellY)]];
-        [self runAction:[CCRotateTo actionWithDuration:0.2 angle:0]];
-    }
-}
+//- (void)renderEffect {
+//    if (self.spell.targetSelf) return;
+//    
+//    if ([self.spell.effect class] == [EffectSleep class]) {
+//        CCFiniteTimeAction * toPos = [CCMoveTo actionWithDuration:0.2 position:ccp(self.spellX, self.spellY - 50)];
+//        CCFiniteTimeAction * rotate = [CCRotateTo actionWithDuration:0.2 angle:-90.0*self.spell.direction];
+//        [self stopAction:self.self.frameAnimation];
+//        [self runAction:toPos];
+//        [self runAction:rotate];
+//    }
+//    
+//    else {
+//        [self runAction:[CCMoveTo actionWithDuration:0.2 position:ccp(self.spellX, self.spellY)]];
+//        [self runAction:[CCRotateTo actionWithDuration:0.2 angle:0]];
+//    }
+//}
 
 +(BOOL)isSingleImage:(Spell*)spell {
     return (spell.class == SpellFist.class ||

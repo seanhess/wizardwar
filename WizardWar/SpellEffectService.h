@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SpellEffect.h"
+#import "PlayerEffect.h"
 
 @interface SpellInteraction2 : NSObject
 @property (nonatomic, strong) Class spell;
@@ -18,4 +19,5 @@
 
 @interface SpellEffectService : NSObject
 -(NSArray*)interactionsForSpell:(Class)SpellOne andSpell:(Class)SpellTwo;
+-(PlayerEffect*)playerEffectForSpell:(Class)Spell;
 @end

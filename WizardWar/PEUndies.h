@@ -1,13 +1,14 @@
 //
-//  EffectUndies.m
+//  EffectUndies.h
 //  WizardWar
 //
 //  Created by Sean Hess on 8/8/13.
 //  Copyright (c) 2013 Orbital Labs. All rights reserved.
 //
 
-#import "EffectUndies.h"
+#import "PlayerEffect.h"
+#import "PEApply.h"
 
-@implementation EffectUndies
+@interface PEUndies : PEApply
 
 @end

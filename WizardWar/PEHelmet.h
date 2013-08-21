@@ -1,13 +1,14 @@
 //
-//  EffectBasicDamage.h
+//  EffectHelmet.h
 //  WizardWar
 //
-//  Created by Sean Hess on 7/11/13.
+//  Created by Sean Hess on 6/11/13.
 //  Copyright (c) 2013 The LAB. All rights reserved.
 //
 
 #import "PlayerEffect.h"
+#import "PEApply.h"
 
-@interface EffectBasicDamage : PlayerEffect
+@interface PEHelmet : PEApply
 
 @end

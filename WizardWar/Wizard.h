@@ -32,6 +32,7 @@ typedef enum WizardStatus {
 @property (nonatomic) NSInteger health;
 @property (nonatomic, strong) NSString * wizardType;
 @property (nonatomic, strong) PlayerEffect * effect; // current effect applied
+@property (nonatomic) NSInteger effectStartTick;
 @property (nonatomic) NSInteger altitude; // how high you are. 0 = normal
 @property (readonly) NSInteger direction;
 @property (nonatomic) NSUInteger colorRGB; // hex rgb value
