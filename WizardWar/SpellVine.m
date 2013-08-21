@@ -20,7 +20,6 @@
 #define TIME_UNTIL_ATTACK_END 3
 
 @interface SpellVine ()
-@property (nonatomic) BOOL isAttacking;
 @end
 
 @implementation SpellVine
@@ -33,9 +32,13 @@
         self.castDelay *= 2.5;
         self.speed = 0;
         self.startOffsetPosition = UNITS_MAX - SPELL_WALL_OFFSET_POSITION;
-        self.isAttacking = NO;
     }
     return self;
+}
+
+-(void)setPositionFromPlayer:(Wizard*)player {
+    [super setPositionFromPlayer:player];
+    self.altitude = -1;
 }
 
 -(BOOL)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
@@ -51,7 +54,7 @@
         else
             self.position = UNITS_MAX;
     } else if (elapsedTicks >= ticksUntilAttackStart) {
-        self.isAttacking = YES;
+        self.altitude = 0;
     }
     
     return NO;

@@ -116,6 +116,8 @@
 // not whether they are about to.
 -(BOOL)didHitSpell:(Spell *)spell duringInterval:(NSTimeInterval)dt {
     
+    NSLog(@"DID HIT SPELL? %@:%i %@:%i", self.name, self.altitude, spell.name, spell.altitude);
+    
     if (self.altitude != spell.altitude) return NO;
 
     // return if it WILL cross positions during this time interval

@@ -486,7 +486,7 @@
 
 -(void)interact:(SpellInteraction*)interaction main:(Spell*)main other:(Spell*)other interval:(NSTimeInterval)interval currentTick:(NSInteger)currentTick {
     
-    NSLog(@"INTERACT %@ %@ %@", interaction.effect, main.name, other.name);
+//    NSLog(@"INTERACT %@ %@ %@", interaction.effect, main.name, other.name);
     
     BOOL modified = [interaction.effect applyToSpell:main otherSpell:other tick:currentTick];
     
@@ -497,7 +497,7 @@
         
         // LINKED SPELLS should match their link's position, speed, direction, etc
         NSArray * linkedSpells = [self spellsLinkedToSpell:main];
-        NSLog(@" - changed %i", linkedSpells.count);
+//        NSLog(@" - changed %i", linkedSpells.count);
         [linkedSpells forEach:^(Spell * spell) {
             if (spell.linkedSpell.strength == 0) {
                 spell.strength = 0;
