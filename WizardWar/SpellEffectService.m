@@ -44,36 +44,30 @@
 #import "SpellEffect.h"
 
 
-#define Hotdog [SpellFailHotdog class]
-#define Teddy [SpellFailTeddy class]
-#define Undies [SpellFailUndies class]
-#define Chicken [SpellFailChicken class]
-#define Rainbow [SpellFailRainbow class]
-#define Fireball [SpellFireball class]
-#define Lightning [SpellLightningOrb class]
-#define Fist [SpellFist class]
-#define Helmet [SpellHelmet class]
-#define Earthwall [SpellEarthwall class]
-#define Firewall [SpellFirewall class]
-#define Bubble [SpellBubble class]
-#define Icewall [SpellIcewall class]
-#define Monster [SpellMonster class]
-#define Vine [SpellVine class]
-#define Windblast [SpellWindblast class]
-#define Invisibility [SpellInvisibility class]
-#define Heal [SpellHeal class]
-#define Levitate [SpellLevitate class]
-#define Sleep [SpellSleep class]
-#define CaptainPlanet [SpellCheeseCaptainPlanet class]
+#define Hotdog @"SpellFailHotdog"
+#define Teddy @"SpellFailTeddy"
+#define Undies @"SpellFailUndies"
+#define Chicken @"SpellFailChicken"
+#define Rainbow @"SpellFailRainbow"
+#define Fireball @"SpellFireball"
+#define Lightning @"SpellLightningOrb"
+#define Fist @"SpellFist"
+#define Helmet @"SpellHelmet"
+#define Earthwall @"SpellEarthwall"
+#define Firewall @"SpellFirewall"
+#define Bubble @"SpellBubble"
+#define Icewall @"SpellIcewall"
+#define Monster @"SpellMonster"
+#define Vine @"SpellVine"
+#define Windblast @"SpellWindblast"
+#define Invisibility @"SpellInvisibility"
+#define Heal @"SpellHeal"
+#define Levitate @"SpellLevitate"
+#define Sleep @"SpellSleep"
+#define CaptainPlanet @"SpellCheeseCaptainPlanet"
 
 
 
-
-
-
-
-@implementation SpellInteraction2
-@end
 
 
 
@@ -159,31 +153,35 @@
 }
 
 // the normal default spell interaction is nothing
--(void)spell:(Class)Spell default:(SpellEffect*)effect {
+-(void)spell:(NSString*)Spell default:(SpellEffect*)effect {
     [self.spellEffectDefaults setObject:effect forKey:Spell];
 }
 
 
--(void)spell:(Class)SpellOne effect:(SpellEffect*)effectOne spell:(Class)SpellTwo effect:(SpellEffect*)effectTwo {
-    SpellInteraction2 * interactionOne = [SpellInteraction2 new];
+-(void)spell:(NSString*)SpellOne effect:(SpellEffect*)effectOne spell:(NSString*)SpellTwo effect:(SpellEffect*)effectTwo {
+    SpellInteraction * interactionOne = [SpellInteraction new];
     interactionOne.spell = SpellOne;
     interactionOne.otherSpell = SpellTwo;
     interactionOne.effect = effectOne;
     [self addInteraction:interactionOne];
     
-    SpellInteraction2 * interactionTwo = [SpellInteraction2 new];
+    SpellInteraction * interactionTwo = [SpellInteraction new];
     interactionTwo.spell = SpellTwo;
     interactionTwo.otherSpell = SpellOne;
     interactionTwo.effect = effectTwo;
     [self addInteraction:interactionTwo];
 }
 
--(void)addInteraction:(SpellInteraction2*)interaction {
+// Add the interaction to BOTH of the spells referenced. It does apply to both after all
+-(void)addInteraction:(SpellInteraction*)interaction {
     NSMutableArray * interactions = [self interactionsForSpell:interaction.spell];
     [interactions addObject:interaction];
+    
+    NSMutableArray * interactions2 = [self interactionsForSpell:interaction.otherSpell];
+    [interactions2 addObject:interaction];
 }
 
--(NSMutableArray*)interactionsForSpell:(Class)Spell {
+-(NSMutableArray*)interactionsForSpell:(NSString*)Spell {
     NSMutableArray * interactions = [self.spellInteractions objectForKey:Spell];
     if (!interactions) {
         interactions = [NSMutableArray new];
@@ -193,52 +191,51 @@
 }
 
 // You don't have to add player effects.
--(void)spell:(Class)SpellOne player:(PlayerEffect*)effect {
+-(void)spell:(NSString*)SpellOne player:(PlayerEffect*)effect {
     [self.playerEffects setObject:effect forKey:SpellOne];
 }
 
--(NSArray*)interactionsForSpell:(Class)SpellOne andSpell:(Class)SpellTwo {
+// Select EITHER spell to pull the interactions for, because they are duplicated on both
+-(NSArray*)interactionsForSpell:(NSString*)SpellOne andSpell:(NSString*)SpellTwo {
     
-    NSMutableArray * interactionsOne = [self interactionsForSpell:SpellOne];
-    NSMutableArray * interactionsTwo = [self interactionsForSpell:SpellTwo];
+    NSMutableArray * interactions = [self interactionsForSpell:SpellOne];
     
-    NSMutableArray * allInteractions = [[interactionsOne arrayByAddingObjectsFromArray:interactionsTwo]
-            filter:^BOOL(SpellInteraction2*interaction) {
-                return (interaction.spell == SpellOne && interaction.otherSpell == SpellTwo) || (interaction.spell == SpellTwo && interaction.otherSpell == SpellOne);
-            }];
+    NSMutableArray * matchingInteractions = [interactions filter:^BOOL(SpellInteraction*interaction) {
+        return ([interaction.spell isEqualToString:SpellOne] && [interaction.otherSpell isEqualToString:SpellTwo])
+            || ([interaction.spell isEqualToString:SpellTwo] && [interaction.otherSpell isEqualToString:SpellOne]);
+    }];
     
-    // if a default is set for a given spell, that means that if EITHER spell is that one
-    // then it should return it, unless some are set.
+    // if a default is set for a given spell, that means that if EITHER spell is that one then it should return it, unless some are set.
     
-    // TODO: apply defaults (chicken)
-    if (allInteractions.count == 0) {
+    if (matchingInteractions.count == 0) {
         SpellEffect * defaultEffectOne = [self.spellEffectDefaults objectForKey:SpellOne];
         SpellEffect * defaultEffectTwo = [self.spellEffectDefaults objectForKey:SpellTwo];
         
         if (defaultEffectOne) {
-            SpellInteraction2 * defaultInteractionOne = [SpellInteraction2 new];
+            SpellInteraction * defaultInteractionOne = [SpellInteraction new];
             defaultInteractionOne.spell = SpellOne;
             defaultInteractionOne.otherSpell = SpellTwo;
             defaultInteractionOne.effect = defaultEffectOne;
-            [allInteractions addObject:defaultInteractionOne];
+            [matchingInteractions addObject:defaultInteractionOne];
         }
         
         if (defaultEffectTwo) {
-            SpellInteraction2 * defaultInteractionTwo = [SpellInteraction2 new];
+            SpellInteraction * defaultInteractionTwo = [SpellInteraction new];
             defaultInteractionTwo.spell = SpellTwo;
             defaultInteractionTwo.otherSpell = SpellOne;
             defaultInteractionTwo.effect = defaultEffectTwo;
-            [allInteractions addObject:defaultInteractionTwo];
+            [matchingInteractions addObject:defaultInteractionTwo];
         }
         
     }
     
-    return [allInteractions filter:^BOOL(SpellInteraction2 * interaction) {
+    // Remove None Interactions
+    return [matchingInteractions filter:^BOOL(SpellInteraction * interaction) {
         return ![interaction.effect isKindOfClass:[SENone class]];
     }];
 }
 
--(PlayerEffect*)playerEffectForSpell:(Class)Spell {
+-(PlayerEffect*)playerEffectForSpell:(NSString*)Spell {
     PlayerEffect * effect = [self.playerEffects objectForKey:Spell];
     if (!effect) {
         effect = [PEBasicDamage new];

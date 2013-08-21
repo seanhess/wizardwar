@@ -21,8 +21,4 @@
     return self;
 }
 
--(BOOL)isNewerWall:(Spell*)spell {
-    return (spell.speed == 0 && spell.startOffsetPosition == self.startOffsetPosition) && (self.createdTick < spell.createdTick);
-}
-
 @end

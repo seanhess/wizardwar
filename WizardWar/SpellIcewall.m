@@ -25,33 +25,4 @@
     return self;
 }
 
--(SpellInteraction *)interactSpell:(Spell *)spell currentTick:(NSInteger)currentTick {
-    if ([spell isType:[SpellMonster class]] && spell.direction != self.direction) {
-        return [SpellInteraction cancel];
-    }
-    
-    else if ([spell isType:[SpellFireball class]] && spell.direction != self.direction) {
-        if ([spell.linkedSpell isKindOfClass:[SpellBubble class]]) {
-            return [SpellInteraction nothing];
-        }
-
-        return [SpellInteraction cancel];
-    }
-    
-    else if ([self isNewerWall:spell]) {
-        return [SpellInteraction cancel];
-    }
-    
-    else if ([spell isType:[SpellLightningOrb class]] && spell.direction != self.direction) {
-        self.strength -= spell.damage;
-
-        if (self.strength <= 0)
-            return [SpellInteraction cancel];
-        else
-            return [SpellInteraction modify];
-    }    
-    
-    return [SpellInteraction nothing];
-}
-
 @end

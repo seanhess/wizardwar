@@ -32,7 +32,6 @@
 #import "SpellCheeseCaptainPlanet.h"
 
 #import "NSArray+Functional.h"
-#import "SpellFail.h"
 
 @interface Combos ()
 @property (strong, nonatomic) NSDictionary * hitCombos;

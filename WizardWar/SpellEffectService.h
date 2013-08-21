@@ -9,15 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "SpellEffect.h"
 #import "PlayerEffect.h"
-
-@interface SpellInteraction2 : NSObject
-@property (nonatomic, strong) Class spell;
-@property (nonatomic, strong) Class otherSpell;
-@property (nonatomic, strong) SpellEffect* effect;
-@end
-
+#import "SpellInteraction.h"
 
 @interface SpellEffectService : NSObject
--(NSArray*)interactionsForSpell:(Class)SpellOne andSpell:(Class)SpellTwo;
--(PlayerEffect*)playerEffectForSpell:(Class)Spell;
+-(NSArray*)interactionsForSpell:(NSString*)SpellOne andSpell:(NSString*)SpellTwo;
+-(PlayerEffect*)playerEffectForSpell:(NSString*)Spell;
 @end

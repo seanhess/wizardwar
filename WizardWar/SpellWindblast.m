@@ -30,29 +30,4 @@
     return self;
 }
 
--(SpellInteraction*)interactWizard:(Wizard *)wizard currentTick:(NSInteger)currentTick {
-    return [SpellInteraction nothing];
-}
-
--(SpellInteraction *)interactSpell:(Spell *)spell currentTick:(NSInteger)currentTick {
-//    if ([spell isType:[SpellMonster class]]) {
-//        return [SpellInteraction cancel];
-//    }
-    
-//    else if ([spell isType:[SpellFireball class]]) {
-//        return [SpellInteraction cancel];
-//    }
-    
-    if ([spell isType:[SpellEarthwall class]] && spell.direction != self.direction) {
-        return [SpellInteraction cancel];
-    }
-    
-    else if ([spell isType:[SpellIcewall class]] && spell.direction != self.direction) {
-        self.direction *= -1;
-        return [SpellInteraction modify];
-    }
-    
-    return [SpellInteraction nothing];
-}
-
 @end

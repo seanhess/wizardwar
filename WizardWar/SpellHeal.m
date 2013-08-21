@@ -21,8 +21,4 @@
     return self;
 }
 
--(SpellInteraction *)interactSpell:(Spell *)spell currentTick:(NSInteger)currentTick {
-    return [SpellInteraction nothing];
-}
-
 @end

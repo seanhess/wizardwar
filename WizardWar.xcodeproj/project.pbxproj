@@ -132,13 +132,13 @@
 		781B4CA117839C00002551CA /* TransformUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 781B4C4517839C00002551CA /* TransformUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		781B4CA217839C00002551CA /* ZipUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 781B4C4917839C00002551CA /* ZipUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		781BE0D717C50FD6005735A9 /* PENone.m in Sources */ = {isa = PBXBuildFile; fileRef = 781BE0D617C50FD6005735A9 /* PENone.m */; };
+		781BE0DA17C53544005735A9 /* SpellInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = 781BE0D917C53541005735A9 /* SpellInteraction.m */; };
 		782BC1AB17B90DD100EB7FC6 /* DebugSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 782BC1AA17B90DD100EB7FC6 /* DebugSprite.m */; };
 		782BC1B817B94F5F00EB7FC6 /* SpellCheeseCaptainPlanet.m in Sources */ = {isa = PBXBuildFile; fileRef = 782BC1B717B94F5E00EB7FC6 /* SpellCheeseCaptainPlanet.m */; };
 		782BC1BA17B9566F00EB7FC6 /* captain-planet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 782BC1B917B9566F00EB7FC6 /* captain-planet.mp3 */; };
 		782BC1BD17B9595900EB7FC6 /* SpellLightningOrb.m in Sources */ = {isa = PBXBuildFile; fileRef = 782BC1BC17B9595700EB7FC6 /* SpellLightningOrb.m */; };
 		78306B9C17A7144300487B16 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78306B9A17A7144300487B16 /* DataModel.xcdatamodeld */; };
 		78306BB017A99AEC00487B16 /* OLUnitsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78306BAF17A99AEC00487B16 /* OLUnitsService.m */; };
-		78306BB317AAD94600487B16 /* SpellFail.m in Sources */ = {isa = PBXBuildFile; fileRef = 78306BB217AAD94400487B16 /* SpellFail.m */; };
 		78306BB617AADBFB00487B16 /* SpellFailHotdog.m in Sources */ = {isa = PBXBuildFile; fileRef = 78306BB517AADBF700487B16 /* SpellFailHotdog.m */; };
 		78306BB917AADC0C00487B16 /* SpellFailTeddy.m in Sources */ = {isa = PBXBuildFile; fileRef = 78306BB817AADC0B00487B16 /* SpellFailTeddy.m */; };
 		78306BBC17AADC2500487B16 /* SpellFailUndies.m in Sources */ = {isa = PBXBuildFile; fileRef = 78306BBB17AADC2400487B16 /* SpellFailUndies.m */; };
@@ -150,7 +150,6 @@
 		7837D6AD17540836001D820E /* GameTimerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7837D6AC17540836001D820E /* GameTimerService.m */; };
 		7837D6B017540893001D820E /* GameTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7837D6AF17540893001D820E /* GameTime.m */; };
 		783BD39E176A79A50092D93C /* SpellSleep.m in Sources */ = {isa = PBXBuildFile; fileRef = 78915288176A7815001694B1 /* SpellSleep.m */; };
-		783E8066176A88B800A21FE5 /* SpellVortex.m in Sources */ = {isa = PBXBuildFile; fileRef = 783E8065176A88B800A21FE5 /* SpellVortex.m */; };
 		7842FB5817C26DE00050A858 /* bubble-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB5717C26DE00050A858 /* bubble-animation.plist */; };
 		7842FB5A17C26DE60050A858 /* earthwall-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB5917C26DE60050A858 /* earthwall-animation.plist */; };
 		7842FB6C17C26E0C0050A858 /* explode-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB6B17C26E0C0050A858 /* explode-animation.plist */; };
@@ -395,7 +394,6 @@
 		78F6B3C71746C4D300AA070D /* NSArray+Functional.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3C61746C4D300AA070D /* NSArray+Functional.m */; };
 		78F6B3CB1746D77B00AA070D /* Units.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3CA1746D77B00AA070D /* Units.m */; };
 		78F6B3CF1746E05E00AA070D /* SpellFireball.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3CE1746E05E00AA070D /* SpellFireball.m */; };
-		78F6B3D21746E2E000AA070D /* SpellInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3D11746E2E000AA070D /* SpellInteraction.m */; };
 		78F6B3D81746E6D300AA070D /* SpellEarthwall.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F6B3D71746E6D100AA070D /* SpellEarthwall.m */; };
 		78F97FDE1758F7F500764D70 /* PracticeModeAIService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F97FDD1758F7F500764D70 /* PracticeModeAIService.m */; };
 		F283A922174807A40068EEB2 /* LifeIndicatorNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F283A921174807A40068EEB2 /* LifeIndicatorNode.m */; };
@@ -664,6 +662,8 @@
 		781BC26517B5766900870A2C /* AIService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AIService.h; sourceTree = "<group>"; };
 		781BE0D517C50FD5005735A9 /* PENone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PENone.h; sourceTree = "<group>"; };
 		781BE0D617C50FD6005735A9 /* PENone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PENone.m; sourceTree = "<group>"; };
+		781BE0D817C5353F005735A9 /* SpellInteraction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellInteraction.h; sourceTree = "<group>"; };
+		781BE0D917C53541005735A9 /* SpellInteraction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellInteraction.m; sourceTree = "<group>"; };
 		782BC1A917B90DD100EB7FC6 /* DebugSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugSprite.h; sourceTree = "<group>"; };
 		782BC1AA17B90DD100EB7FC6 /* DebugSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugSprite.m; sourceTree = "<group>"; };
 		782BC1B617B94F5E00EB7FC6 /* SpellCheeseCaptainPlanet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellCheeseCaptainPlanet.h; sourceTree = "<group>"; };
@@ -674,8 +674,6 @@
 		78306B9B17A7144300487B16 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		78306BAE17A99AEC00487B16 /* OLUnitsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLUnitsService.h; sourceTree = "<group>"; };
 		78306BAF17A99AEC00487B16 /* OLUnitsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLUnitsService.m; sourceTree = "<group>"; };
-		78306BB117AAD94200487B16 /* SpellFail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellFail.h; sourceTree = "<group>"; };
-		78306BB217AAD94400487B16 /* SpellFail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellFail.m; sourceTree = "<group>"; };
 		78306BB417AADBF600487B16 /* SpellFailHotdog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellFailHotdog.h; sourceTree = "<group>"; };
 		78306BB517AADBF700487B16 /* SpellFailHotdog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellFailHotdog.m; sourceTree = "<group>"; };
 		78306BB717AADC0900487B16 /* SpellFailTeddy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellFailTeddy.h; sourceTree = "<group>"; };
@@ -693,8 +691,6 @@
 		7837D6AC17540836001D820E /* GameTimerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTimerService.m; sourceTree = "<group>"; };
 		7837D6AE17540893001D820E /* GameTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTime.h; sourceTree = "<group>"; };
 		7837D6AF17540893001D820E /* GameTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTime.m; sourceTree = "<group>"; };
-		783E8064176A88B800A21FE5 /* SpellVortex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellVortex.h; sourceTree = "<group>"; };
-		783E8065176A88B800A21FE5 /* SpellVortex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellVortex.m; sourceTree = "<group>"; };
 		7842FB5217C2681B0050A858 /* packTextures.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = packTextures.sh; sourceTree = "<group>"; };
 		7842FB5717C26DE00050A858 /* bubble-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "bubble-animation.plist"; path = "WizardWar/images/spells-core/bubble/bubble-animation.plist"; sourceTree = SOURCE_ROOT; };
 		7842FB5917C26DE60050A858 /* earthwall-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "earthwall-animation.plist"; path = "WizardWar/images/spells-core/earthwall/earthwall-animation.plist"; sourceTree = SOURCE_ROOT; };
@@ -1066,8 +1062,6 @@
 		78F6B3CA1746D77B00AA070D /* Units.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Units.m; sourceTree = "<group>"; };
 		78F6B3CD1746E05E00AA070D /* SpellFireball.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellFireball.h; sourceTree = "<group>"; };
 		78F6B3CE1746E05E00AA070D /* SpellFireball.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellFireball.m; sourceTree = "<group>"; };
-		78F6B3D01746E2E000AA070D /* SpellInteraction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellInteraction.h; sourceTree = "<group>"; };
-		78F6B3D11746E2E000AA070D /* SpellInteraction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellInteraction.m; sourceTree = "<group>"; };
 		78F6B3D61746E6D000AA070D /* SpellEarthwall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellEarthwall.h; sourceTree = "<group>"; };
 		78F6B3D71746E6D100AA070D /* SpellEarthwall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellEarthwall.m; sourceTree = "<group>"; };
 		78F97FDC1758F7F500764D70 /* PracticeModeAIService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeModeAIService.h; sourceTree = "<group>"; };
@@ -2099,8 +2093,6 @@
 			children = (
 				78F6B3A01746B25F00AA070D /* Spell.h */,
 				78F6B3A11746B25F00AA070D /* Spell.m */,
-				78306BB117AAD94200487B16 /* SpellFail.h */,
-				78306BB217AAD94400487B16 /* SpellFail.m */,
 				78306BB417AADBF600487B16 /* SpellFailHotdog.h */,
 				78306BB517AADBF700487B16 /* SpellFailHotdog.m */,
 				78306BB717AADC0900487B16 /* SpellFailTeddy.h */,
@@ -2113,8 +2105,6 @@
 				78306BC117AADC4800487B16 /* SpellFailRainbow.m */,
 				782BC1B617B94F5E00EB7FC6 /* SpellCheeseCaptainPlanet.h */,
 				782BC1B717B94F5E00EB7FC6 /* SpellCheeseCaptainPlanet.m */,
-				78F6B3D01746E2E000AA070D /* SpellInteraction.h */,
-				78F6B3D11746E2E000AA070D /* SpellInteraction.m */,
 				786246421767C959001904AC /* SpellWall.h */,
 				786246431767C959001904AC /* SpellWall.m */,
 				78F6B3CD1746E05E00AA070D /* SpellFireball.h */,
@@ -2147,10 +2137,10 @@
 				78915280176A7136001694B1 /* SpellLevitate.m */,
 				78915287176A7815001694B1 /* SpellSleep.h */,
 				78915288176A7815001694B1 /* SpellSleep.m */,
-				783E8064176A88B800A21FE5 /* SpellVortex.h */,
-				783E8065176A88B800A21FE5 /* SpellVortex.m */,
 				780A235617C40C8300EE3BAA /* SpellEffect.h */,
 				780A235717C40C8400EE3BAA /* SpellEffect.m */,
+				781BE0D817C5353F005735A9 /* SpellInteraction.h */,
+				781BE0D917C53541005735A9 /* SpellInteraction.m */,
 			);
 			name = Spells;
 			sourceTree = "<group>";
@@ -2456,7 +2446,6 @@
 				78F6B3C71746C4D300AA070D /* NSArray+Functional.m in Sources */,
 				78F6B3CB1746D77B00AA070D /* Units.m in Sources */,
 				78F6B3CF1746E05E00AA070D /* SpellFireball.m in Sources */,
-				78F6B3D21746E2E000AA070D /* SpellInteraction.m in Sources */,
 				78F6B3D81746E6D300AA070D /* SpellEarthwall.m in Sources */,
 				6F0B2FA9174750FF00CFC092 /* PentagramViewController.m in Sources */,
 				6F0B2FAA174750FF00CFC092 /* PentEmblem.m in Sources */,
@@ -2491,7 +2480,6 @@
 				78D0855B176A4B2800EDC405 /* PEHeal.m in Sources */,
 				78D0855E176A4C7C00EDC405 /* PESleep.m in Sources */,
 				783BD39E176A79A50092D93C /* SpellSleep.m in Sources */,
-				783E8066176A88B800A21FE5 /* SpellVortex.m in Sources */,
 				785FBEC4177261BD0021AEE5 /* InstagramEnemy.m in Sources */,
 				785FBEC5177261BD0021AEE5 /* Interaction.m in Sources */,
 				785FBEC6177261BD0021AEE5 /* LandingViewController.m in Sources */,
@@ -2618,7 +2606,6 @@
 				78516B8817A5925800A49257 /* NSObject+Reflection.m in Sources */,
 				78306B9C17A7144300487B16 /* DataModel.xcdatamodeld in Sources */,
 				78306BB017A99AEC00487B16 /* OLUnitsService.m in Sources */,
-				78306BB317AAD94600487B16 /* SpellFail.m in Sources */,
 				78306BB617AADBFB00487B16 /* SpellFailHotdog.m in Sources */,
 				78306BB917AADC0C00487B16 /* SpellFailTeddy.m in Sources */,
 				78306BBC17AADC2500487B16 /* SpellFailUndies.m in Sources */,
@@ -2647,6 +2634,7 @@
 				780A235517C3EAC900EE3BAA /* SpellEffectService.m in Sources */,
 				780A235817C40C8600EE3BAA /* SpellEffect.m in Sources */,
 				781BE0D717C50FD6005735A9 /* PENone.m in Sources */,
+				781BE0DA17C53544005735A9 /* SpellInteraction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

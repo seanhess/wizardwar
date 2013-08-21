@@ -25,32 +25,4 @@
     return self;
 }
 
--(SpellInteraction *)interactSpell:(Spell *)spell currentTick:(NSInteger)currentTick {
-    
-    if ([spell isType:[SpellWindblast class]]) {
-        if (self.direction == spell.direction) {
-            self.speed += 35;
-        }
-        else {
-            self.speed -= 35;
-            if (self.speed < 0) {
-                self.direction *= -1;
-                self.speed *= -1;
-            }
-        }
-        return [SpellInteraction modify];
-    }
-    
-    else if ([spell isType:[SpellIcewall class]] && spell.direction != self.direction) {
-        self.direction = spell.direction;
-        return [SpellInteraction modify];
-    }
-    
-    else if ([spell isType:[SpellMonster class]]) {
-        return [SpellInteraction cancel];
-    }
-    
-    return [SpellInteraction nothing];
-}
-
 @end

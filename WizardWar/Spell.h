@@ -13,7 +13,6 @@
 
 #import <Foundation/Foundation.h>
 #import "Wizard.h"
-#import "SpellInteraction.h"
 #import "PlayerEffect.h"
 #import "Simulated.h"
 
@@ -54,8 +53,7 @@ typedef enum SpellStatus {
 -(void)initCaster:(Wizard*)player tick:(NSInteger)tick;
 -(BOOL)isType:(Class)class;
 
--(SpellInteraction*)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval;
--(SpellInteraction*)interactSpell:(Spell*)spell currentTick:(NSInteger)currentTick;
+-(BOOL)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval;
 
 -(BOOL)hitsPlayer:(Wizard*)player duringInterval:(NSTimeInterval)dt;
 -(BOOL)didHitSpell:(Spell*)spell duringInterval:(NSTimeInterval)dt;

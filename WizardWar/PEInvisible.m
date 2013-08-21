@@ -22,15 +22,15 @@
 }
 
 // Hmm, intercept needs to be able to allow it to pass through!
--(SpellInteraction *)interceptSpell:(Spell *)spell onWizard:(Wizard *)wizard interval:(NSTimeInterval)interval currentTick:(NSInteger)currentTick {
+-(BOOL)interceptSpell:(Spell *)spell onWizard:(Wizard *)wizard interval:(NSTimeInterval)interval currentTick:(NSInteger)currentTick {
     // make everything pass through me except for fist
     // Umm, this doesn't make it pass through, it makes it hit me :(
     if ([self isActive:wizard interval:interval tick:currentTick] && ![spell isType:[SpellFist class]]) {
         NSLog(@"IS ACTIVE %@ %i %i", wizard, currentTick, wizard.effectStartTick);
-        return [SpellInteraction nothing];
+        return YES;
     }
     else {
-        return nil;
+        return NO;
     }
 }
 

@@ -24,35 +24,4 @@
     return self;
 }
 
--(SpellInteraction *)interactSpell:(Spell *)spell currentTick:(NSInteger)currentTick {
-    
-    // Earthwalls and Firewalls can collide if the firewall is contained by a bubble.
-    if ([spell isKindOfClass:[SpellFirewall class]] && spell.direction != self.direction) {
-        return [SpellInteraction cancel];
-    }
-    
-    // replace older walls
-    else if ([self isNewerWall:spell]) {
-        return [SpellInteraction cancel];
-    }
-    
-    else if ([spell isType:[SpellFireball class]] && spell.direction != self.direction) {
-        if ([spell.linkedSpell isKindOfClass:[SpellBubble class]])
-            return [SpellInteraction nothing];
-
-        self.strength -= spell.damage;
-        
-        if (self.strength <= 0)
-            return [SpellInteraction cancel];
-        else
-            return [SpellInteraction modify];
-    }
-    
-    else if ([spell isType:[SpellMonster class]] && spell.direction != self.direction) {
-        return [SpellInteraction cancel];
-    }
-    
-    return [SpellInteraction nothing];
-}
-
 @end

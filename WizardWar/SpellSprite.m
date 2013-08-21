@@ -344,7 +344,6 @@
     return (spell.class == SpellFist.class ||
             spell.class == SpellHelmet.class ||
             spell.class == SpellSleep.class ||
-            spell.class == SpellFail.class ||
             spell.class == SpellFailRainbow.class ||
             spell.class == SpellFailHotdog.class ||
             spell.class == SpellFailTeddy.class ||

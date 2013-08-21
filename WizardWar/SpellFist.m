@@ -25,7 +25,7 @@
     return self;
 }
 
--(SpellInteraction *)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
+-(BOOL)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
     
     NSInteger elapsedTicks = currentTick - self.createdTick;
     if (self.altitude == 2 && elapsedTicks >= round(FIST_TIME_DROP_WAIT/interval)) {
@@ -46,15 +46,6 @@
         self.referencePosition = UNITS_MIN;
     
     self.position = self.referencePosition;
-}
-
--(SpellInteraction*)interactSpell:(Spell*)spell currentTick:(NSInteger)currentTick {
-    
-    if ([spell isType:[SpellHelmet class]]) {
-        return [SpellInteraction cancel];
-    }
-    
-    return [SpellInteraction nothing];
 }
 
 

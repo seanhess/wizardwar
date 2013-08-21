@@ -12,7 +12,6 @@
 #import "NSArray+Functional.h"
 #import "UIColor+Hex.h"
 #import "AppStyle.h"
-#import "SpellFail.h"
 #import <ReactiveCocoa.h>
 
 #define RECHARGE_INTERVAL 2.5

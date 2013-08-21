@@ -13,6 +13,7 @@
 -(id)init {
     if ((self=[super init])) {
         self.name = @"Hotdog";
+        self.damage = 0;
     }
     return self;
 }

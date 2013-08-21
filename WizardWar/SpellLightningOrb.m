@@ -25,29 +25,6 @@
     return self;
 }
 
--(SpellInteraction*)interactSpell:(Spell*)spell currentTick:(NSInteger)currentTick {
-    
-    if ([spell isType:[SpellIcewall class]] && spell.direction != self.direction) {
-        return [SpellInteraction cancel];
-    }
-    
-//    if ([spell isType:[SpellFirewall class]] && spell.direction != self.direction) {
-//        self.damage += 1;        
-//        return [SpellInteraction modify];
-//    }    
-    
-    if ([spell isType:[SpellMonster class]]) {
-        return [SpellInteraction cancel];
-    }
-    
-    // Try this for now! Might be OP
-    if ([spell isType:[SpellFireball class]]) {
-        self.damage += 1;
-        return [SpellInteraction modify];
-    }
-    
-    return [SpellInteraction nothing];
-}
 
 
 

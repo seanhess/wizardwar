@@ -8,17 +8,20 @@
 
 #import "PEApply.h"
 #import "Wizard.h"
+#import "Spell.h"
 
 @implementation PEApply
 
--(SpellInteraction *)applySpell:(Spell *)spell onWizard:(Wizard *)wizard currentTick:(NSInteger)currentTick {
+-(BOOL)applySpell:(Spell *)spell onWizard:(Wizard *)wizard currentTick:(NSInteger)currentTick {
+
     if (wizard.effect) {
         [wizard.effect cancel:wizard];
     }
     
     wizard.effect = self;
     [self start:currentTick player:wizard];
-    return [SpellInteraction cancel];
+    spell.strength = 0;
+    return YES;
 }
 
 @end

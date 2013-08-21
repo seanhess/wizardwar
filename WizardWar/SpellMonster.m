@@ -32,13 +32,13 @@
     return self;
 }
 
--(SpellInteraction *)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
+-(BOOL)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
     
     if (self.spellEffect && [self.spellEffect isKindOfClass:[SESleep class]]) {
         if ([PESleep sleepShouldEndAtTick:currentTick interval:interval started:self.updatedTick]) {
             self.spellEffect = nil;
             self.speed = 20;
-            return [SpellInteraction modify];
+            return YES;
         }
     }
     

@@ -13,8 +13,8 @@
 @implementation PENone
 
 // Default effect applied to player, is to deal damage
--(SpellInteraction*)applySpell:(Spell*)spell onWizard:(Wizard*)wizard currentTick:(NSInteger)currentTick {
-    return [SpellInteraction nothing];
+-(BOOL)applySpell:(Spell*)spell onWizard:(Wizard*)wizard currentTick:(NSInteger)currentTick {
+    return NO;
 }
 
 @end

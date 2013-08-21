@@ -50,9 +50,9 @@
     [self setPositionFromPlayer:player];
 }
 
--(SpellInteraction*)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
+-(BOOL)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
     self.position = [self move:interval];
-    return nil;
+    return NO;
 }
 
 -(float)move:(NSTimeInterval)dt {
@@ -91,17 +91,6 @@
     NSString * className = NSStringFromClass(class);
     return [self.type isEqualToString:className];
 }
-
--(SpellInteraction*)interactSpell:(Spell*)spell currentTick:(NSInteger)currentTick {
-    // interact spell should contain the HALF of the spell that matters
-    // so if fireball destroys earthwall and continues
-        // fireball interact: nothing
-        // earthwall interact: destroys
-    NSLog(@" !!! Override interactSpell in subclass %@", NSStringFromClass([self class]));
-    return [SpellInteraction nothing];
-}
-
-
 
 -(BOOL)hitsPlayer:(Wizard*)player duringInterval:(NSTimeInterval)dt {
     

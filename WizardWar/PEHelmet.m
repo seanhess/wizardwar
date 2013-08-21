@@ -13,14 +13,15 @@
 @implementation PEHelmet
 
 // Hmm, intercept needs to be able to allow it to pass through!
--(SpellInteraction *)interceptSpell:(Spell *)spell onWizard:(Wizard *)wizard interval:(NSTimeInterval)interval currentTick:(NSInteger)currentTick {
+-(BOOL)interceptSpell:(Spell *)spell onWizard:(Wizard *)wizard interval:(NSTimeInterval)interval currentTick:(NSInteger)currentTick {
     // make everything pass through me except for fist
     if ([spell isType:[SpellFist class]]) {
         wizard.effect = nil;                // the helmet is broken!
         // it wasn't fun that way. Better that it lasts longer. You're immune to fists
         // It's sort of trick question
         // NEVERMIND: decided to try having it cancel
-        return [SpellInteraction cancel];
+        spell.strength = 0;
+        return YES;
     }
 
     // Hmm, maybe this is a bad idea. Grom is already kind of OP
@@ -30,7 +31,7 @@
 //        wizard.effect = nil;
 //    }
     
-    return nil;    
+    return NO;
 }
 
 @end

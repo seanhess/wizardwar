@@ -14,6 +14,7 @@
 -(id)init {
     if ((self=[super init])) {
         self.name = @"Undies";
+        self.damage = 0;        
     }
     return self;
 }

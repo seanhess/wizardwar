@@ -17,17 +17,19 @@
         self.name = @"Double Rainbow";
         self.speed = 0;
         self.startOffsetPosition = 50;
+        self.damage = 0;        
     }
     return self;
 }
 
--(SpellInteraction *)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
+-(BOOL)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
     NSInteger elapsedTicks = currentTick - self.createdTick;
     if (elapsedTicks >= round(FIST_RAINBOW_DURATION/interval)) {
-        return [SpellInteraction cancel];
+        self.strength = 0;
+        return YES;
     }
 
-    return nil;
+    return NO;
 }
 
 

@@ -28,7 +28,8 @@
 @implementation SEWeaker
 -(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick {
     if (spell.direction == otherSpell.direction) return NO;
-    if ([SECarry isCarried:spell otherSpell:otherSpell]) return NO;    
+    // only check if the spell that will make ME weaker is carried
+    if ([SECarry isCarried:otherSpell otherSpell:spell]) return NO;
     spell.strength -= otherSpell.damage;
     if (spell.strength < 0)
         spell.strength = 0;

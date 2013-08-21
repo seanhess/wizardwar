@@ -25,49 +25,4 @@
     return self;
 }
 
-
--(SpellInteraction *)interactSpell:(Spell *)spell currentTick:(NSInteger)currentTick {
-    
-    if ([spell isType:[SpellBubble class]]) {
-        // do whatever fireball does
-        if (self.position == spell.position && self.speed == spell.speed && self.direction == spell.direction)
-            return [SpellInteraction nothing];
-        
-        self.linkedSpell = spell;
-        self.position = spell.position;
-        self.speed = spell.speed;
-        self.direction = spell.direction;
-        return [SpellInteraction modify];
-    }
-    
-    // Does not react while in a bubble
-    else if ([self.linkedSpell isKindOfClass:[SpellBubble class]]) {
-        return [SpellInteraction nothing];
-    }    
-    
-    // Earthwalls and Firewalls can collide if the firewall is contained by a bubble.
-    else if ([spell isKindOfClass:[SpellEarthwall class]] && spell.direction != self.direction) {
-        return [SpellInteraction cancel];
-    }
-    
-    // replace older walls
-    else if ([self isNewerWall:spell]) {
-        return [SpellInteraction cancel];
-    }
-    
-    // You CAN'T do the spell strength thing!
-    // Firewall has an animation, so you would need each size animated (unless you made it smaller)
-    // Actually that would work pretty well
-    else if ([spell isKindOfClass:[SpellMonster class]] && spell.direction != self.direction) {
-        self.strength -= spell.damage;
-        
-        if (self.strength <= 0)
-            return [SpellInteraction cancel];
-        else
-            return [SpellInteraction modify];
-    }
-    
-    return [SpellInteraction nothing];
-}
-
 @end

@@ -38,28 +38,13 @@
     return self;
 }
 
--(SpellInteraction *)interactSpell:(Spell *)spell currentTick:(NSInteger)currentTick {
-
-    if ([spell isType:[SpellFirewall class]] && spell.direction != self.direction) {
-        return [SpellInteraction cancel];
-    }
-    
-    else if (self.isAttacking && [spell isKindOfClass:[SpellFireball class]]) {
-        if ([spell.linkedSpell isKindOfClass:[SpellBubble class]])
-            return [SpellInteraction nothing];
-
-        return [SpellInteraction cancel];
-    }
-    
-    return [SpellInteraction nothing];
-}
-
--(SpellInteraction *)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
+-(BOOL)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
     NSInteger elapsedTicks = currentTick - self.createdTick;
     NSInteger ticksUntilAttackStart = round(TIME_UNTIL_ATTACK_START/interval);
     NSInteger ticksUntilAttackEnd = round(TIME_UNTIL_ATTACK_END/interval);
     if (elapsedTicks >= ticksUntilAttackEnd + 4) {
-        return [SpellInteraction cancel];
+        self.strength = 0;
+        return YES;
     } else if (elapsedTicks >= ticksUntilAttackEnd) {
         if (self.position < UNITS_MID)
             self.position = UNITS_MIN;
@@ -69,7 +54,7 @@
         self.isAttacking = YES;
     }
     
-    return nil;
+    return NO;
 }
 
 

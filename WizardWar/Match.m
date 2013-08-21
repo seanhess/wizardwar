@@ -247,8 +247,9 @@
     // move before checking hits, then we check hits with didHit
     // = whether or not they passed each other during that interval
     [self.activeSpells forEach:^(Spell * spell) {
-        SpellInteraction * interaction = [spell simulateTick:currentTick interval:tickInterval];
-        [self handleInteraction:interaction forSpell:spell];
+        BOOL changed = [spell simulateTick:currentTick interval:tickInterval];
+        if (changed)
+            [self modifySpell:spell];
     }];
     
     // COLLISIONS: detect whether they are about to hit or not
@@ -403,8 +404,9 @@
 -(void)hitPlayer:(Wizard*)wizard withSpell:(Spell*)spell interval:(NSTimeInterval)interval atTick:(NSInteger)currentTick {
     
     Wizard * clone = [wizard evilClone];
-    SpellInteraction * interaction = [self interactWizard:clone spell:spell interval:interval currentTick:currentTick];
-    [self handleInteraction:interaction forSpell:spell];
+    BOOL spellModified = [self interactWizard:clone spell:spell interval:interval currentTick:currentTick];
+    if (spellModified)
+        [self modifySpell:spell];
 
     // Now copy the wizard changes into your current wizard
     // Maybe it would have been easier to do it like this for the spells too?
@@ -451,19 +453,19 @@
 }
 
 -(void)hitSpell:(Spell*)spell withSpell:(Spell*)spell2 interval:(NSTimeInterval)interval currentTick:(NSInteger)currentTick {
-    NSArray * interactions = [self.effects interactionsForSpell:spell.class andSpell:spell2.class];
+    NSArray * interactions = [self.effects interactionsForSpell:spell.type andSpell:spell2.type];
     
-    for (SpellInteraction2 * interaction in interactions) {
+    for (SpellInteraction * interaction in interactions) {
         Spell * main;
         Spell * other;
         
         // at this point, we are SURE they apply to both
-        if ([spell isKindOfClass:interaction.spell]) {
+        if ([spell.type isEqualToString:interaction.spell]) {
             main = spell;
             other = spell2;
             // Woah, hack for if they are both the same class
             // since I didn't make the assumption there would always be two interactions
-            if ([spell2 isKindOfClass:interaction.spell] && interaction == interactions[1]) {
+            if ([spell2.type isEqualToString:interaction.spell] && interaction == interactions[1]) {
                 main = spell2;
                 other = spell;
             }
@@ -476,7 +478,7 @@
     }
 }
 
--(void)interact:(SpellInteraction2*)interaction main:(Spell*)main other:(Spell*)other interval:(NSTimeInterval)interval currentTick:(NSInteger)currentTick {
+-(void)interact:(SpellInteraction*)interaction main:(Spell*)main other:(Spell*)other interval:(NSTimeInterval)interval currentTick:(NSInteger)currentTick {
     
 //    NSLog(@"INTERACT %@ %@ %@", interaction.effect, main.name, other.name);
     
@@ -501,17 +503,16 @@
     }
 }
 
--(SpellInteraction*)interactWizard:(Wizard *)wizard spell:(Spell*)spell interval:(NSTimeInterval)interval currentTick:(NSInteger)currentTick {
+-(BOOL)interactWizard:(Wizard *)wizard spell:(Spell*)spell interval:(NSTimeInterval)interval currentTick:(NSInteger)currentTick {
     
     // If the wizard has an effect, give it the chance to override the default behavior
     if (wizard.effect) {
-        SpellInteraction * interaction = [wizard.effect interceptSpell:spell onWizard:wizard interval:interval currentTick:currentTick];
-        if (interaction)
-            return interaction;
+        BOOL intercepted = [wizard.effect interceptSpell:spell onWizard:wizard interval:interval currentTick:currentTick];
+        if (intercepted) return YES;
     }
     
     // otherwise apply the effect full force
-    PlayerEffect * effect = [self.effects playerEffectForSpell:spell.class];
+    PlayerEffect * effect = [self.effects playerEffectForSpell:spell.type];
     return [effect applySpell:spell onWizard:wizard currentTick:currentTick];
 }
 
@@ -528,32 +529,6 @@
             [self stop];
         }
     }];
-}
-
--(void)handleInteraction:(SpellInteraction*)interaction forSpell:(Spell*)spell {
-    
-    if (!interaction) return;
-    
-    if (interaction.type == SpellInteractionTypeCancel) {
-        [self destroySpell:spell];
-    }
-    
-    else if (interaction.type == SpellInteractionTypeCreate) {
-//        [self.spellsCollection addObject:spell];
-    }
-    
-    else if (interaction.type == SpellInteractionTypeModify) {
-        [self modifySpell:spell];
-    }
-    
-    else if (interaction.type == SpellInteractionTypeNothing) {
-        // do nothing
-    }
-    
-    else {
-        NSAssert(false, @"Did not understand spell interaction type");
-    }
-    
 }
 
 -(Wizard*)host {

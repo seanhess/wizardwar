@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Orbital Labs. All rights reserved.
 //
 
-#import "SpellFail.h"
+#import "Spell.h"
 
-@interface SpellFailChicken : SpellFail
+@interface SpellFailChicken : Spell
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SpellInteraction.h"
 #import "Simulated.h"
 
 // NOTE: effects are GLOBAL, don't store any state on them. See Wizard.effect and Wizard.effectStartTick
@@ -28,8 +27,8 @@
 -(void)start:(NSInteger)tick player:(Wizard*)player;
 -(void)cancel:(Wizard*)player;
 -(void)activateEffect:(Wizard*)wizard;
--(SpellInteraction*)applySpell:(Spell*)spell onWizard:(Wizard*)wizard currentTick:(NSInteger)currentTick;
--(SpellInteraction*)interceptSpell:(Spell*)spell onWizard:(Wizard*)wizard interval:(NSTimeInterval)interval currentTick:(NSInteger)currentTick;
+-(BOOL)applySpell:(Spell*)spell onWizard:(Wizard*)wizard currentTick:(NSInteger)currentTick;
+-(BOOL)interceptSpell:(Spell*)spell onWizard:(Wizard*)wizard interval:(NSTimeInterval)interval currentTick:(NSInteger)currentTick;
 -(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval player:(Wizard*)player;
 
 @end

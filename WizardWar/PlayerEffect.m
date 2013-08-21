@@ -40,7 +40,7 @@
 }
 
 // Default effect applied to player, is to deal damage
--(SpellInteraction*)applySpell:(Spell*)spell onWizard:(Wizard*)wizard currentTick:(NSInteger)currentTick {
+-(BOOL)applySpell:(Spell*)spell onWizard:(Wizard*)wizard currentTick:(NSInteger)currentTick {
     wizard.health -= spell.damage;
     
     if (spell.damage > 0)
@@ -51,12 +51,14 @@
         wizard.effect = nil;
     }
     
-    return [SpellInteraction cancel];
+    spell.strength = 0;
+    
+    return YES;
 }
 
 // means did not intercept, go ahead with default behavior
--(SpellInteraction*)interceptSpell:(Spell*)spell onWizard:(Wizard*)wizard interval:(NSTimeInterval)interval currentTick:(NSInteger)currentTick {
-    return nil;
+-(BOOL)interceptSpell:(Spell*)spell onWizard:(Wizard*)wizard interval:(NSTimeInterval)interval currentTick:(NSInteger)currentTick {
+    return NO;
 }
 
 -(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval player:(Wizard*)player {

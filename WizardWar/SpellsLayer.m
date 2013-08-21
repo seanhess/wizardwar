@@ -10,7 +10,6 @@
 #import "SpellsLayer.h"
 #import "cocos2d.h"
 #import "SpriteCache.h"
-#import "SpellFail.h"
 #import "SpellCheeseCaptainPlanet.h"
 
 @interface SpellsLayer ()
