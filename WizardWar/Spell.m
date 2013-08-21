@@ -19,10 +19,12 @@
 @implementation Spell
 
 -(id)init {
+    NSLog(@"Call initWithInfo instead");
+    abort();
+}
+
+-(id)initWithInfo:(SpellInfo *)info {
     if ((self = [super init])) {
-        
-        // Copy stuff from the spell info
-        SpellInfo * info = [SpellEffectService.shared infoForClass:self.class];
         self.type = info.type;
         self.damage = info.damage;
         self.speed = info.speed;
@@ -142,9 +144,23 @@
 }
 
 +(Spell*)fromType:(NSString*)type {
-    Class SpellClass = [SpellEffectService.shared classForType:type];
-    Spell * spell = [SpellClass new];
+    // it MIGHT have a class
+    SpellInfo * info = [SpellEffectService.shared infoForType:type];
+    if (!info) return nil;
+    Spell * spell = [[info.class alloc] initWithInfo:info];
     return spell;
+}
+
+-(BOOL)isType:(NSString*)type {
+    return [self.type isEqualToString:type];
+}
+
+-(BOOL)isAnyType:(NSArray*)types {
+    id match = [types find:^BOOL(NSString* type) {
+        return [self isType:type];
+    }];
+    
+    return (match != nil);
 }
 
 @end

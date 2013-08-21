@@ -12,8 +12,8 @@
 
 @implementation SpellWindblast
 
--(id)init {
-    if ((self=[super init])) {
+-(id)initWithInfo:(SpellInfo *)info {
+    if ((self=[super initWithInfo:info])) {
         self.speed = 60;
         self.damage = 0;
         self.heavy = NO;

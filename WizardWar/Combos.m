@@ -22,14 +22,6 @@
 #import "SpellSleep.h"
 #import "SpellLightningOrb.h"
 
-#import "SpellFailUndies.h"
-#import "SpellFailTeddy.h"
-#import "SpellFailRainbow.h"
-#import "SpellFailChicken.h"
-#import "SpellFailHotdog.h"
-
-#import "SpellCheeseCaptainPlanet.h"
-
 #import "NSArray+Functional.h"
 #import "SpellEffectService.h"
 
@@ -198,14 +190,6 @@
     }];
 }
 
--(Spell*)randomFailSpell {
-    NSArray* spells = @[SpellFailChicken.class, SpellFailRainbow.class, SpellFailHotdog.class, SpellFailTeddy.class, SpellFailUndies.class];
-    
-    Class SpellFailType = [spells randomItem];
-    Spell * fail = [SpellFailType new];
-    return fail;
-}
-
 -(Spell *)basic5Spell:(NSArray*)elements {
     // give back a fail spell based on the first element used. (CONFUSING :)
     // EARTH    chicken
@@ -216,24 +200,25 @@
     
     if (elements.count == 0) return nil;
     ElementType firstElement = [elements[0] intValue];
+    NSString * type;
     if (firstElement == Earth)
-        return [SpellFailChicken new]; // does 3 damage, but dies if it hits ANYTHING :)
+        type = Chicken;
     else if (firstElement == Air)
-        return [SpellFailRainbow new]; // Just annoying "What does this mean?"
+        type = Rainbow;
     else if (firstElement == Fire)
-        return [SpellFailUndies new]; // _____________________
+        type = Undies;
     else if (firstElement == Heart)
-        return [SpellFailTeddy new]; // Heals your enemy
+        type = Teddy;
     else if (firstElement == Water)
-        return [SpellFailHotdog new]; // Makes monsters stronger.
+        type = Hotdog;
     
-    return nil;
+    return [Spell fromType:type];
 }
 
 -(Spell*)exactCombo:(NSArray*)elements {
     NSString * sequence = [Combos sequenceKey:elements];
     if ([sequence isEqualToString:@"EFAWH"]) {
-        return [SpellCheeseCaptainPlanet new];
+        [Spell fromType:CaptainPlanet];
     }
     return nil;
 }
@@ -248,8 +233,7 @@
     NSString * type = self.hitCombos[key];
     Spell * spell = nil;
     if (type) {
-        Class SpellClass = [SpellEffectService.shared classForType:type];
-        spell = [SpellClass new];
+        spell = [Spell fromType:type];
     }
     
     // Only worry about more specific ones with 5+

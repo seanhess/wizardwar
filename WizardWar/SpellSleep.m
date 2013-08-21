@@ -14,8 +14,8 @@
 
 @implementation SpellSleep
 
--(id)init {
-    if ((self=[super init])) {
+-(id)initWithInfo:(SpellInfo *)info {
+    if ((self=[super initWithInfo:info])) {
         self.damage = 0;
         self.heavy = NO;
         self.name = @"Sleep";        

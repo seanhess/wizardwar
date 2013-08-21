@@ -11,8 +11,8 @@
 
 @implementation SpellHeal
 
--(id)init {
-    if ((self=[super init])) {
+-(id)initWithInfo:(SpellInfo *)info {
+    if ((self=[super initWithInfo:info])) {
         self.speed = 0;
         self.damage = 0;
         self.targetSelf = YES;

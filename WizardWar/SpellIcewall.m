@@ -10,8 +10,8 @@
 
 @implementation SpellIcewall
 
--(id)init {
-    if ((self=[super init])) {
+-(id)initWithInfo:(SpellInfo *)info {
+    if ((self=[super initWithInfo:info])) {
         self.name = @"Wall of Ice";
     }
     return self;

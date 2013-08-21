@@ -149,34 +149,34 @@
     SpellSprite * sprite = [[SpellSprite alloc] initWithSpell:spell units:self.units];
     [self.spells addSpell:sprite];
 
-    if(isSpellType(spell, Fireball)) {
+    if([spell isType:Fireball]) {
         [[SimpleAudioEngine sharedEngine] playEffect:@"fireball.mp3"];
     }
-    else if(isSpellType(spell, Earthwall)) {
-        [[SimpleAudioEngine sharedEngine] playEffect:@"earthwall.mp3"];
+    else if([spell isType:Earthwall]) {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"eart®hwall.mp3"];
     }
-    else if (isSpellType(spell, Icewall)) {
+    else if ([spell isType:Icewall]) {
         [[SimpleAudioEngine sharedEngine] playEffect:@"icewall.mp3"];
     }
-    else if(isSpellType(spell, Vine)) {
+    else if([spell isType:Vine]) {
         [[SimpleAudioEngine sharedEngine] playEffect:@"vine.mp3"];
     }
-    else if(isSpellType(spell, Bubble)) {
+    else if([spell isType:Bubble]) {
         [[SimpleAudioEngine sharedEngine] playEffect:@"bubble.mp3"];
     }
-    else if(isSpellType(spell, Monster)) {
+    else if([spell isType:Monster]) {
         [[SimpleAudioEngine sharedEngine] playEffect:@"monster.mp3"];
     }
-    else if(isSpellType(spell, Windblast)) {
+    else if([spell isType:Windblast]) {
         [[SimpleAudioEngine sharedEngine] playEffect:@"windblast.mp3"];
     }
-    else if (isSpellType(spell, Rainbow)) {
+    else if ([spell isType:Rainbow]) {
         [[SimpleAudioEngine sharedEngine] playEffect:@"double-rainbow.mp3"];
     }
-    else if (isSpellType(spell, CaptainPlanet)) {
+    else if ([spell isType:CaptainPlanet]) {
         [[SimpleAudioEngine sharedEngine] playEffect:@"captain-planet.mp3"];        
     }
-    else if (isSpellType(spell, Chicken)) {
+    else if ([spell isType:Chicken]) {
         [[SimpleAudioEngine sharedEngine] playEffect:@"chicken.mp3"];
         
     }

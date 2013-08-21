@@ -24,14 +24,6 @@
 #import "SpellLightningOrb.h"
 #import "SpellEffectService.h"
 
-#import "SpellCheeseCaptainPlanet.h"
-
-#import "SpellFailChicken.h"
-#import "SpellFailHotdog.h"
-#import "SpellFailRainbow.h"
-#import "SpellFailTeddy.h"
-#import "SpellFailUndies.h"
-
 #import "SpellEffect.h"
 
 #import "PESleep.h"
@@ -63,10 +55,10 @@
         if ([SpellSprite isSingleImage:self.spell]) {
             [self setDisplayFrame:[SpellSprite singleImageFrame:spell]];
             
-            if (spell.class == SpellSleep.class || spell.class == SpellFailUndies.class || spell.class == SpellFailTeddy.class || spell.class == SpellFailHotdog.class) {
+            if ([spell isAnyType:@[Sleep, Undies, Teddy, Hotdog]]) {
                 CCActionInterval * rotate = [CCRotateBy actionWithDuration:1.4 angle:360.0];
                 [self runAction:[CCRepeatForever actionWithAction:rotate]];
-            } else if (spell.class == SpellFailRainbow.class) {
+            } else if ([spell isType:Rainbow]) {
                 CCActionInterval * fade = [CCFadeIn actionWithDuration:1.0];
                 [self runAction:fade];
             }
@@ -135,7 +127,7 @@
     CGFloat dxInPixels = [self.units toWidth:dxInUnits];
     x += dxInPixels;
     
-    if ([self.spell isKindOfClass:[SpellCheeseCaptainPlanet class]]) {
+    if ([self.spell isType:CaptainPlanet]) {
         y += [self flyYForTheCaptain:fabs(dxInUnits)];
     }
     
@@ -167,7 +159,7 @@
 //    }
 
     CGPoint position = ccp(self.spellX, self.spellY);
-    if ([self.spell isKindOfClass:[SpellCheeseCaptainPlanet class]]) {
+    if ([self.spell isType:CaptainPlanet]) {
         // send in the change in x from the beginning
         CGFloat dx = self.spell.position;
         if (self.spell.direction < 0) dx = UNITS_MAX - dx;
@@ -202,19 +194,19 @@
         }
     }
     
-    if (self.spell.class == SpellFailChicken.class) {
+    if ([self.spell isType:Chicken]) {
         y -= 50;
     }
     
-    else if ([self.spell.type isEqualToString:Helmet]) {
+    else if ([self.spell isType:Helmet]) {
         y += 30;
     }
     
-    else if ([self.spell isKindOfClass:[SpellFist class]]) {
+    else if ([self.spell isType:Fist]) {
         y += 60;
     }
     
-    else if ([self.spell.type isEqualToString:Vine]) {
+    else if ([self.spell isType:Vine]) {
         y += 30;
     }
     
@@ -226,11 +218,11 @@
     
     CGFloat x = [self.units toX:self.spell.position];
     
-    if ([self.spell.type isEqualToString:Helmet]) {
+    if ([self.spell isType:Helmet]) {
         x -= 15*self.spell.direction;
     }
     
-    else if ([self.spell.type isEqualToString:Vine]) {
+    else if ([self.spell isType:Vine]) {
         x -= 15*self.spell.direction;
     }
     
@@ -297,7 +289,7 @@
 
     if (self.spell.status == SpellStatusDestroyed) {
         
-        if (self.spell.class == SpellFailRainbow.class) {
+        if ([self.spell isType:Rainbow]) {
             self.visible = YES;
             [self runAction:[CCFadeOut actionWithDuration:1.0]];
         }
@@ -341,15 +333,7 @@
 }
 
 +(BOOL)isSingleImage:(Spell*)spell {
-    return (spell.class == SpellFist.class ||
-            spell.class == SpellHelmet.class ||
-            spell.class == SpellSleep.class ||
-            spell.class == SpellFailRainbow.class ||
-            spell.class == SpellFailHotdog.class ||
-            spell.class == SpellFailTeddy.class ||
-            spell.class == SpellCheeseCaptainPlanet.class ||
-            spell.class == SpellFailUndies.class
-            );
+    return ([spell isAnyType:@[Fist, Helmet, Sleep, Rainbow, Hotdog, Teddy, CaptainPlanet, Undies]]);
 }
 
 +(BOOL)isNoRender:(Spell*)spell {
@@ -387,7 +371,7 @@
     NSAssert(animation, @"Animation not defined");
     animation.restoreOriginalFrame = NO;
     
-    if (isSpellType(self.spell, Fireball) || self.spell.class == SpellBubble.class || self.spell.class == SpellWindblast.class || self.spell.class == SpellMonster.class || self.spell.class == SpellFailChicken.class || self.spell.class == SpellLightningOrb.class) {
+    if ([self.spell isAnyType:@[Fireball, Bubble, Windblast, Monster, Chicken, Lightning]]) {
         animation.loops = 10000;
     }
     

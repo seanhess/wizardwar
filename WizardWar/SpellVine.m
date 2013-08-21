@@ -18,8 +18,8 @@
 
 @implementation SpellVine
 
--(id)init {
-    if ((self=[super init])) {
+-(id)initWithInfo:(SpellInfo *)info {
+    if ((self=[super initWithInfo:info])) {
         // TODO mana cost higher!
         // TODO harder to cast!
         self.name = @"Summon Vine";

@@ -86,8 +86,7 @@
 
 -(void)castSpell:(NSArray*)fromList {
     NSString * type = [fromList randomItem];
-    Class SpellType = [SpellEffectService.shared classForType:type];
-    self.lastCastSpell = [SpellType new];
+    self.lastCastSpell = [Spell fromType:type];
     [self.delegate aiDidCastSpell:self.lastCastSpell];
 #ifdef DEBUG
 //    self.stop = YES;

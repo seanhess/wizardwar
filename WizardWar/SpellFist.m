@@ -14,8 +14,8 @@
 
 @implementation SpellFist
 
--(id)init {
-    if ((self=[super init])) {
+-(id)initWithInfo:(SpellInfo *)info {
+    if ((self=[super initWithInfo:info])) {
         self.speed = 0;
         self.strength = 1;
         self.altitude = 2; // it's up high!

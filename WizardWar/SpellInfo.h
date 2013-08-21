@@ -24,6 +24,4 @@
 +(SpellInfo*)type:(NSString*)type class:(Class)class;
 +(SpellInfo*)type:(NSString*)type;
 
-
-
 @end

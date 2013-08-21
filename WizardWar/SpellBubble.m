@@ -10,8 +10,8 @@
 
 @implementation SpellBubble
 
--(id)init {
-    if ((self=[super init])) {
+-(id)initWithInfo:(SpellInfo *)info {
+    if ((self=[super initWithInfo:info])) {
         self.damage = 0;
         self.heavy = NO;
         self.speed = 20;

@@ -34,8 +34,6 @@
 #define Sleep @"pillow"
 #define CaptainPlanet @"captain-planet"
 
-#define isSpellType(spell,typeString) ([spell.type isEqualToString:typeString])
-
 @interface SpellEffectService : NSObject
 
 + (SpellEffectService *)shared;
@@ -46,8 +44,6 @@
 -(NSArray*)interactionsForSpell:(NSString*)SpellOne andSpell:(NSString*)SpellTwo;
 -(PlayerEffect*)playerEffectForSpell:(NSString*)Spell;
 
--(NSString*)typeForClass:(Class)class;
--(Class)classForType:(NSString*)type;
--(SpellInfo*)infoForClass:(Class)class;
+-(SpellInfo*)infoForType:(NSString*)type;
 
 @end

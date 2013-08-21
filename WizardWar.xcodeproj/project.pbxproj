@@ -135,15 +135,10 @@
 		781BE0DA17C53544005735A9 /* SpellInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = 781BE0D917C53541005735A9 /* SpellInteraction.m */; };
 		781BE0DD17C5439B005735A9 /* SpellInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 781BE0DC17C54398005735A9 /* SpellInfo.m */; };
 		782BC1AB17B90DD100EB7FC6 /* DebugSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 782BC1AA17B90DD100EB7FC6 /* DebugSprite.m */; };
-		782BC1B817B94F5F00EB7FC6 /* SpellCheeseCaptainPlanet.m in Sources */ = {isa = PBXBuildFile; fileRef = 782BC1B717B94F5E00EB7FC6 /* SpellCheeseCaptainPlanet.m */; };
 		782BC1BA17B9566F00EB7FC6 /* captain-planet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 782BC1B917B9566F00EB7FC6 /* captain-planet.mp3 */; };
 		782BC1BD17B9595900EB7FC6 /* SpellLightningOrb.m in Sources */ = {isa = PBXBuildFile; fileRef = 782BC1BC17B9595700EB7FC6 /* SpellLightningOrb.m */; };
 		78306B9C17A7144300487B16 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78306B9A17A7144300487B16 /* DataModel.xcdatamodeld */; };
 		78306BB017A99AEC00487B16 /* OLUnitsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78306BAF17A99AEC00487B16 /* OLUnitsService.m */; };
-		78306BB617AADBFB00487B16 /* SpellFailHotdog.m in Sources */ = {isa = PBXBuildFile; fileRef = 78306BB517AADBF700487B16 /* SpellFailHotdog.m */; };
-		78306BB917AADC0C00487B16 /* SpellFailTeddy.m in Sources */ = {isa = PBXBuildFile; fileRef = 78306BB817AADC0B00487B16 /* SpellFailTeddy.m */; };
-		78306BBC17AADC2500487B16 /* SpellFailUndies.m in Sources */ = {isa = PBXBuildFile; fileRef = 78306BBB17AADC2400487B16 /* SpellFailUndies.m */; };
-		78306BBF17AADC3900487B16 /* SpellFailChicken.m in Sources */ = {isa = PBXBuildFile; fileRef = 78306BBE17AADC3700487B16 /* SpellFailChicken.m */; };
 		78306BC217AADC4A00487B16 /* SpellFailRainbow.m in Sources */ = {isa = PBXBuildFile; fileRef = 78306BC117AADC4800487B16 /* SpellFailRainbow.m */; };
 		78306BDE17AAE7CE00487B16 /* double-rainbow.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78306BDD17AAE7CE00487B16 /* double-rainbow.mp3 */; };
 		78306BE017AAE7D400487B16 /* chicken.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78306BDF17AAE7D400487B16 /* chicken.mp3 */; };
@@ -668,22 +663,12 @@
 		781BE0DC17C54398005735A9 /* SpellInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellInfo.m; sourceTree = "<group>"; };
 		782BC1A917B90DD100EB7FC6 /* DebugSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugSprite.h; sourceTree = "<group>"; };
 		782BC1AA17B90DD100EB7FC6 /* DebugSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugSprite.m; sourceTree = "<group>"; };
-		782BC1B617B94F5E00EB7FC6 /* SpellCheeseCaptainPlanet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellCheeseCaptainPlanet.h; sourceTree = "<group>"; };
-		782BC1B717B94F5E00EB7FC6 /* SpellCheeseCaptainPlanet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellCheeseCaptainPlanet.m; sourceTree = "<group>"; };
 		782BC1B917B9566F00EB7FC6 /* captain-planet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "captain-planet.mp3"; sourceTree = "<group>"; };
 		782BC1BB17B9595700EB7FC6 /* SpellLightningOrb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellLightningOrb.h; sourceTree = "<group>"; };
 		782BC1BC17B9595700EB7FC6 /* SpellLightningOrb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellLightningOrb.m; sourceTree = "<group>"; };
 		78306B9B17A7144300487B16 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		78306BAE17A99AEC00487B16 /* OLUnitsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLUnitsService.h; sourceTree = "<group>"; };
 		78306BAF17A99AEC00487B16 /* OLUnitsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLUnitsService.m; sourceTree = "<group>"; };
-		78306BB417AADBF600487B16 /* SpellFailHotdog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellFailHotdog.h; sourceTree = "<group>"; };
-		78306BB517AADBF700487B16 /* SpellFailHotdog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellFailHotdog.m; sourceTree = "<group>"; };
-		78306BB717AADC0900487B16 /* SpellFailTeddy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellFailTeddy.h; sourceTree = "<group>"; };
-		78306BB817AADC0B00487B16 /* SpellFailTeddy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellFailTeddy.m; sourceTree = "<group>"; };
-		78306BBA17AADC2200487B16 /* SpellFailUndies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellFailUndies.h; sourceTree = "<group>"; };
-		78306BBB17AADC2400487B16 /* SpellFailUndies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellFailUndies.m; sourceTree = "<group>"; };
-		78306BBD17AADC3500487B16 /* SpellFailChicken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellFailChicken.h; sourceTree = "<group>"; };
-		78306BBE17AADC3700487B16 /* SpellFailChicken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellFailChicken.m; sourceTree = "<group>"; };
 		78306BC017AADC4600487B16 /* SpellFailRainbow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellFailRainbow.h; sourceTree = "<group>"; };
 		78306BC117AADC4800487B16 /* SpellFailRainbow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellFailRainbow.m; sourceTree = "<group>"; };
 		78306BDD17AAE7CE00487B16 /* double-rainbow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "double-rainbow.mp3"; sourceTree = "<group>"; };
@@ -2095,18 +2080,8 @@
 				78F6B3A11746B25F00AA070D /* Spell.m */,
 				781BE0DB17C54395005735A9 /* SpellInfo.h */,
 				781BE0DC17C54398005735A9 /* SpellInfo.m */,
-				78306BB417AADBF600487B16 /* SpellFailHotdog.h */,
-				78306BB517AADBF700487B16 /* SpellFailHotdog.m */,
-				78306BB717AADC0900487B16 /* SpellFailTeddy.h */,
-				78306BB817AADC0B00487B16 /* SpellFailTeddy.m */,
-				78306BBA17AADC2200487B16 /* SpellFailUndies.h */,
-				78306BBB17AADC2400487B16 /* SpellFailUndies.m */,
-				78306BBD17AADC3500487B16 /* SpellFailChicken.h */,
-				78306BBE17AADC3700487B16 /* SpellFailChicken.m */,
 				78306BC017AADC4600487B16 /* SpellFailRainbow.h */,
 				78306BC117AADC4800487B16 /* SpellFailRainbow.m */,
-				782BC1B617B94F5E00EB7FC6 /* SpellCheeseCaptainPlanet.h */,
-				782BC1B717B94F5E00EB7FC6 /* SpellCheeseCaptainPlanet.m */,
 				786246421767C959001904AC /* SpellWall.h */,
 				786246431767C959001904AC /* SpellWall.m */,
 				782BC1BB17B9595700EB7FC6 /* SpellLightningOrb.h */,
@@ -2605,10 +2580,6 @@
 				78516B8817A5925800A49257 /* NSObject+Reflection.m in Sources */,
 				78306B9C17A7144300487B16 /* DataModel.xcdatamodeld in Sources */,
 				78306BB017A99AEC00487B16 /* OLUnitsService.m in Sources */,
-				78306BB617AADBFB00487B16 /* SpellFailHotdog.m in Sources */,
-				78306BB917AADC0C00487B16 /* SpellFailTeddy.m in Sources */,
-				78306BBC17AADC2500487B16 /* SpellFailUndies.m in Sources */,
-				78306BBF17AADC3900487B16 /* SpellFailChicken.m in Sources */,
 				78306BC217AADC4A00487B16 /* SpellFailRainbow.m in Sources */,
 				78782B5A17B031800089F1D6 /* PentEmblemHighlight.m in Sources */,
 				78782B6217B03D320089F1D6 /* UIViewController+Idiom.m in Sources */,
@@ -2616,7 +2587,6 @@
 				786EE5C717B2E4A4004D9214 /* PreloadLayer.m in Sources */,
 				78CD5ECE17B4197600FE0FB0 /* PEUndies.m in Sources */,
 				782BC1AB17B90DD100EB7FC6 /* DebugSprite.m in Sources */,
-				782BC1B817B94F5F00EB7FC6 /* SpellCheeseCaptainPlanet.m in Sources */,
 				782BC1BD17B9595900EB7FC6 /* SpellLightningOrb.m in Sources */,
 				7860683017BBD255004D2E68 /* SpellsLayer.m in Sources */,
 				7860683317BBD3D1004D2E68 /* SpriteCache.m in Sources */,

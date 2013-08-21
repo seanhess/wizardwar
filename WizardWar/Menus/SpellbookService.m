@@ -53,8 +53,7 @@
     for (NSString * type in self.currentMatchSpellsCast.allKeys) {
         SpellRecord * record = [self recordByType:type];
         record.castTotal += [self.currentMatchSpellsCast[type] intValue];
-        record.castUniqueMatches += 1;
-        
+        record.castUniqueMatches += 1;    
     }
     
     self.currentMatchSpellsCast = nil;
@@ -94,7 +93,7 @@
     // loads the spells in the order listed in the combos array
     
     NSArray * spells = [[[SpellEffectService.shared allSpellTypes] map:^(SpellInfo * info) {
-        return [info.class new];
+        return [Spell fromType:info.type];
     }] map:^(Spell * spell) {
         SpellRecord * record = [self recordBySpellCreate:spell];
         record.castUniqueMatches = arc4random() % 17;

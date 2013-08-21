@@ -23,13 +23,8 @@
 #import "SpellSleep.h"
 #import "SpellLightningOrb.h"
 
-#import "SpellFailUndies.h"
-#import "SpellFailTeddy.h"
 #import "SpellFailRainbow.h"
-#import "SpellFailChicken.h"
-#import "SpellFailHotdog.h"
 
-#import "SpellCheeseCaptainPlanet.h"
 #import "PEApply.h"
 #import "PEBasicDamage.h"
 #import "PEHeal.h"
@@ -77,44 +72,7 @@
         self.spellsByClass = [NSMapTable mapTableWithKeyOptions:NSMapTableWeakMemory valueOptions:NSMapTableStrongMemory];
         self.spellsByType = [NSMutableDictionary dictionary];
         
-        SpellInfo * fireball = [SpellInfo type:Fireball];
-        fireball.name = @"Fireball";
-        fireball.heavy = NO;
-        
-        self.allSpellTypes = @[
-            [SpellInfo type:Lightning class:[SpellLightningOrb class]],
-            [SpellInfo type:Firewall class:[SpellFirewall class]],
-            [SpellInfo type:Invisibility class:[SpellInvisibility class]],
-            [SpellInfo type:Heal class:[SpellHeal class]],
-            fireball,
-            [SpellInfo type:Earthwall class:[SpellEarthwall class]],
-            [SpellInfo type:Icewall class:[SpellIcewall class]],
-            [SpellInfo type:Windblast class:[SpellWindblast class]],
-            [SpellInfo type:Monster class:[SpellMonster class]],
-            [SpellInfo type:Bubble class:[SpellBubble class]],
-            [SpellInfo type:Vine class:[SpellVine class]],
-            [SpellInfo type:Fist class:[SpellFist class]],
-            [SpellInfo type:Helmet class:[SpellHelmet class]],
-            [SpellInfo type:Levitate class:[SpellLevitate class]],
-            [SpellInfo type:Sleep class:[SpellSleep class]],
-            [SpellInfo type:CaptainPlanet class:[SpellCheeseCaptainPlanet class]],
-            [SpellInfo type:Chicken class:[SpellFailChicken class]],
-            [SpellInfo type:Hotdog class:[SpellFailHotdog class]],
-            [SpellInfo type:Rainbow class:[SpellFailRainbow class]],
-            [SpellInfo type:Teddy class:[SpellFailTeddy class]],
-            [SpellInfo type:Undies class:[SpellFailUndies class]],
-        ];
-        
-        
-        SpellInfo * test = [SpellInfo type:Lightning class:[SpellLightningOrb class]];
-        
-        NSLog(@"UMMM %@", test);
-        
-        [self.allSpellTypes forEach:^(SpellInfo*spell) {
-            [self.spellsByType setObject:spell forKey:spell.type];
-            [self.spellsByClass setObject:spell forKey:spell.class];
-        }];
-        
+        [self createSpells];
         [self createSpellInteractions];
         
         NSLog(@"------ SpellEffectService: loaded -------");
@@ -122,21 +80,87 @@
     return self;
 }
 
--(NSString*)typeForClass:(Class)class {
-    SpellInfo * spell = [self.spellsByClass objectForKey:class];
-    return spell.type;
-}
-
--(Class)classForType:(NSString*)type {
-    SpellInfo * spell = [self.spellsByType objectForKey:type];
-    return spell.class;
-}
-
--(SpellInfo*)infoForClass:(Class)class {
-    return [self.spellsByClass objectForKey:class];
+-(SpellInfo*)infoForType:(NSString*)type {
+    return [self.spellsByType objectForKey:type];
 }
 
 
+-(void)createSpells {
+    SpellInfo * fireball = [SpellInfo type:Fireball];
+    fireball.name = @"Fireball";
+    fireball.heavy = NO;
+    
+    SpellInfo * hotdog = [SpellInfo type:Hotdog];
+    hotdog.name = @"Hotdog";
+    hotdog.heavy = NO;
+    hotdog.damage = 0;
+    
+    SpellInfo * teddy = [SpellInfo type:Teddy];
+    teddy.name = @"Teddy";
+    teddy.heavy = NO;
+    teddy.damage = 0;
+    
+    SpellInfo * undies = [SpellInfo type:Undies];
+    undies.name = @"Wizard Undies";
+    undies.heavy = NO;
+    undies.damage = 0;
+    
+    SpellInfo * chicken = [SpellInfo type:Chicken];
+    chicken.name = @"Summon Chicken";
+    chicken.heavy = YES;
+    chicken.damage = 3;
+    
+    SpellInfo * captain = [SpellInfo type:CaptainPlanet];
+    captain.name = @"Captain Planet";
+    captain.heavy = YES;
+    captain.damage = 0;
+    captain.speed = 18;
+    
+    SpellInfo * lightning = [SpellInfo type:Lightning class:[SpellLightningOrb class]];
+    SpellInfo * firewall = [SpellInfo type:Firewall class:[SpellFirewall class]];
+    SpellInfo * invisibility = [SpellInfo type:Invisibility class:[SpellInvisibility class]];
+    SpellInfo * heal = [SpellInfo type:Heal class:[SpellHeal class]];
+    SpellInfo * earthwall = [SpellInfo type:Earthwall class:[SpellEarthwall class]];
+    SpellInfo * icewall = [SpellInfo type:Icewall class:[SpellIcewall class]];
+    SpellInfo * windblast = [SpellInfo type:Windblast class:[SpellWindblast class]];
+    SpellInfo * monster = [SpellInfo type:Monster class:[SpellMonster class]];
+    SpellInfo * bubble = [SpellInfo type:Bubble class:[SpellBubble class]];
+    SpellInfo * vine = [SpellInfo type:Vine class:[SpellVine class]];
+    SpellInfo * fist = [SpellInfo type:Fist class:[SpellFist class]];
+    SpellInfo * helmet = [SpellInfo type:Helmet class:[SpellHelmet class]];
+    SpellInfo * levitate = [SpellInfo type:Levitate class:[SpellLevitate class]];
+    SpellInfo * sleep = [SpellInfo type:Sleep class:[SpellSleep class]];
+    SpellInfo * rainbow = [SpellInfo type:Rainbow class:[SpellFailRainbow class]];
+    
+    self.allSpellTypes = @[
+        lightning,
+        firewall,
+        invisibility,
+        heal,
+        fireball,
+        earthwall,
+        icewall,
+        windblast,
+        monster,
+        bubble,
+        vine,
+        fist,
+        helmet,
+        levitate,
+        sleep,
+        captain,
+        chicken,
+        hotdog,
+        rainbow,
+        teddy,
+        undies,
+    ];
+    
+    [self.allSpellTypes forEach:^(SpellInfo*spell) {
+        [self.spellsByType setObject:spell forKey:spell.type];
+        [self.spellsByClass setObject:spell forKey:spell.class];
+    }];
+}
 
 -(void)createSpellInteractions {
     

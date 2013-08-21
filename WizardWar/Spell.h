@@ -15,6 +15,7 @@
 #import "Wizard.h"
 #import "PlayerEffect.h"
 #import "Simulated.h"
+#import "SpellInfo.h"
 
 @class SpellEffect;
 
@@ -50,6 +51,8 @@ typedef enum SpellStatus {
 // how far away from the wizard should it start
 @property (nonatomic) float startOffsetPosition;
 
+-(id)initWithInfo:(SpellInfo*)info;
+
 -(void)initCaster:(Wizard*)player tick:(NSInteger)tick;
 
 -(BOOL)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval;
@@ -62,4 +65,7 @@ typedef enum SpellStatus {
 -(float)moveFromReferencePosition:(NSTimeInterval)dt;
 +(NSString*)generateSpellId;
 -(void)setPositionFromPlayer:(Wizard*)player;
+
+-(BOOL)isType:(NSString*)type;
+-(BOOL)isAnyType:(NSArray*)type; // if the spell is any of types
 @end

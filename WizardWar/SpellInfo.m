@@ -42,4 +42,5 @@
     return [NSString stringWithFormat:@"<SpellType: %@>", self.type];
 }
 
+
 @end

@@ -10,8 +10,8 @@
 
 @implementation SpellEarthwall
 
--(id)init {
-    if ((self=[super init])) {
+-(id)initWithInfo:(SpellInfo *)info {
+    if ((self=[super initWithInfo:info])) {
         self.strength = 3;
         self.name = @"Wall of Earth";
     }

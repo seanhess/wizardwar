@@ -12,12 +12,12 @@
 
 @implementation SpellFailRainbow
 
--(id)init {
-    if ((self=[super init])) {
+-(id)initWithInfo:(SpellInfo *)info {
+    if ((self=[super initWithInfo:info])) {
         self.name = @"Double Rainbow";
         self.speed = 0;
         self.startOffsetPosition = 50;
-        self.damage = 0;        
+        self.damage = 0;
     }
     return self;
 }
