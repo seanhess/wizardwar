@@ -84,7 +84,7 @@
         
 #ifdef DEBUG
 //        self.stop = YES;
-        self.allOffensive = @[[SpellEarthwall class]];
+        self.allOffensive = @[[SpellFireball class]];
         self.allDefensive = @[[SpellEarthwall class]];
 #endif
     }

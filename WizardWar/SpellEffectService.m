@@ -120,7 +120,7 @@
     [self spell:Bubble effect:[SENone new] spell:Sleep effect:[SECarry new]];
     [self spell:Bubble effect:[SENone new] spell:Firewall effect:[SECarry new]];
     
-    [self spell:Lightning effect:[SENone new] spell:Fireball effect:[SEDestroy new]];
+    [self spell:Lightning effect:[SEStronger new] spell:Fireball effect:[SEDestroy new]];
 
     [self spell:Icewall effect:[SEWeaker new] spell:Lightning effect:[SEDestroy new]];
     [self spell:Icewall effect:[SENone new] spell:Sleep effect:[SEDestroy new]];
