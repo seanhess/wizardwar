@@ -8,6 +8,7 @@
 
 #import "SpellInfo.h"
 #import "Spell.h"
+#import "PEBasicDamage.h"
 
 @implementation SpellInfo
 
@@ -21,6 +22,7 @@
         self.heavy = YES;
         self.castDelay = 0.8;
         self.class = [Spell class];
+        self.effect = [PEBasicDamage new];
     }
     return self;
 }

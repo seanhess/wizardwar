@@ -36,7 +36,6 @@
 @interface SpellEffectService ()
 @property (nonatomic, strong) NSMapTable * spellEffectDefaults;
 @property (nonatomic, strong) NSMapTable * spellInteractions;
-@property (nonatomic, strong) NSMapTable * playerEffects;
 @property (nonatomic, strong) NSMutableDictionary * spellsByType;
 @property (nonatomic, strong) NSMapTable * spellsByClass;
 @end
@@ -58,7 +57,6 @@
     if (self) {
         self.spellEffectDefaults = [NSMapTable mapTableWithKeyOptions:NSMapTableWeakMemory valueOptions:NSMapTableStrongMemory];
         self.spellInteractions = [NSMapTable mapTableWithKeyOptions:NSMapTableWeakMemory valueOptions:NSMapTableStrongMemory];
-        self.playerEffects = [NSMapTable mapTableWithKeyOptions:NSMapTableWeakMemory valueOptions:NSMapTableStrongMemory];
         
         self.spellsByClass = [NSMapTable mapTableWithKeyOptions:NSMapTableWeakMemory valueOptions:NSMapTableStrongMemory];
         self.spellsByType = [NSMutableDictionary dictionary];
@@ -90,11 +88,13 @@
     teddy.name = @"Teddy";
     teddy.heavy = NO;
     teddy.damage = 0;
+    teddy.effect = [PEHeal delay:0];
     
     SpellInfo * undies = [SpellInfo type:Undies];
     undies.name = @"Wizard Undies";
     undies.heavy = NO;
     undies.damage = 0;
+    undies.effect = [PEUndies new];
     
     SpellInfo * chicken = [SpellInfo type:Chicken];
     chicken.name = @"Summon Chicken";
@@ -116,6 +116,7 @@
     helmet.damage = 0;
     helmet.targetSelf = YES;
     helmet.name = @"Mighty Helmet";
+    helmet.effect = [PEHelmet new];
     
     SpellInfo * bubble = [SpellInfo type:Bubble];
     bubble.name = @"Bubble";
@@ -129,6 +130,7 @@
     windblast.damage = 0;
     windblast.heavy = NO;
     windblast.castDelay = 0.3;
+    windblast.effect = [PENone new];
     
     
     SpellInfo * invisibility = [SpellInfo type:Invisibility];
@@ -136,23 +138,28 @@
     invisibility.speed = 0;
     invisibility.damage = 0;
     invisibility.targetSelf = YES;
+    invisibility.effect = [PEInvisible new];
     
     SpellInfo * heal = [SpellInfo type:Heal];
     heal.name = @"Heal";
     heal.speed = 0;
     heal.damage = 0;
     heal.targetSelf = YES;
+    heal.effect = [PEHeal delay:EFFECT_HEAL_TIME];
     
     SpellInfo * levitate = [SpellInfo type:Levitate];
     levitate.name = @"Levitate";
     levitate.speed = 0;
     levitate.damage = 0;
     levitate.targetSelf = YES;
+    levitate.effect = [PELevitate new];
     
     SpellInfo * sleep = [SpellInfo type:Sleep];
     sleep.name = @"Sleep";
     sleep.damage = 0;
     sleep.heavy = NO;
+    sleep.effect = [PESleep new];
+
     
     
     SpellInfo * firewall = [SpellInfo type:Firewall class:[SpellFirewall class]];
@@ -196,8 +203,6 @@
 -(void)createSpellInteractions {
     
     [self spell:Hotdog effect:[SEDestroy new] spell:Monster effect:[SEStronger new]];
-    [self spell:Teddy player:[PEHeal delay:0]];
-    [self spell:Undies player:[PEUndies new]];
     [self spell:Chicken default:[SEDestroy new]];
     // Rainbow doesn't do anything
     // CaptainPlanet doesn't do anything    
@@ -205,7 +210,7 @@
     [self spell:Fireball effect:[SENone new] spell:Monster effect:[SEDestroy new]];
     [self spell:Fireball effect:[SEDestroy new] spell:Vine effect:[SEDestroy new]];
     
-    [self spell:Windblast player:[PENone new]];
+
     [self spell:Windblast effect:[SENone new] spell:Fireball effect:[SEStronger new]];
     [self spell:Windblast effect:[SENone new] spell:Bubble effect:[SESpeed speedUp:35 slowDown:35]];
     [self spell:Windblast effect:[SENone new] spell:Monster effect:[SESpeed speedUp:30 slowDown:15]];
@@ -240,16 +245,12 @@
     [self spell:Monster effect:[SENone new] spell:Icewall effect:[SEDestroy new]];
     [self spell:Monster effect:[SEDestroy new] spell:Monster effect:[SEDestroy new]];
     
-    [self spell:Helmet player:[PEHelmet new]];
+
     [self spell:Helmet effect:[SEDestroy new] spell:Fist effect:[SEDestroy new]];
     
-    [self spell:Sleep player:[PESleep new]];
+
     [self spell:Sleep effect:[SEDestroy new] spell:Monster effect:[SESleep new]];
     
-    [self spell:Heal player:[PEHeal delay:EFFECT_HEAL_TIME]];
-    
-    [self spell:Levitate player:[PELevitate new]];
-    [self spell:Invisibility player:[PEInvisible new]];
 }
 
 // the normal default spell interaction is nothing
@@ -288,11 +289,6 @@
         [self.spellInteractions setObject:interactions forKey:Spell];
     }
     return interactions;
-}
-
-// You don't have to add player effects.
--(void)spell:(NSString*)SpellOne player:(PlayerEffect*)effect {
-    [self.playerEffects setObject:effect forKey:SpellOne];
 }
 
 // Select EITHER spell to pull the interactions for, because they are duplicated on both
@@ -335,12 +331,9 @@
     }];
 }
 
--(PlayerEffect*)playerEffectForSpell:(NSString*)Spell {
-    PlayerEffect * effect = [self.playerEffects objectForKey:Spell];
-    if (!effect) {
-        effect = [PEBasicDamage new];
-    }
-    return effect;
+-(PlayerEffect*)playerEffectForSpell:(NSString*)type {
+    SpellInfo * info = [self infoForType:type];
+    return info.effect;
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PlayerEffect.h"
 
 #define Teddy @"teddybear"
 #define Undies @"wizard-undies"
@@ -34,6 +35,7 @@
 @property (nonatomic, strong) NSString * type;
 @property (nonatomic, strong) Class class;
 @property (nonatomic, strong) NSString * name;
+@property (nonatomic, strong) PlayerEffect * effect;
 
 @property (nonatomic) float speed; // units per second
 @property (nonatomic) float startOffsetPosition;  // in units
