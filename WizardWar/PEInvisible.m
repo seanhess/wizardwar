@@ -26,6 +26,7 @@
     // make everything pass through me except for fist
     // Umm, this doesn't make it pass through, it makes it hit me :(
     if ([self isActive:wizard interval:interval tick:currentTick] && ![spell isType:[SpellFist class]]) {
+        NSLog(@"IS ACTIVE %@ %i %i", wizard, currentTick, wizard.effectStartTick);
         return [SpellInteraction nothing];
     }
     else {

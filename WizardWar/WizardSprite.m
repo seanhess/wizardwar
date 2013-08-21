@@ -292,7 +292,7 @@
         self.effect = nil;
     }
     
-//    NSLog(@"RENDER EFFECT %@ = %@", self.wizard.name, self.wizard.effect);
+    NSLog(@"RENDER EFFECT %@ = %@", self.wizard.name, self.wizard.effect);
     
     [self.skin stopAction:self.skinEffectAction];
     [self.clothes stopAction:self.clothesEffectAction];

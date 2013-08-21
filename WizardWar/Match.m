@@ -212,7 +212,7 @@
         [self.sync syncTimerWithMatchId:self.matchId player:self.currentWizard isHost:isHost timer:self.timer];
     }
     else {
-        self.status = MatchStatusPlaying;
+        self.status = MatchStatusSyncing;
     }
         
 }
@@ -235,6 +235,7 @@
 }
 
 -(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)tickInterval {
+//    NSLog(@"(%i) simulate", currentTick);
     [self simulateUpdatedSpells:currentTick interval:tickInterval];
     
     // SIMULATE PLAYERS. Players handle simulating their own effects
@@ -293,6 +294,7 @@
     }];
     
     [newSpells forEach:^(Spell * spell) {
+        NSLog(@"(%i) NEW SPELL %@", currentTick, spell.name);
         Wizard * creator = spell.creator;
         
         if (creator.effect.cancelsOnCast)
@@ -412,10 +414,13 @@
     wizard.altitude = clone.altitude;
     wizard.updatedTick = clone.updatedTick;
     
-    if (clone.effect != wizard.effect) {
-        [wizard.effect cancel:wizard];
-        wizard.effect = clone.effect;
+    if (clone.effectStartTick != wizard.effectStartTick) {
+        if (wizard.effect != clone.effect) {
+            [wizard.effect cancel:wizard];
+            wizard.effect = clone.effect;
+        }
         [wizard.effect start:currentTick player:wizard];
+        NSLog(@"(%i) CHANGED EFFECT", currentTick);
     }
 
     if (wizard.state != clone.state) {
@@ -582,6 +587,8 @@
 -(BOOL)player:(Wizard*)player castSpell:(Spell*)spell currentTick:(NSInteger)currentTick {
     
     if (player.effect.disablesPlayer) return NO;
+    
+    NSLog(@"(%i) CAST SPELL", currentTick);
     
     [player setStatus:WizardStatusCast atTick:currentTick];
     

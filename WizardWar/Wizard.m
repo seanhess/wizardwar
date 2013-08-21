@@ -39,7 +39,7 @@
 }
 
 -(NSString*)description {
-    return [NSString stringWithFormat:@"%@ %@ - %f", super.description, self.name, self.position];
+    return [NSString stringWithFormat:@"%@ '%@'", super.description, self.name];
 }
 
 - (void)setHealth:(NSInteger)health {
@@ -112,6 +112,7 @@
     self.altitude = wizard.altitude;
     self.position = wizard.position;
     self.updatedTick = wizard.updatedTick;
+    self.effectStartTick = wizard.effectStartTick;
 }
 
 

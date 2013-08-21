@@ -28,6 +28,7 @@
 
 -(void)start:(NSInteger)tick player:(Wizard *)player {
     player.effectStartTick = tick;
+//    NSLog(@"STARTED %@ %i", player, player.effectStartTick);
 }
 
 -(void)activateEffect:(Wizard*)wizard {

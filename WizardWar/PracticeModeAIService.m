@@ -83,7 +83,7 @@
         // No heal or invisibility because he's not patient tnough to let it finish
         
 #ifdef DEBUG
-//        self.stop = YES;
+        self.stop = YES;
         self.allOffensive = @[[SpellFireball class]];
         self.allDefensive = @[[SpellEarthwall class]];
 #endif
