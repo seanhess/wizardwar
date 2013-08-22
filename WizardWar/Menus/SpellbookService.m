@@ -37,6 +37,10 @@
     return [SpellSprite sheetNameForType:record.type];
 }
 
+- (NSString*)spellIconNameByType:(NSString*)type {
+    return [SpellSprite sheetNameForType:type];
+}
+
 // Hmm... how could I tell what's important or not?
 - (void)mainPlayerCastSpell:(Spell*)spell inMatch:(NSString*)matchId {
     if (!self.currentMatchSpellsCast) {

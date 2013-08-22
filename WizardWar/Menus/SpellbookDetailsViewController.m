@@ -14,6 +14,8 @@
 #import "SpellEffectService.h"
 #import "SpellInfo.h"
 #import "Spell.h"
+#import "SpellbookService.h"
+#import "NSArray+Functional.h"
 
 #define SECTION_INFO 0
 #define SECTION_STATS 1
@@ -28,11 +30,18 @@
 @implementation EffectStat
 @end
 
+@interface OtherInteraction : NSObject
+@property (nonatomic, strong) NSString * otherSpell;
+@property (nonatomic, strong) NSMutableArray * interactions;
+@end
+@implementation OtherInteraction
+@end
+
 
 
 @interface SpellbookDetailsViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray * interactions;
+@property (strong, nonatomic) NSArray * otherInteractions;
 @property (strong, nonatomic) Spell * spell;
 @property (strong, nonatomic) NSMutableArray * effectStats;
 
@@ -55,7 +64,29 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationItem.titleView = [ComicZineDoubleLabel titleView:self.title navigationBar:self.navigationController.navigationBar];
     
-    self.interactions = @[@"asdf", @"asdf", @"asdf"];
+    // the interactions are doubled up. We want to group by opposing spell
+    NSArray * rawInteractions = [SpellEffectService.shared interactionsForSpell:self.record.type];
+    NSMutableDictionary * byOtherSpell = [NSMutableDictionary dictionary];
+    [rawInteractions forEach:^(SpellInteraction * interaction) {
+        NSString * otherSpellType;
+        if ([self.spell isType:interaction.spell])
+            otherSpellType = interaction.otherSpell;
+        else
+            otherSpellType = interaction.spell;
+        
+        OtherInteraction * otherInteraction = byOtherSpell[otherSpellType];
+        if (!otherInteraction) {
+            otherInteraction = [OtherInteraction new];
+            otherInteraction.otherSpell = otherSpellType;
+            otherInteraction.interactions = [NSMutableArray array];
+            byOtherSpell[otherSpellType] = otherInteraction;
+        }
+        
+        [otherInteraction.interactions addObject:interaction];
+    }];
+    
+    self.otherInteractions = [byOtherSpell allValues];
+    
     self.spell = [Spell fromType:self.record.info.type];
     self.effectStats = [NSMutableArray array];
     if (self.spell.damage > 0) {
@@ -106,17 +137,17 @@
     else if (section == SECTION_EFFECT) {
         return self.effectStats.count + 1;
     }
-    else if (section == SECTION_INTERACTIONS) return self.interactions.count;
+    else if (section == SECTION_INTERACTIONS) return self.otherInteractions.count;
     else return 0;
 }
 
-//- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-//    if (section == SECTION_INFO) return @"Info";
+- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section == SECTION_INFO) return @"Info";
 //    else if (section == SECTION_STATS) return @"Stats";
 //    else if (section == SECTION_EFFECT) return @"Effect";
-//    else if (section == SECTION_INTERACTIONS) return @"Interactions";
-//    else return @"";
-//}
+    if (section == SECTION_INTERACTIONS) return @"Interacts With";
+    else return nil;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -180,9 +211,20 @@
     UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        cell.textLabel.numberOfLines = 0;
+        cell.textLabel.font = self.descriptionFont;        
     }
     
-    cell.textLabel.text = @"INTERACTION";
+    OtherInteraction * otherInteraction = [self.otherInteractions objectAtIndex:indexPath.row];
+    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    cell.imageView.image = [UIImage imageNamed:[SpellbookService.shared spellIconNameByType:otherInteraction.otherSpell]];
+    
+    NSMutableString * infoString = [NSMutableString string];
+    for (SpellInteraction * interaction in otherInteraction.interactions) {
+        [infoString appendFormat:@"%i %@\n", otherInteraction.interactions.count, interaction.spell];
+    }
+    cell.textLabel.text = infoString;
     return cell;
 }
 
@@ -225,8 +267,6 @@
     CGSize labelSize = [description sizeWithFont:self.descriptionFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
     return labelSize.height + 20;
 }
-
-
 
 
 //-(NSString*)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {

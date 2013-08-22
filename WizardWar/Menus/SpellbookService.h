@@ -18,6 +18,7 @@
 - (SpellRecord*)recordBySpellCreate:(Spell*)spell;
 - (NSArray*)allSpellRecords;
 - (NSString*)spellIconName:(SpellRecord*)record;
+- (NSString*)spellIconNameByType:(NSString*)type;
 
 - (void)mainPlayerCastSpell:(Spell*)spell inMatch:(NSString*)matchId;
 - (void)finishedMatch:(NSString*)matchId;

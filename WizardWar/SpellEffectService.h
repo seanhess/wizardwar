@@ -23,5 +23,6 @@
 -(PlayerEffect*)playerEffectForSpell:(NSString*)Spell;
 
 -(SpellInfo*)infoForType:(NSString*)type;
+-(NSMutableArray*)interactionsForSpell:(NSString*)Spell;
 
 @end

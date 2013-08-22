@@ -247,9 +247,10 @@
 -(void)createSpellInteractions {
     
     [self spell:Hotdog effect:[SEDestroy new] spell:Monster effect:[SEStronger new]];
+    
     [self spell:Chicken default:[SEDestroy new]];
     // Rainbow doesn't do anything
-    // CaptainPlanet doesn't do anything    
+    // CaptainPlanet doesn't do anything
     
     [self spell:Fireball effect:[SENone new] spell:Monster effect:[SEDestroy new]];
     [self spell:Fireball effect:[SEDestroy new] spell:Vine effect:[SEDestroy new]];
@@ -319,11 +320,13 @@
 
 // Add the interaction to BOTH of the spells referenced. It does apply to both after all
 -(void)addInteraction:(SpellInteraction*)interaction {
+    NSLog(@"Add Interaction to %@ %@ %@", interaction.spell, interaction.otherSpell, interaction);
     NSMutableArray * interactions = [self interactionsForSpell:interaction.spell];
     [interactions addObject:interaction];
     
     NSMutableArray * interactions2 = [self interactionsForSpell:interaction.otherSpell];
-    [interactions2 addObject:interaction];
+    if (interactions2 != interactions)
+        [interactions2 addObject:interaction];
 }
 
 -(NSMutableArray*)interactionsForSpell:(NSString*)Spell {
