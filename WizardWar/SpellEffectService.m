@@ -7,6 +7,9 @@
 //
 #import "SpellEffectService.h"
 #import "NSArray+Functional.h"
+#import "ComboService.h"
+
+#import "Elements.h"
 
 #import "SpellMonster.h"
 #import "SpellVine.h"
@@ -72,16 +75,12 @@
 
 
 -(void)createSpells {
-    SpellInfo * fireball = [SpellInfo type:Fireball];
-    fireball.name = @"Fireball";
-    fireball.heavy = NO;
-    fireball.explanation = @"Fireball is good burning things. Far things.";
-    
     SpellInfo * hotdog = [SpellInfo type:Hotdog];
     hotdog.name = @"Hotdog";
     hotdog.heavy = NO;
     hotdog.damage = 0;
     hotdog.explanation = @"The Hotdog makes a good snack for any nearby monsters.";
+    hotdog.combo = [Combo basic5:Water];
     
     SpellInfo * teddy = [SpellInfo type:Teddy];
     teddy.name = @"Teddy";
@@ -89,6 +88,7 @@
     teddy.damage = 0;
     teddy.effect = [PEHeal delay:0];
     teddy.explanation = @"Teddy lets you show your love to your opponent.";
+    teddy.combo = [Combo basic5:Heart];
     
     SpellInfo * undies = [SpellInfo type:Undies];
     undies.name = @"Wizard Undies";
@@ -96,24 +96,34 @@
     undies.damage = 0;
     undies.effect = [PEUndies new];
     undies.explanation = @"These stylish Wizard Undies will be the talk of the next council meeting. Useful for cancelling effects.";
+    undies.combo = [Combo basic5:Fire];
     
     SpellInfo * chicken = [SpellInfo type:Chicken];
     chicken.name = @"Summon Chicken";
     chicken.heavy = YES;
     chicken.damage = 3;
     chicken.explanation = @"Summoning a chicken is more dangerous than it looks.";
+    chicken.combo = [Combo basic5:Earth];
     
     SpellInfo * captain = [SpellInfo type:CaptainPlanet];
     captain.name = @"Captain Planet";
     captain.heavy = YES;
     captain.damage = 0;
     captain.speed = 18;
-    captain.explanation = @"With your powers combined, I am CAPTAIN PLANET!";
+    captain.explanation = @"By your powers combined, I am CAPTAIN PLANET!";
+    captain.combo = [Combo exact:@[@(Earth), @(Fire), @(Air), @(Water), @(Heart)]];
+    
+    SpellInfo * fireball = [SpellInfo type:Fireball];
+    fireball.name = @"Fireball";
+    fireball.heavy = NO;
+    fireball.explanation = @"Fireball is good burning things. Far things.";
+    fireball.combo = [Combo air:YES heart:YES water:0 earth:0 fire:YES];
     
     SpellInfo * lightning = [SpellInfo type:Lightning];
     lightning.heavy = NO;
     lightning.name = @"Lightning Orb";
     lightning.explanation = @"Lightning Orb will show up in your opponents face, and he'll be all, 'What the heck is shocking me?'";
+    lightning.combo = [Combo air:YES heart:0 water:YES earth:YES fire:0];
     
     SpellInfo * helmet = [SpellInfo type:Helmet];
     helmet.speed = 0;
@@ -122,6 +132,7 @@
     helmet.name = @"Mighty Helmet";
     helmet.effect = [PEHelmet new];
     helmet.explanation = @"The Mighty Helmet is stronk! It make you look awesome!";
+    helmet.combo = [Combo air:NO heart:YES water:NO earth:YES fire:YES];
     
     SpellInfo * bubble = [SpellInfo type:Bubble];
     bubble.name = @"Bubble";
@@ -129,6 +140,7 @@
     bubble.heavy = NO;
     bubble.speed = 20;
     bubble.explanation = @"Bubble turns your enemies' attacks against them, and kids love them too.";
+    bubble.combo = [Combo air:NO heart:YES water:YES earth:NO fire:YES];
     
     SpellInfo * windblast = [SpellInfo type:Windblast];
     windblast.name = @"Wind Blast";
@@ -138,7 +150,7 @@
     windblast.castDelay = 0.3;
     windblast.effect = [PENone new];
     windblast.explanation = @"Nothing like a little Windblast to shake things up.";
-    
+    windblast.combo = [Combo air:YES heart:NO water:YES earth:NO fire:YES];
     
     SpellInfo * invisibility = [SpellInfo type:Invisibility];
     invisibility.name = @"Invisibility";
@@ -147,6 +159,7 @@
     invisibility.targetSelf = YES;
     invisibility.effect = [PEInvisible new];
     invisibility.explanation = @"Turns you invisible, making you immune to most attacks. Cancels when you cast another spell.";
+    invisibility.combo = [Combo air:YES heart:YES water:YES earth:NO fire:YES];
     
     SpellInfo * heal = [SpellInfo type:Heal];
     heal.name = @"Heal";
@@ -155,6 +168,7 @@
     heal.targetSelf = YES;
     heal.effect = [PEHeal delay:EFFECT_HEAL_TIME];
     heal.explanation = @"Slowly heals one heart. Cancels if hit while healing or if you cast another spell.";
+    heal.combo = [Combo air:YES heart:YES water:NO earth:YES fire:NO];
     
     SpellInfo * levitate = [SpellInfo type:Levitate];
     levitate.name = @"Levitate";
@@ -163,6 +177,7 @@
     levitate.targetSelf = YES;
     levitate.effect = [PELevitate new];
     levitate.explanation = @"Levitate gives you a height advantage, making most attacks miss.";
+    levitate.combo = [Combo air:YES heart:YES water:YES earth:NO fire:NO];
     
     SpellInfo * sleep = [SpellInfo type:Sleep];
     sleep.name = @"Sleep";
@@ -170,6 +185,7 @@
     sleep.heavy = NO;
     sleep.effect = [PESleep new];
     sleep.explanation = @"Sleep will give you a few seconds of breathing room. Spam this to really piss people off.";
+    sleep.combo = [Combo air:YES heart:YES water:0 earth:YES fire:YES];
     
     SpellInfo * firewall = [SpellInfo type:Firewall];
     firewall.name = @"Wall of Fire";
@@ -180,6 +196,7 @@
     firewall.startOffsetPosition = SPELL_WALL_OFFSET_POSITION;
     firewall.castDelay = 0.5;
     firewall.explanation = @"The Wall of Fire is good for burning things that are closer than fireball. Also lasts longer.";
+    firewall.combo = [Combo air:YES heart:NO water:NO earth:YES fire:YES];
     
     SpellInfo * earthwall = [SpellInfo type:Earthwall];
     earthwall.name = @"Wall of Earth";
@@ -190,7 +207,7 @@
     earthwall.startOffsetPosition = SPELL_WALL_OFFSET_POSITION;
     earthwall.castDelay = 0.5;
     earthwall.explanation = @"The Wall of Earth is sturdy. I think.";
-    
+    earthwall.combo = [Combo air:NO heart:NO water:YES earth:YES fire:YES];
         
     SpellInfo * icewall = [SpellInfo type:Icewall];
     icewall.name = @"Wall of Ice";
@@ -201,18 +218,23 @@
     icewall.startOffsetPosition = SPELL_WALL_OFFSET_POSITION;
     icewall.castDelay = 0.5;
     icewall.explanation = @"The Wall of Ice is like other walls, but secretly better.";
+    icewall.combo = [Combo air:0 heart:YES water:YES earth:YES fire:0];
     
     SpellInfo * monster = [SpellInfo type:Monster class:[SpellMonster class]];
     monster.explanation = @"Summon an Ogre to do your dirty work for you. We'd have gone with a dire badger but he was helping someone else.";
+    monster.combo = [Combo air:0 heart:YES water:YES earth:YES fire:YES];
     
     SpellInfo * vine = [SpellInfo type:Vine class:[SpellVine class]];
     vine.explanation = @"The Vine is sneaky, dirty, and very, very, angry.";
+    vine.combo = [Combo air:YES heart:0 water:YES earth:YES fire:YES];
     
     SpellInfo * fist = [SpellInfo type:Fist class:[SpellFist class]];
     fist.explanation = @"Grom will smite thy opponents from the heavens.";
+    fist.combo = [Combo air:YES heart:YES water:YES earth:YES fire:0];
     
     SpellInfo * rainbow = [SpellInfo type:Rainbow class:[SpellFailRainbow class]];
     rainbow.explanation = @"No one really knows what the Double Rainbow does.";
+    rainbow.combo = [Combo basic5:Air];
     
     self.allSpellTypes = @[
         lightning,
@@ -241,7 +263,9 @@
     [self.allSpellTypes forEach:^(SpellInfo*spell) {
         [self.spellsByType setObject:spell forKey:spell.type];
         [self.spellsByClass setObject:spell forKey:spell.class];
+        [ComboService.shared addCombo:spell.combo type:spell.type];
     }];
+
 }
 
 -(void)createSpellInteractions {
@@ -320,7 +344,7 @@
 
 // Add the interaction to BOTH of the spells referenced. It does apply to both after all
 -(void)addInteraction:(SpellInteraction*)interaction {
-    NSLog(@"Add Interaction to %@ %@ %@", interaction.spell, interaction.otherSpell, interaction);
+//    NSLog(@"Add Interaction to %@ %@ %@", interaction.spell, interaction.otherSpell, interaction);
     NSMutableArray * interactions = [self interactionsForSpell:interaction.spell];
     [interactions addObject:interaction];
     

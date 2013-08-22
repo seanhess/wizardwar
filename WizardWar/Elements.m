@@ -17,7 +17,7 @@
     }
     return output;
 }
- 
+
 +(NSString*)elementId:(ElementType)element {
     if (element == Air) return AirId;
     else if (element == Earth) return EarthId;

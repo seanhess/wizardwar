@@ -39,8 +39,9 @@
     halfLeft.origin.x = padding;
     halfLeft.origin.y = padding;
 
-    CGRect halfRight = halfLeft;
-    halfRight.origin.x = halfRight.size.width + padding;
+    CGRect halfRight = self.bounds;
+    halfRight.size.width = self.bounds.size.width / 2;
+    halfRight.origin.x = halfRight.size.width;
     
     self.diagram = [[SpellbookCastDiagramView alloc] initWithFrame:halfRight];
     self.diagram.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;

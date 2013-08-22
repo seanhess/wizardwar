@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 typedef enum ElementType {
+    ElementTypeNone,
     Air,
     Earth,
     Fire,

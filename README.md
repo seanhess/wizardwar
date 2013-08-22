@@ -6,11 +6,11 @@ Setup and Compiling
 
 Run `make` to compile the images in the spritesheet directories into spritesheets. This requires TexturePacker pro and the command line tools installed. If you only have the free version, open the .tps files and hit publish. 
 
+### Dependencies
 
-
-
-
-
+1. Install http://cocoapods.org/
+2. `pod install`
+3. Use WizardWar.xcworkspace to run the project
 
 ### Links
 

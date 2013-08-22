@@ -9,6 +9,7 @@
 #import "Combos.h"
 #import "NSArray+Functional.h"
 #import "SpellEffectService.h"
+#import "ComboService.h"
 
 @interface Combos ()
 @property (strong, nonatomic) NSDictionary * hitCombos;
@@ -21,7 +22,6 @@
 -(id)init {
     self = [super init];
     if (self) {
-        self.hitCombos = [Combos createHitCombos];
         self.allElements = [NSMutableArray array];
     }
     return self;
@@ -79,156 +79,8 @@
 //    return (self.hintedSpell && self.lastSuccessfulSpell.class == self.hintedSpell.class);
 }
 
-+(NSDictionary*)createHitCombos {
-    NSMutableDictionary * hitCombos = [NSMutableDictionary dictionary];
-        // 1 and 2 combos
-//    hitCombos[@"_____"] = nil;
-//    hitCombos[@"A____"] = nil;
-//    hitCombos[@"_E___"] = nil;
-//    hitCombos[@"__F__"] = nil;
-//    hitCombos[@"___H_"] = nil;
-//    hitCombos[@"____W"] = nil;
-//    hitCombos[@"AE___"] = nil;
-//    hitCombos[@"A_F__"] = nil;
-//    hitCombos[@"A__H_"] = nil;
-//    hitCombos[@"A___W"] = nil;
-//    hitCombos[@"_EF__"] = nil;
-//    hitCombos[@"_E_H_"] = nil;
-//    hitCombos[@"_E__W"] = nil;
-//    hitCombos[@"__FH_"] = nil;
-//    hitCombos[@"__F_W"] = nil;
-//    hitCombos[@"___HW"] = nil;
-    
-    // Walls: spells initially go through it
-    // Ice Walls: hurting monsters and stuff.
-    // Fist break helmet? Could pick where horizontally it comes down. 
-    
-    // 3 combos
-    
-    hitCombos[@"AEF__"] = Firewall;
-    hitCombos[@"AE_H_"] = Heal;
-    hitCombos[@"AE__W"] = Lightning;
-    hitCombos[@"A_FH_"] = Fireball;
-    hitCombos[@"A_F_W"] = Windblast;
-    hitCombos[@"A__HW"] = Levitate;
-    hitCombos[@"_EFH_"] = Helmet;
-    hitCombos[@"_EF_W"] = Earthwall;
-    hitCombos[@"_E_HW"] = Icewall;
-    hitCombos[@"__FHW"] = Bubble;
-    
-    // 4 combos
-    hitCombos[@"AEFH_"] = Sleep;
-    hitCombos[@"AEF_W"] = Vine;
-    hitCombos[@"AE_HW"] = Fist;
-    hitCombos[@"A_FHW"] = Invisibility;
-    hitCombos[@"_EFHW"] = Monster;
-    
-    // 5 combos
-    // 5-combos are all unique.
-    // hitCombos[@"AEFHW"] = [NSObject class];
-    
-    return hitCombos;
-}
-
-// EFAWH
-
-//+(NSDictionary*)hitElements:(NSArray*)elements {
-//    NSMutableDictionary * dict = [NSMutableDictionary dictionary];
-//    for (NSString * element in elements) {
-//        [dict setObject:[NSNumber numberWithBool:YES] forKey:element];
-//    }
-//    return dict;
-//}
-//
-//+(BOOL)hits:(NSDictionary*)hits containsElements:(NSArray*)elements {
-//    for (NSString * element in elements) {
-//        if (![hits objectForKey:element]) return NO;
-//    }
-//    
-//    return YES;
-//}
-
-//+(BOOL)hits:(NSDictionary*)hits isEqualToElements:(NSArray*)elements {
-//    return (elements.count == hits.count && [self hits:hits containsElements:elements]);
-//}
-
-
-// Produces a string key that represents whether or not each one is held down
-+(NSString*)hitKey:(NSArray*)elements {
-    NSMutableString * key = [NSMutableString stringWithString:@"_____"];
-    [elements forEach:^(NSNumber * elementNumber) {
-        ElementType element = elementNumber.intValue;
-        NSString * elementId = [Elements elementId:element];
-        [key replaceCharactersInRange:NSMakeRange(element, 1) withString:elementId];
-    }];
-    return key;
-}
-
-+(NSString*)sequenceKey:(NSArray*)elements {
-    return [[self elementIds:elements] componentsJoinedByString:@""];
-}
-
-+(NSArray*)elementIds:(NSArray*)elements {
-    return [elements map:^(NSNumber * elementNumber) {
-        ElementType element = elementNumber.intValue;
-        return [Elements elementId:element];
-    }];
-}
-
--(Spell *)basic5Spell:(NSArray*)elements {
-    // give back a fail spell based on the first element used. (CONFUSING :)
-    // EARTH    chicken
-    // AIR      rainbow
-    // FIRE     undies
-    // HEART    teddy
-    // WATER    hotdog
-    
-    if (elements.count == 0) return nil;
-    ElementType firstElement = [elements[0] intValue];
-    NSString * type;
-    if (firstElement == Earth)
-        type = Chicken;
-    else if (firstElement == Air)
-        type = Rainbow;
-    else if (firstElement == Fire)
-        type = Undies;
-    else if (firstElement == Heart)
-        type = Teddy;
-    else if (firstElement == Water)
-        type = Hotdog;
-    
-    return [Spell fromType:type];
-}
-
--(Spell*)exactCombo:(NSArray*)elements {
-    NSString * sequence = [Combos sequenceKey:elements];
-    if ([sequence isEqualToString:@"EFAWH"]) {
-        [Spell fromType:CaptainPlanet];
-    }
-    return nil;
-}
-
-
-// COMBOS AEFHW
-
 -(Spell*)spellForElements:(NSArray*)elements {
-    
-    // Hit combos catch first (they are most common)
-    NSString * key = [Combos hitKey:elements];
-    NSString * type = self.hitCombos[key];
-    Spell * spell = nil;
-    if (type) {
-        spell = [Spell fromType:type];
-    }
-    
-    // Only worry about more specific ones with 5+
-    else if (elements.count >= 5) {
-        // check exact combos first
-        spell = [self exactCombo:elements];
-        if (!spell) spell = [self basic5Spell:elements];
-    }
-
-    return spell;
+    return [ComboService.shared spellForElements:elements];
 }
 
 @end

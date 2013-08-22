@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "PlayerEffect.h"
+#import "Combo.h"
 
 #define Teddy @"teddybear"
 #define Undies @"wizard-undies"
@@ -37,6 +38,7 @@
 @property (nonatomic, strong) NSString * name;
 @property (nonatomic, strong) PlayerEffect * effect;
 @property (nonatomic) NSString * explanation;
+@property (nonatomic, strong) Combo * combo;
 
 @property (nonatomic) float speed; // units per second
 @property (nonatomic) float startOffsetPosition;  // in units

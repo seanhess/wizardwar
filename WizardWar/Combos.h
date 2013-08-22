@@ -10,9 +10,17 @@
 #import "Elements.h"
 #import "Spell.h"
 
+
+
+
+
+
+
+// Note this tracks the current state of the combos. You need to be able to create new copies of this.
+
+
 @interface Combos : NSObject
 
-// an array of all moves, in order
 @property (nonatomic) ElementType lastElement;
 @property (nonatomic, strong) NSMutableArray * allElements;
 
@@ -29,6 +37,5 @@
 -(void)releaseElements;
 -(void)reset;
 
--(Spell*)spellForElements:(NSArray*)elements;
 
 @end
