@@ -16,6 +16,7 @@
 #import "Spell.h"
 #import "SpellbookService.h"
 #import "NSArray+Functional.h"
+#import "SpellbookInteractionCell.h"
 
 #define SECTION_INFO 0
 #define SECTION_STATS 1
@@ -66,13 +67,20 @@
     
     // the interactions are doubled up. We want to group by opposing spell
     NSArray * rawInteractions = [SpellEffectService.shared interactionsForSpell:self.record.type];
+    
+    NSArray * withoutNones = [rawInteractions filter:^BOOL(SpellInteraction * interaction) {
+        return ![interaction.effect isKindOfClass:[SENone class]];
+    }];
+
     NSMutableDictionary * byOtherSpell = [NSMutableDictionary dictionary];
-    [rawInteractions forEach:^(SpellInteraction * interaction) {
+    [withoutNones forEach:^(SpellInteraction * interaction) {
         NSString * otherSpellType;
-        if ([self.spell isType:interaction.spell])
+        if ([self.record.type isEqualToString:interaction.spell])
             otherSpellType = interaction.otherSpell;
         else
             otherSpellType = interaction.spell;
+        
+//        NSLog(@"SAVING INTERACTION %@ %@ >> %@ %@", interaction.spell, interaction.otherSpell, otherSpellType, interaction.effect);
         
         OtherInteraction * otherInteraction = byOtherSpell[otherSpellType];
         if (!otherInteraction) {
@@ -145,7 +153,7 @@
     if (section == SECTION_INFO) return @"Info";
 //    else if (section == SECTION_STATS) return @"Stats";
 //    else if (section == SECTION_EFFECT) return @"Effect";
-    if (section == SECTION_INTERACTIONS) return @"Interacts With";
+    if (section == SECTION_INTERACTIONS && self.otherInteractions.count) return @"Interacts With";
     else return nil;
 }
 
@@ -173,8 +181,7 @@
     }
     
     infoView.record = self.record;
-    
-//    cell.textLabel.text = @"INFO";
+
     return cell;
 }
 
@@ -210,19 +217,17 @@
     static NSString *CellIdentifier = @"SpellbookInteractionCell";
     UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        cell.textLabel.numberOfLines = 0;
-        cell.textLabel.font = self.descriptionFont;        
+        cell = [[SpellbookInteractionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.textLabel.font = self.descriptionFont;
     }
     
     OtherInteraction * otherInteraction = [self.otherInteractions objectAtIndex:indexPath.row];
-    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
     cell.imageView.image = [UIImage imageNamed:[SpellbookService.shared spellIconNameByType:otherInteraction.otherSpell]];
     
     NSMutableString * infoString = [NSMutableString string];
     for (SpellInteraction * interaction in otherInteraction.interactions) {
-        [infoString appendFormat:@"%i %@\n", otherInteraction.interactions.count, interaction.spell];
+        Spell * spell = [Spell fromType:interaction.spell];
+        [infoString appendFormat:@"%@\n", [interaction.effect describe:spell.name]];
     }
     cell.textLabel.text = infoString;
     return cell;
@@ -282,6 +287,7 @@
     if (indexPath.section == SECTION_EFFECT) {
         if (indexPath.row == 0) return [self heightForDescription:self.spellDescription];
     }
+    if (indexPath.section == SECTION_INTERACTIONS) return 54;
 //    else if (indexPath.section == SECTION_EFFECT) {
 //        if (indexPath.row == 1 && self.spell.damage == 0) return 0;
 //        if (indexPath.row == 2 && self.spell.speed == 0) return 0;

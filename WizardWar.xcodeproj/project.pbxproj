@@ -41,6 +41,7 @@
 		781372DD177E32C600486899 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781372DC177E32C600486899 /* AdSupport.framework */; };
 		781372DF177E32CD00486899 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 781372DE177E32CD00486899 /* libsqlite3.dylib */; };
 		781372E1177E32D400486899 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781372E0177E32D400486899 /* Social.framework */; };
+		7814763917C652F4005DA04A /* SpellbookInteractionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7814763817C652F4005DA04A /* SpellbookInteractionCell.m */; };
 		781B4C4A17839C00002551CA /* CCAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 781B4B7B17839C00002551CA /* CCAction.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		781B4C4B17839C00002551CA /* CCActionCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 781B4B7D17839C00002551CA /* CCActionCamera.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		781B4C4C17839C00002551CA /* CCActionCatmullRom.m in Sources */ = {isa = PBXBuildFile; fileRef = 781B4B7F17839C00002551CA /* CCActionCatmullRom.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -428,6 +429,8 @@
 		781372DE177E32CD00486899 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		781372E0177E32D400486899 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		7814763617C64ADC005DA04A /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		7814763717C652F4005DA04A /* SpellbookInteractionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellbookInteractionCell.h; sourceTree = "<group>"; };
+		7814763817C652F4005DA04A /* SpellbookInteractionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellbookInteractionCell.m; sourceTree = "<group>"; };
 		781B4B7A17839C00002551CA /* CCAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAction.h; sourceTree = "<group>"; };
 		781B4B7B17839C00002551CA /* CCAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCAction.m; sourceTree = "<group>"; };
 		781B4B7C17839C00002551CA /* CCActionCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCActionCamera.h; sourceTree = "<group>"; };
@@ -1407,6 +1410,8 @@
 				780A234B17C3BE1900EE3BAA /* SpellbookCastDiagramView.m */,
 				781BE0DE17C56A77005735A9 /* SpellbookInfoView.h */,
 				781BE0DF17C56A78005735A9 /* SpellbookInfoView.m */,
+				7814763717C652F4005DA04A /* SpellbookInteractionCell.h */,
+				7814763817C652F4005DA04A /* SpellbookInteractionCell.m */,
 			);
 			name = Spellbook;
 			sourceTree = "<group>";
@@ -2508,6 +2513,7 @@
 				781BE0DA17C53544005735A9 /* SpellInteraction.m in Sources */,
 				781BE0DD17C5439B005735A9 /* SpellInfo.m in Sources */,
 				781BE0E017C56A78005735A9 /* SpellbookInfoView.m in Sources */,
+				7814763917C652F4005DA04A /* SpellbookInteractionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

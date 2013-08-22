@@ -164,7 +164,7 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>life mana</filename>
+            <filename>sprites</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

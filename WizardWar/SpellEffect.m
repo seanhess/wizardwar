@@ -17,6 +17,9 @@
     abort();
     return NO;
 }
+-(NSString*)describe:(NSString *)type {
+    return @"";
+}
 @end
 
 @implementation SENone
@@ -35,6 +38,9 @@
         spell.strength = 0;
     return YES;
 }
+-(NSString*)describe:(NSString *)type {
+    return [NSString stringWithFormat:@"%@ grows weaker", type];
+}
 @end
 
 @implementation SEDestroy
@@ -45,7 +51,9 @@
     spell.strength = 0;
     return YES;
 }
-@end
+-(NSString*)describe:(NSString *)type {
+    return [NSString stringWithFormat:@"%@ is destroyed", type];
+}@end
 
 @implementation SEDestroyOlder
 -(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick {
@@ -54,6 +62,9 @@
     if ([SECarry isCarried:spell]) return NO;
     spell.strength = 0;
     return YES;
+}
+-(NSString*)describe:(NSString *)type {
+    return @"The newer wall replaces the older";
 }
 @end
 
@@ -64,6 +75,9 @@
     spell.damage += 1;
     spell.strength += 1;
     return YES;
+}
+-(NSString*)describe:(NSString *)type {
+    return [NSString stringWithFormat:@"%@ grows stronger", type];
 }
 @end
 
@@ -88,6 +102,9 @@
     spell.direction = otherSpell.direction;
     return YES;
 }
+-(NSString*)describe:(NSString *)type {
+    return [NSString stringWithFormat:@"%@ is carried", type];
+}
 @end
 
 @implementation SESleep
@@ -100,6 +117,9 @@
 //    spell.effect = [EffectSleep new];
 //    [spell.effect start:tick player:nil];
     return YES;
+}
+-(NSString*)describe:(NSString *)type {
+    return [NSString stringWithFormat:@"%@ falls asleep", type];
 }
 @end
 
@@ -140,6 +160,13 @@
     return YES;
 }
 
+-(NSString*)describe:(NSString *)type {
+    if (self.set)
+        return [NSString stringWithFormat:@"%@ slows down to %i", type, (int)self.set];
+
+    return [NSString stringWithFormat:@"%@ changes speed by %i/-%i", type, (int)self.up, (int)self.down];
+}
+
 @end
 
 @implementation SEReflect
@@ -148,6 +175,9 @@
     if ([SECarry isCarried:spell]) return NO;
     spell.direction = otherSpell.direction;
     return YES;
+}
+-(NSString*)describe:(NSString *)type {
+    return [NSString stringWithFormat:@"%@ is reflected", type];
 }
 @end
 

@@ -13,6 +13,7 @@
 
 @interface SpellEffect : NSObject
 -(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick;
+-(NSString*)describe:(NSString*)type;
 @end
 
 

@@ -1,3 +1,17 @@
+
+Setup and Compiling
+===================
+
+### Sprite Textures
+
+Run `make` to compile the images in the spritesheet directories into spritesheets. This requires TexturePacker pro and the command line tools installed. If you only have the free version, open the .tps files and hit publish. 
+
+
+
+
+
+
+
 ### Links
 
 Firebase
@@ -18,51 +32,6 @@ Push Notifications
 
 Core Data
 * http://www.raywenderlich.com/27657/how-to-perform-a-lightweight-core-data-migration
-
-
-STUFF TO DO
-===========
-
-[x] Fist of grom doesn't use ticks!
-[x] Fist of grom breaks helmet? hmm...
-
-[ ] Burn through bugs/features list
-[ ] Just use it over and over and test. Play with random people in town. Recruit recruit recruit & communicate. 
-
-[x] Experiment: Javascript Engine (timer only to start) (works, but why bother right now)
-[ ] Experiment: Particles
-[ ] Experiment: more game balance
-[ ] Improve Practice Mode AI?
-[ ] Improve Wind Blast interaction.
-
-
-
-[x] Smooth animation: use updates to move them, instead of tween
-[x] BUG: crash you experienced while playing??? Who knows?
-[x] New mana/spam
-
-[ ] Feedback: if they don't cast a spell within a certain time, tell them what to do
-[ ] Add random "fail" spells (with two elements) any 2 elements triggers a random fail spell
-
-[x] TALK: Trevor: plans for app? Moving forward plan? What do we do? Money?
-[x] TALK: Jesse: fail spells. Other 2 spells.
-
-[ ] Add more spells!
-[ ] Particle effects or some other visual wizardry. Use physics engine to simulate unimportant particle stuff?
-    [ ] Fireball freaking catches you on fire, you have to put it out. ha.
-    
-    [ ] Earth wall: made up of earth particles that break apart. I need a little earth wall particle thing?
-        [ ] no, just have a particle, then animate a bunch of them.
-
-IDEA: we can have some spells take "more mana", meaning they reduce the size of the indicators used MORE
-
-[x] Make walls and monsters fall
-[x] More spells. Fill it up!
-
-BUGS
-- pulls you out of a game if you are in one already
-
-
 
 
 
