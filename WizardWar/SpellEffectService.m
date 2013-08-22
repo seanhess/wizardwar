@@ -269,7 +269,7 @@
     cthulhu.strength = 666;
     cthulhu.altitude = 3.0;
     cthulhu.speedY = -1.0;
-//    cthulhu.effect = [PECthulhu new];
+    cthulhu.effect = [PECthulhu new];
     cthulhu.heavy = NO;
     
     self.allSpellTypes = @[

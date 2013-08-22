@@ -29,11 +29,8 @@
 }
 
 -(void)cancel:(Wizard*)player {
-    [super cancel:player];
     player.altitude = 0;
-    
-    // should the player take damage here if he falls?
-    // no, hard to differentiate between switching effects
+    [super cancel:player];
 }
 
 -(BOOL)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval player:(Wizard*)player {

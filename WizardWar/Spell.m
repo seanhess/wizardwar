@@ -95,9 +95,7 @@
 
 -(BOOL)hitsPlayer:(Wizard*)player duringInterval:(NSTimeInterval)dt {
     
-    NSInteger roundedAltitude = roundf(self.altitude);
-    
-    if (roundedAltitude != player.altitude) return NO;
+    if (self.roundedAltitude != player.altitude) return NO;
 
     // TEST: does it start on one side of the player and end up on the other?
     
@@ -112,6 +110,10 @@
     }
 }
 
+-(NSInteger)roundedAltitude {
+    return floorf(self.altitude);
+}
+
 
 // NEW HITTING ALGORITHM
 // if the positions will cross during this tick, given their current directions
@@ -121,7 +123,7 @@
     
 //    NSLog(@"DID HIT SPELL? %@:%i %@:%i", self.name, self.altitude, spell.name, spell.altitude);
     
-    if (self.altitude != spell.altitude) return NO;
+    if (self.roundedAltitude != spell.roundedAltitude) return NO;
 
     // return if it WILL cross positions during this time interval
     float spellStart = [spell move:-dt];

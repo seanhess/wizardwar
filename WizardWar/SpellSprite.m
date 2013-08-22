@@ -129,7 +129,6 @@
 
 -(void)renderPosition {
     CGPoint position = ccp(self.spellX, self.spellY);
-    NSLog(@"RENDER POSITION %.2f %.1f", self.spellY, self.spell.altitude);
     if ([self.spell isType:CaptainPlanet]) {
         // send in the change in x from the beginning
         CGFloat dx = self.spell.position;

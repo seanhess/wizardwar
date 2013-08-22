@@ -19,6 +19,7 @@
 #import "DebugSprite.h"
 #import "OLSprite.h"
 #import "PECthulhu.h"
+#import "PELevitate.h"
 
 #define SLEEP_ANIMATION_START_DELAY 0.2
 #define WIZARD_PADDING 20
@@ -122,11 +123,15 @@
         }];
         
         [[RACAble(self.wizard.effect) distinctUntilChanged] subscribeNext:^(id x) {
-            [wself renderEffect];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [wself renderEffect];
+            });
         }];
         
         [[RACAble(self.wizard.altitude) distinctUntilChanged] subscribeNext:^(id x) {
-            [wself renderAltitude];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [wself renderAltitude];
+            });
         }];
         
         [[RACAble(self.match.status) distinctUntilChanged] subscribeNext:^(id x) {
@@ -427,14 +432,16 @@
 -(void)renderAltitude {
     CGPoint pos = self.calculatedPosition;
     CCFiniteTimeAction * toPos = [CCMoveTo actionWithDuration:0.2 position:ccp(pos.x, pos.y)];
-    if (self.wizard.altitude > 0) {
+    if (self.wizard.altitude == 1.0 && [self.wizard.effect isKindOfClass:[PELevitate class]]) {
         CCFiniteTimeAction * toHover = [CCMoveTo actionWithDuration:0.2 position:ccp(pos.x, pos.y+5)];
         self.hoverAction = [CCRepeatForever actionWithAction:[CCSequence actions:toPos, toHover, nil]];
         [self runAction:self.hoverAction];
     }
-    else {
+    else if (self.wizard.altitude == 0.0) {
         [self stopAction:self.hoverAction];
         [self runAction:toPos];
+    } else {
+        self.position = pos;
     }
 }
 

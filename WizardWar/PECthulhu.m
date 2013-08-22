@@ -8,31 +8,38 @@
 
 #import "PECthulhu.h"
 #import "Wizard.h"
+#import "Spell.h"
+
+#define RAISE_SPEED 1.0
 
 @implementation PECthulhu
 
 -(id)init {
     if ((self = [super init])) {
-        NSLog(@"CTHULHU! HOORAY!");
-        self.delay = 3.0;
     }
     return self;
 }
 
+-(BOOL)interceptSpell:(Spell *)spell onWizard:(Wizard *)wizard interval:(NSTimeInterval)interval currentTick:(NSInteger)currentTick {
+    return YES;
+}
+
+-(BOOL)applySpell:(Spell *)spell onWizard:(Wizard *)wizard currentTick:(NSInteger)currentTick {
+    [super applySpell:spell onWizard:wizard currentTick:currentTick];
+    spell.strength = 666;
+    spell.speedY = RAISE_SPEED;
+    return NO;
+}
+
 // wahoo... here he comes
 -(BOOL)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval player:(Wizard*)wizard {
-    NSInteger ticksUntilGrab = round((self.delay/2) / interval);
-    NSInteger ticksUntilDead = round((self.delay) / interval);
-    NSInteger elapsedTicks = (currentTick - wizard.effectStartTick);
+    wizard.altitude += RAISE_SPEED * interval;
     
-    if (elapsedTicks >= ticksUntilDead) {
+    if (wizard.altitude >= 3.0) {
         wizard.health = 0;
         return YES;
     }
     
-    else if (elapsedTicks >= ticksUntilGrab) {
-        wizard.altitude = 3;
-    }
     return NO;
 }
 
