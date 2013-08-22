@@ -129,8 +129,6 @@
 
 
 
-
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -299,7 +297,7 @@
 //}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == SECTION_INFO) return SPELLBOOK_INFO_HEIGHT;
+    if (indexPath.section == SECTION_INFO) return self.tableView.frame.size.width/2;
     if (indexPath.section == SECTION_STATS) return 54;
     if (indexPath.section == SECTION_EFFECT) {
         if (indexPath.row == 0) return [self heightForDescription:self.spellDescription];

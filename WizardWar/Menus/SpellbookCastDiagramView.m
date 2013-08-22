@@ -11,11 +11,6 @@
 #import "Elements.h"
 #import "NSArray+Functional.h"
 
-static CGFloat const kDashedPhase           = (0.0f);
-static CGFloat const kDashedLinesLength[]   = {4.0f, 2.0f};
-static size_t const kDashedCount            = (2.0f);
-
-
 @interface CastSegmentPoints : NSObject
 @property (nonatomic) CGPoint start;
 @property (nonatomic) CGPoint end;
@@ -66,8 +61,6 @@ static size_t const kDashedCount            = (2.0f);
     self.backgroundImageView.backgroundColor = [UIColor clearColor];
     [self addSubview:self.backgroundImageView];
     [self setOpaque:NO];
-    
-    self.strokeWidth = 6.0;
 }
 
 - (void)setRecord:(SpellRecord *)record {
@@ -187,6 +180,11 @@ static size_t const kDashedCount            = (2.0f);
 {
     [super drawRect:rect];
     [self calculatePositions];
+    self.strokeWidth = self.frame.size.width/20;
+    CGFloat const kDashedPhase           = (0.0f);
+    CGFloat const kDashedLinesLength[]   = {self.strokeWidth, self.strokeWidth/2};
+    size_t const kDashedCount            = (2.0f);
+    
     Combo * combo = self.info.combo;
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(context, self.strokeWidth);

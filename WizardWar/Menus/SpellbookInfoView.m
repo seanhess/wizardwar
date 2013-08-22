@@ -13,6 +13,8 @@
 @interface SpellbookInfoView ()
 @property (nonatomic, strong) SpellbookCastDiagramView * diagram;
 @property (nonatomic, strong) UIImageView * imageView;
+@property (nonatomic) CGRect halfLeft;
+@property (nonatomic) CGRect halfRight;
 @end
 
 @implementation SpellbookInfoView
@@ -31,24 +33,10 @@
 - (void)initialize {
     // Initialization code
     
-    CGFloat padding = 4;
-    
-    CGRect halfLeft = self.bounds;
-    halfLeft.size.width = self.bounds.size.width / 2 - 2*padding;
-    halfLeft.size.height -= padding*2;
-    halfLeft.origin.x = padding;
-    halfLeft.origin.y = padding;
-
-    CGRect halfRight = self.bounds;
-    halfRight.size.width = self.bounds.size.width / 2;
-    halfRight.origin.x = halfRight.size.width;
-    
-    self.diagram = [[SpellbookCastDiagramView alloc] initWithFrame:halfRight];
-    self.diagram.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    self.diagram = [[SpellbookCastDiagramView alloc] initWithFrame:self.halfRight];
     [self addSubview:self.diagram];
     
-    self.imageView = [[UIImageView alloc] initWithFrame:halfLeft];
-    self.imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    self.imageView = [[UIImageView alloc] initWithFrame:self.halfLeft];
     self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     [self addSubview:self.imageView];
 }
@@ -57,6 +45,27 @@
     _record = record;
     self.imageView.image = [UIImage imageNamed:[SpellbookService.shared spellIconName:record]];
     self.diagram.record = record;
+}
+
+- (void)setFrame:(CGRect)frame {
+    [super setFrame:frame];
+    
+    CGFloat padding = 4;
+    
+    CGRect halfLeft = self.bounds;
+    halfLeft.size.width = self.bounds.size.width / 2 - 2*padding;
+    halfLeft.size.height -= padding*2;
+    halfLeft.origin.x = padding;
+    halfLeft.origin.y = padding;
+    
+    CGRect halfRight = self.bounds;
+    halfRight.size.width = self.bounds.size.width / 2;
+    halfRight.origin.x = halfRight.size.width;
+    
+    self.halfLeft = halfLeft;
+    self.halfRight = halfRight;
+    self.diagram.frame = halfRight;
+    self.imageView.frame = halfLeft;
 }
 
 

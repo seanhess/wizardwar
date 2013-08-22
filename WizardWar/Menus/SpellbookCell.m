@@ -35,6 +35,10 @@
     // Configure the view for the selected state
 }
 
+-(void)awakeFromNib {
+    
+}
+
 -(void)setSpellRecord:(SpellRecord*)record {
     UIImage * image = [UIImage imageNamed:[SpellbookService.shared spellIconName:record]];
     if (!record.isUnlocked)
