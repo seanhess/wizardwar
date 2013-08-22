@@ -47,6 +47,22 @@
 		7814764E17C68EBF005DA04A /* cthulhu-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7814764D17C68EBF005DA04A /* cthulhu-animation.plist */; };
 		7814765017C697DA005DA04A /* cthulhu.png in Resources */ = {isa = PBXBuildFile; fileRef = 7814764F17C697DA005DA04A /* cthulhu.png */; };
 		7814765317C6A10F005DA04A /* PECthulhu.m in Sources */ = {isa = PBXBuildFile; fileRef = 7814765217C6A10F005DA04A /* PECthulhu.m */; };
+		7814766417C6C2CC005DA04A /* castle-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 7814765417C6C2CB005DA04A /* castle-hd.png */; };
+		7814766517C6C2CC005DA04A /* castle-ipad-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 7814765517C6C2CB005DA04A /* castle-ipad-hd.png */; };
+		7814766617C6C2CC005DA04A /* castle-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7814765617C6C2CB005DA04A /* castle-ipad.png */; };
+		7814766717C6C2CC005DA04A /* castle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7814765717C6C2CB005DA04A /* castle.png */; };
+		7814766817C6C2CC005DA04A /* cave-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 7814765817C6C2CB005DA04A /* cave-hd.png */; };
+		7814766917C6C2CC005DA04A /* cave-ipad-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 7814765917C6C2CB005DA04A /* cave-ipad-hd.png */; };
+		7814766A17C6C2CC005DA04A /* cave-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7814765A17C6C2CB005DA04A /* cave-ipad.png */; };
+		7814766B17C6C2CC005DA04A /* cave.png in Resources */ = {isa = PBXBuildFile; fileRef = 7814765B17C6C2CB005DA04A /* cave.png */; };
+		7814766C17C6C2CC005DA04A /* evilforest-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 7814765C17C6C2CB005DA04A /* evilforest-hd.png */; };
+		7814766D17C6C2CC005DA04A /* evilforest-ipad-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 7814765D17C6C2CB005DA04A /* evilforest-ipad-hd.png */; };
+		7814766E17C6C2CC005DA04A /* evilforest-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7814765E17C6C2CC005DA04A /* evilforest-ipad.png */; };
+		7814766F17C6C2CC005DA04A /* evilforest.png in Resources */ = {isa = PBXBuildFile; fileRef = 7814765F17C6C2CC005DA04A /* evilforest.png */; };
+		7814767C17C6C418005DA04A /* icecave-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 7814767817C6C417005DA04A /* icecave-hd.png */; };
+		7814767D17C6C418005DA04A /* icecave-ipad-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 7814767917C6C417005DA04A /* icecave-ipad-hd.png */; };
+		7814767E17C6C418005DA04A /* icecave-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7814767A17C6C418005DA04A /* icecave-ipad.png */; };
+		7814767F17C6C418005DA04A /* icecave.png in Resources */ = {isa = PBXBuildFile; fileRef = 7814767B17C6C418005DA04A /* icecave.png */; };
 		781B4C4A17839C00002551CA /* CCAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 781B4B7B17839C00002551CA /* CCAction.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		781B4C4B17839C00002551CA /* CCActionCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 781B4B7D17839C00002551CA /* CCActionCamera.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		781B4C4C17839C00002551CA /* CCActionCatmullRom.m in Sources */ = {isa = PBXBuildFile; fileRef = 781B4B7F17839C00002551CA /* CCActionCatmullRom.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -266,8 +282,6 @@
 		787E1C4617BC0D7A0092F5D6 /* mainmenu~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 787E1C4117BC0D770092F5D6 /* mainmenu~ipad.png */; };
 		787E1C4817BC0D7A0092F5D6 /* mainmenu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787E1C4317BC0D780092F5D6 /* mainmenu@2x.png */; };
 		787E1C4917BC0D7A0092F5D6 /* mainmenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 787E1C4417BC0D790092F5D6 /* mainmenu.png */; };
-		7881FD7A17BD3A6200FBC7C8 /* background-cave-ipad-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 7881FD7817BD3A6200FBC7C8 /* background-cave-ipad-hd.png */; };
-		7881FD7B17BD3A6200FBC7C8 /* background-cave-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7881FD7917BD3A6200FBC7C8 /* background-cave-ipad.png */; };
 		7881FD7D17BD413200FBC7C8 /* icon-iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 7881FD7C17BD413200FBC7C8 /* icon-iphone.png */; };
 		7881FD7F17BD413900FBC7C8 /* icon-iphone-retina and-5.png in Resources */ = {isa = PBXBuildFile; fileRef = 7881FD7E17BD413900FBC7C8 /* icon-iphone-retina and-5.png */; };
 		7881FD8117BD414700FBC7C8 /* icon-ipad-retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 7881FD8017BD414700FBC7C8 /* icon-ipad-retina.png */; };
@@ -321,8 +335,6 @@
 		78E22CB61782427500146D49 /* windblast.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CAE1782427500146D49 /* windblast.mp3 */; };
 		78E22CBA178255B700146D49 /* user.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CB9178255B700146D49 /* user.jpg */; };
 		78E8EA6A1759427E00017747 /* Combos.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E8EA691759427E00017747 /* Combos.m */; };
-		78F1946217471A0E00BB8587 /* background-cave.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F193E817471A0E00BB8587 /* background-cave.png */; };
-		78F1946317471A0E00BB8587 /* background-cave-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F193E917471A0E00BB8587 /* background-cave-hd.png */; };
 		78F194A217471A0E00BB8587 /* pentagram-earth.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F1942817471A0E00BB8587 /* pentagram-earth.png */; };
 		78F194A317471A0E00BB8587 /* pentagram-earth@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F1942917471A0E00BB8587 /* pentagram-earth@2x.png */; };
 		78F194A417471A0E00BB8587 /* pentagram-fire.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F1942A17471A0E00BB8587 /* pentagram-fire.png */; };
@@ -443,6 +455,22 @@
 		7814764F17C697DA005DA04A /* cthulhu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cthulhu.png; sourceTree = "<group>"; };
 		7814765117C6A10F005DA04A /* PECthulhu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECthulhu.h; sourceTree = "<group>"; };
 		7814765217C6A10F005DA04A /* PECthulhu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECthulhu.m; sourceTree = "<group>"; };
+		7814765417C6C2CB005DA04A /* castle-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "castle-hd.png"; path = "WizardWar/images/backgrounds/castle-hd.png"; sourceTree = SOURCE_ROOT; };
+		7814765517C6C2CB005DA04A /* castle-ipad-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "castle-ipad-hd.png"; path = "WizardWar/images/backgrounds/castle-ipad-hd.png"; sourceTree = SOURCE_ROOT; };
+		7814765617C6C2CB005DA04A /* castle-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "castle-ipad.png"; path = "WizardWar/images/backgrounds/castle-ipad.png"; sourceTree = SOURCE_ROOT; };
+		7814765717C6C2CB005DA04A /* castle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = castle.png; path = WizardWar/images/backgrounds/castle.png; sourceTree = SOURCE_ROOT; };
+		7814765817C6C2CB005DA04A /* cave-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cave-hd.png"; path = "WizardWar/images/backgrounds/cave-hd.png"; sourceTree = SOURCE_ROOT; };
+		7814765917C6C2CB005DA04A /* cave-ipad-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cave-ipad-hd.png"; path = "WizardWar/images/backgrounds/cave-ipad-hd.png"; sourceTree = SOURCE_ROOT; };
+		7814765A17C6C2CB005DA04A /* cave-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cave-ipad.png"; path = "WizardWar/images/backgrounds/cave-ipad.png"; sourceTree = SOURCE_ROOT; };
+		7814765B17C6C2CB005DA04A /* cave.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cave.png; path = WizardWar/images/backgrounds/cave.png; sourceTree = SOURCE_ROOT; };
+		7814765C17C6C2CB005DA04A /* evilforest-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "evilforest-hd.png"; path = "WizardWar/images/backgrounds/evilforest-hd.png"; sourceTree = SOURCE_ROOT; };
+		7814765D17C6C2CB005DA04A /* evilforest-ipad-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "evilforest-ipad-hd.png"; path = "WizardWar/images/backgrounds/evilforest-ipad-hd.png"; sourceTree = SOURCE_ROOT; };
+		7814765E17C6C2CC005DA04A /* evilforest-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "evilforest-ipad.png"; path = "WizardWar/images/backgrounds/evilforest-ipad.png"; sourceTree = SOURCE_ROOT; };
+		7814765F17C6C2CC005DA04A /* evilforest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = evilforest.png; path = WizardWar/images/backgrounds/evilforest.png; sourceTree = SOURCE_ROOT; };
+		7814767817C6C417005DA04A /* icecave-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icecave-hd.png"; path = "WizardWar/images/backgrounds/icecave-hd.png"; sourceTree = SOURCE_ROOT; };
+		7814767917C6C417005DA04A /* icecave-ipad-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icecave-ipad-hd.png"; path = "WizardWar/images/backgrounds/icecave-ipad-hd.png"; sourceTree = SOURCE_ROOT; };
+		7814767A17C6C418005DA04A /* icecave-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icecave-ipad.png"; path = "WizardWar/images/backgrounds/icecave-ipad.png"; sourceTree = SOURCE_ROOT; };
+		7814767B17C6C418005DA04A /* icecave.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icecave.png; path = WizardWar/images/backgrounds/icecave.png; sourceTree = SOURCE_ROOT; };
 		781B4B7A17839C00002551CA /* CCAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAction.h; sourceTree = "<group>"; };
 		781B4B7B17839C00002551CA /* CCAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCAction.m; sourceTree = "<group>"; };
 		781B4B7C17839C00002551CA /* CCActionCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCActionCamera.h; sourceTree = "<group>"; };
@@ -825,8 +853,6 @@
 		787E1C4117BC0D770092F5D6 /* mainmenu~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mainmenu~ipad.png"; sourceTree = "<group>"; };
 		787E1C4317BC0D780092F5D6 /* mainmenu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mainmenu@2x.png"; sourceTree = "<group>"; };
 		787E1C4417BC0D790092F5D6 /* mainmenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainmenu.png; sourceTree = "<group>"; };
-		7881FD7817BD3A6200FBC7C8 /* background-cave-ipad-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-cave-ipad-hd.png"; sourceTree = "<group>"; };
-		7881FD7917BD3A6200FBC7C8 /* background-cave-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-cave-ipad.png"; sourceTree = "<group>"; };
 		7881FD7C17BD413200FBC7C8 /* icon-iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-iphone.png"; sourceTree = "<group>"; };
 		7881FD7E17BD413900FBC7C8 /* icon-iphone-retina and-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-iphone-retina and-5.png"; sourceTree = "<group>"; };
 		7881FD8017BD414700FBC7C8 /* icon-ipad-retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-ipad-retina.png"; sourceTree = "<group>"; };
@@ -912,8 +938,6 @@
 		78E22CB9178255B700146D49 /* user.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = user.jpg; sourceTree = "<group>"; };
 		78E8EA681759427E00017747 /* Combos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Combos.h; sourceTree = "<group>"; };
 		78E8EA691759427E00017747 /* Combos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Combos.m; sourceTree = "<group>"; };
-		78F193E817471A0E00BB8587 /* background-cave.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-cave.png"; sourceTree = "<group>"; };
-		78F193E917471A0E00BB8587 /* background-cave-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-cave-hd.png"; sourceTree = "<group>"; };
 		78F1942817471A0E00BB8587 /* pentagram-earth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pentagram-earth.png"; sourceTree = "<group>"; };
 		78F1942917471A0E00BB8587 /* pentagram-earth@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pentagram-earth@2x.png"; sourceTree = "<group>"; };
 		78F1942A17471A0E00BB8587 /* pentagram-fire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pentagram-fire.png"; sourceTree = "<group>"; };
@@ -1455,6 +1479,22 @@
 				785B047717C2BDF700B064F6 /* wizard-undies.png */,
 				785B049117C2C4E200B064F6 /* lightning.png */,
 				785B049217C2C4E200B064F6 /* vine.png */,
+				7814765417C6C2CB005DA04A /* castle-hd.png */,
+				7814765517C6C2CB005DA04A /* castle-ipad-hd.png */,
+				7814765617C6C2CB005DA04A /* castle-ipad.png */,
+				7814765717C6C2CB005DA04A /* castle.png */,
+				7814765817C6C2CB005DA04A /* cave-hd.png */,
+				7814765917C6C2CB005DA04A /* cave-ipad-hd.png */,
+				7814765A17C6C2CB005DA04A /* cave-ipad.png */,
+				7814765B17C6C2CB005DA04A /* cave.png */,
+				7814765C17C6C2CB005DA04A /* evilforest-hd.png */,
+				7814765D17C6C2CB005DA04A /* evilforest-ipad-hd.png */,
+				7814765E17C6C2CC005DA04A /* evilforest-ipad.png */,
+				7814765F17C6C2CC005DA04A /* evilforest.png */,
+				7814767817C6C417005DA04A /* icecave-hd.png */,
+				7814767917C6C417005DA04A /* icecave-ipad-hd.png */,
+				7814767A17C6C418005DA04A /* icecave-ipad.png */,
+				7814767B17C6C418005DA04A /* icecave.png */,
 			);
 			path = spellbook;
 			sourceTree = "<group>";
@@ -1766,10 +1806,6 @@
 				78E22CB9178255B700146D49 /* user.jpg */,
 				78F195031747FBFA00BB8587 /* exit.png */,
 				78F195041747FBFA00BB8587 /* exit@2x.png */,
-				7881FD7817BD3A6200FBC7C8 /* background-cave-ipad-hd.png */,
-				7881FD7917BD3A6200FBC7C8 /* background-cave-ipad.png */,
-				78F193E817471A0E00BB8587 /* background-cave.png */,
-				78F193E917471A0E00BB8587 /* background-cave-hd.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -2133,8 +2169,6 @@
 				78F6B1F11746AD8900AA070D /* InfoPlist.strings in Resources */,
 				78F6B3711746AE5900AA070D /* ChangeLog in Resources */,
 				78F6B3721746AE5900AA070D /* CMakeLists.txt in Resources */,
-				78F1946217471A0E00BB8587 /* background-cave.png in Resources */,
-				78F1946317471A0E00BB8587 /* background-cave-hd.png in Resources */,
 				78F194A217471A0E00BB8587 /* pentagram-earth.png in Resources */,
 				78F194A317471A0E00BB8587 /* pentagram-earth@2x.png in Resources */,
 				78F194A417471A0E00BB8587 /* pentagram-fire.png in Resources */,
@@ -2208,8 +2242,6 @@
 				787E1C4617BC0D7A0092F5D6 /* mainmenu~ipad.png in Resources */,
 				787E1C4817BC0D7A0092F5D6 /* mainmenu@2x.png in Resources */,
 				787E1C4917BC0D7A0092F5D6 /* mainmenu.png in Resources */,
-				7881FD7A17BD3A6200FBC7C8 /* background-cave-ipad-hd.png in Resources */,
-				7881FD7B17BD3A6200FBC7C8 /* background-cave-ipad.png in Resources */,
 				7881FD7D17BD413200FBC7C8 /* icon-iphone.png in Resources */,
 				7881FD7F17BD413900FBC7C8 /* icon-iphone-retina and-5.png in Resources */,
 				7881FD8117BD414700FBC7C8 /* icon-ipad-retina.png in Resources */,
@@ -2273,6 +2305,22 @@
 				780A235017C3C1A900EE3BAA /* cast-diagram.png in Resources */,
 				7814764E17C68EBF005DA04A /* cthulhu-animation.plist in Resources */,
 				7814765017C697DA005DA04A /* cthulhu.png in Resources */,
+				7814766417C6C2CC005DA04A /* castle-hd.png in Resources */,
+				7814766517C6C2CC005DA04A /* castle-ipad-hd.png in Resources */,
+				7814766617C6C2CC005DA04A /* castle-ipad.png in Resources */,
+				7814766717C6C2CC005DA04A /* castle.png in Resources */,
+				7814766817C6C2CC005DA04A /* cave-hd.png in Resources */,
+				7814766917C6C2CC005DA04A /* cave-ipad-hd.png in Resources */,
+				7814766A17C6C2CC005DA04A /* cave-ipad.png in Resources */,
+				7814766B17C6C2CC005DA04A /* cave.png in Resources */,
+				7814766C17C6C2CC005DA04A /* evilforest-hd.png in Resources */,
+				7814766D17C6C2CC005DA04A /* evilforest-ipad-hd.png in Resources */,
+				7814766E17C6C2CC005DA04A /* evilforest-ipad.png in Resources */,
+				7814766F17C6C2CC005DA04A /* evilforest.png in Resources */,
+				7814767C17C6C418005DA04A /* icecave-hd.png in Resources */,
+				7814767D17C6C418005DA04A /* icecave-ipad-hd.png in Resources */,
+				7814767E17C6C418005DA04A /* icecave-ipad.png in Resources */,
+				7814767F17C6C418005DA04A /* icecave.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

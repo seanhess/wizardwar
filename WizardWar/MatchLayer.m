@@ -13,13 +13,11 @@
 #import "Spell.h"
 #import "SpellSprite.h"
 #import "NSArray+Functional.h"
-#import "NSArray+Functional.h"
 #import "Elements.h"
 
 #import "SimpleAudioEngine.h"
 #import "SpellEffectService.h"
 
-#import "NSArray+Functional.h"
 #import "LifeIndicatorNode.h"
 #import "Tick.h"
 #import "FeedbackLayer.h"
@@ -60,11 +58,13 @@
         __weak MatchLayer * wself = self;
         
         
+        // Manually use the suffix, because fallbacks conflict for other stuff
+        NSString * backgroundName = @[@"cave", @"icecave", @"evilforest", @"castle"].randomItem;
         NSInteger device = [[CCConfiguration sharedConfiguration] runningDevice];
         if (device == kCCDeviceiPadRetinaDisplay || device == kCCDeviceiPad) {
-            self.background = [CCSprite spriteWithFile:@"background-cave-ipad.png"];
+            self.background = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%@-ipad.png", backgroundName]];
         } else {
-            self.background = [CCSprite spriteWithFile:@"background-cave.png"];
+            self.background = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", backgroundName]];
         }
         self.background.anchorPoint = ccp(0,0);
         [self addChild:self.background];
