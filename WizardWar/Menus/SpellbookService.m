@@ -114,6 +114,14 @@
         record.name = spell.name;
         record.castTotal = 0;
         record.castUniqueMatches = 0;
+        if ([spell isAnyType:@[Fireball, Lightning, Monster, Earthwall, Firewall, Icewall]]) {
+            record.castUniqueMatches = 5;
+            record.castTotal = 5;
+        } else if ([spell isAnyType:@[Windblast, Bubble, Invisibility, Heal, Levitate, Sleep]]) {
+            record.castUniqueMatches = 1;
+            record.castTotal = 1;
+        }
+        
         NSLog(@"SpellRecord (+) %@", record.name);
     }
     return record;
@@ -126,7 +134,7 @@
         return [Spell fromType:info.type];
     }] map:^(Spell * spell) {
         SpellRecord * record = [self recordBySpellCreate:spell];
-        record.castUniqueMatches = arc4random() % 17;
+//        record.castUniqueMatches = arc4random() % 17;
 //        record.castUniqueMatches = 2;
         return record;
     }];
