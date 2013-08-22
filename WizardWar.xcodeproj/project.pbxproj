@@ -46,6 +46,7 @@
 		7814764C17C66FEF005DA04A /* Combo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7814764B17C66FEF005DA04A /* Combo.m */; };
 		7814764E17C68EBF005DA04A /* cthulhu-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7814764D17C68EBF005DA04A /* cthulhu-animation.plist */; };
 		7814765017C697DA005DA04A /* cthulhu.png in Resources */ = {isa = PBXBuildFile; fileRef = 7814764F17C697DA005DA04A /* cthulhu.png */; };
+		7814765317C6A10F005DA04A /* PECthulhu.m in Sources */ = {isa = PBXBuildFile; fileRef = 7814765217C6A10F005DA04A /* PECthulhu.m */; };
 		781B4C4A17839C00002551CA /* CCAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 781B4B7B17839C00002551CA /* CCAction.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		781B4C4B17839C00002551CA /* CCActionCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 781B4B7D17839C00002551CA /* CCActionCamera.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		781B4C4C17839C00002551CA /* CCActionCatmullRom.m in Sources */ = {isa = PBXBuildFile; fileRef = 781B4B7F17839C00002551CA /* CCActionCatmullRom.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -441,6 +442,8 @@
 		7814764B17C66FEF005DA04A /* Combo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Combo.m; sourceTree = "<group>"; };
 		7814764D17C68EBF005DA04A /* cthulhu-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "cthulhu-animation.plist"; path = "WizardWar/images/spells-extra/cthulhu/cthulhu-animation.plist"; sourceTree = SOURCE_ROOT; };
 		7814764F17C697DA005DA04A /* cthulhu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cthulhu.png; sourceTree = "<group>"; };
+		7814765117C6A10F005DA04A /* PECthulhu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECthulhu.h; sourceTree = "<group>"; };
+		7814765217C6A10F005DA04A /* PECthulhu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECthulhu.m; sourceTree = "<group>"; };
 		781B4B7A17839C00002551CA /* CCAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAction.h; sourceTree = "<group>"; };
 		781B4B7B17839C00002551CA /* CCAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCAction.m; sourceTree = "<group>"; };
 		781B4B7C17839C00002551CA /* CCActionCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCActionCamera.h; sourceTree = "<group>"; };
@@ -1590,6 +1593,8 @@
 				78915282176A72A8001694B1 /* PELevitate.m */,
 				78CD5ECC17B4197600FE0FB0 /* PEUndies.h */,
 				78CD5ECD17B4197600FE0FB0 /* PEUndies.m */,
+				7814765117C6A10F005DA04A /* PECthulhu.h */,
+				7814765217C6A10F005DA04A /* PECthulhu.m */,
 			);
 			name = Effects;
 			sourceTree = "<group>";
@@ -2534,6 +2539,7 @@
 				7814763917C652F4005DA04A /* SpellbookInteractionCell.m in Sources */,
 				7814764917C661B2005DA04A /* ComboService.m in Sources */,
 				7814764C17C66FEF005DA04A /* Combo.m in Sources */,
+				7814765317C6A10F005DA04A /* PECthulhu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

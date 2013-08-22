@@ -30,6 +30,7 @@ typedef enum SpellStatus {
 @interface Spell : NSObject <Objectable>
 @property (nonatomic, strong) NSString * spellId;
 @property (nonatomic) float speed; // units per second
+@property (nonatomic) float speedY; // altitude per second
 @property (nonatomic) float position;  // in units
 @property (nonatomic) float referencePosition; // where it started, or last sync
 @property (nonatomic) NSInteger direction;  // 1, or -1
@@ -40,7 +41,7 @@ typedef enum SpellStatus {
 @property (nonatomic) NSInteger updatedTick;
 @property (nonatomic) SpellStatus status;
 @property (nonatomic, strong) Wizard * creator;
-@property (nonatomic) NSInteger altitude; // how high it is. normal = 0;
+@property (nonatomic) float altitude; // how high it is. normal = 0;
 @property (nonatomic) BOOL heavy; // if it falls
 @property (nonatomic) BOOL targetSelf;
 @property (nonatomic) BOOL isWall;

@@ -28,6 +28,7 @@
         self.type = info.type;
         self.damage = info.damage;
         self.speed = info.speed;
+        self.speedY = info.speedY;
         self.strength = info.strength;
         self.startOffsetPosition = info.startOffsetPosition;
         self.targetSelf = info.targetSelf;
@@ -35,6 +36,7 @@
         self.castDelay = info.castDelay;
         self.name = info.name;
         self.isWall = info.isWall;
+        self.altitude = info.altitude;
         
         self.status = SpellStatusPrepare;
         self.spellId = [Spell generateSpellId];
@@ -55,6 +57,7 @@
 
 -(BOOL)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
     self.position = [self move:interval];
+    self.altitude = self.altitude + self.speedY*interval;
     return NO;
 }
 
@@ -82,7 +85,7 @@
     
     if (self.heavy)
         self.altitude = 0;
-    else
+    else if (self.altitude == 0) // you can set the altitude yo-self
         self.altitude = player.altitude;
 }
 
@@ -92,7 +95,9 @@
 
 -(BOOL)hitsPlayer:(Wizard*)player duringInterval:(NSTimeInterval)dt {
     
-    if (self.altitude != player.altitude) return NO;
+    NSInteger roundedAltitude = roundf(self.altitude);
+    
+    if (roundedAltitude != player.altitude) return NO;
 
     // TEST: does it start on one side of the player and end up on the other?
     

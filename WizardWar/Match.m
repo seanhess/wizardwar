@@ -230,8 +230,10 @@
     [self simulateUpdatedSpells:currentTick interval:tickInterval];
     
     // SIMULATE PLAYERS. Players handle simulating their own effects
-    [self.players.allValues forEach:^(Wizard * player) {
-        [player simulateTick:currentTick interval:tickInterval];
+    [self.players.allValues forEach:^(Wizard * wizard) {
+        BOOL changed = [wizard simulateTick:currentTick interval:tickInterval];
+        if (changed)
+            [self updateWizard:wizard];
     }];
     
     // SIMULATE SPELLS
@@ -419,34 +421,21 @@
             wizard.effect = clone.effect;
         }
         [wizard.effect start:currentTick player:wizard];
-//        NSLog(@"(%i) CHANGED EFFECT", currentTick);
+        NSLog(@"(%i) CHANGED EFFECT", currentTick);
     }
 
     if (wizard.state != clone.state) {
         [wizard setStatus:clone.state atTick:currentTick];
     }
     
-    
-    // handle player sync / update / death check
-    // only YOU can say you died
+
     if (wizard == self.currentWizard || wizard == self.aiWizard) {
-        
+        // only change hearts if you are in charge.
+        // otherwise they might change back if it wasn't accepted
         wizard.health = clone.health;
-        
-        if (wizard.health == 0) {
-            wizard.effect = nil;
-            [wizard setState:WizardStatusDead];
-            // need to set the OTHER wizard to something else
-            Wizard * otherWizard = [self otherWizard:wizard];
-            otherWizard.effect = nil;
-            [otherWizard setState:WizardStatusWon];
-
-            [self.multiplayer updatePlayer:otherWizard];
-            [self checkWin];
-        }
-
-        [self.multiplayer updatePlayer:wizard];
     }
+    
+    [self updateWizard:wizard];
 }
 
 -(void)hitSpell:(Spell*)spell withSpell:(Spell*)spell2 interval:(NSTimeInterval)interval currentTick:(NSInteger)currentTick {
@@ -513,6 +502,27 @@
     // otherwise apply the effect full force
     PlayerEffect * effect = [SpellEffectService.shared playerEffectForSpell:spell.type];
     return [effect applySpell:spell onWizard:wizard currentTick:currentTick];
+}
+
+-(void)updateWizard:(Wizard*)wizard {
+    // handle player sync / update / death check
+    // only YOU can say you died
+    if (wizard == self.currentWizard || wizard == self.aiWizard) {
+        
+        if (wizard.health == 0) {
+            wizard.effect = nil;
+            [wizard setState:WizardStatusDead];
+            // need to set the OTHER wizard to something else
+            Wizard * otherWizard = [self otherWizard:wizard];
+            otherWizard.effect = nil;
+            [otherWizard setState:WizardStatusWon];
+            
+            [self.multiplayer updatePlayer:otherWizard];
+            [self checkWin];
+        }
+        
+        [self.multiplayer updatePlayer:wizard];
+    }
 }
 
 

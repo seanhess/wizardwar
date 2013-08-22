@@ -18,6 +18,7 @@
 #import "PEUndies.h"
 #import "DebugSprite.h"
 #import "OLSprite.h"
+#import "PECthulhu.h"
 
 #define SLEEP_ANIMATION_START_DELAY 0.2
 #define WIZARD_PADDING 20
@@ -370,6 +371,10 @@
         self.effect.position = ccp(self.wizard.direction*-12, -30);
         
         
+    }
+    
+    else if ([self.wizard.effect class] == [PECthulhu class]) {
+//        self.effect = [CCSprite spriteWithSpriteFrameName:@"wizard-undies.png"];
     }
     
     else {

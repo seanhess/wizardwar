@@ -25,6 +25,7 @@
 #import "PESleep.h"
 #import "PEUndies.h"
 #import "PENone.h"
+#import "PECthulhu.h"
 
 #import "SpellEffect.h"
 
@@ -170,15 +171,6 @@
     heal.explanation = @"Slowly heals one heart. Cancels if hit while healing or if you cast another spell.";
     heal.combo = [Combo air:YES heart:YES water:NO earth:YES fire:NO];
     
-    SpellInfo * levitate = [SpellInfo type:Levitate];
-    levitate.name = @"Levitate";
-    levitate.speed = 0;
-    levitate.damage = 0;
-    levitate.targetSelf = YES;
-    levitate.effect = [PELevitate new];
-    levitate.explanation = @"Levitate gives you a height advantage, making most attacks miss.";
-    levitate.combo = [Combo air:YES heart:YES water:YES earth:NO fire:NO];
-    
     SpellInfo * sleep = [SpellInfo type:Sleep];
     sleep.name = @"Sleep";
     sleep.damage = 0;
@@ -250,17 +242,32 @@
     rainbow.startOffsetPosition = 50;
     rainbow.damage = 0;
     
+    SpellInfo * levitate = [SpellInfo type:Levitate];
+    levitate.name = @"Levitate";
+    levitate.speed = 0;
+    levitate.damage = 0;
+    levitate.targetSelf = YES;
+    levitate.effect = [PELevitate new];
+    levitate.explanation = @"Levitate gives you a height advantage, making most attacks miss.";
+    levitate.combo = [Combo air:YES heart:YES water:YES earth:NO fire:NO];
+    
+    
+    
     // I could give him a speed, he doesn't react with anything, and he kills you
     // it's all in the animation. 
     SpellInfo * cthulhu = [SpellInfo type:Cthulhu];
     cthulhu.name = @"Gate to R'lyeh";
     cthulhu.explanation = @"Some things are better left sealed. The Great Cthulhu appears and destruction follows in his wake.";
     cthulhu.combo = [Combo segments:[ComboSegments all]];
-    cthulhu.speed = 20;
+    cthulhu.speed = 0;
     cthulhu.startOffsetPosition = 0;
     cthulhu.damage = 666;
     cthulhu.castDelay = 4.0;
     cthulhu.strength = 666;
+    cthulhu.altitude = 3.0;
+    cthulhu.speedY = -1.0;
+//    cthulhu.effect = [PECthulhu new];
+    cthulhu.heavy = NO;
     
     self.allSpellTypes = @[
         lightning,

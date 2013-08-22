@@ -61,8 +61,8 @@
     return NO;
 }
 
--(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval player:(Wizard*)player {
-    
+-(BOOL)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval player:(Wizard*)player {
+    return NO;
 }
 
 @end

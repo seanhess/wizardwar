@@ -71,8 +71,8 @@
     self.updatedTick = tick;
 }
 
-- (void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
-    [self.effect simulateTick:currentTick interval:interval player:self];
+- (BOOL)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
+    BOOL updated = [self.effect simulateTick:currentTick interval:interval player:self];
     
     if (self.state == WizardStatusCast || self.state == WizardStatusHit) {
         NSInteger elapsedTicks = (currentTick - self.updatedTick);
@@ -82,6 +82,7 @@
             self.state = WizardStatusReady;
         }
     }
+    return updated;
 }
 
 - (UIColor*)color {

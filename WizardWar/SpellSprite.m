@@ -129,21 +129,8 @@
 }
 
 -(void)renderPosition {
-    // should be 1 tick length?
-//    [self stopAction:self.positionAction];
-//    self.positionAction = [CCMoveTo actionWithDuration:0.2 position:ccp(self.spellX, self.spellY)];
-//    [self runAction:self.positionAction];
-    
-//    if ([self.spell isKindOfClass:[SpellVine class]]) {
-//        if (self.position.x > 0) {
-//            // already positioned
-//            // just stop it
-////            NSLog(@"SKIP VINE");
-//            return;
-//        }
-//    }
-
     CGPoint position = ccp(self.spellX, self.spellY);
+    NSLog(@"RENDER POSITION %.2f %.1f", self.spellY, self.spell.altitude);
     if ([self.spell isType:CaptainPlanet]) {
         // send in the change in x from the beginning
         CGFloat dx = self.spell.position;
@@ -167,7 +154,7 @@
     return [self spellYWithAltitude:self.spell.altitude];
 }
 
--(CGFloat)spellYWithAltitude:(NSInteger)altitude {
+-(CGFloat)spellYWithAltitude:(CGFloat)altitude {
     CGFloat y = [self.units altitudeY:altitude];
     
     if (self.spell.isWall) {
@@ -228,16 +215,8 @@
 }
 
 - (void)renderAltitude {
-    if ([self.spell.type isEqualToString:Fist]) {
-        
-        if (self.spell.altitude == 2) {
-            [self runAction:[CCMoveTo actionWithDuration:0.5 position:ccp(self.spellX, self.spellY)]];
-        }
-        else if (self.spell.altitude == 1) {
-            [self runAction:[CCMoveTo actionWithDuration:1.5 position:ccp(self.spellX, self.spellY - 100)]];
-        } else {
-        }
-    }
+    CGPoint position = ccp(self.spellX, self.spellY);
+    self.position = position;
 }
 
 - (void)renderSpellDamage {

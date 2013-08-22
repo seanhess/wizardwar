@@ -27,7 +27,7 @@
 @property (nonatomic) CGPoint center;
 -(CGFloat)toX:(CGFloat)units; // calculate absolute position
 -(CGFloat)toWidth:(CGFloat)units; // use this when you need only the width in pixels
--(CGFloat)altitudeY:(NSInteger)altitude;
+-(CGFloat)altitudeY:(CGFloat)altitude;
 
 -(id)initWithRealSize:(CGSize)size;
 @end

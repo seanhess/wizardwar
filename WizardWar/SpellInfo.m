@@ -16,6 +16,7 @@
     if ((self = [super init])) {
         self.damage = 1; // default value
         self.speed = 30; // 30 units per second
+        self.speedY = 0;
         self.strength = 1; // destroyed is read from this
         self.startOffsetPosition = 1;
         self.targetSelf = NO;

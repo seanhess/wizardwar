@@ -26,10 +26,11 @@
     return ((currentTick - startedTick) >= ticksPerDuration);
 }
 
--(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval player:(Wizard *)player {
+-(BOOL)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval player:(Wizard *)player {
     if ([PESleep sleepShouldEndAtTick:currentTick interval:interval started:player.effectStartTick]) {
         player.effect = nil;
     }
+    return NO;
 }
 
 @end

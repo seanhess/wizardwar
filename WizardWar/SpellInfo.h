@@ -41,7 +41,8 @@
 @property (nonatomic) NSString * explanation;
 @property (nonatomic, strong) Combo * combo;
 
-@property (nonatomic) float speed; // units per second
+@property (nonatomic) float speed;
+@property (nonatomic) float speedY;
 @property (nonatomic) float startOffsetPosition;  // in units
 @property (nonatomic) float castDelay;  // in units
 @property (nonatomic) NSInteger strength;
@@ -49,6 +50,7 @@
 @property (nonatomic) BOOL targetSelf;
 @property (nonatomic) BOOL heavy;
 @property (nonatomic) BOOL isWall;
+@property (nonatomic) float altitude;
 
 
 +(SpellInfo*)type:(NSString*)type class:(Class)class;

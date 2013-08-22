@@ -24,7 +24,7 @@ typedef enum WizardStatus {
     WizardStatusWon,
 } WizardStatus;
 
-@interface Wizard : NSObject <Objectable, Simulated>
+@interface Wizard : NSObject <Objectable>
 @property (nonatomic, strong) NSString * name;
 @property (nonatomic) WizardStatus state;
 @property (nonatomic) NSInteger updatedTick;
@@ -43,4 +43,5 @@ typedef enum WizardStatus {
 +(NSString*)randomWizardType;
 -(Wizard*)evilClone;
 -(void)copyStateFrom:(Wizard*)wizard;
+- (BOOL)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval;
 @end
