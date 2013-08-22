@@ -14,6 +14,9 @@
 @interface SpellbookService : NSObject
 + (SpellbookService*)shared;
 
+- (NSString*)spellTitle:(SpellRecord*)record;
+- (UIAlertView*)failAlertForRecord:(SpellRecord*)record;
+- (UIImage*)spellbookIcon:(SpellRecord*)record;
 - (SpellRecord*)recordByType:(NSString*)type;
 - (SpellRecord*)recordBySpellCreate:(Spell*)spell;
 - (NSArray*)allSpellRecords;

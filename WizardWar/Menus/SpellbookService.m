@@ -13,6 +13,7 @@
 #import "SpellSprite.h"
 #import "SpellEffectService.h"
 #import "SpellInfo.h"
+#import "UIImage+MonoImage.h"
 
 
 @interface SpellbookService ()
@@ -31,7 +32,32 @@
     return instance;
 }
 
+-(NSString*)spellTitle:(SpellRecord*)record {
+    if (record.isDiscovered) {
+        return record.name;
+    } else {
+        return @"?";
+    }
+}
 
+-(UIAlertView *)failAlertForRecord:(SpellRecord *)record {
+    UIAlertView * alert;
+    if (!record.isDiscovered) {
+        alert = [[UIAlertView alloc] initWithTitle:[self spellTitle:record] message:@"Cast this spell once to discover it" delegate:nil cancelButtonTitle:@"Done" otherButtonTitles:nil];
+    }
+    
+    else if (!record.isUnlocked) {
+        alert =[[UIAlertView alloc] initWithTitle:[self spellTitle:record] message:@"Cast this spell in 5 matches to unlock" delegate:nil cancelButtonTitle:@"Done" otherButtonTitles:nil];
+    }
+    
+    return alert;
+}
+
+- (UIImage*)spellbookIcon:(SpellRecord*)record {
+    UIImage * image = [UIImage imageNamed:[self spellIconNameByType:record.type]];
+    if (!record.isUnlocked) image = [UIImage generateMonoImage:image withColor:[UIColor grayColor]];
+    return image;
+}
 
 - (NSString*)spellIconName:(SpellRecord*)record {
     return [SpellSprite sheetNameForType:record.type];

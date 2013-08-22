@@ -89,11 +89,9 @@
         SpellbookDetailsViewController * details = [SpellbookDetailsViewController new];
         details.record = record;
         [self.navigationController pushViewController:details animated:YES];
-    } else if (record.isDiscovered) {
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:[SpellbookCell spellTitle:record] message:@"Cast this spell in 5 matches to unlock" delegate:nil cancelButtonTitle:@"Done" otherButtonTitles:nil];
-        [alert show];
-    } else {
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:[SpellbookCell spellTitle:record] message:@"Cast this spell once to discover it" delegate:nil cancelButtonTitle:@"Done" otherButtonTitles:nil];
+    }
+    else {
+        UIAlertView * alert = [SpellbookService.shared failAlertForRecord:record];
         [alert show];
     }
 }

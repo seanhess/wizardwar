@@ -17,7 +17,6 @@
 -(id)initWithInfo:(SpellInfo *)info {
     if ((self=[super initWithInfo:info])) {
         self.speed = 20;
-        self.name = @"Summon Ogre";
         self.castDelay *= 1.8;
     }
     return self;

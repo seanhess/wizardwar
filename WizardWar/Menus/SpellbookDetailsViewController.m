@@ -17,6 +17,7 @@
 #import "SpellbookService.h"
 #import "NSArray+Functional.h"
 #import "SpellbookInteractionCell.h"
+#import "UIImage+MonoImage.h"
 
 #define SECTION_INFO 0
 #define SECTION_STATS 1
@@ -176,6 +177,7 @@
         infoView = [[SpellbookInfoView alloc] initWithFrame:cell.contentView.bounds];
         infoView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [cell.contentView addSubview:infoView];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     } else {
         infoView = cell.contentView.subviews[0];
     }
@@ -187,11 +189,12 @@
 
 - (UITableViewCell *)statsCell:(UITableView*)tableView
 {
-    static NSString *CellIdentifier = @"SpellbookCastCell";
+    static NSString *CellIdentifier = @"SpellbookStatsCell";
     UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         cell.accessoryView = [[SpellbookProgressView alloc] initWithFrame:CGRectMake(220, 0, 100, 44)];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;        
     }
     
     SpellbookProgressView * progressView = (SpellbookProgressView*)cell.accessoryView;
@@ -222,13 +225,25 @@
     }
     
     OtherInteraction * otherInteraction = [self.otherInteractions objectAtIndex:indexPath.row];
-    cell.imageView.image = [UIImage imageNamed:[SpellbookService.shared spellIconNameByType:otherInteraction.otherSpell]];
-    
+    SpellRecord * record = [SpellbookService.shared recordByType:otherInteraction.otherSpell];
+    cell.imageView.image = [SpellbookService.shared spellbookIcon:record];
+
     NSMutableString * infoString = [NSMutableString string];
-    for (SpellInteraction * interaction in otherInteraction.interactions) {
-        Spell * spell = [Spell fromType:interaction.spell];
-        [infoString appendFormat:@"%@\n", [interaction.effect describe:spell.name]];
+    
+    if (record.isUnlocked) {
+        cell.textLabel.textColor = [UIColor darkTextColor];
+        for (SpellInteraction * interaction in otherInteraction.interactions) {
+            Spell * spell = [Spell fromType:interaction.spell];
+            [infoString appendFormat:@"%@\n", [interaction.effect describe:spell.name]];
+        }
+    } else {
+        if (record.isDiscovered)
+            [infoString appendString:record.name];
+        
+        [infoString appendString:@" ?"];
+        cell.textLabel.textColor = [UIColor grayColor];
     }
+    
     cell.textLabel.text = infoString;
     return cell;
 }
@@ -238,6 +253,7 @@
     UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;        
     }
     
     cell.textLabel.text = key;
@@ -253,6 +269,7 @@
         cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
         cell.textLabel.numberOfLines = 0;
         cell.textLabel.font = self.descriptionFont;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;        
     }
     cell.textLabel.text = description;
     return cell;
@@ -300,6 +317,23 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == SECTION_INTERACTIONS) {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        
+        OtherInteraction * otherInteraction = [self.otherInteractions objectAtIndex:indexPath.row];
+        SpellRecord * record = [SpellbookService.shared recordByType:otherInteraction.otherSpell];
+        
+        if (record.isUnlocked) {
+            SpellbookDetailsViewController * details = [SpellbookDetailsViewController new];
+            details.record = record;
+            [self.navigationController pushViewController:details animated:YES];
+        }
+
+        else {
+            UIAlertView * alert = [SpellbookService.shared failAlertForRecord:record];
+            [alert show];
+        }        
+    }
 }
 
 @end

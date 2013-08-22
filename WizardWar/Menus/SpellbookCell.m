@@ -39,21 +39,13 @@
     UIImage * image = [UIImage imageNamed:[SpellbookService.shared spellIconName:record]];
     if (!record.isUnlocked)
         image = [UIImage generateMonoImage:image withColor:[UIColor grayColor]];
-    self.icon.image = image;
+    self.icon.image = [SpellbookService.shared spellbookIcon:record];
     
-    self.nameLabel.text = [SpellbookCell spellTitle:record];
+    self.nameLabel.text = [SpellbookService.shared spellTitle:record];
     self.nameLabel.enabled = record.isUnlocked;
     
     [self.progressView setRecord:record];
     
-}
-
-+ (NSString*)spellTitle:(SpellRecord*)record {
-    if (record.isDiscovered) {
-        return record.name;
-    } else {
-        return @"?";
-    }
 }
 
 

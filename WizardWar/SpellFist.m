@@ -15,11 +15,7 @@
 
 -(id)initWithInfo:(SpellInfo *)info {
     if ((self=[super initWithInfo:info])) {
-        self.speed = 0;
-        self.strength = 1;
         self.altitude = 2; // it's up high!
-        self.name = @"Fist of Grom";
-        self.castDelay = 3.0;
     }
     return self;
 }

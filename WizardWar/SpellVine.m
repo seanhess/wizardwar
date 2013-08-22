@@ -17,18 +17,6 @@
 
 @implementation SpellVine
 
--(id)initWithInfo:(SpellInfo *)info {
-    if ((self=[super initWithInfo:info])) {
-        // TODO mana cost higher!
-        // TODO harder to cast!
-        self.name = @"Summon Vine";
-        self.castDelay *= 2.5;
-        self.speed = 0;
-        self.startOffsetPosition = UNITS_MAX - 15;
-    }
-    return self;
-}
-
 -(void)setPositionFromPlayer:(Wizard*)player {
     [super setPositionFromPlayer:player];
     self.altitude = -1;

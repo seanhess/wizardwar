@@ -221,20 +221,34 @@
     icewall.combo = [Combo air:0 heart:YES water:YES earth:YES fire:0];
     
     SpellInfo * monster = [SpellInfo type:Monster class:[SpellMonster class]];
+    monster.name = @"Summon Ogre";
     monster.explanation = @"Summon an Ogre to do your dirty work for you. We'd have gone with a dire badger but he was helping someone else.";
     monster.combo = [Combo air:0 heart:YES water:YES earth:YES fire:YES];
+
     
     SpellInfo * vine = [SpellInfo type:Vine class:[SpellVine class]];
+    vine.name = @"Summon Vine";
     vine.explanation = @"The Vine is sneaky, dirty, and very, very, angry.";
     vine.combo = [Combo air:YES heart:0 water:YES earth:YES fire:YES];
+    vine.castDelay = 2.0;
+    vine.speed = 0;
+    vine.startOffsetPosition = 85;
     
     SpellInfo * fist = [SpellInfo type:Fist class:[SpellFist class]];
+    fist.name = @"Fist of Grom";
     fist.explanation = @"Grom will smite thy opponents from the heavens.";
     fist.combo = [Combo air:YES heart:YES water:YES earth:YES fire:0];
+    fist.speed = 0;
+    fist.strength = 1;
+    fist.castDelay = 3.0;
     
     SpellInfo * rainbow = [SpellInfo type:Rainbow class:[SpellFailRainbow class]];
+    rainbow.name = @"Double Rainbow";
     rainbow.explanation = @"No one really knows what the Double Rainbow does.";
     rainbow.combo = [Combo basic5:Air];
+    rainbow.speed = 0;
+    rainbow.startOffsetPosition = 50;
+    rainbow.damage = 0;
     
     self.allSpellTypes = @[
         lightning,
