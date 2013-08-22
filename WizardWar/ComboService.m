@@ -17,6 +17,7 @@
 @property (nonatomic, strong) NSMutableArray * commonCombos;
 @property (nonatomic, strong) NSMutableArray * exactCombos;
 @property (nonatomic, strong) NSMutableArray * basic5Combos;
+@property (nonatomic, strong) NSMutableArray * segmentCombos;
 @property (nonatomic, strong) NSMutableDictionary * combosByType;
 @end
 
@@ -35,6 +36,7 @@
         self.commonCombos = [NSMutableArray array];
         self.exactCombos = [NSMutableArray array];
         self.basic5Combos = [NSMutableArray array];
+        self.segmentCombos = [NSMutableArray array];
         self.combosByType = [NSMutableDictionary dictionary];
     }
     return self;
@@ -54,6 +56,9 @@
 //        NSLog(@"Combo Exact %@", combo);
         [self.exactCombos addObject:combo];
     }
+    else if (combo.segments) {
+        [self.segmentCombos addObject:combo];
+    }
     else {
         NSLog(@"Unrecognized Combo! %@", combo);
         NSAssert(false, @"Unrecognized Combo");
@@ -67,10 +72,27 @@
 
 - (Spell*)spellForElements:(NSArray*)elements {
     Combo * combo       = [self matchExactCombo:elements];
+    if (!combo) combo   = [self matchSegmentCombo:elements];
     if (!combo) combo   = [self matchBasic5Combo:elements];
     if (!combo) combo   = [self matchCommonCombo:elements];
     if (!combo) return nil;
     return [Spell fromType:combo.spellType];
+}
+
+- (Combo*)matchSegmentCombo:(NSArray*)elements {
+    ComboSegments * segments = [ComboSegments new];
+    ElementType lastElement = ElementTypeNone;
+    for (NSNumber * elementNumber in elements) {
+        ElementType element = elementNumber.intValue;
+        if (lastElement) {
+            [segments element:lastElement and:element connected:YES];
+        }
+        lastElement = element;
+    }
+    
+    return [self.segmentCombos find:^BOOL(Combo * combo) {
+        return [combo.segments isEqual:segments];
+    }];
 }
 
 - (Combo*)matchCommonCombo:(NSArray*)elements {

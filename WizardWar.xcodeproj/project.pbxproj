@@ -44,6 +44,8 @@
 		7814763917C652F4005DA04A /* SpellbookInteractionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7814763817C652F4005DA04A /* SpellbookInteractionCell.m */; };
 		7814764917C661B2005DA04A /* ComboService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7814764817C661B2005DA04A /* ComboService.m */; };
 		7814764C17C66FEF005DA04A /* Combo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7814764B17C66FEF005DA04A /* Combo.m */; };
+		7814764E17C68EBF005DA04A /* cthulhu-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7814764D17C68EBF005DA04A /* cthulhu-animation.plist */; };
+		7814765017C697DA005DA04A /* cthulhu.png in Resources */ = {isa = PBXBuildFile; fileRef = 7814764F17C697DA005DA04A /* cthulhu.png */; };
 		781B4C4A17839C00002551CA /* CCAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 781B4B7B17839C00002551CA /* CCAction.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		781B4C4B17839C00002551CA /* CCActionCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 781B4B7D17839C00002551CA /* CCActionCamera.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		781B4C4C17839C00002551CA /* CCActionCatmullRom.m in Sources */ = {isa = PBXBuildFile; fileRef = 781B4B7F17839C00002551CA /* CCActionCatmullRom.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -437,6 +439,8 @@
 		7814764817C661B2005DA04A /* ComboService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComboService.m; sourceTree = "<group>"; };
 		7814764A17C66FEE005DA04A /* Combo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Combo.h; sourceTree = "<group>"; };
 		7814764B17C66FEF005DA04A /* Combo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Combo.m; sourceTree = "<group>"; };
+		7814764D17C68EBF005DA04A /* cthulhu-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "cthulhu-animation.plist"; path = "WizardWar/images/spells-extra/cthulhu/cthulhu-animation.plist"; sourceTree = SOURCE_ROOT; };
+		7814764F17C697DA005DA04A /* cthulhu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cthulhu.png; sourceTree = "<group>"; };
 		781B4B7A17839C00002551CA /* CCAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAction.h; sourceTree = "<group>"; };
 		781B4B7B17839C00002551CA /* CCAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCAction.m; sourceTree = "<group>"; };
 		781B4B7C17839C00002551CA /* CCActionCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCActionCamera.h; sourceTree = "<group>"; };
@@ -1432,6 +1436,7 @@
 		785B046517C2BDF700B064F6 /* spellbook */ = {
 			isa = PBXGroup;
 			children = (
+				7814764F17C697DA005DA04A /* cthulhu.png */,
 				785B046617C2BDF700B064F6 /* bubble.png */,
 				785B046717C2BDF700B064F6 /* captain-planet.png */,
 				785B046817C2BDF700B064F6 /* chicken.png */,
@@ -1716,6 +1721,7 @@
 				7842FB7917C26E3A0050A858 /* windblast-animation.plist */,
 				7842FB7B17C26E670050A858 /* chicken-animation.plist */,
 				7842FB7D17C272870050A858 /* firewall-animation.plist */,
+				7814764D17C68EBF005DA04A /* cthulhu-animation.plist */,
 			);
 			path = spells;
 			sourceTree = "<group>";
@@ -2265,6 +2271,8 @@
 				785B049417C2C4E200B064F6 /* vine.png in Resources */,
 				780A234E17C3C18A00EE3BAA /* cast-diagram@2x.png in Resources */,
 				780A235017C3C1A900EE3BAA /* cast-diagram.png in Resources */,
+				7814764E17C68EBF005DA04A /* cthulhu-animation.plist in Resources */,
+				7814765017C697DA005DA04A /* cthulhu.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

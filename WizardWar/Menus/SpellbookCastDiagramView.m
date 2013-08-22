@@ -15,6 +15,17 @@ static CGFloat const kDashedPhase           = (0.0f);
 static CGFloat const kDashedLinesLength[]   = {4.0f, 2.0f};
 static size_t const kDashedCount            = (2.0f);
 
+
+@interface CastSegmentPoints : NSObject
+@property (nonatomic) CGPoint start;
+@property (nonatomic) CGPoint end;
+@end
+
+@implementation CastSegmentPoints
+@end
+
+
+
 @interface SpellbookCastDiagramView ()
 @property (nonatomic, strong) UIImageView * backgroundImageView;
 @property (nonatomic) CGPoint centerFire;
@@ -82,20 +93,39 @@ static size_t const kDashedCount            = (2.0f);
 
 - (NSArray*)allPoints:(Combo*)combo {
     // convert to an array of elements, then map into points
-    return [[self allElements:combo] map:^(NSNumber * elementNumber) {
-        ElementType element = [elementNumber intValue];
-        return [NSValue valueWithCGPoint:[self pointForElement:element]];
+    return [[self allSegments:combo] map:^(ComboSegment * segment) {
+        CastSegmentPoints * points = [CastSegmentPoints new];
+        points.start = [self pointForElement:segment.start];
+        points.end = [self pointForElement:segment.end];
+        return points;
     }];
 }
 
-- (NSArray*)allElements:(Combo*)combo {
-    if (combo.orderedElements) return combo.orderedElements;
+- (NSArray*)segmentsFromElements:(NSArray*)elements {
+    NSMutableArray * segments = [NSMutableArray array];
+    ElementType lastElement = ElementTypeNone;
+    for (NSNumber * elementNumber in elements) {
+        ElementType element = [elementNumber intValue];
+        if (lastElement) {
+            ComboSegment * segment = [ComboSegment new];
+            segment.start = lastElement;
+            segment.end = element;
+            [segments addObject:segment];
+        }
+        lastElement = element;
+    }
+    return segments;
+}
+
+- (NSArray*)allSegments:(Combo*)combo {
+    if (combo.segments) return combo.segments.segmentsArray;
+    if (combo.orderedElements) return [self segmentsFromElements:combo.orderedElements];
     
     NSMutableArray * elements = [NSMutableArray array];
     
     // Make a selectedElements based on everything else
     ComboSelectedElements * selected = combo.selectedElements;
-    if (!combo.selectedElements) {
+    if (combo.startElement) {
         // it's only not defined for a basic5 combo
         // so set them all to true
         selected = [ComboSelectedElements new];
@@ -105,7 +135,6 @@ static size_t const kDashedCount            = (2.0f);
         selected.heart = YES;
         selected.earth = YES;
     }
-
     
     // Now add each selected one to the array
     if (selected.air)   [elements addObject:@(Air)];
@@ -134,7 +163,7 @@ static size_t const kDashedCount            = (2.0f);
     }
     
     // Sort by clockwise distance
-    return [elements sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+    NSArray * sorted = [elements sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         ElementType one = [obj1 intValue];
         ElementType two = [obj2 intValue];
         NSInteger distanceOne = [self clockwiseDistance:one fromStart:startElement];
@@ -142,6 +171,8 @@ static size_t const kDashedCount            = (2.0f);
         if (distanceOne < distanceTwo) return NSOrderedAscending;
         return NSOrderedDescending;
     }];
+    
+    return [self segmentsFromElements:sorted];
 }
 
 -(NSInteger)clockwiseDistance:(ElementType)element fromStart:(ElementType)start {
@@ -178,19 +209,15 @@ static size_t const kDashedCount            = (2.0f);
     
     // Now, start at the "first one"
     // Hmm, I need an array of elements, always, I think
+    // it would be better to return a series of points, a little different
+    // start -> finish
+    
     CGContextSetStrokeColorWithColor(context, [UIColor grayColor].CGColor);
     
-    BOOL started = NO;
-    NSArray * points = [self allPoints:combo];
-    for (NSValue * value in points) {
-        CGPoint point = [value CGPointValue];
-        if (!started) {
-            CGContextMoveToPoint(context, point.x, point.y);
-            started = YES;
-        }
-        else {
-            CGContextAddLineToPoint(context, point.x, point.y);
-        }
+    NSArray * segments = [self allPoints:combo];
+    for (CastSegmentPoints * segment in segments) {
+        CGContextMoveToPoint(context, segment.start.x, segment.start.y);
+        CGContextAddLineToPoint(context, segment.end.x, segment.end.y);
     }
     
     CGContextStrokePath(context);

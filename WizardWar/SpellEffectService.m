@@ -102,7 +102,7 @@
     chicken.name = @"Summon Chicken";
     chicken.heavy = YES;
     chicken.damage = 3;
-    chicken.explanation = @"Summoning a chicken is more dangerous than it looks.";
+    chicken.explanation = @"Summoning a chicken is more dangerous than it looks. The chicken is destroyed if it touches any other spell.";
     chicken.combo = [Combo basic5:Earth];
     
     SpellInfo * captain = [SpellInfo type:CaptainPlanet];
@@ -250,6 +250,18 @@
     rainbow.startOffsetPosition = 50;
     rainbow.damage = 0;
     
+    // I could give him a speed, he doesn't react with anything, and he kills you
+    // it's all in the animation. 
+    SpellInfo * cthulhu = [SpellInfo type:Cthulhu];
+    cthulhu.name = @"Gate to R'lyeh";
+    cthulhu.explanation = @"Some things are better left sealed. The Great Cthulhu appears and destruction follows in his wake.";
+    cthulhu.combo = [Combo segments:[ComboSegments all]];
+    cthulhu.speed = 20;
+    cthulhu.startOffsetPosition = 0;
+    cthulhu.damage = 666;
+    cthulhu.castDelay = 4.0;
+    cthulhu.strength = 666;
+    
     self.allSpellTypes = @[
         lightning,
         firewall,
@@ -272,6 +284,7 @@
         rainbow,
         teddy,
         undies,
+        cthulhu,
     ];
     
     [self.allSpellTypes forEach:^(SpellInfo*spell) {

@@ -45,6 +45,7 @@
     [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"vine-animation.plist"];
     [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"icewall-animation.plist"];
     [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"earthwall-animation.plist"];
+    [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"cthulhu-animation.plist"];    
     
     
     // WIZARDS

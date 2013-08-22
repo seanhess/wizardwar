@@ -166,6 +166,7 @@
         <array>
             <filename>spells-extra/chicken</filename>
             <filename>spells-extra/images</filename>
+            <filename>spells-extra/cthulhu</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

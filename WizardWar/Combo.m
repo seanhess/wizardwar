@@ -8,6 +8,7 @@
 
 #import "Combo.h"
 #import "NSArray+Functional.h"
+#import "Elements.h"
 
 @implementation Combo
 +(id)exact:(NSArray*)elements {
@@ -34,6 +35,11 @@
     selected.earth = earth;
     selected.water = water;
     combo.selectedElements = selected;
+    return combo;
+}
++(id)segments:(ComboSegments *)segments {
+    Combo * combo = [Combo new];
+    combo.segments = segments;
     return combo;
 }
 -(NSString*)description {
@@ -64,5 +70,112 @@
     return [NSString stringWithFormat:@"<ComboSelectedElements> %i%i%i%i%i", self.air, self.heart, self.water, self.earth, self.fire];
 }
 
+-(void)setSelected:(BOOL)selected element:(ElementType)element {
+    if (element == Fire) self.fire = selected;
+    else if (element == Air) self.air = selected;
+    else if (element == Water) self.water = selected;
+    else if (element == Heart) self.heart = selected;
+    else if (element == Earth) self.earth = selected;
+}
+
+-(BOOL)isSelectedElement:(ElementType)element {
+    if (element == Fire) return self.fire;
+    if (element == Air) return self.air;
+    if (element == Water) return self.water;
+    if (element == Heart) return self.heart;
+    if (element == Earth) return self.earth;
+    return NO;
+}
 
 @end
+
+
+@interface ComboSegments ()
+@property (nonatomic, strong) NSMutableDictionary * elements;
+@end
+
+@implementation ComboSegments
+
+-(id)init {
+    if ((self = [super init])) {
+        self.elements = [NSMutableDictionary new];
+    }
+    return self;
+}
+
++(id)all {
+    ComboSegments * segments = [ComboSegments new];
+    [segments element:Fire and:Air connected:YES];
+    [segments element:Fire and:Water connected:YES];
+    [segments element:Fire and:Heart connected:YES];
+    [segments element:Fire and:Earth connected:YES];
+    [segments element:Air and:Water connected:YES];
+    [segments element:Air and:Heart connected:YES];
+    [segments element:Air and:Earth connected:YES];
+    [segments element:Water and:Heart connected:YES];
+    [segments element:Water and:Earth connected:YES];
+    [segments element:Heart and:Earth connected:YES];
+    return segments;
+}
+
+-(ComboSelectedElements*)connections:(ElementType)element {
+    ComboSelectedElements * selected = self.elements[[Elements elementId:element]];
+    if (!selected) {
+        selected = [ComboSelectedElements new];
+        self.elements[[Elements elementId:element]] = selected;
+    }
+    return selected;
+}
+
+-(void)element:(ElementType)element1 and:(ElementType)element2 connected:(BOOL)connected {
+    ComboSelectedElements * selectedOne = [self connections:element1];
+    ComboSelectedElements * selectedTwo = [self connections:element2];
+    
+    [selectedOne setSelected:connected element:element2];
+    [selectedTwo setSelected:connected element:element1];
+}
+
+-(BOOL)isEqual:(ComboSegments*)object {
+    for (NSString * elementId in self.elements.allKeys) {
+        ElementType element = [Elements elementWithId:elementId];
+        ComboSelectedElements * selectedSelf = [self connections:element];
+        ComboSelectedElements * selectedOther = [object connections:element];
+        
+        if (![selectedSelf isEqual:selectedOther]) return NO;
+    }
+    return YES;
+}
+
+-(NSArray*)segmentsArray {
+    
+    NSMutableArray * segments = [NSMutableArray array];
+    NSArray * elements = self.elements.allKeys;
+    
+    for (int i = 0; i < elements.count; i++) {
+        ElementType startElement = [Elements elementWithId:elements[i]];
+        ComboSelectedElements * selected = [self connections:startElement];
+        
+        for (int j = i+1; j < elements.count; j++) {
+            ElementType endElement = [Elements elementWithId:elements[j]];
+            
+            if ([selected isSelectedElement:endElement]) {
+                ComboSegment * segment = [ComboSegment new];
+                segment.start = startElement;
+                segment.end = endElement;
+                [segments addObject:segment];
+            }
+        }
+        
+    }
+    
+    return segments;
+}
+
+@end
+
+
+@implementation ComboSegment
+
+@end
+
+

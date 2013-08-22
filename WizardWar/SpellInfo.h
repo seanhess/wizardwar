@@ -31,6 +31,7 @@
 #define Levitate @"levitate"
 #define Sleep @"pillow"
 #define CaptainPlanet @"captain-planet"
+#define Cthulhu @"cthulhu"
 
 @interface SpellInfo : NSObject
 @property (nonatomic, strong) NSString * type;
