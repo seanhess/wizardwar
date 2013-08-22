@@ -25,15 +25,15 @@
 -(id)initWithUnits:(Units *)units {
     if (self == [super init]) {
         self.scale = units.spriteScaleModifier;
-        CCSprite *backgroundBar = [CCSprite spriteWithFile:@"mana-container.png"];
+        CCSprite *backgroundBar = [CCSprite spriteWithSpriteFrameName:@"mana-container.png"];
         [self addChild:backgroundBar];
         
         self.emptyHearts = [NSMutableArray array];
         self.filledHearts = [NSMutableArray array];
         
         for (int i = 0; i < MAX_HEALTH; i++) {
-            CCSprite *heartBlank = [CCSprite spriteWithFile:@"heart-empty.png"];
-            CCSprite *heartFull = [CCSprite spriteWithFile:@"heart-full.png"];
+            CCSprite *heartBlank = [CCSprite spriteWithSpriteFrameName:@"heart-empty.png"];
+            CCSprite *heartFull = [CCSprite spriteWithSpriteFrameName:@"heart-full.png"];
             
             heartBlank.position = ccp(i * 25 + 25 - 75, 0);
             heartFull.position = ccp(i * 25 + 25 - 75, 0);

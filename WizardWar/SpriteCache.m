@@ -53,6 +53,9 @@
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"wizard1-clothes.plist"];
     [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"wizard1-animations.plist"];
     [[CCAnimationCache sharedAnimationCache] addAnimationsWithFile:@"wizard1-animations-clothes.plist"];
+    
+    // OTHER
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sprites.plist"];
 }
 
 
