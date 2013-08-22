@@ -382,16 +382,6 @@
 		F283A922174807A40068EEB2 /* LifeIndicatorNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F283A921174807A40068EEB2 /* LifeIndicatorNode.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		7842FB8317C2754B0050A858 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 78F6B1DB1746AD8900AA070D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7842FB7F17C274E40050A858;
-			remoteInfo = TexturePacker;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		6749269B178CC433005B75D0 /* btn-yellow-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-yellow-highlighted.png"; sourceTree = "<group>"; };
 		6749269C178CC433005B75D0 /* btn-yellow-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-yellow-highlighted@2x.png"; sourceTree = "<group>"; };
@@ -437,6 +427,7 @@
 		781372DC177E32C600486899 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		781372DE177E32CD00486899 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		781372E0177E32D400486899 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		7814763617C64ADC005DA04A /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		781B4B7A17839C00002551CA /* CCAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAction.h; sourceTree = "<group>"; };
 		781B4B7B17839C00002551CA /* CCAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCAction.m; sourceTree = "<group>"; };
 		781B4B7C17839C00002551CA /* CCActionCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCActionCamera.h; sourceTree = "<group>"; };
@@ -1765,6 +1756,7 @@
 		78F6B1DA1746AD8900AA070D = {
 			isa = PBXGroup;
 			children = (
+				7814763617C64ADC005DA04A /* Makefile */,
 				7881FD8217BD414F00FBC7C8 /* icon-ipad.png */,
 				7881FD8017BD414700FBC7C8 /* icon-ipad-retina.png */,
 				7881FD7E17BD413900FBC7C8 /* icon-iphone-retina and-5.png */,
@@ -2064,23 +2056,6 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXLegacyTarget section */
-		7842FB7F17C274E40050A858 /* TexturePacker */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = "${PROJECT_DIR}/${PROJECT}/images/packTextures.sh";
-			buildConfigurationList = 7842FB8017C274E40050A858 /* Build configuration list for PBXLegacyTarget "TexturePacker" */;
-			buildPhases = (
-			);
-			buildToolPath = /bin/sh;
-			buildWorkingDirectory = "";
-			dependencies = (
-			);
-			name = TexturePacker;
-			passBuildSettingsInEnvironment = 1;
-			productName = TexturePacker;
-		};
-/* End PBXLegacyTarget section */
-
 /* Begin PBXNativeTarget section */
 		78F6B1E21746AD8900AA070D /* WizardWar */ = {
 			isa = PBXNativeTarget;
@@ -2096,7 +2071,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				7842FB8417C2754B0050A858 /* PBXTargetDependency */,
 			);
 			name = WizardWar;
 			productName = WizardWar2;
@@ -2126,7 +2100,6 @@
 			projectRoot = "";
 			targets = (
 				78F6B1E21746AD8900AA070D /* WizardWar */,
-				7842FB7F17C274E40050A858 /* TexturePacker */,
 			);
 		};
 /* End PBXProject section */
@@ -2540,14 +2513,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		7842FB8417C2754B0050A858 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7842FB7F17C274E40050A858 /* TexturePacker */;
-			targetProxy = 7842FB8317C2754B0050A858 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
 		78F6B1EF1746AD8900AA070D /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
@@ -2560,38 +2525,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		7842FB8117C274E40050A858 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				DEBUGGING_SYMBOLS = YES;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-			};
-			name = Debug;
-		};
-		7842FB8217C274E40050A858 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-			};
-			name = Release;
-		};
 		78F6B1FE1746AD8900AA070D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2727,15 +2660,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7842FB8017C274E40050A858 /* Build configuration list for PBXLegacyTarget "TexturePacker" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7842FB8117C274E40050A858 /* Debug */,
-				7842FB8217C274E40050A858 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		78F6B1DE1746AD8900AA070D /* Build configuration list for PBXProject "WizardWar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

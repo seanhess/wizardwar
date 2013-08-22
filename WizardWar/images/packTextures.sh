@@ -3,7 +3,7 @@
 #!/bin/sh
 
 TP="/usr/local/bin/TexturePacker"
-cd ${PROJECT_DIR}/${PROJECT}
+#cd ${PROJECT_DIR}/${PROJECT}
 
 if [ "${ACTION}" = "clean" ]; then
 echo "cleaning..."
