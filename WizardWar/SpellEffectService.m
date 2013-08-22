@@ -13,7 +13,6 @@
 
 #import "SpellMonster.h"
 #import "SpellVine.h"
-#import "SpellFist.h"
 #import "SpellFailRainbow.h"
 
 #import "PEApply.h"
@@ -226,13 +225,17 @@
     vine.speed = 0;
     vine.startOffsetPosition = 85;
     
-    SpellInfo * fist = [SpellInfo type:Fist class:[SpellFist class]];
+    SpellInfo * fist = [SpellInfo type:Fist];
     fist.name = @"Fist of Grom";
     fist.explanation = @"Grom will smite thy opponents from the heavens.";
     fist.combo = [Combo air:YES heart:YES water:YES earth:YES fire:0];
     fist.speed = 0;
     fist.strength = 1;
     fist.castDelay = 3.0;
+    fist.altitude = 2.0;
+    fist.speedY = -(fist.altitude)/(3.0);
+    fist.startOffsetPosition = 100.0;
+    fist.heavy = NO;
     
     SpellInfo * rainbow = [SpellInfo type:Rainbow class:[SpellFailRainbow class]];
     rainbow.name = @"Double Rainbow";

@@ -10,7 +10,6 @@
 #import "cocos2d.h"
 #import "SpellVine.h"
 #import "SpellMonster.h"
-#import "SpellFist.h"
 #import "SpellEffectService.h"
 
 #import "SpellEffect.h"

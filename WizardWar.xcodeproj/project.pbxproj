@@ -237,7 +237,6 @@
 		7860683317BBD3D1004D2E68 /* SpriteCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7860683217BBD3D1004D2E68 /* SpriteCache.m */; };
 		786246351767BE47001904AC /* PlayerEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246341767BE47001904AC /* PlayerEffect.m */; };
 		786246391767BF19001904AC /* PEInvisible.m in Sources */ = {isa = PBXBuildFile; fileRef = 786246381767BF19001904AC /* PEInvisible.m */; };
-		7862464D1767CF64001904AC /* SpellFist.m in Sources */ = {isa = PBXBuildFile; fileRef = 7862464C1767CF63001904AC /* SpellFist.m */; };
 		7862465B1767EAE2001904AC /* PEHelmet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7862465A1767EAE2001904AC /* PEHelmet.m */; };
 		786EE5B717B2A4BE004D9214 /* tutorial-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 786EE5B217B2A4BE004D9214 /* tutorial-568h@2x.png */; };
 		786EE5B817B2A4BE004D9214 /* tutorial.png in Resources */ = {isa = PBXBuildFile; fileRef = 786EE5B317B2A4BE004D9214 /* tutorial.png */; };
@@ -789,8 +788,6 @@
 		786246371767BF19001904AC /* PEInvisible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEInvisible.h; sourceTree = "<group>"; };
 		786246381767BF19001904AC /* PEInvisible.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEInvisible.m; sourceTree = "<group>"; };
 		7862463D1767C79F001904AC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		7862464B1767CF62001904AC /* SpellFist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellFist.h; sourceTree = "<group>"; };
-		7862464C1767CF63001904AC /* SpellFist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellFist.m; sourceTree = "<group>"; };
 		786246591767EAE2001904AC /* PEHelmet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEHelmet.h; sourceTree = "<group>"; };
 		7862465A1767EAE2001904AC /* PEHelmet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEHelmet.m; sourceTree = "<group>"; };
 		786EE5B217B2A4BE004D9214 /* tutorial-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorial-568h@2x.png"; sourceTree = "<group>"; };
@@ -2066,8 +2063,6 @@
 				781BE0DC17C54398005735A9 /* SpellInfo.m */,
 				78306BC017AADC4600487B16 /* SpellFailRainbow.h */,
 				78306BC117AADC4800487B16 /* SpellFailRainbow.m */,
-				7862464B1767CF62001904AC /* SpellFist.h */,
-				7862464C1767CF63001904AC /* SpellFist.m */,
 				78F1950D1747FE9700BB8587 /* SpellMonster.h */,
 				78F1950E1747FE9700BB8587 /* SpellMonster.m */,
 				78F195101747FEA800BB8587 /* SpellVine.h */,
@@ -2381,7 +2376,6 @@
 				786246351767BE47001904AC /* PlayerEffect.m in Sources */,
 				78915284176A72DE001694B1 /* PELevitate.m in Sources */,
 				786246391767BF19001904AC /* PEInvisible.m in Sources */,
-				7862464D1767CF64001904AC /* SpellFist.m in Sources */,
 				7862465B1767EAE2001904AC /* PEHelmet.m in Sources */,
 				78D0855B176A4B2800EDC405 /* PEHeal.m in Sources */,
 				78D0855E176A4C7C00EDC405 /* PESleep.m in Sources */,

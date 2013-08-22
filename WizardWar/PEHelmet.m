@@ -7,8 +7,8 @@
 //
 
 #import "PEHelmet.h"
-#import "SpellFist.h"
 #import "SpellEffectService.h"
+#import "Spell.h"
 
 @implementation PEHelmet
 

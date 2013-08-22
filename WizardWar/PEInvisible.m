@@ -8,7 +8,6 @@
 
 #import "PEInvisible.h"
 #import "Spell.h"
-#import "SpellFist.h"
 #import "SpellEffectService.h"
 
 @implementation PEInvisible
