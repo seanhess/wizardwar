@@ -11,10 +11,10 @@
 typedef enum ElementType {
     ElementTypeNone,
     Air,
-    Earth,
-    Fire,
     Heart,
-    Water
+    Water,
+    Earth,
+    Fire
 } ElementType;
 
 #define AirId @"A"

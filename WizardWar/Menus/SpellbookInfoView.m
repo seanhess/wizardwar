@@ -56,6 +56,7 @@
 - (void)setRecord:(SpellRecord *)record {
     _record = record;
     self.imageView.image = [UIImage imageNamed:[SpellbookService.shared spellIconName:record]];
+    self.diagram.record = record;
 }
 
 
