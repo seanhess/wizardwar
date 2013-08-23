@@ -37,6 +37,7 @@
         self.name = info.name;
         self.isWall = info.isWall;
         self.altitude = info.altitude;
+        self.height = info.height;
         
         self.status = SpellStatusPrepare;
         self.spellId = [Spell generateSpellId];
@@ -95,7 +96,9 @@
 
 -(BOOL)hitsPlayer:(Wizard*)player duringInterval:(NSTimeInterval)dt {
     
-    if (self.roundedAltitude != player.altitude) return NO;
+    CGFloat topY = self.altitude + self.height/2.0;
+    CGFloat bottomY = self.altitude - self.height/2.0;
+    if (player.altitude < bottomY || topY < player.altitude) return NO;
 
     // TEST: does it start on one side of the player and end up on the other?
     
@@ -110,8 +113,8 @@
     }
 }
 
--(NSInteger)roundedAltitude {
-    return floorf(self.altitude);
+-(NSInteger)roundedAltitude:(CGFloat)altitude {
+    return floorf(altitude);
 }
 
 
@@ -123,7 +126,7 @@
     
 //    NSLog(@"DID HIT SPELL? %@:%i %@:%i", self.name, self.altitude, spell.name, spell.altitude);
     
-    if (self.roundedAltitude != spell.roundedAltitude) return NO;
+    if ([self roundedAltitude:self.altitude] != [self roundedAltitude:spell.altitude]) return NO;
 
     // return if it WILL cross positions during this time interval
     float spellStart = [spell move:-dt];

@@ -14,14 +14,6 @@
 
 @implementation SpellMonster
 
--(id)initWithInfo:(SpellInfo *)info {
-    if ((self=[super initWithInfo:info])) {
-        self.speed = 20;
-        self.castDelay *= 1.8;
-    }
-    return self;
-}
-
 -(BOOL)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
     
     if (self.spellEffect && [self.spellEffect isKindOfClass:[SESleep class]]) {

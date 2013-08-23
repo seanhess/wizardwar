@@ -44,8 +44,14 @@
 @end
 
 @implementation SEDestroy
+-(id)init {
+    if ((self = [super init])) {
+        self.bothDirections = NO;
+    }
+    return self;
+}
 -(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick {
-    if (spell.direction == otherSpell.direction) return NO;
+    if (!self.bothDirections && spell.direction == otherSpell.direction) return NO;
     if ([SECarry isCarried:spell]) return NO;
     if ([SECarry isCarried:otherSpell]) return NO;
     spell.strength = 0;
@@ -74,6 +80,7 @@
     // it DOES interact with stronger, because I want it to :)
     spell.damage += 1;
     spell.strength += 1;
+    spell.height += 1;
     return YES;
 }
 -(NSString*)describe:(NSString *)type {

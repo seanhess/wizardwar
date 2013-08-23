@@ -28,10 +28,12 @@
 @end
 
 @interface SEDestroy : SpellEffect
+@property (nonatomic) BOOL bothDirections;
 @end
 
 @interface SEStronger : SpellEffect
 @end
+
 
 @interface SECarry : SpellEffect
 +(BOOL)isCarried:(Spell*)spell;

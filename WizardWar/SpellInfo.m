@@ -25,6 +25,7 @@
         self.class = [Spell class];
         self.effect = [PEBasicDamage new];
         self.isWall = NO;
+        self.height = 1.0;
     }
     return self;
 }

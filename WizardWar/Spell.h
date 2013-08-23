@@ -49,6 +49,7 @@ typedef enum SpellStatus {
 @property (nonatomic) CGFloat castDelay; // delay after cast
 @property (nonatomic, strong) Spell * linkedSpell;
 @property (nonatomic, strong) SpellEffect * spellEffect; // the spell is affected
+@property (nonatomic) CGFloat height;
 
 // how far away from the wizard should it start
 @property (nonatomic) float startOffsetPosition;

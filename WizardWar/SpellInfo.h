@@ -51,6 +51,7 @@
 @property (nonatomic) BOOL heavy;
 @property (nonatomic) BOOL isWall;
 @property (nonatomic) float altitude;
+@property (nonatomic) float height;
 
 
 +(SpellInfo*)type:(NSString*)type class:(Class)class;

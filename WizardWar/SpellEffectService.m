@@ -81,6 +81,7 @@
     hotdog.damage = 0;
     hotdog.explanation = @"The Hotdog makes a good snack for any nearby monsters.";
     hotdog.combo = [Combo basic5:Water];
+    hotdog.speed = 40;
     
     SpellInfo * teddy = [SpellInfo type:Teddy];
     teddy.name = @"Teddy";
@@ -216,8 +217,9 @@
     monster.name = @"Summon Ogre";
     monster.explanation = @"Summon an Ogre to do your dirty work for you. We'd have gone with a dire badger but he was helping someone else.";
     monster.combo = [Combo air:0 heart:YES water:YES earth:YES fire:YES];
+    monster.speed = 20;
+    monster.castDelay = 1.5;
 
-    
     SpellInfo * vine = [SpellInfo type:Vine class:[SpellVine class]];
     vine.name = @"Summon Vine";
     vine.explanation = @"The Vine is sneaky, dirty, and very, very, angry.";
@@ -237,6 +239,7 @@
     fist.speedY = -(fist.altitude-1)/(3.0); // it hits right when it drops below 1
     fist.startOffsetPosition = 100.0;
     fist.heavy = NO;
+    fist.height = 2.0;
     
     SpellInfo * rainbow = [SpellInfo type:Rainbow class:[SpellFailRainbow class]];
     rainbow.name = @"Double Rainbow";
@@ -308,7 +311,9 @@
 
 -(void)createSpellInteractions {
     
-    [self spell:Hotdog effect:[SEDestroy new] spell:Monster effect:[SEStronger new]];
+    SEDestroy * destroyBoth = [SEDestroy new];
+    destroyBoth.bothDirections = YES;
+    [self spell:Hotdog effect:destroyBoth spell:Monster effect:[SEStronger new]];
     
     [self spell:Chicken default:[SEDestroy new]];
     // Rainbow doesn't do anything
