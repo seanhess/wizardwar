@@ -111,7 +111,7 @@
     captain.heavy = YES;
     captain.damage = 0;
     captain.speed = 18;
-    captain.speedY = 0.35;
+    captain.speedY = 0.25;
     captain.explanation = @"By your powers combined, I am CAPTAIN PLANET!";
     captain.combo = [Combo exact:@[@(Earth), @(Fire), @(Air), @(Water), @(Heart)]];
     
@@ -269,7 +269,7 @@
     cthulhu.speed = 0;
     cthulhu.startOffsetPosition = 0;
     cthulhu.damage = 666;
-    cthulhu.castDelay = 4.0;
+//    cthulhu.castDelay = 4.0;
     cthulhu.strength = 666;
     cthulhu.altitude = 3.0;
     cthulhu.speedY = -1.0;
@@ -318,6 +318,12 @@
     [self spell:Chicken default:[SEDestroy new]];
     // Rainbow doesn't do anything
     // CaptainPlanet doesn't do anything
+    
+    [self spell:CaptainPlanet effect:[SEStronger new] spell:Fireball effect:destroyBoth];
+    [self spell:CaptainPlanet effect:[SEStronger new] spell:Windblast effect:destroyBoth];
+    [self spell:CaptainPlanet effect:[SEStronger new] spell:Earthwall effect:destroyBoth];
+    [self spell:CaptainPlanet effect:[SEStronger new] spell:Firewall effect:destroyBoth];
+    [self spell:CaptainPlanet effect:[SEStronger new] spell:Icewall effect:destroyBoth];
     
     [self spell:Fireball effect:[SENone new] spell:Monster effect:[SEDestroy new]];
     [self spell:Fireball effect:[SEDestroy new] spell:Vine effect:[SEDestroy new]];

@@ -68,8 +68,8 @@
         
 #ifdef DEBUG
         self.stop = YES;
-//        self.allOffensive = @[Levitate];
-//        self.allDefensive = @[Levitate];
+        self.allOffensive = @[Fireball];
+        self.allDefensive = @[Earthwall];
 #endif
     }
     return self;

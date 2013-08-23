@@ -98,6 +98,7 @@
         [self renderDirection];
         [self renderStatus];
         [self renderAltitude];
+        [self renderSpellDamage];
     }
     
     return self;
@@ -207,10 +208,26 @@
 }
 
 - (void)renderSpellDamage {
-    if (self.spell.damage > 1) {
-        self.scale = self.spell.damage * self.units.spriteScaleModifier;
+    
+    CGFloat scale = 1.0;
+    
+    if ([self.spell isType:CaptainPlanet] && self.spell.damage == 0) {
+        scale = 0.85;
     }
-    else self.scale = 1.0*self.units.spriteScaleModifier;
+    else if (self.spell.damage == 2) {
+        scale = 1.5;
+    }
+    else if (self.spell.damage == 3) {
+        scale = 2.0;
+    }
+    else if (self.spell.damage == 4) {
+        scale = 2.5;
+    }
+    else if (self.spell.damage > 4) {
+        scale = 3.0;
+    }
+
+    self.scale = scale*self.units.spriteScaleModifier;
 }
 
 - (void)renderWallStrength {
