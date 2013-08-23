@@ -98,7 +98,7 @@
     [self.cocosView addSubview:director.view];
     
     // REPLAY BUTTONS
-    self.replayButton = [[MenuButton alloc] initWithFrame:CGRectMake(self.cocosView.center.x-100, self.cocosView.frame.size.height, 200, 80)];
+    self.replayButton = [[MenuButton alloc] initWithFrame:CGRectMake(self.cocosView.center.x-125, self.cocosView.frame.size.height, 250, 80)];
     [self.replayButton setTitle:@"Leave" forState:UIControlStateNormal];
     [self.replayButton addTarget:self action:@selector(didTapLeave:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.replayButton];

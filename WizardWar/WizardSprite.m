@@ -189,6 +189,7 @@
 
 -(void)renderPosition {
     self.position = self.calculatedPosition;
+//    NSLog(@"renderPosition %@", NSStringFromCGPoint(self.position));
     self.skin.flipX = (self.wizard.position == UNITS_MAX);
     self.clothes.flipX = self.skin.flipX;
 }
@@ -297,7 +298,7 @@
         self.effect = nil;
     }
     
-    NSLog(@"RENDER EFFECT %@ = %@", self.wizard.name, self.wizard.effect);
+//    NSLog(@"RENDER EFFECT %@ = %@", self.wizard.name, self.wizard.effect);
     
     [self.skin stopAction:self.skinEffectAction];
     [self.clothes stopAction:self.clothesEffectAction];
@@ -351,11 +352,8 @@
         
         // then when the effect wears off, we need to re-render status
         if (![self.currentEffect isKindOfClass:[PESleep class]]) {
-            CGPoint pos = self.calculatedPosition;
             self.rotation = -90;
-            CCFiniteTimeAction * toPos = [CCMoveTo actionWithDuration:SLEEP_ANIMATION_START_DELAY position:pos];
             CCFiniteTimeAction * rotate = [CCRotateTo actionWithDuration:SLEEP_ANIMATION_START_DELAY angle:0];
-            [self runAction:toPos];
             [self runAction:rotate];
         }
         
@@ -431,6 +429,7 @@
 
 -(void)renderAltitude {
     CGPoint pos = self.calculatedPosition;
+//    NSLog(@"renderAltitude %@ %f %@", self.wizard.name, self.wizard.altitude, NSStringFromCGPoint(self.position));
     CCFiniteTimeAction * toPos = [CCMoveTo actionWithDuration:0.2 position:ccp(pos.x, pos.y)];
     if (self.wizard.altitude == 1.0 && [self.wizard.effect isKindOfClass:[PELevitate class]]) {
         CCFiniteTimeAction * toHover = [CCMoveTo actionWithDuration:0.2 position:ccp(pos.x, pos.y+5)];

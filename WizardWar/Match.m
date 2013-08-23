@@ -421,7 +421,7 @@
             wizard.effect = clone.effect;
         }
         [wizard.effect start:currentTick player:wizard];
-        NSLog(@"(%i) CHANGED EFFECT", currentTick);
+        NSLog(@"(%i) CHANGED EFFECT %@", currentTick, wizard.name);
     }
 
     if (wizard.state != clone.state) {

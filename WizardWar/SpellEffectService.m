@@ -110,6 +110,7 @@
     captain.heavy = YES;
     captain.damage = 0;
     captain.speed = 18;
+    captain.speedY = 0.35;
     captain.explanation = @"By your powers combined, I am CAPTAIN PLANET!";
     captain.combo = [Combo exact:@[@(Earth), @(Fire), @(Air), @(Water), @(Heart)]];
     

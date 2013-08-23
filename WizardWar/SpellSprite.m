@@ -117,12 +117,7 @@
     
     CGFloat dyUnits = self.spell.speedY*delta;
     CGFloat dyPixels = [self.units toHeight:dyUnits];
-    
-    if ([self.spell isType:CaptainPlanet]) {
-        y += [self flyYForTheCaptain:fabs(dxInUnits)];
-    } else {
-        y += dyPixels;
-    }
+    y += dyPixels;
     
     CGPoint position = ccp(x, y);
     self.position = position;
@@ -134,27 +129,13 @@
 
 -(void)renderPosition {
     CGPoint position = ccp(self.spellX, self.spellY);
-    if ([self.spell isType:CaptainPlanet]) {
-        // send in the change in x from the beginning
-        CGFloat dx = self.spell.position;
-        if (self.spell.direction < 0) dx = UNITS_MAX - dx;
-        position.y += [self flyYForTheCaptain:dx];
-    } else if ([self.spell isType:Vine]) {
+    if ([self.spell isType:Vine]) {
         if (self.spell.position == UNITS_MIN || self.spell.position == UNITS_MAX)
             return;
     }
     self.position = position;
 }
 
-// The flyY depends on
-// current x
-
--(CGFloat)flyYForTheCaptain:(CGFloat)dx {
-    // spellY always returns the ground position
-    CGFloat dPercentAcross = (dx/UNITS_MAX);
-    CGFloat totalFlyDistance = self.units.maxY - self.units.zeroY;
-    return dPercentAcross*totalFlyDistance;
-}
 
 - (CGFloat)spellY {
     return [self spellYWithAltitude:self.spell.altitude];
