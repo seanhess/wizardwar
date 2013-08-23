@@ -34,7 +34,7 @@
 
 - (void)initialize {
     
-    [self.titleLabel setFont:[UIFont fontWithName:FONT_LOVEYA_BOLD size:14]];
+    [self.titleLabel setFont:[UIFont fontWithName:FONT_LOVEYA_BOLD size:15.0]];
     [self setBackgroundImage:[UIImage imageNamed:@"btn-yellow-normal"] forState:UIControlStateNormal];
     [self setTitleColor:AppStyle.yellowButtonTextColor forState:UIControlStateNormal];
     [self setBackgroundImage:[UIImage imageNamed:@"btn-yellow-highlighted"] forState:UIControlStateHighlighted];
@@ -48,9 +48,7 @@
     self.titleLabel.layer.shadowOpacity = 1;
     self.titleLabel.layer.masksToBounds = NO;
     
-    
-    CGFloat topPadding = (self.frame.size.height - self.titleLabel.frame.size.height)/2;
-    self.titleEdgeInsets = UIEdgeInsetsMake(topPadding, 0, 0, 0);
+    [self calculatePadding];
     
 //    [self setBackgroundImage:AppStyle.blueNavColorImage forState:UIControlStateNormal];
 //    [self setBackgroundImage:[AppStyle imageWithColor:UIColorFromRGB(0xFFFFFF)] forState:UIControlStateHighlighted];
@@ -60,6 +58,12 @@
 //    self.layer.borderColor = [[UIColor clearColor] CGColor];
 //    self.layer.borderWidth = 2.0f;
 }
+
+-(void)calculatePadding {
+//    CGFloat topPadding = (self.frame.size.height - self.titleLabel.frame.size.height)/2;
+//    self.contentEdgeInsets = UIEdgeInsetsMake(topPadding, 0, 0, 0);
+}
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

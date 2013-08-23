@@ -43,7 +43,7 @@
 @property (strong, nonatomic) Combos * combos;
 @property (weak, nonatomic) IBOutlet UILabel *message;
 @property (weak, nonatomic) IBOutlet UILabel *subMessage;
-@property (strong, nonatomic) UIButton * replayButton;
+@property (strong, nonatomic) MenuButton *replayButton;
 @property (nonatomic, strong) Challenge * challenge;
 @property (weak, nonatomic) IBOutlet UIButton *helpButton;
 
@@ -102,6 +102,7 @@
     [self.replayButton setTitle:@"Leave" forState:UIControlStateNormal];
     [self.replayButton addTarget:self action:@selector(didTapLeave:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.replayButton];
+    [self.replayButton calculatePadding];
     
     [self renderMatchStatus];
 }
@@ -285,7 +286,6 @@
 }
 
 - (void)showEndButtons {
-
     if (self.match.currentWizard.state == WizardStatusDead) {
         [self.replayButton setTitle:@"Run Away" forState:UIControlStateNormal];
     } else {

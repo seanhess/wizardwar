@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface MenuButton : UIButton
-
+-(void)calculatePadding;
 @end
