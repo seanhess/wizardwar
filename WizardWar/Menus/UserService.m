@@ -15,11 +15,13 @@
 #import "AnalyticsService.h"
 
 @interface UserService ()
+@property (nonatomic, strong) FQuery * query;
 @property (nonatomic, strong) Firebase * node;
 @property (nonatomic, strong) NSString * deviceToken;
 @property (nonatomic, strong) NSString * entityName;
 @property (nonatomic) NSTimeInterval lastUpdatedTime;
 @property (nonatomic, strong) NSArray * randomNames;
+@property (nonatomic) BOOL userNeedsSave;
 @end
 
 @implementation UserService
@@ -33,10 +35,20 @@
     return instance;
 }
 
+- (id)init {
+    if ((self = [super init])) {
+        self.entityName = @"User";
+        self.randomNames = @[@"Actrise",@"Adwen",@"Aeres",@"Aethwy",@"Aigneis",@"Ailios",@"Aine",@"Aiwendil",@"Akashik",@"Akthuri",@"Alasdair",@"Alatar",@"Alcwyn",@"Aled",@"Allanon",@"Alwena",@"Alwyn",@"Animagus",@"Aradia ",@"Arddun",@"Arfonia",@"Ariannell",@"Artro",@"Arwyn",@"Ashley",@"Asquith",@"Aulë",@"Aurddolen",@"Aylith",@"Baba Yaga ",@"Ballimore",@"Banwen",@"Barabel",@"Basilisk",@"Beathag",@"Bechan",@"Belgarath",@"Berwyn",@"Bethan",@"Betrys",@"Betsan",@"Bigby",@"Blodwen",@"Blodeuwedd",@"Bloodwynd",@"Bochanan",@"Boggart ",@"Braint",@"Branwen",@"Briallen",@"Brighde",@"Bronmai",@"Brychan",@"Brynach",@"Cackletta",@"Cadell",@"Cairistiona",@"Calum",@"Caoilfhionn",@"Carwen",@"Caswallon",@"Cathal",@"Caxton",@"Ceidio",@"Ceindeg",@"Ceinlys",@"Ceiriog",@"Ceit",@"Celynen",@"Cerian",@"Ceridwen",@"Chrestomanci ",@"Chun",@"Ciaran",@"Circe ",@"Cormac",@"Crispinophur",@"Crisdean",@"Crisiant",@"Curumo",@"Daibhidh",@"Dakin",@"Dalamar",@"Dervla",@"Dewi",@"Doileag",@"Doilidh",@"Donaidh",@"Dormammu",@"Drawmij",@"Dughall",@"Dulais",@"Dyfi",@"Dyfynnog",@"Dyfyr",@"Eachann",@"Eanraig",@"Edern",@"Eidin",@"Eifiona",@"Eira",@"Elenid",@"Elfryn",@"Elric",@"Endora",@"Eruiona",@"Esmeralda",@"Eurfron",@"Eulfwyn",@"Euthanatos",@"Evard",@"Fachtna",@"Fearchar",@"Ffagan",@"Ffiniam",@"Fflur",@"Fionnghal",@"Fistandantilus ",@"Fizban",@"Floraidh",@"Freyja",@"Galadriel",@"Gandalf",@"Gandolf",@"Garmon",@"Gearroid",@"Ged",@"Gilfaethwy",@"Glinda",@"Goewyn",@"Greum",@"Griffri",@"Gruntilda",@"Gwalia",@"Gwaun",@"Gwener",@"Gwenddydd",@"Gwenfrewi",@"Gwenllian",@"Gwenogfryn",@"Gwentor",@"Gwladys",@"Gytha",@"Hecate ",@"Hefeydd",@"Hermione",@"Hexuba",@"Hirael",@"Hiraethog",@"Hiral",@"Hirwen",@"Huwcyn",@"Ionor",@"Ionwen",@"Iorwen",@"Iseabail",@"Jadis",@"Jervis",@"Karavelia",@"Keredwel",@"Kirfenia",@"Lachlann",@"Leitis",@"Leomund",@"Leri",@"Lilith ",@"Llyr",@"Llywela",@"Loki",@"Lynfa",@"Lynwen",@"Mabli",@"Maedbh",@"Maelor",@"Magaidh",@"Magius",@"Mairead",@"Mairwen",@"Majella",@"Maldue",@"Malvina",@"Mandrake",@"Manwë",@"Maoilios",@"Mararad",@"Mared",@"Mata",@"Mazara",@"Meduwen",@"Medwen",@"Mefin",@"Meic",@"Meinir",@"Meinwen",@"Melf",@"Menw ",@"Merlin ",@"Merlyn",@"Milamber",@"Mondain",@"Mor",@"Morag",@"Mordenkainen",@"Mordo",@"Morgon",@"Morinohtar",@"Morwen",@"Murchadh",@"Myfanwy",@"Nantlais",@"Nefydd",@"Neifion",@"Nerys",@"Niall",@"Nidian",@"Ningauble",@"Nisien",@"Noirin",@"Nystul",@"Ogion",@"Ogun",@"Oighrig",@"Olórin",@"Onllwyn",@"Oromë ",@"Oschwy",@"Otiluke",@"Padraig",@"Palin Majere",@"Pallando",@"Par-Salian",@"Peigi ",@"Pennar",@"Peredur",@"Powys",@"Radagast",@"Rainillt",@"Raonaid",@"Rary",@"Ravenclaw",@"Rhiain",@"Rhialto",@"Rhianedd",@"Rhianwen",@"Rhianydd",@"Rhoslyn",@"Rincewind ",@"Roisin",@"Romestamo",@"Ruairidh",@"Sagwora",@"Saoirse",@"Sargon",@"Saruman",@"Searlait",@"Seasaidh",@"Seisyllt",@"Seonag",@"Serafina",@"Seren",@"Shazam",@"Sheelba",@"Siencyn",@"Sileas",@"Siusaidh",@"Siwan",@"Slytherin",@"Sorcha",@"Sparrowhawk",@"Squib",@"Stiubhart",@"Sulwen",@"Talfan",@"Tangwystl",@"Tasha",@"Tearlach",@"Tegeirian",@"Tenser",@"Thothamon",@"Torcuil",@"Tormod",@"Tsotha-lanti ",@"Uilleam",@"Varda",@"Wanda",@"Wetzel",@"Xanadu",@"Yara",@"Yavanna",@"Yaztromo",@"Zatanna",@"Zatara",@"Zeddicus",@"Zorander ",@"Zu'l"];
+    }
+    return self;
+}
+
+-(BOOL)isConnected {
+    return (self.query != nil);
+}
+
 - (void)connect:(Firebase*)root {
-    self.root = root;
     self.node = [root childByAppendingPath:@"users"];
-    self.entityName = @"User";
     
     self.lastUpdatedTime = [self loadLastUpdatedTime];
     NSNumber * timeInMilliseconds = @(self.lastUpdatedTime*1000);
@@ -58,7 +70,19 @@
         [wself onChanged:snapshot];
     }];
     
-    self.randomNames = @[@"Actrise",@"Adwen",@"Aeres",@"Aethwy",@"Aigneis",@"Ailios",@"Aine",@"Aiwendil",@"Akashik",@"Akthuri",@"Alasdair",@"Alatar",@"Alcwyn",@"Aled",@"Allanon",@"Alwena",@"Alwyn",@"Animagus",@"Aradia ",@"Arddun",@"Arfonia",@"Ariannell",@"Artro",@"Arwyn",@"Ashley",@"Asquith",@"Aulë",@"Aurddolen",@"Aylith",@"Baba Yaga ",@"Ballimore",@"Banwen",@"Barabel",@"Basilisk",@"Beathag",@"Bechan",@"Belgarath",@"Berwyn",@"Bethan",@"Betrys",@"Betsan",@"Bigby",@"Blodwen",@"Blodeuwedd",@"Bloodwynd",@"Bochanan",@"Boggart ",@"Braint",@"Branwen",@"Briallen",@"Brighde",@"Bronmai",@"Brychan",@"Brynach",@"Cackletta",@"Cadell",@"Cairistiona",@"Calum",@"Caoilfhionn",@"Carwen",@"Caswallon",@"Cathal",@"Caxton",@"Ceidio",@"Ceindeg",@"Ceinlys",@"Ceiriog",@"Ceit",@"Celynen",@"Cerian",@"Ceridwen",@"Chrestomanci ",@"Chun",@"Ciaran",@"Circe ",@"Cormac",@"Crispinophur",@"Crisdean",@"Crisiant",@"Curumo",@"Daibhidh",@"Dakin",@"Dalamar",@"Dervla",@"Dewi",@"Doileag",@"Doilidh",@"Donaidh",@"Dormammu",@"Drawmij",@"Dughall",@"Dulais",@"Dyfi",@"Dyfynnog",@"Dyfyr",@"Eachann",@"Eanraig",@"Edern",@"Eidin",@"Eifiona",@"Eira",@"Elenid",@"Elfryn",@"Elric",@"Endora",@"Eruiona",@"Esmeralda",@"Eurfron",@"Eulfwyn",@"Euthanatos",@"Evard",@"Fachtna",@"Fearchar",@"Ffagan",@"Ffiniam",@"Fflur",@"Fionnghal",@"Fistandantilus ",@"Fizban",@"Floraidh",@"Freyja",@"Galadriel",@"Gandalf",@"Gandolf",@"Garmon",@"Gearroid",@"Ged",@"Gilfaethwy",@"Glinda",@"Goewyn",@"Greum",@"Griffri",@"Gruntilda",@"Gwalia",@"Gwaun",@"Gwener",@"Gwenddydd",@"Gwenfrewi",@"Gwenllian",@"Gwenogfryn",@"Gwentor",@"Gwladys",@"Gytha",@"Hecate ",@"Hefeydd",@"Hermione",@"Hexuba",@"Hirael",@"Hiraethog",@"Hiral",@"Hirwen",@"Huwcyn",@"Ionor",@"Ionwen",@"Iorwen",@"Iseabail",@"Jadis",@"Jervis",@"Karavelia",@"Keredwel",@"Kirfenia",@"Lachlann",@"Leitis",@"Leomund",@"Leri",@"Lilith ",@"Llyr",@"Llywela",@"Loki",@"Lynfa",@"Lynwen",@"Mabli",@"Maedbh",@"Maelor",@"Magaidh",@"Magius",@"Mairead",@"Mairwen",@"Majella",@"Maldue",@"Malvina",@"Mandrake",@"Manwë",@"Maoilios",@"Mararad",@"Mared",@"Mata",@"Mazara",@"Meduwen",@"Medwen",@"Mefin",@"Meic",@"Meinir",@"Meinwen",@"Melf",@"Menw ",@"Merlin ",@"Merlyn",@"Milamber",@"Mondain",@"Mor",@"Morag",@"Mordenkainen",@"Mordo",@"Morgon",@"Morinohtar",@"Morwen",@"Murchadh",@"Myfanwy",@"Nantlais",@"Nefydd",@"Neifion",@"Nerys",@"Niall",@"Nidian",@"Ningauble",@"Nisien",@"Noirin",@"Nystul",@"Ogion",@"Ogun",@"Oighrig",@"Olórin",@"Onllwyn",@"Oromë ",@"Oschwy",@"Otiluke",@"Padraig",@"Palin Majere",@"Pallando",@"Par-Salian",@"Peigi ",@"Pennar",@"Peredur",@"Powys",@"Radagast",@"Rainillt",@"Raonaid",@"Rary",@"Ravenclaw",@"Rhiain",@"Rhialto",@"Rhianedd",@"Rhianwen",@"Rhianydd",@"Rhoslyn",@"Rincewind ",@"Roisin",@"Romestamo",@"Ruairidh",@"Sagwora",@"Saoirse",@"Sargon",@"Saruman",@"Searlait",@"Seasaidh",@"Seisyllt",@"Seonag",@"Serafina",@"Seren",@"Shazam",@"Sheelba",@"Siencyn",@"Sileas",@"Siusaidh",@"Siwan",@"Slytherin",@"Sorcha",@"Sparrowhawk",@"Squib",@"Stiubhart",@"Sulwen",@"Talfan",@"Tangwystl",@"Tasha",@"Tearlach",@"Tegeirian",@"Tenser",@"Thothamon",@"Torcuil",@"Tormod",@"Tsotha-lanti ",@"Uilleam",@"Varda",@"Wanda",@"Wetzel",@"Xanadu",@"Yara",@"Yavanna",@"Yaztromo",@"Zatanna",@"Zatara",@"Zeddicus",@"Zorander ",@"Zu'l"];
+    self.query = query;
+    
+    if (self.userNeedsSave) {
+        [self saveCurrentUser];
+        self.userNeedsSave = NO;
+    }
+}
+
+- (void)disconnect {
+    [self.query removeAllObservers];
+    [self.node removeAllObservers];
+    self.node = nil;
+    self.query = nil;
 }
 
 -(void)onAdded:(FDataSnapshot *)snapshot {
@@ -142,6 +166,10 @@
 
 - (void)saveCurrentUser {
     // Save to firebase
+    if (!self.isConnected) {
+        self.userNeedsSave = YES;
+        return;
+    }
     User * user = self.currentUser;
     if (!user) return;
     Firebase * child = [self.node childByAppendingPath:user.userId];

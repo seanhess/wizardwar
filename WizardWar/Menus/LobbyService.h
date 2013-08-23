@@ -21,11 +21,11 @@
 @property (nonatomic) BOOL joined;
 @property (nonatomic) NSInteger totalInLobby;
 @property (nonatomic) NSTimeInterval currentServerTime;
-@property (nonatomic, strong) Firebase * root;
 
 + (LobbyService *)shared;
 
 - (void)connect:(Firebase*)root;
+- (void)disconnect;
 
 - (void)setLocation:(CLLocation*)location;
 - (void)joinLobby:(User*)user;

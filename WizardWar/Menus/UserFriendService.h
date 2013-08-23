@@ -19,6 +19,11 @@ typedef enum FBStatus {
 @interface UserFriendService : NSObject
 
 @property (nonatomic) FBStatus facebookStatus;
+@property (nonatomic, strong) NSString * inviteSubject;
+@property (nonatomic, strong) NSString * inviteCaption;
+@property (nonatomic, strong) NSString * inviteBody;
+@property (nonatomic, strong) NSString * inviteLink;
+@property (nonatomic, strong) NSString * invitePictureURL;
 
 + (UserFriendService *)shared;
 

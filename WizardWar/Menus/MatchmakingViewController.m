@@ -42,6 +42,8 @@
 #import "UIViewController+Idiom.h"
 #import "InfoService.h"
 #import "WarningCell.h"
+#import "AppStyle.h"
+#import <MessageUI/MessageUI.h>
 
 
 #define SECTION_INDEX_WARNINGS 0
@@ -68,7 +70,7 @@
 
 // Do one warning at a time?
 
-@interface MatchmakingViewController () <NSFetchedResultsControllerDelegate, FBFriendPickerDelegate, MatchViewControllerDelegate>
+@interface MatchmakingViewController () <NSFetchedResultsControllerDelegate, FBFriendPickerDelegate, MatchViewControllerDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
 
 @property (nonatomic, strong) ConnectionService* connection;
@@ -112,8 +114,11 @@
     
     [super viewDidLoad];
 
-    [self.inviteFriendsButton addAwesomeIcon:FAIconFacebookSign beforeTitle:YES];
-    [self.inviteFriendsButton setType:BButtonTypeFacebook];
+//    [self.inviteFriendsButton addAwesomeIcon:FAIconExternalLink beforeTitle:YES];
+//    [self.inviteFriendsButton addAwesomeIcon:FAIconEnvelope beforeTitle:YES];
+    [self.inviteFriendsButton addAwesomeIcon:FAIconGroup beforeTitle:YES];
+    [self.inviteFriendsButton setType:BButtonTypePrimary];
+//    self.inviteFriendsButton.color = [AppStyle blueNavColor];
 //    [self.inviteFriendsButton.titleLabel.font = [UIFont fontWithName:@"FontAwesome" size:26];
 
     UIBarButtonItem *accountButton = [[UIBarButtonItem alloc] initWithTitle:[NSString stringFromAwesomeIcon:FAIconUser] style:UIBarButtonItemStylePlain target:self action:@selector(didTapAccount)];
@@ -196,6 +201,17 @@
 - (void)connect {
     NSError *error = nil;
     
+    // Connect to services
+    Firebase * rootRef = [[Firebase alloc] initWithUrl:InfoService.firebaseUrl];
+
+    [ConnectionService.shared monitorDomain:rootRef];
+    [UserService.shared connect:rootRef];
+    [LobbyService.shared connect:rootRef];
+    [LocationService.shared connect];
+    
+    [ChallengeService.shared connectAndReset:self rootRef:rootRef];
+    [LocationService.shared startMonitoring];
+    
     User * user = [UserService.shared currentUser];
     NSLog(@"MatchmakingViewController: connect");
     
@@ -238,8 +254,6 @@
     // I think friends should be showing up faster, no?
     [self.tableView reloadData];
     
-    [ChallengeService.shared connectAndReset:self rootRef:LobbyService.shared.root];
-    [LocationService.shared startMonitoring];
 
 //    __weak MatchmakingViewController * wself = self;
 
@@ -266,7 +280,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    
+    // don't want to disconnect here, really, it's when I'm about to get popped all the way off
 }
 
 - (NSUInteger)supportedInterfaceOrientations {
@@ -717,8 +731,64 @@
 # pragma mark - Buttons n stuff
 - (IBAction)didTapInviteFriends:(id)sender {
     
-    [AnalyticsService event:@"FriendInviteTap"];          
+    // 1. need to choose between email, sms, or facebook
+    // 2. 
     
+    [AnalyticsService event:@"FriendInviteTap"];
+    
+    UIActionSheet * sheet = [[UIActionSheet alloc] initWithTitle:@"Invite Frenemies" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Facebook", @"Email", @"SMS", nil];
+    [sheet showInView:self.view];
+}
+
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) [self inviteFacebookFriend];
+    else if (buttonIndex == 1) [self inviteEmail];
+    else if (buttonIndex == 2) [self inviteSMS];
+    return;
+}
+
+- (void)inviteEmail {
+    if (![MFMailComposeViewController canSendMail]) {
+        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"Cannot send email" message:@"Email is not enabled on your system" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+        return;
+    }
+    
+    UserFriendService * service = [UserFriendService shared];
+    MFMailComposeViewController *picker = [MFMailComposeViewController new];
+    picker.mailComposeDelegate = self;
+    [picker setSubject:service.inviteSubject];
+    
+    // Attach an image to the email
+    // NSString *path = [[NSBundle mainBundle] pathForResource:@"rainy" ofType:@"jpg"];
+    // NSData *myData = [NSData dataWithContentsOfFile:path];
+    // [picker addAttachmentData:myData mimeType:@"image/jpeg" fileName:@"rainy"];
+    
+    // Fill out the email body text
+    NSString * body = [NSString stringWithFormat:@"%@ %@", service.inviteBody, service.inviteLink];
+    [picker setMessageBody:body isHTML:NO];
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+}
+
+- (void)inviteSMS {
+    if (![MFMessageComposeViewController canSendText]) {
+        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"Cannot send text" message:@"Texting is not enabled on your system" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+        return;
+    }
+    
+    UserFriendService * service = [UserFriendService shared];
+    MFMessageComposeViewController *picker = [[MFMessageComposeViewController alloc] init];
+    picker.messageComposeDelegate = self;
+    
+    picker.body = [NSString stringWithFormat:@"%@ %@", service.inviteBody, service.inviteLink];
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+}
+
+- (void)inviteFacebookFriend {
     // Connect their facebook account first, then open the friend invite dialog
     // it doesn't make sense to invite friends without having them connect facebook first
     
@@ -785,5 +855,17 @@
     };
     [self.navigationController presentViewController:navigation animated:YES completion:nil];
 }
+
+#pragma mark - Mail Composer
+- (void)mailComposeController:(MFMailComposeViewController*)controller
+          didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 @end

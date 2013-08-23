@@ -23,6 +23,7 @@
 #import <Parse/Parse.h>
 #import "UserService.h"
 #import "LocationService.h"
+#import "InfoService.h"
 
 @implementation UserFriendService
 
@@ -38,6 +39,12 @@
 -(id)init {
     self = [super init];
     if (self) {
+        self.inviteSubject = @"Download Wizard War";
+        self.inviteCaption = @"App Store";
+        self.inviteBody = @"Come play Wizard War with me! Download the free app for iPhone or iPad!";
+        self.inviteLink = @"http://tflig.ht/10YUQCE";
+        self.invitePictureURL = @"http://wizardwarapp.com/fblogo.png";
+        
         [PFFacebookUtils initializeFacebook];
         [RACAble(UserService.shared, lastUpdatedUser) subscribeNext:^(User*user) {
             if (user.facebookId) {
@@ -217,11 +224,11 @@
 -(void)openFeedDialogTo:(NSArray *)facebookIds {
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"name"] = @"Download Wizard War";
-    params[@"caption"] = @"App Store";
-    params[@"description"] = @"Come play Wizard War with me! Download the free app for iPhone or iPad!";
-    params[@"link"] = @"http://tflig.ht/10YUQCE";
-    params[@"picture"] = @"http://wizardwarapp.com/fblogo.png";
+    params[@"name"] = self.inviteSubject;
+    params[@"caption"] = self.inviteCaption;
+    params[@"description"] = self.inviteBody;
+    params[@"link"] = [InfoService.downloadURL absoluteString];
+    params[@"picture"] = self.invitePictureURL;
     
     if (facebookIds.count > 0)
         params[@"to"] = [facebookIds lastObject];

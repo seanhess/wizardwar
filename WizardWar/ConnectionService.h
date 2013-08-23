@@ -9,15 +9,18 @@
 // helps you track presence and connection status
 
 #import <Foundation/Foundation.h>
+#import <Firebase/Firebase.h>
 
 @interface ConnectionService : NSObject
 @property (nonatomic) BOOL isConnected;
 @property (nonatomic) BOOL isUserActive;
 @property (nonatomic, strong) NSURL * deepLinkUrl;
+@property (nonatomic, strong) Firebase * root;
 
 +(ConnectionService *)shared;
--(void)monitorDomain:(NSURL*)domain;
--(void)subscribeOnceDeepLinkURL:(void(^)(NSURL*url))cb;
--(void)unsubscribeDeepLinkURL;
+-(void)monitorDomain:(Firebase*)domain;
+-(void)disconnect;
+//-(void)subscribeOnceDeepLinkURL:(void(^)(NSURL*url))cb;
+//-(void)unsubscribeDeepLinkURL;
 
 @end

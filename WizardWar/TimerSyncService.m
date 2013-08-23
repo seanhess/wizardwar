@@ -200,8 +200,10 @@
 //}
 
 - (void)disconnect {
+    self.root = nil;
     self.currentMatchId = nil;
     [self.node removeValue];
+    [self.node removeAllObservers];
     self.node = nil;
     self.name = nil;
 }

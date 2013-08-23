@@ -31,4 +31,8 @@
     return @"support@wizardwarapp.com";
 }
 
++(NSString *)firebaseUrl {
+    return @"https://wizardwarapp.firebaseio.com";
+}
+
 @end

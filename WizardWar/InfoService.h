@@ -15,5 +15,6 @@
 +(NSInteger)buildNumber;
 +(NSURL*)downloadURL;
 +(NSString*)supportEmail;
++(NSString*)firebaseUrl;
 
 @end

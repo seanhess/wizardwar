@@ -31,9 +31,12 @@
     dispatch_once(&onceToken, ^{
         instance = [[ChallengeService alloc] init];
         instance.entityName = @"Challenge";
-        instance.connected = NO;
     });
     return instance;
+}
+
+- (BOOL)connected {
+    return (self.node != nil);
 }
 
 - (void)connectAndReset:(id)subscriber rootRef:(Firebase *)root {
@@ -43,10 +46,7 @@
         return;
     }
     
-    self.root = root;
-    
     self.subscriber = subscriber;
-    self.connected = YES;    
 
     [self removeAll];
 
@@ -67,7 +67,6 @@
 }
 
 - (void)disconnect {
-    self.connected = NO;
     self.subscriber = nil;
     [self.node removeAllObservers];
     self.node = nil;

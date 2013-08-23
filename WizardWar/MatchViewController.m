@@ -34,6 +34,7 @@
 #import "HelpViewController.h"
 #import "ChallengeService.h"
 #import "SpellbookService.h"
+#import "ConnectionService.h"
 
 @interface MatchViewController () <HelpDelegate>
 @property (strong, nonatomic) PentagramViewController * pentagram;
@@ -166,7 +167,7 @@
 }
 
 - (id<Multiplayer>)defaultMultiplayerService {
-    MultiplayerService * mp = [[MultiplayerService alloc] initWithRootRef:[ChallengeService.shared root]];
+    MultiplayerService * mp = [[MultiplayerService alloc] initWithRootRef:[ConnectionService.shared root]];
 #if DEBUG
 //    mp.simulatedLatency = 0.5;
 //    NSLog(@"!!! SIMULATED LATENCY *** %f", mp.simulatedLatency);
@@ -177,7 +178,7 @@
 - (void)createMatchWithChallenge:(Challenge *)challenge currentWizard:(Wizard *)wizard {
     // join in the ready screen!
     self.challenge = challenge;
-    TimerSyncService.shared.root = ChallengeService.shared.root;
+    TimerSyncService.shared.root = [ConnectionService.shared root];
     Match * match = [[Match alloc] initWithMatchId:challenge.matchId hostName:challenge.main.name currentWizard:wizard withAI:nil multiplayer:self.defaultMultiplayerService sync:[TimerSyncService shared]];
     self.match = match;
 }

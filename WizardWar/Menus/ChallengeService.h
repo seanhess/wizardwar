@@ -14,8 +14,7 @@
 
 @interface ChallengeService : NSObject
 
-@property (nonatomic) BOOL connected;
-@property (nonatomic, strong) Firebase * root;
+@property (nonatomic, readonly) BOOL connected;
 
 + (ChallengeService *)shared;
 - (Challenge*)user:(User*)user challengeOpponent:(User*)opponent isRemote:(BOOL)isRemote;

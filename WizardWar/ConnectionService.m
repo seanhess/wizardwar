@@ -8,6 +8,10 @@
 
 #import "ConnectionService.h"
 #import <Firebase/Firebase.h>
+#import "LobbyService.h"
+#import "UserFriendService.h"
+#import "UserService.h"
+#import "ChallengeService.h"
 
 @interface ConnectionService ()
 @property (strong, nonatomic) Firebase * connectionNode;
@@ -28,10 +32,10 @@
     return instance;
 }
 
--(void)monitorDomain:(NSURL*)domain {
+-(void)monitorDomain:(Firebase*)domain {
+    self.root = domain;
     self.isConnected = NO;
-    NSString * url = [[[domain URLByAppendingPathComponent:@".info"] URLByAppendingPathComponent:@"connected"] description];
-    self.connectionNode = [[Firebase alloc] initWithUrl:url];
+    self.connectionNode = [[domain childByAppendingPath:@".info"] childByAppendingPath:@"connected"];
     
     [self.connectionNode observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
         self.isConnected = [snapshot.value boolValue];
@@ -40,25 +44,38 @@
     }];
 }
 
+-(void)disconnect {    
+    // disconnect the other services here?
+    [ChallengeService.shared disconnect];
+    [LobbyService.shared disconnect];
+    [UserService.shared disconnect];
+    
+    self.isConnected = NO;
+    [self.connectionNode removeAllObservers];
+    self.connectionNode = nil;
+    [self.root removeAllObservers];
+    self.root = nil;
+}
+
 -(void)setIsUserActive:(BOOL)isUserActive {
     _isUserActive = isUserActive;
     NSLog(@"Connection.isUserActive: %i", self.isUserActive);
 }
 
--(void)subscribeOnceDeepLinkURL:(void(^)(NSURL*url))cb {
-    self.deepLinkSubscriber = cb;
-}
-
--(void)unsubscribeDeepLinkURL {
-    self.deepLinkSubscriber = nil;
-}
-
--(void)setDeepLinkUrl:(NSURL *)deepLinkUrl {
-    _deepLinkUrl = deepLinkUrl;
-    if (self.deepLinkSubscriber) {
-        self.deepLinkSubscriber(deepLinkUrl);
-        self.deepLinkSubscriber = nil;
-    }
-}
+//-(void)subscribeOnceDeepLinkURL:(void(^)(NSURL*url))cb {
+//    self.deepLinkSubscriber = cb;
+//}
+//
+//-(void)unsubscribeDeepLinkURL {
+//    self.deepLinkSubscriber = nil;
+//}
+//
+//-(void)setDeepLinkUrl:(NSURL *)deepLinkUrl {
+//    _deepLinkUrl = deepLinkUrl;
+//    if (self.deepLinkSubscriber) {
+//        self.deepLinkSubscriber(deepLinkUrl);
+//        self.deepLinkSubscriber = nil;
+//    }
+//}
 
 @end

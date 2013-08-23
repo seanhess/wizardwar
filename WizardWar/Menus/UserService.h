@@ -14,20 +14,20 @@
 
 @interface UserService : NSObject
 
-@property (nonatomic, strong) Firebase * root;
-
 // currentUser ALWAYS exists with at least the userId
 @property (nonatomic, strong) User * currentUser;
 @property (nonatomic, strong) User * lastUpdatedUser;
 @property (nonatomic, readonly) Wizard * currentWizard;
 
 @property (nonatomic) BOOL pushAccepted;
+@property (nonatomic, readonly) BOOL isConnected;
 
 + (UserService *)shared;
 
 - (void)saveDeviceToken:(NSString*)deviceToken;
 - (void)saveCurrentUser;
 - (void)connect:(Firebase*)root;
+- (void)disconnect;
 
 - (BOOL)isAuthenticated;
 

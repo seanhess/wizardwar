@@ -26,6 +26,7 @@
 #import "PracticeModeAIService.h"
 #import "ConnectionService.h"
 #import "SpellbookViewController.h"
+#import "InfoService.h"
 
 #import <FacebookSDK/FacebookSDK.h>
 #import "NSArray+Functional.h"
@@ -53,29 +54,26 @@
     
     self.view.backgroundColor = [UIColor colorFromRGB:0x404240];
     
-    NSString * firebaseUrl = @"https://wizardwar.firebaseio.com";
-    [ConnectionService.shared monitorDomain:[NSURL URLWithString:firebaseUrl]];
-    Firebase * rootRef = [[Firebase alloc] initWithUrl:firebaseUrl];    
+    
 
-    [UserService.shared connect:rootRef];
     [UserFriendService.shared checkFBStatus:UserService.shared.currentUser];
-    [LobbyService.shared connect:rootRef];
-    [LocationService.shared connect];
     
     // just update the button once with the number of people online?
-    __weak LandingViewController * wself = self;
-    [RACAble(LobbyService.shared, totalInLobby) subscribeNext:^(id x) {
-        [wself renderTotalInLobby];
-    }];
-    [self renderTotalInLobby];
-    
-    
+    // CHANGED: don't connect to the lobby yet. Gotta save the $$$
+//    __weak LandingViewController * wself = self;
+//    [RACAble(LobbyService.shared, totalInLobby) subscribeNext:^(id x) {
+//        [wself renderTotalInLobby];
+//    }];
+//    [self renderTotalInLobby];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
-    [LobbyService.shared leaveLobby:UserService.shared.currentUser];
+    
+    // DISCONNECT! all services
+    [LobbyService.shared leaveLobby:[UserService.shared currentUser]];
+    [ConnectionService.shared disconnect];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -102,14 +100,14 @@
 
 
 
-- (void)renderTotalInLobby {
-    NSString * title = nil;
-    if (LobbyService.shared.totalInLobby > 0)
-        title = [NSString stringWithFormat:@"(%i) Multiplayer", LobbyService.shared.totalInLobby];
-    else
-        title = @"Multiplayer";
-    [self.multiplayerButton setTitle:title forState:UIControlStateNormal];
-}
+//- (void)renderTotalInLobby {
+//    NSString * title = nil;
+//    if (LobbyService.shared.totalInLobby > 0)
+//        title = [NSString stringWithFormat:@"(%i) Multiplayer", LobbyService.shared.totalInLobby];
+//    else
+//        title = @"Multiplayer";
+//    [self.multiplayerButton setTitle:title forState:UIControlStateNormal];
+//}
 
 - (IBAction)didTapQuest:(id)sender {
     [AnalyticsService event:@"PracticeGameTap"];

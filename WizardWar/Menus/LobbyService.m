@@ -46,7 +46,6 @@
 }
 
 - (void)connect:(Firebase *)root {
-    self.root = root;
     
     NSLog(@"LobbyService: connect");
     [self setAllOffline];
@@ -83,6 +82,14 @@
         [self setLocation:LocationService.shared.location];
     }];
 }
+
+- (void)disconnect {
+    [self.lobby removeAllObservers];
+    [self.serverTimeOffset removeAllObservers];
+    self.lobby = nil;
+    self.serverTimeOffset = nil;
+}
+
 
 // change all users to be offline so we can accurately sync with the server
 // ALTERNATIVE: put the field on user itself and have the user change it? naww...
@@ -223,9 +230,11 @@
     if (!self.joined) return;
     NSLog(@"LobbyService: (LEAVE)");
     self.joined = NO;
+    // comment out to test disconnecting
     Firebase * node = [self.lobby childByAppendingPath:user.userId];
     [node removeValue];
 }
+
 
 - (void)user:(User *)user joinedMatch:(NSString *)matchId {
     user.activeMatchId = matchId;
