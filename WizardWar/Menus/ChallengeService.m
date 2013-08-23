@@ -50,7 +50,7 @@
 
     [self removeAll];
 
-    self.node = [root childByAppendingPath:@"challenges2"];
+    self.node = [root childByAppendingPath:@"challenges"];
 
     __weak ChallengeService * wself = self;
     [self.node observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
