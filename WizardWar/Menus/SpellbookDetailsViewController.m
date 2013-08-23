@@ -197,8 +197,8 @@
     
     SpellbookProgressView * progressView = (SpellbookProgressView*)cell.accessoryView;
     progressView.record = self.record;
-    cell.textLabel.text = [NSString stringWithFormat:@"%i Matches", self.record.castUniqueMatches];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%i Casts", self.record.castTotal];
+    cell.textLabel.text = [NSString stringWithFormat:@"Used in %i Matches", self.record.castUniqueMatches];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Cast %i times total", self.record.castTotal];
     
     return cell;
 }
@@ -315,9 +315,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     if (indexPath.section == SECTION_INTERACTIONS) {
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        
         OtherInteraction * otherInteraction = [self.otherInteractions objectAtIndex:indexPath.row];
         SpellRecord * record = [SpellbookService.shared recordByType:otherInteraction.otherSpell];
         
@@ -331,6 +331,12 @@
             UIAlertView * alert = [SpellbookService.shared failAlertForRecord:record];
             [alert show];
         }        
+    } else if (indexPath.section == SECTION_STATS) {
+        NSString * title = [SpellbookService.shared levelString:self.record.level];
+        NSString * message = [NSString stringWithFormat:@"Cast in %i matches to become a Master", [self.record targetForLevel:SpellbookLevelMaster]];
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
+        [alert show];
+        
     }
 }
 

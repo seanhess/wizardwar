@@ -9,6 +9,7 @@
 #import "SpellbookProgressView.h"
 #import "UIColor+Hex.h"
 #import "AppStyle.h"
+#import "SpellbookService.h"
 
 @interface SpellbookProgressView ()
 @property (nonatomic, strong) DDProgressView * progressView;
@@ -106,10 +107,7 @@
 }
 
 -(NSString*)levelString:(SpellbookLevel)level {
-    if (level == SpellbookLevelNone) return @"";
-    else if (level == SpellbookLevelAdept) return @"APPRENTICE";
-    else if (level == SpellbookLevelNovice) return @"NOOB";
-    else return @"MASTER";
+    return [[SpellbookService.shared levelString:level] uppercaseString];
 }
 
 

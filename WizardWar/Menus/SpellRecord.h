@@ -29,5 +29,6 @@ typedef enum SpellbookLevel {
 @property (nonatomic, readonly) BOOL isDiscovered;
 @property (nonatomic, readonly) BOOL isUnlocked;
 @property (nonatomic, readonly) SpellInfo * info;
+-(NSInteger)targetForLevel:(SpellbookLevel)level;
 
 @end

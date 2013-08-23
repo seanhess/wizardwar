@@ -32,6 +32,13 @@
     return instance;
 }
 
+-(NSString*)levelString:(SpellbookLevel)level {
+    if (level == SpellbookLevelNone) return @"";
+    else if (level == SpellbookLevelAdept) return @"Apprentice";
+    else if (level == SpellbookLevelNovice) return @"Noob";
+    else return @"Master";
+}
+
 -(NSString*)spellTitle:(SpellRecord*)record {
     if (record.isDiscovered) {
         return record.name;
