@@ -151,6 +151,8 @@
     glLineWidth(5.0f * [CCDirector sharedDirector].view.contentScaleFactor);
     
     // set line color.
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     ccDrawColor4B(255, 255, 255, self.opacity);
     
 //    ccDrawLine(ccp(100,100), ccp(100, 200));
