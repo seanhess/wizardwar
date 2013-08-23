@@ -778,6 +778,8 @@
 - (IBAction)didTapAccount {
     [AnalyticsService event:@"AccountTap"];    
     SettingsViewController * settings = [SettingsViewController new];
+    settings.showFeedback = YES;
+    settings.showBuildInfo = YES;
     UINavigationController * navigation = [[UINavigationController alloc] initWithRootViewController:settings];
     settings.onDone = ^{
     };

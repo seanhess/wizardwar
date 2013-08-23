@@ -166,6 +166,7 @@
 		78306BE217AAF0F500487B16 /* buzzer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78306BE117AAF0F500487B16 /* buzzer.mp3 */; };
 		7837D6AD17540836001D820E /* GameTimerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7837D6AC17540836001D820E /* GameTimerService.m */; };
 		7837D6B017540893001D820E /* GameTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7837D6AF17540893001D820E /* GameTime.m */; };
+		783DAEB217C7DE4F00CDF109 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783DAEB117C7DE4F00CDF109 /* MessageUI.framework */; };
 		7842FB5817C26DE00050A858 /* bubble-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB5717C26DE00050A858 /* bubble-animation.plist */; };
 		7842FB5A17C26DE60050A858 /* earthwall-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB5917C26DE60050A858 /* earthwall-animation.plist */; };
 		7842FB6C17C26E0C0050A858 /* explode-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB6B17C26E0C0050A858 /* explode-animation.plist */; };
@@ -699,6 +700,7 @@
 		7837D6AC17540836001D820E /* GameTimerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTimerService.m; sourceTree = "<group>"; };
 		7837D6AE17540893001D820E /* GameTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTime.h; sourceTree = "<group>"; };
 		7837D6AF17540893001D820E /* GameTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTime.m; sourceTree = "<group>"; };
+		783DAEB117C7DE4F00CDF109 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		7842FB5217C2681B0050A858 /* packTextures.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = packTextures.sh; sourceTree = "<group>"; };
 		7842FB5717C26DE00050A858 /* bubble-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "bubble-animation.plist"; path = "WizardWar/images/spells-core/bubble/bubble-animation.plist"; sourceTree = SOURCE_ROOT; };
 		7842FB5917C26DE60050A858 /* earthwall-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "earthwall-animation.plist"; path = "WizardWar/images/spells-core/earthwall/earthwall-animation.plist"; sourceTree = SOURCE_ROOT; };
@@ -1055,6 +1057,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				783DAEB217C7DE4F00CDF109 /* MessageUI.framework in Frameworks */,
 				78DAB83D179B08BB0093A701 /* MapKit.framework in Frameworks */,
 				78DAB83B179B08530093A701 /* ImageIO.framework in Frameworks */,
 				78C5CD9F178AFDC400CDCC76 /* CoreData.framework in Frameworks */,
@@ -1813,6 +1816,7 @@
 		78F6B1DA1746AD8900AA070D = {
 			isa = PBXGroup;
 			children = (
+				783DAEB117C7DE4F00CDF109 /* MessageUI.framework */,
 				7814763617C64ADC005DA04A /* Makefile */,
 				7881FD8217BD414F00FBC7C8 /* icon-ipad.png */,
 				7881FD8017BD414700FBC7C8 /* icon-ipad-retina.png */,

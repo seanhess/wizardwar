@@ -27,4 +27,8 @@
     return [NSURL URLWithString:@"https://testflightapp.com/m/builds"];
 }
 
++(NSString *)supportEmail {
+    return @"support@wizardwarapp.com";
+}
+
 @end

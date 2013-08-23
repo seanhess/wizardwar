@@ -19,9 +19,14 @@
 #import "UserFriendService.h"
 #import "FacebookButtonCell.h"
 #import "AnalyticsService.h"
+#import <MessageUI/MessageUI.h>
 
+#define SECTION_FEEDBACK 0
+#define SECTION_FACEBOOK 1
+#define SECTION_PROFILE 2
+#define SECTION_INFO 3
 
-@interface SettingsViewController () <AccountColorDelegate, UITextFieldDelegate>
+@interface SettingsViewController () <AccountColorDelegate, UITextFieldDelegate, MFMailComposeViewControllerDelegate>
 @property (strong, nonatomic) WEPopoverController * popover;
 
 @end
@@ -75,24 +80,24 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    if (section == 0)
+    if (section == SECTION_FACEBOOK)
         return 1;
-    else if (section == 1)
+    else if (section == SECTION_PROFILE)
         return 3;
-    else if (section == 2 && self.showFeedback)
+    else if (section == SECTION_FEEDBACK && self.showFeedback)
         return 1;
-    else if (section == 3 && self.showBuildInfo)
+    else if (section == SECTION_INFO && self.showBuildInfo)
         return 2;
     else 
         return 0;
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
+    if (section == SECTION_FACEBOOK) {
         return @"Facebook";
-    } else if (section == 1) {
+    } else if (section == SECTION_PROFILE) {
         return @"Wizard Profile";
-    } else if (section == 2) {
+    } else if (section == SECTION_FEEDBACK) {
         return @"";
     } else {
         return @"";
@@ -103,9 +108,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
+    if (indexPath.section == SECTION_FACEBOOK) {
         return [self tableView:tableView facebookCellForIndexPath:indexPath];
-    } else if (indexPath.section == 1) {
+    } else if (indexPath.section == SECTION_PROFILE) {
         return [self tableView:tableView profileCellForIndexPath:indexPath];
     } else {
         return [self tableView:tableView infoCellForIndexPath:indexPath];
@@ -147,11 +152,11 @@
     
     cell.accessoryType = UITableViewCellAccessoryNone;
 
-    if (indexPath.section == 2) {
+    if (indexPath.section == SECTION_FEEDBACK) {
         cell.textLabel.text = @"Send Us Feedback";
     }
 
-    else if (indexPath.section == 3) {
+    else if (indexPath.section == SECTION_INFO) {
         if (indexPath.row == 0) {
             cell.textLabel.text = @"Build Date";
             cell.detailTextLabel.text = [InfoService buildDate];
@@ -195,14 +200,14 @@
 }
 
 -(NSString*)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-    if (section == 0 && ![UserFriendService.shared isAuthenticatedFacebook]) {
+    if (section == SECTION_FACEBOOK && ![UserFriendService.shared isAuthenticatedFacebook]) {
         return @"Connect to play with your friends and set your avatar. Will not post anything unless you explitly share something.";
     }
     return nil;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 1 && indexPath.row == 2) return 108;
+    if (indexPath.section == SECTION_PROFILE && indexPath.row == 2) return 108;
     return 44;
 }
 
@@ -249,11 +254,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.section == SECTION_FACEBOOK) {
         [self didTapFacebook];
     }
     
-    else if (indexPath.section == 1) {
+    else if (indexPath.section == SECTION_PROFILE) {
         ProfileCell * cell = (ProfileCell*)[tableView cellForRowAtIndexPath:indexPath];
         
         if (indexPath.row == 0) {
@@ -270,11 +277,45 @@
         }
     }
     
-    else if (indexPath.section == 2) {
+    else if (indexPath.section == SECTION_FEEDBACK) {
 //        [TestFlight openFeedbackView];
+        if (![MFMailComposeViewController canSendMail]) {
+            UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"Cannot send email" message:@"Email is not enabled on your system. Please add an email account to contact us" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
+            return;
+        }
+
+        
+        MFMailComposeViewController *picker = [MFMailComposeViewController new];
+        picker.mailComposeDelegate = self;
+        
+//        [picker setSubject:@"Hello from California!"];
+        
+        // Set up recipients
+        NSArray *toRecipients = [NSArray arrayWithObject:InfoService.supportEmail];
+//        NSArray *ccRecipients = [NSArray arrayWithObjects:@"second@example.com", @"third@example.com", nil];
+//        NSArray *bccRecipients = [NSArray arrayWithObject:@"fourth@example.com"];
+        
+        [picker setToRecipients:toRecipients];
+//        [picker setCcRecipients:ccRecipients];
+//        [picker setBccRecipients:bccRecipients];
+        
+        // Attach an image to the email
+//        NSString *path = [[NSBundle mainBundle] pathForResource:@"rainy" ofType:@"jpg"];
+//        NSData *myData = [NSData dataWithContentsOfFile:path];
+//        [picker addAttachmentData:myData mimeType:@"image/jpeg" fileName:@"rainy"];
+        
+        // Fill out the email body text
+        NSString * version = [NSString stringWithFormat:@"%@ (%i)", [InfoService version], [InfoService buildNumber]];
+        NSString * userId = [[UserService.shared currentUser] userId];
+        NSString *emailBody = [NSString stringWithFormat:@"\n\n------\nVersion: %@\nUserId: %@", version, userId];
+        [picker setMessageBody:emailBody isHTML:NO];
+        
+        [self presentViewController:picker animated:YES completion:NULL];
+        
     }
     
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
 }
 
 -(void)didTapFacebook {
@@ -333,7 +374,7 @@
 -(void)didTapDone:(id)sender {
     User * user = UserService.shared.currentUser;
     user.isGuestAccount = NO;
-    ProfileCell * cell = (ProfileCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:1]];
+    ProfileCell * cell = (ProfileCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:SECTION_PROFILE]];
     user.name = cell.inputField.text;
     [UserService.shared saveCurrentUser];
     
@@ -341,6 +382,14 @@
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
         self.onDone();
     }
+}
+
+
+#pragma mark - Mail Composer 
+- (void)mailComposeController:(MFMailComposeViewController*)controller
+          didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

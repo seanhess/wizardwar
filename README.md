@@ -33,7 +33,8 @@ Push Notifications
 Core Data
 * http://www.raywenderlich.com/27657/how-to-perform-a-lightweight-core-data-migration
 
-
+Invites
+* https://developer.apple.com/library/ios/samplecode/MessageComposer/Listings/MessageComposerViewController_m.html#//apple_ref/doc/uid/DTS40010161-MessageComposerViewController_m-DontLinkElementID_6
 
 
 SPELL IDEAS

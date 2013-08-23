@@ -14,5 +14,6 @@
 +(NSString*)buildDate;
 +(NSInteger)buildNumber;
 +(NSURL*)downloadURL;
++(NSString*)supportEmail;
 
 @end
