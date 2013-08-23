@@ -115,8 +115,13 @@
     CGFloat dxInPixels = [self.units toWidth:dxInUnits];
     x += dxInPixels;
     
+    CGFloat dyUnits = self.spell.speedY*delta;
+    CGFloat dyPixels = [self.units toHeight:dyUnits];
+    
     if ([self.spell isType:CaptainPlanet]) {
         y += [self flyYForTheCaptain:fabs(dxInUnits)];
+    } else {
+        y += dyPixels;
     }
     
     CGPoint position = ccp(x, y);

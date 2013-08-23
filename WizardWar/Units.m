@@ -69,9 +69,13 @@
     return percent*self.width;
 }
 
-- (CGFloat)altitudeY:(CGFloat)altitude {
+-(CGFloat)toHeight:(CGFloat)dAltitude {
     NSInteger maxAltitude = 2.0;
-    CGFloat y = self.zeroY + (altitude/maxAltitude)*(self.maxY - self.zeroY);
+    return (dAltitude/maxAltitude)*(self.maxY - self.zeroY);
+}
+
+- (CGFloat)altitudeY:(CGFloat)altitude {
+    CGFloat y = self.zeroY + [self toHeight:altitude];
     if (y < self.zeroY) y = self.zeroY;
     return y;
 }

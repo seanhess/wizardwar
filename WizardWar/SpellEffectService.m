@@ -232,8 +232,8 @@
     fist.speed = 0;
     fist.strength = 1;
     fist.castDelay = 3.0;
-    fist.altitude = 2.0;
-    fist.speedY = -(fist.altitude)/(3.0);
+    fist.altitude = 2.5;
+    fist.speedY = -(fist.altitude-1)/(3.0); // it hits right when it drops below 1
     fist.startOffsetPosition = 100.0;
     fist.heavy = NO;
     
