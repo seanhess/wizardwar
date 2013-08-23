@@ -134,6 +134,9 @@
         CGFloat dx = self.spell.position;
         if (self.spell.direction < 0) dx = UNITS_MAX - dx;
         position.y += [self flyYForTheCaptain:dx];
+    } else if ([self.spell isType:Vine]) {
+        if (self.spell.position == UNITS_MIN || self.spell.position == UNITS_MAX)
+            return;
     }
     self.position = position;
 }

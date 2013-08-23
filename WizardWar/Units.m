@@ -71,7 +71,9 @@
 
 - (CGFloat)altitudeY:(CGFloat)altitude {
     NSInteger maxAltitude = 2.0;
-    return self.zeroY + (altitude/maxAltitude)*(self.maxY - self.zeroY);
+    CGFloat y = self.zeroY + (altitude/maxAltitude)*(self.maxY - self.zeroY);
+    if (y < self.zeroY) y = self.zeroY;
+    return y;
 }
 
 @end
