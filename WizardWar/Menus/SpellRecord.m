@@ -15,6 +15,7 @@
 @dynamic name;
 @dynamic castTotal;
 @dynamic castUniqueMatches;
+@dynamic unlock;
 
 -(SpellbookLevel)level {
     if (self.castUniqueMatches < 1) return SpellbookLevelNone;
@@ -53,7 +54,7 @@
 }
 
 - (BOOL)isUnlocked {
-    return (self.level >= SpellbookLevelAdept);
+    return (self.level >= SpellbookLevelAdept) || self.unlock;
 }
 
 - (BOOL)isDiscovered {

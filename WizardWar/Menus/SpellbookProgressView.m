@@ -22,12 +22,13 @@
     _record = record;
     
     SpellbookLevel level = record.level;
-    self.label.hidden = (level <= SpellbookLevelNone);
+    BOOL hidden = (level == SpellbookLevelNone && !record.isUnlocked);
+    
+    self.label.hidden = hidden;
     self.label.text = [[SpellbookService.shared levelString:level] uppercaseString];
     
-    self.progressView.hidden = (level <= SpellbookLevelNone);
-    if (!self.progressView.hidden)
-        self.progressView.progress = record.progress;
+    self.progressView.hidden = hidden;
+    self.progressView.progress = record.progress;
     
     if (level >= SpellbookLevelMaster) {
         self.progressView.frame = self.centerFrame;

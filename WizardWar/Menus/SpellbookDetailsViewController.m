@@ -333,10 +333,13 @@
         }        
     } else if (indexPath.section == SECTION_STATS) {
         NSString * title = [SpellbookService.shared levelString:self.record.level];
-        NSString * message = [NSString stringWithFormat:@"Cast in %i matches to become a Master", [self.record targetForLevel:SpellbookLevelMaster]];
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
-        [alert show];
-        
+        SpellbookLevel nextLevel = self.record.level+1;
+        if (nextLevel <= SpellbookLevelMaster) {
+            if (nextLevel < SpellbookLevelAdept) nextLevel = SpellbookLevelAdept;
+            NSString * message = [NSString stringWithFormat:@"Cast in %i matches to become a %@", [self.record targetForLevel:nextLevel], [SpellbookService.shared levelString:nextLevel]];
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
+            [alert show];
+        }
     }
 }
 

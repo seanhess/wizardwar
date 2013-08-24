@@ -25,9 +25,9 @@
     <entity name="SpellRecord" representedClassName="SpellRecord" syncable="YES">
         <attribute name="castTotal" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="castUniqueMatches" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="isUnlocked" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unlock" optional="YES" attributeType="Boolean" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="activeMatchId" optional="YES" attributeType="String" syncable="YES"/>

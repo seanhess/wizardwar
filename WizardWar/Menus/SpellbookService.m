@@ -33,14 +33,14 @@
 }
 
 -(NSString*)levelString:(SpellbookLevel)level {
-    if (level == SpellbookLevelNone) return @"";
-    else if (level == SpellbookLevelAdept) return @"Apprentice";
+    if (level == SpellbookLevelAdept) return @"Apprentice";
     else if (level == SpellbookLevelNovice) return @"Noob";
-    else return @"Master";
+    else if (level == SpellbookLevelMaster) return @"Master";
+    else return @"Noob";
 }
 
 -(NSString*)spellTitle:(SpellRecord*)record {
-    if (record.isDiscovered) {
+    if (record.isDiscovered || record.isUnlocked) {
         return record.name;
     } else {
         return @"?";
@@ -121,14 +121,16 @@
         record.name = spell.name;
         record.castTotal = 0;
         record.castUniqueMatches = 0;
+        
+        // unlock all spells taught in the first tutorials
         if ([spell isAnyType:@[Fireball, Lightning, Monster, Earthwall, Firewall, Icewall]]) {
-            record.castUniqueMatches = 5;
-            record.castTotal = 5;
-        } else if ([spell isAnyType:@[Windblast, Bubble, Invisibility, Heal, Levitate, Sleep]]) {
-            record.castUniqueMatches = 1;
-            record.castTotal = 1;
+            record.unlock = YES;
         }
         
+//        if ([spell isType:Cthulhu]) {
+//            record.castUniqueMatches = 10;
+//        }
+
         NSLog(@"SpellRecord (+) %@", record.name);
     }
     return record;
