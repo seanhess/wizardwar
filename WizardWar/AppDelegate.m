@@ -21,7 +21,7 @@
 #import "ConnectionService.h"
 #import <ReactiveCocoa.h>
 #import "AnalyticsService.h"
-#import <TestFlight.h>
+#import "TestFlight.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "OLUnitsService.h"
 #import "InfoService.h"

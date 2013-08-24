@@ -16,6 +16,14 @@
 
 @protocol AIService <NSObject, Simulated>
 @property (nonatomic, strong) Wizard*wizard;
+@property (nonatomic, strong) Wizard*opponent;
 @property (nonatomic, weak) id<AIDelegate> delegate;
+
+// for tutorials, they can hide the controls
+@property (nonatomic) BOOL hideControls;
+
+-(void)tutorialDidTap;
 -(void)opponent:(Wizard*)wizard didCastSpell:(Spell*)spell atTick:(NSInteger)tick;
+-(BOOL)shouldPreventSpellCast:(Spell*)spell atTick:(NSInteger)tick;
+
 @end

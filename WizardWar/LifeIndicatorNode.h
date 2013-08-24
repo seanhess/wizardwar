@@ -13,6 +13,5 @@
 
 @interface LifeIndicatorNode : CCNode
 @property (nonatomic, strong) Wizard * player;
-@property (nonatomic, strong) Match * match;
 -(id)initWithUnits:(Units*)units;
 @end

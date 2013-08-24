@@ -31,6 +31,7 @@
 // they don't count against the limit
 @implementation PracticeModeAIService
 @synthesize wizard = _wizard;
+@synthesize opponent = _opponent;
 @synthesize delegate = _delegate;
 
 -(id)init {
@@ -124,6 +125,10 @@
 
 -(void)opponent:(Wizard*)wizard didCastSpell:(Spell*)spell atTick:(NSInteger)tick {
     self.opponentSpellsCast += 1;
+}
+
+-(BOOL)shouldPreventSpellCast:(Spell *)spell atTick:(NSInteger)tick {
+    return NO;
 }
 
 @end

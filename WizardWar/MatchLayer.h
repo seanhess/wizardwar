@@ -13,8 +13,13 @@
 #import "Combos.h"
 #import "Units.h"
 #import "DrawingLayer.h"
+#import <ReactiveCocoa.h>
 
 @interface MatchLayer : CCLayer
 @property (nonatomic, strong) DrawingLayer * drawingLayer;
+@property (nonatomic, strong) RACSignal * showControlsSignal;
+@property (nonatomic, strong) RACSignal * matchStatusSignal;
+
+
 -(id)initWithMatch:(Match*)match size:(CGSize)size combos:(Combos*)combos units:(Units*)units;
 @end

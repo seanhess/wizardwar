@@ -53,7 +53,7 @@
     wizard.state = WizardStatusReady;
     wizard.wizardType = WIZARD_TYPE_ONE;
     
-    WizardSprite * wizardSprite = [[WizardSprite alloc] initWithWizard:wizard units:nil match:nil isCurrentWizard:YES];
+    WizardSprite * wizardSprite = [[WizardSprite alloc] initWithWizard:wizard units:nil match:nil isCurrentWizard:YES hideControls:nil];
     [self addChild:wizardSprite];
 
     NSLog(@"PRELOAD wizard %i", WizardStatusHit);

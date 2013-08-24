@@ -10,12 +10,14 @@
 
 
 @implementation QuestLevel
+@synthesize ai = _ai;
 
 @dynamic name;
 @dynamic gamesTotal;
 @dynamic gamesWins;
 @dynamic level;
 @dynamic passed;
+@dynamic wizardLevel;
 
 - (CGFloat)progress {
     return ((float)self.gamesWins / (float)self.masteryWins);

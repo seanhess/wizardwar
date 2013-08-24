@@ -35,6 +35,7 @@
 #import "ChallengeService.h"
 #import "SpellbookService.h"
 #import "ConnectionService.h"
+#import "RACHelpers.h"
 
 @interface MatchViewController () <HelpDelegate>
 @property (strong, nonatomic) PentagramViewController * pentagram;
@@ -47,8 +48,10 @@
 @property (strong, nonatomic) MenuButton *replayButton;
 @property (nonatomic, strong) Challenge * challenge;
 @property (weak, nonatomic) IBOutlet UIButton *helpButton;
+@property (nonatomic, strong) id<AIService>ai;
 
 @property (strong, nonatomic) HelpViewController *help;
+@property (nonatomic) MatchStatus matchStatus;
 @end
 
 @implementation MatchViewController
@@ -88,10 +91,10 @@
     NSLog(@" - pv size %@", NSStringFromCGRect(self.pentagramView.frame));
     self.pentagram = [[PentagramViewController alloc] initPerIdoim];
     self.pentagram.combos = self.combos;
-    self.pentagram.view.hidden = YES;
 //    self.pentagram.view.frame = CGRectMake(0, 0, 100, 100);
     self.pentagram.view.frame = self.pentagramView.bounds;
     [self.pentagramView addSubview:self.pentagram.view];
+    
     // You don't need to call viewDidLoad on pentagram I guess
     // Maybe it gets called automatically after the frame is set?
     
@@ -104,8 +107,6 @@
     [self.replayButton addTarget:self action:@selector(didTapLeave:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.replayButton];
     [self.replayButton calculatePadding];
-    
-    [self renderMatchStatus];
 }
 
 - (void)startMatch {
@@ -126,8 +127,6 @@
     // Match starts.... NOW
     [self.match connect];
     
-    [self renderMatchStatus];    
-    
     __weak MatchViewController * wself = self;
     
     // Monitor Connection so we can disconnect and reconnect
@@ -135,13 +134,16 @@
         [wself onChangedIsUserActive:ConnectionService.shared.isUserActive];
     }];
     
-    [[RACAble(self.match.status) distinctUntilChanged] subscribeNext:^(id x) {
-        [wself renderMatchStatus];
-    }];
-    
     [[RACAble(self.combos.castSpell) distinctUntilChanged] subscribeNext:^(Spell * spell) {
         [wself didCastSpell:spell];
     }];
+    
+    RAC(self.matchStatus) = matchLayer.matchStatusSignal;
+    
+    RACSignal * hideControls = [matchLayer.showControlsSignal map:RACMapNot];
+    RAC(self.pentagramView.hidden) = hideControls;
+    RAC(self.message.hidden) = hideControls;
+    RAC(self.subMessage.hidden) = hideControls;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -188,13 +190,15 @@
     self.match = match;
 }
 
+// then do it whenever any of them change... 
+// pentagram visible = match.status == MatchStatusPlaying && (!ai.disablePentagram)
+
 // I want to unsubscribe from this when the match ends.
-- (void)renderMatchStatus {
-    
+- (void)setMatchStatus:(MatchStatus)matchStatus {
+    _matchStatus = matchStatus;
     if (!self.match) return;
 
     NSLog(@"MatchVC.renderMatchStatus %i", self.match.status);
-    self.pentagram.view.hidden = (self.match.status != MatchStatusPlaying);
     self.subMessage.textColor = [UIColor colorFromRGB:0xCACACA];
     self.subMessage.alpha = 1.0;
     

@@ -37,6 +37,7 @@ typedef enum WizardStatus {
 @property (readonly) NSInteger direction;
 @property (nonatomic) NSUInteger colorRGB; // hex rgb value
 @property (nonatomic, strong) UIColor * color;
+@property (nonatomic, strong) NSString * message;
 
 -(BOOL)isFirstPlayer;
 -(void)setStatus:(WizardStatus)status atTick:(NSInteger)tick;

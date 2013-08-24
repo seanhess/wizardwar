@@ -158,7 +158,6 @@
 		781BE0E017C56A78005735A9 /* SpellbookInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 781BE0DF17C56A78005735A9 /* SpellbookInfoView.m */; };
 		782BC1AB17B90DD100EB7FC6 /* DebugSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 782BC1AA17B90DD100EB7FC6 /* DebugSprite.m */; };
 		782BC1BA17B9566F00EB7FC6 /* captain-planet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 782BC1B917B9566F00EB7FC6 /* captain-planet.mp3 */; };
-		78306B9C17A7144300487B16 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78306B9A17A7144300487B16 /* DataModel.xcdatamodeld */; };
 		78306BB017A99AEC00487B16 /* OLUnitsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 78306BAF17A99AEC00487B16 /* OLUnitsService.m */; };
 		78306BC217AADC4A00487B16 /* SpellFailRainbow.m in Sources */ = {isa = PBXBuildFile; fileRef = 78306BC117AADC4800487B16 /* SpellFailRainbow.m */; };
 		78306BDE17AAE7CE00487B16 /* double-rainbow.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78306BDD17AAE7CE00487B16 /* double-rainbow.mp3 */; };
@@ -172,6 +171,7 @@
 		783DAEC117C829E500CDF109 /* QuestService.m in Sources */ = {isa = PBXBuildFile; fileRef = 783DAEC017C829E500CDF109 /* QuestService.m */; };
 		783DAEC417C82BFF00CDF109 /* QuestLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 783DAEC317C82BFF00CDF109 /* QuestLevel.m */; };
 		783DAECF17C8336600CDF109 /* ProgressAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 783DAECE17C8336600CDF109 /* ProgressAccessoryView.m */; };
+		783DAED417C846C100CDF109 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 783DAED017C846C100CDF109 /* DataModel.xcdatamodeld */; };
 		7842FB5817C26DE00050A858 /* bubble-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB5717C26DE00050A858 /* bubble-animation.plist */; };
 		7842FB5A17C26DE60050A858 /* earthwall-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB5917C26DE60050A858 /* earthwall-animation.plist */; };
 		7842FB6C17C26E0C0050A858 /* explode-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB6B17C26E0C0050A858 /* explode-animation.plist */; };
@@ -207,6 +207,12 @@
 		7842FBC617C278F70050A858 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 7842FBC017C278F70050A858 /* release_notes.md */; };
 		7842FBCB17C27EAE0050A858 /* SpellbookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7842FBC917C27EAE0050A858 /* SpellbookViewController.m */; };
 		7842FBCC17C27EAE0050A858 /* SpellbookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7842FBCA17C27EAE0050A858 /* SpellbookViewController.xib */; };
+		7843E71817C8DF44009EF3AB /* AITutorial1BasicMagic.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E71717C8DF44009EF3AB /* AITutorial1BasicMagic.m */; };
+		7843E71B17C8DF51009EF3AB /* AITutorial2Counters.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E71A17C8DF51009EF3AB /* AITutorial2Counters.m */; };
+		7843E71E17C8DF5F009EF3AB /* AITutorial3Discovery.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E71D17C8DF5E009EF3AB /* AITutorial3Discovery.m */; };
+		7843E72117C8E586009EF3AB /* ChatBubbleSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E72017C8E586009EF3AB /* ChatBubbleSprite.m */; };
+		7843E72617C8F5D9009EF3AB /* RACHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E72517C8F5D9009EF3AB /* RACHelpers.m */; };
+		7843E72917C8FE22009EF3AB /* TutorialStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E72817C8FE22009EF3AB /* TutorialStep.m */; };
 		784D3BDE1774F753009945F8 /* LobbyService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BDD1774F753009945F8 /* LobbyService.m */; };
 		784D3BE1177501E9009945F8 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BE0177501E9009945F8 /* UserService.m */; };
 		784D3BE417750441009945F8 /* IdService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BE317750441009945F8 /* IdService.m */; };
@@ -424,7 +430,6 @@
 		6F0B2FAC1747511800CFC092 /* DotsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DotsView.m; sourceTree = "<group>"; };
 		6F0B2FAD1747511800CFC092 /* DrawingLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingLayer.h; sourceTree = "<group>"; };
 		6F0B2FAE1747511800CFC092 /* DrawingLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingLayer.m; sourceTree = "<group>"; };
-		7801E9FA17B18ED4005D14D8 /* DataModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DataModel 2.xcdatamodel"; sourceTree = "<group>"; };
 		780A234417C3BBA000EE3BAA /* UIImage+MonoImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MonoImage.h"; sourceTree = "<group>"; };
 		780A234517C3BBA000EE3BAA /* UIImage+MonoImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MonoImage.m"; sourceTree = "<group>"; };
 		780A234717C3BDFF00EE3BAA /* SpellbookProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellbookProgressView.h; sourceTree = "<group>"; };
@@ -689,7 +694,6 @@
 		782BC1A917B90DD100EB7FC6 /* DebugSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugSprite.h; sourceTree = "<group>"; };
 		782BC1AA17B90DD100EB7FC6 /* DebugSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugSprite.m; sourceTree = "<group>"; };
 		782BC1B917B9566F00EB7FC6 /* captain-planet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "captain-planet.mp3"; sourceTree = "<group>"; };
-		78306B9B17A7144300487B16 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		78306BAE17A99AEC00487B16 /* OLUnitsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLUnitsService.h; sourceTree = "<group>"; };
 		78306BAF17A99AEC00487B16 /* OLUnitsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLUnitsService.m; sourceTree = "<group>"; };
 		78306BC017AADC4600487B16 /* SpellFailRainbow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellFailRainbow.h; sourceTree = "<group>"; };
@@ -705,13 +709,16 @@
 		783DAEB917C824B400CDF109 /* QuestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestViewController.h; sourceTree = "<group>"; };
 		783DAEBA17C824B400CDF109 /* QuestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestViewController.m; sourceTree = "<group>"; };
 		783DAEBB17C824B400CDF109 /* QuestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestViewController.xib; sourceTree = "<group>"; };
-		783DAEBE17C8262800CDF109 /* DataModel 00.14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DataModel 00.14.xcdatamodel"; sourceTree = "<group>"; };
 		783DAEBF17C829E400CDF109 /* QuestService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestService.h; sourceTree = "<group>"; };
 		783DAEC017C829E500CDF109 /* QuestService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestService.m; sourceTree = "<group>"; };
 		783DAEC217C82BFF00CDF109 /* QuestLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestLevel.h; sourceTree = "<group>"; };
 		783DAEC317C82BFF00CDF109 /* QuestLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestLevel.m; sourceTree = "<group>"; };
 		783DAECD17C8336600CDF109 /* ProgressAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressAccessoryView.h; sourceTree = "<group>"; };
 		783DAECE17C8336600CDF109 /* ProgressAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressAccessoryView.m; sourceTree = "<group>"; };
+		783DAED117C846C100CDF109 /* DataModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DataModel 2.xcdatamodel"; sourceTree = "<group>"; };
+		783DAED217C846C100CDF109 /* DataModel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DataModel 3.xcdatamodel"; sourceTree = "<group>"; };
+		783DAED317C846C100CDF109 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		783DAED517C846DC00CDF109 /* DataModel 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DataModel 4.xcdatamodel"; sourceTree = "<group>"; };
 		7842FB5217C2681B0050A858 /* packTextures.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = packTextures.sh; sourceTree = "<group>"; };
 		7842FB5717C26DE00050A858 /* bubble-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "bubble-animation.plist"; path = "WizardWar/images/spells-core/bubble/bubble-animation.plist"; sourceTree = SOURCE_ROOT; };
 		7842FB5917C26DE60050A858 /* earthwall-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "earthwall-animation.plist"; path = "WizardWar/images/spells-core/earthwall/earthwall-animation.plist"; sourceTree = SOURCE_ROOT; };
@@ -752,6 +759,18 @@
 		7842FBC817C27EAE0050A858 /* SpellbookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellbookViewController.h; sourceTree = "<group>"; };
 		7842FBC917C27EAE0050A858 /* SpellbookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellbookViewController.m; sourceTree = "<group>"; };
 		7842FBCA17C27EAE0050A858 /* SpellbookViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpellbookViewController.xib; sourceTree = "<group>"; };
+		7843E71617C8DF44009EF3AB /* AITutorial1BasicMagic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AITutorial1BasicMagic.h; sourceTree = "<group>"; };
+		7843E71717C8DF44009EF3AB /* AITutorial1BasicMagic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AITutorial1BasicMagic.m; sourceTree = "<group>"; };
+		7843E71917C8DF51009EF3AB /* AITutorial2Counters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AITutorial2Counters.h; sourceTree = "<group>"; };
+		7843E71A17C8DF51009EF3AB /* AITutorial2Counters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AITutorial2Counters.m; sourceTree = "<group>"; };
+		7843E71C17C8DF5E009EF3AB /* AITutorial3Discovery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AITutorial3Discovery.h; sourceTree = "<group>"; };
+		7843E71D17C8DF5E009EF3AB /* AITutorial3Discovery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AITutorial3Discovery.m; sourceTree = "<group>"; };
+		7843E71F17C8E586009EF3AB /* ChatBubbleSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatBubbleSprite.h; sourceTree = "<group>"; };
+		7843E72017C8E586009EF3AB /* ChatBubbleSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatBubbleSprite.m; sourceTree = "<group>"; };
+		7843E72417C8F5D9009EF3AB /* RACHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RACHelpers.h; sourceTree = "<group>"; };
+		7843E72517C8F5D9009EF3AB /* RACHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RACHelpers.m; sourceTree = "<group>"; };
+		7843E72717C8FE22009EF3AB /* TutorialStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialStep.h; sourceTree = "<group>"; };
+		7843E72817C8FE22009EF3AB /* TutorialStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialStep.m; sourceTree = "<group>"; };
 		784D3BDC1774F753009945F8 /* LobbyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LobbyService.h; sourceTree = "<group>"; };
 		784D3BDD1774F753009945F8 /* LobbyService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LobbyService.m; sourceTree = "<group>"; };
 		784D3BDF177501E9009945F8 /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserService.h; sourceTree = "<group>"; };
@@ -862,7 +881,6 @@
 		7881FD7E17BD413900FBC7C8 /* icon-iphone-retina and-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-iphone-retina and-5.png"; sourceTree = "<group>"; };
 		7881FD8017BD414700FBC7C8 /* icon-ipad-retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-ipad-retina.png"; sourceTree = "<group>"; };
 		7881FD8217BD414F00FBC7C8 /* icon-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-ipad.png"; sourceTree = "<group>"; };
-		7881FD8417BD4A9600FBC7C8 /* DataModel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DataModel 3.xcdatamodel"; sourceTree = "<group>"; };
 		78915281176A72A8001694B1 /* PELevitate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PELevitate.h; sourceTree = "<group>"; };
 		78915282176A72A8001694B1 /* PELevitate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PELevitate.m; sourceTree = "<group>"; };
 		7892EF9817BE66E100F9A89D /* WarningCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarningCell.h; sourceTree = "<group>"; };
@@ -1434,6 +1452,8 @@
 			children = (
 				783DAECD17C8336600CDF109 /* ProgressAccessoryView.h */,
 				783DAECE17C8336600CDF109 /* ProgressAccessoryView.m */,
+				7843E72417C8F5D9009EF3AB /* RACHelpers.h */,
+				7843E72517C8F5D9009EF3AB /* RACHelpers.m */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -1473,6 +1493,21 @@
 				7814763817C652F4005DA04A /* SpellbookInteractionCell.m */,
 			);
 			name = Spellbook;
+			sourceTree = "<group>";
+		};
+		7843E71517C8DF10009EF3AB /* AI */ = {
+			isa = PBXGroup;
+			children = (
+				7843E71617C8DF44009EF3AB /* AITutorial1BasicMagic.h */,
+				7843E71717C8DF44009EF3AB /* AITutorial1BasicMagic.m */,
+				7843E71917C8DF51009EF3AB /* AITutorial2Counters.h */,
+				7843E71A17C8DF51009EF3AB /* AITutorial2Counters.m */,
+				7843E71C17C8DF5E009EF3AB /* AITutorial3Discovery.h */,
+				7843E71D17C8DF5E009EF3AB /* AITutorial3Discovery.m */,
+				7843E72717C8FE22009EF3AB /* TutorialStep.h */,
+				7843E72817C8FE22009EF3AB /* TutorialStep.m */,
+			);
+			path = AI;
 			sourceTree = "<group>";
 		};
 		784D3BE51775102A009945F8 /* lobby */ = {
@@ -1527,6 +1562,7 @@
 		785FBEA4177261BD0021AEE5 /* Menus */ = {
 			isa = PBXGroup;
 			children = (
+				7843E71517C8DF10009EF3AB /* AI */,
 				785FBED7177262010021AEE5 /* Data */,
 				785FBED6177261D00021AEE5 /* Service */,
 				78DAB8251795E24F0093A701 /* Settings */,
@@ -1723,7 +1759,7 @@
 		78C5CDA3178AFF6C00CDCC76 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				78306B9A17A7144300487B16 /* DataModel.xcdatamodeld */,
+				783DAED017C846C100CDF109 /* DataModel.xcdatamodeld */,
 				78C98627178DE0C800B545F9 /* Challenge.h */,
 				78C98628178DE0C800B545F9 /* Challenge.m */,
 				78C5CDDB178B034C00CDCC76 /* User.h */,
@@ -2094,6 +2130,8 @@
 				78CF318E1791E49D00BC8C29 /* FeedbackLayer.m */,
 				78F6B3AF1746B27600AA070D /* WizardSprite.h */,
 				78F6B3B01746B27600AA070D /* WizardSprite.m */,
+				7843E71F17C8E586009EF3AB /* ChatBubbleSprite.h */,
+				7843E72017C8E586009EF3AB /* ChatBubbleSprite.m */,
 				782BC1A917B90DD100EB7FC6 /* DebugSprite.h */,
 				782BC1AA17B90DD100EB7FC6 /* DebugSprite.m */,
 				78F6B3B11746B27700AA070D /* SpellSprite.h */,
@@ -2572,7 +2610,6 @@
 				78DAB82D1799BCFF0093A701 /* ProfileCell.m in Sources */,
 				78DAB839179A0C680093A701 /* FacebookButtonCell.m in Sources */,
 				78516B8817A5925800A49257 /* NSObject+Reflection.m in Sources */,
-				78306B9C17A7144300487B16 /* DataModel.xcdatamodeld in Sources */,
 				78306BB017A99AEC00487B16 /* OLUnitsService.m in Sources */,
 				78306BC217AADC4A00487B16 /* SpellFailRainbow.m in Sources */,
 				78782B5A17B031800089F1D6 /* PentEmblemHighlight.m in Sources */,
@@ -2607,6 +2644,13 @@
 				783DAEC117C829E500CDF109 /* QuestService.m in Sources */,
 				783DAEC417C82BFF00CDF109 /* QuestLevel.m in Sources */,
 				783DAECF17C8336600CDF109 /* ProgressAccessoryView.m in Sources */,
+				783DAED417C846C100CDF109 /* DataModel.xcdatamodeld in Sources */,
+				7843E71817C8DF44009EF3AB /* AITutorial1BasicMagic.m in Sources */,
+				7843E71B17C8DF51009EF3AB /* AITutorial2Counters.m in Sources */,
+				7843E71E17C8DF5F009EF3AB /* AITutorial3Discovery.m in Sources */,
+				7843E72117C8E586009EF3AB /* ChatBubbleSprite.m in Sources */,
+				7843E72617C8F5D9009EF3AB /* RACHelpers.m in Sources */,
+				7843E72917C8FE22009EF3AB /* TutorialStep.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2780,15 +2824,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		78306B9A17A7144300487B16 /* DataModel.xcdatamodeld */ = {
+		783DAED017C846C100CDF109 /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				783DAEBE17C8262800CDF109 /* DataModel 00.14.xcdatamodel */,
-				7881FD8417BD4A9600FBC7C8 /* DataModel 3.xcdatamodel */,
-				7801E9FA17B18ED4005D14D8 /* DataModel 2.xcdatamodel */,
-				78306B9B17A7144300487B16 /* DataModel.xcdatamodel */,
+				783DAED517C846DC00CDF109 /* DataModel 4.xcdatamodel */,
+				783DAED117C846C100CDF109 /* DataModel 2.xcdatamodel */,
+				783DAED217C846C100CDF109 /* DataModel 3.xcdatamodel */,
+				783DAED317C846C100CDF109 /* DataModel.xcdatamodel */,
 			);
-			currentVersion = 783DAEBE17C8262800CDF109 /* DataModel 00.14.xcdatamodel */;
+			currentVersion = 783DAED517C846DC00CDF109 /* DataModel 4.xcdatamodel */;
 			path = DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

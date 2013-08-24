@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-
+#import "AIService.h"
 
 @interface QuestLevel : NSManagedObject
 
@@ -16,6 +16,7 @@
 @property (nonatomic) int16_t gamesTotal;
 @property (nonatomic) int16_t gamesWins;
 @property (nonatomic) int16_t level;
+@property (nonatomic) int16_t wizardLevel;
 @property (nonatomic) BOOL passed;
 
 @property (nonatomic, readonly) NSInteger masteryWins;
@@ -23,6 +24,8 @@
 @property (nonatomic, readonly) CGFloat progress;
 @property (nonatomic, readonly) BOOL isMastered;
 @property (nonatomic, readonly) BOOL hasAttempted;
+
+@property (nonatomic, strong) id<AIService> ai;
 
 //@property (nonatomic, strong) NSString * woot;
 

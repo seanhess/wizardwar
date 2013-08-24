@@ -25,6 +25,7 @@
 #import "SpellsLayer.h"
 
 #import <ReactiveCocoa.h>
+#import "RACHelpers.h"
 
 #define INDICATOR_PADDING_Y 40
 
@@ -43,6 +44,9 @@
 @property (nonatomic, strong) UIButton * backButton;
 @property (nonatomic, strong) CCSprite * background;
 
+@property (nonatomic) MatchStatus matchStatus;
+@property (nonatomic, strong) RACSignal * aiHideControlsSignal;
+
 @end
 
 @implementation MatchLayer
@@ -54,9 +58,6 @@
         self.units = units;
         
         [self addChild:[CCLayerColor layerWithColor:ccc4(66, 66, 66, 255)]];
-        
-        __weak MatchLayer * wself = self;
-        
         
         // Manually use the suffix, because fallbacks conflict for other stuff
         NSString * backgroundName = @[@"cave", @"icecave", @"evilforest", @"castle"].randomItem;
@@ -96,9 +97,6 @@
         LifeIndicatorNode * player1Indicator = [[LifeIndicatorNode alloc] initWithUnits:units];
         LifeIndicatorNode * player2Indicator = [[LifeIndicatorNode alloc] initWithUnits:units];
         
-        player1Indicator.match = self.match;
-        player2Indicator.match = self.match;
-        
         player1Indicator.position = ccp(self.units.min, self.units.maxY - INDICATOR_PADDING_Y*units.spriteScaleModifier);
         player2Indicator.position = ccp(self.units.max, self.units.maxY - INDICATOR_PADDING_Y*units.spriteScaleModifier);
         
@@ -107,9 +105,15 @@
         
         [self scheduleUpdate];
         
-        [[RACAble(self.match.status) distinctUntilChanged] subscribeNext:^(id value) {
-            [wself renderMatchStatus];
-        }];
+        self.matchStatusSignal = [[RACAbleWithStart(self.match.status) distinctUntilChanged] filter:RACFilterExists];
+        self.aiHideControlsSignal = [RACAbleWithStart(self.match.ai.hideControls) distinctUntilChanged];
+        self.showControlsSignal = [RACSignal combineLatest:@[self.matchStatusSignal, self.aiHideControlsSignal]
+            reduce:^(NSNumber* status, NSNumber* hideControls) {
+                return @((status.intValue == MatchStatusPlaying) && !hideControls.intValue);
+            }];
+        
+        RAC(self.matchStatus) = self.matchStatusSignal;
+        RAC(self.indicators.visible) = self.showControlsSignal;
         
         // DEBUG THING
 //        self.debug = [CCLabelTTF labelWithString:@"0" fontName:@"Marker Felt" fontSize:120];
@@ -153,9 +157,9 @@
         [[SimpleAudioEngine sharedEngine] playEffect:@"fireball.mp3"];
     }
     else if([spell isType:Earthwall]) {
-        [[SimpleAudioEngine sharedEngine] playEffect:@"eart®hwall.mp3"];
+        [[SimpleAudioEngine sharedEngine] playEffect:@"earthwall.mp3"];
     }
-    else if ([spell isType:Icewall]) {
+    else if ([spell isAnyType:@[Icewall, Firewall]]) {
         [[SimpleAudioEngine sharedEngine] playEffect:@"icewall.mp3"];
     }
     else if([spell isType:Vine]) {
@@ -166,7 +170,7 @@
     }
     else if([spell isType:Monster]) {
         [[SimpleAudioEngine sharedEngine] playEffect:@"monster.mp3"];
-    }
+    } 
     else if([spell isType:Windblast]) {
         [[SimpleAudioEngine sharedEngine] playEffect:@"windblast.mp3"];
     }
@@ -190,7 +194,7 @@
 
 - (void)didAddPlayer:(Wizard *)wizard {
     BOOL isCurrentWizard = (wizard == self.match.currentWizard);
-    WizardSprite * sprite = [[WizardSprite alloc] initWithWizard:wizard units:self.units match:self.match isCurrentWizard:isCurrentWizard];
+    WizardSprite * sprite = [[WizardSprite alloc] initWithWizard:wizard units:self.units match:self.match isCurrentWizard:isCurrentWizard hideControls:self.aiHideControlsSignal];
 
     [self.wizards addChild:sprite];
 }
@@ -207,7 +211,7 @@
     self.debug.string = [NSString stringWithFormat:@"%i", (int)(currentTick * TICK_INTERVAL)];
 }
 
-- (void)renderMatchStatus {
+- (void)setMatchStatus:(MatchStatus)status {
     self.spells.visible = (self.match.status == MatchStatusPlaying);
     
     if (self.match.status == MatchStatusPlaying) {

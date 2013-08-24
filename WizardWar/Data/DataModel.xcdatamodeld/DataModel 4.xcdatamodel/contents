@@ -20,6 +20,7 @@
         <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="passed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="wizardLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="SpellRecord" representedClassName="SpellRecord" syncable="YES">
         <attribute name="castTotal" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -54,7 +55,7 @@
     <elements>
         <element name="Challenge" positionX="0" positionY="0" width="128" height="105"/>
         <element name="FacebookUser" positionX="0" positionY="0" width="128" height="135"/>
-        <element name="QuestLevel" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="QuestLevel" positionX="160" positionY="192" width="128" height="135"/>
         <element name="SpellRecord" positionX="160" positionY="192" width="128" height="120"/>
         <element name="User" positionX="0" positionY="0" width="128" height="360"/>
     </elements>

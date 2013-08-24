@@ -13,10 +13,12 @@
 #import "UserService.h"
 #import "AppStyle.h"
 #import <BButton.h>
+#import "MatchViewController.h"
 
 @interface QuestViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray * levels;
+@property (strong, nonatomic) MatchViewController * match;
 
 @end
 
@@ -81,7 +83,13 @@
     progress.progressView.progress = questLevel.progress;
     progress.showLock = NO;
     cell.textLabel.textColor = [UIColor darkTextColor];
-//    cell.detailTextLabel.text = @"The maginificent";
+    
+    // Should I add the level of the encounter here?
+    // Think more about this
+//    if (questLevel.wizardLevel > 0)
+//        cell.detailTextLabel.text = [NSString stringWithFormat:@"Level %i", questLevel.wizardLevel];
+//    else
+//        cell.detailTextLabel.text = nil;
     
     if ([QuestService.shared isLocked:questLevel user:user]) {
         progress.showLock = YES;
@@ -100,7 +108,7 @@
         progress.label.textColor = [AppStyle blueNavColor];
         
         if (questLevel.hasAttempted) {
-            progress.label.text = [NSString stringWithFormat:@"%i:%i Wins", questLevel.gamesWins, questLevel.gamesLosses];
+            progress.label.text = [NSString stringWithFormat:@"Won %i:%i", questLevel.gamesWins, questLevel.gamesLosses];
             progress.alignCenter = NO;            
         } else {
             progress.label.text = @"NEW";
@@ -119,7 +127,16 @@
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];    
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    QuestLevel * questLevel = [self.levels objectAtIndex:indexPath.row];
+    id<AIService>ai = questLevel.ai;
+    
+    MatchViewController * match = [[MatchViewController alloc] init];
+    [match createMatchWithWizard:UserService.shared.currentWizard withAI:ai];
+    self.match = match;
+    [self.navigationController presentViewController:match animated:YES completion:nil];
+    [match startMatch];
 }
 
 //-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

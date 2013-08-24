@@ -293,10 +293,10 @@
 //    }];
 //}
 
--(void)showHelpMessage {
-    self.showHelp = YES;
-    [self renderFeedback];
-}
+//-(void)showHelpMessage {
+//    self.showHelp = YES;
+//    [self renderFeedback];
+//}
 
 -(void)setCastDisabled:(BOOL)castDisabled {
     _castDisabled = castDisabled;

@@ -9,8 +9,10 @@
 #import "CCSprite.h"
 #import "Wizard.h"
 #import "Match.h"
+#import <ReactiveCocoa.h>
 
 @interface WizardSprite : CCSprite
 @property (nonatomic, strong) Wizard * wizard;
--(id)initWithWizard:(Wizard*)wizard units:(Units*)units match:(Match*)match isCurrentWizard:(BOOL)isCurrentWizard;
+@property (nonatomic, strong) RACSignal * hideControlsSignal;
+-(id)initWithWizard:(Wizard*)wizard units:(Units*)units match:(Match*)match isCurrentWizard:(BOOL)isCurrentWizard hideControls:(RACSignal*)hideControls;
 @end

@@ -9,6 +9,7 @@
 #import "QuestService.h"
 #import "QuestLevel.h"
 #import "ObjectStore.h"
+#import "AITutorial1BasicMagic.h"
 
 #define QUEST_LEVEL_ENTITY @"QuestLevel"
 
@@ -48,30 +49,23 @@
 }
 
 - (NSArray*)allQuestLevels {
-    QuestLevel * tutorial1 = [self levelWithName:@"Tutorial - Using Magic"];
+    QuestLevel * tutorial1 = [self levelWithName:@"Tutorial 1 - Using Magic"];
     tutorial1.level = 0;
-    tutorial1.gamesTotal = 2;
-    tutorial1.gamesWins = 0;
+    tutorial1.ai = [AITutorial1BasicMagic new];
     
-    QuestLevel * tutorial2 = [self levelWithName:@"Tutorial - Counterspells"];
-    tutorial2.level = 0;
-    tutorial2.gamesTotal = 7;
-    tutorial2.gamesWins = 4;
+    QuestLevel * tutorial2 = [self levelWithName:@"Tutorial 2 - Counterspells"];
+    tutorial2.level = 1;
     
-    QuestLevel * tutorial3 = [self levelWithName:@"Tutorial - Discovery"];
-    tutorial3.level = 0;
-    tutorial3.gamesTotal = 2;
-    tutorial3.gamesWins = 2;
+    QuestLevel * tutorial3 = [self levelWithName:@"Tutorial 3 - Discovery"];
+    tutorial3.level = 2;
     
     QuestLevel * zorlack = [self levelWithName:@"Zorlack"];
-    zorlack.level = 0;
-    zorlack.gamesTotal = 0;
-    zorlack.gamesWins = 0;
+    zorlack.level = 1;
+    zorlack.wizardLevel = 3;
     
     QuestLevel * asdf = [self levelWithName:@"asdf"];
     asdf.level = 2;
-    asdf.gamesTotal = 0;
-    asdf.gamesWins = 0;
+    asdf.wizardLevel = 4;
     
     
     return @[
@@ -79,6 +73,11 @@
         tutorial2,
         tutorial3,
         zorlack,
+        zorlack,
+        zorlack,
+        zorlack,
+       zorlack,
+       zorlack,
         asdf,
     ];
 }

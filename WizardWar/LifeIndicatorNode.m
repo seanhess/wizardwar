@@ -60,10 +60,6 @@
         [[RACAble(self.player.effect) distinctUntilChanged] subscribeNext:^(id value) {
             [self renderEffect];
         }];
-        
-        [[RACAble(self.match.status) distinctUntilChanged] subscribeNext:^(id value) {
-            [self renderMatchStatus];
-        }];
     }
     return self;
 }
@@ -110,10 +106,6 @@
 //            [sprite stopAction:self.healAction];
 //        }];
     }
-}
-
--(void)renderMatchStatus {
-    self.visible = self.match.status == MatchStatusPlaying;
 }
 
 @end

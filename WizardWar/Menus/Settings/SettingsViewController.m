@@ -8,7 +8,7 @@
 
 #import "SettingsViewController.h"
 #import "ComicZineDoubleLabel.h"
-#import <TestFlight.h>
+#import "TestFlight.h"
 #import <BButton.h>
 #import "InfoService.h"
 #import "UserService.h"

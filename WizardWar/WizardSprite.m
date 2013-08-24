@@ -20,6 +20,8 @@
 #import "OLSprite.h"
 #import "PECthulhu.h"
 #import "PELevitate.h"
+#import "ChatBubbleSprite.h"
+#import "RACHelpers.h"
 
 #define SLEEP_ANIMATION_START_DELAY 0.2
 #define WIZARD_PADDING 20
@@ -44,6 +46,7 @@
 @property (nonatomic, strong) Units * units;
 
 @property (nonatomic, strong) CCLabelTTF * label;
+@property (nonatomic, strong) ChatBubbleSprite * chatBubble;
 @property (nonatomic, strong) OLSprite * skin;
 @property (nonatomic, strong) CCSprite * clothes;
 @property (nonatomic, strong) CCSprite * effect;
@@ -77,12 +80,17 @@
 
 @property (nonatomic, strong) PlayerEffect * currentEffect;
 
+@property (nonatomic, strong) NSString * chatMessage;
+@property (nonatomic) MatchStatus matchStatus;
+@property (nonatomic) WizardStatus wizardStatus;
+
 @end
 
 @implementation WizardSprite
 
--(id)initWithWizard:(Wizard *)wizard units:(Units *)units match:(Match*)match isCurrentWizard:(BOOL)isCurrentWizard {
+-(id)initWithWizard:(Wizard *)wizard units:(Units *)units match:(Match*)match isCurrentWizard:(BOOL)isCurrentWizard hideControls:(RACSignal *)hideControls {
     if ((self=[super init])) {
+        
         self.wizard = wizard;
         self.units = units;
         self.match = match;
@@ -103,24 +111,22 @@
         self.label = [CCLabelTTF labelWithString:self.wizardName fontName:FONT_COMIC_ZINE fontSize:36];
         self.label.position = ccp(0, 130);
         [self addChild:self.label];
-
+        
 #ifdef DEBUG
         self.headDebug = [DebugSprite new];
         [self addChild:self.headDebug];
 #endif
         
+        self.chatBubble = [ChatBubbleSprite new];
+        [self addChild:self.chatBubble];
+        self.chatBubble.position = ccp(self.wizard.direction * 50, 50);
+        
         // BIND: state, position
-        [self renderPosition];
-        [self renderStatus];
-        [self renderMatchStatus];
         
         [[RACAble(self.wizard.position) distinctUntilChanged] subscribeNext:^(id x) {
             [wself renderPosition];
         }];
         
-        [[RACAble(self.wizard.state) distinctUntilChanged] subscribeNext:^(id x) {
-            [wself renderStatus];
-        }];
         
         [[RACAble(self.wizard.effect) distinctUntilChanged] subscribeNext:^(id x) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -134,13 +140,24 @@
             });
         }];
         
-        [[RACAble(self.match.status) distinctUntilChanged] subscribeNext:^(id x) {
-            [wself renderMatchStatus];
+        RACSignal * matchStatusSignal = [RACAble(self.match.status) distinctUntilChanged];
+        RAC(self.wizardStatus) = [RACAble(self.wizard.state) distinctUntilChanged];
+        RAC(self.matchStatus) = matchStatusSignal;
+
+        RACSignal * message = RACAble(self.wizard.message);
+        RAC(self.chatBubble.visible) = [message map:RACMapExists];
+        RAC(self.chatBubble.message) = message;
+        
+        RAC(self.label.visible) = [[hideControls combineLatestWith:matchStatusSignal] reduceEach:^(NSNumber*hideControls, NSNumber*status) {
+            return @(!hideControls.intValue && (status.intValue == MatchStatusReady || status.intValue == MatchStatusSyncing));
         }];
+        
+        self.wizard = wizard;
         
     }
     return self;
 }
+
 
 -(NSMapTable*)wizard1HeadOffsets {
     if (!_wizard1HeadOffsets) {
@@ -190,8 +207,9 @@
 -(void)renderPosition {
     self.position = self.calculatedPosition;
 //    NSLog(@"renderPosition %@", NSStringFromCGPoint(self.position));
-    self.skin.flipX = (self.wizard.position == UNITS_MAX);
+    self.skin.flipX = (self.wizard.direction < 0);
     self.clothes.flipX = self.skin.flipX;
+    self.chatBubble.flipX = self.skin.flipX;
 }
 
 -(void)update:(ccTime)delta {}
@@ -236,16 +254,21 @@
     self.effect.rotation = self.wizard.direction*self.browOffset.rotation;
 }
 
--(void)renderStatus {
+-(void)setChatMessage:(NSString*)message {
+    self.chatBubble.visible = (message != nil);
+    self.chatBubble.message = message;
+}
+
+-(void)setWizardStatus:(WizardStatus)status {
     
-    if (self.wizard.effect.class == PESleep.class && (self.wizard.state == WizardStatusReady || self.wizard.state == WizardStatusHit || self.wizard.state == WizardStatusCast))
+    if (self.wizard.effect.class == PESleep.class && (status == WizardStatusReady || status == WizardStatusHit || status == WizardStatusCast))
         return;
     
     [self.skin stopAction:self.skinStatusAction];
     [self.clothes stopAction:self.clothesStatusAction];
     
-    CCAnimation * skinAnimation = [self animationForStatus:self.wizard.state clothes:NO];
-    CCAnimation * clothesAnimation = [self animationForStatus:self.wizard.state clothes:YES];
+    CCAnimation * skinAnimation = [self animationForStatus:status clothes:NO];
+    CCAnimation * clothesAnimation = [self animationForStatus:status clothes:YES];
     
     self.skinStatusAnimation = skinAnimation;
     self.clothesStatusAnimation = clothesAnimation;
@@ -277,13 +300,11 @@
     return animation;
 }
 
-- (void)renderMatchStatus {
-    if ((self.match.status == MatchStatusReady || self.match.status == MatchStatusSyncing) && self.isCurrentWizard)
+- (void)setMatchStatus:(MatchStatus)status {
+    if ((status == MatchStatusReady || status == MatchStatusSyncing) && self.isCurrentWizard)
         self.skin.color = ccc3(0, 255, 0);
     else
         self.skin.color = ccWHITE;
-    
-    self.label.visible = (self.match.status == MatchStatusReady || self.match.status == MatchStatusSyncing);
 }
 
 - (NSString*)wizardName {
@@ -318,7 +339,7 @@
     }
     
     else if ([self.wizard.effect class] == [PEHelmet class]) {
-        [self renderStatus];
+        [self setWizardStatus:self.wizard.state];
         self.effect = [CCSprite spriteWithSpriteFrameName:@"helmet.png"];
         self.effect.flipX = self.wizard.position == UNITS_MAX;
         [self alignHelmet];
@@ -385,7 +406,7 @@
 //        self.clothes.color = [self colorWithColor:self.wizard.color];
 //        [self runAction:[CCMoveTo actionWithDuration:0.2 position:self.calculatedPosition]];
 //        [self runAction:[CCRotateTo actionWithDuration:0.2 angle:0]];
-        [self renderStatus];
+        [self setWizardStatus:self.wizard.state];
     }
     
     if (self.effect)

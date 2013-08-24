@@ -16,6 +16,6 @@
 @property (strong, nonatomic) Combos * combos;
 @property (strong, nonatomic) DrawingLayer * drawingLayer;
 -(void)delayCast:(NSTimeInterval)delay;
--(void)showHelpMessage;
+//-(void)showHelpMessage;
 -(void)attemptedCastButFailedBecauseOfSleep;
 @end

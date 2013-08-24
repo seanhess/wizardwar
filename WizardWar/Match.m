@@ -31,7 +31,6 @@
 @property (nonatomic, strong) GameTimerService * timer;
 @property (nonatomic, strong) id<Multiplayer> multiplayer;
 @property (nonatomic, strong) TimerSyncService * sync;
-@property (nonatomic, strong) id<AIService> ai;
 
 @property (nonatomic, strong) NSMutableDictionary * players;
 @property (nonatomic, strong) NSMutableDictionary * spells;
