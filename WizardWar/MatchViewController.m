@@ -359,7 +359,8 @@
 # pragma mark Pentagram Delegate
 
 -(void)didTapPentagram {
-    [self.match.ai didTapControls];
+    if (self.match.status == MatchStatusPlaying)
+        [self.match.ai didTapControls];
 }
 
 -(void)setCastSpell:(Spell *)spell;

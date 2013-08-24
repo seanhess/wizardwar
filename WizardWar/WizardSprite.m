@@ -144,9 +144,7 @@
         RAC(self.wizardStatus) = [RACAble(self.wizard.state) distinctUntilChanged];
         RAC(self.matchStatus) = matchStatusSignal;
 
-        RACSignal * message = RACAble(self.wizard.message);
-        RAC(self.chatBubble.visible) = [message map:RACMapExists];
-        RAC(self.chatBubble.message) = message;
+        RAC(self.chatMessage) = RACAble(self.wizard.message);
         
         RAC(self.label.visible) = [[hideControls combineLatestWith:matchStatusSignal] reduceEach:^(NSNumber*hideControls, NSNumber*status) {
             return @(!hideControls.intValue && (status.intValue == MatchStatusReady || status.intValue == MatchStatusSyncing));
@@ -255,8 +253,18 @@
 }
 
 -(void)setChatMessage:(NSString*)message {
-    self.chatBubble.visible = (message != nil);
+    if (message) {
+        // start at 0, animate out
+        self.chatBubble.scale = 0;
+        CCAction * popIn = [CCScaleTo actionWithDuration:0.2 scale:1.0];
+        [self.chatBubble runAction:popIn];
+    }
+    else {
+        CCAction * popOut = [CCScaleTo actionWithDuration:0.2 scale:0.0];
+        [self.chatBubble runAction:popOut];
+    }
     self.chatBubble.message = message;
+    _chatMessage = message;
 }
 
 -(void)setWizardStatus:(WizardStatus)status {

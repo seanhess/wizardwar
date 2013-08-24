@@ -21,7 +21,6 @@
 #import "SpellEffectService.h"
 
 #define CLEANUP_TICKS 50 // 10 is 1 second
-#define MIN_READY_STATE 2.5
 
 // sync spells to the server every N seconds
 @interface Match () <GameTimerDelegate, MultiplayerDelegate, TimerSyncDelegate, AIDelegate>
@@ -42,6 +41,8 @@
 
 @property (nonatomic, strong) SpellEffectService * effects;
 
+@property (nonatomic) NSTimeInterval minReadyStateTime;
+
 @end
 
 // Always use a challenge!
@@ -59,6 +60,8 @@
         self.sync.delegate = self;
         self.status = MatchStatusReady;
         self.currentWizard = wizard;
+        
+        self.minReadyStateTime = 2.0;
         
         self.ai = ai;
         self.ai.delegate = self;
@@ -81,7 +84,7 @@
     [self.multiplayer addPlayer:self.currentWizard];
     
     __weak Match * wself = self;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MIN_READY_STATE * NSEC_PER_SEC));
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.minReadyStateTime * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         wself.enoughTimeAsReady = YES;
     });
