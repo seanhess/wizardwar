@@ -64,4 +64,8 @@
     return [UIColor colorFromRGB:0xF3826F];
 }
 
++(UIColor*)grayLockedColor {
+    return [UIColor colorFromRGB:0x8F8F8F];
+}
+
 @end

@@ -18,11 +18,12 @@
 - (NSString*)spellTitle:(SpellRecord*)record;
 - (UIAlertView*)failAlertForRecord:(SpellRecord*)record;
 - (UIImage*)spellbookIcon:(SpellRecord*)record;
-- (SpellRecord*)recordByType:(NSString*)type;
-- (SpellRecord*)recordBySpellCreate:(Spell*)spell;
-- (NSArray*)allSpellRecords;
 - (NSString*)spellIconName:(SpellRecord*)record;
 - (NSString*)spellIconNameByType:(NSString*)type;
+
+- (NSArray*)allSpellRecords;
+- (SpellRecord*)recordByType:(NSString*)type;
+- (SpellRecord*)recordBySpellCreate:(Spell*)spell;
 
 - (void)mainPlayerCastSpell:(Spell*)spell inMatch:(NSString*)matchId;
 - (void)finishedMatch:(NSString*)matchId;

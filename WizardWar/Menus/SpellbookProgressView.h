@@ -9,11 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <DDProgressView.h>
 #import "SpellRecord.h"
+#import "ProgressAccessoryView.h"
 
-@interface SpellbookProgressView : UIView
-@property (nonatomic, strong) UILabel * label;
-@property (nonatomic) CGFloat progress;
-
+@interface SpellbookProgressView : ProgressAccessoryView
 @property (nonatomic, strong) SpellRecord * record;
-@property (nonatomic, strong) UIColor * progressColor;
 @end

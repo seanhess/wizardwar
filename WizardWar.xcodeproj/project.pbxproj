@@ -167,6 +167,11 @@
 		7837D6AD17540836001D820E /* GameTimerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7837D6AC17540836001D820E /* GameTimerService.m */; };
 		7837D6B017540893001D820E /* GameTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7837D6AF17540893001D820E /* GameTime.m */; };
 		783DAEB217C7DE4F00CDF109 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783DAEB117C7DE4F00CDF109 /* MessageUI.framework */; };
+		783DAEBC17C824B400CDF109 /* QuestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 783DAEBA17C824B400CDF109 /* QuestViewController.m */; };
+		783DAEBD17C824B400CDF109 /* QuestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 783DAEBB17C824B400CDF109 /* QuestViewController.xib */; };
+		783DAEC117C829E500CDF109 /* QuestService.m in Sources */ = {isa = PBXBuildFile; fileRef = 783DAEC017C829E500CDF109 /* QuestService.m */; };
+		783DAEC417C82BFF00CDF109 /* QuestLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 783DAEC317C82BFF00CDF109 /* QuestLevel.m */; };
+		783DAECF17C8336600CDF109 /* ProgressAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 783DAECE17C8336600CDF109 /* ProgressAccessoryView.m */; };
 		7842FB5817C26DE00050A858 /* bubble-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB5717C26DE00050A858 /* bubble-animation.plist */; };
 		7842FB5A17C26DE60050A858 /* earthwall-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB5917C26DE60050A858 /* earthwall-animation.plist */; };
 		7842FB6C17C26E0C0050A858 /* explode-animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7842FB6B17C26E0C0050A858 /* explode-animation.plist */; };
@@ -237,16 +242,12 @@
 		785B049317C2C4E200B064F6 /* lightning.png in Resources */ = {isa = PBXBuildFile; fileRef = 785B049117C2C4E200B064F6 /* lightning.png */; };
 		785B049417C2C4E200B064F6 /* vine.png in Resources */ = {isa = PBXBuildFile; fileRef = 785B049217C2C4E200B064F6 /* vine.png */; };
 		785C44B317BE671200733E7B /* WarningCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 785C44B217BE671200733E7B /* WarningCell.xib */; };
-		785FBEC4177261BD0021AEE5 /* InstagramEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEA6177261BD0021AEE5 /* InstagramEnemy.m */; };
-		785FBEC5177261BD0021AEE5 /* Interaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEA8177261BD0021AEE5 /* Interaction.m */; };
 		785FBEC6177261BD0021AEE5 /* LandingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEAA177261BD0021AEE5 /* LandingViewController.m */; };
 		785FBEC7177261BD0021AEE5 /* LandingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEAB177261BD0021AEE5 /* LandingViewController.xib */; };
-		785FBEC8177261BD0021AEE5 /* LocalParty.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEAD177261BD0021AEE5 /* LocalParty.m */; };
 		785FBECA177261BD0021AEE5 /* MainNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEB1177261BD0021AEE5 /* MainNavViewController.m */; };
 		785FBECB177261BD0021AEE5 /* MatchmakingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEB3177261BD0021AEE5 /* MatchmakingViewController.m */; };
 		785FBECC177261BD0021AEE5 /* MatchmakingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEB4177261BD0021AEE5 /* MatchmakingViewController.xib */; };
 		785FBECD177261BD0021AEE5 /* MenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEB6177261BD0021AEE5 /* MenuButton.m */; };
-		785FBED0177261BD0021AEE5 /* Party.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEBB177261BD0021AEE5 /* Party.m */; };
 		785FBEDC1772628C0021AEE5 /* LoveYaLikeASister.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 785FBED91772628C0021AEE5 /* LoveYaLikeASister.ttf */; };
 		785FBEDD1772628C0021AEE5 /* LoveYaLikeASisterSolid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 785FBEDA1772628C0021AEE5 /* LoveYaLikeASisterSolid.ttf */; };
 		785FBEE3177263850021AEE5 /* AppStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 785FBEE2177263850021AEE5 /* AppStyle.m */; };
@@ -701,6 +702,16 @@
 		7837D6AE17540893001D820E /* GameTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTime.h; sourceTree = "<group>"; };
 		7837D6AF17540893001D820E /* GameTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTime.m; sourceTree = "<group>"; };
 		783DAEB117C7DE4F00CDF109 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		783DAEB917C824B400CDF109 /* QuestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestViewController.h; sourceTree = "<group>"; };
+		783DAEBA17C824B400CDF109 /* QuestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestViewController.m; sourceTree = "<group>"; };
+		783DAEBB17C824B400CDF109 /* QuestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestViewController.xib; sourceTree = "<group>"; };
+		783DAEBE17C8262800CDF109 /* DataModel 00.14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DataModel 00.14.xcdatamodel"; sourceTree = "<group>"; };
+		783DAEBF17C829E400CDF109 /* QuestService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestService.h; sourceTree = "<group>"; };
+		783DAEC017C829E500CDF109 /* QuestService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestService.m; sourceTree = "<group>"; };
+		783DAEC217C82BFF00CDF109 /* QuestLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestLevel.h; sourceTree = "<group>"; };
+		783DAEC317C82BFF00CDF109 /* QuestLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestLevel.m; sourceTree = "<group>"; };
+		783DAECD17C8336600CDF109 /* ProgressAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressAccessoryView.h; sourceTree = "<group>"; };
+		783DAECE17C8336600CDF109 /* ProgressAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressAccessoryView.m; sourceTree = "<group>"; };
 		7842FB5217C2681B0050A858 /* packTextures.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = packTextures.sh; sourceTree = "<group>"; };
 		7842FB5717C26DE00050A858 /* bubble-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "bubble-animation.plist"; path = "WizardWar/images/spells-core/bubble/bubble-animation.plist"; sourceTree = SOURCE_ROOT; };
 		7842FB5917C26DE60050A858 /* earthwall-animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "earthwall-animation.plist"; path = "WizardWar/images/spells-core/earthwall/earthwall-animation.plist"; sourceTree = SOURCE_ROOT; };
@@ -787,15 +798,9 @@
 		785B049217C2C4E200B064F6 /* vine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vine.png; sourceTree = "<group>"; };
 		785B049517C2C70B00B064F6 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		785C44B217BE671200733E7B /* WarningCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WarningCell.xib; sourceTree = "<group>"; };
-		785FBEA5177261BD0021AEE5 /* InstagramEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramEnemy.h; sourceTree = "<group>"; };
-		785FBEA6177261BD0021AEE5 /* InstagramEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramEnemy.m; sourceTree = "<group>"; };
-		785FBEA7177261BD0021AEE5 /* Interaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Interaction.h; sourceTree = "<group>"; };
-		785FBEA8177261BD0021AEE5 /* Interaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Interaction.m; sourceTree = "<group>"; };
 		785FBEA9177261BD0021AEE5 /* LandingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LandingViewController.h; sourceTree = "<group>"; };
 		785FBEAA177261BD0021AEE5 /* LandingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandingViewController.m; sourceTree = "<group>"; };
 		785FBEAB177261BD0021AEE5 /* LandingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LandingViewController.xib; sourceTree = "<group>"; };
-		785FBEAC177261BD0021AEE5 /* LocalParty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalParty.h; sourceTree = "<group>"; };
-		785FBEAD177261BD0021AEE5 /* LocalParty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalParty.m; sourceTree = "<group>"; };
 		785FBEB0177261BD0021AEE5 /* MainNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainNavViewController.h; sourceTree = "<group>"; };
 		785FBEB1177261BD0021AEE5 /* MainNavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainNavViewController.m; sourceTree = "<group>"; };
 		785FBEB2177261BD0021AEE5 /* MatchmakingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchmakingViewController.h; sourceTree = "<group>"; };
@@ -803,8 +808,6 @@
 		785FBEB4177261BD0021AEE5 /* MatchmakingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchmakingViewController.xib; sourceTree = "<group>"; };
 		785FBEB5177261BD0021AEE5 /* MenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuButton.h; sourceTree = "<group>"; };
 		785FBEB6177261BD0021AEE5 /* MenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuButton.m; sourceTree = "<group>"; };
-		785FBEBA177261BD0021AEE5 /* Party.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Party.h; sourceTree = "<group>"; };
-		785FBEBB177261BD0021AEE5 /* Party.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Party.m; sourceTree = "<group>"; };
 		785FBED91772628C0021AEE5 /* LoveYaLikeASister.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LoveYaLikeASister.ttf; sourceTree = "<group>"; };
 		785FBEDA1772628C0021AEE5 /* LoveYaLikeASisterSolid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LoveYaLikeASisterSolid.ttf; sourceTree = "<group>"; };
 		785FBEE1177263840021AEE5 /* AppStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppStyle.h; sourceTree = "<group>"; };
@@ -1416,6 +1419,25 @@
 			name = Pentagram;
 			sourceTree = "<group>";
 		};
+		783DAEB817C8249400CDF109 /* Quest */ = {
+			isa = PBXGroup;
+			children = (
+				783DAEB917C824B400CDF109 /* QuestViewController.h */,
+				783DAEBA17C824B400CDF109 /* QuestViewController.m */,
+				783DAEBB17C824B400CDF109 /* QuestViewController.xib */,
+			);
+			path = Quest;
+			sourceTree = "<group>";
+		};
+		783DAECC17C832F800CDF109 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				783DAECD17C8336600CDF109 /* ProgressAccessoryView.h */,
+				783DAECE17C8336600CDF109 /* ProgressAccessoryView.m */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
 		7842FBBD17C278F70050A858 /* TestFlightSDK2.0.0 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1505,7 +1527,11 @@
 		785FBEA4177261BD0021AEE5 /* Menus */ = {
 			isa = PBXGroup;
 			children = (
+				785FBED7177262010021AEE5 /* Data */,
+				785FBED6177261D00021AEE5 /* Service */,
+				78DAB8251795E24F0093A701 /* Settings */,
 				7842FBC717C27E910050A858 /* Spellbook */,
+				783DAEB817C8249400CDF109 /* Quest */,
 				785FBEB0177261BD0021AEE5 /* MainNavViewController.h */,
 				785FBEB1177261BD0021AEE5 /* MainNavViewController.m */,
 				785FBEA9177261BD0021AEE5 /* LandingViewController.h */,
@@ -1523,14 +1549,11 @@
 				7892EF9817BE66E100F9A89D /* WarningCell.h */,
 				7892EF9917BE66E100F9A89D /* WarningCell.m */,
 				785C44B217BE671200733E7B /* WarningCell.xib */,
-				78DAB8251795E24F0093A701 /* Settings */,
 				78DAB81B1795AAE40093A701 /* FriendsViewController.h */,
 				78DAB81C1795AAE40093A701 /* FriendsViewController.m */,
 				78DAB81D1795AAE40093A701 /* FriendsViewController.xib */,
 				785FBEB5177261BD0021AEE5 /* MenuButton.h */,
 				785FBEB6177261BD0021AEE5 /* MenuButton.m */,
-				785FBED6177261D00021AEE5 /* Service */,
-				785FBED7177262010021AEE5 /* Data */,
 			);
 			path = Menus;
 			sourceTree = "<group>";
@@ -1554,6 +1577,8 @@
 				784D3BF31777C622009945F8 /* LocationService.m */,
 				785B045D17C2B17F00B064F6 /* SpellbookService.h */,
 				785B045E17C2B17F00B064F6 /* SpellbookService.m */,
+				783DAEBF17C829E400CDF109 /* QuestService.h */,
+				783DAEC017C829E500CDF109 /* QuestService.m */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -1561,16 +1586,10 @@
 		785FBED7177262010021AEE5 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				785FBEAC177261BD0021AEE5 /* LocalParty.h */,
-				785FBEAD177261BD0021AEE5 /* LocalParty.m */,
-				785FBEBA177261BD0021AEE5 /* Party.h */,
-				785FBEBB177261BD0021AEE5 /* Party.m */,
-				785FBEA5177261BD0021AEE5 /* InstagramEnemy.h */,
-				785FBEA6177261BD0021AEE5 /* InstagramEnemy.m */,
-				785FBEA7177261BD0021AEE5 /* Interaction.h */,
-				785FBEA8177261BD0021AEE5 /* Interaction.m */,
 				785B045A17C2B16700B064F6 /* SpellRecord.h */,
 				785B045B17C2B16700B064F6 /* SpellRecord.m */,
+				783DAEC217C82BFF00CDF109 /* QuestLevel.h */,
+				783DAEC317C82BFF00CDF109 /* QuestLevel.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -1893,6 +1912,7 @@
 				78F6B3C21746B29C00AA070D /* WizardDirector.h */,
 				78F6B3C31746B29C00AA070D /* WizardDirector.m */,
 				78C5CDA3178AFF6C00CDCC76 /* Data */,
+				783DAECC17C832F800CDF109 /* Library */,
 				785FBEA4177261BD0021AEE5 /* Menus */,
 				787A2A82174E81AC004C4FDB /* Service */,
 				78F6B3BD1746B27B00AA070D /* Match */,
@@ -2325,6 +2345,7 @@
 				7814767D17C6C418005DA04A /* icecave-ipad-hd.png in Resources */,
 				7814767E17C6C418005DA04A /* icecave-ipad.png in Resources */,
 				7814767F17C6C418005DA04A /* icecave.png in Resources */,
+				783DAEBD17C824B400CDF109 /* QuestViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2431,14 +2452,10 @@
 				7862465B1767EAE2001904AC /* PEHelmet.m in Sources */,
 				78D0855B176A4B2800EDC405 /* PEHeal.m in Sources */,
 				78D0855E176A4C7C00EDC405 /* PESleep.m in Sources */,
-				785FBEC4177261BD0021AEE5 /* InstagramEnemy.m in Sources */,
-				785FBEC5177261BD0021AEE5 /* Interaction.m in Sources */,
 				785FBEC6177261BD0021AEE5 /* LandingViewController.m in Sources */,
-				785FBEC8177261BD0021AEE5 /* LocalParty.m in Sources */,
 				785FBECA177261BD0021AEE5 /* MainNavViewController.m in Sources */,
 				785FBECB177261BD0021AEE5 /* MatchmakingViewController.m in Sources */,
 				785FBECD177261BD0021AEE5 /* MenuButton.m in Sources */,
-				785FBED0177261BD0021AEE5 /* Party.m in Sources */,
 				785FBEE3177263850021AEE5 /* AppStyle.m in Sources */,
 				784D3BDE1774F753009945F8 /* LobbyService.m in Sources */,
 				784D3BE1177501E9009945F8 /* UserService.m in Sources */,
@@ -2586,6 +2603,10 @@
 				7814764917C661B2005DA04A /* ComboService.m in Sources */,
 				7814764C17C66FEF005DA04A /* Combo.m in Sources */,
 				7814765317C6A10F005DA04A /* PECthulhu.m in Sources */,
+				783DAEBC17C824B400CDF109 /* QuestViewController.m in Sources */,
+				783DAEC117C829E500CDF109 /* QuestService.m in Sources */,
+				783DAEC417C82BFF00CDF109 /* QuestLevel.m in Sources */,
+				783DAECF17C8336600CDF109 /* ProgressAccessoryView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2762,11 +2783,12 @@
 		78306B9A17A7144300487B16 /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				783DAEBE17C8262800CDF109 /* DataModel 00.14.xcdatamodel */,
 				7881FD8417BD4A9600FBC7C8 /* DataModel 3.xcdatamodel */,
 				7801E9FA17B18ED4005D14D8 /* DataModel 2.xcdatamodel */,
 				78306B9B17A7144300487B16 /* DataModel.xcdatamodel */,
 			);
-			currentVersion = 7881FD8417BD4A9600FBC7C8 /* DataModel 3.xcdatamodel */;
+			currentVersion = 783DAEBE17C8262800CDF109 /* DataModel 00.14.xcdatamodel */;
 			path = DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

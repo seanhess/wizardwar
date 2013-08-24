@@ -14,9 +14,17 @@
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="facebookUser" inverseEntity="User" syncable="YES"/>
     </entity>
+    <entity name="QuestLevel" representedClassName="QuestLevel" syncable="YES">
+        <attribute name="gamesTotal" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="gamesWins" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="passed" optional="YES" attributeType="Boolean" syncable="YES"/>
+    </entity>
     <entity name="SpellRecord" representedClassName="SpellRecord" syncable="YES">
         <attribute name="castTotal" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="castUniqueMatches" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="isUnlocked" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
@@ -34,9 +42,11 @@
         <attribute name="locationLatitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="locationLongitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="questLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="updated" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="version" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="wizardLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="challenge" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Challenge" inverseName="main" inverseEntity="Challenge" syncable="YES"/>
         <relationship name="challenges" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Challenge" inverseName="opponent" inverseEntity="Challenge" syncable="YES"/>
         <relationship name="facebookUser" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="FacebookUser" inverseName="user" inverseEntity="FacebookUser" syncable="YES"/>
@@ -44,7 +54,8 @@
     <elements>
         <element name="Challenge" positionX="0" positionY="0" width="128" height="105"/>
         <element name="FacebookUser" positionX="0" positionY="0" width="128" height="135"/>
-        <element name="SpellRecord" positionX="160" positionY="192" width="128" height="105"/>
-        <element name="User" positionX="0" positionY="0" width="128" height="330"/>
+        <element name="QuestLevel" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="SpellRecord" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="User" positionX="0" positionY="0" width="128" height="360"/>
     </elements>
 </model>

@@ -29,6 +29,8 @@
 @dynamic facebookId;
 @dynamic facebookUser;
 @dynamic version;
+@dynamic wizardLevel;
+@dynamic questLevel;
 
 @synthesize isClose;
 @synthesize isGuestAccount;

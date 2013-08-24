@@ -39,7 +39,7 @@
     return YES;
 }
 -(NSString*)describe:(NSString *)type {
-    return [NSString stringWithFormat:@"%@ grows weaker", type];
+    return [NSString stringWithFormat:@"%@ is weaker", type];
 }
 @end
 

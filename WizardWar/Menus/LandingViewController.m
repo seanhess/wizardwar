@@ -27,11 +27,12 @@
 #import "ConnectionService.h"
 #import "SpellbookViewController.h"
 #import "InfoService.h"
+#import "QuestViewController.h"
 
 #import <FacebookSDK/FacebookSDK.h>
 #import "NSArray+Functional.h"
 
-@interface LandingViewController ()  <FBFriendPickerDelegate, HelpDelegate>
+@interface LandingViewController ()  <FBFriendPickerDelegate>
 @property (weak, nonatomic) IBOutlet MenuButton *multiplayerButton;
 @property (nonatomic, strong) MatchViewController* match;
 @end
@@ -110,26 +111,26 @@
 //}
 
 - (IBAction)didTapQuest:(id)sender {
-    [AnalyticsService event:@"PracticeGameTap"];
+    [AnalyticsService event:@"QuestTap"];
     
-    PracticeModeAIService * ai = [PracticeModeAIService new];
+    QuestViewController * quest = [QuestViewController new];
+    [self.navigationController pushViewController:quest animated:YES];
     
-    // 1 show the help
-    // 2 after it is closed, then start the match
-    MatchViewController * match = [[MatchViewController alloc] init];
-    [match createMatchWithWizard:UserService.shared.currentWizard withAI:ai];
-    [self.navigationController presentViewController:match animated:YES completion:nil];
-    self.match = match;
+//    PracticeModeAIService * ai = [PracticeModeAIService new];
+//    MatchViewController * match = [[MatchViewController alloc] init];
+//    [match createMatchWithWizard:UserService.shared.currentWizard withAI:ai];
+
+//    self.match = match;
     
-    HelpViewController * help = [HelpViewController new];
-    help.delegate = self;
-    [match showHelp:help];
+//    HelpViewController * help = [HelpViewController new];
+//    help.delegate = self;
+//    [match showHelp:help];
 }
 
-- (void)didTapHelpClose:(HelpViewController *)help {
-    [self.match hideHelp:help];
-    [self.match startMatch];
-}
+//- (void)didTapHelpClose:(HelpViewController *)help {
+//    [self.match hideHelp:help];
+//    [self.match startMatch];
+//}
 
 
 

@@ -24,5 +24,6 @@
 +(UIImage *)imageWithColor:(UIColor *)color;
 +(UIColor*)greenOnlineColor;
 +(UIColor*)redErrorColor;
++(UIColor*)grayLockedColor;
 
 @end

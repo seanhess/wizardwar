@@ -29,6 +29,8 @@
 @property (nonatomic) BOOL isMain;
 @property (nonatomic, retain) NSString* facebookId;
 @property (nonatomic, retain) NSString* version;
+@property (nonatomic) int16_t wizardLevel;
+@property (nonatomic) int16_t questLevel;
 
 @property (nonatomic) BOOL isGuestAccount;
 
