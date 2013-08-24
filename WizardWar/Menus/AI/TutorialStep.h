@@ -12,6 +12,7 @@
 #define TSAdvanceTap ^(TutorialStep*step) { step.advanceOnTap = YES; }
 #define TSAdvanceDamage ^(TutorialStep*step) { step.advanceOnDamage = YES; }
 #define TSAdvanceSpell(SpellType) (^(TutorialStep*step) { step.advanceOnSpell = SpellType; })
+#define TSAdvanceSpellAny ^(TutorialStep*step) { step.advanceOnAnySpell = YES; }
 
 
 @class TutorialStep;
@@ -31,7 +32,9 @@ typedef void(^TutorialStepConfig)(TutorialStep*);
 
 @property (nonatomic) BOOL advanceOnTap;
 @property (nonatomic, strong) NSString * advanceOnSpell;
+@property (nonatomic) BOOL advanceOnAnySpell;
 @property (nonatomic) BOOL advanceOnDamage;
+
 
 // given the state of the game, should we advance
 //@property (nonatomic, strong) advanceOn shouldAdvance;

@@ -12,12 +12,14 @@
 @implementation AITacticCast
 
 -(AIAction*)suggestedAction:(AIGameState *)game {
-    
-    if (game.lastSpellCast && game.lastSpellCast == self.suggestedSpell)
-        return nil;
-    
-    self.suggestedSpell = [Spell fromType:self.spellType];
-    return [AIAction spell:self.suggestedSpell];
+    // wipe the timer if you change tactics
+    // casts the spell if different from lastcastspell
+    if (game.isCooldown) return nil;
+    if (![game.lastSpellCast isType:self.spellType]) {
+        Spell * spell = [Spell fromType:self.spellType];
+        return [AIAction spell:spell];
+    }
+    return nil;
 }
 
 +(id)spell:(NSString*)spellType {

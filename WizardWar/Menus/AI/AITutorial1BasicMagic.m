@@ -11,6 +11,8 @@
 #import "EnvironmentLayer.h"
 #import "SpellInfo.h"
 #import "AITacticCast.h"
+#import "AITacticRandom.h"
+#import "AITacticWallRenew.h"
 
 // Dang! It's the same freaking tutorial! nooooo!
 
@@ -32,30 +34,41 @@
                          advance:TSAdvanceDamage
                    allowedSpells:@[Fireball]],
            
+           // TODO change to renew earthwall if it's low
+           // or, even better, just do a random cast, and renew it frequently
            [TutorialStep message:@"I can block Fireball with a Wall of Earth."
                          tactics:@[[AITacticCast spell:Earthwall]]
                          advance:TSAdvanceSpell(Fireball)
                     allowedSpells:@[Fireball, Earthwall]],
            
            [TutorialStep message:@"Try casting Lightning instead: Earth-Air-Water."
-                         tactics:nil
+                         tactics:@[[AITacticWallRenew createIfDead]]
                          advance:TSAdvanceDamage
                    allowedSpells:@[Fireball, Lightning, Earthwall]],
            
            // LOAD AI: Cast Icewall again if strength ever gets to 1.
            // replace action with ai
            // AI = cast an icweall
+           // don't want to create if dead, because to get through fireball has to kill it
            [TutorialStep message:@"Icewall blocks lightning, but a single fireball will wipe it out."
-                         tactics:@[[AITacticCast spell:Icewall]]
+                         tactics:@[[AITacticCast spell:Icewall], [AITacticWallRenew new]]
                          advance:TSAdvanceDamage
                    allowedSpells:@[Fireball, Lightning, Earthwall, Icewall]],
            
            // LOAD AI:
-           // AI = Cast a random wall every 5 seconds?
            [TutorialStep message:@"Good! Now see if you can kill me!"
                          tactics:nil
+                         advance:TSAdvanceSpellAny
+                   allowedSpells:@[Fireball, Lightning, Earthwall, Icewall]],
+           
+           // Tactics are: any time I get hit, cast a new wall.
+           // New all selected: opposite as the one before? Or random?
+           // AND I want to renew the wall if it gets low, at a higher priority than the other stuff :)
+           [TutorialStep message:nil
+                         tactics:@[[AITacticRandom spellsCastOnHit:@[Earthwall, Icewall]], [AITacticWallRenew new]]
                          advance:nil
                    allowedSpells:@[Fireball, Lightning, Earthwall, Icewall]],
+           
                     
            
            

@@ -288,7 +288,7 @@
     }];
     
     [newSpells forEach:^(Spell * spell) {
-        NSLog(@"(%i) NEW SPELL %@", currentTick, spell.name);
+//        NSLog(@"(%i) NEW SPELL %@", currentTick, spell.name);
         Wizard * creator = spell.creator;
         
         if (creator.effect.cancelsOnCast)
@@ -572,7 +572,7 @@
     
     if (player.effect.disablesPlayer) return NO;
     
-    NSLog(@"(%i) CAST SPELL", currentTick);
+//    NSLog(@"(%i) CAST SPELL", currentTick);
     
     [player setStatus:WizardStatusCast atTick:currentTick];
     

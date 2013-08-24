@@ -10,6 +10,10 @@
 
 @implementation TutorialStep
 
+-(NSString*)description {
+    return [NSString stringWithFormat:@"<TutorialStep> '%@'", self.message];
+}
+
 +(id)modalMessage:(NSString *)message {
     TutorialStep * step = [TutorialStep new];
     step.message = message;

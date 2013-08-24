@@ -41,28 +41,29 @@
     if (stepIndex >= self.steps.count) return;
     TutorialStep * currentStep = self.steps[stepIndex];
     self.currentStep = currentStep;
+    NSLog(@"TUTORIAL STEP: %@", currentStep);
     
     self.disableControls = currentStep.disableControls;
     self.hideControls = currentStep.hideControls;
     self.wizard.message = currentStep.message;
     self.allowedSpells = currentStep.allowedSpells;
     self.tactics = currentStep.tactics;
+    self.wizard.health = MAX_HEALTH;
 }
 
 -(void)opponent:(Wizard*)wizard didCastSpell:(Spell*)spell atTick:(NSInteger)tick {
     [super opponent:wizard didCastSpell:spell atTick:tick];
     
-    if (self.currentStep.advanceOnSpell && [spell isType:self.currentStep.advanceOnSpell]) {
+    if (self.currentStep.advanceOnAnySpell || (self.currentStep.advanceOnSpell && [spell isType:self.currentStep.advanceOnSpell])) {
         [self advance];
     }
 }
 
 -(void)setWizardHealth:(NSInteger)health {
-    if (health < _wizardHealth && self.currentStep.advanceOnDamage) {
-        [self advance];
-    }
-        
+    NSLog(@" - set health health=%i _wizardHealth=%i", health, _wizardHealth);
+    BOOL shouldAdvance = (health < _wizardHealth && self.currentStep.advanceOnDamage);
     _wizardHealth = health;
+    if (shouldAdvance) [self advance];
 }
 
 -(void)advance {

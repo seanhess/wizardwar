@@ -1,12 +1,12 @@
 //
-//  AIStrategy.m
+//  AIAction.m
 //  WizardWar
 //
 //  Created by Sean Hess on 8/24/13.
 //  Copyright (c) 2013 Orbital Labs. All rights reserved.
 //
 
-#import "AITactic.h"
+#import "AIAction.h"
 
 @implementation AIAction
 -(id)init {
@@ -27,6 +27,10 @@
     action.weight = weight;
     action.timeRequired = time;
     return action;
+}
+
++(id)spell:(Spell*)spell time:(NSTimeInterval)time {
+    return [AIAction spell:spell weight:1 time:time];
 }
 
 +(id)spell:(Spell*)spell {

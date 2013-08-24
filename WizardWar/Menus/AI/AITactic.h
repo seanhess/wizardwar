@@ -9,23 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "Spell.h"
 #import "AIGameState.h"
+#import "AIAction.h"
 
-// Should be composable, right?
-// so... what does that mean?
-// It means you could load a particular offensive strategy and a particular defensive strategy
-
-// AI CAN: cast spells, talk
-
-@interface AIAction : NSObject
-@property (nonatomic) NSInteger weight; // how much we want to do this action
-@property (nonatomic, strong) NSString * message;
-@property (nonatomic, strong) Spell * spell;
-@property (nonatomic) NSTimeInterval timeRequired; // the castDelay, etc. 0 for message.
-+(id)spell:(Spell*)spell weight:(NSInteger)weight time:(NSTimeInterval)time;
-+(id)spell:(Spell*)spell;
-+(id)message:(NSString*)message;
-@end
-
+// TODO: change tactics if you get damaged? Like, cast a new spell as soon as you are damaged
 
 @protocol AITactic <NSObject>
 -(AIAction*)suggestedAction:(AIGameState*)game;

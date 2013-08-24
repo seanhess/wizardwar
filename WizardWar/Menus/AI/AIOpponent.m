@@ -45,6 +45,11 @@
     // not sure if I need this any more...
 }
 
+-(void)setTactics:(NSArray *)tactics {
+    _tactics = tactics;
+    self.game.lastSpellCast = nil; // wipe this out so timers aren't still in play
+}
+
 -(void)simulateTick:(NSInteger)tick interval:(NSTimeInterval)interval spells:(NSArray*)spells {
     self.game.currentTick = tick;
     self.game.interval = interval;
@@ -97,6 +102,10 @@
     if (action.spell) {
         self.game.lastSpellCast = action.spell;
         [self.delegate aiDidCastSpell:action.spell];
+    }
+    
+    if (action.timeRequired) {
+        self.game.lastTimeRequired = action.timeRequired;
     }
     
     // TODO: record the timeRequired as a cooldown or something
