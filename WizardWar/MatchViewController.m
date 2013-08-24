@@ -37,7 +37,7 @@
 #import "ConnectionService.h"
 #import "RACHelpers.h"
 
-@interface MatchViewController () <HelpDelegate>
+@interface MatchViewController () <HelpDelegate, PentagramDelegate>
 @property (strong, nonatomic) PentagramViewController * pentagram;
 @property (weak, nonatomic) IBOutlet UIView *pentagramView;
 @property (weak, nonatomic) IBOutlet UIView *cocosView;
@@ -52,6 +52,7 @@
 
 @property (strong, nonatomic) HelpViewController *help;
 @property (nonatomic) MatchStatus matchStatus;
+@property (strong, nonatomic) Spell * castSpell;
 @end
 
 @implementation MatchViewController
@@ -90,6 +91,7 @@
     
     NSLog(@" - pv size %@", NSStringFromCGRect(self.pentagramView.frame));
     self.pentagram = [[PentagramViewController alloc] initPerIdoim];
+    self.pentagram.delegate = self;
     self.pentagram.combos = self.combos;
 //    self.pentagram.view.frame = CGRectMake(0, 0, 100, 100);
     self.pentagram.view.frame = self.pentagramView.bounds;
@@ -134,14 +136,13 @@
         [wself onChangedIsUserActive:ConnectionService.shared.isUserActive];
     }];
     
-    [[RACAble(self.combos.castSpell) distinctUntilChanged] subscribeNext:^(Spell * spell) {
-        [wself didCastSpell:spell];
-    }];
+    RAC(self.castSpell) = [RACAble(self.combos.castSpell) distinctUntilChanged];
     
     RAC(self.matchStatus) = matchLayer.matchStatusSignal;
     
     RACSignal * hideControls = [matchLayer.showControlsSignal map:RACMapNot];
-    RAC(self.pentagramView.hidden) = hideControls;
+    RAC(self.pentagram.hidden) = hideControls;
+    RAC(self.pentagram.disabled) = [RACAble(self.match.ai.disableControls) filter:RACFilterExists];
     RAC(self.message.hidden) = hideControls;
     RAC(self.subMessage.hidden) = hideControls;
 }
@@ -356,7 +357,11 @@
 
 # pragma mark Pentagram Delegate
 
--(void)didCastSpell:(Spell *)spell;
+-(void)didTapPentagram {
+    [self.match.ai tutorialDidTap];
+}
+
+-(void)setCastSpell:(Spell *)spell;
 {
     if (spell) {
         BOOL success = [self.match castSpell:spell];

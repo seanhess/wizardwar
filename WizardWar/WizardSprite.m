@@ -119,7 +119,7 @@
         
         self.chatBubble = [ChatBubbleSprite new];
         [self addChild:self.chatBubble];
-        self.chatBubble.position = ccp(self.wizard.direction * 50, 50);
+        self.chatBubble.position = ccp(self.wizard.direction * 35, 130);
         
         // BIND: state, position
         

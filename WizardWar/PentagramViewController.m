@@ -107,6 +107,29 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)setDisabled:(BOOL)disabled {
+    _disabled = disabled;
+    
+//    CGFloat progress = (disabled) ? 0.0 : 1.0;
+//    
+//    self.fireEmblem.enabledProgress = progress;
+//    self.earthEmblem.enabledProgress = progress;
+//    self.waterEmblem.enabledProgress = progress;
+//    self.windEmblem.enabledProgress = progress;
+//    self.heartEmblem.enabledProgress = progress;    
+}
+
+- (void)setHidden:(BOOL)hidden {
+    _hidden = hidden;
+    self.fireEmblem.hidden = hidden;
+    self.earthEmblem.hidden = hidden;
+    self.waterEmblem.hidden = hidden;
+    self.windEmblem.hidden = hidden;
+    self.heartEmblem.hidden = hidden;
+    
+    self.feedbackLabel.hidden = hidden;
+}
+
 
 // returns whether it is over an emblem
 - (BOOL)checkSelectedEmblems:(CGPoint)point {
@@ -130,6 +153,7 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     self.showHelp = NO;
+    if (self.disabled) return;    
     UITouch * touch = [touches anyObject];
     CGPoint touchPoint = [touch locationInView:self.view];
     [self checkSelectedEmblems:touchPoint];
@@ -137,6 +161,7 @@
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     self.showHelp = NO;
+    if (self.disabled) return;
     UITouch *touch = [touches anyObject];
     CGPoint touchPoint = [touch locationInView:self.view];
     if (![self checkSelectedEmblems:touchPoint])
@@ -145,8 +170,14 @@
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     
+    BOOL isValidCombo = (self.combos.allElements.count >= 3);
+    
+    if (!isValidCombo) [self.delegate didTapPentagram];
+    
+    if (self.disabled) return;
+    
     // If they only tapped, show the help stuff!
-    self.showHelp = (self.combos.allElements.count <= 2);
+    self.showHelp = !isValidCombo;
     
     for(PentEmblem *emblem in self.emblems)
     {

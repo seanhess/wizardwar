@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Wizard.h"
 #import "Simulated.h"
+#import "TutorialStep.h"
 
 @protocol AIDelegate <NSObject>
 -(void)aiDidCastSpell:(Spell*)spell;
@@ -18,9 +19,11 @@
 @property (nonatomic, strong) Wizard*wizard;
 @property (nonatomic, strong) Wizard*opponent;
 @property (nonatomic, weak) id<AIDelegate> delegate;
+@property (nonatomic, strong) NSString * environment;
 
 // for tutorials, they can hide the controls
 @property (nonatomic) BOOL hideControls;
+@property (nonatomic) BOOL disableControls;
 
 -(void)tutorialDidTap;
 -(void)opponent:(Wizard*)wizard didCastSpell:(Spell*)spell atTick:(NSInteger)tick;

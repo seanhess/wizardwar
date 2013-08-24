@@ -213,6 +213,8 @@
 		7843E72117C8E586009EF3AB /* ChatBubbleSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E72017C8E586009EF3AB /* ChatBubbleSprite.m */; };
 		7843E72617C8F5D9009EF3AB /* RACHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E72517C8F5D9009EF3AB /* RACHelpers.m */; };
 		7843E72917C8FE22009EF3AB /* TutorialStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E72817C8FE22009EF3AB /* TutorialStep.m */; };
+		7843E72C17C918CB009EF3AB /* Tutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E72B17C918CB009EF3AB /* Tutorial.m */; };
+		7843E72F17C91E23009EF3AB /* EnvironmentLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E72E17C91E22009EF3AB /* EnvironmentLayer.m */; };
 		784D3BDE1774F753009945F8 /* LobbyService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BDD1774F753009945F8 /* LobbyService.m */; };
 		784D3BE1177501E9009945F8 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BE0177501E9009945F8 /* UserService.m */; };
 		784D3BE417750441009945F8 /* IdService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BE317750441009945F8 /* IdService.m */; };
@@ -771,6 +773,10 @@
 		7843E72517C8F5D9009EF3AB /* RACHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RACHelpers.m; sourceTree = "<group>"; };
 		7843E72717C8FE22009EF3AB /* TutorialStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialStep.h; sourceTree = "<group>"; };
 		7843E72817C8FE22009EF3AB /* TutorialStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialStep.m; sourceTree = "<group>"; };
+		7843E72A17C918CB009EF3AB /* Tutorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tutorial.h; sourceTree = "<group>"; };
+		7843E72B17C918CB009EF3AB /* Tutorial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tutorial.m; sourceTree = "<group>"; };
+		7843E72D17C91E22009EF3AB /* EnvironmentLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentLayer.h; sourceTree = "<group>"; };
+		7843E72E17C91E22009EF3AB /* EnvironmentLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnvironmentLayer.m; sourceTree = "<group>"; };
 		784D3BDC1774F753009945F8 /* LobbyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LobbyService.h; sourceTree = "<group>"; };
 		784D3BDD1774F753009945F8 /* LobbyService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LobbyService.m; sourceTree = "<group>"; };
 		784D3BDF177501E9009945F8 /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserService.h; sourceTree = "<group>"; };
@@ -1506,6 +1512,8 @@
 				7843E71D17C8DF5E009EF3AB /* AITutorial3Discovery.m */,
 				7843E72717C8FE22009EF3AB /* TutorialStep.h */,
 				7843E72817C8FE22009EF3AB /* TutorialStep.m */,
+				7843E72A17C918CB009EF3AB /* Tutorial.h */,
+				7843E72B17C918CB009EF3AB /* Tutorial.m */,
 			);
 			path = AI;
 			sourceTree = "<group>";
@@ -2136,6 +2144,8 @@
 				782BC1AA17B90DD100EB7FC6 /* DebugSprite.m */,
 				78F6B3B11746B27700AA070D /* SpellSprite.h */,
 				78F6B3B21746B27700AA070D /* SpellSprite.m */,
+				7843E72D17C91E22009EF3AB /* EnvironmentLayer.h */,
+				7843E72E17C91E22009EF3AB /* EnvironmentLayer.m */,
 				787E1C2F17BBFC000092F5D6 /* OLSprite.h */,
 				787E1C3017BBFC000092F5D6 /* OLSprite.m */,
 				78D0855F176A4D7900EDC405 /* Simulated.h */,
@@ -2651,6 +2661,8 @@
 				7843E72117C8E586009EF3AB /* ChatBubbleSprite.m in Sources */,
 				7843E72617C8F5D9009EF3AB /* RACHelpers.m in Sources */,
 				7843E72917C8FE22009EF3AB /* TutorialStep.m in Sources */,
+				7843E72C17C918CB009EF3AB /* Tutorial.m in Sources */,
+				7843E72F17C91E23009EF3AB /* EnvironmentLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

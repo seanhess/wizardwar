@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "AIService.h"
+#import "Tutorial.h"
 
-@interface AITutorial1BasicMagic : NSObject <AIService>
+@interface AITutorial1BasicMagic : Tutorial
 
 @end

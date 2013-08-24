@@ -12,9 +12,18 @@
 #import "Combos.h"
 #import <DACircularProgressView.h>
 
+@protocol PentagramDelegate <NSObject>
+
+-(void)didTapPentagram;
+
+@end
+
 @interface PentagramViewController : UIViewController
+@property (weak, nonatomic) id<PentagramDelegate>delegate;
 @property (strong, nonatomic) Combos * combos;
 @property (strong, nonatomic) DrawingLayer * drawingLayer;
+@property (nonatomic) BOOL disabled;
+@property (nonatomic) BOOL hidden;
 -(void)delayCast:(NSTimeInterval)delay;
 //-(void)showHelpMessage;
 -(void)attemptedCastButFailedBecauseOfSleep;

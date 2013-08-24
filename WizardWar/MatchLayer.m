@@ -23,6 +23,7 @@
 #import "FeedbackLayer.h"
 
 #import "SpellsLayer.h"
+#import "EnvironmentLayer.h"
 
 #import <ReactiveCocoa.h>
 #import "RACHelpers.h"
@@ -42,7 +43,7 @@
 @property (nonatomic, strong) CCLabelTTF * debug;
 
 @property (nonatomic, strong) UIButton * backButton;
-@property (nonatomic, strong) CCSprite * background;
+@property (nonatomic, strong) EnvironmentLayer * environment;
 
 @property (nonatomic) MatchStatus matchStatus;
 @property (nonatomic, strong) RACSignal * aiHideControlsSignal;
@@ -53,27 +54,19 @@
 
 -(id)initWithMatch:(Match*)match size:(CGSize)size combos:(Combos *)combos units:(Units *)units {
     if ((self = [super init])) {
-        // background
+
+        self.match = match;
+        self.match.delegate = self;
         
         self.units = units;
         
         [self addChild:[CCLayerColor layerWithColor:ccc4(66, 66, 66, 255)]];
         
         // Manually use the suffix, because fallbacks conflict for other stuff
-        NSString * backgroundName = @[@"cave", @"icecave", @"evilforest", @"castle"].randomItem;
-        NSInteger device = [[CCConfiguration sharedConfiguration] runningDevice];
-        if (device == kCCDeviceiPadRetinaDisplay || device == kCCDeviceiPad) {
-            self.background = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%@-ipad.png", backgroundName]];
-        } else {
-            self.background = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", backgroundName]];
-        }
-        self.background.anchorPoint = ccp(0,0);
-        [self addChild:self.background];
+        self.environment = [EnvironmentLayer new];
+        [self.environment setEnvironment:match.ai.environment];
+        [self addChild:self.environment];
         
-        // match
-        // TODO: MatchLayer should create match if it is the delegate
-        self.match = match;
-        self.match.delegate = self;
         
         self.drawingLayer = [[DrawingLayer alloc] initWithUnits:units];
         [self addChild:self.drawingLayer];
