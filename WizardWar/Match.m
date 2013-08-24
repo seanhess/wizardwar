@@ -238,7 +238,8 @@
     // SIMULATE SPELLS
     // move before checking hits, then we check hits with didHit
     // = whether or not they passed each other during that interval
-    [self.activeSpells forEach:^(Spell * spell) {
+    NSArray *activeSpells = self.activeSpells;
+    [activeSpells forEach:^(Spell * spell) {
         BOOL changed = [spell simulateTick:currentTick interval:tickInterval];
         if (changed)
             [self modifySpell:spell];
@@ -261,7 +262,7 @@
     [self cleanupDestroyed];
     
     // SIMULATE AI
-    [self.ai simulateTick:currentTick interval:tickInterval];
+    [self.ai simulateTick:currentTick interval:tickInterval spells:activeSpells];
     
     // SYNC EVERYTHING?
     // This might be the better way to go, if we changed it to be set up to handle updates better

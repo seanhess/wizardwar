@@ -25,7 +25,7 @@
 @property (nonatomic, readonly) BOOL isMastered;
 @property (nonatomic, readonly) BOOL hasAttempted;
 
-@property (nonatomic, strong) id<AIService> ai;
+@property (nonatomic, strong) Class AIType;
 
 //@property (nonatomic, strong) NSString * woot;
 

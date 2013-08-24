@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "AIService.h"
+#import "AIOpponent.h"
 
-@interface Tutorial : NSObject <AIService>
+@interface Tutorial : AIOpponent
 @property (nonatomic, strong) NSArray * steps;
 @property (nonatomic) NSInteger currentStepIndex;
 -(void)loadStep:(NSInteger)stepIndex;

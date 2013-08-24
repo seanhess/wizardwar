@@ -250,6 +250,7 @@
 
 -(void)renderFeedback {
     BOOL hasHintedSpell = (self.combos.hintedSpell != nil);
+    BOOL hasLockedSpell = (self.combos.lockedSpell != nil);
 //    BOOL showNoMana = (!self.combos.castSpell && self.combos.hasElements && self.castDisabled);
     BOOL showNoMana = (self.castDisabled && self.combos.disabledSpell != nil);
 //    BOOL showMisfire = (self.castDisabled && [self.combos.castSpell isKindOfClass:[SpellFail class]]);
@@ -275,6 +276,10 @@
 //            self.feedbackLabel.alpha = 1.0;
 //        }];
         [self flashFeedback];
+    } else if (hasLockedSpell) {
+        self.feedbackLabel.textColor = [UIColor whiteColor];
+        [self.feedbackLabel setText:@"Not Yet!"];
+        [self flashFeedback];        
     } else if (hasHintedSpell) {
         self.feedbackLabel.textColor = [UIColor whiteColor];
         [self.feedbackLabel setText:self.combos.hintedSpell.name];

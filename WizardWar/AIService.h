@@ -15,18 +15,20 @@
 -(void)aiDidCastSpell:(Spell*)spell;
 @end
 
-@protocol AIService <NSObject, Simulated>
+@protocol AIService <NSObject>
+@property (nonatomic, weak) id<AIDelegate> delegate;
+
 @property (nonatomic, strong) Wizard*wizard;
 @property (nonatomic, strong) Wizard*opponent;
-@property (nonatomic, weak) id<AIDelegate> delegate;
 @property (nonatomic, strong) NSString * environment;
 
 // for tutorials, they can hide the controls
 @property (nonatomic) BOOL hideControls;
 @property (nonatomic) BOOL disableControls;
+@property (nonatomic, strong) NSArray* allowedSpells;
 
--(void)tutorialDidTap;
+-(void)didTapControls;
 -(void)opponent:(Wizard*)wizard didCastSpell:(Spell*)spell atTick:(NSInteger)tick;
--(BOOL)shouldPreventSpellCast:(Spell*)spell atTick:(NSInteger)tick;
+-(void)simulateTick:(NSInteger)tick interval:(NSTimeInterval)interval spells:(NSArray*)spells;
 
 @end

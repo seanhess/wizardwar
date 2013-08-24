@@ -51,7 +51,7 @@
 - (NSArray*)allQuestLevels {
     QuestLevel * tutorial1 = [self levelWithName:@"Tutorial 1 - Using Magic"];
     tutorial1.level = 0;
-    tutorial1.ai = [AITutorial1BasicMagic new];
+    tutorial1.AIType = [AITutorial1BasicMagic class];
     
     QuestLevel * tutorial2 = [self levelWithName:@"Tutorial 2 - Counterspells"];
     tutorial2.level = 1;

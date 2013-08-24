@@ -130,11 +130,11 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     QuestLevel * questLevel = [self.levels objectAtIndex:indexPath.row];
-    id<AIService>ai = questLevel.ai;
+    id<AIService>ai = [questLevel.AIType new];
     
     MatchViewController * match = [[MatchViewController alloc] init];
     [match createMatchWithWizard:UserService.shared.currentWizard withAI:ai];
-    self.match = match;
+//    self.match = match;
     [self.navigationController presentViewController:match animated:YES completion:nil];
     [match startMatch];
 }

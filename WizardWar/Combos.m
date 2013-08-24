@@ -30,6 +30,7 @@
 -(void)moveToElement:(ElementType)element {
     self.didMisfire = NO;
     self.castSpell = nil;
+    self.lockedSpell = nil;
     self.disabledSpell = nil;
     self.lastElement = element;
     [self.allElements addObject:@(element)];
@@ -45,6 +46,12 @@
     
     if (self.castDisabled == YES) {
         self.disabledSpell = self.hintedSpell;
+        [self reset];
+        return;
+    }
+    
+    if(self.allowedSpells && ![self.hintedSpell isAnyType:self.allowedSpells]) {
+        self.lockedSpell = self.hintedSpell;
         [self reset];
         return;
     }

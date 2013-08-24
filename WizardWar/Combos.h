@@ -28,7 +28,10 @@
 @property (nonatomic, strong) Spell * hintedSpell;
 @property (nonatomic, strong) Spell * castSpell;
 @property (nonatomic, strong) Spell * disabledSpell;
+@property (nonatomic, strong) Spell * lockedSpell;
 @property (nonatomic) BOOL didMisfire;
+
+@property (nonatomic, strong) NSArray * allowedSpells;
 
 @property (nonatomic, readonly) BOOL sameSpellTwice;
 @property (nonatomic, readonly) BOOL hasElements;

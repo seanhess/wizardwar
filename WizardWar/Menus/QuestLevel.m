@@ -10,7 +10,7 @@
 
 
 @implementation QuestLevel
-@synthesize ai = _ai;
+@synthesize AIType = _AIType;
 
 @dynamic name;
 @dynamic gamesTotal;

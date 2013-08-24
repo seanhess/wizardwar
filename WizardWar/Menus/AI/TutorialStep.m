@@ -43,11 +43,20 @@
     return step;
 }
 
-+(id)message:(NSString*)message allowedSpells:(NSArray*)allowed {
++(id)message:(NSString *)message tactics:(NSArray *)tactics advance:(TutorialStepConfig)advance allowedSpells:(NSArray *)allowed {
     TutorialStep * step = [TutorialStep new];
     step.message = message;
     step.allowedSpells = allowed;
+
+    if (tactics) {
+        step.tactics = tactics;
+    }
+    
+    if (advance) {
+        advance(step);
+    }
     return step;
 }
+
 
 @end

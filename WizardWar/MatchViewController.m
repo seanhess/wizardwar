@@ -145,6 +145,7 @@
     RAC(self.pentagram.disabled) = [RACAble(self.match.ai.disableControls) filter:RACFilterExists];
     RAC(self.message.hidden) = hideControls;
     RAC(self.subMessage.hidden) = hideControls;
+    RAC(self.combos.allowedSpells) = RACAble(self.match.ai.allowedSpells);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -358,7 +359,7 @@
 # pragma mark Pentagram Delegate
 
 -(void)didTapPentagram {
-    [self.match.ai tutorialDidTap];
+    [self.match.ai didTapControls];
 }
 
 -(void)setCastSpell:(Spell *)spell;

@@ -215,6 +215,10 @@
 		7843E72917C8FE22009EF3AB /* TutorialStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E72817C8FE22009EF3AB /* TutorialStep.m */; };
 		7843E72C17C918CB009EF3AB /* Tutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E72B17C918CB009EF3AB /* Tutorial.m */; };
 		7843E72F17C91E23009EF3AB /* EnvironmentLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E72E17C91E22009EF3AB /* EnvironmentLayer.m */; };
+		7843E73217C941FF009EF3AB /* AITactic.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E73117C941FF009EF3AB /* AITactic.m */; };
+		7843E73517C94831009EF3AB /* AITacticCast.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E73417C94830009EF3AB /* AITacticCast.m */; };
+		7843E73817C94B34009EF3AB /* AIOpponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E73717C94B34009EF3AB /* AIOpponent.m */; };
+		7843E73B17C94BB1009EF3AB /* AIGameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E73A17C94BB0009EF3AB /* AIGameState.m */; };
 		784D3BDE1774F753009945F8 /* LobbyService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BDD1774F753009945F8 /* LobbyService.m */; };
 		784D3BE1177501E9009945F8 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BE0177501E9009945F8 /* UserService.m */; };
 		784D3BE417750441009945F8 /* IdService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BE317750441009945F8 /* IdService.m */; };
@@ -684,7 +688,7 @@
 		781B4C4717839C00002551CA /* utlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utlist.h; sourceTree = "<group>"; };
 		781B4C4817839C00002551CA /* ZipUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipUtils.h; sourceTree = "<group>"; };
 		781B4C4917839C00002551CA /* ZipUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipUtils.m; sourceTree = "<group>"; };
-		781BC26517B5766900870A2C /* AIService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AIService.h; sourceTree = "<group>"; };
+		781BC26517B5766900870A2C /* AIService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AIService.h; path = ../../AIService.h; sourceTree = "<group>"; };
 		781BE0D517C50FD5005735A9 /* PENone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PENone.h; sourceTree = "<group>"; };
 		781BE0D617C50FD6005735A9 /* PENone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PENone.m; sourceTree = "<group>"; };
 		781BE0D817C5353F005735A9 /* SpellInteraction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellInteraction.h; sourceTree = "<group>"; };
@@ -777,6 +781,14 @@
 		7843E72B17C918CB009EF3AB /* Tutorial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tutorial.m; sourceTree = "<group>"; };
 		7843E72D17C91E22009EF3AB /* EnvironmentLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentLayer.h; sourceTree = "<group>"; };
 		7843E72E17C91E22009EF3AB /* EnvironmentLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnvironmentLayer.m; sourceTree = "<group>"; };
+		7843E73017C941FF009EF3AB /* AITactic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AITactic.h; sourceTree = "<group>"; };
+		7843E73117C941FF009EF3AB /* AITactic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AITactic.m; sourceTree = "<group>"; };
+		7843E73317C94830009EF3AB /* AITacticCast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AITacticCast.h; sourceTree = "<group>"; };
+		7843E73417C94830009EF3AB /* AITacticCast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AITacticCast.m; sourceTree = "<group>"; };
+		7843E73617C94B33009EF3AB /* AIOpponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIOpponent.h; sourceTree = "<group>"; };
+		7843E73717C94B34009EF3AB /* AIOpponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIOpponent.m; sourceTree = "<group>"; };
+		7843E73917C94BAF009EF3AB /* AIGameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIGameState.h; sourceTree = "<group>"; };
+		7843E73A17C94BB0009EF3AB /* AIGameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIGameState.m; sourceTree = "<group>"; };
 		784D3BDC1774F753009945F8 /* LobbyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LobbyService.h; sourceTree = "<group>"; };
 		784D3BDD1774F753009945F8 /* LobbyService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LobbyService.m; sourceTree = "<group>"; };
 		784D3BDF177501E9009945F8 /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserService.h; sourceTree = "<group>"; };
@@ -1504,6 +1516,11 @@
 		7843E71517C8DF10009EF3AB /* AI */ = {
 			isa = PBXGroup;
 			children = (
+				781BC26517B5766900870A2C /* AIService.h */,
+				7843E73617C94B33009EF3AB /* AIOpponent.h */,
+				7843E73717C94B34009EF3AB /* AIOpponent.m */,
+				7843E73917C94BAF009EF3AB /* AIGameState.h */,
+				7843E73A17C94BB0009EF3AB /* AIGameState.m */,
 				7843E71617C8DF44009EF3AB /* AITutorial1BasicMagic.h */,
 				7843E71717C8DF44009EF3AB /* AITutorial1BasicMagic.m */,
 				7843E71917C8DF51009EF3AB /* AITutorial2Counters.h */,
@@ -1514,6 +1531,10 @@
 				7843E72817C8FE22009EF3AB /* TutorialStep.m */,
 				7843E72A17C918CB009EF3AB /* Tutorial.h */,
 				7843E72B17C918CB009EF3AB /* Tutorial.m */,
+				7843E73017C941FF009EF3AB /* AITactic.h */,
+				7843E73117C941FF009EF3AB /* AITactic.m */,
+				7843E73317C94830009EF3AB /* AITacticCast.h */,
+				7843E73417C94830009EF3AB /* AITacticCast.m */,
 			);
 			path = AI;
 			sourceTree = "<group>";
@@ -1662,7 +1683,6 @@
 				78C46B5917562CAC0077EE98 /* MultiplayerService.m */,
 				78F97FDC1758F7F500764D70 /* PracticeModeAIService.h */,
 				78F97FDD1758F7F500764D70 /* PracticeModeAIService.m */,
-				781BC26517B5766900870A2C /* AIService.h */,
 				789BAB8117566ABF003C0116 /* Multiplayer.h */,
 				78ABA888175A6C70003D2F23 /* Tick.h */,
 				780A235317C3EAC900EE3BAA /* SpellEffectService.h */,
@@ -2663,6 +2683,10 @@
 				7843E72917C8FE22009EF3AB /* TutorialStep.m in Sources */,
 				7843E72C17C918CB009EF3AB /* Tutorial.m in Sources */,
 				7843E72F17C91E23009EF3AB /* EnvironmentLayer.m in Sources */,
+				7843E73217C941FF009EF3AB /* AITactic.m in Sources */,
+				7843E73517C94831009EF3AB /* AITacticCast.m in Sources */,
+				7843E73817C94B34009EF3AB /* AIOpponent.m in Sources */,
+				7843E73B17C94BB1009EF3AB /* AIGameState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

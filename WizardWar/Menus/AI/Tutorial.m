@@ -8,18 +8,18 @@
 
 #import "Tutorial.h"
 #import "UIColor+Hex.h"
+#import <ReactiveCocoa.h>
+#import "Spell.h"
 
 @interface Tutorial ()
 @property (nonatomic, strong) TutorialStep * currentStep;
+@property (nonatomic) NSInteger wizardHealth;
 @end
 
 @implementation Tutorial
-@synthesize wizard = _wizard;
-@synthesize opponent = _opponent;
-@synthesize delegate = _delegate;
-@synthesize hideControls = _hideControls;
-@synthesize environment = _environment;
-@synthesize disableControls = _disableControls;
+
+// Advance Conditions
+// 1. cast a certain spell
 
 -(id)init {
     if ((self = [super init])) {
@@ -30,6 +30,8 @@
         self.wizard = wizard;
         self.hideControls = YES;
         self.disableControls = YES;
+        
+        RAC(self.wizardHealth) = RACAbleWithStart(self.wizard.health);
     }
     return self;
 }
@@ -43,25 +45,33 @@
     self.disableControls = currentStep.disableControls;
     self.hideControls = currentStep.hideControls;
     self.wizard.message = currentStep.message;
-}
-
--(void)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
-    
+    self.allowedSpells = currentStep.allowedSpells;
+    self.tactics = currentStep.tactics;
 }
 
 -(void)opponent:(Wizard*)wizard didCastSpell:(Spell*)spell atTick:(NSInteger)tick {
+    [super opponent:wizard didCastSpell:spell atTick:tick];
     
+    if (self.currentStep.advanceOnSpell && [spell isType:self.currentStep.advanceOnSpell]) {
+        [self advance];
+    }
 }
 
--(BOOL)shouldPreventSpellCast:(Spell *)spell atTick:(NSInteger)tick {
-    // is this how we want to do it?
-    // better to pass the allowed spells to pentagram
-    return NO;
+-(void)setWizardHealth:(NSInteger)health {
+    if (health < _wizardHealth && self.currentStep.advanceOnDamage) {
+        [self advance];
+    }
+        
+    _wizardHealth = health;
 }
 
--(void)tutorialDidTap {
+-(void)advance {
+    [self loadStep:self.currentStepIndex+1];
+}
+
+-(void)didTapControls {
     if (self.currentStep.advanceOnTap) {
-        [self loadStep:self.currentStepIndex+1];
+        [self advance];
     }
 }
 
