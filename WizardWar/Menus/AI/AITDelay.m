@@ -19,7 +19,11 @@
     if (!game.isCooldown) {
         NSString * randomType = [self.spells randomItem];
         Spell * spell = [Spell fromType:randomType];
-        action = [AIAction spell:spell time:self.delay];
+        
+        if (self.delay)
+            action = [AIAction spell:spell time:self.delay];
+        else
+            action = [AIAction spell:spell];
     }
     
     return action;
@@ -30,6 +34,12 @@
     AITDelay * tactic = [AITDelay new];
     tactic.spells = spells;
     tactic.delay = delay;
+    return tactic;
+}
+
++(id)random:(NSArray*)spells {
+    AITDelay * tactic = [AITDelay new];
+    tactic.spells = spells;
     return tactic;
 }
 

@@ -70,7 +70,6 @@
         if (action) {
             NSLog(@"(%i) %@", tick, action);
             
-            
             if (action.timeRequired <= 0) {
                 [self runAction:action];
             }
@@ -88,7 +87,7 @@
 
 -(void)runAction:(AIAction*)action {
     
-    NSLog(@"AI RUN ACTION %@", action);
+    NSLog(@"      RUN %@", action);
     // How does it CLEAR the action?
     // maybe they fade on their own.
     

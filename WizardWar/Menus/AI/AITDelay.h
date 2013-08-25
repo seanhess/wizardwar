@@ -13,4 +13,5 @@
 @property (nonatomic) NSTimeInterval delay;
 @property (nonatomic, strong) NSArray * spells;
 +(id)random:(NSArray*)spells delay:(NSTimeInterval)delay;
++(id)random:(NSArray*)spells;
 @end

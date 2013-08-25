@@ -16,6 +16,7 @@
 #import "UserService.h"
 #import "Achievement.h"
 #import "NSArray+Functional.h"
+#import "AIOJumper.h"
 
 #define QUEST_LEVEL_ENTITY @"QuestLevel"
 
@@ -114,16 +115,109 @@
     practice.wizardLevel = 0;
     practice.AIType = [AIOpponentDummy class];
     
+    // I don't really want to name them in two places :(
+    QuestLevel * jumper = [self levelWithName:[AIOJumper name]];
+    jumper.level = 0;
+    jumper.wizardLevel = 0;
+    jumper.AIType = [AIOJumper class];
+    
 //    QuestLevel * asdf = [self levelWithName:@"First Real Guy"];
 //    asdf.level = 1;
 //    asdf.wizardLevel = 1;
 //    asdf.AIType = [AIOpponentDummy class];
+    
+    
+    
+/*
+ 
+ 
+ Levitating Guy
+ 5 Elemental guys. Similar programming, different spells. 
+ Summoner. 
+ Sleeper. he never even kills you!
+ Spammers: offensive, they just chuck things at you quickly. 
+ 
+ You don't need a whole list, just start making them!
+ 
+ 
+ 
+ (don't worry about levels at first? Just make them?)
+ (make functions, so you can mix/match. Like a L3 defense routine vs a L2 one)
+ Pyromancer: spams fire everything
+ Counterman: always tries to reflect everything
+ The Grand Wizard: try to make him awesome
+ Windman: tries to make huge fireballs
+ Cheater: spams random spells like crazy
+ The Jerk: just hides. Really hard to kill. Just invisible all the time.
+ Spam Monster:
+ Spam Lightning:
+ Spam Fireball:
+ Spam all 3 offensively:
+ Sleepy head: tries to get you to fall asleep forever
+ Summoner: summons chicken, monster, vine, etc.
+ Flying Jim: really good at dodging with levitate. Could make him drop back down to dodge too?
+
+ The black mage: only uses evil spells?
+ Simple combos: alternate earthwall / monster
+ Attack counters: offensive counters. Always does the attack counters.
+ 
+
+ Teddy
+ Undies
+ Hotdog
+ Chicken
+ Rainbow
+ CaptainPlanet
+ Cthulhu
+ 
+ Fireball       FAH  (Fire)
+ Lightning      AWE  (Air)
+ Fist           AHWE (Air)
+ Helmet         FHE  (Earth)
+ Earthwall      FEW  (Earth)
+ Firewall       AFE  (Fire)
+ Bubble         HWF  (Water)
+ Icewall        HWE  (Water)
+ Monster        HWEF (Earth)
+ Vine           AWEF (Earth)
+ Windblast      AWF  (Air)
+ Invisibility   AHWF (Water)
+ Heal           AHE  (Heart)
+ Levitate       AHW  (Air)
+ Sleep          AHEF (Heart?)
+ 
+ 
+ Elemental-based guys. Each one uses a different set of spells. 
+ Earth:  Earthwall, Monster, Vine, Helmet
+ Fire:   Fireball, Firewall
+ Air:    Fist, Lightning, Levitate, Windblast
+ Water:  Icewall, Bubble, Invisibility
+ Heart:  Heal, Sleep
+ 
+ 
+ Combo Guys: someone puts windblast and monsters to good use. (Throw a bubble between them to catch the firewall).
+ 
+ Healer: any time he gets damaged, he puts up a wall, a helmet, and casts heal.
+ 
+ Impossible man: he's amazing, but he takes a break and celebrates every once in a while
+ Captain planet man. He whoops you with captain planet :) Naw, it's a secret :)
+ 
+ 
+ 
+ 
+ 
+ 
+ */
+    
+    
+    // LEVELS:
     
     return @[
         tutorial1,
         tutorial2,
         tutorial3,
         practice,
+        jumper,
 //        asdf,
     ];
 }

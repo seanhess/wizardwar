@@ -18,7 +18,8 @@
 }
 
 -(NSString*)description {
-    return [NSString stringWithFormat:@"<AIAction %i %@ %@>", self.priority, self.spell.type, self.message];
+    NSString * messageString = (self.message) ? self.message : @"";
+    return [NSString stringWithFormat:@"<AIAction %i %@ %@>", self.priority, self.spell.type, messageString];
 }
 
 +(id)spell:(Spell*)spell time:(NSTimeInterval)time priority:(NSInteger)priority {
