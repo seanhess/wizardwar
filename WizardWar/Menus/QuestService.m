@@ -70,6 +70,10 @@
     return (user.questLevel < questLevel.level);
 }
 
+- (BOOL)hasPassedTutorials:(User*)user {
+    return user.questLevel > 2;
+}
+
 - (QuestLevel*)levelWithName:(NSString *)name {
     NSFetchRequest * request = [NSFetchRequest fetchRequestWithEntityName:QUEST_LEVEL_ENTITY];
     request.predicate = [NSPredicate predicateWithFormat:@"name = %@", name];
@@ -88,13 +92,12 @@
     tutorial1.wizardLevel = 1;
     
     QuestLevel * tutorial2 = [self levelWithName:@"Tutorial - Counterspells"];
-    tutorial2.level = 0;
+    tutorial2.level = 1;
     tutorial2.wizardLevel = 2;
     tutorial2.AIType = [AITutorial2Counters class];
 
-    
     QuestLevel * tutorial3 = [self levelWithName:@"Tutorial - Discovery"];
-    tutorial3.level = 0;
+    tutorial3.level = 2;
     tutorial3.wizardLevel = 3;
     tutorial3.AIType = [AITutorial3Discovery class];
     

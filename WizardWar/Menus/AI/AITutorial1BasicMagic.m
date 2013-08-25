@@ -52,12 +52,8 @@
                          advance:TSAdvanceDamage
                    allowedSpells:@[Fireball, Lightning]],
            
-           [TutorialStep message:@"Oof! Now try to defeat me! Choose wisely..."
-                            demo:nil
-                         tactics:nil
-                         advance:TSAdvanceSpellAny
-                   allowedSpells:@[Fireball, Lightning]],
-           
+           [TutorialStep message:@"Oof! Now try to defeat me! Choose wisely..." disableControls:YES],
+
            [TutorialStep message:nil
                             demo:nil
                          tactics:@[[AITCastOnHit me:YES opponent:NO random:@[Earthwall, Icewall]], [AITWallRenew new]]

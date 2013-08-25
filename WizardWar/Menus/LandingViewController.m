@@ -27,12 +27,16 @@
 #import "SpellbookViewController.h"
 #import "InfoService.h"
 #import "QuestViewController.h"
+#import <ReactiveCocoa.h>
+#import "User.h"
+#import "QuestService.h"
 
 #import <FacebookSDK/FacebookSDK.h>
 #import "NSArray+Functional.h"
 
 @interface LandingViewController ()  <FBFriendPickerDelegate>
 @property (weak, nonatomic) IBOutlet MenuButton *multiplayerButton;
+@property (weak, nonatomic) IBOutlet MenuButton *questButton;
 @property (nonatomic, strong) MatchViewController* match;
 @end
 
@@ -65,6 +69,7 @@
 //        [wself renderTotalInLobby];
 //    }];
 //    [self renderTotalInLobby];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -74,6 +79,13 @@
     // DISCONNECT! all services
     [LobbyService.shared leaveLobby:[UserService.shared currentUser]];
     [ConnectionService.shared disconnect];
+    
+    User * user = [UserService.shared currentUser];
+    if ([QuestService.shared hasPassedTutorials:user]) {
+        [self.questButton setTitle:@"Quest" forState:UIControlStateNormal];
+    } else {
+        [self.questButton setTitle:@"Tutorial" forState:UIControlStateNormal];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {

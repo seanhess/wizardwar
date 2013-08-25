@@ -266,7 +266,7 @@
         [sae preloadBackgroundMusic:@"YouWon.mp3"];
         [sae preloadBackgroundMusic:@"YouLose2.mp3"];
         if (sae.willPlayBackgroundMusic) {
-            sae.backgroundMusicVolume = 0.4f;
+            sae.backgroundMusicVolume = 0.2f;
         }
     }
  
