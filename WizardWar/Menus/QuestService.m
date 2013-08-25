@@ -10,6 +10,7 @@
 #import "QuestLevel.h"
 #import "ObjectStore.h"
 #import "AITutorial1BasicMagic.h"
+#import "AIOpponentDummy.h"
 
 #define QUEST_LEVEL_ENTITY @"QuestLevel"
 
@@ -33,6 +34,10 @@
     return self;
 }
 
+- (void)finishedMatch:(NSArray*)spellHistory didWin:(BOOL)didWin {
+
+}
+
 - (BOOL)isLocked:(QuestLevel*)questLevel user:(User*)user {
     return (user.questLevel < questLevel.level);
 }
@@ -49,35 +54,33 @@
 }
 
 - (NSArray*)allQuestLevels {
-    QuestLevel * tutorial1 = [self levelWithName:@"Tutorial 1 - Using Magic"];
+    QuestLevel * tutorial1 = [self levelWithName:@"Tutorial - Using Magic"];
     tutorial1.level = 0;
     tutorial1.AIType = [AITutorial1BasicMagic class];
+    tutorial1.wizardLevel = 1;
     
-    QuestLevel * tutorial2 = [self levelWithName:@"Tutorial 2 - Counterspells"];
-    tutorial2.level = 1;
+    QuestLevel * tutorial2 = [self levelWithName:@"Tutorial - Counterspells"];
+    tutorial2.level = 0;
+    tutorial2.wizardLevel = 2;
     
-    QuestLevel * tutorial3 = [self levelWithName:@"Tutorial 3 - Discovery"];
-    tutorial3.level = 2;
+    QuestLevel * tutorial3 = [self levelWithName:@"Tutorial - Discovery"];
+    tutorial3.level = 0;
+    tutorial3.wizardLevel = 3;
     
-    QuestLevel * zorlack = [self levelWithName:@"Zorlack"];
-    zorlack.level = 1;
-    zorlack.wizardLevel = 3;
+    QuestLevel * practice = [self levelWithName:@"Practice Dummy"];
+    practice.level = 0;
+    practice.wizardLevel = 0;
+    practice.AIType = [AIOpponentDummy class];
     
-    QuestLevel * asdf = [self levelWithName:@"asdf"];
-    asdf.level = 2;
-    asdf.wizardLevel = 4;
-    
+    QuestLevel * asdf = [self levelWithName:@"First Real Guy"];
+    asdf.level = 1;
+    asdf.wizardLevel = 1;
     
     return @[
         tutorial1,
         tutorial2,
         tutorial3,
-        zorlack,
-        zorlack,
-        zorlack,
-        zorlack,
-       zorlack,
-       zorlack,
+        practice,
         asdf,
     ];
 }

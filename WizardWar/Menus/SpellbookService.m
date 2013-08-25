@@ -14,10 +14,9 @@
 #import "SpellEffectService.h"
 #import "SpellInfo.h"
 #import "UIImage+MonoImage.h"
-
+#import "SpellEffect.h"
 
 @interface SpellbookService ()
-@property (nonatomic, strong) NSMutableDictionary * currentMatchSpellsCast;
 @end
 
 @implementation SpellbookService
@@ -74,26 +73,26 @@
     return [SpellSprite sheetNameForType:type];
 }
 
-// Hmm... how could I tell what's important or not?
-- (void)mainPlayerCastSpell:(Spell*)spell inMatch:(NSString*)matchId {
-    if (!self.currentMatchSpellsCast) {
-        self.currentMatchSpellsCast = [NSMutableDictionary dictionary];
-    }
-
-    NSNumber * numCastSpell = self.currentMatchSpellsCast[spell.type];
-    self.currentMatchSpellsCast[spell.type] = @(numCastSpell.intValue+1);
-}
-
-- (void)finishedMatch:(NSString *)matchId {
+- (void)finishedMatch:(NSMutableArray*)spellHistory didWin:(BOOL)didWin {
     // now go through and store everything!
+    // Group them by spell cast
+    NSMutableDictionary * totals = [NSMutableDictionary dictionary];
+    [spellHistory forEach:^(NSString * spellType) {
+        NSNumber * spellTotal = totals[spellType];
+        if (!spellTotal) spellTotal = @(0);
+        spellTotal = @(spellTotal.intValue+1);
+        totals[spellType] = spellTotal;
+    }];
     
-    for (NSString * type in self.currentMatchSpellsCast.allKeys) {
+    // they  might not be CREATED yet
+    for (NSString * type in totals) {
         SpellRecord * record = [self recordByType:type];
-        record.castTotal += [self.currentMatchSpellsCast[type] intValue];
-        record.castUniqueMatches += 1;    
+        record.castTotal += [totals[type] intValue];
+        record.castUniqueMatches += 1;
     }
-    
-    self.currentMatchSpellsCast = nil;
+
+    // TODO return achievements?
+    return;
 }
 
 
@@ -110,41 +109,35 @@
 
 - (SpellRecord*)recordByType:(NSString*)type {
     SpellRecord * record = [ObjectStore.shared requestLastObject:[self requestByType:type]];
-    return record;
-}
-
-- (SpellRecord*)recordBySpellCreate:(Spell *)spell {
-    SpellRecord * record = [self recordByType:spell.type];
     if (!record) {
+        SpellInfo * info = [SpellEffectService.shared infoForType:type];
         record = [ObjectStore.shared insertNewObjectForEntityForName:@"SpellRecord"];
-        record.type = spell.type;
-        record.name = spell.name;
-        record.castTotal = 0;
-        record.castUniqueMatches = 0;
+        record.type = type;
+        record.name = info.name;
         
         // unlock all spells taught in the first tutorials
-        if ([spell isAnyType:@[Fireball, Lightning, Monster, Earthwall, Firewall, Icewall]]) {
+        if ([Spell type:type isAnyType:@[Fireball, Lightning, Monster, Earthwall, Firewall, Icewall]]) {
             record.unlock = YES;
         }
         
-//        if ([spell isType:Cthulhu]) {
-//            record.castUniqueMatches = 10;
-//        }
-
+        // DEBUG STUFF
+        //        record.castTotal = 0;
+        //        record.castUniqueMatches = 0;
+        //        if ([spell isType:Cthulhu]) {
+        //            record.castUniqueMatches = 10;
+        //        }
+        
         NSLog(@"SpellRecord (+) %@", record.name);
     }
+    
     return record;
 }
 
 - (NSArray*)allSpellRecords {
     // loads the spells in the order listed in the combos array
     
-    NSArray * spells = [[[SpellEffectService.shared allSpellTypes] map:^(SpellInfo * info) {
-        return [Spell fromType:info.type];
-    }] map:^(Spell * spell) {
-        SpellRecord * record = [self recordBySpellCreate:spell];
-//        record.castUniqueMatches = arc4random() % 17;
-//        record.castUniqueMatches = 2;
+    NSArray * spells = [[SpellEffectService.shared allSpellTypes] map:^(SpellInfo * info) {
+        SpellRecord * record = [self recordByType:info.type];
         return record;
     }];
 

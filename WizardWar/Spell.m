@@ -169,15 +169,23 @@
 }
 
 -(BOOL)isType:(NSString*)type {
-    return [self.type isEqualToString:type];
+    return [Spell type:self.type isType:type];
 }
 
 -(BOOL)isAnyType:(NSArray*)types {
+    return [Spell type:self.type isAnyType:types];
+}
+
+
++(BOOL)type:(NSString*)type isType:(NSString*)otherType {
+    return [type isEqualToString:otherType];
+}
+
++(BOOL)type:(NSString*)spellType isAnyType:(NSArray*)types {
     id match = [types find:^BOOL(NSString* type) {
-        return [self isType:type];
+        return [Spell type:spellType isType:type];
     }];
-    
-    return (match != nil);
+    return (match != nil);    
 }
 
 @end

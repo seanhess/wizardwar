@@ -42,6 +42,8 @@ typedef enum MatchStatus {
 @property (nonatomic) MatchStatus status;
 @property (nonatomic, strong) id<AIService>ai;
 
+@property (nonatomic, strong) NSMutableArray * mainPlayerSpellHistory;
+
 -(id)initWithMatchId:(NSString*)matchId hostName:(NSString*)hostName currentWizard:(Wizard*)wizard withAI:(id<AIService>)ai multiplayer:(id<Multiplayer>)multiplayer sync:(TimerSyncService*)sync;
 -(void)update:(NSTimeInterval)dt;
 -(BOOL)castSpell:(Spell *)spell;

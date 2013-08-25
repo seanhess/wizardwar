@@ -68,6 +68,8 @@
         self.aiWizard = ai.wizard;
         
         self.enoughTimeAsReady = NO;
+        
+        self.mainPlayerSpellHistory = [NSMutableArray array];
     }
     return self;
 }
@@ -593,7 +595,13 @@
 
 -(BOOL)castSpell:(Spell *)spell {
     [self.ai opponent:self.currentWizard didCastSpell:spell atTick:self.timer.nextTick];
-    return [self player:self.currentWizard castSpell:spell currentTick:self.timer.nextTick];
+    BOOL success = [self player:self.currentWizard castSpell:spell currentTick:self.timer.nextTick];
+    
+    if (success) {
+        [self.mainPlayerSpellHistory addObject:spell.type];
+    }
+    
+    return success;
 }
 
 -(Wizard*)otherWizard:(Wizard*)wizard {

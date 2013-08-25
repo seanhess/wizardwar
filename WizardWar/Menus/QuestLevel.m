@@ -8,7 +8,6 @@
 
 #import "QuestLevel.h"
 
-
 @implementation QuestLevel
 @synthesize AIType = _AIType;
 

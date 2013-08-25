@@ -36,6 +36,8 @@
 #import "SpellbookService.h"
 #import "ConnectionService.h"
 #import "RACHelpers.h"
+#import "QuestLevel.h"
+#import "QuestService.h"
 
 @interface MatchViewController () <HelpDelegate, PentagramDelegate>
 @property (strong, nonatomic) PentagramViewController * pentagram;
@@ -48,7 +50,7 @@
 @property (strong, nonatomic) MenuButton *replayButton;
 @property (nonatomic, strong) Challenge * challenge;
 @property (weak, nonatomic) IBOutlet UIButton *helpButton;
-@property (nonatomic, strong) id<AIService>ai;
+@property (strong, nonatomic) QuestLevel * questLevel;
 
 @property (strong, nonatomic) HelpViewController *help;
 @property (nonatomic) MatchStatus matchStatus;
@@ -167,9 +169,6 @@
     }
 }
 
-- (void)createMatch:(Challenge*)challenge currentWizard:(Wizard*)wizard withAI:(Wizard*)ai multiplayer:(id<Multiplayer>)multiplayer sync:(TimerSyncService*)sync {
-}
-
 - (id<Multiplayer>)defaultMultiplayerService {
     MultiplayerService * mp = [[MultiplayerService alloc] initWithRootRef:[ConnectionService.shared root]];
 #if DEBUG
@@ -187,8 +186,11 @@
     self.match = match;
 }
 
-- (void)createMatchWithWizard:(Wizard *)wizard withAI:(id<AIService>)ai {
-    Match * match = [[Match alloc] initWithMatchId:@"Practice" hostName:wizard.name currentWizard:wizard withAI:ai multiplayer:nil sync:nil];
+- (void)createMatchWithWizard:(Wizard *)wizard withLevel:(QuestLevel *)level {
+    self.questLevel = level;
+    id<AIService>ai = [level.AIType new];
+    
+    Match * match = [[Match alloc] initWithMatchId:@"Quest" hostName:wizard.name currentWizard:wizard withAI:ai multiplayer:nil sync:nil];
     self.match = match;
 }
 
@@ -251,11 +253,7 @@
             [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"YouWon.mp3" loop:NO];
         }
         
-        if (self.challenge)
-            [self.delegate didFinishChallenge:self.challenge didWin:didWin];
-        
-        [SpellbookService.shared finishedMatch:self.match.matchId];
-        
+        [self didFinishMatch:didWin];
         [self showEndButtons];
     }
 }
@@ -276,12 +274,30 @@
 #endif
 }
 
+- (void)didFinishMatch:(BOOL)didWin {
+    if (self.challenge)
+        [self.delegate didFinishChallenge:self.challenge didWin:didWin];
+    
+    [SpellbookService.shared finishedMatch:self.match.mainPlayerSpellHistory didWin:didWin];
+    [QuestService.shared finishedMatch:self.match.mainPlayerSpellHistory didWin:didWin];   
+}
+
 - (IBAction)didTapBack:(id)sender {
+    [self leaveMatch];
+}
+
+- (void)didTapLeave:(id)sender {
     [self leaveMatch];
 }
 
 - (void)leaveMatch {
     NSLog(@"MatchVC.leaveMatch");
+    
+    if (self.match.status != MatchStatusEnded) {
+        // you leave early = you lose
+        [self didFinishMatch:NO];
+    }
+        
     [self.match disconnect];
     [WizardDirector unload];
     [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
@@ -310,9 +326,6 @@
     }];
 }
 
-- (void)didTapLeave:(id)sender {
-    [self leaveMatch];
-}
 
 
 - (void)didReceiveMemoryWarning
@@ -369,7 +382,6 @@
         BOOL success = [self.match castSpell:spell];
         if (success) {
             [self.pentagram delayCast:spell.castDelay];
-            [SpellbookService.shared mainPlayerCastSpell:spell inMatch:self.match.matchId];
         }
         else {
             [self.pentagram attemptedCastButFailedBecauseOfSleep];

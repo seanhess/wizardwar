@@ -29,8 +29,8 @@
     
     self.progressView.hidden = hidden;
     self.progressView.progress = record.progress;
-    
-    if (level >= SpellbookLevelMaster) {
+        
+    if (level >= SpellbookLevelMaster || record.progress == 0.0) {
         self.progressView.frame = self.centerFrame;
         self.label.frame = self.centerFrame;
     } else {
@@ -42,6 +42,10 @@
         UIColor * color = [UIColor colorFromRGB:0x8F8F8F];
         self.progressColor = color;
         self.label.textColor = color;
+        
+        if (record.progress == 0.0) {
+            self.progressView.innerColor = [UIColor clearColor];
+        }
     }
     else if (record.level < SpellbookLevelMaster) {
         self.progressColor = [AppStyle blueNavColor];

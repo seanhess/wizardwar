@@ -129,12 +129,18 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    User * user = [UserService.shared currentUser];
     QuestLevel * questLevel = [self.levels objectAtIndex:indexPath.row];
-    id<AIService>ai = [questLevel.AIType new];
+
+    if ([QuestService.shared isLocked:questLevel user:user]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You're not ready!" message:@"Beat the previous levels before playing this one" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
+    
     
     MatchViewController * match = [[MatchViewController alloc] init];
-    [match createMatchWithWizard:UserService.shared.currentWizard withAI:ai];
-//    self.match = match;
+    [match createMatchWithWizard:UserService.shared.currentWizard withLevel:questLevel];
     [self.navigationController presentViewController:match animated:YES completion:nil];
     [match startMatch];
 }

@@ -23,10 +23,8 @@
 
 - (NSArray*)allSpellRecords;
 - (SpellRecord*)recordByType:(NSString*)type;
-- (SpellRecord*)recordBySpellCreate:(Spell*)spell;
 
-- (void)mainPlayerCastSpell:(Spell*)spell inMatch:(NSString*)matchId;
-- (void)finishedMatch:(NSString*)matchId;
+- (void)finishedMatch:(NSMutableArray*)spellHistory didWin:(BOOL)didWin;
 
 - (NSFetchRequest*)requestAllSpells;
 - (NSFetchRequest*)requestByType:(NSString*)type;

@@ -10,7 +10,7 @@
 #import "Wizard.h"
 #import "Challenge.h"
 #import "HelpViewController.h"
-#import "AIService.h"
+#import "QuestLevel.h"
 
 @protocol MatchViewControllerDelegate <NSObject>
 -(void)didFinishChallenge:(Challenge*)challenge didWin:(BOOL)win;
@@ -18,7 +18,7 @@
 
 @interface MatchViewController : UIViewController
 @property (nonatomic, weak) id<MatchViewControllerDelegate>delegate;
-- (void)createMatchWithWizard:(Wizard*)wizard withAI:(id<AIService>)ai;
+- (void)createMatchWithWizard:(Wizard*)wizard withLevel:(QuestLevel*)level;
 - (void)createMatchWithChallenge:(Challenge*)challenge currentWizard:(Wizard*)wizard;
 - (void)startMatch;
 - (void)showHelp:(HelpViewController*)help;

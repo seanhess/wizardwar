@@ -71,4 +71,6 @@ typedef enum SpellStatus {
 
 -(BOOL)isType:(NSString*)type;
 -(BOOL)isAnyType:(NSArray*)type; // if the spell is any of types
++(BOOL)type:(NSString*)type isType:(NSString*)type; // if the spell is any of types
++(BOOL)type:(NSString*)type isAnyType:(NSArray*)type; // if the spell is any of types
 @end
