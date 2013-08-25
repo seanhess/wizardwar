@@ -34,14 +34,14 @@
         
         self.tactics = @[
              [AITEffectRenew effect:[PELevitate new] spell:Levitate],
-//             [AITDelay random:@[Monster, Chicken, Vine, Monster]],
+             [AITDelay random:@[Monster, Chicken, Vine, Monster, Lightning]],
         ];
     }
     return self;
 }
 
 +(NSString*)name {
-    return @"Flying Fionnghal";
+    return @"Fionnghal the Flying";
 }
 
 @end
