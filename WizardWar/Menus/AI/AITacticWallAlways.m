@@ -24,7 +24,7 @@
         action = [AIAction spell:spell priority:5];
     }
     
-    return nil;
+    return action;
 }
 
 
