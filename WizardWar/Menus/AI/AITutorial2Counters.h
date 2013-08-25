@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Tutorial.h"
 
-@interface AITutorial2Counters : NSObject
+@interface AITutorial2Counters : Tutorial
 
 @end

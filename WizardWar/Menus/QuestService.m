@@ -10,6 +10,8 @@
 #import "QuestLevel.h"
 #import "ObjectStore.h"
 #import "AITutorial1BasicMagic.h"
+#import "AITutorial2Counters.h"
+#import "AITutorial3Discovery.h"
 #import "AIOpponentDummy.h"
 #import "UserService.h"
 #import "Achievement.h"
@@ -88,10 +90,13 @@
     QuestLevel * tutorial2 = [self levelWithName:@"Tutorial - Counterspells"];
     tutorial2.level = 0;
     tutorial2.wizardLevel = 2;
+    tutorial2.AIType = [AITutorial2Counters class];
+
     
     QuestLevel * tutorial3 = [self levelWithName:@"Tutorial - Discovery"];
     tutorial3.level = 0;
     tutorial3.wizardLevel = 3;
+    tutorial3.AIType = [AITutorial3Discovery class];
     
     QuestLevel * practice = [self levelWithName:@"Practice Dummy"];
     practice.level = 0;
@@ -101,6 +106,7 @@
     QuestLevel * asdf = [self levelWithName:@"First Real Guy"];
     asdf.level = 1;
     asdf.wizardLevel = 1;
+    asdf.AIType = [AIOpponentDummy class];
     
     return @[
         tutorial1,

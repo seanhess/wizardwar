@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Tutorial.h"
 
-@interface AITutorial3Discovery : NSObject
+@interface AITutorial3Discovery : Tutorial
 
 @end

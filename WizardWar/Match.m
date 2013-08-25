@@ -84,6 +84,8 @@
     [self addPlayer:self.currentWizard];
     [self.multiplayer addPlayer:self.currentWizard];
     
+    [self.ai setOpponent:self.currentWizard];
+    
     __weak Match * wself = self;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.minReadyStateTime * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){

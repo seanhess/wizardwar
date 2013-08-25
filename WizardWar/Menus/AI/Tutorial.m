@@ -10,10 +10,13 @@
 #import "UIColor+Hex.h"
 #import <ReactiveCocoa.h>
 #import "Spell.h"
+#import "EnvironmentLayer.h"
+#import "RACHelpers.h"
 
 @interface Tutorial ()
 @property (nonatomic, strong) TutorialStep * currentStep;
 @property (nonatomic) NSInteger wizardHealth;
+@property (nonatomic) NSInteger opponentHealth;
 @end
 
 @implementation Tutorial
@@ -30,10 +33,17 @@
         self.wizard = wizard;
         self.hideControls = YES;
         self.disableControls = YES;
+        self.environment = ENVIRONMENT_CASTLE;
         
-        RAC(self.wizardHealth) = RACAbleWithStart(self.wizard.health);
+        RAC(self.wizardHealth) = [RACAbleWithStart(self.wizard.health) filter:RACFilterExists];
+        RAC(self.opponentHealth) = [RACAbleWithStart(self.opponent.health) filter:RACFilterExists];
     }
     return self;
+}
+
+-(void)setSteps:(NSArray *)steps {
+    _steps = steps;
+    [self loadStep:0];
 }
 
 -(void)loadStep:(NSInteger)stepIndex {
@@ -60,9 +70,14 @@
 }
 
 -(void)setWizardHealth:(NSInteger)health {
-    NSLog(@" - set health health=%i _wizardHealth=%i", health, _wizardHealth);
-    BOOL shouldAdvance = (health < _wizardHealth && self.currentStep.advanceOnDamage);
+    BOOL shouldAdvance = (self.currentStep.advanceOnDamage && health < _wizardHealth);
     _wizardHealth = health;
+    if (shouldAdvance) [self advance];
+}
+
+-(void)setOpponentHealth:(NSInteger)health {
+    BOOL shouldAdvance = (self.currentStep.advanceOnDamageOpponent && health < _opponentHealth);
+    _opponentHealth = health;
     if (shouldAdvance) [self advance];
 }
 
