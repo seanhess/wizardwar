@@ -20,6 +20,8 @@
 #import "FacebookButtonCell.h"
 #import "AnalyticsService.h"
 #import <MessageUI/MessageUI.h>
+#import "QuestService.h"
+#import "SpellbookService.h"
 
 #define SECTION_FEEDBACK 2
 #define SECTION_FACEBOOK 1
@@ -31,7 +33,7 @@
 #define ROW_COLOR 2
 #define ROW_AVATAR 3
 
-@interface SettingsViewController () <AccountColorDelegate, UITextFieldDelegate, MFMailComposeViewControllerDelegate>
+@interface SettingsViewController () <AccountColorDelegate, UITextFieldDelegate, MFMailComposeViewControllerDelegate, UIActionSheetDelegate>
 @property (strong, nonatomic) WEPopoverController * popover;
 
 @end
@@ -89,7 +91,7 @@
     else if (section == SECTION_FEEDBACK && self.showFeedback)
         return 1;
     else if (section == SECTION_INFO && self.showBuildInfo)
-        return 2;
+        return 3;
     else 
         return 0;
 }
@@ -164,9 +166,12 @@
             cell.textLabel.text = @"Build Date";
             cell.detailTextLabel.text = [InfoService buildDate];
         }
-        if (indexPath.row == 1) {
+        else if (indexPath.row == 1) {
             cell.textLabel.text = @"Version";
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ (%i)", [InfoService version], [InfoService buildNumber]];
+        }
+        else if (indexPath.row ==2) {
+            cell.textLabel.text = @"Reset All Data!";
         }
     }
     
@@ -269,6 +274,14 @@
         [self didTapFacebook];
     }
     
+    else if (indexPath.section == SECTION_INFO) {
+        if (indexPath.row == 2) {
+            UIActionSheet * sheet = [[UIActionSheet alloc] initWithTitle:@"Reset? This will reset all quest progress, user info, and the spellbook." delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Reset" otherButtonTitles:nil];
+            [sheet showInView:self.view];
+            return;
+        }
+    }
+    
     else if (indexPath.section == SECTION_PROFILE) {
         ProfileCell * cell = (ProfileCell*)[tableView cellForRowAtIndexPath:indexPath];
         
@@ -323,9 +336,19 @@
         [self presentViewController:picker animated:YES completion:NULL];
         
     }
-    
-
 }
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        // reset all
+        [UserService.shared deleteAllData];
+        [QuestService.shared deleteAllData];
+        [SpellbookService.shared deleteAllData];
+        [self.tableView reloadData];
+    }
+    return;
+}
+
 
 -(void)didTapFacebook {
     if ([UserFriendService.shared isAuthenticatedFacebook]) {

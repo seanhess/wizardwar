@@ -18,6 +18,8 @@
 - (BOOL)hasPassedTutorials:(User*)user;
 - (BOOL)isLocked:(QuestLevel*)level user:(User*)user;
 
+- (void)deleteAllData;
+
 - (QuestLevel*)levelWithName:(NSString*)name;
 - (NSArray*)allQuestLevels;
 

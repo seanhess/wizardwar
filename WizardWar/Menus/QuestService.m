@@ -15,6 +15,7 @@
 #import "AIOpponentDummy.h"
 #import "UserService.h"
 #import "Achievement.h"
+#import "NSArray+Functional.h"
 
 #define QUEST_LEVEL_ENTITY @"QuestLevel"
 
@@ -83,6 +84,13 @@
         level.name = name;
     }
     return level;
+}
+
+- (void)deleteAllData {
+    // don't need to do anything!
+    [self.allQuestLevels forEach:^(QuestLevel*level) {
+        [ObjectStore.shared.context deleteObject:level];
+    }];
 }
 
 - (NSArray*)allQuestLevels {

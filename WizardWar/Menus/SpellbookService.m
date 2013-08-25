@@ -109,6 +109,12 @@
 
 
 
+- (void)deleteAllData {
+    // don't need to do anything!
+    [self.allSpellRecords forEach:^(SpellRecord*record) {
+        [ObjectStore.shared.context deleteObject:record];
+    }];
+}
 
 
 

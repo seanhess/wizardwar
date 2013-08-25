@@ -29,6 +29,8 @@
 - (void)connect:(Firebase*)root;
 - (void)disconnect;
 
+- (void)deleteAllData;
+
 - (BOOL)isAuthenticated;
 
 - (NSString*)randomWizardName;

@@ -113,6 +113,13 @@
     [self onAdded:snapshot];
 }
 
+- (void)deleteAllData {
+    self.currentUser = nil;
+    NSArray * users = [ObjectStore.shared requestToArray:[self requestAllUsers]];
+    [users forEach:^(User*user) {
+        [ObjectStore.shared.context deleteObject:user];
+    }];
+}
 
 
 # pragma mark - Friends
