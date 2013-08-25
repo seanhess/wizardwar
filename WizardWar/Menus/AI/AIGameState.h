@@ -27,11 +27,14 @@
 @property (nonatomic, readonly) NSTimeInterval timePerTick;
 
 @property (nonatomic, readonly) NSArray * mySpells;
+@property (nonatomic, readonly) NSArray * opponentSpells;
 @property (nonatomic, readonly) Spell * activeWall;
 @property (nonatomic, readonly) BOOL isCooldown; // whether the last spell made me SLOW
 
 // can filter spells by: direction (incoming, outgoing)
 // sort: when cast, so the most recent is always last?
 // sort: how close they are?
+
+-(NSArray*)sortSpellsByDistance:(NSArray*)spells;
 
 @end

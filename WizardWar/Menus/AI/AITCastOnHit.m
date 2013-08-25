@@ -6,15 +6,15 @@
 //  Copyright (c) 2013 Orbital Labs. All rights reserved.
 //
 
-#import "AITacticCastOnHit.h"
+#import "AITCastOnHit.h"
 #import "NSArray+Functional.h"
 
-@interface AITacticCastOnHit ()
+@interface AITCastOnHit ()
 @property (nonatomic) NSInteger lastWizardHealth;
 @property (nonatomic) NSInteger lastOpponentHealth;
 @end
 
-@implementation AITacticCastOnHit
+@implementation AITCastOnHit
 
 -(AIAction*)suggestedAction:(AIGameState *)game {
     
@@ -39,7 +39,7 @@
 }
 
 +(id)me:(BOOL)hitSelf opponent:(BOOL)hitOpponent random:(NSArray *)spells {
-    AITacticCastOnHit * tactic = [AITacticCastOnHit new];
+    AITCastOnHit * tactic = [AITCastOnHit new];
     tactic.spells = spells;
     tactic.hitOpponent = hitOpponent;
     tactic.hitSelf = hitSelf;

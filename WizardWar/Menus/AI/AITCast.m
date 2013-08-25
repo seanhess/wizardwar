@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Orbital Labs. All rights reserved.
 //
 
-#import "AITacticCast.h"
+#import "AITCast.h"
 
 // casts a spell
-@implementation AITacticCast
+@implementation AITCast
 
 -(AIAction*)suggestedAction:(AIGameState *)game {
     // wipe the timer if you change tactics
@@ -23,7 +23,7 @@
 }
 
 +(id)spell:(NSString*)spellType {
-    AITacticCast * tactic = [AITacticCast new];
+    AITCast * tactic = [AITCast new];
     tactic.spellType = spellType;
     return tactic;
 }

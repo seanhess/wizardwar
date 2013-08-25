@@ -10,7 +10,7 @@
 #import "AITactic.h"
 
 // casts a single kind of spell?
-@interface AITacticCast : NSObject <AITactic>
+@interface AITCast : NSObject <AITactic>
 @property (nonatomic, strong) NSString * spellType;
 +(id)spell:(NSString*)spellType;
 @end

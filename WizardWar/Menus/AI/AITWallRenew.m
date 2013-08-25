@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Orbital Labs. All rights reserved.
 //
 
-#import "AITacticWallRenew.h"
+#import "AITWallRenew.h"
 
-@interface AITacticWallRenew ()
+@interface AITWallRenew ()
 @property (nonatomic, strong) NSString * wallType;
 @end
 
-@implementation AITacticWallRenew
+@implementation AITWallRenew
 -(AIAction *)suggestedAction:(AIGameState *)game {
     
     Spell * activeWall = game.activeWall;
@@ -31,7 +31,7 @@
 }
 
 +(id)createIfDead {
-    AITacticWallRenew * tactic = [AITacticWallRenew new];
+    AITWallRenew * tactic = [AITWallRenew new];
     tactic.createIfDead = YES;
     return tactic;
 }

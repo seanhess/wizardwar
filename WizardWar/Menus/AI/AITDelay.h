@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "AITactic.h"
 
-@interface AITacticDelay : NSObject <AITactic>
+@interface AITDelay : NSObject <AITactic>
 @property (nonatomic) NSTimeInterval delay;
 @property (nonatomic, strong) NSArray * spells;
 +(id)random:(NSArray*)spells delay:(NSTimeInterval)delay;

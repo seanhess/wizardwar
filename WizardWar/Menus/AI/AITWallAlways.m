@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Orbital Labs. All rights reserved.
 //
 
-#import "AITacticWallAlways.h"
+#import "AITWallAlways.h"
 #import "NSArray+Functional.h"
 
-@implementation AITacticWallAlways
+@implementation AITWallAlways
 
 -(AIAction *)suggestedAction:(AIGameState *)game {
     
@@ -29,7 +29,7 @@
 
 
 +(id)walls:(NSArray*)walls {
-    AITacticWallAlways * tactic = [AITacticWallAlways new];
+    AITWallAlways * tactic = [AITWallAlways new];
     tactic.walls = walls;
     return tactic;
 }

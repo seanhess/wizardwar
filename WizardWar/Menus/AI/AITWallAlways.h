@@ -12,7 +12,7 @@
 // Unlike WallRenew, this waits until it drops to 0, then switches to a different wall.
 // Always makes sure it has a wall up!
 
-@interface AITacticWallAlways : NSObject <AITactic>
+@interface AITWallAlways : NSObject <AITactic>
 @property (nonatomic, strong) NSArray * walls;
 +(id)walls:(NSArray*)walls;
 @end

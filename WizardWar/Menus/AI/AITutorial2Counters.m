@@ -7,9 +7,9 @@
 //
 
 #import "AITutorial2Counters.h"
-#import "AITacticCast.h"
-#import "AITacticCastOnHit.h"
-#import "AITacticWallAlways.h"
+#import "AITCast.h"
+#import "AITCastOnHit.h"
+#import "AITWallAlways.h"
 
 @implementation AITutorial2Counters
 
@@ -55,7 +55,7 @@
 
            [TutorialStep message:nil
                             demo:nil
-                         tactics:@[[AITacticCast spell:Lightning]]
+                         tactics:@[[AITCast spell:Lightning]]
                          advance:TSAdvanceDamage
                    allowedSpells:@[Monster, Lightning, Fireball, Firewall, Icewall, Earthwall]],
 
@@ -67,7 +67,7 @@
 
            [TutorialStep message:nil
                             demo:nil
-                         tactics:@[[AITacticCastOnHit me:YES opponent:YES random:@[Fireball, Monster, Lightning]], [AITacticWallAlways walls:@[Firewall, Earthwall, Icewall]]]
+                         tactics:@[[AITCastOnHit me:YES opponent:YES random:@[Fireball, Monster, Lightning]], [AITWallAlways walls:@[Firewall, Earthwall, Icewall]]]
                          advance:TSAdvanceEnd
                    allowedSpells:@[Fireball, Lightning, Monster, Earthwall, Firewall, Icewall]],
 

@@ -10,7 +10,7 @@
 #import "AITactic.h"
 
 // Will renew a well that gets to 1, or recast the same type if it gets to 0
-@interface AITacticWallRenew : NSObject <AITactic>
+@interface AITWallRenew : NSObject <AITactic>
 @property (nonatomic) BOOL createIfDead;
 // tutorials don't want you to create another icewall :)
 +(id)createIfDead;

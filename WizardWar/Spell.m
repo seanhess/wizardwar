@@ -123,6 +123,9 @@
     return floorf(altitude);
 }
 
+-(float)distance:(Wizard*)wizard {
+    return fabsf(wizard.position - self.position);
+}
 
 // NEW HITTING ALGORITHM
 // if the positions will cross during this tick, given their current directions

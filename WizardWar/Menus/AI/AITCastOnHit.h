@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "AITactic.h"
 
-@interface AITacticCastOnHit : NSObject <AITactic>
+@interface AITCastOnHit : NSObject <AITactic>
 @property (nonatomic, strong) NSArray * spells;
 @property (nonatomic) BOOL hitSelf;
 @property (nonatomic) BOOL hitOpponent;

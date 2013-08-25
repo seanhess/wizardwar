@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Orbital Labs. All rights reserved.
 //
 
-#import "AITacticDelay.h"
+#import "AITDelay.h"
 #import "Spell.h"
 #import "NSArray+Functional.h"
 
-@implementation AITacticDelay
+@implementation AITDelay
 
 -(AIAction*)suggestedAction:(AIGameState *)game {
     
@@ -27,7 +27,7 @@
 
 
 +(id)random:(NSArray*)spells delay:(NSTimeInterval)delay {
-    AITacticDelay * tactic = [AITacticDelay new];
+    AITDelay * tactic = [AITDelay new];
     tactic.spells = spells;
     tactic.delay = delay;
     return tactic;

@@ -68,6 +68,7 @@ typedef enum SpellStatus {
 -(float)moveFromReferencePosition:(NSTimeInterval)dt;
 +(NSString*)generateSpellId;
 -(void)setPositionFromPlayer:(Wizard*)player;
+-(float)distance:(Wizard*)wizard;
 
 -(BOOL)isType:(NSString*)type;
 -(BOOL)isAnyType:(NSArray*)type; // if the spell is any of types
