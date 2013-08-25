@@ -23,49 +23,35 @@
         
         self.steps = @[
            [TutorialStep modalMessage:@"Welcome to Wizardland, the most magical place in all the world!"],
-           [TutorialStep modalMessage:@"It's crawling with grumpy wizards though, so you're going to need to know how to duel."],
-           [TutorialStep modalMessage:@"First, let's cast a spell."],
+           [TutorialStep modalMessage:@"It's crawling with grumpy wizards though, so you're going to need to know how to fight."],
            [TutorialStep message:@"This is the elemental pentagram." disableControls:YES], // should DISABLE pentagram though
            [TutorialStep message:@"Spells are created by connecting 3 or more elements together." disableControls:YES],
            [TutorialStep message:@"To cast a Fireball, drag to connect Fire-Air-Heart."
                           tactics:nil
-                         advance:TSAdvanceDamage
+                         advance:TSAdvanceSpell(Fireball)
                    allowedSpells:@[Fireball]],
            
            // TODO change to renew earthwall if it's low
            // or, even better, just do a random cast, and renew it frequently
-           [TutorialStep message:@"I can block Fireball with a Wall of Earth."
+           [TutorialStep message:@"Blocked! Hah!"
                          tactics:@[[AITacticCast spell:Earthwall]]
                          advance:TSAdvanceSpell(Fireball)
-                    allowedSpells:@[Fireball, Earthwall]],
+                    allowedSpells:@[Fireball, Earthwall, Icewall, Firewall]],
            
-           [TutorialStep message:@"Try casting Lightning instead: Earth-Air-Water."
+           [TutorialStep message:@"Try casting Lightning Orb instead: Earth-Air-Water."
                          tactics:@[[AITacticWallRenew createIfDead]]
                          advance:TSAdvanceDamage
-                   allowedSpells:@[Fireball, Lightning, Earthwall]],
+                   allowedSpells:@[Fireball, Lightning, Earthwall, Icewall, Firewall]],
            
-           // LOAD AI: Cast Icewall again if strength ever gets to 1.
-           // replace action with ai
-           // AI = cast an icweall
-           // don't want to create if dead, because to get through fireball has to kill it
-           [TutorialStep message:@"Icewall blocks lightning, but a single fireball will wipe it out."
-                         tactics:@[[AITacticCast spell:Icewall], [AITacticWallRenew new]]
-                         advance:TSAdvanceDamage
-                   allowedSpells:@[Fireball, Lightning, Earthwall, Icewall]],
-           
-           // LOAD AI:
-           [TutorialStep message:@"Good! Now see if you can kill me!"
+           [TutorialStep message:@"Enough! See if you can defeat me. Bring it on, punk!"
                          tactics:nil
                          advance:TSAdvanceSpellAny
-                   allowedSpells:@[Fireball, Lightning, Earthwall, Icewall]],
+                   allowedSpells:@[Fireball, Lightning, Earthwall, Icewall, Firewall]],
            
-           // Tactics are: any time I get hit, cast a new wall.
-           // New all selected: opposite as the one before? Or random?
-           // AND I want to renew the wall if it gets low, at a higher priority than the other stuff :)
            [TutorialStep message:nil
                          tactics:@[[AITacticRandom spellsCastOnHit:@[Earthwall, Icewall]], [AITacticWallRenew new]]
                          advance:nil
-                   allowedSpells:@[Fireball, Lightning, Earthwall, Icewall]],
+                   allowedSpells:@[Fireball, Lightning, Earthwall, Icewall, Firewall]],
         ];
     }
     return self;
