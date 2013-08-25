@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <BButton.h>
+#import "User.h"
 
 @interface WarningCell : UITableViewCell
 //@property (weak, nonatomic) IBOutlet BButton *button;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
+
+-(void)setWarningText:(NSString*)text;
+-(void)setUserInfo:(User*)user;
 @end

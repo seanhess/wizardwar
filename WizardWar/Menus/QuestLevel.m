@@ -22,8 +22,12 @@
     return ((float)self.gamesWins / (float)self.masteryWins);
 }
 
+//-(NSInteger)masteryWins {
+//    return self.gamesLosses + 2; // you have to win 2 times + the number of times you've lost
+//}
+
 -(NSInteger)masteryWins {
-    return self.gamesLosses + 2; // you have to win 2 times + the number of times you've lost
+    return 4;
 }
 
 - (NSInteger)gamesLosses {

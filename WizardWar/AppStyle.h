@@ -21,9 +21,12 @@
 +(UIImage*)blueNavColorImage;
 +(UIColor*)greenGrassColor;
 +(UIColor*)yellowButtonTextColor;
++(UIColor*)yellowWarningColor;
 +(UIImage *)imageWithColor:(UIColor *)color;
 +(UIColor*)greenOnlineColor;
 +(UIColor*)redErrorColor;
 +(UIColor*)grayLockedColor;
++(UIColor*)blueMessageColor;
++(UIColor*)lightBackgroundColor;
 
 @end

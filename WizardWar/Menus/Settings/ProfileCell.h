@@ -19,6 +19,7 @@
 -(id)initWithReuseIdentifier:(NSString*)cellIdentifier;
 
 -(void)setFieldText:(NSString*)text;
+-(void)setLabelText:(NSString*)text;
 -(void)setColor:(UIColor*)color;
 -(void)setAvatarURL:(NSURL*)url;
 

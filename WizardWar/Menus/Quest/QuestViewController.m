@@ -14,12 +14,17 @@
 #import "AppStyle.h"
 #import <BButton.h>
 #import "MatchViewController.h"
+#import "WarningCell.h"
+#import "AnalyticsService.h"
+#import "SettingsViewController.h"
+
+#define SECTION_STATS 0
+#define SECTION_LEVELS 1
 
 @interface QuestViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray * levels;
 @property (strong, nonatomic) MatchViewController * match;
-
 @end
 
 @implementation QuestViewController
@@ -37,9 +42,18 @@
 {
     [super viewDidLoad];
     
+    NSString * buttonText = [NSString stringFromAwesomeIcon:FAIconUser];
+    UIBarButtonItem *accountButton = [[UIBarButtonItem alloc] initWithTitle:buttonText style:UIBarButtonItemStylePlain target:self action:@selector(didTapAccount)];
+    [accountButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"FontAwesome" size:20.0], UITextAttributeFont, nil] forState:UIControlStateNormal];
+    self.navigationItem.rightBarButtonItem = accountButton;
+    
+    
     self.title = @"Quest";
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationItem.titleView = [ComicZineDoubleLabel titleView:self.title navigationBar:self.navigationController.navigationBar];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"WarningCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WarningCell"];
+    
     
 //    [self.tableView registerNib:[UINib nibWithNibName:@"SpellbookCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"SpellbookCell"];
     
@@ -55,18 +69,45 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [self.tableView reloadData];
+}
+
 #pragma mark - UITableViewStuff
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return SECTION_LEVELS+1;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section == SECTION_STATS) return 1;
     return self.levels.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == SECTION_STATS) {
+        return [self tableView:tableView infoCellForIndexPath:indexPath];
+    }
+    
+    else {
+        return [self tableView:tableView questCellForIndexPath:indexPath];
+    }
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView infoCellForIndexPath:(NSIndexPath *)indexPath {
+    
+    WarningCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WarningCell"];
+    
+    User * user = [UserService.shared currentUser];
+    [cell setUserInfo:user];
+    
+    return cell;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView questCellForIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"QuestCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -112,13 +153,12 @@
             progress.alignCenter = NO;            
         } else {
             progress.label.text = @"NEW";
+            progress.label.textColor = [AppStyle redErrorColor];
             progress.progressView.innerColor = [UIColor clearColor];
+            progress.progressView.outerColor = [AppStyle redErrorColor];
             progress.alignCenter = YES;
         }
     }
-    
-
-    
     // You can do "mastered" once it's 100%
     
     cell.textLabel.text = questLevel.name;
@@ -127,6 +167,7 @@
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == SECTION_STATS) return;
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     User * user = [UserService.shared currentUser];
@@ -145,9 +186,27 @@
     [match startMatch];
 }
 
-//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return 54;
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == SECTION_STATS) return 54;
+    else return 48;
+}
+
+
+
+
+
+- (IBAction)didTapAccount {
+    [AnalyticsService event:@"AccountTap"];
+    SettingsViewController * settings = [SettingsViewController new];
+    settings.title = @"My Wizard";
+    settings.showFeedback = YES;
+    settings.showBuildInfo = YES;
+    UINavigationController * navigation = [[UINavigationController alloc] initWithRootViewController:settings];
+    settings.onDone = ^{
+    };
+    [self.navigationController presentViewController:navigation animated:YES completion:nil];
+}
+
 
 
 

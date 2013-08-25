@@ -21,10 +21,15 @@
 #import "AnalyticsService.h"
 #import <MessageUI/MessageUI.h>
 
-#define SECTION_FEEDBACK 0
+#define SECTION_FEEDBACK 2
 #define SECTION_FACEBOOK 1
-#define SECTION_PROFILE 2
+#define SECTION_PROFILE 0
 #define SECTION_INFO 3
+
+#define ROW_NAME 0
+#define ROW_LEVEL 1
+#define ROW_COLOR 2
+#define ROW_AVATAR 3
 
 @interface SettingsViewController () <AccountColorDelegate, UITextFieldDelegate, MFMailComposeViewControllerDelegate>
 @property (strong, nonatomic) WEPopoverController * popover;
@@ -33,19 +38,16 @@
 
 @implementation SettingsViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
+-(id)init {
+    if ((self = [super init])) {
+       self.title = @"Settings"; 
     }
     return self;
 }
 
 - (void)viewDidLoad
 {
-    [AnalyticsService event:@"SettingsLoad"];    
-    self.title = @"Settings";
+    [AnalyticsService event:@"SettingsLoad"];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationItem.titleView = [ComicZineDoubleLabel titleView:self.title navigationBar:self.navigationController.navigationBar];
     
@@ -83,7 +85,7 @@
     if (section == SECTION_FACEBOOK)
         return 1;
     else if (section == SECTION_PROFILE)
-        return 3;
+        return 4;
     else if (section == SECTION_FEEDBACK && self.showFeedback)
         return 1;
     else if (section == SECTION_INFO && self.showBuildInfo)
@@ -154,6 +156,7 @@
 
     if (indexPath.section == SECTION_FEEDBACK) {
         cell.textLabel.text = @"Send Us Feedback";
+        cell.detailTextLabel.text = @"";
     }
 
     else if (indexPath.section == SECTION_INFO) {
@@ -180,18 +183,24 @@
     
     User * user = [UserService.shared currentUser];
     
-    if (indexPath.row == 0) {
+    if (indexPath.row == ROW_NAME) {
         cell.textLabel.text = @"Name";
         cell.inputField.delegate = self;
         [cell setFieldText:user.name];
     }
     
-    else if (indexPath.row == 1) {
+    else if (indexPath.row == ROW_LEVEL) {
+        cell.textLabel.text = @"Level";
+        cell.inputField.delegate = self;
+        [cell setLabelText:[NSString stringWithFormat:@"%i", user.wizardLevel]];
+    }
+    
+    else if (indexPath.row == ROW_COLOR) {
         cell.textLabel.text = @"Color";
         [cell setColor:user.color];
     }
     
-    else if (indexPath.row == 2) {
+    else if (indexPath.row == ROW_AVATAR) {
         cell.textLabel.text = @"Avatar";
         [cell setAvatarURL:[UserFriendService.shared user:user facebookAvatarURLWithSize:cell.avatarSize]];
     }
@@ -207,7 +216,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == SECTION_PROFILE && indexPath.row == 2) return 108;
+    if (indexPath.section == SECTION_PROFILE && indexPath.row == ROW_AVATAR) return 108;
     return 44;
 }
 
@@ -263,15 +272,15 @@
     else if (indexPath.section == SECTION_PROFILE) {
         ProfileCell * cell = (ProfileCell*)[tableView cellForRowAtIndexPath:indexPath];
         
-        if (indexPath.row == 0) {
+        if (indexPath.row == ROW_NAME) {
             [cell.inputField becomeFirstResponder];
-        } else if (indexPath.row == 1) {
+        } else if (indexPath.row == ROW_COLOR) {
             AccountColorViewController * color = [AccountColorViewController new];
             color.delegate = self;
             WEPopoverController * popover = [[WEPopoverController alloc] initWithContentViewController:color];
             [popover presentPopoverFromRect:cell.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
             self.popover = popover;
-        } else if (indexPath.row == 2) {
+        } else if (indexPath.row == ROW_AVATAR) {
             UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Facebook Avatar" message:@"Your avatar is set by your facebook account." delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
             [alert show];
         }
@@ -353,6 +362,11 @@
 
 
 #pragma mark - textField Delegate
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    return YES;
+}
+
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     
 }

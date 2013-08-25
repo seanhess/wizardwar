@@ -15,6 +15,7 @@
 #import "SpellbookCell.h"
 #import "WarningCell.h"
 #import "NSArray+Functional.h"
+#import "AppStyle.h"
 
 #define SECTION_WARNINGS 0
 #define SECTION_SPELLS 1
@@ -109,6 +110,7 @@
     
     WarningCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WarningCell"];
 
+    cell.textView.backgroundColor = [AppStyle blueMessageColor];
     cell.selectionStyle = UITableViewCellEditingStyleNone;
     cell.textView.text = @"You can unlock more spells by playing the Quest and Multiplayer.";
     cell.textView.textAlignment = NSTextAlignmentCenter;

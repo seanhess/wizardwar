@@ -47,8 +47,8 @@
     // Increase levels and stuff!
     User * currentUser = [UserService.shared currentUser];
     
-    if (questLevel.level > currentUser.questLevel) {
-        currentUser.questLevel = questLevel.level;
+    if (questLevel.level >= currentUser.questLevel) {
+        currentUser.questLevel = questLevel.level+1;
     }
     
     if (questLevel.wizardLevel > currentUser.wizardLevel) {

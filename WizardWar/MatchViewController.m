@@ -253,7 +253,7 @@
             [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"YouWon.mp3" loop:NO];
         }
         
-        [self didFinishMatch:didWin];
+        [self didFinishMatch:YES didWin:didWin];
         [self showEndButtons];
     }
 }
@@ -274,12 +274,17 @@
 #endif
 }
 
-- (void)didFinishMatch:(BOOL)didWin {
+- (void)didFinishMatch:(BOOL)didFinish didWin:(BOOL)didWin {
+    // always mark the challenge as lost
     if (self.challenge)
         [self.delegate didFinishChallenge:self.challenge didWin:didWin];
     
-    NSArray * spellbookAchievements = [SpellbookService.shared finishedMatch:self.match.mainPlayerSpellHistory didWin:didWin];
-    NSArray * questAcievements = [QuestService.shared finishedQuest:self.questLevel didWin:didWin];
+    // it doesn't matter for these guys?
+    if (didFinish) {
+        // Don't mark them as finished unless you actually finish
+        NSArray * spellbookAchievements = [SpellbookService.shared finishedMatch:self.match.mainPlayerSpellHistory didWin:didWin];
+        NSArray * questAcievements = [QuestService.shared finishedQuest:self.questLevel didWin:didWin];
+    }
 }
 
 - (IBAction)didTapBack:(id)sender {
@@ -295,7 +300,7 @@
     
     if (self.match.status != MatchStatusEnded) {
         // you leave early = you lose
-        [self didFinishMatch:NO];
+        [self didFinishMatch:NO didWin:NO];
     }
         
     [self.match disconnect];

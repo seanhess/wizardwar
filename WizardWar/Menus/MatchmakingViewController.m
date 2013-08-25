@@ -45,6 +45,8 @@
 #import "AppStyle.h"
 #import <MessageUI/MessageUI.h>
 
+#define ROW_STATS 0
+#define ROW_WARNING 1
 
 #define SECTION_INDEX_WARNINGS 0
 #define SECTION_INDEX_CHALLENGES 1
@@ -121,8 +123,8 @@
 //    self.inviteFriendsButton.color = [AppStyle blueNavColor];
 //    [self.inviteFriendsButton.titleLabel.font = [UIFont fontWithName:@"FontAwesome" size:26];
 
-    UIBarButtonItem *accountButton = [[UIBarButtonItem alloc] initWithTitle:[NSString stringFromAwesomeIcon:FAIconUser] style:UIBarButtonItemStylePlain target:self action:@selector(didTapAccount)];
-    
+    NSString * buttonText = [NSString stringFromAwesomeIcon:FAIconUser];
+    UIBarButtonItem *accountButton = [[UIBarButtonItem alloc] initWithTitle:buttonText style:UIBarButtonItemStylePlain target:self action:@selector(didTapAccount)];
     [accountButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"FontAwesome" size:20.0], UITextAttributeFont, nil] forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem = accountButton;
     
@@ -491,9 +493,9 @@
         return [[self.allResults.sections objectAtIndex:0] numberOfObjects];
     } else if (section == SECTION_INDEX_WARNINGS) {
         if ([self shouldShowLocationWarning] || [self shouldShowPushWarning])
-            return 1;
+            return 2;
         else
-            return 0;
+            return 1;
     } else {
         return 0;
     }
@@ -540,7 +542,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == SECTION_INDEX_CHALLENGES) return 65;
-    if (indexPath.section == SECTION_INDEX_WARNINGS) return 90;
+    if (indexPath.section == SECTION_INDEX_WARNINGS && indexPath.row == ROW_WARNING) return 90;
     else return 54;
 }
 
@@ -606,14 +608,17 @@
     
     WarningCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WarningCell"];
     
-    if (!cell) {
-        cell = [[WarningCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"WarningCell"];
+    if (indexPath.row == ROW_WARNING) {
+        if ([self shouldShowLocationWarning])
+            [cell setWarningText:self.locationWarning];
+        else
+            [cell setWarningText:self.pushWarning];
     }
     
-    if ([self shouldShowLocationWarning])
-        cell.textView.text = self.locationWarning;
-    else
-        cell.textView.text = self.pushWarning;
+    else {
+        User * user = [UserService.shared currentUser];
+        [cell setUserInfo:user];
+    }
     
     return cell;
 }
@@ -848,6 +853,7 @@
 - (IBAction)didTapAccount {
     [AnalyticsService event:@"AccountTap"];    
     SettingsViewController * settings = [SettingsViewController new];
+    settings.title = @"My Wizard";
     settings.showFeedback = YES;
     settings.showBuildInfo = YES;
     UINavigationController * navigation = [[UINavigationController alloc] initWithRootViewController:settings];

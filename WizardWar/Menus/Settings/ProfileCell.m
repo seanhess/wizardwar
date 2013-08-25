@@ -76,12 +76,22 @@
     return CGSizeMake(100, 100);
 }
 
+-(void)setLabelText:(NSString*)text {
+    self.inputField.placeholder = text;
+    self.inputField.text = text;
+    self.colorView.hidden = YES;
+    self.avatarImageView.hidden = YES;
+    self.inputField.hidden = NO;
+    self.inputField.enabled = NO;
+}
+
 -(void)setFieldText:(NSString*)text {
     self.inputField.placeholder = text;
     self.inputField.text = text;
     self.colorView.hidden = YES;
     self.avatarImageView.hidden = YES;
     self.inputField.hidden = NO;
+    self.inputField.enabled = YES;
 }
 
 -(void)setColor:(UIColor*)color {

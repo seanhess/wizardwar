@@ -9,5 +9,16 @@
 #import "Achievement.h"
 
 @implementation Achievement
++(id)wizardLevel:(User*)user {
+    return [Achievement new];
+}
+
++(id)spellLevel:(SpellRecord*)record {
+    return [Achievement new];
+}
+
++(id)questMastered:(QuestLevel*)level {
+    return [Achievement new];
+}
 
 @end

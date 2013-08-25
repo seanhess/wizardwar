@@ -68,4 +68,16 @@
     return [UIColor colorFromRGB:0x8F8F8F];
 }
 
++(UIColor*)yellowWarningColor {
+    return [UIColor colorFromRGB:0xF2FEA1];
+}
+
++(UIColor*)blueMessageColor {
+    return [UIColor colorFromRGB:0xE6F1FE];
+}
+
++(UIColor*)lightBackgroundColor {
+    return [UIColor colorFromRGB:0xE3E3E3];
+}
+
 @end
