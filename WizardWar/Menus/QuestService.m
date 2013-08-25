@@ -18,6 +18,7 @@
 #import "NSArray+Functional.h"
 #import "AIOJumper.h"
 #import "AIOJumper2.h"
+#import "AIOEarth.h"
 
 #define QUEST_LEVEL_ENTITY @"QuestLevel"
 
@@ -127,6 +128,12 @@
     jumper2.wizardLevel = 0;
     jumper2.AIType = [AIOJumper2 class];
     
+    QuestLevel * earth = [self levelWithName:[AIOEarth name]];
+    earth.level = 0;
+    earth.wizardLevel = 0;
+    earth.AIType = [AIOEarth class];
+    
+    
 
     return @[
              tutorial1,
@@ -135,13 +142,12 @@
              practice,
              jumper,
              jumper2,
-             //        asdf,
+             earth,
              ];
     
 /*
  
  
- Levitating Guy
  5 Elemental guys. Similar programming, different spells. 
  Summoner. 
  Sleeper. he never even kills you!

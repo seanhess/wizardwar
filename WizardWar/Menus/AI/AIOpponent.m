@@ -68,7 +68,7 @@
         AIAction * action = [tactic suggestedAction:self.game];
         
         if (action) {
-            NSLog(@"(%i) %@", tick, action);
+//            NSLog(@"(%i) %@", tick, action);
             
             if (action.timeRequired <= 0) {
                 [self runAction:action];
@@ -81,13 +81,15 @@
         }
     }
     
-    if (priorityAction)
+    if (priorityAction) {
+        NSLog(@"(%i) %@", tick, priorityAction);
         [self runAction:priorityAction];
+    }
 }
 
 -(void)runAction:(AIAction*)action {
     
-    NSLog(@"      RUN %@", action);
+//    NSLog(@"      RUN %@", action);
     // How does it CLEAR the action?
     // maybe they fade on their own.
     

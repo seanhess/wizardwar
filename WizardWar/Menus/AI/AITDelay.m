@@ -9,6 +9,7 @@
 #import "AITDelay.h"
 #import "Spell.h"
 #import "NSArray+Functional.h"
+#import "PEHelmet.h"
 
 @implementation AITDelay
 
@@ -18,6 +19,11 @@
     
     if (!game.isCooldown) {
         NSString * randomType = [self.spells randomItem];
+
+        if ([Spell type:randomType isType:Helmet] && [game.wizard.effect isKindOfClass:[PEHelmet class]]) {
+            return nil;
+        }
+        
         Spell * spell = [Spell fromType:randomType];
         
         if (self.delay)
