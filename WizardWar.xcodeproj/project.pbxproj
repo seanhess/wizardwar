@@ -222,6 +222,7 @@
 		7843E74117C95B83009EF3AB /* AIAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E74017C95B82009EF3AB /* AIAction.m */; };
 		7843E74417C96083009EF3AB /* AITacticWallRenew.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E74317C96082009EF3AB /* AITacticWallRenew.m */; };
 		7843E74717C981E7009EF3AB /* AIOpponentDummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E74617C981E5009EF3AB /* AIOpponentDummy.m */; };
+		7843E74A17C988A8009EF3AB /* Achievement.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E74917C988A7009EF3AB /* Achievement.m */; };
 		784D3BDE1774F753009945F8 /* LobbyService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BDD1774F753009945F8 /* LobbyService.m */; };
 		784D3BE1177501E9009945F8 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BE0177501E9009945F8 /* UserService.m */; };
 		784D3BE417750441009945F8 /* IdService.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D3BE317750441009945F8 /* IdService.m */; };
@@ -799,6 +800,8 @@
 		7843E74317C96082009EF3AB /* AITacticWallRenew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AITacticWallRenew.m; sourceTree = "<group>"; };
 		7843E74517C981E3009EF3AB /* AIOpponentDummy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIOpponentDummy.h; sourceTree = "<group>"; };
 		7843E74617C981E5009EF3AB /* AIOpponentDummy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIOpponentDummy.m; sourceTree = "<group>"; };
+		7843E74817C988A7009EF3AB /* Achievement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Achievement.h; sourceTree = "<group>"; };
+		7843E74917C988A7009EF3AB /* Achievement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Achievement.m; sourceTree = "<group>"; };
 		784D3BDC1774F753009945F8 /* LobbyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LobbyService.h; sourceTree = "<group>"; };
 		784D3BDD1774F753009945F8 /* LobbyService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LobbyService.m; sourceTree = "<group>"; };
 		784D3BDF177501E9009945F8 /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserService.h; sourceTree = "<group>"; };
@@ -1672,6 +1675,8 @@
 				785B045B17C2B16700B064F6 /* SpellRecord.m */,
 				783DAEC217C82BFF00CDF109 /* QuestLevel.h */,
 				783DAEC317C82BFF00CDF109 /* QuestLevel.m */,
+				7843E74817C988A7009EF3AB /* Achievement.h */,
+				7843E74917C988A7009EF3AB /* Achievement.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -2707,6 +2712,7 @@
 				7843E74117C95B83009EF3AB /* AIAction.m in Sources */,
 				7843E74417C96083009EF3AB /* AITacticWallRenew.m in Sources */,
 				7843E74717C981E7009EF3AB /* AIOpponentDummy.m in Sources */,
+				7843E74A17C988A8009EF3AB /* Achievement.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

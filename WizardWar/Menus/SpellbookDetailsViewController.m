@@ -197,7 +197,7 @@
     
     SpellbookProgressView * progressView = (SpellbookProgressView*)cell.accessoryView;
     progressView.record = self.record;
-    cell.textLabel.text = [NSString stringWithFormat:@"Used in %i Matches", self.record.castUniqueMatches];
+    cell.textLabel.text = [NSString stringWithFormat:@"Used in %i Matches", self.record.castMatchesTotal];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Cast %i times total", self.record.castTotal];
     
     return cell;

@@ -24,7 +24,7 @@
 - (NSArray*)allSpellRecords;
 - (SpellRecord*)recordByType:(NSString*)type;
 
-- (void)finishedMatch:(NSMutableArray*)spellHistory didWin:(BOOL)didWin;
+- (NSArray*)finishedMatch:(NSMutableArray*)spellHistory didWin:(BOOL)didWin;
 
 - (NSFetchRequest*)requestAllSpells;
 - (NSFetchRequest*)requestByType:(NSString*)type;

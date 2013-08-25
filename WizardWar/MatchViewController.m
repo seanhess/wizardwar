@@ -278,8 +278,8 @@
     if (self.challenge)
         [self.delegate didFinishChallenge:self.challenge didWin:didWin];
     
-    [SpellbookService.shared finishedMatch:self.match.mainPlayerSpellHistory didWin:didWin];
-    [QuestService.shared finishedMatch:self.match.mainPlayerSpellHistory didWin:didWin];   
+    NSArray * spellbookAchievements = [SpellbookService.shared finishedMatch:self.match.mainPlayerSpellHistory didWin:didWin];
+    NSArray * questAcievements = [QuestService.shared finishedQuest:self.questLevel didWin:didWin];
 }
 
 - (IBAction)didTapBack:(id)sender {

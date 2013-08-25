@@ -15,6 +15,7 @@
 #import "SpellInfo.h"
 #import "UIImage+MonoImage.h"
 #import "SpellEffect.h"
+#import "Achievement.h"
 
 @interface SpellbookService ()
 @end
@@ -73,7 +74,10 @@
     return [SpellSprite sheetNameForType:type];
 }
 
-- (void)finishedMatch:(NSMutableArray*)spellHistory didWin:(BOOL)didWin {
+- (NSArray*)finishedMatch:(NSMutableArray*)spellHistory didWin:(BOOL)didWin {
+    
+    NSMutableArray * achievements = [NSMutableArray array];
+
     // now go through and store everything!
     // Group them by spell cast
     NSMutableDictionary * totals = [NSMutableDictionary dictionary];
@@ -87,12 +91,16 @@
     // they  might not be CREATED yet
     for (NSString * type in totals) {
         SpellRecord * record = [self recordByType:type];
+        SpellbookLevel beforeLevel = record.level;
         record.castTotal += [totals[type] intValue];
-        record.castUniqueMatches += 1;
+        record.castMatchesTotal += 1;
+        if (didWin) record.castMatchesWins += 1;
+        if (record.level > beforeLevel) {
+            [achievements addObject:[Achievement spellLevel:record]];
+        }
     }
 
-    // TODO return achievements?
-    return;
+    return achievements;
 }
 
 

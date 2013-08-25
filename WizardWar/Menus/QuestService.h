@@ -18,5 +18,5 @@
 - (QuestLevel*)levelWithName:(NSString*)name;
 - (NSArray*)allQuestLevels;
 
-- (void)finishedMatch:(NSArray*)spellHistory didWin:(BOOL)didWin;
+- (NSArray*)finishedQuest:(QuestLevel*)level didWin:(BOOL)didWin;
 @end

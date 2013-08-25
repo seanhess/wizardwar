@@ -14,13 +14,14 @@
 @dynamic type;
 @dynamic name;
 @dynamic castTotal;
-@dynamic castUniqueMatches;
+@dynamic castMatchesTotal;
+@dynamic castMatchesWins;
 @dynamic unlock;
 
 -(SpellbookLevel)level {
-    if (self.castUniqueMatches < 1) return SpellbookLevelNone;
-    else if (self.castUniqueMatches < 5) return SpellbookLevelNovice;
-    else if (self.castUniqueMatches < 15) return SpellbookLevelAdept;
+    if (self.castMatchesTotal < 1) return SpellbookLevelNone;
+    else if (self.castMatchesTotal < 5) return SpellbookLevelNovice;
+    else if (self.castMatchesTotal < 15) return SpellbookLevelAdept;
     else return SpellbookLevelMaster;
 }
 
@@ -41,7 +42,7 @@
     else
         target = [self targetForLevel:SpellbookLevelMaster];
     
-    return self.castUniqueMatches / target;
+    return self.castMatchesTotal / target;
     
     
 //    NSInteger target = [self targetForLevel:self.level];

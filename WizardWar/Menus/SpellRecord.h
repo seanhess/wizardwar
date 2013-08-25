@@ -23,7 +23,8 @@ typedef enum SpellbookLevel {
 @property (nonatomic, retain) NSString * type;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic) int16_t castTotal;
-@property (nonatomic) int16_t castUniqueMatches;
+@property (nonatomic) int16_t castMatchesTotal;
+@property (nonatomic) int16_t castMatchesWins;
 @property (nonatomic) BOOL unlock;
 
 @property (nonatomic, readonly) SpellbookLevel level;

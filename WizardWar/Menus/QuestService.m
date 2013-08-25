@@ -11,6 +11,8 @@
 #import "ObjectStore.h"
 #import "AITutorial1BasicMagic.h"
 #import "AIOpponentDummy.h"
+#import "UserService.h"
+#import "Achievement.h"
 
 #define QUEST_LEVEL_ENTITY @"QuestLevel"
 
@@ -34,8 +36,32 @@
     return self;
 }
 
-- (void)finishedMatch:(NSArray*)spellHistory didWin:(BOOL)didWin {
-
+- (NSArray*)finishedQuest:(QuestLevel*)questLevel didWin:(BOOL)didWin {
+    
+    NSMutableArray * achievements = [NSMutableArray array];
+    BOOL wasMastered = questLevel.isMastered;
+    
+    questLevel.gamesTotal += 1;
+    if (didWin) questLevel.gamesWins += 1;
+    
+    // Increase levels and stuff!
+    User * currentUser = [UserService.shared currentUser];
+    
+    if (questLevel.level > currentUser.questLevel) {
+        currentUser.questLevel = questLevel.level;
+    }
+    
+    if (questLevel.wizardLevel > currentUser.wizardLevel) {
+        currentUser.wizardLevel += 1;
+        [achievements addObject:[Achievement wizardLevel:currentUser]];
+    }
+    
+    if (questLevel.isMastered > wasMastered) {
+        [achievements addObject:[Achievement questMastered:questLevel]];
+    }
+        
+    // TODO return achievements!
+    return achievements;
 }
 
 - (BOOL)isLocked:(QuestLevel*)questLevel user:(User*)user {
