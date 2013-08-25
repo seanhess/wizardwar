@@ -103,17 +103,17 @@
     practice.wizardLevel = 0;
     practice.AIType = [AIOpponentDummy class];
     
-    QuestLevel * asdf = [self levelWithName:@"First Real Guy"];
-    asdf.level = 1;
-    asdf.wizardLevel = 1;
-    asdf.AIType = [AIOpponentDummy class];
+//    QuestLevel * asdf = [self levelWithName:@"First Real Guy"];
+//    asdf.level = 1;
+//    asdf.wizardLevel = 1;
+//    asdf.AIType = [AIOpponentDummy class];
     
     return @[
         tutorial1,
         tutorial2,
         tutorial3,
         practice,
-        asdf,
+//        asdf,
     ];
 }
 

@@ -25,9 +25,9 @@
         
         self.steps = @[
             [TutorialStep modalMessage:@"So you want to know the secret to my greatness? Insolent fool!"],
-            [TutorialStep modalMessage:@"Ok, I'll tell you anyway."],
-            [TutorialStep modalMessage:@"Experiment! You don't climb to the top of the order by sitting around."],
-            [TutorialStep modalMessage:@"Now I unfurl my the full might of my Wizardness!"],
+            [TutorialStep modalMessage:@"Ok, I'll tell you."],
+            [TutorialStep modalMessage:@"Experiment! You can't just cast the same old spells."],
+            [TutorialStep modalMessage:@"Now I release the might of my Wizardness on your sorry robes!"],
             [TutorialStep modalMessage:@"The only way to beat me is to discover something new. Get ready!"],
 
             [TutorialStep message:nil
@@ -36,7 +36,7 @@
                           advance:TSAdvanceEnd
                     allowedSpells:nil],
             
-            [TutorialStep win:@"I'm just going to lay here for a while" lose:@"Wahoo!"]
+            [TutorialStep win:@"Wahoo! I'm awesome. I'm attractive. Gots me all the ladies." lose:@"I'm just going to lay here for a while"]
         ];
     }
     return self;
