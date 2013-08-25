@@ -63,12 +63,11 @@
                          tactics:@[[AITCastOnHit me:YES opponent:NO random:@[Earthwall, Icewall]], [AITWallRenew new]]
                          advance:TSAdvanceEnd
                    allowedSpells:@[Fireball, Lightning]],
+
+           [TutorialStep win:@"By Merlin's beard, you've done it! Ouch!" lose:nil],
            
-           [TutorialStep message:@"By Merlin's beard, you've done it! Ouch!"
-                            demo:nil
-                         tactics:nil
-                         advance:nil
-                   allowedSpells:@[]],
+           [TutorialStep modalMessage:@"Go check out the spellbook to see what you've unlocked!"],
+
         ];
     }
     return self;

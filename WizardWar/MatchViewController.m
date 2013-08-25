@@ -270,9 +270,9 @@
         }
     }
  
-#ifndef DEBUG
+//#ifndef DEBUG
     [sae playBackgroundMusic:@"theme.mp3"];
-#endif
+//#endif
 }
 
 - (void)didFinishMatch:(BOOL)didFinish didWin:(BOOL)didWin {
@@ -378,7 +378,8 @@
 # pragma mark Pentagram Delegate
 
 -(void)didTapPentagram {
-    if (self.match.status == MatchStatusPlaying)
+    // don't send taps before we've started. During the cooldown period
+    if (self.match.status == MatchStatusPlaying || self.match.status == MatchStatusEnded)
         [self.match.ai didTapControls];
 }
 

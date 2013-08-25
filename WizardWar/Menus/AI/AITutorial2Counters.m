@@ -60,10 +60,12 @@
                    allowedSpells:@[Monster, Lightning, Fireball, Firewall, Icewall, Earthwall]],
 
            [TutorialStep message:@"Monster blows right through Lightning Orb." disableControls:YES],
-
-           [TutorialStep message:@"There are some other spells that do that, but I forget which ones..." disableControls:YES],
            
-           [TutorialStep message:@"Guess you'll have to figure it out! On guard!" disableControls:YES],
+           [TutorialStep message:@"There are some other spells that do that, but I forget which ones..." disableControls:YES],           
+
+           [TutorialStep message:@"Go visit the Spellbook to see the spells you've discovered and what they counter." disableControls:YES],
+           
+           [TutorialStep message:@"I'm going to chuck magic at your face. See if you can counter it! On guard!" disableControls:YES],
 
            [TutorialStep message:nil
                             demo:nil
@@ -73,6 +75,8 @@
 
            [TutorialStep win:@"Haha. You should have seen your face! You were all like ZOMG!"
                         lose:@"Not in the face!"],
+           
+           [TutorialStep modalMessage:@"Go check out the spellbook to see what you've unlocked!"]           
 
            
            

@@ -15,7 +15,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.selectionStyle = UITableViewCellEditingStyleNone;
+
     }
     return self;
 }
@@ -34,13 +34,15 @@
 -(void)setWarningText:(NSString*)text {
     self.textView.backgroundColor = [AppStyle yellowWarningColor];
     self.textView.text = text;
+    self.selectionStyle = UITableViewCellEditingStyleNone;
 }
 
 -(void)setUserInfo:(User*)user {
     self.textView.backgroundColor = [AppStyle blueMessageColor];
     self.textView.text = [NSString stringWithFormat:@"%@\nLevel %i", user.name, user.wizardLevel];
     self.textView.textAlignment = NSTextAlignmentCenter;
-    self.textView.font = [UIFont systemFontOfSize:16.0];    
+    self.textView.font = [UIFont systemFontOfSize:16.0];
+    self.selectionStyle = UITableViewCellSelectionStyleGray;
 }
 
 @end

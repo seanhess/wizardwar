@@ -123,10 +123,10 @@
 //    self.inviteFriendsButton.color = [AppStyle blueNavColor];
 //    [self.inviteFriendsButton.titleLabel.font = [UIFont fontWithName:@"FontAwesome" size:26];
 
-    NSString * buttonText = [NSString stringFromAwesomeIcon:FAIconUser];
-    UIBarButtonItem *accountButton = [[UIBarButtonItem alloc] initWithTitle:buttonText style:UIBarButtonItemStylePlain target:self action:@selector(didTapAccount)];
-    [accountButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"FontAwesome" size:20.0], UITextAttributeFont, nil] forState:UIControlStateNormal];
-    self.navigationItem.rightBarButtonItem = accountButton;
+//    NSString * buttonText = [NSString stringFromAwesomeIcon:FAIconUser];
+//    UIBarButtonItem *accountButton = [[UIBarButtonItem alloc] initWithTitle:buttonText style:UIBarButtonItemStylePlain target:self action:@selector(didTapAccount)];
+//    [accountButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"FontAwesome" size:20.0], UITextAttributeFont, nil] forState:UIControlStateNormal];
+//    self.navigationItem.rightBarButtonItem = accountButton;
     
     // Custom Table Cells!
     [self.tableView registerNib:[UINib nibWithNibName:@"UserCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"UserCell"];
@@ -648,6 +648,8 @@
         [self didSelectUser:[self.friendOnlineResults objectAtIndexPath:localIndexPath]];
     else if (indexPath.section == SECTION_INDEX_STRANGERS)
         [self didSelectUser:[self.allResults objectAtIndexPath:localIndexPath]];
+    else if (indexPath.section == SECTION_INDEX_WARNINGS && indexPath.row == ROW_STATS)
+        [self didTapAccount];
     
     else {}
         

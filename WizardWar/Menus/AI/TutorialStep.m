@@ -67,6 +67,7 @@
     TutorialStep * step = [TutorialStep new];
     step.message = win;
     step.loseMessage = lose;
+    step.advanceOnTap = YES;
     return step;
 }
 

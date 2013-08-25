@@ -42,10 +42,10 @@
 {
     [super viewDidLoad];
     
-    NSString * buttonText = [NSString stringFromAwesomeIcon:FAIconUser];
-    UIBarButtonItem *accountButton = [[UIBarButtonItem alloc] initWithTitle:buttonText style:UIBarButtonItemStylePlain target:self action:@selector(didTapAccount)];
-    [accountButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"FontAwesome" size:20.0], UITextAttributeFont, nil] forState:UIControlStateNormal];
-    self.navigationItem.rightBarButtonItem = accountButton;
+//    NSString * buttonText = [NSString stringFromAwesomeIcon:FAIconUser];
+//    UIBarButtonItem *accountButton = [[UIBarButtonItem alloc] initWithTitle:buttonText style:UIBarButtonItemStylePlain target:self action:@selector(didTapAccount)];
+//    [accountButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"FontAwesome" size:20.0], UITextAttributeFont, nil] forState:UIControlStateNormal];
+//    self.navigationItem.rightBarButtonItem = accountButton;
     
     
     self.title = @"Quest";
@@ -167,7 +167,11 @@
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == SECTION_STATS) return;
+    if (indexPath.section == SECTION_STATS) {
+        [self didTapAccount];
+        return;
+    }
+    
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     User * user = [UserService.shared currentUser];
