@@ -43,7 +43,7 @@
         
         self.steps = @[
            [TutorialStep modalMessage:@"You again!? I'm getting sick of your sense of entitlement!"],
-           [TutorialStep modalMessage:@"Being a wizard is all about being smarter and more attractive than others."],
+           [TutorialStep modalMessage:@"Being a wizard is about more than just. "],
            
            [TutorialStep message:@"Summon an Ogre against my Lightning: Fire-Earth-Water-Heart"
                          tactics:nil

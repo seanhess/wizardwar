@@ -14,6 +14,7 @@
 #define TSAdvanceDamageOpponent ^(TutorialStep*step) { step.advanceOnDamageOpponent = YES; }
 #define TSAdvanceSpell(SpellType) (^(TutorialStep*step) { step.advanceOnSpell = SpellType; })
 #define TSAdvanceSpellAny ^(TutorialStep*step) { step.advanceOnAnySpell = YES; }
+#define TSAdvanceEnd ^(TutorialStep*step) { step.advanceOnEnd = YES; }
 
 
 @class TutorialStep;
@@ -35,6 +36,7 @@ typedef void(^TutorialStepConfig)(TutorialStep*);
 @property (nonatomic, strong) NSString * advanceOnSpell;
 @property (nonatomic) BOOL advanceOnAnySpell;
 @property (nonatomic) BOOL advanceOnDamage;
+@property (nonatomic) BOOL advanceOnEnd;
 @property (nonatomic) BOOL advanceOnDamageOpponent;
 
 

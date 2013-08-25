@@ -278,7 +278,7 @@
         [self flashFeedback];
     } else if (hasLockedSpell) {
         self.feedbackLabel.textColor = [UIColor whiteColor];
-        [self.feedbackLabel setText:@"Not Yet!"];
+        [self.feedbackLabel setText:@"Disabled for Tutorial"];
         [self flashFeedback];        
     } else if (hasHintedSpell) {
         self.feedbackLabel.textColor = [UIColor whiteColor];

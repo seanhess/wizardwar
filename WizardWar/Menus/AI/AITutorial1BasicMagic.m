@@ -36,22 +36,32 @@
            [TutorialStep message:@"Blocked! Hah!"
                          tactics:@[[AITacticCast spell:Earthwall]]
                          advance:TSAdvanceSpell(Fireball)
-                    allowedSpells:@[Fireball, Earthwall, Icewall, Firewall]],
+                    allowedSpells:@[Fireball]],
            
            [TutorialStep message:@"Try casting Lightning Orb instead: Earth-Air-Water."
                          tactics:@[[AITacticWallRenew createIfDead]]
-                         advance:TSAdvanceDamage
-                   allowedSpells:@[Fireball, Lightning, Earthwall, Icewall, Firewall]],
+                         advance:TSAdvanceSpell(Lightning)
+                   allowedSpells:@[Fireball, Lightning]],
            
-           [TutorialStep message:@"Enough! See if you can defeat me. Bring it on, punk!"
+           [TutorialStep message:nil
+                         tactics:@[[AITacticWallRenew createIfDead]]
+                         advance:TSAdvanceDamage
+                   allowedSpells:@[Fireball, Lightning]],
+           
+           [TutorialStep message:@"Oof! Now try to defeat me! Choose wisely..."
                          tactics:nil
                          advance:TSAdvanceSpellAny
-                   allowedSpells:@[Fireball, Lightning, Earthwall, Icewall, Firewall]],
+                   allowedSpells:@[Fireball, Lightning]],
            
            [TutorialStep message:nil
                          tactics:@[[AITacticRandom spellsCastOnHit:@[Earthwall, Icewall]], [AITacticWallRenew new]]
+                         advance:TSAdvanceEnd
+                   allowedSpells:@[Fireball, Lightning]],
+           
+           [TutorialStep message:@"By Merlin's beard, you've done it! Ouch!"
+                         tactics:nil
                          advance:nil
-                   allowedSpells:@[Fireball, Lightning, Earthwall, Icewall, Firewall]],
+                   allowedSpells:@[]],
         ];
     }
     return self;

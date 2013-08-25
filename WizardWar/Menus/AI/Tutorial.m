@@ -58,7 +58,7 @@
     self.wizard.message = currentStep.message;
     self.allowedSpells = currentStep.allowedSpells;
     self.tactics = currentStep.tactics;
-    self.wizard.health = MAX_HEALTH;
+//    self.wizard.health = MAX_HEALTH;
 }
 
 -(void)opponent:(Wizard*)wizard didCastSpell:(Spell*)spell atTick:(NSInteger)tick {
@@ -70,13 +70,13 @@
 }
 
 -(void)setWizardHealth:(NSInteger)health {
-    BOOL shouldAdvance = (self.currentStep.advanceOnDamage && health < _wizardHealth);
+    BOOL shouldAdvance = ((self.currentStep.advanceOnDamage && health < _wizardHealth) || (self.currentStep.advanceOnEnd && health == 0));
     _wizardHealth = health;
     if (shouldAdvance) [self advance];
 }
 
 -(void)setOpponentHealth:(NSInteger)health {
-    BOOL shouldAdvance = (self.currentStep.advanceOnDamageOpponent && health < _opponentHealth);
+    BOOL shouldAdvance = ((self.currentStep.advanceOnDamageOpponent && health < _opponentHealth) || (self.currentStep.advanceOnEnd && health == 0));
     _opponentHealth = health;
     if (shouldAdvance) [self advance];
 }
