@@ -110,6 +110,14 @@
 - (void)setDisabled:(BOOL)disabled {
     _disabled = disabled;
     
+    if (!disabled) {
+        [self.drawingLayer resetNow];
+        for(PentEmblem *emblem in self.emblems)
+        {
+            emblem.status = EmblemStatusNormal;
+        }        
+        
+    }
 //    CGFloat progress = (disabled) ? 0.0 : 1.0;
 //    
 //    self.fireEmblem.enabledProgress = progress;
