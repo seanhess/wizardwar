@@ -14,6 +14,7 @@
 #import "RACHelpers.h"
 #import "Combo.h"
 #import "SpellEffectService.h"
+#import "Wizard.h"
 
 @interface Tutorial ()
 @property (nonatomic, strong) TutorialStep * currentStep;
@@ -48,6 +49,10 @@
     [self loadStep:0];
 }
 
+-(BOOL)didLoseGame {
+    return (self.wizard.health == 0);
+}
+
 -(void)loadStep:(NSInteger)stepIndex {
     self.currentStepIndex = stepIndex;
     if (stepIndex >= self.steps.count) return;
@@ -57,9 +62,13 @@
     
     self.disableControls = currentStep.disableControls;
     self.hideControls = currentStep.hideControls;
-    self.wizard.message = currentStep.message;
     self.allowedSpells = currentStep.allowedSpells;
     self.tactics = currentStep.tactics;
+    
+    if (currentStep.loseMessage && self.didLoseGame)
+        self.wizard.message = currentStep.loseMessage;
+    else
+        self.wizard.message = currentStep.message;
     
     if (currentStep.demoSpellType) {
         SpellInfo * demoInfo = [SpellEffectService.shared infoForType:currentStep.demoSpellType];

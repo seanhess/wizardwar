@@ -63,5 +63,12 @@
     return step;
 }
 
++(id)win:(NSString*)win lose:(NSString*)lose {
+    TutorialStep * step = [TutorialStep new];
+    step.message = win;
+    step.loseMessage = lose;
+    return step;
+}
+
 
 @end

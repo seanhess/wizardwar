@@ -218,7 +218,6 @@
 		7843E73517C94831009EF3AB /* AITacticCast.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E73417C94830009EF3AB /* AITacticCast.m */; };
 		7843E73817C94B34009EF3AB /* AIOpponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E73717C94B34009EF3AB /* AIOpponent.m */; };
 		7843E73B17C94BB1009EF3AB /* AIGameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E73A17C94BB0009EF3AB /* AIGameState.m */; };
-		7843E73E17C958BC009EF3AB /* AITacticRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E73D17C958BA009EF3AB /* AITacticRandom.m */; };
 		7843E74117C95B83009EF3AB /* AIAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E74017C95B82009EF3AB /* AIAction.m */; };
 		7843E74417C96083009EF3AB /* AITacticWallRenew.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E74317C96082009EF3AB /* AITacticWallRenew.m */; };
 		7843E74717C981E7009EF3AB /* AIOpponentDummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E74617C981E5009EF3AB /* AIOpponentDummy.m */; };
@@ -232,6 +231,9 @@
 		785168B417A40ED100A49257 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785168B317A40ED100A49257 /* Parse.framework */; };
 		785168B617A40ED700A49257 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785168B517A40ED700A49257 /* Firebase.framework */; };
 		78516B8817A5925800A49257 /* NSObject+Reflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 78516B8717A5925700A49257 /* NSObject+Reflection.m */; };
+		7853C8B617CA4EDD00406813 /* AITacticDelay.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853C8B517CA4EDD00406813 /* AITacticDelay.m */; };
+		7853C8B917CA4EEC00406813 /* AITacticCastOnHit.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853C8B817CA4EEC00406813 /* AITacticCastOnHit.m */; };
+		7853C8BC17CA518800406813 /* AITacticWallAlways.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853C8BB17CA518800406813 /* AITacticWallAlways.m */; };
 		785B045C17C2B16700B064F6 /* SpellRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 785B045B17C2B16700B064F6 /* SpellRecord.m */; };
 		785B045F17C2B17F00B064F6 /* SpellbookService.m in Sources */ = {isa = PBXBuildFile; fileRef = 785B045E17C2B17F00B064F6 /* SpellbookService.m */; };
 		785B046317C2BA3100B064F6 /* SpellbookDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785B046117C2BA3100B064F6 /* SpellbookDetailsViewController.m */; };
@@ -791,8 +793,6 @@
 		7843E73717C94B34009EF3AB /* AIOpponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIOpponent.m; sourceTree = "<group>"; };
 		7843E73917C94BAF009EF3AB /* AIGameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIGameState.h; sourceTree = "<group>"; };
 		7843E73A17C94BB0009EF3AB /* AIGameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIGameState.m; sourceTree = "<group>"; };
-		7843E73C17C958B9009EF3AB /* AITacticRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AITacticRandom.h; sourceTree = "<group>"; };
-		7843E73D17C958BA009EF3AB /* AITacticRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AITacticRandom.m; sourceTree = "<group>"; };
 		7843E73F17C95B82009EF3AB /* AIAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIAction.h; sourceTree = "<group>"; };
 		7843E74017C95B82009EF3AB /* AIAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIAction.m; sourceTree = "<group>"; };
 		7843E74217C96081009EF3AB /* AITacticWallRenew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AITacticWallRenew.h; sourceTree = "<group>"; };
@@ -816,6 +816,12 @@
 		785168B517A40ED700A49257 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
 		78516B8617A5925700A49257 /* NSObject+Reflection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Reflection.h"; sourceTree = "<group>"; };
 		78516B8717A5925700A49257 /* NSObject+Reflection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Reflection.m"; sourceTree = "<group>"; };
+		7853C8B417CA4EDD00406813 /* AITacticDelay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AITacticDelay.h; sourceTree = "<group>"; };
+		7853C8B517CA4EDD00406813 /* AITacticDelay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AITacticDelay.m; sourceTree = "<group>"; };
+		7853C8B717CA4EEC00406813 /* AITacticCastOnHit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AITacticCastOnHit.h; sourceTree = "<group>"; };
+		7853C8B817CA4EEC00406813 /* AITacticCastOnHit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AITacticCastOnHit.m; sourceTree = "<group>"; };
+		7853C8BA17CA518800406813 /* AITacticWallAlways.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AITacticWallAlways.h; sourceTree = "<group>"; };
+		7853C8BB17CA518800406813 /* AITacticWallAlways.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AITacticWallAlways.m; sourceTree = "<group>"; };
 		785B045A17C2B16700B064F6 /* SpellRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellRecord.h; sourceTree = "<group>"; };
 		785B045B17C2B16700B064F6 /* SpellRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellRecord.m; sourceTree = "<group>"; };
 		785B045D17C2B17F00B064F6 /* SpellbookService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellbookService.h; sourceTree = "<group>"; };
@@ -1548,10 +1554,14 @@
 				7843E74017C95B82009EF3AB /* AIAction.m */,
 				7843E73317C94830009EF3AB /* AITacticCast.h */,
 				7843E73417C94830009EF3AB /* AITacticCast.m */,
-				7843E73C17C958B9009EF3AB /* AITacticRandom.h */,
-				7843E73D17C958BA009EF3AB /* AITacticRandom.m */,
 				7843E74217C96081009EF3AB /* AITacticWallRenew.h */,
 				7843E74317C96082009EF3AB /* AITacticWallRenew.m */,
+				7853C8BA17CA518800406813 /* AITacticWallAlways.h */,
+				7853C8BB17CA518800406813 /* AITacticWallAlways.m */,
+				7853C8B417CA4EDD00406813 /* AITacticDelay.h */,
+				7853C8B517CA4EDD00406813 /* AITacticDelay.m */,
+				7853C8B717CA4EEC00406813 /* AITacticCastOnHit.h */,
+				7853C8B817CA4EEC00406813 /* AITacticCastOnHit.m */,
 			);
 			path = AI;
 			sourceTree = "<group>";
@@ -2702,11 +2712,13 @@
 				7843E73517C94831009EF3AB /* AITacticCast.m in Sources */,
 				7843E73817C94B34009EF3AB /* AIOpponent.m in Sources */,
 				7843E73B17C94BB1009EF3AB /* AIGameState.m in Sources */,
-				7843E73E17C958BC009EF3AB /* AITacticRandom.m in Sources */,
 				7843E74117C95B83009EF3AB /* AIAction.m in Sources */,
 				7843E74417C96083009EF3AB /* AITacticWallRenew.m in Sources */,
 				7843E74717C981E7009EF3AB /* AIOpponentDummy.m in Sources */,
 				7843E74A17C988A8009EF3AB /* Achievement.m in Sources */,
+				7853C8B617CA4EDD00406813 /* AITacticDelay.m in Sources */,
+				7853C8B917CA4EEC00406813 /* AITacticCastOnHit.m in Sources */,
+				7853C8BC17CA518800406813 /* AITacticWallAlways.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

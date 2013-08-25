@@ -26,6 +26,7 @@ typedef void(^TutorialStepConfig)(TutorialStep*);
 
 @interface TutorialStep : NSObject
 @property (nonatomic, strong) NSString * message;
+@property (nonatomic, strong) NSString * loseMessage;
 @property (nonatomic) BOOL hideControls; // default is NO
 @property (nonatomic) BOOL disableControls; // default is NO
 @property (nonatomic, strong) NSArray * allowedSpells; // default is nil
@@ -51,6 +52,7 @@ typedef void(^TutorialStepConfig)(TutorialStep*);
 +(id)message:(NSString*)message disableControls:(BOOL)disableControls;
 +(id)message:(NSString*)message; // unlocked messaged
 +(id)message:(NSString*)message demo:(NSString*)spellType tactics:(NSArray*)tactics advance:(TutorialStepConfig)action allowedSpells:(NSArray*)allowed;
++(id)win:(NSString*)win lose:(NSString*)lose;
 
 @end
 

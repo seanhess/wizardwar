@@ -60,34 +60,28 @@
     
     if (!self.tactics.count) return;
     
-    NSMutableArray * timeRequiredActions = [NSMutableArray array];
-    NSInteger sumWeights = 0;
+    // find the highest priority time required action
+    BOOL priority = 0;
+    AIAction * priorityAction;
     
     for (id<AITactic>tactic in self.tactics) {
         AIAction * action = [tactic suggestedAction:self.game];
         
-        if (action && action.timeRequired <= 0) {
-            [self runAction:action];
-        }
-        
-        else if (action && action.weight) {
-            [timeRequiredActions addObject:action];
-            sumWeights += action.weight;
+        if (action) {
+            
+            if (action.timeRequired <= 0) {
+                [self runAction:action];
+            }
+            
+            else if (!priorityAction || action.priority > priority) {
+                priority = action.priority;
+                priorityAction = action;
+            }
         }
     }
     
-    if (sumWeights == 0) return;
-    
-    // Now find the one we want to select
-    NSInteger randomValue = arc4random() % sumWeights;
-    __block NSInteger currentTotalWeight = 0;
-    
-    AIAction * action = [timeRequiredActions find:^BOOL(AIAction * action) {
-        currentTotalWeight += action.weight;
-        return currentTotalWeight > randomValue;
-    }];
-
-    [self runAction:action];
+    if (priorityAction)
+        [self runAction:priorityAction];
 }
 
 -(void)runAction:(AIAction*)action {

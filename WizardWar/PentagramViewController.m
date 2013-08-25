@@ -204,9 +204,7 @@
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     
     BOOL isValidCombo = (self.combos.allElements.count >= 3);
-    
-    if (!isValidCombo) [self.delegate didTapPentagram];
-    
+    [self.delegate didTapPentagram];
     if (self.disabled) return;
     if (self.helpSelectElements) return;
     

@@ -8,6 +8,8 @@
 
 #import "AITutorial2Counters.h"
 #import "AITacticCast.h"
+#import "AITacticCastOnHit.h"
+#import "AITacticWallAlways.h"
 
 @implementation AITutorial2Counters
 
@@ -37,49 +39,46 @@
 -(id)init {
     if ((self = [super init])) {
         
-        NSArray * allowed = @[Earthwall, Icewall, Firewall, Lightning, Fireball, Monster];
-        
-        // I need a perfect counter tactic
-        
+        // TACTIC: immediately cast one of the spells.
+        // on damage either player, cast another one
+                
         self.steps = @[
-//           [TutorialStep modalMessage:@"You again!? I'm getting sick of your sense of entitlement!"],
-//           [TutorialStep modalMessage:@"Being a wizard is about more than just. "],
-//           
-//           [TutorialStep message:@"Summon an Ogre against my Lightning: Fire-Earth-Water-Heart"
-//                         tactics:nil
-//                         advance:TSAdvanceSpell(Monster)
-//                   allowedSpells:@[Monster]],
-//
-//           [TutorialStep message:nil
-//                         tactics:@[[AITacticCast spell:Lightning]]
-//                         advance:TSAdvanceDamage
-//                   allowedSpells:@[]],
-//           
-//           [TutorialStep message:@"Good. Now try Fireball against my Monster: Fire-Air-Heart."
-//                         tactics:nil
-//                         advance:TSAdvanceSpell(Fireball)
-//                   allowedSpells:@[Fireball]],
-//           
-//           [TutorialStep message:nil
-//                         tactics:@[[AITacticCast spell:Monster]]
-//                         advance:TSAdvanceDamage
-//                   allowedSpells:@[]],
-//           
-//           [TutorialStep message:@"Now see what happens when you cast Fireball and I cast lightning."
-//                         tactics:nil
-//                         advance:TSAdvanceSpell(Fireball)
-//                   allowedSpells:@[Fireball]],
-//           
-//           [TutorialStep message:nil
-//                         tactics:@[[AITacticCast spell:Lightning]]
-//                         advance:TSAdvanceDamageOpponent
-//                   allowedSpells:@[Fireball]],
-//           
-//           [TutorialStep message:@"Haha. You should have seen your face! You were all like ZOMG!"
-//                         tactics:nil
-//                         advance:TSAdvanceTap
-//                   allowedSpells:@[]],
-//           
+           [TutorialStep modalMessage:@"You again!? I'm getting sick of your sense of entitlement!"],
+           [TutorialStep modalMessage:@"Being a wizard is about more than just good looks."],
+           [TutorialStep modalMessage:@"Listen: The best defense is offense. The best omlet is a mushroom."],
+
+           [TutorialStep message:@"Why don't you Summon an Ogre: Fire-Earth-Water-Heart"
+                            demo:Monster
+                         tactics:nil
+                         advance:TSAdvanceSpell(Monster)
+                   allowedSpells:@[Monster, Firewall, Icewall, Earthwall]],
+
+           [TutorialStep message:nil
+                            demo:nil
+                         tactics:@[[AITacticCast spell:Lightning]]
+                         advance:TSAdvanceDamage
+                   allowedSpells:@[Monster, Lightning, Fireball, Firewall, Icewall, Earthwall]],
+
+           [TutorialStep message:@"Monster blows right through Lightning Orb." disableControls:YES],
+
+           [TutorialStep message:@"There are some other spells that do that, but I forget which ones..." disableControls:YES],
+           
+           [TutorialStep message:@"Guess you'll have to figure it out! On guard!" disableControls:YES],
+
+           [TutorialStep message:nil
+                            demo:nil
+                         tactics:@[[AITacticCastOnHit me:YES opponent:YES random:@[Fireball, Monster, Lightning]], [AITacticWallAlways walls:@[Firewall, Earthwall, Icewall]]]
+                         advance:TSAdvanceEnd
+                   allowedSpells:@[Fireball, Lightning, Monster, Earthwall, Firewall, Icewall]],
+
+           [TutorialStep win:@"Haha. You should have seen your face! You were all like ZOMG!"
+                        lose:@"Not in the face!"],
+
+           
+           
+           
+           
+           
 //           [TutorialStep message:nil
 //                         tactics:nil
 //                         advance:nil

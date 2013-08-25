@@ -68,9 +68,6 @@
         [self addChild:self.environment];
         
         
-        self.drawingLayer = [[DrawingLayer alloc] initWithUnits:units];
-        [self addChild:self.drawingLayer];
-       
         self.indicators = [CCLayer node];
         [self addChild:self.indicators];        
         
@@ -79,6 +76,10 @@
         
         self.spells = [SpellsLayer new];
         [self addChild:self.spells];
+        
+        self.drawingLayer = [[DrawingLayer alloc] initWithUnits:units];
+        [self addChild:self.drawingLayer];
+                
         
         // thrown off because of scale!
 //        self.feedback = [FeedbackLayer node];
