@@ -42,48 +42,48 @@
         // I need a perfect counter tactic
         
         self.steps = @[
-           [TutorialStep modalMessage:@"You again!? I'm getting sick of your sense of entitlement!"],
-           [TutorialStep modalMessage:@"Being a wizard is about more than just. "],
-           
-           [TutorialStep message:@"Summon an Ogre against my Lightning: Fire-Earth-Water-Heart"
-                         tactics:nil
-                         advance:TSAdvanceSpell(Monster)
-                   allowedSpells:@[Monster]],
-
-           [TutorialStep message:nil
-                         tactics:@[[AITacticCast spell:Lightning]]
-                         advance:TSAdvanceDamage
-                   allowedSpells:@[]],
-           
-           [TutorialStep message:@"Good. Now try Fireball against my Monster: Fire-Air-Heart."
-                         tactics:nil
-                         advance:TSAdvanceSpell(Fireball)
-                   allowedSpells:@[Fireball]],
-           
-           [TutorialStep message:nil
-                         tactics:@[[AITacticCast spell:Monster]]
-                         advance:TSAdvanceDamage
-                   allowedSpells:@[]],
-           
-           [TutorialStep message:@"Now see what happens when you cast Fireball and I cast lightning."
-                         tactics:nil
-                         advance:TSAdvanceSpell(Fireball)
-                   allowedSpells:@[Fireball]],
-           
-           [TutorialStep message:nil
-                         tactics:@[[AITacticCast spell:Lightning]]
-                         advance:TSAdvanceDamageOpponent
-                   allowedSpells:@[Fireball]],
-           
-           [TutorialStep message:@"Haha. You should have seen your face! You were all like ZOMG!"
-                         tactics:nil
-                         advance:TSAdvanceTap
-                   allowedSpells:@[]],
-           
-           [TutorialStep message:nil
-                         tactics:nil
-                         advance:nil
-                   allowedSpells:allowed],
+//           [TutorialStep modalMessage:@"You again!? I'm getting sick of your sense of entitlement!"],
+//           [TutorialStep modalMessage:@"Being a wizard is about more than just. "],
+//           
+//           [TutorialStep message:@"Summon an Ogre against my Lightning: Fire-Earth-Water-Heart"
+//                         tactics:nil
+//                         advance:TSAdvanceSpell(Monster)
+//                   allowedSpells:@[Monster]],
+//
+//           [TutorialStep message:nil
+//                         tactics:@[[AITacticCast spell:Lightning]]
+//                         advance:TSAdvanceDamage
+//                   allowedSpells:@[]],
+//           
+//           [TutorialStep message:@"Good. Now try Fireball against my Monster: Fire-Air-Heart."
+//                         tactics:nil
+//                         advance:TSAdvanceSpell(Fireball)
+//                   allowedSpells:@[Fireball]],
+//           
+//           [TutorialStep message:nil
+//                         tactics:@[[AITacticCast spell:Monster]]
+//                         advance:TSAdvanceDamage
+//                   allowedSpells:@[]],
+//           
+//           [TutorialStep message:@"Now see what happens when you cast Fireball and I cast lightning."
+//                         tactics:nil
+//                         advance:TSAdvanceSpell(Fireball)
+//                   allowedSpells:@[Fireball]],
+//           
+//           [TutorialStep message:nil
+//                         tactics:@[[AITacticCast spell:Lightning]]
+//                         advance:TSAdvanceDamageOpponent
+//                   allowedSpells:@[Fireball]],
+//           
+//           [TutorialStep message:@"Haha. You should have seen your face! You were all like ZOMG!"
+//                         tactics:nil
+//                         advance:TSAdvanceTap
+//                   allowedSpells:@[]],
+//           
+//           [TutorialStep message:nil
+//                         tactics:nil
+//                         advance:nil
+//                   allowedSpells:allowed],
            
            
 //           // TODO change to renew earthwall if it's low

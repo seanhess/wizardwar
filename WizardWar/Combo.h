@@ -21,6 +21,7 @@
 +(id)elements:(NSArray*)elements;
 -(void)setSelected:(BOOL)selected element:(ElementType)element;
 -(BOOL)isSelectedElement:(ElementType)element;
+-(NSArray*)elements;
 @end
 
 

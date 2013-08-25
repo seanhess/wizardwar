@@ -27,38 +27,45 @@
            [TutorialStep message:@"This is the elemental pentagram." disableControls:YES], // should DISABLE pentagram though
            [TutorialStep message:@"Spells are created by connecting 3 or more elements together." disableControls:YES],
            [TutorialStep message:@"To cast a Fireball, drag to connect Fire-Air-Heart."
-                          tactics:nil
+                            demo:Fireball
+                         tactics:nil
                          advance:TSAdvanceSpell(Fireball)
                    allowedSpells:@[Fireball]],
            
            // TODO change to renew earthwall if it's low
            // or, even better, just do a random cast, and renew it frequently
            [TutorialStep message:@"Blocked! Hah!"
+                            demo:nil
                          tactics:@[[AITacticCast spell:Earthwall]]
                          advance:TSAdvanceSpell(Fireball)
                     allowedSpells:@[Fireball]],
            
            [TutorialStep message:@"Try casting Lightning Orb instead: Earth-Air-Water."
+                            demo:Lightning
                          tactics:@[[AITacticWallRenew createIfDead]]
                          advance:TSAdvanceSpell(Lightning)
                    allowedSpells:@[Fireball, Lightning]],
            
            [TutorialStep message:nil
+                            demo:nil
                          tactics:@[[AITacticWallRenew createIfDead]]
                          advance:TSAdvanceDamage
                    allowedSpells:@[Fireball, Lightning]],
            
            [TutorialStep message:@"Oof! Now try to defeat me! Choose wisely..."
+                            demo:nil
                          tactics:nil
                          advance:TSAdvanceSpellAny
                    allowedSpells:@[Fireball, Lightning]],
            
            [TutorialStep message:nil
+                            demo:nil
                          tactics:@[[AITacticRandom spellsCastOnHit:@[Earthwall, Icewall]], [AITacticWallRenew new]]
                          advance:TSAdvanceEnd
                    allowedSpells:@[Fireball, Lightning]],
            
            [TutorialStep message:@"By Merlin's beard, you've done it! Ouch!"
+                            demo:nil
                          tactics:nil
                          advance:nil
                    allowedSpells:@[]],

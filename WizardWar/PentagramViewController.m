@@ -130,6 +130,30 @@
     self.feedbackLabel.hidden = hidden;
 }
 
+- (void)setHelpSelectElements:(NSArray *)helpSelectElements {
+    _helpSelectElements = helpSelectElements;
+    if (!helpSelectElements) return;
+    
+    [helpSelectElements forEach:^(NSNumber * elementNum) {
+        ElementType element = elementNum.intValue;
+        PentEmblem * emblem = [self emblemForElement:element];
+        emblem.status = EmblemStatusSelected;
+        [self.drawingLayer addAnchorPoint:emblem.center];
+    }];
+    
+    [self.drawingLayer hold];
+    [self renderFeedback];
+}
+
+-(PentEmblem*)emblemForElement:(ElementType)element {
+    if (element == Fire) return self.fireEmblem;
+    if (element == Air) return self.windEmblem;
+    if (element == Water) return self.waterEmblem;
+    if (element == Earth) return self.earthEmblem;
+    if (element == Heart) return self.heartEmblem;
+    return nil;
+}
+
 
 // returns whether it is over an emblem
 - (BOOL)checkSelectedEmblems:(CGPoint)point {
@@ -152,6 +176,15 @@
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    if (self.helpSelectElements) {
+        [self.drawingLayer resetNow];
+        for(PentEmblem *emblem in self.emblems)
+        {
+            emblem.status = EmblemStatusNormal;
+        }
+        self.helpSelectElements = nil;
+    }
+    
     self.showHelp = NO;
     if (self.disabled) return;    
     UITouch * touch = [touches anyObject];
@@ -175,6 +208,7 @@
     if (!isValidCombo) [self.delegate didTapPentagram];
     
     if (self.disabled) return;
+    if (self.helpSelectElements) return;
     
     // If they only tapped, show the help stuff!
     self.showHelp = !isValidCombo;
@@ -259,35 +293,42 @@
     // don't show mana unless they release, actually
 //    NSLog(@"RENDER FEEDBACK hasHintedSpell=%i showNoMana=%i showMisfire=%i", hasHintedSpell, showNoMana, showMisfire);
     
-    if (self.showHelp) {
+    if (self.helpSelectElements) {
+        self.feedbackLabel.text = @"";
+        self.feedbackLabel.textColor = [UIColor whiteColor];        
+    }
+    
+    else if (self.showHelp) {
         self.feedbackLabel.text = @"Connect 3 Elements";
         self.feedbackLabel.textColor = [UIColor whiteColor];
         [self flashFeedback];
-        
-//        for(PentEmblem *emblem in self.emblems)
-//        {
-//            [emblem flashHighlight];
-//        }
-
-    } else if (showNoMana) {
+    }
+    
+    else if (showNoMana) {
         self.feedbackLabel.textColor = [AppStyle redErrorColor];
         [self.feedbackLabel setText:@"No Mana!"];
 //        [UIView animateWithDuration:0.2 animations:^{
 //            self.feedbackLabel.alpha = 1.0;
 //        }];
         [self flashFeedback];
-    } else if (hasLockedSpell) {
+    }
+    
+    else if (hasLockedSpell) {
         self.feedbackLabel.textColor = [UIColor whiteColor];
         [self.feedbackLabel setText:@"Disabled for Tutorial"];
         [self flashFeedback];        
-    } else if (hasHintedSpell) {
+    }
+    
+    else if (hasHintedSpell) {
         self.feedbackLabel.textColor = [UIColor whiteColor];
         [self.feedbackLabel setText:self.combos.hintedSpell.name];
         
         [UIView animateWithDuration:0.2 animations:^{
             self.feedbackLabel.alpha = 1.0;
         }];
-    } else if(showMisfire) {
+    }
+    
+    else if(showMisfire) {
         self.feedbackLabel.textColor = [AppStyle redErrorColor];
         [self.feedbackLabel setText:@"Misfire!"];
 
@@ -296,7 +337,9 @@
         [UIView animateWithDuration:0.2 animations:^{
             self.feedbackLabel.alpha = 1.0;
         }];
-    } else {
+    }
+    
+    else {
         [UIView animateWithDuration:FEEDBACK_FADE_TIME animations:^{
             self.feedbackLabel.alpha = 0.0;
         }];

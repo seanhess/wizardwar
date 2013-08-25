@@ -87,6 +87,16 @@
     return NO;
 }
 
+-(NSArray*)elements {
+    NSMutableArray * elements = [NSMutableArray array];
+    if (self.fire) [elements addObject:@(Fire)];
+    if (self.air) [elements addObject:@(Air)];
+    if (self.water) [elements addObject:@(Water)];
+    if (self.heart) [elements addObject:@(Heart)];
+    if (self.earth) [elements addObject:@(Earth)];
+    return elements;
+}
+
 @end
 
 

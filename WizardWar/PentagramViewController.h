@@ -24,7 +24,9 @@
 @property (strong, nonatomic) DrawingLayer * drawingLayer;
 @property (nonatomic) BOOL disabled;
 @property (nonatomic) BOOL hidden;
+@property (nonatomic, strong) NSArray * helpSelectElements;
 -(void)delayCast:(NSTimeInterval)delay;
 //-(void)showHelpMessage;
 -(void)attemptedCastButFailedBecauseOfSleep;
+-(PentEmblem*)emblemForElement:(ElementType)element;
 @end

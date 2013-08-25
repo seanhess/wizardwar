@@ -18,6 +18,7 @@
 @synthesize environment = _environment;
 @synthesize disableControls = _disableControls;
 @synthesize allowedSpells = _allowedSpells;
+@synthesize helpSelectedElements = _helpSelectedElements;
 
 -(id)init {
     if ((self = [super init])) {

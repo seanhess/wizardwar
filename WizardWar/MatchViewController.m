@@ -148,6 +148,7 @@
     RAC(self.message.hidden) = hideControls;
     RAC(self.subMessage.hidden) = hideControls;
     RAC(self.combos.allowedSpells) = RACAble(self.match.ai.allowedSpells);
+    RAC(self.pentagram.helpSelectElements) = RACAble(self.match.ai.helpSelectedElements);
 }
 
 - (void)viewWillAppear:(BOOL)animated {

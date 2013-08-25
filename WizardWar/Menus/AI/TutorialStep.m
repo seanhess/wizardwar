@@ -47,10 +47,11 @@
     return step;
 }
 
-+(id)message:(NSString *)message tactics:(NSArray *)tactics advance:(TutorialStepConfig)advance allowedSpells:(NSArray *)allowed {
++(id)message:(NSString *)message demo:(NSString*)spellType tactics:(NSArray *)tactics advance:(TutorialStepConfig)advance allowedSpells:(NSArray *)allowed {
     TutorialStep * step = [TutorialStep new];
     step.message = message;
     step.allowedSpells = allowed;
+    step.demoSpellType = spellType;
 
     if (tactics) {
         step.tactics = tactics;

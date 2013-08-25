@@ -22,5 +22,7 @@
 -(void)addAnchorPoint:(CGPoint)point;
 -(void)moveTailPoint:(CGPoint)point;
 -(void)clear;
+-(void)resetNow;
+-(void)hold;
 
 @end

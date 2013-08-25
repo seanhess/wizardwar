@@ -117,6 +117,10 @@
     [self runAction:self.fadeAction];
 }
 
+-(void)hold {
+    [self stopAction:self.fadeAction];
+}
+
 - (BOOL)isPointSet:(CGPoint)point {
     return !CGPointEqualToPoint(point, CGPointZero);
 }
@@ -131,12 +135,18 @@
 
 - (void)cancelFadeAndReset {
     if (self.fadeAction) {
-        [self stopAction:self.fadeAction];
-        self.points = [NSMutableArray array];
-        self.opacity = 255;
-        self.fadeAction = nil;
+        [self resetNow];
     }
 }
+
+- (void)resetNow {
+    [self stopAction:self.fadeAction];
+    self.points = [NSMutableArray array];
+    self.opacity = 255;
+    self.fadeAction = nil;
+}
+
+
 
 - (void)draw {
     

@@ -26,6 +26,7 @@
 @property (nonatomic) BOOL hideControls;
 @property (nonatomic) BOOL disableControls;
 @property (nonatomic, strong) NSArray* allowedSpells;
+@property (nonatomic, strong) NSArray* helpSelectedElements;
 
 -(void)didTapControls;
 -(void)opponent:(Wizard*)wizard didCastSpell:(Spell*)spell atTick:(NSInteger)tick;

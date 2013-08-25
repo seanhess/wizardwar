@@ -12,6 +12,8 @@
 #import "Spell.h"
 #import "EnvironmentLayer.h"
 #import "RACHelpers.h"
+#import "Combo.h"
+#import "SpellEffectService.h"
 
 @interface Tutorial ()
 @property (nonatomic, strong) TutorialStep * currentStep;
@@ -58,6 +60,13 @@
     self.wizard.message = currentStep.message;
     self.allowedSpells = currentStep.allowedSpells;
     self.tactics = currentStep.tactics;
+    
+    if (currentStep.demoSpellType) {
+        SpellInfo * demoInfo = [SpellEffectService.shared infoForType:currentStep.demoSpellType];
+        self.helpSelectedElements = demoInfo.combo.selectedElements.elements;
+    } else {
+        self.helpSelectedElements = nil;
+    }
 //    self.wizard.health = MAX_HEALTH;
 }
 

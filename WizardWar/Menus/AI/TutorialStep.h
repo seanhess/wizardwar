@@ -39,6 +39,7 @@ typedef void(^TutorialStepConfig)(TutorialStep*);
 @property (nonatomic) BOOL advanceOnEnd;
 @property (nonatomic) BOOL advanceOnDamageOpponent;
 
+@property (nonatomic, strong) NSString * demoSpellType;
 
 // given the state of the game, should we advance
 //@property (nonatomic, strong) advanceOn shouldAdvance;
@@ -49,7 +50,7 @@ typedef void(^TutorialStepConfig)(TutorialStep*);
 +(id)message:(NSString*)message hideControls:(BOOL)hideControls;
 +(id)message:(NSString*)message disableControls:(BOOL)disableControls;
 +(id)message:(NSString*)message; // unlocked messaged
-+(id)message:(NSString*)message tactics:(NSArray*)tactics advance:(TutorialStepConfig)action allowedSpells:(NSArray*)allowed;
++(id)message:(NSString*)message demo:(NSString*)spellType tactics:(NSArray*)tactics advance:(TutorialStepConfig)action allowedSpells:(NSArray*)allowed;
 
 @end
 
