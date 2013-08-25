@@ -102,9 +102,13 @@
     return self.altitude - self.height/2.0;
 }
 
+-(BOOL)hitsAltitude:(float)altitude {
+    return !(altitude < self.bottomY || self.topY < altitude);
+}
+
 -(BOOL)hitsPlayer:(Wizard*)player duringInterval:(NSTimeInterval)dt {
     
-    if (player.altitude < self.bottomY || self.topY < player.altitude) return NO;
+    if (![self hitsAltitude:player.altitude]) return NO;
 
     // TEST: does it start on one side of the player and end up on the other?
     

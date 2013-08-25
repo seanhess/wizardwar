@@ -31,6 +31,13 @@
     }];
 }
 
+// should I also do altitude match here
+-(NSArray*)incomingSpells {
+    return [self.spells filter:^BOOL(Spell*spell) {
+        return (spell.direction != self.wizard.direction);
+    }];
+}
+
 -(Spell *)activeWall {
     return [self.mySpells find:^BOOL(Spell*spell) {
         return spell.isWall;
@@ -42,8 +49,8 @@
     return [spells sortedArrayUsingComparator:^NSComparisonResult(Spell* spell1, Spell* spell2) {
         float distance1 = [spell1 distance:self.wizard];
         float distance2 = [spell2 distance:self.wizard];
-        if (distance1 < distance2) return NSOrderedDescending;
-        else if (distance1 > distance1) return NSOrderedAscending;
+        if (distance1 < distance2) return NSOrderedAscending;
+        else if (distance1 > distance2) return NSOrderedDescending;
         else return NSOrderedSame;
     }];
 }

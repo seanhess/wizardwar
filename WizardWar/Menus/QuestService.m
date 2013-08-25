@@ -17,6 +17,7 @@
 #import "Achievement.h"
 #import "NSArray+Functional.h"
 #import "AIOJumper.h"
+#import "AIOJumper2.h"
 
 #define QUEST_LEVEL_ENTITY @"QuestLevel"
 
@@ -121,12 +122,21 @@
     jumper.wizardLevel = 0;
     jumper.AIType = [AIOJumper class];
     
-//    QuestLevel * asdf = [self levelWithName:@"First Real Guy"];
-//    asdf.level = 1;
-//    asdf.wizardLevel = 1;
-//    asdf.AIType = [AIOpponentDummy class];
+    QuestLevel * jumper2 = [self levelWithName:[AIOJumper2 name]];
+    jumper2.level = 0;
+    jumper2.wizardLevel = 0;
+    jumper2.AIType = [AIOJumper2 class];
     
-    
+
+    return @[
+             tutorial1,
+             tutorial2,
+             tutorial3,
+             practice,
+             jumper,
+             jumper2,
+             //        asdf,
+             ];
     
 /*
  
@@ -212,14 +222,7 @@
     
     // LEVELS:
     
-    return @[
-        tutorial1,
-        tutorial2,
-        tutorial3,
-        practice,
-        jumper,
-//        asdf,
-    ];
+
 }
 
 @end
