@@ -98,9 +98,11 @@
         record.castMatchesTotal += 1;
         if (didWin) record.castMatchesWins += 1;
         if (record.level > beforeLevel) {
-            currentUser.wizardLevel += 1;
             [achievements addObject:[Achievement spellLevel:record]];
-            [achievements addObject:[Achievement wizardLevel:currentUser]];            
+            if (record.level > SpellbookLevelNovice) {
+                currentUser.wizardLevel += 1;
+                [achievements addObject:[Achievement wizardLevel:currentUser]];
+            }
         }
     }
     
