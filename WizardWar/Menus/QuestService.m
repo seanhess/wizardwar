@@ -80,7 +80,7 @@
 }
 
 - (BOOL)hasPassedTutorials:(User*)user {
-    return user.questLevel > 2;
+    return user.questLevel >= QUEST_LEVEL_PAST_TUTORIAL;
 }
 
 - (QuestLevel*)levelWithName:(NSString *)name {

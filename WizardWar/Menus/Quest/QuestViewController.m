@@ -128,8 +128,8 @@
     
     // Should I add the level of the encounter here?
     // Think more about this
-//    if (questLevel.wizardLevel > 0)
-//        cell.detailTextLabel.text = [NSString stringWithFormat:@"Level %i", questLevel.wizardLevel];
+    if (questLevel.wizardLevel > WIZARD_LEVEL_PAST_TUTORIAL)
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"Level %i", questLevel.wizardLevel];
 //    else
 //        cell.detailTextLabel.text = nil;
     
