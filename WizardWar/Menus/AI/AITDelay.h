@@ -11,7 +11,10 @@
 
 @interface AITDelay : NSObject <AITactic>
 @property (nonatomic) NSTimeInterval delay;
+@property (nonatomic) NSTimeInterval reactionTime;
 @property (nonatomic, strong) NSArray * spells;
-+(id)random:(NSArray*)spells delay:(NSTimeInterval)delay;
+@property (nonatomic) NSInteger randomPriorityMax;
++(id)random:(NSArray*)spells fixedDelay:(NSTimeInterval)delay;
++(id)random:(NSArray*)spells reactionTime:(NSTimeInterval)delay;
 +(id)random:(NSArray*)spells;
 @end

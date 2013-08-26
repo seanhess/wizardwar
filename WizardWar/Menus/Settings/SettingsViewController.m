@@ -13,11 +13,11 @@
 #import "InfoService.h"
 #import "UserService.h"
 #import <QuartzCore/QuartzCore.h>
-#import "ProfileCell.h"
+#import "SettingsProfileCell.h"
 #import "AccountColorViewController.h"
 #import <WEPopoverController.h>
 #import "UserFriendService.h"
-#import "FacebookButtonCell.h"
+#import "SettingsFacebookButtonCell.h"
 #import "AnalyticsService.h"
 #import <MessageUI/MessageUI.h>
 #import "QuestService.h"
@@ -123,10 +123,10 @@
 
 - (UITableViewCell *)tableView:(UITableView*)tableView facebookCellForIndexPath:(NSIndexPath*)indexPath
 {
-    static NSString *CellIdentifier = @"FacebookSettingsCell";
-    FacebookButtonCell *cell = (FacebookButtonCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"SettingsFacebookSettingsCell";
+    SettingsFacebookButtonCell *cell = (SettingsFacebookButtonCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[FacebookButtonCell alloc] initWithReuseIdentifier:CellIdentifier];
+        cell = [[SettingsFacebookButtonCell alloc] initWithReuseIdentifier:CellIdentifier];
     }
     
 //    User * user = UserService.shared.currentUser;
@@ -180,10 +180,10 @@
 
 - (UITableViewCell *)tableView:(UITableView*)tableView profileCellForIndexPath:(NSIndexPath*)indexPath
 {
-    static NSString *CellIdentifier = @"ProfileCell";
-    ProfileCell *cell = (ProfileCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"SettingsProfileCell";
+    SettingsProfileCell *cell = (SettingsProfileCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[ProfileCell alloc] initWithReuseIdentifier:CellIdentifier];
+        cell = [[SettingsProfileCell alloc] initWithReuseIdentifier:CellIdentifier];
     }
     
     User * user = [UserService.shared currentUser];
@@ -283,7 +283,7 @@
     }
     
     else if (indexPath.section == SECTION_PROFILE) {
-        ProfileCell * cell = (ProfileCell*)[tableView cellForRowAtIndexPath:indexPath];
+        SettingsProfileCell * cell = (SettingsProfileCell*)[tableView cellForRowAtIndexPath:indexPath];
         
         if (indexPath.row == ROW_NAME) {
             [cell.inputField becomeFirstResponder];
@@ -411,7 +411,7 @@
 -(void)didTapDone:(id)sender {
     User * user = UserService.shared.currentUser;
     user.isGuestAccount = NO;
-    ProfileCell * cell = (ProfileCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:SECTION_PROFILE]];
+    SettingsProfileCell * cell = (SettingsProfileCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:SECTION_PROFILE]];
     user.name = cell.inputField.text;
     [UserService.shared saveCurrentUser];
     

@@ -114,8 +114,6 @@
     if (combo.segments) return combo.segments.segmentsArray;
     if (combo.orderedElements) return [self segmentsFromElements:combo.orderedElements];
     
-    NSMutableArray * elements = [NSMutableArray array];
-    
     // Make a selectedElements based on everything else
     ComboSelectedElements * selected = combo.selectedElements;
     if (combo.startElement) {
@@ -129,50 +127,18 @@
         selected.earth = YES;
     }
     
-    // Now add each selected one to the array
-    if (selected.air)   [elements addObject:@(Air)];
-    if (selected.heart) [elements addObject:@(Heart)];
-    if (selected.water) [elements addObject:@(Water)];
-    if (selected.earth) [elements addObject:@(Earth)];
-    if (selected.fire)  [elements addObject:@(Fire)];
-    
-    // Select a start element.
-    // Walk backwards on the list, as long as things are selected
     ElementType startElement = combo.startElement;
-    if (!combo.startElement) {
-        startElement = Air;
-        if (selected.fire) {
-            startElement = Fire;
-            if (selected.earth) {
-                startElement = Earth;
-                if (selected.water) {
-                    startElement = Water;
-                    if (selected.heart) {
-                        startElement = Heart;
-                    }
-                }
-            }
-        }
-    }
+    if (!startElement) startElement = selected.startElement;
+
+    NSArray * elements = selected.elements;
     
     // Sort by clockwise distance
-    NSArray * sorted = [elements sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        ElementType one = [obj1 intValue];
-        ElementType two = [obj2 intValue];
-        NSInteger distanceOne = [self clockwiseDistance:one fromStart:startElement];
-        NSInteger distanceTwo = [self clockwiseDistance:two fromStart:startElement];
-        if (distanceOne < distanceTwo) return NSOrderedAscending;
-        return NSOrderedDescending;
-    }];
+    NSArray * sorted = [ComboSelectedElements elements:elements sortByClockwiseDistanceFrom:startElement];
     
     return [self segmentsFromElements:sorted];
 }
 
--(NSInteger)clockwiseDistance:(ElementType)element fromStart:(ElementType)start {
-    NSInteger distance = element - start;
-    if (distance < 0) distance = 5+distance;
-    return distance;
-}
+
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

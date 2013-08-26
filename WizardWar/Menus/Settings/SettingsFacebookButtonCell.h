@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "User.h"
 
-@interface FacebookButtonCell : UITableViewCell
+@interface SettingsFacebookButtonCell : UITableViewCell
 @property (nonatomic) BOOL waiting;
 @property (nonatomic) NSString * title;
 -(id)initWithReuseIdentifier:(NSString*)reuseIdentifier;

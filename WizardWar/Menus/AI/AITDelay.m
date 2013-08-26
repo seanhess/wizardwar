@@ -26,20 +26,31 @@
         
         Spell * spell = [Spell fromType:randomType];
         
-        if (self.delay)
+        if (self.delay) {
             action = [AIAction spell:spell time:self.delay];
-        else
-            action = [AIAction spell:spell];
+        }
+        
+        else {
+            NSTimeInterval cooldown = spell.castDelay + self.reactionTime;
+            action = [AIAction spell:spell time:cooldown];
+        }
     }
     
     return action;
 }
 
 
-+(id)random:(NSArray*)spells delay:(NSTimeInterval)delay {
++(id)random:(NSArray*)spells fixedDelay:(NSTimeInterval)delay {
     AITDelay * tactic = [AITDelay new];
     tactic.spells = spells;
     tactic.delay = delay;
+    return tactic;
+}
+
++(id)random:(NSArray*)spells reactionTime:(NSTimeInterval)delay {
+    AITDelay * tactic = [AITDelay new];
+    tactic.spells = spells;
+    tactic.reactionTime = delay;
     return tactic;
 }
 

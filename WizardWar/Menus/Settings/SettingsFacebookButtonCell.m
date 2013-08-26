@@ -6,17 +6,17 @@
 //  Copyright (c) 2013 The LAB. All rights reserved.
 //
 
-#import "FacebookButtonCell.h"
+#import "SettingsFacebookButtonCell.h"
 #import <BButton.h>
 #import "UserFriendService.h"
 
-@interface FacebookButtonCell ()
+@interface SettingsFacebookButtonCell ()
 @property (nonatomic, strong) BButton * button;
 @property (nonatomic, strong) UIActivityIndicatorView * activityIndicator;
 
 @end
 
-@implementation FacebookButtonCell
+@implementation SettingsFacebookButtonCell
 
 -(id)initWithReuseIdentifier:(NSString*)reuseIdentifier {
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];

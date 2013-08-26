@@ -11,7 +11,7 @@
 #import <ReactiveCocoa.h>
 #import "Spell.h"
 #import "EnvironmentLayer.h"
-#import "RACHelpers.h"
+#import "RACSignal+Filters.h"
 #import "Combo.h"
 #import "SpellEffectService.h"
 #import "Wizard.h"
@@ -38,8 +38,8 @@
         self.disableControls = YES;
         self.environment = ENVIRONMENT_CASTLE;
         
-        RAC(self.wizardHealth) = [RACAbleWithStart(self.wizard.health) filter:RACFilterExists];
-        RAC(self.opponentHealth) = [RACAbleWithStart(self.opponent.health) filter:RACFilterExists];
+        RAC(self.wizardHealth) = [RACAbleWithStart(self.wizard.health) safe];
+        RAC(self.opponentHealth) = [RACAbleWithStart(self.opponent.health) safe];
     }
     return self;
 }

@@ -17,6 +17,7 @@
 #import "WarningCell.h"
 #import "AnalyticsService.h"
 #import "SettingsViewController.h"
+#import "ProfileCell.h"
 
 #define SECTION_STATS 0
 #define SECTION_LEVELS 1
@@ -52,7 +53,7 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationItem.titleView = [ComicZineDoubleLabel titleView:self.title navigationBar:self.navigationController.navigationBar];
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"WarningCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WarningCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:[ProfileCell identifier] bundle:[NSBundle mainBundle]] forCellReuseIdentifier:[ProfileCell identifier]];
     
     
 //    [self.tableView registerNib:[UINib nibWithNibName:@"SpellbookCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"SpellbookCell"];
@@ -98,10 +99,10 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView infoCellForIndexPath:(NSIndexPath *)indexPath {
     
-    WarningCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WarningCell"];
+    ProfileCell *cell = [tableView dequeueReusableCellWithIdentifier:[ProfileCell identifier]];
     
     User * user = [UserService.shared currentUser];
-    [cell setUserInfo:user];
+    [cell setUser:user];
     
     return cell;
 }
@@ -127,8 +128,8 @@
     
     // Should I add the level of the encounter here?
     // Think more about this
-//    if (questLevel.wizardLevel > 0)
-//        cell.detailTextLabel.text = [NSString stringWithFormat:@"Level %i", questLevel.wizardLevel];
+    if (questLevel.wizardLevel > WIZARD_LEVEL_PAST_TUTORIAL)
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"Level %i", questLevel.wizardLevel];
 //    else
 //        cell.detailTextLabel.text = nil;
     
@@ -190,7 +191,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == SECTION_STATS) return 54;
+    if (indexPath.section == SECTION_STATS) return [ProfileCell height];
     else return 48;
 }
 

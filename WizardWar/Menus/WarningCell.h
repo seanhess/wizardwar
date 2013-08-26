@@ -15,5 +15,4 @@
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 
 -(void)setWarningText:(NSString*)text;
--(void)setUserInfo:(User*)user;
 @end

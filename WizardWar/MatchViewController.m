@@ -35,7 +35,7 @@
 #import "ChallengeService.h"
 #import "SpellbookService.h"
 #import "ConnectionService.h"
-#import "RACHelpers.h"
+#import "RACSignal+Filters.h"
 #import "QuestLevel.h"
 #import "QuestService.h"
 
@@ -144,9 +144,9 @@
     
     RACSignal * hideControls = [matchLayer.showControlsSignal not];
     RAC(self.pentagram.hidden) = hideControls;
-    RAC(self.pentagram.disabled) = [RACAble(self.match.ai.disableControls) filter:RACFilterExists];
-    RAC(self.message.hidden) = hideControls;
-    RAC(self.subMessage.hidden) = hideControls;
+    RAC(self.pentagram.disabled) = [RACAble(self.match.ai.disableControls) safe];
+    RAC(self.message.hidden) = matchLayer.aiHideControlsSignal;
+    RAC(self.subMessage.hidden) = matchLayer.aiHideControlsSignal;
     RAC(self.combos.allowedSpells) = RACAble(self.match.ai.allowedSpells);
     RAC(self.pentagram.helpSelectElements) = RACAble(self.match.ai.helpSelectedElements);
 }
@@ -190,7 +190,7 @@
 - (void)createMatchWithWizard:(Wizard *)wizard withLevel:(QuestLevel *)level {
     self.questLevel = level;
     
-    Match * match = [[Match alloc] initWithMatchId:@"Quest" hostName:wizard.name currentWizard:wizard withAI:level.ai multiplayer:nil sync:nil];
+    Match * match = [[Match alloc] initWithMatchId:@"Quest" hostName:wizard.name currentWizard:wizard withAI:[level.ai create] multiplayer:nil sync:nil];
     self.match = match;
 }
 
@@ -273,10 +273,12 @@
             sae.backgroundMusicVolume = 0.2f;
         }
     }
- 
-//#ifndef DEBUG
     [sae playBackgroundMusic:@"theme.mp3"];
-//#endif
+ 
+#if TARGET_IPHONE_SIMULATOR
+    sae.backgroundMusicVolume = 0.0;
+#endif
+    
 }
 
 - (void)didFinishMatch:(BOOL)didFinish didWin:(BOOL)didWin {

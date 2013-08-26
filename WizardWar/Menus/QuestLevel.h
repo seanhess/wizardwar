@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import "AIService.h"
+#import "AIOpponentFactory.h"
 
 @interface QuestLevel : NSManagedObject
 
@@ -26,13 +27,6 @@
 @property (nonatomic, readonly) BOOL hasAttempted;
 
 // OPPONENT
-@property (nonatomic, readonly) id<AIService> ai;
-// specify a type
-@property (nonatomic, strong) Class AIType;
-// or all of these
-@property (nonatomic, strong) NSArray * tactics;
-@property (nonatomic) NSUInteger colorRGB;
-
-//@property (nonatomic, strong) NSString * woot;
+@property (nonatomic, strong) AIOpponentFactory * ai;
 
 @end

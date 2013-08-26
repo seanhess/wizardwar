@@ -76,6 +76,30 @@
     return;
 }
 
+- (NSInteger)gamesLosses {
+    return self.gamesTotal - self.gamesWins;
+}
+
+- (CGFloat)masteryProgress {
+    // should be overall wins/losses
+    return ((float)self.gamesWins / (float)self.masteryWins);
+}
+
+- (NSInteger)masteryWins {
+    return (2*self.gamesLosses+2);
+}
+
+- (NSInteger)foolWins {
+    // if they have won twice as many games as you?
+    return (self.gamesLosses/2.0);
+}
+
+- (BOOL)isMastered {
+    // mastery = 2 * the number of losses + 2
+    return self.gamesWins >= self.masteryWins;
+}
+
+
 //- (void)encodeWithCoder:(NSCoder *)encoder {
 //    [encoder encodeObject:self.name forKey:@"name"];
 //    [encoder encodeObject:self.userId forKey:@"userId"];

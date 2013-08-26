@@ -14,6 +14,7 @@
 
 #define WIZARD_TYPE_ONE @"1"
 #define WIZARD_TYPE_TWO @"2"
+#define WIZARD_TYPE_DUMMY @"wizard-dummy"
 #define MAX_HEALTH 5
 
 typedef enum WizardStatus {

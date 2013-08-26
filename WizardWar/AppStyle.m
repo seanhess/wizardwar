@@ -61,7 +61,7 @@
 }
 
 +(UIColor*)redErrorColor {
-    return [UIColor colorFromRGB:0xF3826F];
+    return [UIColor colorFromRGB:0xE42303];
 }
 
 +(UIColor*)grayLockedColor {

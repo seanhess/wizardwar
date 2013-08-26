@@ -10,7 +10,6 @@
 #import "NSArray+Functional.h"
 
 @interface AITCounterExists ()
-@property (nonatomic, strong) NSDictionary * countersCast;
 @end
 
 @implementation AITCounterExists
