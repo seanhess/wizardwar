@@ -30,6 +30,8 @@
 @property (nonatomic, readonly) NSArray * mySpells;
 @property (nonatomic, readonly) NSArray * opponentSpells;
 @property (nonatomic, readonly) NSArray * incomingSpells;
+@property (nonatomic, readonly) Spell * justCastSpell;
+@property (nonatomic, readonly) Spell * justCastSpellOther;
 @property (nonatomic, readonly) Spell * activeWall;
 @property (nonatomic, readonly) BOOL isCooldown; // whether the last spell made me SLOW
 

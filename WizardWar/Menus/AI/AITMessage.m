@@ -15,6 +15,8 @@
 
 @interface AITMessage ()
 @property (nonatomic, strong) NSMutableDictionary * usedMessages;
+@property (nonatomic) NSInteger lastWizardHealth;
+@property (nonatomic) NSInteger lastOpponentHealth;
 @end
 
 
@@ -25,6 +27,8 @@
 -(id)init {
     if ((self = [super init])) {
         self.usedMessages = [NSMutableDictionary dictionary];
+        self.lastWizardHealth = MAX_HEALTH;
+        self.lastOpponentHealth = MAX_HEALTH;
     }
     return self;
 }
@@ -56,25 +60,32 @@
     AIAction * action = nil;
     
     if ([self messageIsOld:game]) {
-        if ([self.cast containsObject:game.wizard.message] || [self.castOther containsObject:game.wizard.message] || [self.start containsObject:game.wizard.message]) {
+        if ([self.cast containsObject:game.wizard.message] || [self.castOther containsObject:game.wizard.message] || [self.start containsObject:game.wizard.message] || [self.hits containsObject:game.wizard.message] || [self.wounds containsObject:game.wizard.message]) {
             return [AIAction clearMessage];
         }
     }
     
-    Spell * justCastSpell = [game.mySpells find:^BOOL(Spell * spell) {
-        return (spell.createdTick == game.currentTick);
-    }];
+    if (![self randomShouldSpeak]) return nil;
     
-    if (justCastSpell && self.cast && [self randomShouldSpeak]) {
+    Spell * justCastSpell = game.justCastSpell;
+    Spell * justCastSpellOther = game.justCastSpellOther;
+    
+    if (justCastSpell && self.cast) {
         action = [self useUpMessageFrom:self.cast];
     }
     
-    Spell * otherJustCast = [game.opponentSpells find:^BOOL(Spell * spell) {
-        return (spell.createdTick == game.currentTick);
-    }];
-    
-    if (otherJustCast && self.castOther && [self randomShouldSpeak]) {
+    else if (justCastSpellOther && self.castOther) {
         action = [self useUpMessageFrom:self.castOther];
+    }
+    
+    else if (self.wounds && game.wizard.health < self.lastWizardHealth) {
+        self.lastWizardHealth = game.wizard.health;
+        action = [self useUpMessageFrom:self.wounds];
+    }
+    
+    else if (self.hits && game.opponent.health < self.lastOpponentHealth) {
+        self.lastOpponentHealth = game.wizard.health;
+        action = [self useUpMessageFrom:self.hits];        
     }
     
     return action;

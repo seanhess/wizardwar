@@ -176,8 +176,8 @@
     random.ai.tactics = ^{
         return @[
             [AITMessage withStart:@[@"Well if it isn't another wet-behind-the-ears apprentice. I'm not a babysitter!", @"I hope you brought a change of pants.", @"Why don't you go bother someone else? Matlock is on!"]],
-            [AITMessage withCastOther:@[@"Wow, did your mom teach you that spell?", @"Whatever."] chance:1.0],
-//            [AITMessage withCast:@[@"Avada ... Dangit!", @"Those robes are SO six-hundred fifteen"] chance:0.25],
+            [AITMessage withCastOther:@[@"Wow, did your mom teach you that spell?", @"Whatever."] chance:0.25],
+            [AITMessage withCast:@[@"Avada ... Dangit!", @"Those robes are SO six-hundred fifteen"] chance:0.25],
             [AITMessage withWin:@[@"Ooh, nice innards. Noob."]],
             [AITMessage withLose:@[@"Just leave me alone, ok?"]],
 
@@ -191,12 +191,14 @@
     QuestLevel * air = [self levelWithName:@"Aeres the Aeromancer"];
     air.level = EasyQuestLevel;
     air.wizardLevel = EasyWizardLevel;
-    air.ai = [AIOpponentFactory withColor:0x0 environment:ENVIRONMENT_CASTLE tactics:^{
+    air.ai = [AIOpponentFactory withColor:0x99C2E7 environment:ENVIRONMENT_CASTLE tactics:^{
         return @[
-             [AITMessage withStart:@[@"", @"Has anybody seen my spectacles?"]],
-             [AITMessage withCast:@[@"Zaldafrash!", @"Whoosh!"] chance:0.25],
-             [AITMessage withWin:@[@"Where did you go?"]],
-             [AITMessage withLose:@[@"At last, I can finally rest..."]],
+             [AITMessage withStart:@[@"Good day sir. I challenge you to a duel.", @"Are you sure you're ready?", @"You look in excellent health today. How is your family?"]],
+             [AITMessage withHits:@[@"Ooh! Right in the knickers!", @"Are you alright?"] chance:0.25],
+             [AITMessage withWounds:@[@"Crikey", @"That was below the belt!"] chance:0.25],
+             [AITMessage withCast:@[@"Cheerio!", @"Look out sir!"] chance:0.25],
+             [AITMessage withWin:@[@"Good heavens, what a violent contest."]],
+             [AITMessage withLose:@[@"Good god man! Be civil!"]],
                  
              [AITDelay random:@[Fist, Lightning, Windblast] reactionTime:EasyReactionTime],
         ];
@@ -210,6 +212,11 @@
     jumper.wizardLevel = EasyWizardLevel;
     jumper.ai = [AIOpponentFactory withColor:0x0 environment:ENVIRONMENT_CASTLE tactics:^{
         return @[
+            [AITMessage withStart:@[@"Me burn you now!"]],
+            [AITMessage withCast:@[@"Fire!", @"Burn!", @"Oooh!", @"DIE DIE DIE!"] chance:0.5],
+            [AITMessage withWin:@[@"You dead! Ha ha ha ha ha ha!"]],
+            [AITMessage withLose:@[@"Ouch"]],
+
             [AITEffectRenew effect:[PELevitate new] spell:Levitate],
             [AITDelay random:@[Monster, Vine, Monster, Lightning] reactionTime:EasyReactionTime],
         ];
@@ -224,6 +231,11 @@
     fire.wizardLevel = MediumWizardLevel;
     fire.ai = [AIOpponentFactory withColor:0xF23953 environment:ENVIRONMENT_CAVE tactics:^{
         return @[
+            [AITMessage withStart:@[@"Me burn you now!"]],
+            [AITMessage withCast:@[@"Fire!", @"Burn!", @"Oooh!", @"DIE DIE DIE!"] chance:0.5],
+            [AITMessage withWin:@[@"You dead! Ha ha ha ha ha ha!"]],
+            [AITMessage withLose:@[@"Ouch"]],
+
             [AITWallAlways walls:@[Firewall]],
             [AITDelay random:@[Fireball, Fireball, Windblast] reactionTime:HardReactionTime], // he's harder with windblast
         ];
@@ -250,9 +262,17 @@
     earth.wizardLevel = MediumWizardLevel;
     earth.ai = [AIOpponentFactory withColor:0x0 environment:ENVIRONMENT_CAVE tactics:^{
         return @[
-                 [AITWallAlways walls:@[Earthwall]],
-                 [AITDelay random:@[Monster, Helmet, Monster, Vine] reactionTime:HardReactionTime],
-                 ];
+            [AITMessage withStart:@[@"Thou darest challenge me? This day shall be thy last!", @"Thou fool! May the earth consume thee and thy posterity FOR ALL TIME."]],
+            [AITMessage withHits:@[@"Beg for mercy!", @"Thou art no match for Talfan!"] chance:0.25],
+            [AITMessage withWounds:@[@"Darest thou harm me?"] chance:0.25],
+            [AITMessage withCast:@[@"Witness the wrath of Talfan!", @"Bow before my power!"] chance:0.25],
+            [AITMessage withCastOther:@[@"Was that an attempt at magic?", @"Thy drivel is no match for my fury!"] chance:0.25],
+            [AITMessage withWin:@[@"Thine incompetence doth insult the very stones upon which you lie"]],
+            [AITMessage withLose:@[@"My rage lives on. I will return!"]],
+
+            [AITWallAlways walls:@[Earthwall]],
+            [AITDelay random:@[Monster, Helmet, Monster, Vine] reactionTime:HardReactionTime],
+        ];
     }];
     
 

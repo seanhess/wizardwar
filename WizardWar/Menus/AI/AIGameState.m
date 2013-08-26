@@ -67,4 +67,17 @@
     return (found != nil);
 }
 
+-(Spell*)justCastSpell {
+    return [self.mySpells find:^BOOL(Spell * spell) {
+        return (spell.createdTick == self.currentTick);
+    }];
+}
+
+-(Spell*)justCastSpellOther {
+    return [self.opponentSpells find:^BOOL(Spell * spell) {
+        return (spell.createdTick == self.currentTick);
+    }];
+}
+
+
 @end
