@@ -24,6 +24,8 @@
 #import "AITPerfectCounter.h"
 #import "AITCounterExists.h"
 #import "AIOpponentFactory.h"
+#import "AITWaitForCast.h"
+#import "AITMaybe.h"
 
 #define QUEST_LEVEL_ENTITY @"QuestLevel"
 
@@ -107,7 +109,6 @@
     const NSTimeInterval MediumReactionTime = 0.5;
     const NSTimeInterval HardReactionTime = 0.1;
     
-    
     const NSInteger EasyQuestLevel = 3;
     const NSInteger MediumQuestLevel = 4;
     const NSInteger HardQuestLevel = 5;
@@ -140,12 +141,45 @@
     
     
     
+    
+    
+    // Like the old practice mode guy
+    // He wouldn't cast until you did?
+    // What about a guy that is allowed to cast as soon as you have?
+    // imagine a level for a first time player.
+    // has pretty much all the spells
+    QuestLevel * random = [self levelWithName:@"Ian the Inspecific"];
+    random.level = EasyQuestLevel;
+    random.wizardLevel = EasyWizardLevel;
+    random.ai = [AIOpponentFactory withColor:0x0 tactics:^{
+        return @[
+            [AITWaitForCast random:@[Fireball, Lightning, Windblast, Bubble, Earthwall, Icewall, Firewall, Helmet, Monster, Levitate, Sleep]],
+        ];
+    }];
+    
+    
+    
+    // he's really slow
+    // he starts out too fast!
+    QuestLevel * old = [self levelWithName:@"Alatar the Anchient"];
+    old.level = EasyQuestLevel;
+    old.wizardLevel = EasyWizardLevel;
+    old.ai = [AIOpponentFactory withColor:0x0 tactics:^{
+        return @[
+            [AITWallAlways walls:@[Firewall, Icewall] reactionTime:3.0],
+            [AITDelay random:@[Lightning, Windblast, Heal, Invisibility, Earthwall, Rainbow, Bubble, Fireball, Bubble, Monster] reactionTime:3.0],
+        ];
+    }];
+    
+    
+    
+    
     QuestLevel * air = [self levelWithName:@"Aeres the Aeromancer"];
     air.level = EasyQuestLevel;
     air.wizardLevel = EasyWizardLevel;
     air.ai = [AIOpponentFactory withColor:0x0 tactics:^{
         return @[
-             [AITDelay random:@[Fist, Lightning, Windblast] reactionTime:MediumReactionTime],
+             [AITDelay random:@[Fist, Lightning, Windblast] reactionTime:EasyReactionTime],
         ];
     }];
     
@@ -158,7 +192,7 @@
     jumper.ai = [AIOpponentFactory withColor:0x0 tactics:^{
         return @[
             [AITEffectRenew effect:[PELevitate new] spell:Levitate],
-            [AITDelay random:@[Monster, Vine, Monster, Lightning] reactionTime:MediumReactionTime],
+            [AITDelay random:@[Monster, Vine, Monster, Lightning] reactionTime:EasyReactionTime],
         ];
     }];
     
@@ -181,7 +215,7 @@
     // otherwise, cast sleep
     // If they cast icewall, then bubble. what can he do?
     // If there is a bubble coming towards him
-    QuestLevel * sleeper = [self levelWithName:@"Blodwen the Boring"];
+    QuestLevel * sleeper = [self levelWithName:@"Seren the Somnomancer"];
     sleeper.level = MediumQuestLevel;
     sleeper.wizardLevel = MediumWizardLevel;
     sleeper.ai = [AIOpponentFactory withColor:0x0 tactics:^{
@@ -235,6 +269,8 @@
         dummy,
         
         // LIGHT MEDIUM
+        old,
+        random,
         air,
         jumper,
 

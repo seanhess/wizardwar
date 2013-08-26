@@ -31,6 +31,7 @@
     }];
 }
 
+
 // should I also do altitude match here
 -(NSArray*)incomingSpells {
     return [self.spells filter:^BOOL(Spell*spell) {
@@ -44,6 +45,9 @@
     }];
 }
 
+-(NSArray*)sortSpellsByCreated:(NSArray *)spells {
+    return [spells sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"createdTick" ascending:YES]]];
+}
 
 -(NSArray*)sortSpellsByDistance:(NSArray*)spells {
     return [spells sortedArrayUsingComparator:^NSComparisonResult(Spell* spell1, Spell* spell2) {

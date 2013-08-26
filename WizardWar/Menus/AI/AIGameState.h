@@ -36,6 +36,7 @@
 // sort: when cast, so the most recent is always last?
 // sort: how close they are?
 
+-(NSArray*)sortSpellsByCreated:(NSArray*)spells;
 -(NSArray*)sortSpellsByDistance:(NSArray*)spells;
 
 -(BOOL)spells:(NSArray*)spells containsType:(NSString*)type;
