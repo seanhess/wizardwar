@@ -242,6 +242,8 @@
 		7853C8D717CAE61100406813 /* levitate.png in Resources */ = {isa = PBXBuildFile; fileRef = 7853C8D417CAE61100406813 /* levitate.png */; };
 		7853C8D917CAE6E500406813 /* cthulhu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7853C8D817CAE6E500406813 /* cthulhu.mp3 */; };
 		7853C8DC17CB99BA00406813 /* RACSignal+Filters.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853C8DB17CB99B900406813 /* RACSignal+Filters.m */; };
+		7853C8DF17CB9BE100406813 /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853C8DE17CB9BDF00406813 /* ProfileCell.m */; };
+		7853C8E117CB9BF300406813 /* ProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7853C8E017CB9BF100406813 /* ProfileCell.xib */; };
 		785B045C17C2B16700B064F6 /* SpellRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 785B045B17C2B16700B064F6 /* SpellRecord.m */; };
 		785B045F17C2B17F00B064F6 /* SpellbookService.m in Sources */ = {isa = PBXBuildFile; fileRef = 785B045E17C2B17F00B064F6 /* SpellbookService.m */; };
 		785B046317C2BA3100B064F6 /* SpellbookDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785B046117C2BA3100B064F6 /* SpellbookDetailsViewController.m */; };
@@ -347,8 +349,8 @@
 		78DAB8241795C3A10093A701 /* FacebookUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB8231795C3A10093A701 /* FacebookUser.m */; };
 		78DAB8291795E2B00093A701 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB8271795E2B00093A701 /* SettingsViewController.m */; };
 		78DAB82A1795E2B00093A701 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DAB8281795E2B00093A701 /* SettingsViewController.xib */; };
-		78DAB82D1799BCFF0093A701 /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB82C1799BCFF0093A701 /* ProfileCell.m */; };
-		78DAB839179A0C680093A701 /* FacebookButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB838179A0C680093A701 /* FacebookButtonCell.m */; };
+		78DAB82D1799BCFF0093A701 /* SettingsProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB82C1799BCFF0093A701 /* SettingsProfileCell.m */; };
+		78DAB839179A0C680093A701 /* SettingsFacebookButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB838179A0C680093A701 /* SettingsFacebookButtonCell.m */; };
 		78DAB83B179B08530093A701 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DAB83A179B08530093A701 /* ImageIO.framework */; };
 		78DAB83D179B08BB0093A701 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DAB83C179B08BB0093A701 /* MapKit.framework */; };
 		78E22CA41782400900146D49 /* YouWon.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CA31782400900146D49 /* YouWon.mp3 */; };
@@ -842,6 +844,9 @@
 		7853C8D817CAE6E500406813 /* cthulhu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cthulhu.mp3; sourceTree = "<group>"; };
 		7853C8DA17CB99B900406813 /* RACSignal+Filters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RACSignal+Filters.h"; sourceTree = "<group>"; };
 		7853C8DB17CB99B900406813 /* RACSignal+Filters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RACSignal+Filters.m"; sourceTree = "<group>"; };
+		7853C8DD17CB9BDE00406813 /* ProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileCell.h; sourceTree = "<group>"; };
+		7853C8DE17CB9BDF00406813 /* ProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
+		7853C8E017CB9BF100406813 /* ProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileCell.xib; sourceTree = "<group>"; };
 		785B045A17C2B16700B064F6 /* SpellRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellRecord.h; sourceTree = "<group>"; };
 		785B045B17C2B16700B064F6 /* SpellRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellRecord.m; sourceTree = "<group>"; };
 		785B045D17C2B17F00B064F6 /* SpellbookService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellbookService.h; sourceTree = "<group>"; };
@@ -998,10 +1003,10 @@
 		78DAB8261795E2B00093A701 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		78DAB8271795E2B00093A701 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		78DAB8281795E2B00093A701 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
-		78DAB82B1799BCFF0093A701 /* ProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileCell.h; sourceTree = "<group>"; };
-		78DAB82C1799BCFF0093A701 /* ProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
-		78DAB837179A0C680093A701 /* FacebookButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookButtonCell.h; sourceTree = "<group>"; };
-		78DAB838179A0C680093A701 /* FacebookButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookButtonCell.m; sourceTree = "<group>"; };
+		78DAB82B1799BCFF0093A701 /* SettingsProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsProfileCell.h; sourceTree = "<group>"; };
+		78DAB82C1799BCFF0093A701 /* SettingsProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsProfileCell.m; sourceTree = "<group>"; };
+		78DAB837179A0C680093A701 /* SettingsFacebookButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsFacebookButtonCell.h; sourceTree = "<group>"; };
+		78DAB838179A0C680093A701 /* SettingsFacebookButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsFacebookButtonCell.m; sourceTree = "<group>"; };
 		78DAB83A179B08530093A701 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		78DAB83C179B08BB0093A701 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		78E22CA31782400900146D49 /* YouWon.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = YouWon.mp3; sourceTree = "<group>"; };
@@ -1673,6 +1678,9 @@
 				7892EF9817BE66E100F9A89D /* WarningCell.h */,
 				7892EF9917BE66E100F9A89D /* WarningCell.m */,
 				785C44B217BE671200733E7B /* WarningCell.xib */,
+				7853C8DD17CB9BDE00406813 /* ProfileCell.h */,
+				7853C8DE17CB9BDF00406813 /* ProfileCell.m */,
+				7853C8E017CB9BF100406813 /* ProfileCell.xib */,
 				78DAB81B1795AAE40093A701 /* FriendsViewController.h */,
 				78DAB81C1795AAE40093A701 /* FriendsViewController.m */,
 				78DAB81D1795AAE40093A701 /* FriendsViewController.xib */,
@@ -1878,10 +1886,10 @@
 				78DAB8281795E2B00093A701 /* SettingsViewController.xib */,
 				78AF756D1792ECB9008499DB /* AccountColorViewController.h */,
 				78AF756E1792ECB9008499DB /* AccountColorViewController.m */,
-				78DAB82B1799BCFF0093A701 /* ProfileCell.h */,
-				78DAB82C1799BCFF0093A701 /* ProfileCell.m */,
-				78DAB837179A0C680093A701 /* FacebookButtonCell.h */,
-				78DAB838179A0C680093A701 /* FacebookButtonCell.m */,
+				78DAB82B1799BCFF0093A701 /* SettingsProfileCell.h */,
+				78DAB82C1799BCFF0093A701 /* SettingsProfileCell.m */,
+				78DAB837179A0C680093A701 /* SettingsFacebookButtonCell.h */,
+				78DAB838179A0C680093A701 /* SettingsFacebookButtonCell.m */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -2477,6 +2485,7 @@
 				7853C8D617CAE61100406813 /* invisibility.png in Resources */,
 				7853C8D717CAE61100406813 /* levitate.png in Resources */,
 				7853C8D917CAE6E500406813 /* cthulhu.mp3 in Resources */,
+				7853C8E117CB9BF300406813 /* ProfileCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2699,8 +2708,8 @@
 				78DAB81E1795AAE40093A701 /* FriendsViewController.m in Sources */,
 				78DAB8241795C3A10093A701 /* FacebookUser.m in Sources */,
 				78DAB8291795E2B00093A701 /* SettingsViewController.m in Sources */,
-				78DAB82D1799BCFF0093A701 /* ProfileCell.m in Sources */,
-				78DAB839179A0C680093A701 /* FacebookButtonCell.m in Sources */,
+				78DAB82D1799BCFF0093A701 /* SettingsProfileCell.m in Sources */,
+				78DAB839179A0C680093A701 /* SettingsFacebookButtonCell.m in Sources */,
 				78516B8817A5925800A49257 /* NSObject+Reflection.m in Sources */,
 				78306BB017A99AEC00487B16 /* OLUnitsService.m in Sources */,
 				78306BC217AADC4A00487B16 /* SpellFailRainbow.m in Sources */,
@@ -2759,6 +2768,7 @@
 				7853C8CB17CAC51B00406813 /* AITCastOnClose.m in Sources */,
 				7853C8D117CADD0600406813 /* AITCounterExists.m in Sources */,
 				7853C8DC17CB99BA00406813 /* RACSignal+Filters.m in Sources */,
+				7853C8DF17CB9BE100406813 /* ProfileCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

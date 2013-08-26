@@ -42,6 +42,7 @@
 #import "UIViewController+Idiom.h"
 #import "InfoService.h"
 #import "WarningCell.h"
+#import "ProfileCell.h"
 #import "AppStyle.h"
 #import <MessageUI/MessageUI.h>
 
@@ -133,7 +134,10 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"ChallengeCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"ChallengeCell"];
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"WarningCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WarningCell"];    
+    [self.tableView registerNib:[UINib nibWithNibName:@"WarningCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WarningCell"];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:[ProfileCell identifier] bundle:[NSBundle mainBundle]] forCellReuseIdentifier:[ProfileCell identifier]];
+    
     
     [self.tableView setTableFooterView:self.explanationsView];
     NSLog(@"TESTING %@", NSStringFromCGRect(self.tableView.tableFooterView.frame));
@@ -605,21 +609,22 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView warningCellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    WarningCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WarningCell"];
     
     if (indexPath.row == ROW_WARNING) {
+        WarningCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WarningCell"];
         if ([self shouldShowLocationWarning])
             [cell setWarningText:self.locationWarning];
         else
             [cell setWarningText:self.pushWarning];
+        return cell;
     }
     
     else {
+        ProfileCell *cell = [tableView dequeueReusableCellWithIdentifier:[ProfileCell identifier]];
         User * user = [UserService.shared currentUser];
-        [cell setUserInfo:user];
+        [cell setUser:user];
+        return cell;
     }
-    
-    return cell;
 }
 
 
