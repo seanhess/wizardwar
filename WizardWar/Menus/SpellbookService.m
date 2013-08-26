@@ -16,6 +16,7 @@
 #import "UIImage+MonoImage.h"
 #import "SpellEffect.h"
 #import "Achievement.h"
+#import "UserService.h"
 
 @interface SpellbookService ()
 @end
@@ -77,6 +78,7 @@
 - (NSArray*)finishedMatch:(NSMutableArray*)spellHistory didWin:(BOOL)didWin {
     
     NSMutableArray * achievements = [NSMutableArray array];
+    User * currentUser = [UserService.shared currentUser];
 
     // now go through and store everything!
     // Group them by spell cast
@@ -96,9 +98,13 @@
         record.castMatchesTotal += 1;
         if (didWin) record.castMatchesWins += 1;
         if (record.level > beforeLevel) {
+            currentUser.wizardLevel += 1;
             [achievements addObject:[Achievement spellLevel:record]];
+            [achievements addObject:[Achievement wizardLevel:currentUser]];            
         }
     }
+    
+    
 
     return achievements;
 }
@@ -144,7 +150,7 @@
         NSLog(@"SpellRecord (+) %@", record.name);
     }
 //    record.unlock = YES;
-    
+//    record.castMatchesTotal = 4;
     
     return record;
 }
