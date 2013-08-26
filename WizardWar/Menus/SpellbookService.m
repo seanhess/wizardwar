@@ -143,6 +143,8 @@
         
         NSLog(@"SpellRecord (+) %@", record.name);
     }
+    record.unlock = YES;
+    
     
     return record;
 }

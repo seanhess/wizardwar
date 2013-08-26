@@ -150,6 +150,9 @@
     if([spell isType:Fireball]) {
         [[SimpleAudioEngine sharedEngine] playEffect:@"fireball.mp3"];
     }
+    else if([spell isType:Cthulhu]) {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"cthulhu.mp3"];
+    }
     else if([spell isType:Earthwall]) {
         [[SimpleAudioEngine sharedEngine] playEffect:@"earthwall.mp3"];
     }
