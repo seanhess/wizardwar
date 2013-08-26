@@ -21,6 +21,8 @@
 #import "AITEffectRenew.h"
 #import "PELevitate.h"
 #import "AITCastOnClose.h"
+#import "AITPerfectCounter.h"
+#import "AITCounterExists.h"
 
 #define QUEST_LEVEL_ENTITY @"QuestLevel"
 
@@ -149,20 +151,55 @@
         [AITDelay random:@[Monster, Helmet, Monster, Vine]],
     ];
     
-    // WHAT WE REEALLY NEED:
-    // Each QuestLevel... Hmm...
-    // QuestLevel: makes an AIOpponent, sets the wizard stuff, sets the tactics.
-    // color, name, tactics
+    // this guy is an idiot. he's way too easy to kill :)
+    QuestLevel * fire = [self levelWithName:@"Pennar the Pyromancer"];
+    fire.level = 0;
+    fire.wizardLevel = 0;
+    fire.colorRGB = 0xF23953;
+    fire.tactics = @[
+        [AITWallAlways walls:@[Firewall]],
+        [AITDelay random:@[Fireball, Fireball, Windblast]], // he's harder with windblast
+    ];
+    
+    // Geez, this guy is hard.  Slow him down?
+    QuestLevel * spam = [self levelWithName:@"Belgarath the Bold"];
+    spam.level = 0;
+    spam.wizardLevel = 0;
+    spam.colorRGB = 0x0;
+    spam.tactics = @[
+        [AITDelay random:@[Fireball, Lightning, Monster]],
+    ];
+    
+    
+    // If they have an icewall, cast Fireball
+    // otherwise, cast sleep
+    // If they cast icewall, then bubble. what can he do?
+    // If there is a bubble coming towards him
+    QuestLevel * sleeper = [self levelWithName:@"Blodwen the Boring"];
+    sleeper.level = 0;
+    sleeper.wizardLevel = 0;
+    sleeper.colorRGB = 0x0;
+    sleeper.tactics = @[
+        [AITDelay random:@[Sleep]],
+        [AITCounterExists counters:@{Icewall:Monster}],
+    ];
+    
+        
+    // ?? Someone who uses Grom to kill you. Must discover helmet!
+    // Counterman: always tries to reflect things
 
     return @[
-             tutorial1,
-             tutorial2,
-             tutorial3,
-             practice,
-             jumper,
-             jumper2,
-             earth,
-             ];
+        tutorial1,
+        tutorial2,
+        tutorial3,
+        practice,
+        jumper,
+        jumper2,
+        earth,
+        fire,
+        spam,
+        sleeper,
+    ];
     
 /*
  
@@ -178,7 +215,7 @@
  
  (don't worry about levels at first? Just make them?)
  (make functions, so you can mix/match. Like a L3 defense routine vs a L2 one)
- Pyromancer: spams fire everything
+√Pyromancer: spams fire everything (√)
  Counterman: always tries to reflect everything
  The Grand Wizard: try to make him awesome
  Windman: tries to make huge fireballs
@@ -187,7 +224,7 @@
  Spam Monster:
  Spam Lightning:
  Spam Fireball:
- Spam all 3 offensively:
+ Spam all 3 offensively: ooh hard.
  Sleepy head: tries to get you to fall asleep forever
  Summoner: summons chicken, monster, vine, etc.
  Flying Jim: really good at dodging with levitate. Could make him drop back down to dodge too?
@@ -232,7 +269,7 @@
  
  Combo Guys: someone puts windblast and monsters to good use. (Throw a bubble between them to catch the firewall).
  
- Healer: any time he gets damaged, he puts up a wall, a helmet, and casts heal.
+ Healer: any time he gets damaged, he puts up a wall, a helmet, and casts heal. too easy!
  
  Impossible man: he's amazing, but he takes a break and celebrates every once in a while
  Captain planet man. He whoops you with captain planet :) Naw, it's a secret :)

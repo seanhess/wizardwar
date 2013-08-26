@@ -237,6 +237,7 @@
 		7853C8BF17CA5CE400406813 /* AITPerfectCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853C8BE17CA5CE400406813 /* AITPerfectCounter.m */; };
 		7853C8C517CABCE800406813 /* AITEffectRenew.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853C8C417CABCE800406813 /* AITEffectRenew.m */; };
 		7853C8CB17CAC51B00406813 /* AITCastOnClose.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853C8CA17CAC51900406813 /* AITCastOnClose.m */; };
+		7853C8D117CADD0600406813 /* AITCounterExists.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853C8D017CADD0400406813 /* AITCounterExists.m */; };
 		785B045C17C2B16700B064F6 /* SpellRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 785B045B17C2B16700B064F6 /* SpellRecord.m */; };
 		785B045F17C2B17F00B064F6 /* SpellbookService.m in Sources */ = {isa = PBXBuildFile; fileRef = 785B045E17C2B17F00B064F6 /* SpellbookService.m */; };
 		785B046317C2BA3100B064F6 /* SpellbookDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785B046117C2BA3100B064F6 /* SpellbookDetailsViewController.m */; };
@@ -831,6 +832,8 @@
 		7853C8C417CABCE800406813 /* AITEffectRenew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AITEffectRenew.m; sourceTree = "<group>"; };
 		7853C8C917CAC51800406813 /* AITCastOnClose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AITCastOnClose.h; sourceTree = "<group>"; };
 		7853C8CA17CAC51900406813 /* AITCastOnClose.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AITCastOnClose.m; sourceTree = "<group>"; };
+		7853C8CF17CADD0300406813 /* AITCounterExists.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AITCounterExists.h; sourceTree = "<group>"; };
+		7853C8D017CADD0400406813 /* AITCounterExists.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AITCounterExists.m; sourceTree = "<group>"; };
 		785B045A17C2B16700B064F6 /* SpellRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellRecord.h; sourceTree = "<group>"; };
 		785B045B17C2B16700B064F6 /* SpellRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellRecord.m; sourceTree = "<group>"; };
 		785B045D17C2B17F00B064F6 /* SpellbookService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellbookService.h; sourceTree = "<group>"; };
@@ -1577,6 +1580,8 @@
 				7853C8C417CABCE800406813 /* AITEffectRenew.m */,
 				7853C8C917CAC51800406813 /* AITCastOnClose.h */,
 				7853C8CA17CAC51900406813 /* AITCastOnClose.m */,
+				7853C8CF17CADD0300406813 /* AITCounterExists.h */,
+				7853C8D017CADD0400406813 /* AITCounterExists.m */,
 			);
 			path = AI;
 			sourceTree = "<group>";
@@ -2737,6 +2742,7 @@
 				7853C8BF17CA5CE400406813 /* AITPerfectCounter.m in Sources */,
 				7853C8C517CABCE800406813 /* AITEffectRenew.m in Sources */,
 				7853C8CB17CAC51B00406813 /* AITCastOnClose.m in Sources */,
+				7853C8D117CADD0600406813 /* AITCounterExists.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

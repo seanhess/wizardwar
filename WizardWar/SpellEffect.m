@@ -117,6 +117,7 @@
 @implementation SESleep
 -(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick {
     if ([SECarry isCarried:spell]) return NO;
+    if (spell.direction == otherSpell.direction) return NO;    
     
     spell.speed = 0;
     spell.spellEffect = self;

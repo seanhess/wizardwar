@@ -55,5 +55,12 @@
     }];
 }
 
+-(BOOL)spells:(NSArray*)spells containsType:(NSString*)type {
+    Spell* found = [spells find:^BOOL(Spell * spell) {
+        return [spell isType:type];
+    }];
+    
+    return (found != nil);
+}
 
 @end

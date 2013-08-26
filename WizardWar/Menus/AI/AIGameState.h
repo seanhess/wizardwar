@@ -38,4 +38,6 @@
 
 -(NSArray*)sortSpellsByDistance:(NSArray*)spells;
 
+-(BOOL)spells:(NSArray*)spells containsType:(NSString*)type;
+
 @end

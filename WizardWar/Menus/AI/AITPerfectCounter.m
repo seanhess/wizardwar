@@ -51,7 +51,7 @@
     Spell * spell = closest[0];
     Spell * counter = [self counterspell:spell];
     if (counter) {
-        action = [AIAction spell:counter priority:2];
+        action = [AIAction spell:counter priority:4];
         self.alreadyCounteredSpells[spell.spellId] = @YES;
     }
     
