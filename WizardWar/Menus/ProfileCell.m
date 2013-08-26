@@ -33,7 +33,7 @@
 
 -(void)setUser:(User*)user {
     self.nameLabel.text = user.name;
-    self.levelLabel.text = [NSString stringWithFormat:@"%@\nLevel %i", user.name, user.wizardLevel];
+    self.levelLabel.text = [NSString stringWithFormat:@"Level %i", user.wizardLevel];
     
     CGSize size = self.avatarImageView.frame.size;
     NSURL * imageUrl = [UserFriendService.shared user:user facebookAvatarURLWithSize:size];

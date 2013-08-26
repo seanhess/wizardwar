@@ -202,6 +202,8 @@
             user.name = [self randomWizardName]; // [NSString stringWithFormat:@"Guest%@", [IdService randomId:4]];
             user.isGuestAccount = YES;
             user.wizardLevel = 1;
+            user.questLevel = 0;
+            user.questLevel = 8;
             user.color = [UIColor blackColor];
             NSLog(@"UserService.currentUser: GENERATED %@", user.userId);
         } else {

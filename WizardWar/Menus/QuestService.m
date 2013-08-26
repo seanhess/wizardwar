@@ -102,6 +102,21 @@
 }
 
 - (NSArray*)allQuestLevels {
+    
+    const NSTimeInterval EasyReactionTime = 0.8;
+    const NSTimeInterval MediumReactionTime = 0.5;
+    const NSTimeInterval HardReactionTime = 0.1;
+    
+    
+    const NSInteger EasyQuestLevel = 3;
+    const NSInteger MediumQuestLevel = 4;
+    const NSInteger HardQuestLevel = 5;
+    
+    const NSInteger EasyWizardLevel = 6;
+    const NSInteger MediumWizardLevel = 8;
+    const NSInteger HardWizardLevel = 10;
+    
+    
     QuestLevel * tutorial1 = [self levelWithName:@"Tutorial - Using Magic"];
     tutorial1.level = 0;
     tutorial1.wizardLevel = 2;
@@ -115,104 +130,123 @@
     QuestLevel * tutorial3 = [self levelWithName:@"Tutorial - Discovery"];
     tutorial3.level = 2;
     tutorial3.wizardLevel = 4;
-    tutorial3.ai = [AIOpponentFactory withType:[AITutorial3Discovery class]]; 
+    tutorial3.ai = [AIOpponentFactory withType:[AITutorial3Discovery class]];
     
-    QuestLevel * practice = [self levelWithName:@"Practice Dummy"];
-    practice.level = 0;
-    practice.wizardLevel = 0;
-    practice.ai = [AIOpponentFactory withType:[AIOpponentDummy class]];
+    QuestLevel * dummy = [self levelWithName:@"Practice Dummy"];
+    dummy.level = 0;
+    dummy.wizardLevel = 0;
+    dummy.ai = [AIOpponentFactory withType:[AIOpponentDummy class]];
+    
+    
+    
+    
+    QuestLevel * air = [self levelWithName:@"Aeres the Aeromancer"];
+    air.level = EasyQuestLevel;
+    air.wizardLevel = EasyWizardLevel;
+    air.ai = [AIOpponentFactory withColor:0x0 tactics:^{
+        return @[
+             [AITDelay random:@[Fist, Lightning, Windblast] reactionTime:MediumReactionTime],
+        ];
+    }];
+    
+        
     
     // I don't really want to name them in two places :(
     QuestLevel * jumper = [self levelWithName:@"Fionnghal the Flying"];
-    jumper.level = 0;
-    jumper.wizardLevel = 0;
+    jumper.level = EasyQuestLevel;
+    jumper.wizardLevel = EasyWizardLevel;
     jumper.ai = [AIOpponentFactory withColor:0x0 tactics:^{
         return @[
             [AITEffectRenew effect:[PELevitate new] spell:Levitate],
-            [AITDelay random:@[Monster, Vine, Monster, Lightning]],
+            [AITDelay random:@[Monster, Vine, Monster, Lightning] reactionTime:MediumReactionTime],
         ];
     }];
     
-    QuestLevel * jumper2 = [self levelWithName:@"Fionnghal Returns"];
-    jumper2.level = 0;
-    jumper2.wizardLevel = 0;
-    jumper2.ai = [AIOpponentFactory withColor:0x0 tactics:^{
-        return @[
-            [AITCastOnClose distance:20.0 highSpell:Helmet lowSpell:Levitate],
-            [AITDelay random:@[Monster, Chicken, Vine, Monster, Lightning]],
-        ];
-    }];
+    
 
-    
-    QuestLevel * earth = [self levelWithName:@"Talfan the Terramancer"];
-    earth.level = 0;
-    earth.wizardLevel = 0;
-    earth.ai = [AIOpponentFactory withColor:0x0 tactics:^{
-        return @[
-            [AITWallAlways walls:@[Earthwall]],
-            [AITDelay random:@[Monster, Helmet, Monster, Vine]],
-        ];
-    }];
     
     // this guy is an idiot. he's way too easy to kill :)
     QuestLevel * fire = [self levelWithName:@"Pennar the Pyromancer"];
-    fire.level = 0;
-    fire.wizardLevel = 0;
+    fire.level = MediumQuestLevel;
+    fire.wizardLevel = MediumWizardLevel;
     fire.ai = [AIOpponentFactory withColor:0xF23953 tactics:^{
         return @[
             [AITWallAlways walls:@[Firewall]],
-            [AITDelay random:@[Fireball, Fireball, Windblast]], // he's harder with windblast
+            [AITDelay random:@[Fireball, Fireball, Windblast] reactionTime:HardReactionTime], // he's harder with windblast
         ];
+        // MAYBE: add counter windblast instead?
     }];
-    
-    QuestLevel * air = [self levelWithName:@"Aeres the Aeromancer"];
-    air.level = 0;
-    air.wizardLevel = 0;
-    air.ai = [AIOpponentFactory withColor:0x0 tactics:^{
-        return @[
-            [AITDelay random:@[Fist, Lightning, Levitate, Windblast]],
-        ];
-    }];
-    
-    
-    // Geez, this guy is hard.  Slow him down?
-    QuestLevel * spam = [self levelWithName:@"Belgarath the Bold"];
-    spam.level = 0;
-    spam.wizardLevel = 0;
-    spam.ai = [AIOpponentFactory withColor:0x0 tactics:^{
-        return @[
-            [AITDelay random:@[Fireball, Lightning, Monster]],
-        ];
-    }];
-    
     
     // If they have an icewall, cast Fireball
     // otherwise, cast sleep
     // If they cast icewall, then bubble. what can he do?
     // If there is a bubble coming towards him
     QuestLevel * sleeper = [self levelWithName:@"Blodwen the Boring"];
-    sleeper.level = 0;
-    sleeper.wizardLevel = 0;
+    sleeper.level = MediumQuestLevel;
+    sleeper.wizardLevel = MediumWizardLevel;
     sleeper.ai = [AIOpponentFactory withColor:0x0 tactics:^{
         return @[
-            [AITDelay random:@[Sleep]],
-            [AITCounterExists counters:@{Icewall:Monster, Bubble:Windblast}],
-        ];
+         [AITDelay random:@[Sleep] reactionTime:MediumReactionTime],
+         [AITCounterExists counters:@{Icewall:Monster, Bubble:Windblast}],
+         ];
     }];
+    
+
+    QuestLevel * earth = [self levelWithName:@"Talfan the Terramancer"];
+    earth.level = MediumQuestLevel;
+    earth.wizardLevel = MediumWizardLevel;
+    earth.ai = [AIOpponentFactory withColor:0x0 tactics:^{
+        return @[
+                 [AITWallAlways walls:@[Earthwall]],
+                 [AITDelay random:@[Monster, Helmet, Monster, Vine] reactionTime:HardReactionTime],
+                 ];
+    }];
+    
+
+    
+    QuestLevel * jumper2 = [self levelWithName:@"Fionnghal Returns"];
+    jumper2.level = HardQuestLevel;
+    jumper2.wizardLevel = HardWizardLevel;
+    jumper2.ai = [AIOpponentFactory withColor:0x0 tactics:^{
+        return @[
+                 [AITCastOnClose distance:20.0 highSpell:Helmet lowSpell:Levitate],
+                 [AITDelay random:@[Monster, Chicken, Vine, Monster, Lightning] reactionTime:HardReactionTime],
+                 ];
+    }];
+    
+    
+    // Geez, this guy is hard.  Slow him down?
+    QuestLevel * spam = [self levelWithName:@"Belgarath the Bold"];
+    spam.level = HardQuestLevel;
+    spam.wizardLevel = HardWizardLevel;
+    spam.ai = [AIOpponentFactory withColor:0x0 tactics:^{
+        return @[
+                 [AITDelay random:@[Fireball, Lightning, Monster] reactionTime:HardReactionTime],
+                 ];
+    }];
+    
+    
     
     
     return @[
         tutorial1,
         tutorial2,
         tutorial3,
-        practice,
-        jumper,
-        jumper2,
-        earth,
-        fire,
-        spam,
-        sleeper,
+        dummy,
+        
+        // LIGHT MEDIUM
         air,
+        jumper,
+
+        // MEDIUM
+        fire,
+        earth,
+        sleeper,
+        
+        // HARD
+        jumper2,
+        spam,        
+        
     ];
     
 /*
