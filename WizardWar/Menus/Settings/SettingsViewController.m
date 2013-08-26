@@ -24,8 +24,12 @@
 #import "SpellbookService.h"
 
 #define SECTION_FEEDBACK 0
-#define SECTION_INFO 2
+#define SECTION_INFO 3
 #define SECTION_PROFILE 1
+#define SECTION_ABOUT 2
+
+#define ROW_OPEN_SOURCE 1
+#define ROW_CREDITS 0
 
 @interface SettingsViewController () <UITextFieldDelegate, MFMailComposeViewControllerDelegate, UIActionSheetDelegate>
 @end
@@ -68,7 +72,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 3;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -80,18 +84,19 @@
         return 3;
     else if (section == SECTION_PROFILE)
         return 1;
+    else if (section == SECTION_ABOUT)
+        return 2;
     else 
         return 0;
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (section == SECTION_FEEDBACK) {
+    if (section == SECTION_ABOUT)
+        return @"About Wizard War";
+    else if (section == SECTION_FEEDBACK)
         return @"";
-    } else {
+    else
         return @"";
-    }
-    
-    return @"";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -103,6 +108,9 @@
     if (section == SECTION_FEEDBACK) {
         return @"Please let us know if you have any problems or suggestions!";
     }
+    
+    else if (section == SECTION_ABOUT)
+        return @"Wizard War is open source. You can get a copy of the code and improve the game!";
     return nil;
 }
 
@@ -140,6 +148,15 @@
         cell.textLabel.text = @"My Wizard";
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", user.name];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;        
+    }
+    
+    else if (indexPath.section == SECTION_ABOUT) {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;        
+        if (indexPath.row == ROW_CREDITS)
+            cell.textLabel.text = @"Credits";
+        else
+            cell.textLabel.text = @"Open Source";
+        cell.detailTextLabel.text = @"";
     }
     
     return cell;    
@@ -205,6 +222,15 @@
     else if (indexPath.section == SECTION_PROFILE) {
         ProfileViewController * profile = [ProfileViewController new];
         [self.navigationController pushViewController:profile animated:YES];
+    }
+    
+    else if (indexPath.section == SECTION_ABOUT) {
+        NSString * url = nil;
+        
+        if (indexPath.row == ROW_CREDITS) url = [InfoService creditsUrl];
+        else if (indexPath.row == ROW_OPEN_SOURCE) url = [InfoService openSourceUrl];
+        
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
     }
     
     else if (indexPath.section == SECTION_FEEDBACK) {

@@ -56,7 +56,7 @@ Wizard War is a game by Orbital Labs. http://orbit.al.
 
 - [Orbital Labs](http://orbit.al)
 - [Sean Hess](http://seanhess.github.com)
-- Jesse Harding,
+- Jesse Harding
 
 ### Contributors
 

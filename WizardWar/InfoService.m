@@ -35,4 +35,13 @@
     return @"https://wizardwarapp.firebaseio.com";
 }
 
++(NSString*)openSourceUrl {
+    return @"https://github.com/seanhess/wizardwar";
+}
+
++(NSString*)creditsUrl {
+    return @"https://github.com/seanhess/wizardwar/blob/master/README.md#contributors";
+}
+
+
 @end
