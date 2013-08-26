@@ -14,6 +14,7 @@
 #import "AppStyle.h"
 #import <ReactiveCocoa.h>
 #import <QuartzCore/QuartzCore.h>
+#import "Combo.h"
 
 #define RECHARGE_INTERVAL 2.5
 
@@ -146,7 +147,12 @@
     _helpSelectElements = helpSelectElements;
     if (!helpSelectElements) return;
     
-    [helpSelectElements forEach:^(NSNumber * elementNum) {
+    // get these guys in order!
+    ComboSelectedElements * selected = [ComboSelectedElements elements:helpSelectElements];
+    ElementType startElement = [selected startElement];
+    NSArray * sorted = [ComboSelectedElements elements:helpSelectElements sortByClockwiseDistanceFrom:startElement];
+    
+    [sorted forEach:^(NSNumber * elementNum) {
         ElementType element = elementNum.intValue;
         PentEmblem * emblem = [self emblemForElement:element];
         emblem.status = EmblemStatusSelected;

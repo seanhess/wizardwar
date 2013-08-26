@@ -97,6 +97,41 @@
     return elements;
 }
 
+-(ElementType)startElement {
+    ElementType startElement = Air;
+    if (self.fire) {
+        startElement = Fire;
+        if (self.earth) {
+            startElement = Earth;
+            if (self.water) {
+                startElement = Water;
+                if (self.heart) {
+                    startElement = Heart;
+                }
+            }
+        }
+    }
+    return startElement;
+}
+
++(NSArray*)elements:(NSArray*)elements sortByClockwiseDistanceFrom:(ElementType)start {
+    NSArray * sorted = [elements sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        ElementType one = [obj1 intValue];
+        ElementType two = [obj2 intValue];
+        NSInteger distanceOne = [self clockwiseDistance:one fromStart:start];
+        NSInteger distanceTwo = [self clockwiseDistance:two fromStart:start];
+        if (distanceOne < distanceTwo) return NSOrderedAscending;
+        return NSOrderedDescending;
+    }];
+    return sorted;
+}
+
++(NSInteger)clockwiseDistance:(ElementType)element fromStart:(ElementType)start {
+    NSInteger distance = element - start;
+    if (distance < 0) distance = 5+distance;
+    return distance;
+}
+
 @end
 
 
