@@ -89,6 +89,11 @@
     return (2*self.gamesLosses+2);
 }
 
+- (NSInteger)foolWins {
+    // if they have won twice as many games as you?
+    return (self.gamesLosses/2.0);
+}
+
 - (BOOL)isMastered {
     // mastery = 2 * the number of losses + 2
     return self.gamesWins >= self.masteryWins;

@@ -142,6 +142,11 @@
         progress.alignCenter = NO;
     }
     
+    if (user.gamesWins < user.foolWins) {
+        progress.progressColor = [AppStyle redErrorColor];
+        progress.label.textColor = [AppStyle redErrorColor];
+    }
+    
 //    if (user.gamesTotal > 0) {
 //        self.statusLabel.text = [NSString stringWithFormat:@"%i/%i Wins", user.gamesWins, user.gamesTotal];
 //        if (user.gamesWins > user.gamesTotal/2) {
