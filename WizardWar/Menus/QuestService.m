@@ -197,8 +197,8 @@
              [AITMessage withHits:@[@"Ooh! Right in the knickers!", @"Are you alright?"] chance:0.25],
              [AITMessage withWounds:@[@"Crikey", @"That was below the belt!"] chance:0.25],
              [AITMessage withCast:@[@"Cheerio!", @"Look out sir!"] chance:0.25],
-             [AITMessage withWin:@[@"Good heavens, what a violent contest."]],
-             [AITMessage withLose:@[@"Good god man! Be civil!"]],
+             [AITMessage withWin:@[@"Good heavens, what a violent contest.", @"Right-o! Until next time!"]],
+             [AITMessage withLose:@[@"I say, well played!"]],
                  
              [AITDelay random:@[Fist, Lightning, Windblast] reactionTime:EasyReactionTime],
         ];
@@ -210,12 +210,16 @@
     QuestLevel * jumper = [self levelWithName:@"Fionnghal the Flying"];
     jumper.level = EasyQuestLevel;
     jumper.wizardLevel = EasyWizardLevel;
-    jumper.ai = [AIOpponentFactory withColor:0x0 environment:ENVIRONMENT_CASTLE tactics:^{
+    jumper.ai = [AIOpponentFactory withColor:0x7E0B80 environment:ENVIRONMENT_CASTLE tactics:^{
         return @[
-            [AITMessage withStart:@[@"Me burn you now!"]],
-            [AITMessage withCast:@[@"Fire!", @"Burn!", @"Oooh!", @"DIE DIE DIE!"] chance:0.5],
-            [AITMessage withWin:@[@"You dead! Ha ha ha ha ha ha!"]],
-            [AITMessage withLose:@[@"Ouch"]],
+            [AITMessage withStart:@[@"Don't attack! I'm unarmed!", @"Someday, someone will best me. But it won't be today, and it won't be you."]],
+            [AITMessage withHits:@[@""] chance:0.25],
+            [AITMessage withWounds:@[@"Aww.. Come on!", @"You gotta be kidding me!", @"Darn these reflexes!"] chance:0.25],
+            [AITMessage withCastOther:@[@""] chance:0.25],
+            [AITMessage withCast:@[@"I have a PhD in flyingness", @"...also, I can kill you with my brain."] chance:0.4],
+            [AITMessage withWin:@[@"Mastery is achieved when telling time becomes telling time what to do.", @"....I am your father.", @"I'm surrounded by idiots..."]],
+            [AITMessage withLose:@[@"I... will.... Return!"]],
+            
 
             [AITEffectRenew effect:[PELevitate new] spell:Levitate],
             [AITDelay random:@[Monster, Vine, Monster, Lightning] reactionTime:EasyReactionTime],
@@ -231,8 +235,8 @@
     fire.wizardLevel = MediumWizardLevel;
     fire.ai = [AIOpponentFactory withColor:0xF23953 environment:ENVIRONMENT_CAVE tactics:^{
         return @[
-            [AITMessage withStart:@[@"Me burn you now!"]],
-            [AITMessage withCast:@[@"Fire!", @"Burn!", @"Oooh!", @"DIE DIE DIE!"] chance:0.5],
+            [AITMessage withStart:@[@"Me burn you now!", @"I AM FIRE MAGE! I CAST THE SPELLS THAT MAKE THE PEOPLES FALL DOWN!"]],
+            [AITMessage withCast:@[@"Fire!", @"Buuuuuurrrrnnn!", @"Oooh!", @"DIE DIE DIE!"] chance:0.5],
             [AITMessage withWin:@[@"You dead! Ha ha ha ha ha ha!"]],
             [AITMessage withLose:@[@"Ouch"]],
 
@@ -251,8 +255,16 @@
     sleeper.wizardLevel = MediumWizardLevel;
     sleeper.ai = [AIOpponentFactory withColor:0x0  environment:ENVIRONMENT_ICE_CAVE tactics:^{
         return @[
-         [AITDelay random:@[Sleep] reactionTime:MediumReactionTime],
-         [AITCounterExists counters:@{Icewall:Monster, Bubble:Windblast}],
+             [AITMessage withStart:@[@"A fight? How droll.", @"You woke me up for this?"]],
+             [AITMessage withHits:@[@"Good night. Mwa haa ha ha"] chance:1.00],
+             [AITMessage withWounds:@[@"Where did I leave my shotgun again?"] chance:0.25],
+             [AITMessage withCast:@[@"Sleep Tight!"] chance:0.25],
+//             [AITMessage withCastOther:@[] chance:0.25],
+             [AITMessage withWin:@[@""]],
+             [AITMessage withLose:@[@""]],
+             
+             [AITDelay random:@[Sleep] reactionTime:MediumReactionTime],
+             [AITCounterExists counters:@{Icewall:Monster, Bubble:Windblast}],
          ];
     }];
     
@@ -280,11 +292,20 @@
     QuestLevel * jumper2 = [self levelWithName:@"Fionnghal Returns"];
     jumper2.level = HardQuestLevel;
     jumper2.wizardLevel = HardWizardLevel;
-    jumper2.ai = [AIOpponentFactory withColor:0x0 environment:ENVIRONMENT_CASTLE tactics:^{
+    jumper2.ai = [AIOpponentFactory withColor:0x7E0B80 environment:ENVIRONMENT_CASTLE tactics:^{
         return @[
-                 [AITCastOnClose distance:20.0 highSpell:Helmet lowSpell:Levitate],
-                 [AITDelay random:@[Monster, Chicken, Vine, Monster, Lightning] reactionTime:HardReactionTime],
-                 ];
+                 
+            [AITMessage withStart:@[@"Ok, this time I'm ready!", @"You'll never take me alive!"]],
+            [AITMessage withHits:@[@"I was looking for a battle of wits, but I'm afraid you are unarmed."] chance:0.25],
+            [AITMessage withWounds:@[@"How can this be?"] chance:0.25],
+            [AITMessage withCast:@[@"Can't touch this!", @"My finger... It's... It's Glowing."] chance:0.25],
+            [AITMessage withCastOther:@[@"How vulgar."] chance:0.25],
+            [AITMessage withWin:@[@"You have much to learn."]],
+            [AITMessage withLose:@[@"Haha, my technique is perfect. My form is perfect."]],
+
+            [AITCastOnClose distance:20.0 highSpell:Helmet lowSpell:Levitate],
+            [AITDelay random:@[Monster, Vine, Monster, Lightning] reactionTime:HardReactionTime],
+        ];
     }];
     
     
@@ -293,9 +314,17 @@
     spam.level = HardQuestLevel;
     spam.wizardLevel = HardWizardLevel;
     spam.ai = [AIOpponentFactory withColor:0x0 environment:ENVIRONMENT_EVIL_FOREST tactics:^{
-        return @[
-                 [AITDelay random:@[Fireball, Lightning, Monster] reactionTime:HardReactionTime],
-                 ];
+        return @[         
+            [AITMessage withStart:@[@"Child, I can so thoroughly destroy you, your own mother will forget the day of your birth.", @"Prepare to die... Obviously!"]],
+            [AITMessage withHits:@[@"Bwahahahahaha", @"That is the last mistake you shall ever make.", @"My will be done"] chance:0.25],
+            [AITMessage withWounds:@[@"Inconceivable!", @"I grow tired of your games...", @"You are more useful to me dead than you are alive. Don't push your luck."] chance:0.25],
+            [AITMessage withCast:@[@"Despair!", @"Take that!"] chance:0.25],
+            [AITMessage withCastOther:@[@"You think that will stop me?"] chance:0.25],
+            [AITMessage withWin:@[@"I. Win."]],
+            [AITMessage withLose:@[@"Nooooooooooooo!"]],
+
+            [AITDelay random:@[Fireball, Lightning, Monster] reactionTime:HardReactionTime],
+        ];
     }];
     
     
