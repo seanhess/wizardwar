@@ -35,7 +35,7 @@
 #import "ChallengeService.h"
 #import "SpellbookService.h"
 #import "ConnectionService.h"
-#import "RACHelpers.h"
+#import "RACSignal+Filters.h"
 #import "QuestLevel.h"
 #import "QuestService.h"
 
@@ -144,7 +144,7 @@
     
     RACSignal * hideControls = [matchLayer.showControlsSignal not];
     RAC(self.pentagram.hidden) = hideControls;
-    RAC(self.pentagram.disabled) = [RACAble(self.match.ai.disableControls) filter:RACFilterExists];
+    RAC(self.pentagram.disabled) = [RACAble(self.match.ai.disableControls) safe];
     RAC(self.message.hidden) = matchLayer.aiHideControlsSignal;
     RAC(self.subMessage.hidden) = matchLayer.aiHideControlsSignal;
     RAC(self.combos.allowedSpells) = RACAble(self.match.ai.allowedSpells);

@@ -14,6 +14,7 @@
 #import "SpellSprite.h"
 #import "NSArray+Functional.h"
 #import "Elements.h"
+#import "RACSignal+Filters.h"
 
 #import "SimpleAudioEngine.h"
 #import "SpellEffectService.h"
@@ -26,7 +27,6 @@
 #import "EnvironmentLayer.h"
 
 #import <ReactiveCocoa.h>
-#import "RACHelpers.h"
 
 #define INDICATOR_PADDING_Y 40
 
@@ -99,8 +99,8 @@
         
         [self scheduleUpdate];
         
-        self.matchStatusSignal = [[RACAbleWithStart(self.match.status) distinctUntilChanged] filter:RACFilterExists];
-        self.aiHideControlsSignal = [[RACAbleWithStart(self.match.ai.hideControls) distinctUntilChanged] filter:RACFilterExists];
+        self.matchStatusSignal = [[RACAbleWithStart(self.match.status) distinctUntilChanged] safe];
+        self.aiHideControlsSignal = [[RACAbleWithStart(self.match.ai.hideControls) distinctUntilChanged] safe];
         self.showControlsSignal = [RACSignal combineLatest:@[self.matchStatusSignal, self.aiHideControlsSignal]
             reduce:^(NSNumber* status, NSNumber* hideControls) {
                 return @((status.intValue == MatchStatusPlaying) && !hideControls.intValue);

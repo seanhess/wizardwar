@@ -211,7 +211,6 @@
 		7843E71B17C8DF51009EF3AB /* AITutorial2Counters.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E71A17C8DF51009EF3AB /* AITutorial2Counters.m */; };
 		7843E71E17C8DF5F009EF3AB /* AITutorial3Discovery.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E71D17C8DF5E009EF3AB /* AITutorial3Discovery.m */; };
 		7843E72117C8E586009EF3AB /* ChatBubbleSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E72017C8E586009EF3AB /* ChatBubbleSprite.m */; };
-		7843E72617C8F5D9009EF3AB /* RACHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E72517C8F5D9009EF3AB /* RACHelpers.m */; };
 		7843E72917C8FE22009EF3AB /* TutorialStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E72817C8FE22009EF3AB /* TutorialStep.m */; };
 		7843E72C17C918CB009EF3AB /* Tutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E72B17C918CB009EF3AB /* Tutorial.m */; };
 		7843E72F17C91E23009EF3AB /* EnvironmentLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E72E17C91E22009EF3AB /* EnvironmentLayer.m */; };
@@ -242,6 +241,7 @@
 		7853C8D617CAE61100406813 /* invisibility.png in Resources */ = {isa = PBXBuildFile; fileRef = 7853C8D317CAE61100406813 /* invisibility.png */; };
 		7853C8D717CAE61100406813 /* levitate.png in Resources */ = {isa = PBXBuildFile; fileRef = 7853C8D417CAE61100406813 /* levitate.png */; };
 		7853C8D917CAE6E500406813 /* cthulhu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7853C8D817CAE6E500406813 /* cthulhu.mp3 */; };
+		7853C8DC17CB99BA00406813 /* RACSignal+Filters.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853C8DB17CB99B900406813 /* RACSignal+Filters.m */; };
 		785B045C17C2B16700B064F6 /* SpellRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 785B045B17C2B16700B064F6 /* SpellRecord.m */; };
 		785B045F17C2B17F00B064F6 /* SpellbookService.m in Sources */ = {isa = PBXBuildFile; fileRef = 785B045E17C2B17F00B064F6 /* SpellbookService.m */; };
 		785B046317C2BA3100B064F6 /* SpellbookDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785B046117C2BA3100B064F6 /* SpellbookDetailsViewController.m */; };
@@ -786,8 +786,6 @@
 		7843E71D17C8DF5E009EF3AB /* AITutorial3Discovery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AITutorial3Discovery.m; sourceTree = "<group>"; };
 		7843E71F17C8E586009EF3AB /* ChatBubbleSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatBubbleSprite.h; sourceTree = "<group>"; };
 		7843E72017C8E586009EF3AB /* ChatBubbleSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatBubbleSprite.m; sourceTree = "<group>"; };
-		7843E72417C8F5D9009EF3AB /* RACHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RACHelpers.h; sourceTree = "<group>"; };
-		7843E72517C8F5D9009EF3AB /* RACHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RACHelpers.m; sourceTree = "<group>"; };
 		7843E72717C8FE22009EF3AB /* TutorialStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialStep.h; sourceTree = "<group>"; };
 		7843E72817C8FE22009EF3AB /* TutorialStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialStep.m; sourceTree = "<group>"; };
 		7843E72A17C918CB009EF3AB /* Tutorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tutorial.h; sourceTree = "<group>"; };
@@ -842,6 +840,8 @@
 		7853C8D317CAE61100406813 /* invisibility.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = invisibility.png; sourceTree = "<group>"; };
 		7853C8D417CAE61100406813 /* levitate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = levitate.png; sourceTree = "<group>"; };
 		7853C8D817CAE6E500406813 /* cthulhu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cthulhu.mp3; sourceTree = "<group>"; };
+		7853C8DA17CB99B900406813 /* RACSignal+Filters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RACSignal+Filters.h"; sourceTree = "<group>"; };
+		7853C8DB17CB99B900406813 /* RACSignal+Filters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RACSignal+Filters.m"; sourceTree = "<group>"; };
 		785B045A17C2B16700B064F6 /* SpellRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellRecord.h; sourceTree = "<group>"; };
 		785B045B17C2B16700B064F6 /* SpellRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellRecord.m; sourceTree = "<group>"; };
 		785B045D17C2B17F00B064F6 /* SpellbookService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellbookService.h; sourceTree = "<group>"; };
@@ -1507,8 +1507,8 @@
 			children = (
 				783DAECD17C8336600CDF109 /* ProgressAccessoryView.h */,
 				783DAECE17C8336600CDF109 /* ProgressAccessoryView.m */,
-				7843E72417C8F5D9009EF3AB /* RACHelpers.h */,
-				7843E72517C8F5D9009EF3AB /* RACHelpers.m */,
+				7853C8DA17CB99B900406813 /* RACSignal+Filters.h */,
+				7853C8DB17CB99B900406813 /* RACSignal+Filters.m */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -2741,7 +2741,6 @@
 				7843E71B17C8DF51009EF3AB /* AITutorial2Counters.m in Sources */,
 				7843E71E17C8DF5F009EF3AB /* AITutorial3Discovery.m in Sources */,
 				7843E72117C8E586009EF3AB /* ChatBubbleSprite.m in Sources */,
-				7843E72617C8F5D9009EF3AB /* RACHelpers.m in Sources */,
 				7843E72917C8FE22009EF3AB /* TutorialStep.m in Sources */,
 				7843E72C17C918CB009EF3AB /* Tutorial.m in Sources */,
 				7843E72F17C91E23009EF3AB /* EnvironmentLayer.m in Sources */,
@@ -2759,6 +2758,7 @@
 				7853C8C517CABCE800406813 /* AITEffectRenew.m in Sources */,
 				7853C8CB17CAC51B00406813 /* AITCastOnClose.m in Sources */,
 				7853C8D117CADD0600406813 /* AITCounterExists.m in Sources */,
+				7853C8DC17CB99BA00406813 /* RACSignal+Filters.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

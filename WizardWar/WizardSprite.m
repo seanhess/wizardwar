@@ -21,7 +21,6 @@
 #import "PECthulhu.h"
 #import "PELevitate.h"
 #import "ChatBubbleSprite.h"
-#import "RACHelpers.h"
 
 #define SLEEP_ANIMATION_START_DELAY 0.2
 #define WIZARD_PADDING 20
