@@ -30,6 +30,7 @@
 #import <ReactiveCocoa.h>
 #import "User.h"
 #import "QuestService.h"
+#import "ProfileViewController.h"
 
 #import <FacebookSDK/FacebookSDK.h>
 #import "NSArray+Functional.h"
@@ -162,11 +163,11 @@
     if ([UserService shared].isAuthenticated) {
         [self.navigationController pushViewController:matchmaking animated:YES];
     } else {
-        SettingsViewController * settings = [SettingsViewController new];
-        settings.onDone = ^{
+        ProfileViewController * profile = [ProfileViewController new];
+        profile.onDone = ^{
             [wself.navigationController pushViewController:matchmaking animated:YES];
         };
-        UINavigationController * navigation = [[UINavigationController alloc] initWithRootViewController:settings];
+        UINavigationController * navigation = [[UINavigationController alloc] initWithRootViewController:profile];
         [self.navigationController presentViewController:navigation animated:YES completion:nil];
     }
 }
@@ -179,8 +180,6 @@
 - (IBAction)didTapSettings:(id)sender {
     SettingsViewController * settings = [SettingsViewController new];
     UINavigationController * navigation = [[UINavigationController alloc] initWithRootViewController:settings];
-    settings.showBuildInfo = YES;
-    settings.showFeedback = YES;
     settings.onDone = ^{};
     [self.navigationController presentViewController:navigation animated:YES completion:nil];
 }

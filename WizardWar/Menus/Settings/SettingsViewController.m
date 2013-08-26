@@ -15,27 +15,19 @@
 #import <QuartzCore/QuartzCore.h>
 #import "SettingsProfileCell.h"
 #import "AccountColorViewController.h"
-#import <WEPopoverController.h>
 #import "UserFriendService.h"
 #import "SettingsFacebookButtonCell.h"
+#import "ProfileViewController.h"
 #import "AnalyticsService.h"
 #import <MessageUI/MessageUI.h>
 #import "QuestService.h"
 #import "SpellbookService.h"
 
-#define SECTION_FEEDBACK 2
-#define SECTION_FACEBOOK 1
-#define SECTION_PROFILE 0
-#define SECTION_INFO 3
+#define SECTION_FEEDBACK 0
+#define SECTION_INFO 2
+#define SECTION_PROFILE 1
 
-#define ROW_NAME 0
-#define ROW_LEVEL 1
-#define ROW_COLOR 2
-#define ROW_AVATAR 3
-
-@interface SettingsViewController () <AccountColorDelegate, UITextFieldDelegate, MFMailComposeViewControllerDelegate, UIActionSheetDelegate>
-@property (strong, nonatomic) WEPopoverController * popover;
-
+@interface SettingsViewController () <UITextFieldDelegate, MFMailComposeViewControllerDelegate, UIActionSheetDelegate>
 @end
 
 @implementation SettingsViewController
@@ -53,10 +45,8 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationItem.titleView = [ComicZineDoubleLabel titleView:self.title navigationBar:self.navigationController.navigationBar];
     
-    if (self.onDone) {
-        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(didTapDone:)];
-        self.navigationItem.rightBarButtonItem = doneButton;
-    }
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(didTapDone:)];
+    self.navigationItem.rightBarButtonItem = doneButton;
     
     [super viewDidLoad];
 
@@ -78,30 +68,24 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 4;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    if (section == SECTION_FACEBOOK)
+    if (section == SECTION_FEEDBACK)
         return 1;
-    else if (section == SECTION_PROFILE)
-        return 4;
-    else if (section == SECTION_FEEDBACK && self.showFeedback)
-        return 1;
-    else if (section == SECTION_INFO && self.showBuildInfo)
+    else if (section == SECTION_INFO)
         return 3;
+    else if (section == SECTION_PROFILE)
+        return 1;
     else 
         return 0;
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (section == SECTION_FACEBOOK) {
-        return @"Facebook";
-    } else if (section == SECTION_PROFILE) {
-        return @"Wizard Profile";
-    } else if (section == SECTION_FEEDBACK) {
+    if (section == SECTION_FEEDBACK) {
         return @"";
     } else {
         return @"";
@@ -112,38 +96,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == SECTION_FACEBOOK) {
-        return [self tableView:tableView facebookCellForIndexPath:indexPath];
-    } else if (indexPath.section == SECTION_PROFILE) {
-        return [self tableView:tableView profileCellForIndexPath:indexPath];
-    } else {
-        return [self tableView:tableView infoCellForIndexPath:indexPath];
-    }
+    return [self tableView:tableView infoCellForIndexPath:indexPath];
 }
 
-- (UITableViewCell *)tableView:(UITableView*)tableView facebookCellForIndexPath:(NSIndexPath*)indexPath
-{
-    static NSString *CellIdentifier = @"SettingsFacebookSettingsCell";
-    SettingsFacebookButtonCell *cell = (SettingsFacebookButtonCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[SettingsFacebookButtonCell alloc] initWithReuseIdentifier:CellIdentifier];
+-(NSString*)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    if (section == SECTION_FEEDBACK) {
+        return @"Please let us know if you have any problems or suggestions!";
     }
-    
-//    User * user = UserService.shared.currentUser;
-    BOOL waiting = (UserFriendService.shared.facebookStatus == FBStatusConnecting);
-    [cell setWaiting:waiting];
-    
-    if (waiting) {
-        [cell setTitle:@"Connecting..."];
-    } else if ([UserFriendService.shared isAuthenticatedFacebook]) {
-        [cell setTitle:@"Account Connected!"];
-    } else {
-        [cell setTitle:@"Connect Account"];
-    }
-    
-
-    
-    return cell;
+    return nil;
 }
 
 - (UITableViewCell *)tableView:(UITableView*)tableView infoCellForIndexPath:(NSIndexPath*)indexPath {
@@ -157,7 +117,7 @@
     cell.accessoryType = UITableViewCellAccessoryNone;
 
     if (indexPath.section == SECTION_FEEDBACK) {
-        cell.textLabel.text = @"Send Us Feedback";
+        cell.textLabel.text = @"Contact Us";
         cell.detailTextLabel.text = @"";
     }
 
@@ -175,53 +135,17 @@
         }
     }
     
+    else if (indexPath.section == SECTION_PROFILE) {
+        User * user = [UserService.shared currentUser];
+        cell.textLabel.text = @"My Wizard";
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", user.name];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;        
+    }
+    
     return cell;    
 }
 
-- (UITableViewCell *)tableView:(UITableView*)tableView profileCellForIndexPath:(NSIndexPath*)indexPath
-{
-    static NSString *CellIdentifier = @"SettingsProfileCell";
-    SettingsProfileCell *cell = (SettingsProfileCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[SettingsProfileCell alloc] initWithReuseIdentifier:CellIdentifier];
-    }
-    
-    User * user = [UserService.shared currentUser];
-    
-    if (indexPath.row == ROW_NAME) {
-        cell.textLabel.text = @"Name";
-        cell.inputField.delegate = self;
-        [cell setFieldText:user.name];
-    }
-    
-    else if (indexPath.row == ROW_LEVEL) {
-        cell.textLabel.text = @"Level";
-        cell.inputField.delegate = self;
-        [cell setLabelText:[NSString stringWithFormat:@"%i", user.wizardLevel]];
-    }
-    
-    else if (indexPath.row == ROW_COLOR) {
-        cell.textLabel.text = @"Color";
-        [cell setColor:user.color];
-    }
-    
-    else if (indexPath.row == ROW_AVATAR) {
-        cell.textLabel.text = @"Avatar";
-        [cell setAvatarURL:[UserFriendService.shared user:user facebookAvatarURLWithSize:cell.avatarSize]];
-    }
-    
-    return cell;
-}
-
--(NSString*)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-    if (section == SECTION_FACEBOOK && ![UserFriendService.shared isAuthenticatedFacebook]) {
-        return @"Connect to play with your friends and set your avatar. Will not post anything unless you explitly share something.";
-    }
-    return nil;
-}
-
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == SECTION_PROFILE && indexPath.row == ROW_AVATAR) return 108;
     return 44;
 }
 
@@ -269,12 +193,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    if (indexPath.section == SECTION_FACEBOOK) {
-        [self didTapFacebook];
-    }
-    
-    else if (indexPath.section == SECTION_INFO) {
+
+    if (indexPath.section == SECTION_INFO) {
         if (indexPath.row == 2) {
             UIActionSheet * sheet = [[UIActionSheet alloc] initWithTitle:@"Reset? This will reset all quest progress, user info, and the spellbook." delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Reset" otherButtonTitles:nil];
             [sheet showInView:self.view];
@@ -283,20 +203,8 @@
     }
     
     else if (indexPath.section == SECTION_PROFILE) {
-        SettingsProfileCell * cell = (SettingsProfileCell*)[tableView cellForRowAtIndexPath:indexPath];
-        
-        if (indexPath.row == ROW_NAME) {
-            [cell.inputField becomeFirstResponder];
-        } else if (indexPath.row == ROW_COLOR) {
-            AccountColorViewController * color = [AccountColorViewController new];
-            color.delegate = self;
-            WEPopoverController * popover = [[WEPopoverController alloc] initWithContentViewController:color];
-            [popover presentPopoverFromRect:cell.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-            self.popover = popover;
-        } else if (indexPath.row == ROW_AVATAR) {
-            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Facebook Avatar" message:@"Your avatar is set by your facebook account." delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
-            [alert show];
-        }
+        ProfileViewController * profile = [ProfileViewController new];
+        [self.navigationController pushViewController:profile animated:YES];
     }
     
     else if (indexPath.section == SECTION_FEEDBACK) {
@@ -349,76 +257,10 @@
     return;
 }
 
-
--(void)didTapFacebook {
-    if ([UserFriendService.shared isAuthenticatedFacebook]) {
-        User * user = [UserService.shared currentUser];
-        [AnalyticsService event:@"FacebookDisconnectTap"];            
-        [UserFriendService.shared user:user disconnectFacebook:^{
-            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
-        }];
-    }
-    else {
-        [self connectFacebook];
-    }
-}
-
--(void)connectFacebook {
-    [AnalyticsService event:@"FacebookConnectTap"];        
-    User * user = [UserService.shared currentUser];
-    [UserFriendService.shared user:user authenticateFacebook:^(BOOL success, User* updated) {
-        if (success) {
-            // load friends now in the background
-            [UserFriendService.shared user:user loadFacebookFriends:nil];
-        }
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:UITableViewRowAnimationAutomatic];
-    }];
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
-}
-
--(void)didSelectColor:(UIColor *)color {
-    [self.popover dismissPopoverAnimated:YES];
-    User * user = UserService.shared.currentUser;
-    user.color = color;
-    [self.tableView reloadData];
-}
-
-
-#pragma mark - textField Delegate
-
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    return YES;
-}
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    
-}
-
-// YO YO
-- (void)textFieldDidEndEditing:(UITextField *)textField {    
-    if (textField.text.length && ![textField.text isEqualToString:UserService.shared.currentUser.name]) {
-        User * user = UserService.shared.currentUser;
-        user.name = textField.text;
-    }
-}
-
--(BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
-    return YES;
-}
-
 #pragma mark - nextViewController
 -(void)didTapDone:(id)sender {
-    User * user = UserService.shared.currentUser;
-    user.isGuestAccount = NO;
-    SettingsProfileCell * cell = (SettingsProfileCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:SECTION_PROFILE]];
-    user.name = cell.inputField.text;
-    [UserService.shared saveCurrentUser];
-    
-    if (self.onDone) {
-        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-        self.onDone();
-    }
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    if (self.onDone) self.onDone();
 }
 
 

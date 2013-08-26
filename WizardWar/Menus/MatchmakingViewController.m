@@ -35,7 +35,7 @@
 #import "ChallengeCell.h"
 #import "FriendsViewController.h"
 #import <BButton.h>
-#import "SettingsViewController.h"
+#import "ProfileViewController.h"
 #import <NSString+FontAwesome.h>
 #import <FacebookSDK/FacebookSDK.h>
 #import "AnalyticsService.h"
@@ -857,14 +857,9 @@
 }
 
 - (IBAction)didTapAccount {
-    [AnalyticsService event:@"AccountTap"];    
-    SettingsViewController * settings = [SettingsViewController new];
-    settings.title = @"My Wizard";
-    settings.showFeedback = YES;
-    settings.showBuildInfo = YES;
-    UINavigationController * navigation = [[UINavigationController alloc] initWithRootViewController:settings];
-    settings.onDone = ^{
-    };
+    [AnalyticsService event:@"ProfileTap"];    
+    ProfileViewController * profile = [ProfileViewController new];
+    UINavigationController * navigation = [[UINavigationController alloc] initWithRootViewController:profile];
     [self.navigationController presentViewController:navigation animated:YES completion:nil];
 }
 

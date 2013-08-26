@@ -16,7 +16,7 @@
 #import "MatchViewController.h"
 #import "WarningCell.h"
 #import "AnalyticsService.h"
-#import "SettingsViewController.h"
+#import "ProfileViewController.h"
 #import "ProfileCell.h"
 
 #define SECTION_STATS 0
@@ -200,14 +200,9 @@
 
 
 - (IBAction)didTapAccount {
-    [AnalyticsService event:@"AccountTap"];
-    SettingsViewController * settings = [SettingsViewController new];
-    settings.title = @"My Wizard";
-    settings.showFeedback = YES;
-    settings.showBuildInfo = YES;
+    [AnalyticsService event:@"ProfileTap"];
+    ProfileViewController * settings = [ProfileViewController new];
     UINavigationController * navigation = [[UINavigationController alloc] initWithRootViewController:settings];
-    settings.onDone = ^{
-    };
     [self.navigationController presentViewController:navigation animated:YES completion:nil];
 }
 

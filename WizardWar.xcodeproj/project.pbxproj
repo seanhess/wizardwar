@@ -248,6 +248,8 @@
 		7853C8E717CBCE0C00406813 /* AITWaitForCast.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853C8E617CBCE0B00406813 /* AITWaitForCast.m */; };
 		7853C8EA17CBD10500406813 /* AITMaybe.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853C8E917CBD10200406813 /* AITMaybe.m */; };
 		7853C8ED17CBD67300406813 /* AITMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853C8EC17CBD66F00406813 /* AITMessage.m */; };
+		7853C8F317CC197F00406813 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853C8F117CC197E00406813 /* ProfileViewController.m */; };
+		7853C8F417CC197F00406813 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7853C8F217CC197E00406813 /* ProfileViewController.xib */; };
 		785B045C17C2B16700B064F6 /* SpellRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 785B045B17C2B16700B064F6 /* SpellRecord.m */; };
 		785B045F17C2B17F00B064F6 /* SpellbookService.m in Sources */ = {isa = PBXBuildFile; fileRef = 785B045E17C2B17F00B064F6 /* SpellbookService.m */; };
 		785B046317C2BA3100B064F6 /* SpellbookDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785B046117C2BA3100B064F6 /* SpellbookDetailsViewController.m */; };
@@ -860,6 +862,9 @@
 		7853C8EB17CBD66C00406813 /* AITMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AITMessage.h; sourceTree = "<group>"; };
 		7853C8EC17CBD66F00406813 /* AITMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AITMessage.m; sourceTree = "<group>"; };
 		7853C8EE17CC10BF00406813 /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.md; sourceTree = "<group>"; };
+		7853C8F017CC197E00406813 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		7853C8F117CC197E00406813 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		7853C8F217CC197E00406813 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		785B045A17C2B16700B064F6 /* SpellRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellRecord.h; sourceTree = "<group>"; };
 		785B045B17C2B16700B064F6 /* SpellRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellRecord.m; sourceTree = "<group>"; };
 		785B045D17C2B17F00B064F6 /* SpellbookService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellbookService.h; sourceTree = "<group>"; };
@@ -1911,6 +1916,9 @@
 				78DAB82C1799BCFF0093A701 /* SettingsProfileCell.m */,
 				78DAB837179A0C680093A701 /* SettingsFacebookButtonCell.h */,
 				78DAB838179A0C680093A701 /* SettingsFacebookButtonCell.m */,
+				7853C8F017CC197E00406813 /* ProfileViewController.h */,
+				7853C8F117CC197E00406813 /* ProfileViewController.m */,
+				7853C8F217CC197E00406813 /* ProfileViewController.xib */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -2508,6 +2516,7 @@
 				7853C8D717CAE61100406813 /* levitate.png in Resources */,
 				7853C8D917CAE6E500406813 /* cthulhu.mp3 in Resources */,
 				7853C8E117CB9BF300406813 /* ProfileCell.xib in Resources */,
+				7853C8F417CC197F00406813 /* ProfileViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2795,6 +2804,7 @@
 				7853C8E717CBCE0C00406813 /* AITWaitForCast.m in Sources */,
 				7853C8EA17CBD10500406813 /* AITMaybe.m in Sources */,
 				7853C8ED17CBD67300406813 /* AITMessage.m in Sources */,
+				7853C8F317CC197F00406813 /* ProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
