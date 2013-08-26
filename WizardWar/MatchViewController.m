@@ -273,10 +273,12 @@
             sae.backgroundMusicVolume = 0.2f;
         }
     }
- 
-//#ifndef DEBUG
     [sae playBackgroundMusic:@"theme.mp3"];
-//#endif
+ 
+#if TARGET_IPHONE_SIMULATOR
+    sae.backgroundMusicVolume = 0.0;
+#endif
+    
 }
 
 - (void)didFinishMatch:(BOOL)didFinish didWin:(BOOL)didWin {

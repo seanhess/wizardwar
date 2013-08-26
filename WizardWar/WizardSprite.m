@@ -101,6 +101,7 @@
         
         self.chatBubble = [ChatBubbleSprite new];
         [self addChild:self.chatBubble];
+        self.chatBubble.scale = 0;
         self.chatBubble.position = ccp(self.wizard.direction * 52, 120);        
         
         self.skin = [OLSprite node];
@@ -120,11 +121,10 @@
         self.label.anchorPoint = ccp(0.5, 0);
         [self addChild:self.label];
         
-#ifdef DEBUG
+#if TARGET_IPHONE_SIMULATOR
         self.headDebug = [DebugSprite new];
         [self addChild:self.headDebug];
 #endif
-        
         
         // BIND: state, position
         
