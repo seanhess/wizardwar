@@ -16,10 +16,11 @@
 #import "UserService.h"
 #import "Achievement.h"
 #import "NSArray+Functional.h"
-#import "AIOJumper.h"
-#import "AIOJumper2.h"
 #import "AITWallAlways.h"
 #import "AITDelay.h"
+#import "AITEffectRenew.h"
+#import "PELevitate.h"
+#import "AITCastOnClose.h"
 
 #define QUEST_LEVEL_ENTITY @"QuestLevel"
 
@@ -119,15 +120,25 @@
     practice.AIType = [AIOpponentDummy class];
     
     // I don't really want to name them in two places :(
-    QuestLevel * jumper = [self levelWithName:[AIOJumper name]];
+    QuestLevel * jumper = [self levelWithName:@"Fionnghal the Flying"];
     jumper.level = 0;
     jumper.wizardLevel = 0;
-    jumper.AIType = [AIOJumper class];
+    jumper.colorRGB = 0x0;
+    jumper.tactics = @[
+        [AITEffectRenew effect:[PELevitate new] spell:Levitate],
+        [AITDelay random:@[Monster, Vine, Monster, Lightning]],
+    ];
     
-    QuestLevel * jumper2 = [self levelWithName:[AIOJumper2 name]];
+    
+    QuestLevel * jumper2 = [self levelWithName:@"Fionnghal Returns"];
     jumper2.level = 0;
     jumper2.wizardLevel = 0;
-    jumper2.AIType = [AIOJumper2 class];
+    jumper2.colorRGB = 0x0;
+    jumper2.tactics = @[
+        [AITCastOnClose distance:20.0 highSpell:Helmet lowSpell:Levitate],
+        [AITDelay random:@[Monster, Chicken, Vine, Monster, Lightning]],
+    ];
+
     
     QuestLevel * earth = [self levelWithName:@"Talfan the Terramancer"];
     earth.level = 0;
