@@ -192,10 +192,10 @@
     sleeper.tactics = @[
         [AITDelay random:@[Sleep]],
         [AITCounterExists counters:@{Icewall:Monster, Bubble:Windblast}],
-        
     ];
     
     
+    // Reaction Time Delay. Put it in and see. 
         
     // ?? Someone who uses Grom to kill you. Must discover helmet!
     // Counterman: always tries to reflect things

@@ -145,13 +145,11 @@
     __weak MatchmakingViewController * wself = self;
     
     // LOBBY
-    [RACAble(LobbyService.shared, joined) subscribeNext:^(id x) {
+    [RACAbleWithStart(LobbyService.shared, joined) subscribeNext:^(id x) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [wself didUpdateJoinedLobby:LobbyService.shared.joined];
         });
-    }];
-    [wself didUpdateJoinedLobby:LobbyService.shared.joined];
-    
+    }];    
     
     [RACAble(LocationService.shared, accepted) subscribeNext:^(id x) {
         [wself setWarnings];

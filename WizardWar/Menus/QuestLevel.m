@@ -25,6 +25,7 @@
     return ((float)self.gamesWins / (float)self.masteryWins);
 }
 
+// problem is
 //-(NSInteger)masteryWins {
 //    return self.gamesLosses + 2; // you have to win 2 times + the number of times you've lost
 //}

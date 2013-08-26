@@ -142,7 +142,7 @@
     
     RAC(self.matchStatus) = matchLayer.matchStatusSignal;
     
-    RACSignal * hideControls = [matchLayer.showControlsSignal map:RACMapNot];
+    RACSignal * hideControls = [matchLayer.showControlsSignal not];
     RAC(self.pentagram.hidden) = hideControls;
     RAC(self.pentagram.disabled) = [RACAble(self.match.ai.disableControls) filter:RACFilterExists];
     RAC(self.message.hidden) = hideControls;
@@ -205,6 +205,11 @@
     NSLog(@"MatchVC.renderMatchStatus %i", self.match.status);
     self.subMessage.textColor = [UIColor colorFromRGB:0xCACACA];
     self.subMessage.alpha = 1.0;
+    
+    if (self.match.status != MatchStatusEnded)
+        [[SimpleAudioEngine sharedEngine] setEffectsVolume:1.0];
+    else
+        [[SimpleAudioEngine sharedEngine] setEffectsVolume:0.0];
     
     if (self.match.status == MatchStatusReady) {
         self.message.alpha = 1.0;
@@ -302,7 +307,9 @@
         // you leave early = you lose
         [self didFinishMatch:NO didWin:NO];
     }
-        
+    
+    [SimpleAudioEngine end];
+    
     [self.match disconnect];
     [WizardDirector unload];
     [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
