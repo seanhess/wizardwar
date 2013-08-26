@@ -189,9 +189,8 @@
 
 - (void)createMatchWithWizard:(Wizard *)wizard withLevel:(QuestLevel *)level {
     self.questLevel = level;
-    id<AIService>ai = [level.AIType new];
     
-    Match * match = [[Match alloc] initWithMatchId:@"Quest" hostName:wizard.name currentWizard:wizard withAI:ai multiplayer:nil sync:nil];
+    Match * match = [[Match alloc] initWithMatchId:@"Quest" hostName:wizard.name currentWizard:wizard withAI:level.ai multiplayer:nil sync:nil];
     self.match = match;
 }
 

@@ -18,7 +18,8 @@
 #import "NSArray+Functional.h"
 #import "AIOJumper.h"
 #import "AIOJumper2.h"
-#import "AIOEarth.h"
+#import "AITWallAlways.h"
+#import "AITDelay.h"
 
 #define QUEST_LEVEL_ENTITY @"QuestLevel"
 
@@ -128,12 +129,19 @@
     jumper2.wizardLevel = 0;
     jumper2.AIType = [AIOJumper2 class];
     
-    QuestLevel * earth = [self levelWithName:[AIOEarth name]];
+    QuestLevel * earth = [self levelWithName:@"Talfan the Terramancer"];
     earth.level = 0;
     earth.wizardLevel = 0;
-    earth.AIType = [AIOEarth class];
+    earth.colorRGB = 0x0;
+    earth.tactics = @[
+        [AITWallAlways walls:@[Earthwall]],
+        [AITDelay random:@[Monster, Helmet, Monster, Vine]],
+    ];
     
-    
+    // WHAT WE REEALLY NEED:
+    // Each QuestLevel... Hmm...
+    // QuestLevel: makes an AIOpponent, sets the wizard stuff, sets the tactics.
+    // color, name, tactics
 
     return @[
              tutorial1,

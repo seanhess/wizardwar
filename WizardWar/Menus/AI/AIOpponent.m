@@ -28,6 +28,20 @@
     return self;
 }
 
+-(id)initWithName:(NSString*)name color:(NSUInteger)color tactics:(NSArray*)tactics {
+    if ((self = [self init])) {
+        self.tactics = tactics;
+        
+        Wizard * wizard = [Wizard new];
+        wizard.name = name;
+        wizard.colorRGB = color;
+        wizard.wizardType = WIZARD_TYPE_ONE;
+        self.wizard = wizard;
+
+    }
+    return self;
+}
+
 -(void)setWizard:(Wizard *)wizard {
     _wizard = wizard;
     self.game.wizard = wizard;

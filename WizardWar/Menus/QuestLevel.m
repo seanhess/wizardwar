@@ -7,9 +7,12 @@
 //
 
 #import "QuestLevel.h"
+#import "AIOpponent.h"
 
 @implementation QuestLevel
 @synthesize AIType = _AIType;
+@synthesize colorRGB = _colorRGB;
+@synthesize tactics = _tactics;
 
 @dynamic name;
 @dynamic gamesTotal;
@@ -40,6 +43,15 @@
 
 - (BOOL)hasAttempted {
     return self.gamesTotal > 0;
+}
+
+- (id<AIService>)ai {
+    if (self.AIType)
+        return [self.AIType new];
+    
+    else {
+        return [[AIOpponent alloc] initWithName:self.name color:self.colorRGB tactics:self.tactics];
+    }
 }
 
 @end

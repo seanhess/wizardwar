@@ -13,4 +13,5 @@
 @interface AIOpponent : NSObject <AIService>
 @property (nonatomic) AIGameState * game;
 @property (nonatomic) NSArray * tactics;
+-(id)initWithName:(NSString*)name color:(NSUInteger)color tactics:(NSArray*)tactics;
 @end

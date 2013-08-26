@@ -183,7 +183,6 @@
         return;
     }
     
-    
     MatchViewController * match = [[MatchViewController alloc] init];
     [match createMatchWithWizard:UserService.shared.currentWizard withLevel:questLevel];
     [self.navigationController presentViewController:match animated:YES completion:nil];
