@@ -99,6 +99,10 @@
         
         __weak WizardSprite * wself = self;
         
+        self.chatBubble = [ChatBubbleSprite new];
+        [self addChild:self.chatBubble];
+        self.chatBubble.position = ccp(self.wizard.direction * 52, 120);        
+        
         self.skin = [OLSprite node];
         self.skin.delegate = self;
         self.clothes = [CCSprite node];
@@ -117,9 +121,6 @@
         [self addChild:self.headDebug];
 #endif
         
-        self.chatBubble = [ChatBubbleSprite new];
-        [self addChild:self.chatBubble];
-        self.chatBubble.position = ccp(self.wizard.direction * 35, 130);
         
         // BIND: state, position
         

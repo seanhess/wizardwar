@@ -161,6 +161,16 @@
         [AITDelay random:@[Fireball, Fireball, Windblast]], // he's harder with windblast
     ];
     
+    QuestLevel * air = [self levelWithName:@"Aeres the Aeromancer"];
+    air.level = 0;
+    air.wizardLevel = 0;
+    air.colorRGB = 0x0;
+    air.tactics = @[
+        [AITDelay random:@[Fist, Lightning, Levitate, Windblast]],
+    ];
+    
+    
+    
     // Geez, this guy is hard.  Slow him down?
     QuestLevel * spam = [self levelWithName:@"Belgarath the Bold"];
     spam.level = 0;
@@ -185,14 +195,6 @@
         
     ];
     
-    
-    QuestLevel * air = [self levelWithName:@"Aeres the Aeromancer"];
-    air.level = 0;
-    air.wizardLevel = 0;
-    air.colorRGB = 0x0;
-    air.tactics = @[
-        [AITDelay random:@[Fist, Lightning, Levitate, Windblast]],
-    ];
     
         
     // ?? Someone who uses Grom to kill you. Must discover helmet!
