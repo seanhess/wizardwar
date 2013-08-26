@@ -57,24 +57,27 @@
     BOOL wasMastered = questLevel.isMastered;
     
     questLevel.gamesTotal += 1;
-    if (didWin) questLevel.gamesWins += 1;
-    
-    // Increase levels and stuff!
-    User * currentUser = [UserService.shared currentUser];
-    
-    if (questLevel.level >= currentUser.questLevel) {
-        currentUser.questLevel = questLevel.level+1;
-    }
-    
-    if (questLevel.wizardLevel > currentUser.wizardLevel) {
-        currentUser.wizardLevel += 1;
-        [achievements addObject:[Achievement wizardLevel:currentUser]];
-    }
-    
-    if (questLevel.isMastered > wasMastered) {
-        [achievements addObject:[Achievement questMastered:questLevel]];
-    }
+    if (didWin) {
+        questLevel.gamesWins += 1;
+
+        // Increase levels and stuff!
+        User * currentUser = [UserService.shared currentUser];
         
+        if (questLevel.level >= currentUser.questLevel) {
+            currentUser.questLevel = questLevel.level+1;
+        }
+        
+        if (questLevel.wizardLevel > currentUser.wizardLevel) {
+            currentUser.wizardLevel += 1;
+            [achievements addObject:[Achievement wizardLevel:currentUser]];
+        }
+        
+        if (questLevel.isMastered > wasMastered) {
+            [achievements addObject:[Achievement questMastered:questLevel]];
+        }
+    }
+    
+    
     // TODO return achievements!
     return achievements;
 }
@@ -261,7 +264,7 @@
              [AITMessage withCast:@[@"Sleep Tight!"] chance:0.25],
 //             [AITMessage withCastOther:@[] chance:0.25],
              [AITMessage withWin:@[@""]],
-             [AITMessage withLose:@[@""]],
+             [AITMessage withLose:@[@"Death. What is it really, but an eternal nap?"]],
              
              [AITDelay random:@[Sleep] reactionTime:MediumReactionTime],
              [AITCounterExists counters:@{Icewall:Monster, Bubble:Windblast}],
@@ -344,8 +347,8 @@
 
         // MEDIUM
         fire,
+        sleeper,        
         earth,
-        sleeper,
         
         // HARD
         jumper2,
