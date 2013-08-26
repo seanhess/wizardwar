@@ -12,12 +12,14 @@
 @implementation AITCastOnClose
 
 -(AIAction *)suggestedAction:(AIGameState *)game {
+    
+    // He needs to be able to say to wait.
+    // If something is too close. 
     if (game.isCooldown) return nil;
     
     AIAction * action;
     
-    
-    
+    // Whichever spell is closest, adjust to match that
     NSArray * incoming = [game.incomingSpells filter:^BOOL(Spell* spell) {
         return ([spell hitsAltitude:game.wizard.altitude] || spell.position == game.wizard.position);
     }];
@@ -30,9 +32,9 @@
     
     if ([closest distance:game.wizard] <= self.distance) {
         if (closest.altitude >= 1.0)
-            action = [AIAction spell:[Spell fromType:self.highSpell]];
+            action = [AIAction spell:[Spell fromType:self.highSpell] priority:15];
         else
-            action = [AIAction spell:[Spell fromType:self.lowSpell]];
+            action = [AIAction spell:[Spell fromType:self.lowSpell] priority:15];
     }
     
     return action;

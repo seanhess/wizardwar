@@ -303,7 +303,7 @@
             [AITMessage withWin:@[@"You have much to learn."]],
             [AITMessage withLose:@[@"Haha, my technique is perfect. My form is perfect."]],
 
-            [AITCastOnClose distance:20.0 highSpell:Helmet lowSpell:Levitate],
+            [AITCastOnClose distance:40.0 highSpell:Helmet lowSpell:Levitate],
             [AITDelay random:@[Monster, Vine, Monster, Lightning] reactionTime:HardReactionTime],
         ];
     }];
