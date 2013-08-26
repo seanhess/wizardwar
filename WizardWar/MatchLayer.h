@@ -17,6 +17,7 @@
 
 @interface MatchLayer : CCLayer
 @property (nonatomic, strong) DrawingLayer * drawingLayer;
+@property (nonatomic, strong) RACSignal * aiHideControlsSignal;
 @property (nonatomic, strong) RACSignal * showControlsSignal;
 @property (nonatomic, strong) RACSignal * matchStatusSignal;
 

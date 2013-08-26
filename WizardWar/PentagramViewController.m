@@ -118,9 +118,10 @@
         for(PentEmblem *emblem in self.emblems)
         {
             emblem.status = EmblemStatusNormal;
-        }        
-        
+        }
     }
+    
+    self.feedbackLabel.alpha = (disabled) ? 0.0 : 1.0;
 //    CGFloat progress = (disabled) ? 0.0 : 1.0;
 //    
 //    self.fireEmblem.enabledProgress = progress;

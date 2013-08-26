@@ -145,8 +145,8 @@
     RACSignal * hideControls = [matchLayer.showControlsSignal not];
     RAC(self.pentagram.hidden) = hideControls;
     RAC(self.pentagram.disabled) = [RACAble(self.match.ai.disableControls) filter:RACFilterExists];
-    RAC(self.message.hidden) = hideControls;
-    RAC(self.subMessage.hidden) = hideControls;
+    RAC(self.message.hidden) = matchLayer.aiHideControlsSignal;
+    RAC(self.subMessage.hidden) = matchLayer.aiHideControlsSignal;
     RAC(self.combos.allowedSpells) = RACAble(self.match.ai.allowedSpells);
     RAC(self.pentagram.helpSelectElements) = RACAble(self.match.ai.helpSelectedElements);
 }

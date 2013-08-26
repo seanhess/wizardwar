@@ -46,7 +46,7 @@
 @property (nonatomic, strong) EnvironmentLayer * environment;
 
 @property (nonatomic) MatchStatus matchStatus;
-@property (nonatomic, strong) RACSignal * aiHideControlsSignal;
+
 
 @end
 
