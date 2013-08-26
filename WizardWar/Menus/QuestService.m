@@ -111,9 +111,9 @@
     const NSTimeInterval MediumReactionTime = 0.5;
     const NSTimeInterval HardReactionTime = 0.1;
     
-    const NSInteger EasyQuestLevel = 3;
-    const NSInteger MediumQuestLevel = 4;
-    const NSInteger HardQuestLevel = 5;
+//    const NSInteger EasyQuestLevel = 3;
+//    const NSInteger MediumQuestLevel = 4;
+//    const NSInteger HardQuestLevel = 5;
     
     const NSInteger EasyWizardLevel = 6;
     const NSInteger MediumWizardLevel = 8;
@@ -136,7 +136,7 @@
     tutorial3.ai = [AIOpponentFactory withType:[AITutorial3Discovery class]];
     
     QuestLevel * dummy = [self levelWithName:@"Practice Dummy"];
-    dummy.level = 0;
+    dummy.level = 1;
     dummy.wizardLevel = 0;
     dummy.ai = [AIOpponentFactory withType:[AIOpponentDummy class]];
     
@@ -145,7 +145,7 @@
     // he's really slow
     // he starts out too fast!
     QuestLevel * old = [self levelWithName:@"Alatar the Anchient"];
-    old.level = EasyQuestLevel;
+    old.level = 3;
     old.wizardLevel = EasyWizardLevel;
     old.ai = [AIOpponentFactory withColor:0xFFFFFF environment:ENVIRONMENT_EVIL_FOREST tactics:^{
         return @[
@@ -168,7 +168,7 @@
     // imagine a level for a first time player.
     // has pretty much all the spells
     QuestLevel * random = [self levelWithName:@"Ian the Inspecific"];
-    random.level = EasyQuestLevel;
+    random.level = 4;
     random.wizardLevel = EasyWizardLevel;
     random.ai = [AIOpponentFactory new];
     random.ai.colorRGB = 0x888888;
@@ -189,7 +189,7 @@
     
     
     QuestLevel * air = [self levelWithName:@"Aeres the Aeromancer"];
-    air.level = EasyQuestLevel;
+    air.level = 5;
     air.wizardLevel = EasyWizardLevel;
     air.ai = [AIOpponentFactory withColor:0x99C2E7 environment:ENVIRONMENT_CASTLE tactics:^{
         return @[
@@ -208,7 +208,7 @@
     
     // I don't really want to name them in two places :(
     QuestLevel * jumper = [self levelWithName:@"Fionnghal the Flying"];
-    jumper.level = EasyQuestLevel;
+    jumper.level = 6;
     jumper.wizardLevel = EasyWizardLevel;
     jumper.ai = [AIOpponentFactory withColor:0x7E0B80 environment:ENVIRONMENT_CASTLE tactics:^{
         return @[
@@ -231,7 +231,7 @@
     
     // this guy is an idiot. he's way too easy to kill :)
     QuestLevel * fire = [self levelWithName:@"Pennar the Pyromancer"];
-    fire.level = MediumQuestLevel;
+    fire.level = 7;
     fire.wizardLevel = MediumWizardLevel;
     fire.ai = [AIOpponentFactory withColor:0xF23953 environment:ENVIRONMENT_CAVE tactics:^{
         return @[
@@ -251,7 +251,7 @@
     // If they cast icewall, then bubble. what can he do?
     // If there is a bubble coming towards him
     QuestLevel * sleeper = [self levelWithName:@"Seren the Somnomancer"];
-    sleeper.level = MediumQuestLevel;
+    sleeper.level = 8;
     sleeper.wizardLevel = MediumWizardLevel;
     sleeper.ai = [AIOpponentFactory withColor:0x0  environment:ENVIRONMENT_ICE_CAVE tactics:^{
         return @[
@@ -270,7 +270,7 @@
     
 
     QuestLevel * earth = [self levelWithName:@"Talfan the Terramancer"];
-    earth.level = MediumQuestLevel;
+    earth.level = 9;
     earth.wizardLevel = MediumWizardLevel;
     earth.ai = [AIOpponentFactory withColor:0x0 environment:ENVIRONMENT_CAVE tactics:^{
         return @[
@@ -290,7 +290,7 @@
 
     
     QuestLevel * jumper2 = [self levelWithName:@"Fionnghal Returns"];
-    jumper2.level = HardQuestLevel;
+    jumper2.level = 10;
     jumper2.wizardLevel = HardWizardLevel;
     jumper2.ai = [AIOpponentFactory withColor:0x7E0B80 environment:ENVIRONMENT_CASTLE tactics:^{
         return @[
@@ -311,7 +311,7 @@
     
     // Geez, this guy is hard.  Slow him down?
     QuestLevel * spam = [self levelWithName:@"Belgarath the Bold"];
-    spam.level = HardQuestLevel;
+    spam.level = 11;
     spam.wizardLevel = HardWizardLevel;
     spam.ai = [AIOpponentFactory withColor:0x0 environment:ENVIRONMENT_EVIL_FOREST tactics:^{
         return @[         
