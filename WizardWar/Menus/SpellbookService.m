@@ -136,12 +136,7 @@
         record = [ObjectStore.shared insertNewObjectForEntityForName:@"SpellRecord"];
         record.type = type;
         record.name = info.name;
-        
-        // unlock all spells taught in the first tutorials
-        if ([Spell type:type isAnyType:@[Fireball, Lightning, Monster, Earthwall, Firewall, Icewall]]) {
-            record.unlock = YES;
-        }
-        
+                
         // DEBUG STUFF
         //        record.castTotal = 0;
         //        record.castUniqueMatches = 0;
@@ -151,6 +146,12 @@
         
         NSLog(@"SpellRecord (+) %@", record.name);
     }
+    
+    // unlock all spells taught in the first tutorials
+    if ([Spell type:type isAnyType:@[Fireball, Lightning, Monster, Earthwall, Firewall, Icewall]]) {
+        record.unlock = YES;
+    }
+    
 //    record.unlock = YES;
 //    record.castMatchesTotal = 4;
     
