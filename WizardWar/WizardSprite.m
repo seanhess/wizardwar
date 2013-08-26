@@ -113,7 +113,11 @@
         
         // I need to only show this if the game hasn't started!
         self.label = [CCLabelTTF labelWithString:self.wizardName fontName:FONT_COMIC_ZINE fontSize:36];
-        self.label.position = ccp(0, 130);
+        self.label.position = ccp(self.wizard.direction*10, 100);
+        self.label.horizontalAlignment = NSTextAlignmentCenter;
+        self.label.verticalAlignment = kCCVerticalTextAlignmentBottom;
+        self.label.dimensions = CGSizeMake(200, 400);
+        self.label.anchorPoint = ccp(0.5, 0);
         [self addChild:self.label];
         
 #ifdef DEBUG
@@ -310,10 +314,15 @@
 }
 
 - (void)setMatchStatus:(MatchStatus)status {
-    if ((status == MatchStatusReady || status == MatchStatusSyncing) && self.isCurrentWizard)
-        self.skin.color = ccc3(0, 255, 0);
-    else
+    if ((status == MatchStatusReady || status == MatchStatusSyncing) && self.isCurrentWizard) {
+        CCTintTo * glow = [CCTintTo actionWithDuration:0.2 red:0 green:255 blue:0];
+        CCTintTo * normal = [CCTintTo actionWithDuration:0.2 red:255 green:255 blue:255];
+        CCSequence * sequence = [CCSequence actions:glow, normal, glow, normal, glow, normal, nil];
+        [self.skin runAction:sequence];
+    }
+    else {
         self.skin.color = ccWHITE;
+    }
 }
 
 - (NSString*)wizardName {

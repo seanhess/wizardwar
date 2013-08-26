@@ -28,7 +28,7 @@
         self.label = [CCLabelTTF labelWithString:@"hello" fontName:FONT_LOVEYA fontSize:12.0];
         self.label.dimensions = CGSizeMake(190, 100);
         self.label.horizontalAlignment = NSTextAlignmentCenter;
-        self.label.verticalAlignment = NSTextAlignmentCenter;
+        self.label.verticalAlignment = kCCVerticalTextAlignmentCenter;
         self.label.color = ccc3(0, 0, 0);
         self.label.position = ccp(2, 10);
         
