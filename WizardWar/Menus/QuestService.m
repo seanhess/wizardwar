@@ -185,6 +185,15 @@
         
     ];
     
+    
+    QuestLevel * air = [self levelWithName:@"Aeres the Aeromancer"];
+    air.level = 0;
+    air.wizardLevel = 0;
+    air.colorRGB = 0x0;
+    air.tactics = @[
+        [AITDelay random:@[Fist, Lightning, Levitate, Windblast]],
+    ];
+    
         
     // ?? Someone who uses Grom to kill you. Must discover helmet!
     // Counterman: always tries to reflect things
@@ -200,6 +209,7 @@
         fire,
         spam,
         sleeper,
+        air,
     ];
     
 /*
