@@ -23,7 +23,7 @@
     AIOpponent * opponent = [self.AIType new];
     
     if (self.tactics) {
-        opponent.tactics = self.tactics;
+        opponent.tactics = self.tactics();
     }
     
     if (!opponent.wizard) {
@@ -31,6 +31,7 @@
         wizard.name = self.name;
         wizard.colorRGB = self.colorRGB;
         wizard.wizardType = WIZARD_TYPE_ONE;
+        
         opponent.wizard = wizard;
     }
     
@@ -43,7 +44,7 @@
     return factory;
 }
 
-+(id)withColor:(NSUInteger)color tactics:(NSArray*)tactics {
++(id)withColor:(NSUInteger)color tactics:(NSArray*(^)(void))tactics {
     AIOpponentFactory * factory = [AIOpponentFactory new];
     factory.colorRGB = color;
     factory.tactics = tactics;

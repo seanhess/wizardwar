@@ -11,11 +11,11 @@
 
 @interface AIOpponentFactory : NSObject
 @property (nonatomic, strong) Class AIType;
-@property (nonatomic, strong) NSArray * tactics;
-@property (nonatomic) NSUInteger colorRGB;
 @property (nonatomic, strong) NSString * name;
+@property (nonatomic) NSUInteger colorRGB;
+@property (nonatomic, strong) NSArray*(^tactics)(void);
 
 -(id<AIService>)create;
 +(id)withType:(Class)AIType;
-+(id)withColor:(NSUInteger)color tactics:(NSArray*)tactics;
++(id)withColor:(NSUInteger)color tactics:(NSArray*(^)(void))tactics;
 @end

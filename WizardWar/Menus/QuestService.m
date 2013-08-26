@@ -126,52 +126,64 @@
     QuestLevel * jumper = [self levelWithName:@"Fionnghal the Flying"];
     jumper.level = 0;
     jumper.wizardLevel = 0;
-    jumper.ai = [AIOpponentFactory withColor:0x0 tactics:@[
-        [AITEffectRenew effect:[PELevitate new] spell:Levitate],
-        [AITDelay random:@[Monster, Vine, Monster, Lightning]],
-    ]];
+    jumper.ai = [AIOpponentFactory withColor:0x0 tactics:^{
+        return @[
+            [AITEffectRenew effect:[PELevitate new] spell:Levitate],
+            [AITDelay random:@[Monster, Vine, Monster, Lightning]],
+        ];
+    }];
     
     QuestLevel * jumper2 = [self levelWithName:@"Fionnghal Returns"];
     jumper2.level = 0;
     jumper2.wizardLevel = 0;
-    jumper2.ai = [AIOpponentFactory withColor:0x0 tactics:@[
-        [AITCastOnClose distance:20.0 highSpell:Helmet lowSpell:Levitate],
-        [AITDelay random:@[Monster, Chicken, Vine, Monster, Lightning]],
-    ]];
+    jumper2.ai = [AIOpponentFactory withColor:0x0 tactics:^{
+        return @[
+            [AITCastOnClose distance:20.0 highSpell:Helmet lowSpell:Levitate],
+            [AITDelay random:@[Monster, Chicken, Vine, Monster, Lightning]],
+        ];
+    }];
 
     
     QuestLevel * earth = [self levelWithName:@"Talfan the Terramancer"];
     earth.level = 0;
     earth.wizardLevel = 0;
-    earth.ai = [AIOpponentFactory withColor:0x0 tactics:@[
-        [AITWallAlways walls:@[Earthwall]],
-        [AITDelay random:@[Monster, Helmet, Monster, Vine]],
-    ]];
+    earth.ai = [AIOpponentFactory withColor:0x0 tactics:^{
+        return @[
+            [AITWallAlways walls:@[Earthwall]],
+            [AITDelay random:@[Monster, Helmet, Monster, Vine]],
+        ];
+    }];
     
     // this guy is an idiot. he's way too easy to kill :)
     QuestLevel * fire = [self levelWithName:@"Pennar the Pyromancer"];
     fire.level = 0;
     fire.wizardLevel = 0;
-    fire.ai = [AIOpponentFactory withColor:0xF23953 tactics:@[
-        [AITWallAlways walls:@[Firewall]],
-        [AITDelay random:@[Fireball, Fireball, Windblast]], // he's harder with windblast
-    ]];
+    fire.ai = [AIOpponentFactory withColor:0xF23953 tactics:^{
+        return @[
+            [AITWallAlways walls:@[Firewall]],
+            [AITDelay random:@[Fireball, Fireball, Windblast]], // he's harder with windblast
+        ];
+    }];
     
     QuestLevel * air = [self levelWithName:@"Aeres the Aeromancer"];
     air.level = 0;
     air.wizardLevel = 0;
-    air.ai = [AIOpponentFactory withColor:0x0 tactics:@[
-        [AITDelay random:@[Fist, Lightning, Levitate, Windblast]],
-    ]];
+    air.ai = [AIOpponentFactory withColor:0x0 tactics:^{
+        return @[
+            [AITDelay random:@[Fist, Lightning, Levitate, Windblast]],
+        ];
+    }];
     
     
     // Geez, this guy is hard.  Slow him down?
     QuestLevel * spam = [self levelWithName:@"Belgarath the Bold"];
     spam.level = 0;
     spam.wizardLevel = 0;
-    spam.ai = [AIOpponentFactory withColor:0x0 tactics:@[
-        [AITDelay random:@[Fireball, Lightning, Monster]],
-    ]];
+    spam.ai = [AIOpponentFactory withColor:0x0 tactics:^{
+        return @[
+            [AITDelay random:@[Fireball, Lightning, Monster]],
+        ];
+    }];
     
     
     // If they have an icewall, cast Fireball
@@ -181,10 +193,12 @@
     QuestLevel * sleeper = [self levelWithName:@"Blodwen the Boring"];
     sleeper.level = 0;
     sleeper.wizardLevel = 0;
-    sleeper.ai = [AIOpponentFactory withColor:0x0 tactics:@[
-        [AITDelay random:@[Sleep]],
-        [AITCounterExists counters:@{Icewall:Monster, Bubble:Windblast}],
-    ]];
+    sleeper.ai = [AIOpponentFactory withColor:0x0 tactics:^{
+        return @[
+            [AITDelay random:@[Sleep]],
+            [AITCounterExists counters:@{Icewall:Monster, Bubble:Windblast}],
+        ];
+    }];
     
     
     return @[
