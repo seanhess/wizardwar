@@ -44,8 +44,10 @@
 @interface WizardSprite () <OLSpriteFrameDelegate>
 @property (nonatomic, strong) Units * units;
 
+@property (nonatomic, readonly) BOOL isSingleFrame;
 @property (nonatomic, strong) CCLabelTTF * label;
 @property (nonatomic, strong) ChatBubbleSprite * chatBubble;
+@property (nonatomic, strong) CCSprite * single;
 @property (nonatomic, strong) OLSprite * skin;
 @property (nonatomic, strong) CCSprite * clothes;
 @property (nonatomic, strong) CCSprite * effect;
@@ -103,13 +105,20 @@
         self.chatBubble.scale = 0;
         self.chatBubble.position = ccp(self.wizard.direction * 52, 120);        
         
-        self.skin = [OLSprite node];
-        self.skin.delegate = self;
-        self.clothes = [CCSprite node];
-        ccColor3B color = [self colorWithColor:wizard.color];
-        self.clothes.color = color;
-        [self addChild:self.skin];
-        [self addChild:self.clothes];
+        if (self.isSingleFrame) {
+            self.single = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"%@.png", self.wizard.wizardType]];
+            [self addChild:self.single];
+        }
+        
+        else {
+            self.skin = [OLSprite node];
+            self.skin.delegate = self;
+            self.clothes = [CCSprite node];
+            ccColor3B color = [self colorWithColor:wizard.color];
+            self.clothes.color = color;
+            [self addChild:self.skin];
+            [self addChild:self.clothes];
+        }
         
         // I need to only show this if the game hasn't started!
         self.label = [CCLabelTTF labelWithString:self.wizardName fontName:FONT_COMIC_ZINE fontSize:36];
@@ -161,6 +170,10 @@
 }
 
 
+-(BOOL)isSingleFrame {
+    return [self.wizard.wizardType isEqualToString:WIZARD_TYPE_DUMMY];
+}
+
 -(NSMapTable*)wizard1HeadOffsets {
     if (!_wizard1HeadOffsets) {
         NSMapTable * mapTable = [NSMapTable mapTableWithKeyOptions:NSPointerFunctionsObjectPointerPersonality valueOptions:NSPointerFunctionsObjectPersonality];
@@ -209,9 +222,11 @@
 -(void)renderPosition {
     self.position = self.calculatedPosition;
 //    NSLog(@"renderPosition %@", NSStringFromCGPoint(self.position));
-    self.skin.flipX = (self.wizard.direction < 0);
-    self.clothes.flipX = self.skin.flipX;
-    self.chatBubble.flipX = self.skin.flipX;
+    BOOL flip = (self.wizard.direction < 0);
+    self.skin.flipX = flip;
+    self.clothes.flipX = flip;
+    self.chatBubble.flipX = flip;
+    self.single.flipX = flip;
 }
 
 -(void)update:(ccTime)delta {}
@@ -276,6 +291,21 @@
     if (self.wizard.effect.class == PESleep.class && (status == WizardStatusReady || status == WizardStatusHit || status == WizardStatusCast))
         return;
     
+    if (self.isSingleFrame) {
+        if (self.wizard.state == WizardStatusDead) {
+            [self.single runAction:[CCFadeOut actionWithDuration:0.4]];
+        }
+        
+        else if (self.wizard.state == WizardStatusHit) {
+            CCMoveBy * up = [CCMoveBy actionWithDuration:0.1 position:ccp(0, 10)];
+            CCMoveBy * down = [CCMoveBy actionWithDuration:0.1 position:ccp(0, -10)];
+            CCSequence * sequence = [CCSequence actions:up, down, nil];
+            [self.single runAction:sequence];
+        }
+        
+        return;
+    }
+    
     [self.skin stopAction:self.skinStatusAction];
     [self.clothes stopAction:self.clothesStatusAction];
     
@@ -301,6 +331,7 @@
 // So I should play through them perhaps?
 // I could index them depending on the delta...
 -(CCAnimation*)animationForStatus:(WizardStatus)status clothes:(BOOL)isClothes {
+    if (self.isSingleFrame) return nil;
     NSString * clothesSuffix = (isClothes) ? @"-clothes" : @"";
     NSString * animationName = [NSString stringWithFormat:@"%@%@", [self animationNameForStatus:status], clothesSuffix];
     CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:animationName];
@@ -389,9 +420,10 @@
         self.clothesEffectAction = [self actionForSleepEffectForClothes:YES];
         
         // then when the effect wears off, we need to re-render status
-        if (![self.currentEffect isKindOfClass:[PESleep class]]) {
-            self.rotation = -90;
-            CCFiniteTimeAction * rotate = [CCRotateTo actionWithDuration:SLEEP_ANIMATION_START_DELAY angle:0];
+        if (![self.currentEffect isKindOfClass:[PESleep class]] && !self.isSingleFrame) {
+            float start = -90;
+            self.rotation = start;
+            CCFiniteTimeAction * rotate = [CCRotateTo actionWithDuration:SLEEP_ANIMATION_START_DELAY angle:start+90];
             [self runAction:rotate];
         }
         
@@ -484,6 +516,7 @@
 
 
 -(NSString*)animationNameForStatus:(WizardStatus)status {
+    if (self.isSingleFrame) return nil;
     NSString * stateName = @"prepare";
     
     if (self.wizard.state == WizardStatusCast)
