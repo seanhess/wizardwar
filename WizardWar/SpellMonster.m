@@ -17,7 +17,6 @@
 -(BOOL)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval {
     
     if (self.spellEffect && [self.spellEffect isKindOfClass:[SESleep class]]) {
-        NSLog(@"SLEEPY MONSTER %i %i", currentTick, self.updatedTick);
         if ([PESleep sleepShouldEndAtTick:currentTick interval:interval started:self.updatedTick]) {
             self.spellEffect = nil;
             self.speed = 20;

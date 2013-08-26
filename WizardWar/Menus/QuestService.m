@@ -181,7 +181,8 @@
     sleeper.colorRGB = 0x0;
     sleeper.tactics = @[
         [AITDelay random:@[Sleep]],
-        [AITCounterExists counters:@{Icewall:Monster}],
+        [AITCounterExists counters:@{Icewall:Monster, Bubble:Windblast}],
+        
     ];
     
         
