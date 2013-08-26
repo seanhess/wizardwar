@@ -859,6 +859,7 @@
 		7853C8E917CBD10200406813 /* AITMaybe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AITMaybe.m; sourceTree = "<group>"; };
 		7853C8EB17CBD66C00406813 /* AITMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AITMessage.h; sourceTree = "<group>"; };
 		7853C8EC17CBD66F00406813 /* AITMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AITMessage.m; sourceTree = "<group>"; };
+		7853C8EE17CC10BF00406813 /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.md; sourceTree = "<group>"; };
 		785B045A17C2B16700B064F6 /* SpellRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellRecord.h; sourceTree = "<group>"; };
 		785B045B17C2B16700B064F6 /* SpellRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellRecord.m; sourceTree = "<group>"; };
 		785B045D17C2B17F00B064F6 /* SpellbookService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellbookService.h; sourceTree = "<group>"; };
@@ -2000,6 +2001,7 @@
 				787E1C3417BC0CD10092F5D6 /* Default@2x.png */,
 				787E1C3217BC0CCB0092F5D6 /* Default-568h@2x.png */,
 				7862463D1767C79F001904AC /* README.md */,
+				7853C8EE17CC10BF00406813 /* LICENSE.md */,
 				6F0367301747EB3C00971B61 /* Icon-57@2x.png */,
 				6F03672E1747EB3700971B61 /* Icon-57.png */,
 				78F6B1EC1746AD8900AA070D /* WizardWar */,
