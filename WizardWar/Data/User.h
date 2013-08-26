@@ -45,6 +45,10 @@
 @property (nonatomic, readonly) BOOL isFacebookFriend;
 @property (nonatomic) BOOL isClose;
 @property (nonatomic, strong) UIColor * color;
+@property (nonatomic, readonly) NSInteger gamesLosses;
+@property (nonatomic, readonly) NSInteger masteryWins;
+@property (nonatomic, readonly) CGFloat masteryProgress;
+@property (nonatomic, readonly) BOOL isMastered;
 
 -(NSDictionary*)toLobbyObject;
 

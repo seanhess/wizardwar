@@ -100,7 +100,7 @@
         [self scheduleUpdate];
         
         self.matchStatusSignal = [[RACAbleWithStart(self.match.status) distinctUntilChanged] filter:RACFilterExists];
-        self.aiHideControlsSignal = [RACAbleWithStart(self.match.ai.hideControls) distinctUntilChanged];
+        self.aiHideControlsSignal = [[RACAbleWithStart(self.match.ai.hideControls) distinctUntilChanged] filter:RACFilterExists];
         self.showControlsSignal = [RACSignal combineLatest:@[self.matchStatusSignal, self.aiHideControlsSignal]
             reduce:^(NSNumber* status, NSNumber* hideControls) {
                 return @((status.intValue == MatchStatusPlaying) && !hideControls.intValue);

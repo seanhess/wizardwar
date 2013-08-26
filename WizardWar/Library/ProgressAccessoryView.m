@@ -49,6 +49,8 @@
     [self addSubview:self.label];
     self.label.backgroundColor = [UIColor clearColor];
     self.label.font = self.defaultFont;
+    
+    self.backgroundColor = [UIColor clearColor];    
 }
 
 - (CGRect)topHalfFrame {
