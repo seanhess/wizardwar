@@ -190,7 +190,7 @@
 - (void)createMatchWithWizard:(Wizard *)wizard withLevel:(QuestLevel *)level {
     self.questLevel = level;
     
-    Match * match = [[Match alloc] initWithMatchId:@"Quest" hostName:wizard.name currentWizard:wizard withAI:level.ai multiplayer:nil sync:nil];
+    Match * match = [[Match alloc] initWithMatchId:@"Quest" hostName:wizard.name currentWizard:wizard withAI:[level.ai create] multiplayer:nil sync:nil];
     self.match = match;
 }
 

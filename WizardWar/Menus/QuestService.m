@@ -23,6 +23,7 @@
 #import "AITCastOnClose.h"
 #import "AITPerfectCounter.h"
 #import "AITCounterExists.h"
+#import "AIOpponentFactory.h"
 
 #define QUEST_LEVEL_ENTITY @"QuestLevel"
 
@@ -103,82 +104,74 @@
 - (NSArray*)allQuestLevels {
     QuestLevel * tutorial1 = [self levelWithName:@"Tutorial - Using Magic"];
     tutorial1.level = 0;
-    tutorial1.AIType = [AITutorial1BasicMagic class];
     tutorial1.wizardLevel = 2;
+    tutorial1.ai = [AIOpponentFactory withType:[AITutorial1BasicMagic class]];
     
     QuestLevel * tutorial2 = [self levelWithName:@"Tutorial - Counterspells"];
     tutorial2.level = 1;
     tutorial2.wizardLevel = 3;
-    tutorial2.AIType = [AITutorial2Counters class];
+    tutorial2.ai = [AIOpponentFactory withType:[AITutorial2Counters class]];
 
     QuestLevel * tutorial3 = [self levelWithName:@"Tutorial - Discovery"];
     tutorial3.level = 2;
     tutorial3.wizardLevel = 4;
-    tutorial3.AIType = [AITutorial3Discovery class];
+    tutorial3.ai = [AIOpponentFactory withType:[AITutorial3Discovery class]]; 
     
     QuestLevel * practice = [self levelWithName:@"Practice Dummy"];
     practice.level = 0;
     practice.wizardLevel = 0;
-    practice.AIType = [AIOpponentDummy class];
+    practice.ai = [AIOpponentFactory withType:[AIOpponentDummy class]];
     
     // I don't really want to name them in two places :(
     QuestLevel * jumper = [self levelWithName:@"Fionnghal the Flying"];
     jumper.level = 0;
     jumper.wizardLevel = 0;
-    jumper.colorRGB = 0x0;
-    jumper.tactics = @[
+    jumper.ai = [AIOpponentFactory withColor:0x0 tactics:@[
         [AITEffectRenew effect:[PELevitate new] spell:Levitate],
         [AITDelay random:@[Monster, Vine, Monster, Lightning]],
-    ];
-    
+    ]];
     
     QuestLevel * jumper2 = [self levelWithName:@"Fionnghal Returns"];
     jumper2.level = 0;
     jumper2.wizardLevel = 0;
-    jumper2.colorRGB = 0x0;
-    jumper2.tactics = @[
+    jumper2.ai = [AIOpponentFactory withColor:0x0 tactics:@[
         [AITCastOnClose distance:20.0 highSpell:Helmet lowSpell:Levitate],
         [AITDelay random:@[Monster, Chicken, Vine, Monster, Lightning]],
-    ];
+    ]];
 
     
     QuestLevel * earth = [self levelWithName:@"Talfan the Terramancer"];
     earth.level = 0;
     earth.wizardLevel = 0;
-    earth.colorRGB = 0x0;
-    earth.tactics = @[
+    earth.ai = [AIOpponentFactory withColor:0x0 tactics:@[
         [AITWallAlways walls:@[Earthwall]],
         [AITDelay random:@[Monster, Helmet, Monster, Vine]],
-    ];
+    ]];
     
     // this guy is an idiot. he's way too easy to kill :)
     QuestLevel * fire = [self levelWithName:@"Pennar the Pyromancer"];
     fire.level = 0;
     fire.wizardLevel = 0;
-    fire.colorRGB = 0xF23953;
-    fire.tactics = @[
+    fire.ai = [AIOpponentFactory withColor:0xF23953 tactics:@[
         [AITWallAlways walls:@[Firewall]],
         [AITDelay random:@[Fireball, Fireball, Windblast]], // he's harder with windblast
-    ];
+    ]];
     
     QuestLevel * air = [self levelWithName:@"Aeres the Aeromancer"];
     air.level = 0;
     air.wizardLevel = 0;
-    air.colorRGB = 0x0;
-    air.tactics = @[
+    air.ai = [AIOpponentFactory withColor:0x0 tactics:@[
         [AITDelay random:@[Fist, Lightning, Levitate, Windblast]],
-    ];
-    
+    ]];
     
     
     // Geez, this guy is hard.  Slow him down?
     QuestLevel * spam = [self levelWithName:@"Belgarath the Bold"];
     spam.level = 0;
     spam.wizardLevel = 0;
-    spam.colorRGB = 0x0;
-    spam.tactics = @[
+    spam.ai = [AIOpponentFactory withColor:0x0 tactics:@[
         [AITDelay random:@[Fireball, Lightning, Monster]],
-    ];
+    ]];
     
     
     // If they have an icewall, cast Fireball
@@ -188,18 +181,12 @@
     QuestLevel * sleeper = [self levelWithName:@"Blodwen the Boring"];
     sleeper.level = 0;
     sleeper.wizardLevel = 0;
-    sleeper.colorRGB = 0x0;
-    sleeper.tactics = @[
+    sleeper.ai = [AIOpponentFactory withColor:0x0 tactics:@[
         [AITDelay random:@[Sleep]],
         [AITCounterExists counters:@{Icewall:Monster, Bubble:Windblast}],
-    ];
+    ]];
     
     
-    // Reaction Time Delay. Put it in and see. 
-        
-    // ?? Someone who uses Grom to kill you. Must discover helmet!
-    // Counterman: always tries to reflect things
-
     return @[
         tutorial1,
         tutorial2,

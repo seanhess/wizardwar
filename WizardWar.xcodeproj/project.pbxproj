@@ -244,6 +244,7 @@
 		7853C8DC17CB99BA00406813 /* RACSignal+Filters.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853C8DB17CB99B900406813 /* RACSignal+Filters.m */; };
 		7853C8DF17CB9BE100406813 /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853C8DE17CB9BDF00406813 /* ProfileCell.m */; };
 		7853C8E117CB9BF300406813 /* ProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7853C8E017CB9BF100406813 /* ProfileCell.xib */; };
+		7853C8E417CBADB400406813 /* AIOpponentFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853C8E317CBADB300406813 /* AIOpponentFactory.m */; };
 		785B045C17C2B16700B064F6 /* SpellRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 785B045B17C2B16700B064F6 /* SpellRecord.m */; };
 		785B045F17C2B17F00B064F6 /* SpellbookService.m in Sources */ = {isa = PBXBuildFile; fileRef = 785B045E17C2B17F00B064F6 /* SpellbookService.m */; };
 		785B046317C2BA3100B064F6 /* SpellbookDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785B046117C2BA3100B064F6 /* SpellbookDetailsViewController.m */; };
@@ -847,6 +848,8 @@
 		7853C8DD17CB9BDE00406813 /* ProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileCell.h; sourceTree = "<group>"; };
 		7853C8DE17CB9BDF00406813 /* ProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
 		7853C8E017CB9BF100406813 /* ProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileCell.xib; sourceTree = "<group>"; };
+		7853C8E217CBADB300406813 /* AIOpponentFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIOpponentFactory.h; sourceTree = "<group>"; };
+		7853C8E317CBADB300406813 /* AIOpponentFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIOpponentFactory.m; sourceTree = "<group>"; };
 		785B045A17C2B16700B064F6 /* SpellRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellRecord.h; sourceTree = "<group>"; };
 		785B045B17C2B16700B064F6 /* SpellRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellRecord.m; sourceTree = "<group>"; };
 		785B045D17C2B17F00B064F6 /* SpellbookService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellbookService.h; sourceTree = "<group>"; };
@@ -1561,6 +1564,8 @@
 				781BC26517B5766900870A2C /* AIService.h */,
 				7843E73617C94B33009EF3AB /* AIOpponent.h */,
 				7843E73717C94B34009EF3AB /* AIOpponent.m */,
+				7853C8E217CBADB300406813 /* AIOpponentFactory.h */,
+				7853C8E317CBADB300406813 /* AIOpponentFactory.m */,
 				7843E73917C94BAF009EF3AB /* AIGameState.h */,
 				7843E73A17C94BB0009EF3AB /* AIGameState.m */,
 				7843E71617C8DF44009EF3AB /* AITutorial1BasicMagic.h */,
@@ -2769,6 +2774,7 @@
 				7853C8D117CADD0600406813 /* AITCounterExists.m in Sources */,
 				7853C8DC17CB99BA00406813 /* RACSignal+Filters.m in Sources */,
 				7853C8DF17CB9BE100406813 /* ProfileCell.m in Sources */,
+				7853C8E417CBADB400406813 /* AIOpponentFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
