@@ -14,17 +14,16 @@
 
 -(AIAction *)suggestedAction:(AIGameState *)game {
     
-    Spell * myLastSpell = [game.mySpells max:^float(Spell * spell) {
-        return spell.createdTick;
-    }];
+    Spell * myLastSpell = game.lastSpellCast;
 
-    Spell * opponentLastSpell = [game.mySpells max:^float(Spell * spell) {
+    Spell * opponentLastSpell = [game.opponentSpells max:^float(Spell * spell) {
         return spell.createdTick;
     }];
     
     if (!opponentLastSpell) return nil;
     if (myLastSpell && myLastSpell.createdTick >= opponentLastSpell.createdTick)
         return nil;
+    if (game.currentTick < opponentLastSpell.createdTick+5) return nil;
     
     // Now grab a new spell
     NSString * randomType = [self.spells randomItem];
