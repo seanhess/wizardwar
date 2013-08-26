@@ -43,6 +43,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     NSLog(@"applicationDidFinishLaunchingWithOptions");
+    
+    // Testing
 
     // TEST FLIGHT - make it first so it can catch errors
     [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
