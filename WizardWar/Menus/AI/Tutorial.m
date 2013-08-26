@@ -36,10 +36,7 @@
         self.wizard = wizard;
         self.hideControls = YES;
         self.disableControls = YES;
-        self.environment = ENVIRONMENT_CASTLE;
-        
-        RAC(self.wizardHealth) = [RACAbleWithStart(self.wizard.health) safe];
-        RAC(self.opponentHealth) = [RACAbleWithStart(self.opponent.health) safe];
+        self.environment = ENVIRONMENT_CASTLE;        
     }
     return self;
 }

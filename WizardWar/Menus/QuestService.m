@@ -253,7 +253,7 @@
     QuestLevel * sleeper = [self levelWithName:@"Seren the Somnomancer"];
     sleeper.level = 8;
     sleeper.wizardLevel = MediumWizardLevel;
-    sleeper.ai = [AIOpponentFactory withColor:0x0  environment:ENVIRONMENT_ICE_CAVE tactics:^{
+    sleeper.ai = [AIOpponentFactory withColor:0xF9D20F  environment:ENVIRONMENT_ICE_CAVE tactics:^{
         return @[
              [AITMessage withStart:@[@"A fight? How droll.", @"You woke me up for this?"]],
              [AITMessage withHits:@[@"Good night. Mwa haa ha ha"] chance:1.00],
@@ -272,7 +272,7 @@
     QuestLevel * earth = [self levelWithName:@"Talfan the Terramancer"];
     earth.level = 9;
     earth.wizardLevel = MediumWizardLevel;
-    earth.ai = [AIOpponentFactory withColor:0x0 environment:ENVIRONMENT_CAVE tactics:^{
+    earth.ai = [AIOpponentFactory withColor:0x34A44F environment:ENVIRONMENT_CAVE tactics:^{
         return @[
             [AITMessage withStart:@[@"Thou darest challenge me? This day shall be thy last!", @"Thou fool! May the earth consume thee and thy posterity FOR ALL TIME."]],
             [AITMessage withHits:@[@"Beg for mercy!", @"Thou art no match for Talfan!"] chance:0.25],
