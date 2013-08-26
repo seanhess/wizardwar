@@ -281,15 +281,18 @@
 
 - (void)didFinishMatch:(BOOL)didFinish didWin:(BOOL)didWin {
     // always mark the challenge as lost
-    if (self.challenge)
+    if (self.challenge) {
         [self.delegate didFinishChallenge:self.challenge didWin:didWin];
+    }
     
     // it doesn't matter for these guys?
     if (didFinish) {
         // Don't mark them as finished unless you actually finish
-        NSArray * spellbookAchievements = [SpellbookService.shared finishedMatch:self.match.mainPlayerSpellHistory didWin:didWin];
-        NSArray * questAcievements = [QuestService.shared finishedQuest:self.questLevel didWin:didWin];
+        [SpellbookService.shared finishedMatch:self.match.mainPlayerSpellHistory didWin:didWin];
+        [QuestService.shared finishedQuest:self.questLevel didWin:didWin];
     }
+    
+//    NSArray * achievements = [challengeAchievements ]
 }
 
 - (IBAction)didTapBack:(id)sender {

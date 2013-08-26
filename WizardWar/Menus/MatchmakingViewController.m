@@ -273,6 +273,7 @@
         // when the invitee hits back, it's still here for him.
         // need to remove the one I was just in. 
     }
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:SECTION_INDEX_WARNINGS] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -710,8 +711,8 @@
     [LobbyService.shared user:self.currentUser joinedMatch:challenge.matchId];
 }
 
-- (void)didFinishChallenge:(Challenge *)challenge didWin:(BOOL)didWin {
-    [UserFriendService.shared user:self.currentUser addChallenge:challenge didWin:didWin];
+- (NSArray*)didFinishChallenge:(Challenge *)challenge didWin:(BOOL)didWin {
+    return [UserFriendService.shared user:self.currentUser addChallenge:challenge didWin:didWin];
 }
 
 - (void)dealloc {

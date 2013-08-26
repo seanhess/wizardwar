@@ -40,7 +40,7 @@
 };
 
 -(NSDictionary*)toLobbyObject {
-    return [self dictionaryWithValuesForKeys:@[@"locationLatitude", @"locationLongitude", @"activeMatchId", @"version"]];
+    return [self dictionaryWithValuesForKeys:@[@"locationLatitude", @"locationLongitude", @"activeMatchId", @"version", @"wizardLevel"]];
 }
 
 - (NSString*)description {

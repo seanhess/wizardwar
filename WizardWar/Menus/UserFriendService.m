@@ -24,6 +24,7 @@
 #import "UserService.h"
 #import "LocationService.h"
 #import "InfoService.h"
+#import "Achievement.h"
 
 @implementation UserFriendService
 
@@ -70,18 +71,24 @@
 }
 
 
--(void)user:(User *)user addChallenge:(Challenge *)challenge didWin:(BOOL)didWin {
-    User * friend = nil;
-    if (![challenge.main.userId isEqualToString:user.userId])
-        friend = challenge.main;
-    else
-        friend = challenge.opponent;
+-(NSArray*)user:(User *)user addChallenge:(Challenge *)challenge didWin:(BOOL)didWin {
+    User * friend = [challenge findOpponent:user];
+    NSMutableArray * achievements = [NSMutableArray array];
     
     // Wins AGAINST that friend
     friend.gamesTotal++;
     if (didWin) {
         friend.gamesWins++;
+        
+        // User levels and some such nonsense
+        // only go up if you won!
+        if (friend.wizardLevel > user.wizardLevel) {
+            user.wizardLevel += 1;
+            [achievements addObject:[Achievement wizardLevel:user]];
+        }
     }
+
+    return achievements;
 }
 
 -(void)user:(User*)user removeFrenemy:(User*)frenemy {
