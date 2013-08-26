@@ -13,6 +13,7 @@
 #import "UIColor+Hex.h"
 #import "AppStyle.h"
 #import <ReactiveCocoa.h>
+#import <QuartzCore/QuartzCore.h>
 
 #define RECHARGE_INTERVAL 2.5
 
@@ -64,6 +65,8 @@
     
     self.feedbackLabel.font = [UIFont fontWithName:FONT_COMIC_ZINE_SOLID size:36];
     self.feedbackLabel.alpha = 0.0;
+    self.feedbackLabel.shadowColor = [UIColor blackColor];
+    self.feedbackLabel.shadowOffset = CGSizeMake(2, 2);
 }
 
 - (void)setUpPentagram
