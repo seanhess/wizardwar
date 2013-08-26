@@ -259,9 +259,9 @@
     sleeper.ai = [AIOpponentFactory withColor:0xF9D20F  environment:ENVIRONMENT_ICE_CAVE tactics:^{
         return @[
              [AITMessage withStart:@[@"A fight? How droll.", @"You woke me up for this?"]],
-             [AITMessage withHits:@[@"Good night. Mwa haa ha ha"] chance:1.00],
+//             [AITMessage withHits:@[@"Good night. Mwa haa ha ha"] chance:1.00],
              [AITMessage withWounds:@[@"Where did I leave my shotgun again?"] chance:0.25],
-             [AITMessage withCast:@[@"Sleep Tight!"] chance:0.25],
+             [AITMessage withCast:@[@"Sleep Tight!"] chance:0.5],
 //             [AITMessage withCastOther:@[] chance:0.25],
              [AITMessage withWin:@[@""]],
              [AITMessage withLose:@[@"Death. What is it really, but an eternal nap?"]],

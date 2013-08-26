@@ -83,8 +83,9 @@
         action = [self useUpMessageFrom:self.wounds];
     }
     
+    // sleep isn't a hit!
     else if (self.hits && game.opponent.health < self.lastOpponentHealth) {
-        self.lastOpponentHealth = game.wizard.health;
+        self.lastOpponentHealth = game.opponent.health;
         action = [self useUpMessageFrom:self.hits];        
     }
     
