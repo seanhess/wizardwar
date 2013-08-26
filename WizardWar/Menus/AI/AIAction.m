@@ -48,6 +48,12 @@
     return action;
 }
 
++(id)clearMessage {
+    AIAction * action = [AIAction new];
+    action.clearMessage = YES;
+    return action;
+}
+
 +(NSInteger)randomPriority:(NSInteger)max {
     return arc4random() % max;
 }

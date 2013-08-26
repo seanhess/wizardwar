@@ -15,4 +15,7 @@
 
 @protocol AITactic <NSObject>
 -(AIAction*)suggestedAction:(AIGameState*)game;
+@optional
+-(AIAction*)preAction;
+-(AIAction*)endAction:(BOOL)didWin;
 @end

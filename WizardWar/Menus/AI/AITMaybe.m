@@ -9,5 +9,11 @@
 #import "AITMaybe.h"
 
 @implementation AITMaybe
-
+-(AIAction *)suggestedAction:(AIGameState *)game {
+    return nil;
+}
++(id)random:(NSArray*)spells max:(NSInteger)priority {
+    AITMaybe * tactic = [AITMaybe new];
+    return tactic;
+}
 @end

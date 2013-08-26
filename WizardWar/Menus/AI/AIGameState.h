@@ -20,6 +20,7 @@
 @property (nonatomic) NSTimeInterval lastTimeRequired;
 
 @property (nonatomic) NSInteger currentTick;
+@property (nonatomic) NSInteger messageTick;
 @property (nonatomic) NSTimeInterval interval;
 
 // lets you know if you can cast since the last spell vs a delay

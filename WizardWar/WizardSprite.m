@@ -100,6 +100,15 @@
         
         __weak WizardSprite * wself = self;
         
+        // I need to only show this if the game hasn't started!
+        self.label = [CCLabelTTF labelWithString:self.wizardName fontName:FONT_COMIC_ZINE fontSize:36];
+        self.label.position = ccp(self.wizard.direction*10, 100);
+        self.label.horizontalAlignment = NSTextAlignmentCenter;
+        self.label.verticalAlignment = kCCVerticalTextAlignmentBottom;
+        self.label.dimensions = CGSizeMake(200, 400);
+        self.label.anchorPoint = ccp(0.5, 0);
+        [self addChild:self.label];        
+        
         self.chatBubble = [ChatBubbleSprite new];
         [self addChild:self.chatBubble];
         self.chatBubble.scale = 0;
@@ -120,14 +129,6 @@
             [self addChild:self.clothes];
         }
         
-        // I need to only show this if the game hasn't started!
-        self.label = [CCLabelTTF labelWithString:self.wizardName fontName:FONT_COMIC_ZINE fontSize:36];
-        self.label.position = ccp(self.wizard.direction*10, 100);
-        self.label.horizontalAlignment = NSTextAlignmentCenter;
-        self.label.verticalAlignment = kCCVerticalTextAlignmentBottom;
-        self.label.dimensions = CGSizeMake(200, 400);
-        self.label.anchorPoint = ccp(0.5, 0);
-        [self addChild:self.label];
         
 #if TARGET_IPHONE_SIMULATOR
         self.headDebug = [DebugSprite new];

@@ -14,8 +14,10 @@
 @property (nonatomic, strong) NSString * name;
 @property (nonatomic) NSUInteger colorRGB;
 @property (nonatomic, strong) NSArray*(^tactics)(void);
+@property (nonatomic, strong) NSString * environment;
 
 -(id<AIService>)create;
 +(id)withType:(Class)AIType;
++(id)withColor:(NSUInteger)color environment:(NSString*)environment tactics:(NSArray*(^)(void))tactics;
 +(id)withColor:(NSUInteger)color tactics:(NSArray*(^)(void))tactics;
 @end

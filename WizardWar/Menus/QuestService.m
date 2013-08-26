@@ -26,6 +26,8 @@
 #import "AIOpponentFactory.h"
 #import "AITWaitForCast.h"
 #import "AITMaybe.h"
+#import "AITMessage.h"
+#import "EnvironmentLayer.h"
 
 #define QUEST_LEVEL_ENTITY @"QuestLevel"
 
@@ -140,6 +142,23 @@
     
     
     
+    // he's really slow
+    // he starts out too fast!
+    QuestLevel * old = [self levelWithName:@"Alatar the Anchient"];
+    old.level = EasyQuestLevel;
+    old.wizardLevel = EasyWizardLevel;
+    old.ai = [AIOpponentFactory withColor:0xFFFFFF environment:ENVIRONMENT_EVIL_FOREST tactics:^{
+        return @[
+            [AITMessage withStart:@[@"What? Who goes there? Is that you Phil?", @"Has anybody seen my spectacles?"]],
+            [AITMessage withCast:@[@"Zaldafrash!", @"Whoosh!"] chance:0.25],
+            [AITMessage withWin:@[@"Where did you go?"]],
+            [AITMessage withLose:@[@"At last, I can finally rest..."]],
+
+            [AITWallAlways walls:@[Firewall, Icewall] reactionTime:3.0],
+            [AITDelay random:@[Lightning, Windblast, Heal, Invisibility, Earthwall, Rainbow, Bubble, Fireball, Bubble, Monster] reactionTime:3.0],
+        ];
+    }];
+    
     
     
     
@@ -151,25 +170,20 @@
     QuestLevel * random = [self levelWithName:@"Ian the Inspecific"];
     random.level = EasyQuestLevel;
     random.wizardLevel = EasyWizardLevel;
-    random.ai = [AIOpponentFactory withColor:0x0 tactics:^{
+    random.ai = [AIOpponentFactory new];
+    random.ai.colorRGB = 0x888888;
+    random.ai.environment = ENVIRONMENT_ICE_CAVE;
+    random.ai.tactics = ^{
         return @[
+            [AITMessage withStart:@[@"Well if it isn't another wet-behind-the-ears apprentice. I'm not a babysitter!", @"I hope you brought a change of pants.", @"Why don't you go bother someone else? Matlock is on!"]],
+            [AITMessage withCastOther:@[@"Wow, did your mom teach you that spell?", @"Whatever."] chance:1.0],
+//            [AITMessage withCast:@[@"Avada ... Dangit!", @"Those robes are SO six-hundred fifteen"] chance:0.25],
+            [AITMessage withWin:@[@"Ooh, nice innards. Noob."]],
+            [AITMessage withLose:@[@"Just leave me alone, ok?"]],
+
             [AITWaitForCast random:@[Fireball, Lightning, Windblast, Bubble, Earthwall, Icewall, Firewall, Helmet, Monster, Levitate, Sleep]],
         ];
-    }];
-    
-    
-    
-    // he's really slow
-    // he starts out too fast!
-    QuestLevel * old = [self levelWithName:@"Alatar the Anchient"];
-    old.level = EasyQuestLevel;
-    old.wizardLevel = EasyWizardLevel;
-    old.ai = [AIOpponentFactory withColor:0x0 tactics:^{
-        return @[
-            [AITWallAlways walls:@[Firewall, Icewall] reactionTime:3.0],
-            [AITDelay random:@[Lightning, Windblast, Heal, Invisibility, Earthwall, Rainbow, Bubble, Fireball, Bubble, Monster] reactionTime:3.0],
-        ];
-    }];
+    };
     
     
     
@@ -177,8 +191,13 @@
     QuestLevel * air = [self levelWithName:@"Aeres the Aeromancer"];
     air.level = EasyQuestLevel;
     air.wizardLevel = EasyWizardLevel;
-    air.ai = [AIOpponentFactory withColor:0x0 tactics:^{
+    air.ai = [AIOpponentFactory withColor:0x0 environment:ENVIRONMENT_CASTLE tactics:^{
         return @[
+             [AITMessage withStart:@[@"", @"Has anybody seen my spectacles?"]],
+             [AITMessage withCast:@[@"Zaldafrash!", @"Whoosh!"] chance:0.25],
+             [AITMessage withWin:@[@"Where did you go?"]],
+             [AITMessage withLose:@[@"At last, I can finally rest..."]],
+                 
              [AITDelay random:@[Fist, Lightning, Windblast] reactionTime:EasyReactionTime],
         ];
     }];
@@ -189,7 +208,7 @@
     QuestLevel * jumper = [self levelWithName:@"Fionnghal the Flying"];
     jumper.level = EasyQuestLevel;
     jumper.wizardLevel = EasyWizardLevel;
-    jumper.ai = [AIOpponentFactory withColor:0x0 tactics:^{
+    jumper.ai = [AIOpponentFactory withColor:0x0 environment:ENVIRONMENT_CASTLE tactics:^{
         return @[
             [AITEffectRenew effect:[PELevitate new] spell:Levitate],
             [AITDelay random:@[Monster, Vine, Monster, Lightning] reactionTime:EasyReactionTime],
@@ -203,7 +222,7 @@
     QuestLevel * fire = [self levelWithName:@"Pennar the Pyromancer"];
     fire.level = MediumQuestLevel;
     fire.wizardLevel = MediumWizardLevel;
-    fire.ai = [AIOpponentFactory withColor:0xF23953 tactics:^{
+    fire.ai = [AIOpponentFactory withColor:0xF23953 environment:ENVIRONMENT_CAVE tactics:^{
         return @[
             [AITWallAlways walls:@[Firewall]],
             [AITDelay random:@[Fireball, Fireball, Windblast] reactionTime:HardReactionTime], // he's harder with windblast
@@ -218,7 +237,7 @@
     QuestLevel * sleeper = [self levelWithName:@"Seren the Somnomancer"];
     sleeper.level = MediumQuestLevel;
     sleeper.wizardLevel = MediumWizardLevel;
-    sleeper.ai = [AIOpponentFactory withColor:0x0 tactics:^{
+    sleeper.ai = [AIOpponentFactory withColor:0x0  environment:ENVIRONMENT_ICE_CAVE tactics:^{
         return @[
          [AITDelay random:@[Sleep] reactionTime:MediumReactionTime],
          [AITCounterExists counters:@{Icewall:Monster, Bubble:Windblast}],
@@ -229,7 +248,7 @@
     QuestLevel * earth = [self levelWithName:@"Talfan the Terramancer"];
     earth.level = MediumQuestLevel;
     earth.wizardLevel = MediumWizardLevel;
-    earth.ai = [AIOpponentFactory withColor:0x0 tactics:^{
+    earth.ai = [AIOpponentFactory withColor:0x0 environment:ENVIRONMENT_CAVE tactics:^{
         return @[
                  [AITWallAlways walls:@[Earthwall]],
                  [AITDelay random:@[Monster, Helmet, Monster, Vine] reactionTime:HardReactionTime],
@@ -241,7 +260,7 @@
     QuestLevel * jumper2 = [self levelWithName:@"Fionnghal Returns"];
     jumper2.level = HardQuestLevel;
     jumper2.wizardLevel = HardWizardLevel;
-    jumper2.ai = [AIOpponentFactory withColor:0x0 tactics:^{
+    jumper2.ai = [AIOpponentFactory withColor:0x0 environment:ENVIRONMENT_CASTLE tactics:^{
         return @[
                  [AITCastOnClose distance:20.0 highSpell:Helmet lowSpell:Levitate],
                  [AITDelay random:@[Monster, Chicken, Vine, Monster, Lightning] reactionTime:HardReactionTime],
@@ -253,7 +272,7 @@
     QuestLevel * spam = [self levelWithName:@"Belgarath the Bold"];
     spam.level = HardQuestLevel;
     spam.wizardLevel = HardWizardLevel;
-    spam.ai = [AIOpponentFactory withColor:0x0 tactics:^{
+    spam.ai = [AIOpponentFactory withColor:0x0 environment:ENVIRONMENT_EVIL_FOREST tactics:^{
         return @[
                  [AITDelay random:@[Fireball, Lightning, Monster] reactionTime:HardReactionTime],
                  ];

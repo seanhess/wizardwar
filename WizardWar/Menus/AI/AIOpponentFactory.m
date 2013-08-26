@@ -26,6 +26,9 @@
         opponent.tactics = self.tactics();
     }
     
+    if (self.environment)
+        opponent.environment = self.environment;
+    
     if (!opponent.wizard) {
         Wizard * wizard = [Wizard new];
         wizard.name = self.name;
@@ -48,6 +51,14 @@
     AIOpponentFactory * factory = [AIOpponentFactory new];
     factory.colorRGB = color;
     factory.tactics = tactics;
+    return factory;
+}
+
++(id)withColor:(NSUInteger)color environment:(NSString*)environment tactics:(NSArray*(^)(void))tactics {
+    AIOpponentFactory * factory = [AIOpponentFactory new];
+    factory.colorRGB = color;
+    factory.tactics = tactics;
+    factory.environment = environment;
     return factory;
 }
 

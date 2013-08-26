@@ -65,6 +65,7 @@
 }
 
 -(id)randomItem {
+    if (self.count == 0) return nil;
     return [self objectAtIndex:self.randomIndex];
 }
 
