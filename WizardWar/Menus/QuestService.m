@@ -104,16 +104,16 @@
     QuestLevel * tutorial1 = [self levelWithName:@"Tutorial - Using Magic"];
     tutorial1.level = 0;
     tutorial1.AIType = [AITutorial1BasicMagic class];
-    tutorial1.wizardLevel = 1;
+    tutorial1.wizardLevel = 2;
     
     QuestLevel * tutorial2 = [self levelWithName:@"Tutorial - Counterspells"];
     tutorial2.level = 1;
-    tutorial2.wizardLevel = 2;
+    tutorial2.wizardLevel = 3;
     tutorial2.AIType = [AITutorial2Counters class];
 
     QuestLevel * tutorial3 = [self levelWithName:@"Tutorial - Discovery"];
     tutorial3.level = 2;
-    tutorial3.wizardLevel = 3;
+    tutorial3.wizardLevel = 4;
     tutorial3.AIType = [AITutorial3Discovery class];
     
     QuestLevel * practice = [self levelWithName:@"Practice Dummy"];

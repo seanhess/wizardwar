@@ -76,7 +76,7 @@
            [TutorialStep win:@"Haha. You should have seen your face! You were all like ZOMG!"
                         lose:@"Not in the face!"],
            
-           [TutorialStep modalMessage:@"Go check out the spellbook to see what you've unlocked!"]           
+//           [TutorialStep modalMessage:@"Go check out the spellbook to see what you've unlocked!"]           
 
            
            
