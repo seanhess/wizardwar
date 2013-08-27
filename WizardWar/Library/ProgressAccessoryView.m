@@ -54,11 +54,11 @@
 }
 
 - (CGRect)topHalfFrame {
-    return CGRectMake(0, 0, self.frame.size.width-self.progressPadding, self.frame.size.height/2-self.progressPadding);
+    return CGRectMake(0, 0, self.frame.size.width-self.progressPadding, roundf(self.frame.size.height/2)-self.progressPadding);
 }
 
 - (CGRect)bottomHalfFrame {
-    return CGRectMake(0, self.frame.size.height/2-self.progressPadding, self.frame.size.width-self.progressPadding, self.frame.size.height/2);
+    return CGRectMake(0, self.frame.size.height/2-self.progressPadding, self.frame.size.width-self.progressPadding, roundf(self.frame.size.height/2));
 }
 
 - (CGRect)centerFrame {
