@@ -18,5 +18,6 @@
 +(NSString*)firebaseUrl;
 +(NSString*)openSourceUrl;
 +(NSString*)creditsUrl;
++(NSString*)appId;
 
 @end

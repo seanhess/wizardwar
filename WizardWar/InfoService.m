@@ -43,5 +43,9 @@
     return @"https://github.com/seanhess/wizardwar/blob/master/README.md#contributors";
 }
 
++(NSString*)appId {
+    return @"552035781";
+}
+
 
 @end
