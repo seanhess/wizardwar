@@ -53,7 +53,6 @@
 @property (nonatomic, strong) CCSprite * effect;
 
 @property (nonatomic, strong) CCAction * hoverAction;
-@property (nonatomic, strong) CCAction * hoverClothesAction;
 
 @property (nonatomic, strong) Match * match;
 @property (nonatomic) BOOL isCurrentWizard;
@@ -113,7 +112,7 @@
         self.chatBubble = [ChatBubbleSprite new];
         [self addChild:self.chatBubble];
         self.chatBubble.scale = 0;
-        self.chatBubble.position = ccp(self.wizard.direction * 52, 120);        
+        self.chatBubble.position = self.chatBubblePosition;
         
         if (self.isSingleFrame) {
             self.single = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"%@.png", self.wizard.wizardType]];
@@ -172,6 +171,10 @@
 }
 
 
+-(CGPoint)chatBubblePosition {
+    return ccp(self.wizard.direction * 52, 120);
+}
+
 -(BOOL)isSingleFrame {
     return [self.wizard.wizardType isEqualToString:WIZARD_TYPE_DUMMY];
 }
@@ -218,7 +221,7 @@
 }
 
 -(CGPoint)calculatedPosition {
-    return ccp([self.units toX:self.wizard.position], self.units.zeroY);
+    return ccp([self.units toX:self.wizard.position], [self.units altitudeY:self.wizard.altitude]);
 }
 
 -(void)renderPosition {
@@ -500,29 +503,27 @@
 }
 
 -(void)renderAltitude {
-//    CGPoint pos = self.calculatedPosition;
+    CGPoint pos = self.calculatedPosition;
 //    NSLog(@"renderAltitude %@ %f %@", self.wizard.name, self.wizard.altitude, NSStringFromCGPoint(self.position));
-    CGPoint pos = ccp(0, [self.units toHeight:self.wizard.altitude]);
-    CCFiniteTimeAction * toPos = [CCMoveTo actionWithDuration:0.2 position:pos];
-    CCFiniteTimeAction * toClothesPos = [CCMoveTo actionWithDuration:0.2 position:pos];
+    CGFloat dy = [self.units toHeight:self.wizard.altitude];
+    CCFiniteTimeAction * toPos = [CCMoveTo actionWithDuration:0.2 position:ccp(pos.x, pos.y)];
     if (self.wizard.altitude == 1.0 && [self.wizard.effect isKindOfClass:[PELevitate class]]) {
         CCFiniteTimeAction * toHover = [CCMoveTo actionWithDuration:0.2 position:ccp(pos.x, pos.y+5)];
-        CCFiniteTimeAction * toClothesHover = [CCMoveTo actionWithDuration:0.2 position:ccp(pos.x, pos.y+5)];
         self.hoverAction = [CCRepeatForever actionWithAction:[CCSequence actions:toPos, toHover, nil]];
-        self.hoverClothesAction = [CCRepeatForever actionWithAction:[CCSequence actions:toClothesPos, toClothesHover, nil]];
-        [self.skin runAction:self.hoverAction];
-        [self.clothes runAction:self.hoverClothesAction];
+        [self runAction:self.hoverAction];
+
+        CCFiniteTimeAction * toChatBubblePos = [CCMoveTo actionWithDuration:0.2 position:ccp(self.chatBubblePosition.x+30*self.wizard.direction, self.chatBubblePosition.y-dy)];
+        [self.chatBubble runAction:toChatBubblePos];
     }
     else if (self.wizard.altitude == 0.0) {
-        [self.skin stopAction:self.hoverAction];
-        [self.clothes stopAction:self.hoverClothesAction];
-        [self.skin runAction:toPos];
-        [self.clothes runAction:toClothesPos];
-    }
-    
-    else {
-        self.skin.position = pos;
-        self.clothes.position = pos;
+        [self stopAction:self.hoverAction];
+        [self runAction:toPos];
+
+        CCFiniteTimeAction * toChatBubblePos = [CCMoveTo actionWithDuration:0.2 position:self.chatBubblePosition];
+        [self.chatBubble runAction:toChatBubblePos];
+    } else {
+        self.position = pos;
+        self.chatBubble.position = self.chatBubblePosition;
     }
 }
 

@@ -215,7 +215,7 @@
     
     // I don't really want to name them in two places :(
     QuestLevel * jumper = [self levelWithName:@"Fionnghal the Flying"];
-    jumper.level = 6;
+    jumper.level = 0;
     jumper.wizardLevel = EasyWizardLevel;
     jumper.ai = [AIOpponentFactory withColor:0x7E0B80 environment:ENVIRONMENT_CASTLE tactics:^{
         return @[
