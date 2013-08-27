@@ -122,10 +122,6 @@
 //    const NSInteger MediumQuestLevel = 4;
 //    const NSInteger HardQuestLevel = 5;
     
-    const NSInteger EasyWizardLevel = 6;
-    const NSInteger MediumWizardLevel = 8;
-    const NSInteger HardWizardLevel = 10;
-    
     
     QuestLevel * tutorial1 = [self levelWithName:@"Tutorial - Using Magic"];
     tutorial1.level = 0;
@@ -151,9 +147,9 @@
     
     // he's really slow
     // he starts out too fast!
-    QuestLevel * old = [self levelWithName:@"Alatar the Anchient"];
+    QuestLevel * old = [self levelWithName:@"Alatar the Ancient"];
     old.level = 3;
-    old.wizardLevel = EasyWizardLevel;
+    old.wizardLevel = 6;
     old.ai = [AIOpponentFactory withColor:0xFFFFFF environment:ENVIRONMENT_EVIL_FOREST tactics:^{
         return @[
             [AITMessage withStart:@[@"What? Who goes there? Is that you Phil?", @"Has anybody seen my spectacles?"]],
@@ -176,7 +172,7 @@
     // has pretty much all the spells
     QuestLevel * random = [self levelWithName:@"Ian the Inspecific"];
     random.level = 4;
-    random.wizardLevel = EasyWizardLevel;
+    random.wizardLevel = 7;
     random.ai = [AIOpponentFactory new];
     random.ai.colorRGB = 0x888888;
     random.ai.environment = ENVIRONMENT_ICE_CAVE;
@@ -197,7 +193,7 @@
     
     QuestLevel * air = [self levelWithName:@"Aeres the Aeromancer"];
     air.level = 5;
-    air.wizardLevel = EasyWizardLevel;
+    air.wizardLevel = 8;
     air.ai = [AIOpponentFactory withColor:0x99C2E7 environment:ENVIRONMENT_CASTLE tactics:^{
         return @[
              [AITMessage withStart:@[@"Good day sir. I challenge you to a duel.", @"Are you sure you're ready?", @"You look in excellent health today. How is your family?"]],
@@ -215,8 +211,8 @@
     
     // I don't really want to name them in two places :(
     QuestLevel * jumper = [self levelWithName:@"Fionnghal the Flying"];
-    jumper.level = 0;
-    jumper.wizardLevel = EasyWizardLevel;
+    jumper.level = 6;
+    jumper.wizardLevel = 10;
     jumper.ai = [AIOpponentFactory withColor:0x7E0B80 environment:ENVIRONMENT_CASTLE tactics:^{
         return @[
             [AITMessage withStart:@[@"Don't attack! I'm unarmed!", @"Someday, someone will best me. But it won't be today, and it won't be you."]],
@@ -239,7 +235,7 @@
     // this guy is an idiot. he's way too easy to kill :)
     QuestLevel * fire = [self levelWithName:@"Pennar the Pyromancer"];
     fire.level = 7;
-    fire.wizardLevel = MediumWizardLevel;
+    fire.wizardLevel = 14;
     fire.ai = [AIOpponentFactory withColor:0xF23953 environment:ENVIRONMENT_CAVE tactics:^{
         return @[
             [AITMessage withStart:@[@"Me burn you now!", @"I AM FIRE MAGE! I CAST THE SPELLS THAT MAKE THE PEOPLES FALL DOWN!"]],
@@ -259,7 +255,7 @@
     // If there is a bubble coming towards him
     QuestLevel * sleeper = [self levelWithName:@"Seren the Somnomancer"];
     sleeper.level = 8;
-    sleeper.wizardLevel = MediumWizardLevel;
+    sleeper.wizardLevel = 15;
     sleeper.ai = [AIOpponentFactory withColor:0xF9D20F  environment:ENVIRONMENT_ICE_CAVE tactics:^{
         return @[
              [AITMessage withStart:@[@"A fight? How droll.", @"You woke me up for this?"]],
@@ -278,7 +274,7 @@
 
     QuestLevel * earth = [self levelWithName:@"Talfan the Terramancer"];
     earth.level = 9;
-    earth.wizardLevel = MediumWizardLevel;
+    earth.wizardLevel = 17;
     earth.ai = [AIOpponentFactory withColor:0x34A44F environment:ENVIRONMENT_CAVE tactics:^{
         return @[
             [AITMessage withStart:@[@"Thou darest challenge me? This day shall be thy last!", @"Thou fool! May the earth consume thee and thy posterity FOR ALL TIME."]],
@@ -298,7 +294,7 @@
     
     QuestLevel * jumper2 = [self levelWithName:@"Fionnghal Returns"];
     jumper2.level = 10;
-    jumper2.wizardLevel = HardWizardLevel;
+    jumper2.wizardLevel = 17;
     jumper2.ai = [AIOpponentFactory withColor:0x7E0B80 environment:ENVIRONMENT_CASTLE tactics:^{
         return @[
                  
@@ -319,7 +315,7 @@
     // Geez, this guy is hard.  Slow him down?
     QuestLevel * spam = [self levelWithName:@"Belgarath the Bold"];
     spam.level = 11;
-    spam.wizardLevel = HardWizardLevel;
+    spam.wizardLevel = 20;
     spam.ai = [AIOpponentFactory withColor:0x0 environment:ENVIRONMENT_EVIL_FOREST tactics:^{
         return @[         
             [AITMessage withStart:@[@"Child, I can so thoroughly destroy you, your own mother will forget the day of your birth.", @"Prepare to die... Obviously!"]],

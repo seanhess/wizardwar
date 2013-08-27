@@ -132,8 +132,8 @@
     // Think more about this
     if (questLevel.wizardLevel > WIZARD_LEVEL_PAST_TUTORIAL)
         cell.detailTextLabel.text = [NSString stringWithFormat:@"Level %i", questLevel.wizardLevel];
-//    else
-//        cell.detailTextLabel.text = nil;
+    else
+        cell.detailTextLabel.text = nil;
     
     if ([QuestService.shared isLocked:questLevel user:user]) {
         progress.showLock = YES;
