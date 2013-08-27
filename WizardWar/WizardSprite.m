@@ -53,6 +53,7 @@
 @property (nonatomic, strong) CCSprite * effect;
 
 @property (nonatomic, strong) CCAction * hoverAction;
+@property (nonatomic, strong) CCAction * hoverClothesAction;
 
 @property (nonatomic, strong) Match * match;
 @property (nonatomic) BOOL isCurrentWizard;
@@ -217,7 +218,7 @@
 }
 
 -(CGPoint)calculatedPosition {
-    return ccp([self.units toX:self.wizard.position], [self.units altitudeY:self.wizard.altitude]);
+    return ccp([self.units toX:self.wizard.position], self.units.zeroY);
 }
 
 -(void)renderPosition {
@@ -499,19 +500,29 @@
 }
 
 -(void)renderAltitude {
-    CGPoint pos = self.calculatedPosition;
+//    CGPoint pos = self.calculatedPosition;
 //    NSLog(@"renderAltitude %@ %f %@", self.wizard.name, self.wizard.altitude, NSStringFromCGPoint(self.position));
-    CCFiniteTimeAction * toPos = [CCMoveTo actionWithDuration:0.2 position:ccp(pos.x, pos.y)];
+    CGPoint pos = ccp(0, [self.units toHeight:self.wizard.altitude]);
+    CCFiniteTimeAction * toPos = [CCMoveTo actionWithDuration:0.2 position:pos];
+    CCFiniteTimeAction * toClothesPos = [CCMoveTo actionWithDuration:0.2 position:pos];
     if (self.wizard.altitude == 1.0 && [self.wizard.effect isKindOfClass:[PELevitate class]]) {
         CCFiniteTimeAction * toHover = [CCMoveTo actionWithDuration:0.2 position:ccp(pos.x, pos.y+5)];
+        CCFiniteTimeAction * toClothesHover = [CCMoveTo actionWithDuration:0.2 position:ccp(pos.x, pos.y+5)];
         self.hoverAction = [CCRepeatForever actionWithAction:[CCSequence actions:toPos, toHover, nil]];
-        [self runAction:self.hoverAction];
+        self.hoverClothesAction = [CCRepeatForever actionWithAction:[CCSequence actions:toClothesPos, toClothesHover, nil]];
+        [self.skin runAction:self.hoverAction];
+        [self.clothes runAction:self.hoverClothesAction];
     }
     else if (self.wizard.altitude == 0.0) {
-        [self stopAction:self.hoverAction];
-        [self runAction:toPos];
-    } else {
-        self.position = pos;
+        [self.skin stopAction:self.hoverAction];
+        [self.clothes stopAction:self.hoverClothesAction];
+        [self.skin runAction:toPos];
+        [self.clothes runAction:toClothesPos];
+    }
+    
+    else {
+        self.skin.position = pos;
+        self.clothes.position = pos;
     }
 }
 
