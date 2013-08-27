@@ -45,7 +45,7 @@
 
 - (void)viewDidLoad
 {
-    [AnalyticsService event:@"SettingsLoad"];
+    [AnalyticsService event:@"settings"];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationItem.titleView = [ComicZineDoubleLabel titleView:self.title navigationBar:self.navigationController.navigationBar];
     
@@ -80,8 +80,13 @@
     // Return the number of rows in the section.
     if (section == SECTION_FEEDBACK)
         return 1;
-    else if (section == SECTION_INFO)
-        return 3;
+    else if (section == SECTION_INFO) {
+        // only show delete all data if debug mode
+        if (DEBUG)
+            return 3;
+        else
+            return 2;
+    }
     else if (section == SECTION_PROFILE)
         return 1;
     else if (section == SECTION_ABOUT)
@@ -227,6 +232,8 @@
     else if (indexPath.section == SECTION_ABOUT) {
         NSString * url = nil;
         
+        [AnalyticsService event:@"settings-opensource"];
+        
         if (indexPath.row == ROW_CREDITS) url = [InfoService creditsUrl];
         else if (indexPath.row == ROW_OPEN_SOURCE) url = [InfoService openSourceUrl];
         
@@ -240,7 +247,8 @@
             [alertView show];
             return;
         }
-
+        
+        [AnalyticsService event:@"feedback"];
         
         MFMailComposeViewController *picker = [MFMailComposeViewController new];
         picker.mailComposeDelegate = self;
@@ -294,6 +302,11 @@
 - (void)mailComposeController:(MFMailComposeViewController*)controller
           didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
 {
+    if (result == MFMailComposeResultSent)
+        [AnalyticsService event:@"feedback-complete"];
+    else
+        [AnalyticsService event:@"feedback-cancel"];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

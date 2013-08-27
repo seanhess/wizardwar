@@ -78,7 +78,6 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     
     // DISCONNECT! all services
-    [LobbyService.shared leaveLobby:[UserService.shared currentUser]];
     [ConnectionService.shared disconnect];
     
     User * user = [UserService.shared currentUser];
@@ -123,8 +122,6 @@
 //}
 
 - (IBAction)didTapQuest:(id)sender {
-    [AnalyticsService event:@"QuestTap"];
-    
     QuestViewController * quest = [QuestViewController new];
     [self.navigationController pushViewController:quest animated:YES];
     
@@ -185,7 +182,7 @@
 }
 
 - (IBAction)didTapShare:(id)sender {
-    [AnalyticsService event:@"ShareTap"];
+    [AnalyticsService event:@"share"];
     
     // Connect their facebook account first, then open the friend invite dialog
     // it doesn't make sense to invite friends without having them connect facebook first
@@ -197,7 +194,11 @@
         }
         
         if (success) {
-            [UserFriendService.shared openFeedDialogTo:@[]];
+            [UserFriendService.shared openFeedDialogTo:@[] complete:^{
+                [AnalyticsService event:@"share-complete"];
+            } cancel:^{
+                [AnalyticsService event:@"share-cancel"];
+            }];
         }
     }];
 }

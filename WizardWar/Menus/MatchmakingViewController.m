@@ -113,7 +113,7 @@
 
 - (void)viewDidLoad
 {
-    [AnalyticsService event:@"MatchmakingLoad"];
+    [AnalyticsService event:@"multiplayer"];
     
     [super viewDidLoad];
 
@@ -140,7 +140,6 @@
     
     
     [self.tableView setTableFooterView:self.explanationsView];
-    NSLog(@"TESTING %@", NSStringFromCGRect(self.tableView.tableFooterView.frame));
     
     self.title = @"Matchmaking";
     [self.navigationController setNavigationBarHidden:NO animated:YES];
@@ -707,8 +706,6 @@
     [self.currentMatch createMatchWithChallenge:challenge currentWizard:UserService.shared.currentWizard];
     [self.navigationController presentViewController:self.currentMatch animated:YES completion:nil];
     
-    [AnalyticsService event:@"JoinMultiplayer"];
-    
     // Should be called after viewDidLoad
     [self.currentMatch startMatch];
 
@@ -745,7 +742,7 @@
     // 1. need to choose between email, sms, or facebook
     // 2. 
     
-    [AnalyticsService event:@"FriendInviteTap"];
+    [AnalyticsService event:@"invite"];
     
     UIActionSheet * sheet = [[UIActionSheet alloc] initWithTitle:@"Invite Frenemies" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Facebook", @"Email", @"SMS", nil];
     [sheet showInView:self.view];
@@ -765,6 +762,8 @@
         [alertView show];
         return;
     }
+    
+    [AnalyticsService event:@"invite-email"];    
     
     UserFriendService * service = [UserFriendService shared];
     MFMailComposeViewController *picker = [MFMailComposeViewController new];
@@ -790,6 +789,8 @@
         return;
     }
     
+    [AnalyticsService event:@"invite-sms"];
+    
     UserFriendService * service = [UserFriendService shared];
     MFMessageComposeViewController *picker = [[MFMessageComposeViewController alloc] init];
     picker.messageComposeDelegate = self;
@@ -802,6 +803,8 @@
 - (void)inviteFacebookFriend {
     // Connect their facebook account first, then open the friend invite dialog
     // it doesn't make sense to invite friends without having them connect facebook first
+    
+    [AnalyticsService event:@"invite-facebook"];    
     
     User * user = [UserService.shared currentUser];
     [self showLoading];
@@ -835,7 +838,7 @@
 }
 
 - (void)facebookViewControllerDoneWasPressed:(id)sender {
-    [AnalyticsService event:@"FriendSelected"];
+    [AnalyticsService event:@"invite-facebook-friend"];
     
     FBFriendPickerViewController *friendPickerController = (FBFriendPickerViewController*)sender;
     NSLog(@"Selected friends: %@", friendPickerController.selection);
@@ -847,17 +850,21 @@
         return info[@"id"];
     }];
     
-    [UserFriendService.shared openFeedDialogTo:friendIds];
+    [UserFriendService.shared openFeedDialogTo:friendIds complete:^{
+        [AnalyticsService event:@"invite-facebook-friend-complete"];
+    } cancel:^{
+        [AnalyticsService event:@"invite-facebook-friend-cancel"];
+    }];
 }
 
 - (void)facebookViewControllerCancelWasPressed:(id)sender {
     NSLog(@"Canceled");
+    [AnalyticsService event:@"invite-facebook-cancel"];
     // Dismiss the friend picker
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)didTapAccount {
-    [AnalyticsService event:@"ProfileTap"];    
     ProfileViewController * profile = [ProfileViewController new];
     UINavigationController * navigation = [[UINavigationController alloc] initWithRootViewController:profile];
     [self.navigationController presentViewController:navigation animated:YES completion:nil];
@@ -867,10 +874,20 @@
 - (void)mailComposeController:(MFMailComposeViewController*)controller
           didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
 {
+    if (result == MFMailComposeResultSent)
+        [AnalyticsService event:@"invite-email-complete"];
+    else
+        [AnalyticsService event:@"invite-email-cancel"];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
+    if (result == MessageComposeResultSent)
+        [AnalyticsService event:@"invite-sms-complete"];
+    else
+        [AnalyticsService event:@"invite-sms-cancel"];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

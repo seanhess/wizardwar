@@ -131,7 +131,7 @@
 
 - (void)saveDeviceToken:(NSString *)deviceToken {
     
-    [AnalyticsService event:@"DeviceToken"];
+    [AnalyticsService event:@"push-enabled"];
     
     // this must be before you set the device token on yours
     User * otherUserWithToken = [ObjectStore.shared requestLastObject:[self requestDeviceToken:deviceToken user:self.currentUser]];

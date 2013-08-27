@@ -39,7 +39,7 @@
 
 - (void)viewDidLoad
 {
-    [AnalyticsService event:@"SpellbookLoad"];
+    [AnalyticsService event:@"spellbook"];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 
     self.title = @"Spellbook";

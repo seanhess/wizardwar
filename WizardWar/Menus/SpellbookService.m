@@ -17,6 +17,7 @@
 #import "SpellEffect.h"
 #import "Achievement.h"
 #import "UserService.h"
+#import "AnalyticsService.h"
 
 @interface SpellbookService ()
 @end
@@ -96,9 +97,11 @@
         SpellbookLevel beforeLevel = record.level;
         record.castTotal += [totals[type] intValue];
         record.castMatchesTotal += 1;
+        [AnalyticsService event:[NSString stringWithFormat:@"spell-%@", type]];
         if (didWin) record.castMatchesWins += 1;
         if (record.level > beforeLevel) {
             [achievements addObject:[Achievement spellLevel:record]];
+            [AnalyticsService event:[NSString stringWithFormat:@"spell-unlock-%@-%i", type, record.level]];
             if (record.level > SpellbookLevelNovice) {
                 currentUser.wizardLevel += 1;
                 [achievements addObject:[Achievement wizardLevel:currentUser]];

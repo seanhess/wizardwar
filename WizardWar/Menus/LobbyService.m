@@ -27,6 +27,7 @@
 @property (nonatomic, strong) User * joinedUser;
 @property (nonatomic) BOOL joining;
 @property (nonatomic) NSTimeInterval serverOffset;
+- (void)leaveLobby:(User*)user;
 @end
 
 // Use location is central to LOBBY
@@ -84,6 +85,11 @@
 }
 
 - (void)disconnect {
+    if (self.joinedUser)
+        [self leaveLobby:self.joinedUser];
+    self.joinedUser = nil;
+    self.joined = NO;
+    self.joining = NO;
     [self.lobby removeAllObservers];
     [self.serverTimeOffset removeAllObservers];
     self.lobby = nil;
@@ -156,16 +162,19 @@
     [self onAdded:snapshot];
 }
 
+// I DO need to leave the lobby if inactive, because it can happen on app close
 -(void)onChangedIsUserActive:(BOOL)active {
     // ignore unless we've already joined once
     if (!self.joinedUser) return;
     
-    if (active && !self.joined) {
+    if (active) {
         [self joinLobby:self.joinedUser];
-    } else if (!active && self.joined) {
+    } else {
         [self leaveLobby:self.joinedUser];
     }
 }
+
+// set isJoined:(User*)user is 
 
 // Maybe we should have this OBSERVE the location service for the location?
 - (void)setLocation:(CLLocation *)location {

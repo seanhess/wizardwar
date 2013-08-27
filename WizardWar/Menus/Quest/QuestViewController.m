@@ -41,6 +41,8 @@
 
 - (void)viewDidLoad
 {
+    [AnalyticsService event:@"quest-all"];
+    
     [super viewDidLoad];
     
 //    NSString * buttonText = [NSString stringFromAwesomeIcon:FAIconUser];
@@ -184,6 +186,8 @@
         return;
     }
     
+    [AnalyticsService event:[NSString stringWithFormat:@"quest-%i", questLevel.level]];
+    
     MatchViewController * match = [[MatchViewController alloc] init];
     [match createMatchWithWizard:UserService.shared.currentWizard withLevel:questLevel];
     [self.navigationController presentViewController:match animated:YES completion:nil];
@@ -200,7 +204,6 @@
 
 
 - (IBAction)didTapAccount {
-    [AnalyticsService event:@"ProfileTap"];
     ProfileViewController * settings = [ProfileViewController new];
     UINavigationController * navigation = [[UINavigationController alloc] initWithRootViewController:settings];
     [self.navigationController presentViewController:navigation animated:YES completion:nil];

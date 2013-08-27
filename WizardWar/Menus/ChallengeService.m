@@ -112,7 +112,7 @@
 
 
 - (void)acceptChallenge:(Challenge*)challenge {
-    [AnalyticsService event:@"ChallengeAccept"];       
+    [AnalyticsService event:@"challenge-accept"];
     [self setChallenge:challenge status:ChallengeStatusAccepted];
 }
 
@@ -163,7 +163,7 @@
 // this is only called from the perspective of the current user
 // Need to get the same one for the given user
 - (Challenge*)user:(User*)user challengeOpponent:(User*)opponent isRemote:(BOOL)isRemote {
-    [AnalyticsService event:@"ChallengeIssue"];          
+    [AnalyticsService event:@"challenge"];
     Challenge * challenge = [self createOrFindChallengeForUser:user];
     challenge.main = user;
     challenge.opponent = opponent;
@@ -249,10 +249,14 @@
 
 - (void)notifyOpponent:(Challenge*)challenge {
     
+    [AnalyticsService event:@"push-attempt"];
+    
     if (!challenge.opponent.deviceToken) {
         NSLog(@"CANNOT PUSH! no device token");
         return;
     }
+    
+    [AnalyticsService event:@"push-sent"];    
     
     // Create our Installation query
     PFQuery *pushQuery = [PFInstallation query];

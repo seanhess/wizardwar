@@ -121,6 +121,7 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [AnalyticsService event:@"push-received"];
     [PFPush handlePush:userInfo];
     [self launchMatchmaking:userInfo[@"matchId"]];
 }

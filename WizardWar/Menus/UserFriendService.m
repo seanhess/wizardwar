@@ -228,7 +228,7 @@
 
 }
 
--(void)openFeedDialogTo:(NSArray *)facebookIds {
+-(void)openFeedDialogTo:(NSArray *)facebookIds complete:(void (^)(void))onComplete cancel:(void (^)(void))onCancel {
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"name"] = self.inviteSubject;
@@ -253,8 +253,10 @@
              if (result == FBWebDialogResultDialogNotCompleted) {
                  // User clicked the "x" icon
                  NSLog(@"User canceled story publishing.");
+                 if (onCancel) onCancel();
              } else {
                  // Handle the publish feed callback
+                 if (onComplete) onComplete();
              }
          }
      }];

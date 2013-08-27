@@ -49,7 +49,8 @@
 
 - (void)viewDidLoad
 {
-    [AnalyticsService event:@"ProfileLoad"];
+    [AnalyticsService event:@"profile"];
+    
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationItem.titleView = [ComicZineDoubleLabel titleView:self.title navigationBar:self.navigationController.navigationBar];
     
@@ -258,7 +259,7 @@
 -(void)didTapFacebook {
     if ([UserFriendService.shared isAuthenticatedFacebook]) {
         User * user = [UserService.shared currentUser];
-        [AnalyticsService event:@"FacebookDisconnectTap"];
+        [AnalyticsService event:@"facebook-disconnect"];
         [UserFriendService.shared user:user disconnectFacebook:^{
             [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
         }];
@@ -269,9 +270,10 @@
 }
 
 -(void)connectFacebook {
-    [AnalyticsService event:@"FacebookConnectTap"];
+    [AnalyticsService event:@"facebook"];
     User * user = [UserService.shared currentUser];
     [UserFriendService.shared user:user authenticateFacebook:^(BOOL success, User* updated) {
+        [AnalyticsService event:@"facebook-complete"];        
         if (success) {
             // load friends now in the background
             [UserFriendService.shared user:user loadFacebookFriends:nil];

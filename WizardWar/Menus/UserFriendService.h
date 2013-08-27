@@ -43,7 +43,7 @@ typedef enum FBStatus {
 -(NSURL*)user:(User*)user facebookAvatarURLWithSize:(CGSize)size;
 
 -(void)openInviteFriendsDialog;
--(void)openFeedDialogTo:(NSArray*)facebookIds;
+-(void)openFeedDialogTo:(NSArray*)facebookIds complete:(void(^)(void))onComplete cancel:(void(^)(void))cancel;
 -(void)inviteFriend:(NSString*)facebookId;
 
 // CORE DATA

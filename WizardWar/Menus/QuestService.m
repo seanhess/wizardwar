@@ -28,6 +28,7 @@
 #import "AITMaybe.h"
 #import "AITMessage.h"
 #import "EnvironmentLayer.h"
+#import "AnalyticsService.h"
 
 #define QUEST_LEVEL_ENTITY @"QuestLevel"
 
@@ -52,6 +53,7 @@
 }
 
 - (NSArray*)finishedQuest:(QuestLevel*)questLevel didWin:(BOOL)didWin {
+    if (!questLevel) return @[];
     
     NSMutableArray * achievements = [NSMutableArray array];
     BOOL wasMastered = questLevel.isMastered;
@@ -59,6 +61,8 @@
     questLevel.gamesTotal += 1;
     if (didWin) {
         questLevel.gamesWins += 1;
+        
+        [AnalyticsService event:[NSString stringWithFormat:@"quest-%i-complete", questLevel.level]];
 
         // Increase levels and stuff!
         User * currentUser = [UserService.shared currentUser];

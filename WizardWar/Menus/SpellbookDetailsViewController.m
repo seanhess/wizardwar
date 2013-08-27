@@ -18,6 +18,7 @@
 #import "NSArray+Functional.h"
 #import "SpellbookInteractionCell.h"
 #import "UIImage+MonoImage.h"
+#import "AnalyticsService.h"
 
 #define SECTION_INFO 0
 #define SECTION_STATS 1
@@ -62,6 +63,9 @@
 
 - (void)viewDidLoad
 {
+    [AnalyticsService event:@"spellbook-details"];
+    [AnalyticsService event:[NSString stringWithFormat:@"spellbook-details-%@", self.record.type]];
+    
     self.title = self.record.name;
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationItem.titleView = [ComicZineDoubleLabel titleView:self.title navigationBar:self.navigationController.navigationBar];

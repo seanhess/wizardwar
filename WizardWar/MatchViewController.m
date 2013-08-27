@@ -72,9 +72,7 @@
 {
     [super viewDidLoad];
     self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    
-    [AnalyticsService event:@"MatchLoad"];    
-    
+        
     NSLog(@"MatchVC.viewDidLoad");
     
     self.helpButton.titleLabel.font = [UIFont fontWithName:FONT_AWESOME size:38];
@@ -180,6 +178,9 @@
 }
 
 - (void)createMatchWithChallenge:(Challenge *)challenge currentWizard:(Wizard *)wizard {
+    [AnalyticsService event:@"match"];
+    [AnalyticsService event:@"match-challenge"];
+    
     // join in the ready screen!
     self.challenge = challenge;
     TimerSyncService.shared.root = [ConnectionService.shared root];
@@ -189,6 +190,8 @@
 
 - (void)createMatchWithWizard:(Wizard *)wizard withLevel:(QuestLevel *)level {
     self.questLevel = level;
+    [AnalyticsService event:@"match"];
+    [AnalyticsService event:@"match-quest"];    
     
     Match * match = [[Match alloc] initWithMatchId:@"Quest" hostName:wizard.name currentWizard:wizard withAI:[level.ai create] multiplayer:nil sync:nil];
     self.match = match;
@@ -292,6 +295,11 @@
         // Don't mark them as finished unless you actually finish
         [SpellbookService.shared finishedMatch:self.match.mainPlayerSpellHistory didWin:didWin];
         [QuestService.shared finishedQuest:self.questLevel didWin:didWin];
+        [AnalyticsService event:@"match-complete"];
+        if (self.questLevel)
+            [AnalyticsService event:@"match-quest-complete"];
+        else if (self.challenge)
+            [AnalyticsService event:@"match-challenge-complete"];            
     }
     
 //    NSArray * achievements = [challengeAchievements ]
