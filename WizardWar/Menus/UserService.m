@@ -134,9 +134,9 @@
     [AnalyticsService event:@"push-enabled"];
     
     // this must be before you set the device token on yours
-    User * otherUserWithToken = [ObjectStore.shared requestLastObject:[self requestDeviceToken:deviceToken user:self.currentUser]];
-    if (otherUserWithToken)
-        [self mergeCurrentUserWith:otherUserWithToken];
+//    User * otherUserWithToken = [ObjectStore.shared requestLastObject:[self requestDeviceToken:deviceToken user:self.currentUser]];
+//    if (otherUserWithToken)
+//        [self mergeCurrentUserWith:otherUserWithToken];
 
     self.pushAccepted = YES;
     
@@ -148,6 +148,7 @@
 
 
 - (void)mergeCurrentUserWith:(User*)user {
+    return;
     
     // Remove old current user
     User * oldCurrentUser = self.currentUser;
