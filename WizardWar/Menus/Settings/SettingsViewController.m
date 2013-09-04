@@ -57,6 +57,7 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
@@ -82,10 +83,10 @@
         return 1;
     else if (section == SECTION_INFO) {
         // only show delete all data if debug mode
-        if (DEBUG)
-            return 3;
-        else
-            return 2;
+#ifdef DEBUG
+        return 3;
+#endif
+        return 2;
     }
     else if (section == SECTION_PROFILE)
         return 1;
