@@ -40,9 +40,9 @@
 -(id)init {
     self = [super init];
     if (self) {
-        self.inviteSubject = @"Download Wizard War";
+        self.inviteSubject = @"I'm playing Wizard War";
         self.inviteCaption = @"App Store";
-        self.inviteBody = @"Come play Wizard War with me! Download the free app for iPhone or iPad!";
+        self.inviteBody = @"Download Wizard War so I can punch you in the face with magic! Epic multiplayer wizard duels and single player quests.";
         self.inviteLink = @"http://tflig.ht/10YUQCE";
         self.invitePictureURL = @"http://wizardwarapp.com/fblogo.png";
         

@@ -776,7 +776,7 @@
     // [picker addAttachmentData:myData mimeType:@"image/jpeg" fileName:@"rainy"];
     
     // Fill out the email body text
-    NSString * body = [NSString stringWithFormat:@"%@ %@", service.inviteBody, service.inviteLink];
+    NSString * body = [NSString stringWithFormat:@"%@\n\n%@", service.inviteBody, service.inviteLink];
     [picker setMessageBody:body isHTML:NO];
     
     [self presentViewController:picker animated:YES completion:NULL];
@@ -795,7 +795,7 @@
     MFMessageComposeViewController *picker = [[MFMessageComposeViewController alloc] init];
     picker.messageComposeDelegate = self;
     
-    picker.body = [NSString stringWithFormat:@"%@ %@", service.inviteBody, service.inviteLink];
+    picker.body = [NSString stringWithFormat:@"%@\n\n%@", service.inviteBody, service.inviteLink];
     
     [self presentViewController:picker animated:YES completion:NULL];
 }

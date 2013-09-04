@@ -31,11 +31,12 @@
 #import "User.h"
 #import "QuestService.h"
 #import "ProfileViewController.h"
+#import <MessageUI/MessageUI.h>
 
 #import <FacebookSDK/FacebookSDK.h>
 #import "NSArray+Functional.h"
 
-@interface LandingViewController ()  <FBFriendPickerDelegate>
+@interface LandingViewController ()  <FBFriendPickerDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet MenuButton *multiplayerButton;
 @property (weak, nonatomic) IBOutlet MenuButton *questButton;
 @property (nonatomic, strong) MatchViewController* match;
@@ -184,8 +185,68 @@
 - (IBAction)didTapShare:(id)sender {
     [AnalyticsService event:@"share"];
     
+    UIActionSheet * sheet = [[UIActionSheet alloc] initWithTitle:@"Share Wizard War" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Facebook", @"Email", @"SMS", nil];
+    [sheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) [self shareFacebook];
+    else if (buttonIndex == 1) [self shareEmail];
+    else if (buttonIndex == 2) [self shareSMS];
+    return;
+}
+
+- (void)shareEmail {
+    if (![MFMailComposeViewController canSendMail]) {
+        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"Cannot send email" message:@"Email is not enabled on your system" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+        return;
+    }
+    
+    [AnalyticsService event:@"share-email"];
+    
+    UserFriendService * service = [UserFriendService shared];
+    MFMailComposeViewController *picker = [MFMailComposeViewController new];
+    picker.mailComposeDelegate = self;
+    [picker setSubject:service.inviteSubject];
+    
+    // Attach an image to the email
+    // NSString *path = [[NSBundle mainBundle] pathForResource:@"rainy" ofType:@"jpg"];
+    // NSData *myData = [NSData dataWithContentsOfFile:path];
+    // [picker addAttachmentData:myData mimeType:@"image/jpeg" fileName:@"rainy"];
+    
+    // Fill out the email body text
+    NSString * body = [NSString stringWithFormat:@"%@\n\n%@", service.inviteBody, service.inviteLink];
+    [picker setMessageBody:body isHTML:NO];
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+}
+
+- (void)shareSMS {
+    if (![MFMessageComposeViewController canSendText]) {
+        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"Cannot send text" message:@"Texting is not enabled on your system" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+        return;
+    }
+    
+    [AnalyticsService event:@"share-sms"];
+    
+    UserFriendService * service = [UserFriendService shared];
+    MFMessageComposeViewController *picker = [[MFMessageComposeViewController alloc] init];
+    picker.messageComposeDelegate = self;
+    
+    picker.body = [NSString stringWithFormat:@"%@\n\n%@", service.inviteBody, service.inviteLink];
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+}
+
+
+- (void)shareFacebook {
     // Connect their facebook account first, then open the friend invite dialog
     // it doesn't make sense to invite friends without having them connect facebook first
+    
+    [AnalyticsService event:@"share-facebook"];
+    
     
     User * user = [UserService.shared currentUser];
     [UserFriendService.shared user:user authenticateFacebook:^(BOOL success, User * updated) {
@@ -195,13 +256,34 @@
         
         if (success) {
             [UserFriendService.shared openFeedDialogTo:@[] complete:^{
-                [AnalyticsService event:@"share-complete"];
+                [AnalyticsService event:@"share-facebook-complete"];
             } cancel:^{
-                [AnalyticsService event:@"share-cancel"];
+                [AnalyticsService event:@"share-facebook-cancel"];
             }];
         }
     }];
 }
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller
+          didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+    if (result == MFMailComposeResultSent)
+        [AnalyticsService event:@"share-email-complete"];
+    else
+        [AnalyticsService event:@"share-email-cancel"];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
+    if (result == MessageComposeResultSent)
+        [AnalyticsService event:@"share-sms-complete"];
+    else
+        [AnalyticsService event:@"share-sms-cancel"];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 
 @end
