@@ -239,6 +239,7 @@
     if (!self.joined) return;
     NSLog(@"LobbyService: (LEAVE)");
     self.joined = NO;
+    if (!user.userId) return;
     // comment out to test disconnecting
     Firebase * node = [self.lobby childByAppendingPath:user.userId];
     [node removeValue];
