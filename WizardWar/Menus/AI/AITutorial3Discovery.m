@@ -38,7 +38,7 @@
             
             [TutorialStep win:@"Wahoo! I'm awesome. I'm attractive. Gots me all the ladies." lose:@"I'm just going to lay here for a while"],
             
-           [TutorialStep modalMessage:@"Go check out the spellbook to see what you've unlocked!"],            
+//           [TutorialStep modalMessage:@"Go check out the spellbook to see what you've unlocked!"],            
         ];
     }
     return self;

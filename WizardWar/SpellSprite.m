@@ -207,9 +207,13 @@
     self.position = position;
 }
 
+// not all of them can grow
+// there are some with set damages. 
 - (void)renderSpellDamage {
     
     CGFloat scale = 1.0;
+    
+    if ([self.spell isAnyType:@[Cthulhu, Chicken]]) return;
     
     if ([self.spell isType:CaptainPlanet] && self.spell.damage == 0) {
         scale = 0.85;

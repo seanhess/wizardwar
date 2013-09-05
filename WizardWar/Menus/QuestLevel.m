@@ -7,9 +7,10 @@
 //
 
 #import "QuestLevel.h"
+#import "AIOpponent.h"
 
 @implementation QuestLevel
-@synthesize AIType = _AIType;
+@synthesize ai = _ai;
 
 @dynamic name;
 @dynamic gamesTotal;
@@ -22,6 +23,7 @@
     return ((float)self.gamesWins / (float)self.masteryWins);
 }
 
+// problem is
 //-(NSInteger)masteryWins {
 //    return self.gamesLosses + 2; // you have to win 2 times + the number of times you've lost
 //}
@@ -41,5 +43,11 @@
 - (BOOL)hasAttempted {
     return self.gamesTotal > 0;
 }
+
+-(void)setAi:(AIOpponentFactory *)ai {
+    ai.name = self.name;
+    _ai = ai;
+}
+
 
 @end

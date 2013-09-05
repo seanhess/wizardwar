@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SpellRecord.h"
+#import "Elements.h"
 
 #define SPELLBOOK_DIAGRAM_HEIGHT 320
 

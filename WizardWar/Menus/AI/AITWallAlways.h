@@ -14,5 +14,7 @@
 
 @interface AITWallAlways : NSObject <AITactic>
 @property (nonatomic, strong) NSArray * walls;
+@property (nonatomic)  NSTimeInterval reactionTime;
 +(id)walls:(NSArray*)walls;
++(id)walls:(NSArray*)walls reactionTime:(NSTimeInterval)reactionTime;
 @end

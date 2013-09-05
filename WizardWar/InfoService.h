@@ -16,5 +16,8 @@
 +(NSURL*)downloadURL;
 +(NSString*)supportEmail;
 +(NSString*)firebaseUrl;
++(NSString*)openSourceUrl;
++(NSString*)creditsUrl;
++(NSString*)appId;
 
 @end

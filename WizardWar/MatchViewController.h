@@ -13,7 +13,7 @@
 #import "QuestLevel.h"
 
 @protocol MatchViewControllerDelegate <NSObject>
--(void)didFinishChallenge:(Challenge*)challenge didWin:(BOOL)win;
+-(NSArray*)didFinishChallenge:(Challenge*)challenge didWin:(BOOL)win;
 @end
 
 @interface MatchViewController : UIViewController

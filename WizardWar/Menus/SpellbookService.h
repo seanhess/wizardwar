@@ -21,6 +21,8 @@
 - (NSString*)spellIconName:(SpellRecord*)record;
 - (NSString*)spellIconNameByType:(NSString*)type;
 
+- (void)deleteAllData;
+
 - (NSArray*)allSpellRecords;
 - (SpellRecord*)recordByType:(NSString*)type;
 

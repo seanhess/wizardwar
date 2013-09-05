@@ -113,6 +113,13 @@
     [self onAdded:snapshot];
 }
 
+- (void)deleteAllData {
+    self.currentUser = nil;
+    NSArray * users = [ObjectStore.shared requestToArray:[self requestAllUsers]];
+    [users forEach:^(User*user) {
+        [ObjectStore.shared.context deleteObject:user];
+    }];
+}
 
 
 # pragma mark - Friends
@@ -124,12 +131,12 @@
 
 - (void)saveDeviceToken:(NSString *)deviceToken {
     
-    [AnalyticsService event:@"DeviceToken"];
+    [AnalyticsService event:@"push-enabled"];
     
     // this must be before you set the device token on yours
-    User * otherUserWithToken = [ObjectStore.shared requestLastObject:[self requestDeviceToken:deviceToken user:self.currentUser]];
-    if (otherUserWithToken)
-        [self mergeCurrentUserWith:otherUserWithToken];
+//    User * otherUserWithToken = [ObjectStore.shared requestLastObject:[self requestDeviceToken:deviceToken user:self.currentUser]];
+//    if (otherUserWithToken)
+//        [self mergeCurrentUserWith:otherUserWithToken];
 
     self.pushAccepted = YES;
     
@@ -141,6 +148,7 @@
 
 
 - (void)mergeCurrentUserWith:(User*)user {
+    return;
     
     // Remove old current user
     User * oldCurrentUser = self.currentUser;
@@ -194,6 +202,8 @@
             user.isMain = YES;
             user.name = [self randomWizardName]; // [NSString stringWithFormat:@"Guest%@", [IdService randomId:4]];
             user.isGuestAccount = YES;
+            user.wizardLevel = 1;
+//            user.questLevel = 10;
             user.color = [UIColor blackColor];
             NSLog(@"UserService.currentUser: GENERATED %@", user.userId);
         } else {

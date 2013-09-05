@@ -36,7 +36,7 @@
 }
 
 -(void)cancel:(Wizard*)player {
-    
+    // doesn't actually cancel it!?
 }
 
 // Default effect applied to player, is to deal damage

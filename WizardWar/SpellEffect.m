@@ -30,7 +30,7 @@
 
 @implementation SEWeaker
 -(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick {
-    if (spell.direction == otherSpell.direction) return NO;
+    if ((spell.isWall || otherSpell.isWall) && spell.direction == otherSpell.direction) return NO;
     // only check if the spell that will make ME weaker is carried
     if ([SECarry isCarried:otherSpell]) return NO;
     spell.strength -= otherSpell.damage;
@@ -46,14 +46,17 @@
 @implementation SEDestroy
 -(id)init {
     if ((self = [super init])) {
-        self.bothDirections = NO;
+//        self.bothDirections = NO;
     }
     return self;
 }
 -(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick {
-    if (!self.bothDirections && spell.direction == otherSpell.direction) return NO;
+    if ((spell.isWall || otherSpell.isWall) && spell.direction == otherSpell.direction) return NO;
     if ([SECarry isCarried:spell]) return NO;
     if ([SECarry isCarried:otherSpell]) return NO;
+    // unless it IS sleep, in which cast it should keep on trucking
+    if ([spell.spellEffect isKindOfClass:[SESleep class]]) return NO;
+    if ([otherSpell.spellEffect isKindOfClass:[SESleep class]]) return NO;
     spell.strength = 0;
     return YES;
 }
@@ -117,7 +120,8 @@
 @implementation SESleep
 -(BOOL)applyToSpell:(Spell*)spell otherSpell:(Spell*)otherSpell tick:(NSInteger)tick {
     if ([SECarry isCarried:spell]) return NO;
-    
+    if ((spell.isWall || otherSpell.isWall) && spell.direction == otherSpell.direction) return NO;
+    if ([spell.spellEffect isKindOfClass:[SESleep class]]) return NO;    
     spell.speed = 0;
     spell.spellEffect = self;
 //    spell.linkedSpell = otherSpell;

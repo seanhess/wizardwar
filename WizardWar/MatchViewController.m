@@ -35,7 +35,7 @@
 #import "ChallengeService.h"
 #import "SpellbookService.h"
 #import "ConnectionService.h"
-#import "RACHelpers.h"
+#import "RACSignal+Filters.h"
 #import "QuestLevel.h"
 #import "QuestService.h"
 
@@ -72,9 +72,7 @@
 {
     [super viewDidLoad];
     self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    
-    [AnalyticsService event:@"MatchLoad"];    
-    
+        
     NSLog(@"MatchVC.viewDidLoad");
     
     self.helpButton.titleLabel.font = [UIFont fontWithName:FONT_AWESOME size:38];
@@ -142,11 +140,11 @@
     
     RAC(self.matchStatus) = matchLayer.matchStatusSignal;
     
-    RACSignal * hideControls = [matchLayer.showControlsSignal map:RACMapNot];
+    RACSignal * hideControls = [matchLayer.showControlsSignal not];
     RAC(self.pentagram.hidden) = hideControls;
-    RAC(self.pentagram.disabled) = [RACAble(self.match.ai.disableControls) filter:RACFilterExists];
-    RAC(self.message.hidden) = hideControls;
-    RAC(self.subMessage.hidden) = hideControls;
+    RAC(self.pentagram.disabled) = [RACAble(self.match.ai.disableControls) safe];
+    RAC(self.message.hidden) = matchLayer.aiHideControlsSignal;
+    RAC(self.subMessage.hidden) = matchLayer.aiHideControlsSignal;
     RAC(self.combos.allowedSpells) = RACAble(self.match.ai.allowedSpells);
     RAC(self.pentagram.helpSelectElements) = RACAble(self.match.ai.helpSelectedElements);
 }
@@ -180,6 +178,9 @@
 }
 
 - (void)createMatchWithChallenge:(Challenge *)challenge currentWizard:(Wizard *)wizard {
+    [AnalyticsService event:@"match"];
+    [AnalyticsService event:@"match-challenge"];
+    
     // join in the ready screen!
     self.challenge = challenge;
     TimerSyncService.shared.root = [ConnectionService.shared root];
@@ -189,9 +190,10 @@
 
 - (void)createMatchWithWizard:(Wizard *)wizard withLevel:(QuestLevel *)level {
     self.questLevel = level;
-    id<AIService>ai = [level.AIType new];
+    [AnalyticsService event:@"match"];
+    [AnalyticsService event:@"match-quest"];    
     
-    Match * match = [[Match alloc] initWithMatchId:@"Quest" hostName:wizard.name currentWizard:wizard withAI:ai multiplayer:nil sync:nil];
+    Match * match = [[Match alloc] initWithMatchId:@"Quest" hostName:wizard.name currentWizard:wizard withAI:[level.ai create] multiplayer:nil sync:nil];
     self.match = match;
 }
 
@@ -206,6 +208,11 @@
     NSLog(@"MatchVC.renderMatchStatus %i", self.match.status);
     self.subMessage.textColor = [UIColor colorFromRGB:0xCACACA];
     self.subMessage.alpha = 1.0;
+    
+    if (self.match.status != MatchStatusEnded)
+        [[SimpleAudioEngine sharedEngine] setEffectsVolume:1.0];
+    else
+        [[SimpleAudioEngine sharedEngine] setEffectsVolume:0.0];
     
     if (self.match.status == MatchStatusReady) {
         self.message.alpha = 1.0;
@@ -269,23 +276,33 @@
             sae.backgroundMusicVolume = 0.2f;
         }
     }
- 
-//#ifndef DEBUG
     [sae playBackgroundMusic:@"theme.mp3"];
-//#endif
+ 
+#if TARGET_IPHONE_SIMULATOR
+    sae.backgroundMusicVolume = 0.0;
+#endif
+    
 }
 
 - (void)didFinishMatch:(BOOL)didFinish didWin:(BOOL)didWin {
     // always mark the challenge as lost
-    if (self.challenge)
+    if (self.challenge) {
         [self.delegate didFinishChallenge:self.challenge didWin:didWin];
+    }
     
     // it doesn't matter for these guys?
     if (didFinish) {
         // Don't mark them as finished unless you actually finish
-        NSArray * spellbookAchievements = [SpellbookService.shared finishedMatch:self.match.mainPlayerSpellHistory didWin:didWin];
-        NSArray * questAcievements = [QuestService.shared finishedQuest:self.questLevel didWin:didWin];
+        [SpellbookService.shared finishedMatch:self.match.mainPlayerSpellHistory didWin:didWin];
+        [QuestService.shared finishedQuest:self.questLevel didWin:didWin];
+        [AnalyticsService event:@"match-complete"];
+        if (self.questLevel)
+            [AnalyticsService event:@"match-quest-complete"];
+        else if (self.challenge)
+            [AnalyticsService event:@"match-challenge-complete"];            
     }
+    
+//    NSArray * achievements = [challengeAchievements ]
 }
 
 - (IBAction)didTapBack:(id)sender {
@@ -303,7 +320,9 @@
         // you leave early = you lose
         [self didFinishMatch:NO didWin:NO];
     }
-        
+    
+    [SimpleAudioEngine end];
+    
     [self.match disconnect];
     [WizardDirector unload];
     [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];

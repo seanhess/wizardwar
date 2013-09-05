@@ -7,6 +7,7 @@
 //
 
 #import "LocationService.h"
+#import "AnalyticsService.h"
 
 @interface LocationService () <CLLocationManagerDelegate>
 @property (nonatomic, strong) CLLocationManager * locationManager;
@@ -46,6 +47,7 @@
 
 // We only need one reading
 - (void)updateLocation:(CLLocation*)location {
+    [AnalyticsService event:@"location"];
     NSLog(@"LocationService: (+) %@", location);
     self.location = location;
     self.cannotFindLocation = NO;
@@ -75,6 +77,7 @@
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error {
     NSLog(@"LOCATION: (!) %@", error);
+    [AnalyticsService event:@"location-failed"];
     self.accepted = NO;
     self.cannotFindLocation = (error.code == kCLErrorLocationUnknown);    
 }

@@ -29,6 +29,7 @@
 }
 
 -(void)cancel:(Wizard*)player {
+    player.effect = nil;
     player.altitude = 0;
     [super cancel:player];
 }
@@ -36,9 +37,7 @@
 -(BOOL)simulateTick:(NSInteger)currentTick interval:(NSTimeInterval)interval player:(Wizard*)player {
     NSInteger ticksPerDuration = round(EFFECT_LEVITATE_DURATION / interval);
     if ((currentTick - player.effectStartTick) >= ticksPerDuration) {
-        NSLog(@"DROPPING %@ %i", player.name, player.effectStartTick);
-        player.effect = nil;
-        player.altitude = 0;
+        [self cancel:player];
     }
     return NO;
 }

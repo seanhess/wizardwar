@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "User.h"
 
-@interface ProfileCell : UITableViewCell
+@interface SettingsProfileCell : UITableViewCell
 
 @property (nonatomic, strong) UIView * colorView;
 @property (nonatomic, strong) UITextField * inputField;

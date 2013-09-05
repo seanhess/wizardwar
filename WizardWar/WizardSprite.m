@@ -21,7 +21,6 @@
 #import "PECthulhu.h"
 #import "PELevitate.h"
 #import "ChatBubbleSprite.h"
-#import "RACHelpers.h"
 
 #define SLEEP_ANIMATION_START_DELAY 0.2
 #define WIZARD_PADDING 20
@@ -45,8 +44,10 @@
 @interface WizardSprite () <OLSpriteFrameDelegate>
 @property (nonatomic, strong) Units * units;
 
+@property (nonatomic, readonly) BOOL isSingleFrame;
 @property (nonatomic, strong) CCLabelTTF * label;
 @property (nonatomic, strong) ChatBubbleSprite * chatBubble;
+@property (nonatomic, strong) CCSprite * single;
 @property (nonatomic, strong) OLSprite * skin;
 @property (nonatomic, strong) CCSprite * clothes;
 @property (nonatomic, strong) CCSprite * effect;
@@ -99,27 +100,40 @@
         
         __weak WizardSprite * wself = self;
         
-        self.skin = [OLSprite node];
-        self.skin.delegate = self;
-        self.clothes = [CCSprite node];
-        ccColor3B color = [self colorWithColor:wizard.color];
-        self.clothes.color = color;
-        [self addChild:self.skin];
-        [self addChild:self.clothes];
-        
         // I need to only show this if the game hasn't started!
         self.label = [CCLabelTTF labelWithString:self.wizardName fontName:FONT_COMIC_ZINE fontSize:36];
-        self.label.position = ccp(0, 130);
-        [self addChild:self.label];
-        
-#ifdef DEBUG
-        self.headDebug = [DebugSprite new];
-        [self addChild:self.headDebug];
-#endif
+        self.label.position = ccp(self.wizard.direction*10, 100);
+        self.label.horizontalAlignment = NSTextAlignmentCenter;
+        self.label.verticalAlignment = kCCVerticalTextAlignmentBottom;
+        self.label.dimensions = CGSizeMake(200, 400);
+        self.label.anchorPoint = ccp(0.5, 0);
+        [self addChild:self.label];        
         
         self.chatBubble = [ChatBubbleSprite new];
         [self addChild:self.chatBubble];
-        self.chatBubble.position = ccp(self.wizard.direction * 35, 130);
+        self.chatBubble.scale = 0;
+        self.chatBubble.position = self.chatBubblePosition;
+        
+        if (self.isSingleFrame) {
+            self.single = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"%@.png", self.wizard.wizardType]];
+            [self addChild:self.single];
+        }
+        
+        else {
+            self.skin = [OLSprite node];
+            self.skin.delegate = self;
+            self.clothes = [CCSprite node];
+            ccColor3B color = [self colorWithColor:wizard.color];
+            self.clothes.color = color;
+            [self addChild:self.skin];
+            [self addChild:self.clothes];
+        }
+        
+        
+#if TARGET_IPHONE_SIMULATOR
+        self.headDebug = [DebugSprite new];
+        [self addChild:self.headDebug];
+#endif
         
         // BIND: state, position
         
@@ -156,6 +170,14 @@
     return self;
 }
 
+
+-(CGPoint)chatBubblePosition {
+    return ccp(self.wizard.direction * 52, 120);
+}
+
+-(BOOL)isSingleFrame {
+    return [self.wizard.wizardType isEqualToString:WIZARD_TYPE_DUMMY];
+}
 
 -(NSMapTable*)wizard1HeadOffsets {
     if (!_wizard1HeadOffsets) {
@@ -205,9 +227,11 @@
 -(void)renderPosition {
     self.position = self.calculatedPosition;
 //    NSLog(@"renderPosition %@", NSStringFromCGPoint(self.position));
-    self.skin.flipX = (self.wizard.direction < 0);
-    self.clothes.flipX = self.skin.flipX;
-    self.chatBubble.flipX = self.skin.flipX;
+    BOOL flip = (self.wizard.direction < 0);
+    self.skin.flipX = flip;
+    self.clothes.flipX = flip;
+    self.chatBubble.flipX = flip;
+    self.single.flipX = flip;
 }
 
 -(void)update:(ccTime)delta {}
@@ -272,6 +296,21 @@
     if (self.wizard.effect.class == PESleep.class && (status == WizardStatusReady || status == WizardStatusHit || status == WizardStatusCast))
         return;
     
+    if (self.isSingleFrame) {
+        if (self.wizard.state == WizardStatusDead) {
+            [self.single runAction:[CCFadeOut actionWithDuration:0.4]];
+        }
+        
+        else if (self.wizard.state == WizardStatusHit) {
+            CCMoveBy * up = [CCMoveBy actionWithDuration:0.1 position:ccp(0, 10)];
+            CCMoveBy * down = [CCMoveBy actionWithDuration:0.1 position:ccp(0, -10)];
+            CCSequence * sequence = [CCSequence actions:up, down, nil];
+            [self.single runAction:sequence];
+        }
+        
+        return;
+    }
+    
     [self.skin stopAction:self.skinStatusAction];
     [self.clothes stopAction:self.clothesStatusAction];
     
@@ -297,6 +336,7 @@
 // So I should play through them perhaps?
 // I could index them depending on the delta...
 -(CCAnimation*)animationForStatus:(WizardStatus)status clothes:(BOOL)isClothes {
+    if (self.isSingleFrame) return nil;
     NSString * clothesSuffix = (isClothes) ? @"-clothes" : @"";
     NSString * animationName = [NSString stringWithFormat:@"%@%@", [self animationNameForStatus:status], clothesSuffix];
     CCAnimation *animation = [[CCAnimationCache sharedAnimationCache] animationByName:animationName];
@@ -309,10 +349,15 @@
 }
 
 - (void)setMatchStatus:(MatchStatus)status {
-    if ((status == MatchStatusReady || status == MatchStatusSyncing) && self.isCurrentWizard)
-        self.skin.color = ccc3(0, 255, 0);
-    else
+    if ((status == MatchStatusReady || status == MatchStatusSyncing) && self.isCurrentWizard) {
+        CCTintTo * glow = [CCTintTo actionWithDuration:0.2 red:0 green:255 blue:0];
+        CCTintTo * normal = [CCTintTo actionWithDuration:0.2 red:255 green:255 blue:255];
+        CCSequence * sequence = [CCSequence actions:glow, normal, glow, normal, glow, normal, nil];
+        [self.skin runAction:sequence];
+    }
+    else {
         self.skin.color = ccWHITE;
+    }
 }
 
 - (NSString*)wizardName {
@@ -380,9 +425,10 @@
         self.clothesEffectAction = [self actionForSleepEffectForClothes:YES];
         
         // then when the effect wears off, we need to re-render status
-        if (![self.currentEffect isKindOfClass:[PESleep class]]) {
-            self.rotation = -90;
-            CCFiniteTimeAction * rotate = [CCRotateTo actionWithDuration:SLEEP_ANIMATION_START_DELAY angle:0];
+        if (![self.currentEffect isKindOfClass:[PESleep class]] && !self.isSingleFrame) {
+            float start = -90;
+            self.rotation = start;
+            CCFiniteTimeAction * rotate = [CCRotateTo actionWithDuration:SLEEP_ANIMATION_START_DELAY angle:start+90];
             [self runAction:rotate];
         }
         
@@ -459,22 +505,31 @@
 -(void)renderAltitude {
     CGPoint pos = self.calculatedPosition;
 //    NSLog(@"renderAltitude %@ %f %@", self.wizard.name, self.wizard.altitude, NSStringFromCGPoint(self.position));
+    CGFloat dy = [self.units toHeight:self.wizard.altitude];
     CCFiniteTimeAction * toPos = [CCMoveTo actionWithDuration:0.2 position:ccp(pos.x, pos.y)];
     if (self.wizard.altitude == 1.0 && [self.wizard.effect isKindOfClass:[PELevitate class]]) {
         CCFiniteTimeAction * toHover = [CCMoveTo actionWithDuration:0.2 position:ccp(pos.x, pos.y+5)];
         self.hoverAction = [CCRepeatForever actionWithAction:[CCSequence actions:toPos, toHover, nil]];
         [self runAction:self.hoverAction];
+
+        CCFiniteTimeAction * toChatBubblePos = [CCMoveTo actionWithDuration:0.2 position:ccp(self.chatBubblePosition.x+30*self.wizard.direction, self.chatBubblePosition.y-dy)];
+        [self.chatBubble runAction:toChatBubblePos];
     }
     else if (self.wizard.altitude == 0.0) {
         [self stopAction:self.hoverAction];
         [self runAction:toPos];
+
+        CCFiniteTimeAction * toChatBubblePos = [CCMoveTo actionWithDuration:0.2 position:self.chatBubblePosition];
+        [self.chatBubble runAction:toChatBubblePos];
     } else {
         self.position = pos;
+        self.chatBubble.position = self.chatBubblePosition;
     }
 }
 
 
 -(NSString*)animationNameForStatus:(WizardStatus)status {
+    if (self.isSingleFrame) return nil;
     NSString * stateName = @"prepare";
     
     if (self.wizard.state == WizardStatusCast)

@@ -21,7 +21,11 @@
     if (activeWall == nil) {
         NSString * randomType = [self.walls randomItem];
         Spell * spell = [Spell fromType:randomType];
-        action = [AIAction spell:spell priority:5];
+        
+        if (self.reactionTime)
+            action = [AIAction spell:spell time:(spell.castDelay+self.reactionTime) priority:5];
+        else
+            action = [AIAction spell:spell priority:5];
     }
     
     return action;
@@ -33,4 +37,12 @@
     tactic.walls = walls;
     return tactic;
 }
+
++(id)walls:(NSArray*)walls reactionTime:(NSTimeInterval)reactionTime {
+    AITWallAlways * tactic = [AITWallAlways new];
+    tactic.walls = walls;
+    tactic.reactionTime = reactionTime;
+    return tactic;
+}
+
 @end

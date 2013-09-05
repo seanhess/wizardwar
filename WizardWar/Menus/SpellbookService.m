@@ -16,6 +16,8 @@
 #import "UIImage+MonoImage.h"
 #import "SpellEffect.h"
 #import "Achievement.h"
+#import "UserService.h"
+#import "AnalyticsService.h"
 
 @interface SpellbookService ()
 @end
@@ -77,6 +79,7 @@
 - (NSArray*)finishedMatch:(NSMutableArray*)spellHistory didWin:(BOOL)didWin {
     
     NSMutableArray * achievements = [NSMutableArray array];
+    User * currentUser = [UserService.shared currentUser];
 
     // now go through and store everything!
     // Group them by spell cast
@@ -94,11 +97,19 @@
         SpellbookLevel beforeLevel = record.level;
         record.castTotal += [totals[type] intValue];
         record.castMatchesTotal += 1;
+        [AnalyticsService event:[NSString stringWithFormat:@"spell-%@", type]];
         if (didWin) record.castMatchesWins += 1;
         if (record.level > beforeLevel) {
             [achievements addObject:[Achievement spellLevel:record]];
+            [AnalyticsService event:[NSString stringWithFormat:@"spell-unlock-%@-%i", type, record.level]];
+            if (record.level > SpellbookLevelNovice) {
+                currentUser.wizardLevel += 1;
+                [achievements addObject:[Achievement wizardLevel:currentUser]];
+            }
         }
     }
+    
+    
 
     return achievements;
 }
@@ -109,6 +120,12 @@
 
 
 
+- (void)deleteAllData {
+    // don't need to do anything!
+    [self.allSpellRecords forEach:^(SpellRecord*record) {
+        [ObjectStore.shared.context deleteObject:record];
+    }];
+}
 
 
 
@@ -122,12 +139,7 @@
         record = [ObjectStore.shared insertNewObjectForEntityForName:@"SpellRecord"];
         record.type = type;
         record.name = info.name;
-        
-        // unlock all spells taught in the first tutorials
-        if ([Spell type:type isAnyType:@[Fireball, Lightning, Monster, Earthwall, Firewall, Icewall]]) {
-            record.unlock = YES;
-        }
-        
+                
         // DEBUG STUFF
         //        record.castTotal = 0;
         //        record.castUniqueMatches = 0;
@@ -137,6 +149,14 @@
         
         NSLog(@"SpellRecord (+) %@", record.name);
     }
+    
+    // unlock all spells taught in the first tutorials
+    if ([Spell type:type isAnyType:@[Fireball, Lightning, Monster, Earthwall, Firewall, Icewall]]) {
+        record.unlock = YES;
+    }
+    
+//    record.unlock = YES;
+//    record.castMatchesTotal = 4;
     
     return record;
 }

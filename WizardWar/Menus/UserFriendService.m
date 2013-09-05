@@ -24,6 +24,7 @@
 #import "UserService.h"
 #import "LocationService.h"
 #import "InfoService.h"
+#import "Achievement.h"
 
 @implementation UserFriendService
 
@@ -39,9 +40,9 @@
 -(id)init {
     self = [super init];
     if (self) {
-        self.inviteSubject = @"Download Wizard War";
+        self.inviteSubject = @"I'm playing Wizard War";
         self.inviteCaption = @"App Store";
-        self.inviteBody = @"Come play Wizard War with me! Download the free app for iPhone or iPad!";
+        self.inviteBody = @"Download Wizard War so I can punch you in the face with magic! Epic multiplayer wizard duels and single player quests.";
         self.inviteLink = @"http://tflig.ht/10YUQCE";
         self.invitePictureURL = @"http://wizardwarapp.com/fblogo.png";
         
@@ -70,18 +71,24 @@
 }
 
 
--(void)user:(User *)user addChallenge:(Challenge *)challenge didWin:(BOOL)didWin {
-    User * friend = nil;
-    if (![challenge.main.userId isEqualToString:user.userId])
-        friend = challenge.main;
-    else
-        friend = challenge.opponent;
+-(NSArray*)user:(User *)user addChallenge:(Challenge *)challenge didWin:(BOOL)didWin {
+    User * friend = [challenge findOpponent:user];
+    NSMutableArray * achievements = [NSMutableArray array];
     
     // Wins AGAINST that friend
     friend.gamesTotal++;
     if (didWin) {
         friend.gamesWins++;
+        
+        // User levels and some such nonsense
+        // only go up if you won!
+        if (friend.wizardLevel > user.wizardLevel) {
+            user.wizardLevel += 1;
+            [achievements addObject:[Achievement wizardLevel:user]];
+        }
     }
+
+    return achievements;
 }
 
 -(void)user:(User*)user removeFrenemy:(User*)frenemy {
@@ -221,7 +228,7 @@
 
 }
 
--(void)openFeedDialogTo:(NSArray *)facebookIds {
+-(void)openFeedDialogTo:(NSArray *)facebookIds complete:(void (^)(void))onComplete cancel:(void (^)(void))onCancel {
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"name"] = self.inviteSubject;
@@ -246,8 +253,10 @@
              if (result == FBWebDialogResultDialogNotCompleted) {
                  // User clicked the "x" icon
                  NSLog(@"User canceled story publishing.");
+                 if (onCancel) onCancel();
              } else {
                  // Handle the publish feed callback
+                 if (onComplete) onComplete();
              }
          }
      }];

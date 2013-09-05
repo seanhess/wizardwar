@@ -13,6 +13,8 @@
 #import "UIColor+Hex.h"
 #import "AppStyle.h"
 #import <ReactiveCocoa.h>
+#import <QuartzCore/QuartzCore.h>
+#import "Combo.h"
 
 #define RECHARGE_INTERVAL 2.5
 
@@ -64,6 +66,8 @@
     
     self.feedbackLabel.font = [UIFont fontWithName:FONT_COMIC_ZINE_SOLID size:36];
     self.feedbackLabel.alpha = 0.0;
+    self.feedbackLabel.shadowColor = [UIColor blackColor];
+    self.feedbackLabel.shadowOffset = CGSizeMake(2, 2);
 }
 
 - (void)setUpPentagram
@@ -115,9 +119,10 @@
         for(PentEmblem *emblem in self.emblems)
         {
             emblem.status = EmblemStatusNormal;
-        }        
-        
+        }
     }
+    
+    self.feedbackLabel.alpha = (disabled) ? 0.0 : 1.0;
 //    CGFloat progress = (disabled) ? 0.0 : 1.0;
 //    
 //    self.fireEmblem.enabledProgress = progress;
@@ -142,7 +147,12 @@
     _helpSelectElements = helpSelectElements;
     if (!helpSelectElements) return;
     
-    [helpSelectElements forEach:^(NSNumber * elementNum) {
+    // get these guys in order!
+    ComboSelectedElements * selected = [ComboSelectedElements elements:helpSelectElements];
+    ElementType startElement = [selected startElement];
+    NSArray * sorted = [ComboSelectedElements elements:helpSelectElements sortByClockwiseDistanceFrom:startElement];
+    
+    [sorted forEach:^(NSNumber * elementNum) {
         ElementType element = elementNum.intValue;
         PentEmblem * emblem = [self emblemForElement:element];
         emblem.status = EmblemStatusSelected;

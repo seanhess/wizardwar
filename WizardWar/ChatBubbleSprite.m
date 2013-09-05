@@ -26,11 +26,11 @@
         [self addChild:self.background];
         
         self.label = [CCLabelTTF labelWithString:@"hello" fontName:FONT_LOVEYA fontSize:12.0];
-        self.label.dimensions = CGSizeMake(200, 300);
+        self.label.dimensions = CGSizeMake(190, 100);
         self.label.horizontalAlignment = NSTextAlignmentCenter;
-        self.label.verticalAlignment = NSTextAlignmentCenter;
+        self.label.verticalAlignment = kCCVerticalTextAlignmentCenter;
         self.label.color = ccc3(0, 0, 0);
-//        self.label.position = ccp(-50, 50);
+        self.label.position = ccp(2, 10);
         
 //        self.debugLabelLayer = [CCLayerColor layerWithColor:ccc4(0, 0, 255, 100) width:self.label.dimensions.width height:self.label.dimensions.height];
 ////        self.debugLabelLayer.position = ccp(-self.debugLabelLayer.contentSize.width/2, -self.debugLabelLayer.contentSize.height/2);

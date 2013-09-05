@@ -35,13 +35,14 @@
 #import "ChallengeCell.h"
 #import "FriendsViewController.h"
 #import <BButton.h>
-#import "SettingsViewController.h"
+#import "ProfileViewController.h"
 #import <NSString+FontAwesome.h>
 #import <FacebookSDK/FacebookSDK.h>
 #import "AnalyticsService.h"
 #import "UIViewController+Idiom.h"
 #import "InfoService.h"
 #import "WarningCell.h"
+#import "ProfileCell.h"
 #import "AppStyle.h"
 #import <MessageUI/MessageUI.h>
 
@@ -112,7 +113,7 @@
 
 - (void)viewDidLoad
 {
-    [AnalyticsService event:@"MatchmakingLoad"];
+    [AnalyticsService event:@"multiplayer"];
     
     [super viewDidLoad];
 
@@ -133,10 +134,12 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"ChallengeCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"ChallengeCell"];
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"WarningCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WarningCell"];    
+    [self.tableView registerNib:[UINib nibWithNibName:@"WarningCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WarningCell"];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:[ProfileCell identifier] bundle:[NSBundle mainBundle]] forCellReuseIdentifier:[ProfileCell identifier]];
+    
     
     [self.tableView setTableFooterView:self.explanationsView];
-    NSLog(@"TESTING %@", NSStringFromCGRect(self.tableView.tableFooterView.frame));
     
     self.title = @"Matchmaking";
     [self.navigationController setNavigationBarHidden:NO animated:YES];
@@ -145,13 +148,11 @@
     __weak MatchmakingViewController * wself = self;
     
     // LOBBY
-    [RACAble(LobbyService.shared, joined) subscribeNext:^(id x) {
+    [RACAbleWithStart(LobbyService.shared, joined) subscribeNext:^(id x) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [wself didUpdateJoinedLobby:LobbyService.shared.joined];
         });
-    }];
-    [wself didUpdateJoinedLobby:LobbyService.shared.joined];
-    
+    }];    
     
     [RACAble(LocationService.shared, accepted) subscribeNext:^(id x) {
         [wself setWarnings];
@@ -275,6 +276,7 @@
         // when the invitee hits back, it's still here for him.
         // need to remove the one I was just in. 
     }
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:SECTION_INDEX_WARNINGS] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -606,21 +608,22 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView warningCellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    WarningCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WarningCell"];
     
     if (indexPath.row == ROW_WARNING) {
+        WarningCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WarningCell"];
         if ([self shouldShowLocationWarning])
             [cell setWarningText:self.locationWarning];
         else
             [cell setWarningText:self.pushWarning];
+        return cell;
     }
     
     else {
+        ProfileCell *cell = [tableView dequeueReusableCellWithIdentifier:[ProfileCell identifier]];
         User * user = [UserService.shared currentUser];
-        [cell setUserInfo:user];
+        [cell setUser:user];
+        return cell;
     }
-    
-    return cell;
 }
 
 
@@ -703,8 +706,6 @@
     [self.currentMatch createMatchWithChallenge:challenge currentWizard:UserService.shared.currentWizard];
     [self.navigationController presentViewController:self.currentMatch animated:YES completion:nil];
     
-    [AnalyticsService event:@"JoinMultiplayer"];
-    
     // Should be called after viewDidLoad
     [self.currentMatch startMatch];
 
@@ -712,8 +713,8 @@
     [LobbyService.shared user:self.currentUser joinedMatch:challenge.matchId];
 }
 
-- (void)didFinishChallenge:(Challenge *)challenge didWin:(BOOL)didWin {
-    [UserFriendService.shared user:self.currentUser addChallenge:challenge didWin:didWin];
+- (NSArray*)didFinishChallenge:(Challenge *)challenge didWin:(BOOL)didWin {
+    return [UserFriendService.shared user:self.currentUser addChallenge:challenge didWin:didWin];
 }
 
 - (void)dealloc {
@@ -741,7 +742,7 @@
     // 1. need to choose between email, sms, or facebook
     // 2. 
     
-    [AnalyticsService event:@"FriendInviteTap"];
+    [AnalyticsService event:@"invite"];
     
     UIActionSheet * sheet = [[UIActionSheet alloc] initWithTitle:@"Invite Frenemies" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Facebook", @"Email", @"SMS", nil];
     [sheet showInView:self.view];
@@ -762,6 +763,8 @@
         return;
     }
     
+    [AnalyticsService event:@"invite-email"];    
+    
     UserFriendService * service = [UserFriendService shared];
     MFMailComposeViewController *picker = [MFMailComposeViewController new];
     picker.mailComposeDelegate = self;
@@ -773,7 +776,7 @@
     // [picker addAttachmentData:myData mimeType:@"image/jpeg" fileName:@"rainy"];
     
     // Fill out the email body text
-    NSString * body = [NSString stringWithFormat:@"%@ %@", service.inviteBody, service.inviteLink];
+    NSString * body = [NSString stringWithFormat:@"%@\n\n%@", service.inviteBody, service.inviteLink];
     [picker setMessageBody:body isHTML:NO];
     
     [self presentViewController:picker animated:YES completion:NULL];
@@ -786,11 +789,13 @@
         return;
     }
     
+    [AnalyticsService event:@"invite-sms"];
+    
     UserFriendService * service = [UserFriendService shared];
     MFMessageComposeViewController *picker = [[MFMessageComposeViewController alloc] init];
     picker.messageComposeDelegate = self;
     
-    picker.body = [NSString stringWithFormat:@"%@ %@", service.inviteBody, service.inviteLink];
+    picker.body = [NSString stringWithFormat:@"%@\n\n%@", service.inviteBody, service.inviteLink];
     
     [self presentViewController:picker animated:YES completion:NULL];
 }
@@ -798,6 +803,8 @@
 - (void)inviteFacebookFriend {
     // Connect their facebook account first, then open the friend invite dialog
     // it doesn't make sense to invite friends without having them connect facebook first
+    
+    [AnalyticsService event:@"invite-facebook"];    
     
     User * user = [UserService.shared currentUser];
     [self showLoading];
@@ -831,7 +838,7 @@
 }
 
 - (void)facebookViewControllerDoneWasPressed:(id)sender {
-    [AnalyticsService event:@"FriendSelected"];
+    [AnalyticsService event:@"invite-facebook-friend"];
     
     FBFriendPickerViewController *friendPickerController = (FBFriendPickerViewController*)sender;
     NSLog(@"Selected friends: %@", friendPickerController.selection);
@@ -843,24 +850,23 @@
         return info[@"id"];
     }];
     
-    [UserFriendService.shared openFeedDialogTo:friendIds];
+    [UserFriendService.shared openFeedDialogTo:friendIds complete:^{
+        [AnalyticsService event:@"invite-facebook-friend-complete"];
+    } cancel:^{
+        [AnalyticsService event:@"invite-facebook-friend-cancel"];
+    }];
 }
 
 - (void)facebookViewControllerCancelWasPressed:(id)sender {
     NSLog(@"Canceled");
+    [AnalyticsService event:@"invite-facebook-cancel"];
     // Dismiss the friend picker
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)didTapAccount {
-    [AnalyticsService event:@"AccountTap"];    
-    SettingsViewController * settings = [SettingsViewController new];
-    settings.title = @"My Wizard";
-    settings.showFeedback = YES;
-    settings.showBuildInfo = YES;
-    UINavigationController * navigation = [[UINavigationController alloc] initWithRootViewController:settings];
-    settings.onDone = ^{
-    };
+    ProfileViewController * profile = [ProfileViewController new];
+    UINavigationController * navigation = [[UINavigationController alloc] initWithRootViewController:profile];
     [self.navigationController presentViewController:navigation animated:YES completion:nil];
 }
 
@@ -868,10 +874,20 @@
 - (void)mailComposeController:(MFMailComposeViewController*)controller
           didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
 {
+    if (result == MFMailComposeResultSent)
+        [AnalyticsService event:@"invite-email-complete"];
+    else
+        [AnalyticsService event:@"invite-email-cancel"];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
+    if (result == MessageComposeResultSent)
+        [AnalyticsService event:@"invite-sms-complete"];
+    else
+        [AnalyticsService event:@"invite-sms-cancel"];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

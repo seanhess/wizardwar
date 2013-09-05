@@ -421,13 +421,18 @@
     wizard.altitude = clone.altitude;
     wizard.updatedTick = clone.updatedTick;
     
+    // it doesn't REMOVE an effect properly?
     if (clone.effectStartTick != wizard.effectStartTick) {
         if (wizard.effect != clone.effect) {
             [wizard.effect cancel:wizard];
             wizard.effect = clone.effect;
         }
         [wizard.effect start:currentTick player:wizard];
-        NSLog(@"(%i) CHANGED EFFECT %@", currentTick, wizard.name);
+//        NSLog(@"(%i) CHANGED EFFECT %@", currentTick, wizard.name);
+    } else if (!clone.effect && wizard.effect) {
+        [wizard.effect cancel:wizard];
+        wizard.effect = nil;
+//        NSLog(@"(%i) REMOVED EFFECT %@", currentTick, wizard.name);
     }
 
     if (wizard.state != clone.state) {

@@ -14,7 +14,7 @@
     if ((self = [super init])) {
         Wizard * wizard = [Wizard new];
         wizard.name = @"Practice Dummy";
-        wizard.wizardType = WIZARD_TYPE_ONE;
+        wizard.wizardType = WIZARD_TYPE_DUMMY;
         wizard.color = [UIColor colorFromRGB:0xF23953];
         self.wizard = wizard;
         

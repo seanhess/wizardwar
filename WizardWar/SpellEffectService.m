@@ -312,7 +312,7 @@
 -(void)createSpellInteractions {
     
     SEDestroy * destroyBoth = [SEDestroy new];
-    destroyBoth.bothDirections = YES;
+//    destroyBoth.bothDirections = YES;
     [self spell:Hotdog effect:destroyBoth spell:Monster effect:[SEStronger new]];
     
     [self spell:Chicken default:[SEDestroy new]];

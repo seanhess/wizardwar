@@ -211,7 +211,6 @@
 		7843E71B17C8DF51009EF3AB /* AITutorial2Counters.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E71A17C8DF51009EF3AB /* AITutorial2Counters.m */; };
 		7843E71E17C8DF5F009EF3AB /* AITutorial3Discovery.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E71D17C8DF5E009EF3AB /* AITutorial3Discovery.m */; };
 		7843E72117C8E586009EF3AB /* ChatBubbleSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E72017C8E586009EF3AB /* ChatBubbleSprite.m */; };
-		7843E72617C8F5D9009EF3AB /* RACHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E72517C8F5D9009EF3AB /* RACHelpers.m */; };
 		7843E72917C8FE22009EF3AB /* TutorialStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E72817C8FE22009EF3AB /* TutorialStep.m */; };
 		7843E72C17C918CB009EF3AB /* Tutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E72B17C918CB009EF3AB /* Tutorial.m */; };
 		7843E72F17C91E23009EF3AB /* EnvironmentLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7843E72E17C91E22009EF3AB /* EnvironmentLayer.m */; };
@@ -235,6 +234,22 @@
 		7853C8B917CA4EEC00406813 /* AITCastOnHit.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853C8B817CA4EEC00406813 /* AITCastOnHit.m */; };
 		7853C8BC17CA518800406813 /* AITWallAlways.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853C8BB17CA518800406813 /* AITWallAlways.m */; };
 		7853C8BF17CA5CE400406813 /* AITPerfectCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853C8BE17CA5CE400406813 /* AITPerfectCounter.m */; };
+		7853C8C517CABCE800406813 /* AITEffectRenew.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853C8C417CABCE800406813 /* AITEffectRenew.m */; };
+		7853C8CB17CAC51B00406813 /* AITCastOnClose.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853C8CA17CAC51900406813 /* AITCastOnClose.m */; };
+		7853C8D117CADD0600406813 /* AITCounterExists.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853C8D017CADD0400406813 /* AITCounterExists.m */; };
+		7853C8D517CAE61100406813 /* heal.png in Resources */ = {isa = PBXBuildFile; fileRef = 7853C8D217CAE61100406813 /* heal.png */; };
+		7853C8D617CAE61100406813 /* invisibility.png in Resources */ = {isa = PBXBuildFile; fileRef = 7853C8D317CAE61100406813 /* invisibility.png */; };
+		7853C8D717CAE61100406813 /* levitate.png in Resources */ = {isa = PBXBuildFile; fileRef = 7853C8D417CAE61100406813 /* levitate.png */; };
+		7853C8D917CAE6E500406813 /* cthulhu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7853C8D817CAE6E500406813 /* cthulhu.mp3 */; };
+		7853C8DC17CB99BA00406813 /* RACSignal+Filters.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853C8DB17CB99B900406813 /* RACSignal+Filters.m */; };
+		7853C8DF17CB9BE100406813 /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853C8DE17CB9BDF00406813 /* ProfileCell.m */; };
+		7853C8E117CB9BF300406813 /* ProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7853C8E017CB9BF100406813 /* ProfileCell.xib */; };
+		7853C8E417CBADB400406813 /* AIOpponentFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853C8E317CBADB300406813 /* AIOpponentFactory.m */; };
+		7853C8E717CBCE0C00406813 /* AITWaitForCast.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853C8E617CBCE0B00406813 /* AITWaitForCast.m */; };
+		7853C8EA17CBD10500406813 /* AITMaybe.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853C8E917CBD10200406813 /* AITMaybe.m */; };
+		7853C8ED17CBD67300406813 /* AITMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853C8EC17CBD66F00406813 /* AITMessage.m */; };
+		7853C8F317CC197F00406813 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7853C8F117CC197E00406813 /* ProfileViewController.m */; };
+		7853C8F417CC197F00406813 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7853C8F217CC197E00406813 /* ProfileViewController.xib */; };
 		785B045C17C2B16700B064F6 /* SpellRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 785B045B17C2B16700B064F6 /* SpellRecord.m */; };
 		785B045F17C2B17F00B064F6 /* SpellbookService.m in Sources */ = {isa = PBXBuildFile; fileRef = 785B045E17C2B17F00B064F6 /* SpellbookService.m */; };
 		785B046317C2BA3100B064F6 /* SpellbookDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785B046117C2BA3100B064F6 /* SpellbookDetailsViewController.m */; };
@@ -340,8 +355,8 @@
 		78DAB8241795C3A10093A701 /* FacebookUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB8231795C3A10093A701 /* FacebookUser.m */; };
 		78DAB8291795E2B00093A701 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB8271795E2B00093A701 /* SettingsViewController.m */; };
 		78DAB82A1795E2B00093A701 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DAB8281795E2B00093A701 /* SettingsViewController.xib */; };
-		78DAB82D1799BCFF0093A701 /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB82C1799BCFF0093A701 /* ProfileCell.m */; };
-		78DAB839179A0C680093A701 /* FacebookButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB838179A0C680093A701 /* FacebookButtonCell.m */; };
+		78DAB82D1799BCFF0093A701 /* SettingsProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB82C1799BCFF0093A701 /* SettingsProfileCell.m */; };
+		78DAB839179A0C680093A701 /* SettingsFacebookButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DAB838179A0C680093A701 /* SettingsFacebookButtonCell.m */; };
 		78DAB83B179B08530093A701 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DAB83A179B08530093A701 /* ImageIO.framework */; };
 		78DAB83D179B08BB0093A701 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DAB83C179B08BB0093A701 /* MapKit.framework */; };
 		78E22CA41782400900146D49 /* YouWon.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 78E22CA31782400900146D49 /* YouWon.mp3 */; };
@@ -779,8 +794,6 @@
 		7843E71D17C8DF5E009EF3AB /* AITutorial3Discovery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AITutorial3Discovery.m; sourceTree = "<group>"; };
 		7843E71F17C8E586009EF3AB /* ChatBubbleSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatBubbleSprite.h; sourceTree = "<group>"; };
 		7843E72017C8E586009EF3AB /* ChatBubbleSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatBubbleSprite.m; sourceTree = "<group>"; };
-		7843E72417C8F5D9009EF3AB /* RACHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RACHelpers.h; sourceTree = "<group>"; };
-		7843E72517C8F5D9009EF3AB /* RACHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RACHelpers.m; sourceTree = "<group>"; };
 		7843E72717C8FE22009EF3AB /* TutorialStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialStep.h; sourceTree = "<group>"; };
 		7843E72817C8FE22009EF3AB /* TutorialStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialStep.m; sourceTree = "<group>"; };
 		7843E72A17C918CB009EF3AB /* Tutorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tutorial.h; sourceTree = "<group>"; };
@@ -825,6 +838,33 @@
 		7853C8BB17CA518800406813 /* AITWallAlways.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AITWallAlways.m; sourceTree = "<group>"; };
 		7853C8BD17CA5CE300406813 /* AITPerfectCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AITPerfectCounter.h; sourceTree = "<group>"; };
 		7853C8BE17CA5CE400406813 /* AITPerfectCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AITPerfectCounter.m; sourceTree = "<group>"; };
+		7853C8C317CABCE700406813 /* AITEffectRenew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AITEffectRenew.h; sourceTree = "<group>"; };
+		7853C8C417CABCE800406813 /* AITEffectRenew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AITEffectRenew.m; sourceTree = "<group>"; };
+		7853C8C917CAC51800406813 /* AITCastOnClose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AITCastOnClose.h; sourceTree = "<group>"; };
+		7853C8CA17CAC51900406813 /* AITCastOnClose.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AITCastOnClose.m; sourceTree = "<group>"; };
+		7853C8CF17CADD0300406813 /* AITCounterExists.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AITCounterExists.h; sourceTree = "<group>"; };
+		7853C8D017CADD0400406813 /* AITCounterExists.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AITCounterExists.m; sourceTree = "<group>"; };
+		7853C8D217CAE61100406813 /* heal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heal.png; sourceTree = "<group>"; };
+		7853C8D317CAE61100406813 /* invisibility.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = invisibility.png; sourceTree = "<group>"; };
+		7853C8D417CAE61100406813 /* levitate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = levitate.png; sourceTree = "<group>"; };
+		7853C8D817CAE6E500406813 /* cthulhu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cthulhu.mp3; sourceTree = "<group>"; };
+		7853C8DA17CB99B900406813 /* RACSignal+Filters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RACSignal+Filters.h"; sourceTree = "<group>"; };
+		7853C8DB17CB99B900406813 /* RACSignal+Filters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RACSignal+Filters.m"; sourceTree = "<group>"; };
+		7853C8DD17CB9BDE00406813 /* ProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileCell.h; sourceTree = "<group>"; };
+		7853C8DE17CB9BDF00406813 /* ProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
+		7853C8E017CB9BF100406813 /* ProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileCell.xib; sourceTree = "<group>"; };
+		7853C8E217CBADB300406813 /* AIOpponentFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIOpponentFactory.h; sourceTree = "<group>"; };
+		7853C8E317CBADB300406813 /* AIOpponentFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIOpponentFactory.m; sourceTree = "<group>"; };
+		7853C8E517CBCE0B00406813 /* AITWaitForCast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AITWaitForCast.h; sourceTree = "<group>"; };
+		7853C8E617CBCE0B00406813 /* AITWaitForCast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AITWaitForCast.m; sourceTree = "<group>"; };
+		7853C8E817CBD10000406813 /* AITMaybe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AITMaybe.h; sourceTree = "<group>"; };
+		7853C8E917CBD10200406813 /* AITMaybe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AITMaybe.m; sourceTree = "<group>"; };
+		7853C8EB17CBD66C00406813 /* AITMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AITMessage.h; sourceTree = "<group>"; };
+		7853C8EC17CBD66F00406813 /* AITMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AITMessage.m; sourceTree = "<group>"; };
+		7853C8EE17CC10BF00406813 /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.md; sourceTree = "<group>"; };
+		7853C8F017CC197E00406813 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		7853C8F117CC197E00406813 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		7853C8F217CC197E00406813 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		785B045A17C2B16700B064F6 /* SpellRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellRecord.h; sourceTree = "<group>"; };
 		785B045B17C2B16700B064F6 /* SpellRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellRecord.m; sourceTree = "<group>"; };
 		785B045D17C2B17F00B064F6 /* SpellbookService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellbookService.h; sourceTree = "<group>"; };
@@ -981,10 +1021,10 @@
 		78DAB8261795E2B00093A701 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		78DAB8271795E2B00093A701 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		78DAB8281795E2B00093A701 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
-		78DAB82B1799BCFF0093A701 /* ProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileCell.h; sourceTree = "<group>"; };
-		78DAB82C1799BCFF0093A701 /* ProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
-		78DAB837179A0C680093A701 /* FacebookButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookButtonCell.h; sourceTree = "<group>"; };
-		78DAB838179A0C680093A701 /* FacebookButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookButtonCell.m; sourceTree = "<group>"; };
+		78DAB82B1799BCFF0093A701 /* SettingsProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsProfileCell.h; sourceTree = "<group>"; };
+		78DAB82C1799BCFF0093A701 /* SettingsProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsProfileCell.m; sourceTree = "<group>"; };
+		78DAB837179A0C680093A701 /* SettingsFacebookButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsFacebookButtonCell.h; sourceTree = "<group>"; };
+		78DAB838179A0C680093A701 /* SettingsFacebookButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsFacebookButtonCell.m; sourceTree = "<group>"; };
 		78DAB83A179B08530093A701 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		78DAB83C179B08BB0093A701 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		78E22CA31782400900146D49 /* YouWon.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = YouWon.mp3; sourceTree = "<group>"; };
@@ -1153,6 +1193,7 @@
 		30CE785C1747F71B00848FE0 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				7853C8D817CAE6E500406813 /* cthulhu.mp3 */,
 				782BC1B917B9566F00EB7FC6 /* captain-planet.mp3 */,
 				78E22CA71782427400146D49 /* bubble.mp3 */,
 				78E22CA81782427400146D49 /* earthwall.mp3 */,
@@ -1489,8 +1530,8 @@
 			children = (
 				783DAECD17C8336600CDF109 /* ProgressAccessoryView.h */,
 				783DAECE17C8336600CDF109 /* ProgressAccessoryView.m */,
-				7843E72417C8F5D9009EF3AB /* RACHelpers.h */,
-				7843E72517C8F5D9009EF3AB /* RACHelpers.m */,
+				7853C8DA17CB99B900406813 /* RACSignal+Filters.h */,
+				7853C8DB17CB99B900406813 /* RACSignal+Filters.m */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -1538,6 +1579,8 @@
 				781BC26517B5766900870A2C /* AIService.h */,
 				7843E73617C94B33009EF3AB /* AIOpponent.h */,
 				7843E73717C94B34009EF3AB /* AIOpponent.m */,
+				7853C8E217CBADB300406813 /* AIOpponentFactory.h */,
+				7853C8E317CBADB300406813 /* AIOpponentFactory.m */,
 				7843E73917C94BAF009EF3AB /* AIGameState.h */,
 				7843E73A17C94BB0009EF3AB /* AIGameState.m */,
 				7843E71617C8DF44009EF3AB /* AITutorial1BasicMagic.h */,
@@ -1567,6 +1610,18 @@
 				7853C8B817CA4EEC00406813 /* AITCastOnHit.m */,
 				7853C8BD17CA5CE300406813 /* AITPerfectCounter.h */,
 				7853C8BE17CA5CE400406813 /* AITPerfectCounter.m */,
+				7853C8C317CABCE700406813 /* AITEffectRenew.h */,
+				7853C8C417CABCE800406813 /* AITEffectRenew.m */,
+				7853C8C917CAC51800406813 /* AITCastOnClose.h */,
+				7853C8CA17CAC51900406813 /* AITCastOnClose.m */,
+				7853C8CF17CADD0300406813 /* AITCounterExists.h */,
+				7853C8D017CADD0400406813 /* AITCounterExists.m */,
+				7853C8E517CBCE0B00406813 /* AITWaitForCast.h */,
+				7853C8E617CBCE0B00406813 /* AITWaitForCast.m */,
+				7853C8E817CBD10000406813 /* AITMaybe.h */,
+				7853C8E917CBD10200406813 /* AITMaybe.m */,
+				7853C8EB17CBD66C00406813 /* AITMessage.h */,
+				7853C8EC17CBD66F00406813 /* AITMessage.m */,
 			);
 			path = AI;
 			sourceTree = "<group>";
@@ -1581,6 +1636,9 @@
 		785B046517C2BDF700B064F6 /* spellbook */ = {
 			isa = PBXGroup;
 			children = (
+				7853C8D217CAE61100406813 /* heal.png */,
+				7853C8D317CAE61100406813 /* invisibility.png */,
+				7853C8D417CAE61100406813 /* levitate.png */,
 				7814764F17C697DA005DA04A /* cthulhu.png */,
 				785B046617C2BDF700B064F6 /* bubble.png */,
 				785B046717C2BDF700B064F6 /* captain-planet.png */,
@@ -1646,6 +1704,9 @@
 				7892EF9817BE66E100F9A89D /* WarningCell.h */,
 				7892EF9917BE66E100F9A89D /* WarningCell.m */,
 				785C44B217BE671200733E7B /* WarningCell.xib */,
+				7853C8DD17CB9BDE00406813 /* ProfileCell.h */,
+				7853C8DE17CB9BDF00406813 /* ProfileCell.m */,
+				7853C8E017CB9BF100406813 /* ProfileCell.xib */,
 				78DAB81B1795AAE40093A701 /* FriendsViewController.h */,
 				78DAB81C1795AAE40093A701 /* FriendsViewController.m */,
 				78DAB81D1795AAE40093A701 /* FriendsViewController.xib */,
@@ -1851,10 +1912,13 @@
 				78DAB8281795E2B00093A701 /* SettingsViewController.xib */,
 				78AF756D1792ECB9008499DB /* AccountColorViewController.h */,
 				78AF756E1792ECB9008499DB /* AccountColorViewController.m */,
-				78DAB82B1799BCFF0093A701 /* ProfileCell.h */,
-				78DAB82C1799BCFF0093A701 /* ProfileCell.m */,
-				78DAB837179A0C680093A701 /* FacebookButtonCell.h */,
-				78DAB838179A0C680093A701 /* FacebookButtonCell.m */,
+				78DAB82B1799BCFF0093A701 /* SettingsProfileCell.h */,
+				78DAB82C1799BCFF0093A701 /* SettingsProfileCell.m */,
+				78DAB837179A0C680093A701 /* SettingsFacebookButtonCell.h */,
+				78DAB838179A0C680093A701 /* SettingsFacebookButtonCell.m */,
+				7853C8F017CC197E00406813 /* ProfileViewController.h */,
+				7853C8F117CC197E00406813 /* ProfileViewController.m */,
+				7853C8F217CC197E00406813 /* ProfileViewController.xib */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1945,6 +2009,7 @@
 				787E1C3417BC0CD10092F5D6 /* Default@2x.png */,
 				787E1C3217BC0CCB0092F5D6 /* Default-568h@2x.png */,
 				7862463D1767C79F001904AC /* README.md */,
+				7853C8EE17CC10BF00406813 /* LICENSE.md */,
 				6F0367301747EB3C00971B61 /* Icon-57@2x.png */,
 				6F03672E1747EB3700971B61 /* Icon-57.png */,
 				78F6B1EC1746AD8900AA070D /* WizardWar */,
@@ -2446,6 +2511,12 @@
 				7814767E17C6C418005DA04A /* icecave-ipad.png in Resources */,
 				7814767F17C6C418005DA04A /* icecave.png in Resources */,
 				783DAEBD17C824B400CDF109 /* QuestViewController.xib in Resources */,
+				7853C8D517CAE61100406813 /* heal.png in Resources */,
+				7853C8D617CAE61100406813 /* invisibility.png in Resources */,
+				7853C8D717CAE61100406813 /* levitate.png in Resources */,
+				7853C8D917CAE6E500406813 /* cthulhu.mp3 in Resources */,
+				7853C8E117CB9BF300406813 /* ProfileCell.xib in Resources */,
+				7853C8F417CC197F00406813 /* ProfileViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2463,7 +2534,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"";
+			shellScript = "#!/bin/bash\nif [ \"${CONFIGURATION}\" = \"Release\" ]; then\n  buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\n  buildNumber=$(($buildNumber + 1))\n  /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\nfi\n";
 		};
 		9DC65F6DED6A42038C00142C /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2668,8 +2739,8 @@
 				78DAB81E1795AAE40093A701 /* FriendsViewController.m in Sources */,
 				78DAB8241795C3A10093A701 /* FacebookUser.m in Sources */,
 				78DAB8291795E2B00093A701 /* SettingsViewController.m in Sources */,
-				78DAB82D1799BCFF0093A701 /* ProfileCell.m in Sources */,
-				78DAB839179A0C680093A701 /* FacebookButtonCell.m in Sources */,
+				78DAB82D1799BCFF0093A701 /* SettingsProfileCell.m in Sources */,
+				78DAB839179A0C680093A701 /* SettingsFacebookButtonCell.m in Sources */,
 				78516B8817A5925800A49257 /* NSObject+Reflection.m in Sources */,
 				78306BB017A99AEC00487B16 /* OLUnitsService.m in Sources */,
 				78306BC217AADC4A00487B16 /* SpellFailRainbow.m in Sources */,
@@ -2710,7 +2781,6 @@
 				7843E71B17C8DF51009EF3AB /* AITutorial2Counters.m in Sources */,
 				7843E71E17C8DF5F009EF3AB /* AITutorial3Discovery.m in Sources */,
 				7843E72117C8E586009EF3AB /* ChatBubbleSprite.m in Sources */,
-				7843E72617C8F5D9009EF3AB /* RACHelpers.m in Sources */,
 				7843E72917C8FE22009EF3AB /* TutorialStep.m in Sources */,
 				7843E72C17C918CB009EF3AB /* Tutorial.m in Sources */,
 				7843E72F17C91E23009EF3AB /* EnvironmentLayer.m in Sources */,
@@ -2725,6 +2795,16 @@
 				7853C8B917CA4EEC00406813 /* AITCastOnHit.m in Sources */,
 				7853C8BC17CA518800406813 /* AITWallAlways.m in Sources */,
 				7853C8BF17CA5CE400406813 /* AITPerfectCounter.m in Sources */,
+				7853C8C517CABCE800406813 /* AITEffectRenew.m in Sources */,
+				7853C8CB17CAC51B00406813 /* AITCastOnClose.m in Sources */,
+				7853C8D117CADD0600406813 /* AITCounterExists.m in Sources */,
+				7853C8DC17CB99BA00406813 /* RACSignal+Filters.m in Sources */,
+				7853C8DF17CB9BE100406813 /* ProfileCell.m in Sources */,
+				7853C8E417CBADB400406813 /* AIOpponentFactory.m in Sources */,
+				7853C8E717CBCE0C00406813 /* AITWaitForCast.m in Sources */,
+				7853C8EA17CBD10500406813 /* AITMaybe.m in Sources */,
+				7853C8ED17CBD67300406813 /* AITMessage.m in Sources */,
+				7853C8F317CC197F00406813 /* ProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,15 +6,15 @@
 //  Copyright (c) 2013 The LAB. All rights reserved.
 //
 
-#import "ProfileCell.h"
+#import "SettingsProfileCell.h"
 #import <QuartzCore/QuartzCore.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 
-@interface ProfileCell ()
+@interface SettingsProfileCell ()
 
 @end
 
-@implementation ProfileCell
+@implementation SettingsProfileCell
 
 - (id)initWithReuseIdentifier:(NSString*)cellIdentifier {
     self = [super initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];

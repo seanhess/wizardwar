@@ -28,7 +28,7 @@
 @end
 
 @interface SEDestroy : SpellEffect
-@property (nonatomic) BOOL bothDirections;
+//@property (nonatomic) BOOL bothDirections;
 @end
 
 @interface SEStronger : SpellEffect

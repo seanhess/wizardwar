@@ -62,7 +62,7 @@
 
            [TutorialStep win:@"By Merlin's beard, you've done it! Ouch!" lose:nil],
            
-           [TutorialStep modalMessage:@"Go check out the spellbook to see what you've unlocked!"],
+//           [TutorialStep modalMessage:@"Go check out the spellbook to see what you've unlocked!"],
 
         ];
     }

@@ -28,6 +28,7 @@
 #import "WizardSprite.h"
 #import "SpellSprite.h"
 #import "PreloadLayer.h"
+#import <Appirater.h>
 
 // The director should belong to the app delegate or a singleton
 // and you should manually unload or reload it
@@ -43,7 +44,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     NSLog(@"applicationDidFinishLaunchingWithOptions");
-
+    
+    [Appirater setAppId:[InfoService appId]];
+    [Appirater setDaysUntilPrompt:1];
+    [Appirater setUsesUntilPrompt:10];
+    [Appirater setSignificantEventsUntilPrompt:-1];
+    [Appirater setTimeBeforeReminding:2];
+//    [Appirater setDebug:YES];
+    
     // TEST FLIGHT - make it first so it can catch errors
     [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
     [TestFlight takeOff:@"0b4e12af-c3aa-459a-891b-aa357a97e171"];
@@ -98,7 +106,9 @@
     
     // ANALYTICS
     [AnalyticsService didFinishLaunching:launchOptions];
-    NSLog(@" - app launch complete"); 
+    NSLog(@" - app launch complete");
+    
+    [Appirater appLaunched:YES];
     
     return YES;
 }
@@ -121,6 +131,7 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [AnalyticsService event:@"push-received"];
     [PFPush handlePush:userInfo];
     [self launchMatchmaking:userInfo[@"matchId"]];
 }
@@ -173,6 +184,7 @@
 {
     NSLog(@"applicationWillEnterForeground");
     [ConnectionService.shared setIsUserActive:YES];
+    [Appirater appEnteredForeground:YES];
 //    [self.matches reconnect];
     //	if( [navController_ visibleViewController] == director_ )
     //		[director_ startAnimation];

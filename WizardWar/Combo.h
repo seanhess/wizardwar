@@ -22,6 +22,9 @@
 -(void)setSelected:(BOOL)selected element:(ElementType)element;
 -(BOOL)isSelectedElement:(ElementType)element;
 -(NSArray*)elements;
+-(ElementType)startElement;
++(NSInteger)clockwiseDistance:(ElementType)element fromStart:(ElementType)start;
++(NSArray*)elements:(NSArray*)elements sortByClockwiseDistanceFrom:(ElementType)start;
 @end
 
 
