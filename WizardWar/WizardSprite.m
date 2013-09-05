@@ -130,7 +130,7 @@
         }
         
         
-#if TARGET_IPHONE_SIMULATOR
+#if TARGET_IPHONE_SIMULATOR && DEBUG
         self.headDebug = [DebugSprite new];
         [self addChild:self.headDebug];
 #endif
