@@ -1,7 +1,7 @@
 .DS_Store
 *.xcworkspace
 xcuserdata
-build
+/build
 Pods/
 Podfile.lock
 *.ipa
