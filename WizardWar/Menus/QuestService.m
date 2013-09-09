@@ -301,30 +301,10 @@
     
 
     
-    QuestLevel * jumper2 = [self levelWithName:@"Fionnghal Returns"];
-    jumper2.level = 10;
-    jumper2.wizardLevel = 17;
-    jumper2.ai = [AIOpponentFactory withColor:0x7E0B80 environment:ENVIRONMENT_CASTLE tactics:^{
-        return @[
-                 
-            [AITMessage withStart:@[@"Ok, this time I'm ready!", @"You'll never take me alive!"]],
-            [AITMessage withHits:@[@"I was looking for a battle of wits, but I'm afraid you are unarmed."] chance:0.25],
-            [AITMessage withWounds:@[@"How can this be?"] chance:0.25],
-            [AITMessage withCast:@[@"Can't touch this!", @"My finger... It's... It's Glowing."] chance:0.25],
-            [AITMessage withCastOther:@[@"How vulgar."] chance:0.25],
-            [AITMessage withWin:@[@"You have much to learn."]],
-            [AITMessage withLose:@[@"Haha, my technique is perfect. My form is perfect."]],
-
-            [AITCastOnClose distance:40.0 highSpell:Helmet lowSpell:Levitate],
-            [AITDelay random:@[Monster, Vine, Monster, Lightning] reactionTime:HardReactionTime],
-        ];
-    }];
-    
-    
     // Geez, this guy is hard.  Slow him down?
     QuestLevel * spam = [self levelWithName:@"Belgarath the Bold"];
-    spam.level = 11;
-    spam.wizardLevel = 20;
+    spam.level = 10;
+    spam.wizardLevel = 19;
     spam.ai = [AIOpponentFactory withColor:0x0 environment:ENVIRONMENT_EVIL_FOREST tactics:^{
         return @[         
             [AITMessage withStart:@[@"Child, I can so thoroughly destroy you, your own mother will forget the day of your birth.", @"Prepare to die... Obviously!"]],
@@ -337,6 +317,28 @@
 
             [AITDelay random:@[Fireball, Lightning, Monster] reactionTime:HardReactionTime],
         ];
+    }];
+    
+    
+    
+    
+    QuestLevel * jumper2 = [self levelWithName:@"Fionnghal Returns"];
+    jumper2.level = 11;
+    jumper2.wizardLevel = 20;
+    jumper2.ai = [AIOpponentFactory withColor:0x7E0B80 environment:ENVIRONMENT_CASTLE tactics:^{
+        return @[
+                 
+                 [AITMessage withStart:@[@"Ok, this time I'm ready!", @"You'll never take me alive!"]],
+                 [AITMessage withHits:@[@"I was looking for a battle of wits, but I'm afraid you are unarmed."] chance:0.25],
+                 [AITMessage withWounds:@[@"How can this be?"] chance:0.25],
+                 [AITMessage withCast:@[@"Can't touch this!", @"My finger... It's... It's Glowing."] chance:0.25],
+                 [AITMessage withCastOther:@[@"How vulgar."] chance:0.25],
+                 [AITMessage withWin:@[@"You have much to learn."]],
+                 [AITMessage withLose:@[@"Haha, my technique is perfect. My form is perfect."]],
+                 
+                 [AITCastOnClose distance:40.0 highSpell:Helmet lowSpell:Levitate],
+                 [AITDelay random:@[Monster, Vine, Monster, Lightning] reactionTime:HardReactionTime],
+                 ];
     }];
     
     
@@ -360,8 +362,8 @@
         earth,
         
         // HARD
-        jumper2,
-        spam,        
+        spam,
+        jumper2,        
         
     ];
     
