@@ -16,6 +16,8 @@
 #import "WarningCell.h"
 #import "NSArray+Functional.h"
 #import "AppStyle.h"
+#import "QuestService.h"
+#import "UserService.h"
 
 #define SECTION_WARNINGS 0
 #define SECTION_SPELLS 1
@@ -112,7 +114,9 @@
 
     cell.textView.backgroundColor = [AppStyle blueMessageColor];
     cell.selectionStyle = UITableViewCellEditingStyleNone;
-    cell.textView.text = @"You can unlock more spells by playing the Quest and Multiplayer.";
+    
+    NSString * questName = [QuestService.shared questButtonName:[UserService.shared currentUser]];
+    cell.textView.text = [NSString stringWithFormat:@"You can unlock more spells by playing the %@ and Multiplayer.", questName];
     cell.textView.textAlignment = NSTextAlignmentCenter;
     
     return cell;

@@ -16,6 +16,7 @@
 @interface QuestService : NSObject
 + (QuestService*)shared;
 
+- (NSString*)questButtonName:(User*)user;
 - (BOOL)hasPassedTutorials:(User*)user;
 - (BOOL)isLocked:(QuestLevel*)level user:(User*)user;
 

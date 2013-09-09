@@ -94,6 +94,15 @@
     return user.questLevel >= QUEST_LEVEL_PAST_TUTORIAL;
 }
 
+- (NSString*)questButtonName:(User*)user {
+    if ([self hasPassedTutorials:user]) {
+        return @"Quest";
+    } else {
+        return @"Tutorial";
+    }
+    
+}
+
 - (QuestLevel*)levelWithName:(NSString *)name {
     NSFetchRequest * request = [NSFetchRequest fetchRequestWithEntityName:QUEST_LEVEL_ENTITY];
     request.predicate = [NSPredicate predicateWithFormat:@"name = %@", name];
