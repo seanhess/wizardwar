@@ -731,7 +731,7 @@
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) {
-        [[UIApplication sharedApplication] openURL:[InfoService downloadURL]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[InfoService downloadUrl]]];
     }
 }
 

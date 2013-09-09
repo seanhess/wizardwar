@@ -13,7 +13,8 @@
 +(NSString*)version;
 +(NSString*)buildDate;
 +(NSInteger)buildNumber;
-+(NSURL*)downloadURL;
++(NSString*)downloadUrl;
++(NSString*)shortDownloadUrl;
 +(NSString*)supportEmail;
 +(NSString*)firebaseUrl;
 +(NSString*)openSourceUrl;
