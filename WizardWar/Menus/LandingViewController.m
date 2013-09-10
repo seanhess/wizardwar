@@ -82,11 +82,7 @@
     [ConnectionService.shared disconnect];
     
     User * user = [UserService.shared currentUser];
-    if ([QuestService.shared hasPassedTutorials:user]) {
-        [self.questButton setTitle:@"Quest" forState:UIControlStateNormal];
-    } else {
-        [self.questButton setTitle:@"Tutorial" forState:UIControlStateNormal];
-    }
+    [self.questButton setTitle:[QuestService.shared questButtonName:user] forState:UIControlStateNormal];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

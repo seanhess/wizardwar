@@ -15,20 +15,25 @@ Setup and Compiling
 
 Run `make` to compile the images in the spritesheet directories into spritesheets. This requires TexturePacker pro and the command line tools installed. If you only have the free version, open the .tps files and hit publish.
 
+You only need to run this if you change the sprites. The compiled sprites are committed to the repository, so this has usually already been done.
+
+### Podfile
+
+If you get an error saying something is missing, run `pod install` again. 
+
+
+
 Technologies and Services Used
 ------------------------------
 
-- cocos2d
-- firebase
-- TexturePacker
-- Parse
-- TestFlight
+- [Cocos2d](http://www.cocos2d-iphone.org/)
+- [Firebase](http://firebase.com/)
+- [TexturePacker](http://www.codeandweb.com/texturepacker)
+- [Parse](https://parse.com/)
+- [TestFlight](testflightapp.com)
 - Core Data
 
-### Links
-
-Firebase
-* https://wizardwar.firebaseio.com/
+### Links / Nodes
 
 Fonts
 * http://refactr.com/blog/2012/09/ios-tips-custom-fonts/

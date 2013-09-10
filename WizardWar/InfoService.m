@@ -23,8 +23,12 @@
     return [NSString stringWithUTF8String:__DATE__];
 }
 
-+(NSURL *)downloadURL {
-    return [NSURL URLWithString:@"https://testflightapp.com/m/builds"];
++(NSString *)downloadUrl {
+    return [NSString stringWithFormat:@"http://itunes.apple.com/app/id%@", self.appId];
+}
+
++(NSString*)shortDownloadUrl {
+    return @"http://appstore.com/wizardwar";
 }
 
 +(NSString *)supportEmail {
@@ -44,7 +48,7 @@
 }
 
 +(NSString*)appId {
-    return @"552035781";
+    return @"702839715";
 }
 
 

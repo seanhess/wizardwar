@@ -278,7 +278,7 @@
     }
     [sae playBackgroundMusic:@"theme.mp3"];
  
-#if TARGET_IPHONE_SIMULATOR
+#if TARGET_IPHONE_SIMULATOR && DEBUG
     sae.backgroundMusicVolume = 0.0;
 #endif
     

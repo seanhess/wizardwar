@@ -43,8 +43,8 @@
         self.inviteSubject = @"I'm playing Wizard War";
         self.inviteCaption = @"App Store";
         self.inviteBody = @"Download Wizard War so I can punch you in the face with magic! Epic multiplayer wizard duels and single player quests.";
-        self.inviteLink = @"http://tflig.ht/10YUQCE";
-        self.invitePictureURL = @"http://wizardwarapp.com/fblogo.png";
+        self.inviteLink = [InfoService shortDownloadUrl];
+        self.invitePictureURL = @"http://wizardwarapp.com/img/share.png";
         
         [PFFacebookUtils initializeFacebook];
         [RACAble(UserService.shared, lastUpdatedUser) subscribeNext:^(User*user) {
@@ -234,7 +234,7 @@
     params[@"name"] = self.inviteSubject;
     params[@"caption"] = self.inviteCaption;
     params[@"description"] = self.inviteBody;
-    params[@"link"] = [InfoService.downloadURL absoluteString];
+    params[@"link"] = self.inviteLink;
     params[@"picture"] = self.invitePictureURL;
     
     if (facebookIds.count > 0)
