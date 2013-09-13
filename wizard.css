@@ -1,8 +1,8 @@
 body{
 	background:#0b162c;
 	color:#fff;
-	font-family: 'Sue Ellen Francisco', cursive;
-	font-size:30px;
+	font-size:20px;
+	font-family:Helvetica, Arial, sans;
 }
 
 body.home{
@@ -21,7 +21,7 @@ p{
 strong{
 	margin: 15px 0;
 	display: block;
-	font-size:40px;
+	font-size:30px;
 }
 
 #container{
@@ -47,6 +47,8 @@ iframe{
 
 .nav{
 	list-style-type: none;
+	font-family: 'Sue Ellen Francisco', cursive;
+	font-size:30px;
 }
 
 .nav li{
@@ -75,13 +77,17 @@ iframe{
 	}
 
 	.banner{
-		display:none;
+		width: 120%;
+		left: -31px;
+		z-index: 100;
+		top: 210px;
 	}
 
 	.video{
 		position: relative;
     	padding-bottom: 56.25%;
     	padding-top: 30px; height: 0; overflow: hidden;
+    	margin-top: 40px;
 	}
 
 	.video iframe,
