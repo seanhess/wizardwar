@@ -1,0 +1,101 @@
+body{
+	background:#0b162c;
+	color:#fff;
+	font-family: 'Sue Ellen Francisco', cursive;
+	font-size:30px;
+}
+
+body.home{
+	background:#223832 url('images/bg_wizardwar.jpg') top center no-repeat;
+}
+
+a{
+	color:#ffcc00;
+}
+
+p{
+	line-height:50px;
+	margin:0 auto 10px auto;
+}
+
+strong{
+	margin: 15px 0;
+	display: block;
+	font-size:40px;
+}
+
+#container{
+	margin:auto;
+	width:1000px;
+	text-align:center;
+	position:relative;
+}
+
+.logo{
+	margin:30px 30px 0 0;
+}
+
+.banner{
+	position: absolute;
+	top: 113px;
+	left:115px;	
+}
+
+iframe{
+	margin-top:105px;
+}
+
+.nav{
+	list-style-type: none;
+}
+
+.nav li{
+	display:inline;
+	padding-right:10px;
+	margin-right:10px;
+}
+
+.nav a{
+	text-decoration:none;
+}
+
+
+@media all and (max-width : 950px) {
+/* Styles */
+	#container{
+		width:100%;
+	}
+
+	.logo{
+		width:95%;
+	}
+
+	.app-store{
+		margin:25px;
+	}
+
+	.banner{
+		display:none;
+	}
+
+	.video{
+		position: relative;
+    	padding-bottom: 56.25%;
+    	padding-top: 30px; height: 0; overflow: hidden;
+	}
+
+	.video iframe,
+	.video object,
+	.video embed {
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    width: 100%;
+	    height: 100%;
+	    margin-top:20px;
+	}
+
+	p{
+		width:90%;
+	}
+}
