@@ -5,6 +5,38 @@ Wizard War
 
 [<img src="http://i.imgur.com/y2FlmUJ.png">][appstore]
 
+Contributors
+------------
+
+Wizard War is a game by Orbital Labs. http://orbit.al
+
+### Creators
+
+- [Sean Hess](http://seanhess.github.com)
+- [Jesse Harding](http://jesseharding.com)
+- [Orbital Labs](http://orbit.al)
+
+### Contributors
+
+- Kimball Wireg
+- Dallin Skinner
+- Chase Anderson
+- Sariah Burdge
+- Jacob Gundersen
+- Clayton Ferris
+- Seth Jenks
+
+Technologies and Services Used
+------------------------------
+
+- [Cocos2d](http://www.cocos2d-iphone.org/)
+- [Firebase](http://firebase.com/)
+- [TexturePacker](http://www.codeandweb.com/texturepacker)
+- [Parse](https://parse.com/)
+- [TestFlight](testflightapp.com)
+- [ReactiveCocoa](https://github.com/ReactiveCocoa/ReactiveCocoa)
+- Core Data
+
 
 Setup and Compiling
 -------------------
@@ -26,37 +58,6 @@ If you have Texture Packer pro: run `make` to compile the images in the spritesh
 If you get an error saying something is missing, run `pod install` again. 
 
 
-Technologies and Services Used
-------------------------------
-
-- [Cocos2d](http://www.cocos2d-iphone.org/)
-- [Firebase](http://firebase.com/)
-- [TexturePacker](http://www.codeandweb.com/texturepacker)
-- [Parse](https://parse.com/)
-- [TestFlight](testflightapp.com)
-- [ReactiveCocoa](https://github.com/ReactiveCocoa/ReactiveCocoa)
-- Core Data
-
-Contributors
-------------
-
-Wizard War is a game by Orbital Labs. http://orbit.al. 
-
-### Creators
-
-- [Orbital Labs](http://orbit.al)
-- [Sean Hess](http://seanhess.github.com)
-- [Jesse Harding](http://jesseharding.com)
-
-### Contributors
-
-- Kimball Wireg
-- Dallin Skinner
-- Chase Anderson
-- Sariah Burdge
-- Jacob Gundersen
-- Clayton Ferris
-- Seth Jenks
 
 
 License
