@@ -29,9 +29,7 @@ Technologies and Services Used
 ------------------------------
 
 - We use [ReactiveCocoa](https://github.com/ReactiveCocoa/ReactiveCocoa), a [Functional Reactive Programming](http://stackoverflow.com/questions/1028250/what-is-functional-reactive-programming) library for Cocoa
-
 - The multiplayer uses [Firebase](http://firebase.com/), a real-time service with state syncing. It's a great match with Core Data. 
-
 - [Cocos2d](http://www.cocos2d-iphone.org/)
 - [TexturePacker](http://www.codeandweb.com/texturepacker)
 - [Parse](https://parse.com/)
