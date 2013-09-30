@@ -24,17 +24,19 @@ Contributors
 - Clayton Ferris
 - Seth Jenks
 
+
 Technologies and Services Used
 ------------------------------
 
+- We use [ReactiveCocoa](https://github.com/ReactiveCocoa/ReactiveCocoa), a [Functional Reactive Programming](http://stackoverflow.com/questions/1028250/what-is-functional-reactive-programming) library for Cocoa
+
+- The multiplayer uses [Firebase](http://firebase.com/), a real-time service with state syncing. It's a great match with Core Data. 
+
 - [Cocos2d](http://www.cocos2d-iphone.org/)
-- [Firebase](http://firebase.com/)
 - [TexturePacker](http://www.codeandweb.com/texturepacker)
 - [Parse](https://parse.com/)
 - [TestFlight](testflightapp.com)
-- [ReactiveCocoa](https://github.com/ReactiveCocoa/ReactiveCocoa)
-- Core Data
-
+- [CocoaPods](http://cocoapods.org/)
 
 Setup and Compiling
 -------------------
