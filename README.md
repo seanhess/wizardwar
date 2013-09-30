@@ -3,7 +3,7 @@ Wizard War
 
 [Wizard War][appstore] is an open-source multiplayer iOS game: http://appstore.com/wizardwar
 
-![Wizard War Screenshot](http://i.imgur.com/y2FlmUJ.png)
+[<img src="http://i.imgur.com/y2FlmUJ.png">][appstore]
 
 
 Setup and Compiling
