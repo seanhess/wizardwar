@@ -1,6 +1,9 @@
-Wizard War is an open-source multiplayer iOS game. It can be purchased below: 
+Wizard War
+----------
 
-http://appstore.com/wizardwar
+[Wizard War][appstore] is an open-source multiplayer iOS game: http://appstore.com/wizardwar
+
+![Wizard War Screenshot](http://i.imgur.com/y2FlmUJ.png)
 
 
 Setup and Compiling
