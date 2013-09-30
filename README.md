@@ -41,7 +41,7 @@ Setup and Compiling
 
 ### Dependencies
 
-1. Install http://cocoapods.org/
+1. Install [Cocoa Pods](http://cocoapods.org/)
 2. `pod install`
 3. Use WizardWar.xcworkspace to run the project
 
