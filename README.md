@@ -8,8 +8,6 @@ Wizard War
 Contributors
 ------------
 
-Wizard War is a game by Orbital Labs. http://orbit.al
-
 ### Creators
 
 - [Sean Hess](http://seanhess.github.com)
