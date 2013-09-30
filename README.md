@@ -1,6 +1,7 @@
-Wizard War is an open-source multiplayer iOS game.
+Wizard War is an open-source multiplayer iOS game. It can be purchased below: 
 
-APP STORE LINK HERE
+http://appstore.com/wizardwar
+
 
 Setup and Compiling
 -------------------
@@ -13,14 +14,13 @@ Setup and Compiling
 
 ### Sprite Textures
 
-Run `make` to compile the images in the spritesheet directories into spritesheets. This requires TexturePacker pro and the command line tools installed. If you only have the free version, open the .tps files and hit publish.
+This is only required if you add a sprite to the sprite folders and need to re-publish the spritesheet. The compiled spritesheets are committed to the repository and should be good to go. 
 
-You only need to run this if you change the sprites. The compiled sprites are committed to the repository, so this has usually already been done.
+If you have Texture Packer pro: run `make` to compile the images in the spritesheet directories into spritesheets. If you only have the free version, open the .tps files and hit publish. 
 
-### Podfile
+### A library is missing
 
 If you get an error saying something is missing, run `pod install` again. 
-
 
 
 Technologies and Services Used
@@ -31,26 +31,8 @@ Technologies and Services Used
 - [TexturePacker](http://www.codeandweb.com/texturepacker)
 - [Parse](https://parse.com/)
 - [TestFlight](testflightapp.com)
+- [ReactiveCocoa](https://github.com/ReactiveCocoa/ReactiveCocoa)
 - Core Data
-
-### Links / Nodes
-
-Fonts
-* http://refactr.com/blog/2012/09/ios-tips-custom-fonts/
-
-Multi-resolution support
-* http://www.cocos2d-x.org/projects/cocos2d-x/wiki/Multi_resolution_support
-
-Push Notifications
-* https://www.parse.com/docs/push_guide#top/iOS
-* https://www.parse.com/apps/wizard-war/push_notifications
-
-Core Data
-* http://www.raywenderlich.com/27657/how-to-perform-a-lightweight-core-data-migration
-
-Invites
-* https://developer.apple.com/library/ios/samplecode/MessageComposer/Listings/MessageComposerViewController_m.html#//apple_ref/doc/uid/DTS40010161-MessageComposerViewController_m-DontLinkElementID_6
-
 
 Contributors
 ------------
@@ -74,10 +56,36 @@ Wizard War is a game by Orbital Labs. http://orbit.al.
 - Seth Jenks
 
 
+License
+-------
+
+Copyright (c) 2013 Orbital Labs LLC
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+The final work shall not compete directly with Wizard War, in any mobile app store or on the web. 
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 
 
 
 
 
 
+
+[appstore]: http://appstore.com/wizardwar
 

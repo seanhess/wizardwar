@@ -1,9 +1,22 @@
-Permission is granted to use any and all source code and/or images in this repository for private or educational use.
+Copyright (c) 2013 Sean Hess
 
-Permission is granted to use portions of this code in any project, so long as the intended use does not compete with this project, and so long as the work is substantially different from this project.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-Public or commercial use may be granted on request. 
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-Please contact the owner of this repository for more information or to clarify whether your intended use is permitted. 
+The final work shall not compete directly with Wizard War, in any mobile app store or on the web. 
 
-All other rights reserved. Copyright (c) 2013 Orbital Labs, Sean Hess
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
