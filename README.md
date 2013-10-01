@@ -16,7 +16,7 @@ Contributors
 
 ### Contributors
 
-- Kimball Wireg
+- Kimball Wirig
 - Dallin Skinner
 - Chase Anderson
 - Sariah Burdge
