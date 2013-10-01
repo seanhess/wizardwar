@@ -16,7 +16,7 @@ Contributors
 
 ### Contributors
 
-- Kimball Wirig
+- [Kimball Wirig] (https://dribbble.com/kimballfrank)
 - Dallin Skinner
 - Chase Anderson
 - Sariah Burdge
