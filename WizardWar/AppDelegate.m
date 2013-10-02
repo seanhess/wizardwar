@@ -54,11 +54,11 @@
     
     // TEST FLIGHT - make it first so it can catch errors
     [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
-    [TestFlight takeOff:@"0b4e12af-c3aa-459a-891b-aa357a97e171"];
+    [TestFlight takeOff:@"FAKE_IDENTIFIER"]; // real identifiers in the live branch
     
     
     // PARSE (must be before views)
-    [Parse setApplicationId:@"3hsi88WR19iXGN11miDSH8B031uqyoBYBXHQe9bo" clientKey:@"CjkxlkZw0YOMdzdjJzhHfQm4vkPrA2ZWhY9n2Nfo"];
+    [Parse setApplicationId:@"FAKE_IDENTIFIER" clientKey:@"FAKE_IDENTIFIER"]; // real identifiers in the live branch
     [Parse setVersion:InfoService.buildNumber];
     // [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeSound];
