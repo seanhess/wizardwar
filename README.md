@@ -10,7 +10,7 @@ Contributors
 
 ### Creators
 
-- [Sean Hess](http://seanhess.github.com)
+- [Sean Hess](http://seanhess.github.io)
 - [Jesse Harding](http://jesseharding.com)
 - [Orbital Labs](http://orbit.al)
 
@@ -43,7 +43,7 @@ Setup and Compiling
 
 1. Install [Cocoa Pods](http://cocoapods.org/)
 2. `pod install`
-3. Use WizardWar.xcworkspace to run the project
+3. This creates WizardWar.xcworkspace. Use that to edit and run the project. 
 
 ### Sprite Textures
 
