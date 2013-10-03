@@ -42,7 +42,7 @@
         tf.autocorrectionType = UITextAutocorrectionTypeNo;
         tf.autocapitalizationType = UITextAutocapitalizationTypeNone;
         tf.adjustsFontSizeToFitWidth = YES;
-        tf.returnKeyType = UIReturnKeyNext;
+        tf.returnKeyType = UIReturnKeyDone;
         [self.contentView addSubview:tf];
         self.inputField = tf;
         
