@@ -178,7 +178,7 @@
 
 -(NSString*)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
     if (section == SECTION_FACEBOOK && ![UserFriendService.shared isAuthenticatedFacebook]) {
-        return @"Connect to play with your friends and set your avatar. Will not post anything unless you explitly share something.";
+        return @"Connect to play with your friends and set your avatar. Will not post anything unless you explicitly share something.";
     }
     return nil;
 }

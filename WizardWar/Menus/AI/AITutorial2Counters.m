@@ -45,7 +45,7 @@
         self.steps = @[
            [TutorialStep modalMessage:@"You again!? I'm getting sick of your sense of entitlement!"],
            [TutorialStep modalMessage:@"Being a wizard is about more than just good looks."],
-           [TutorialStep modalMessage:@"Listen: The best defense is offense. The best omlet is a mushroom."],
+           [TutorialStep modalMessage:@"Listen: The best defense is offense. The best omelet is a mushroom."],
 
            [TutorialStep message:@"Why don't you Summon an Ogre: Fire-Earth-Water-Heart"
                             demo:Monster
